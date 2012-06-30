@@ -1,0 +1,696 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2899E5220DE3E06400AC0155 /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* ChattyViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
+		D039DF4E0F9E50E100C77B72 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */; };
+		D039DF550F9E515F00C77B72 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D039DF540F9E515F00C77B72 /* WelcomeViewController.m */; };
+		D043D7F30F94AA2A0030638C /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; };
+		D043D7FB0F94B0BD0030638C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; };
+		D043D8060F99B6A90030638C /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8050F99B6A90030638C /* RemoteRoom.m */; };
+		D043D8480F99BB250030638C /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8470F99BB250030638C /* LocalRoom.m */; };
+		D043D8EF0F9A1C980030638C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
+		D043D91A0F9CB4A60030638C /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D9190F9CB4A60030638C /* AppConfig.m */; };
+		D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
+		D0510A460F9DFCB900B735FA /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */; };
+		D0510A480F9DFD0300B735FA /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0510A470F9DFD0300B735FA /* ChatRoomViewController.xib */; };
+		D0510A520F9E00BB00B735FA /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
+		D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
+		DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
+		DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
+		DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
+		DAF65A26159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */; };
+		DAF65A27159EEF63001BEA75 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */; };
+		DAF65A28159EEF63001BEA75 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */; };
+		DAF65A29159EEF63001BEA75 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */; };
+		DAF65A2A159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */; };
+		DAF65A2B159EEF63001BEA75 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */; };
+		DAF65A2C159EEF63001BEA75 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */; };
+		DAF65A2D159EEF63001BEA75 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */; };
+		DAF65A2E159EEF63001BEA75 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */; };
+		DAF65A2F159EEF63001BEA75 /* WaitingForViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */; };
+		DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
+		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
+		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
+		DAF65AA9159F2F1E001BEA75 /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
+		DAF65AFA159F684A001BEA75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		DAF65AFB159F684A001BEA75 /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
+		DAF65AFC159F684A001BEA75 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
+		DAF65AFD159F684A001BEA75 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; };
+		DAF65AFE159F684A001BEA75 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; };
+		DAF65AFF159F684A001BEA75 /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8050F99B6A90030638C /* RemoteRoom.m */; };
+		DAF65B00159F684A001BEA75 /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8470F99BB250030638C /* LocalRoom.m */; };
+		DAF65B01159F684A001BEA75 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D9190F9CB4A60030638C /* AppConfig.m */; };
+		DAF65B02159F684A001BEA75 /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
+		DAF65B03159F684A001BEA75 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */; };
+		DAF65B04159F684A001BEA75 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
+		DAF65B05159F684A001BEA75 /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
+		DAF65B06159F684A001BEA75 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D039DF540F9E515F00C77B72 /* WelcomeViewController.m */; };
+		DAF65B07159F684A001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
+		DAF65B08159F684A001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
+		DAF65B09159F684A001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
+		DAF65B0A159F684A001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */; };
+		DAF65B0B159F684A001BEA75 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */; };
+		DAF65B0C159F684A001BEA75 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */; };
+		DAF65B0D159F684A001BEA75 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */; };
+		DAF65B0E159F684A001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */; };
+		DAF65B0F159F684A001BEA75 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */; };
+		DAF65B10159F684A001BEA75 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */; };
+		DAF65B11159F684A001BEA75 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */; };
+		DAF65B12159F684A001BEA75 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */; };
+		DAF65B13159F684A001BEA75 /* WaitingForViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */; };
+		DAF65B14159F684A001BEA75 /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
+		DAF65B15159F684A001BEA75 /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
+		DAF65B17159F684A001BEA75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		DAF65B18159F684A001BEA75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		DAF65B19159F684A001BEA75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		DAF65B1A159F684A001BEA75 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
+		DAF65B29159F6853001BEA75 /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B22159F6853001BEA75 /* ChattyViewController.xib */; };
+		DAF65B2A159F6853001BEA75 /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B23159F6853001BEA75 /* ChatRoomViewController.xib */; };
+		DAF65B2B159F6853001BEA75 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B24159F6853001BEA75 /* WelcomeViewController.xib */; };
+		DAF65B2C159F6853001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B25159F6853001BEA75 /* ScoreControlView.xib */; };
+		DAF65B2D159F6853001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B26159F6853001BEA75 /* ScoreBoardView.xib */; };
+		DAF65B2E159F6853001BEA75 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B27159F6853001BEA75 /* MainWindow-iPad.xib */; };
+		DAF65B30159F6C73001BEA75 /* Chatty copy3-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B2F159F6C6D001BEA75 /* Chatty copy3-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* ChattyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* ChattyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattyViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Chatty_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chatty_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D039DD800F9E33C100C77B72 /* ServerBrowserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBrowserDelegate.h; sourceTree = "<group>"; };
+		D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		D039DF530F9E515F00C77B72 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		D039DF540F9E515F00C77B72 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		D043D7F10F94AA2A0030638C /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		D043D7F20F94AA2A0030638C /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
+		D043D7F40F94AF8C0030638C /* ServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDelegate.h; sourceTree = "<group>"; };
+		D043D7F90F94B0BD0030638C /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		D043D7FA0F94B0BD0030638C /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		D043D7FF0F94B27E0030638C /* ConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionDelegate.h; sourceTree = "<group>"; };
+		D043D8020F9736E60030638C /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		D043D8030F97459E0030638C /* RoomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomDelegate.h; sourceTree = "<group>"; };
+		D043D8040F99B6A90030638C /* RemoteRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteRoom.h; sourceTree = "<group>"; };
+		D043D8050F99B6A90030638C /* RemoteRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteRoom.m; sourceTree = "<group>"; };
+		D043D8460F99BB250030638C /* LocalRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalRoom.h; sourceTree = "<group>"; };
+		D043D8470F99BB250030638C /* LocalRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalRoom.m; sourceTree = "<group>"; };
+		D043D8EE0F9A1C980030638C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D043D9180F9CB4A60030638C /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
+		D043D9190F9CB4A60030638C /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
+		D043DA9B0F9CEA100030638C /* ServerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBrowser.h; sourceTree = "<group>"; };
+		D043DA9C0F9CEA100030638C /* ServerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerBrowser.m; sourceTree = "<group>"; };
+		D0510A440F9DFCB900B735FA /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatRoomViewController.h; path = ../ChatRoomViewController.h; sourceTree = "<group>"; };
+		D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatRoomViewController.m; path = ../ChatRoomViewController.m; sourceTree = "<group>"; };
+		D0510A470F9DFD0300B735FA /* ChatRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRoomViewController.xib; sourceTree = "<group>"; };
+		D0510A510F9E00BB00B735FA /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Utils.m"; sourceTree = "<group>"; };
+		D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Utils.h"; sourceTree = "<group>"; };
+		DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
+		DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
+		DAF65A0A159EEF63001BEA75 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
+		DAF65A0B159EEF63001BEA75 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = ../SBJson/Classes/SBJsonParser.h; sourceTree = "<group>"; };
+		DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = ../SBJson/Classes/SBJsonParser.m; sourceTree = "<group>"; };
+		DAF65A0D159EEF63001BEA75 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParser.h; path = ../SBJson/Classes/SBJsonStreamParser.h; sourceTree = "<group>"; };
+		DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParser.m; path = ../SBJson/Classes/SBJsonStreamParser.m; sourceTree = "<group>"; };
+		DAF65A0F159EEF63001BEA75 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAccumulator.h; path = ../SBJson/Classes/SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserAccumulator.m; path = ../SBJson/Classes/SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		DAF65A11159EEF63001BEA75 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAdapter.h; path = ../SBJson/Classes/SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserAdapter.m; path = ../SBJson/Classes/SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		DAF65A13159EEF63001BEA75 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserState.h; path = ../SBJson/Classes/SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserState.m; path = ../SBJson/Classes/SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		DAF65A15159EEF63001BEA75 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriter.h; path = ../SBJson/Classes/SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriter.m; path = ../SBJson/Classes/SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		DAF65A17159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterAccumulator.h; path = ../SBJson/Classes/SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriterAccumulator.m; path = ../SBJson/Classes/SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		DAF65A19159EEF63001BEA75 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterState.h; path = ../SBJson/Classes/SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriterState.m; path = ../SBJson/Classes/SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		DAF65A1B159EEF63001BEA75 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonTokeniser.h; path = ../SBJson/Classes/SBJsonTokeniser.h; sourceTree = "<group>"; };
+		DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonTokeniser.m; path = ../SBJson/Classes/SBJsonTokeniser.m; sourceTree = "<group>"; };
+		DAF65A1D159EEF63001BEA75 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonUTF8Stream.h; path = ../SBJson/Classes/SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonUTF8Stream.m; path = ../SBJson/Classes/SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		DAF65A1F159EEF63001BEA75 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = ../SBJson/Classes/SBJsonWriter.h; sourceTree = "<group>"; };
+		DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = ../SBJson/Classes/SBJsonWriter.m; sourceTree = "<group>"; };
+		DAF65A21159EEF63001BEA75 /* WaitingForViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitingForViewControler.h; path = ../SBJson/Classes/WaitingForViewControler.h; sourceTree = "<group>"; };
+		DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitingForViewControler.m; path = ../SBJson/Classes/WaitingForViewControler.m; sourceTree = "<group>"; };
+		DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreControlViewController.h; sourceTree = "<group>"; };
+		DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreControlViewController.m; sourceTree = "<group>"; };
+		DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreControlView.xib; sourceTree = "<group>"; };
+		DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreBoardView.xib; sourceTree = "<group>"; };
+		DAF65AA7159F2F1D001BEA75 /* ScoreBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBoardViewController.h; sourceTree = "<group>"; };
+		DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBoardViewController.m; sourceTree = "<group>"; };
+		DAF65B1E159F684A001BEA75 /* Chatty-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF65B22159F6853001BEA75 /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
+		DAF65B23159F6853001BEA75 /* ChatRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatRoomViewController.xib; path = "Resources-iPad/ChatRoomViewController.xib"; sourceTree = "<group>"; };
+		DAF65B24159F6853001BEA75 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
+		DAF65B25159F6853001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
+		DAF65B26159F6853001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
+		DAF65B27159F6853001BEA75 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		DAF65B2F159F6C6D001BEA75 /* Chatty copy3-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chatty copy3-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				D043D8EF0F9A1C980030638C /* CFNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF65B16159F684A001BEA75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF65B17159F684A001BEA75 /* Foundation.framework in Frameworks */,
+				DAF65B18159F684A001BEA75 /* UIKit.framework in Frameworks */,
+				DAF65B19159F684A001BEA75 /* CoreGraphics.framework in Frameworks */,
+				DAF65B1A159F684A001BEA75 /* CFNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D043DA070F9CC4C40030638C /* Business Logic */,
+				D043D7F00F94AA0B0030638C /* Networking */,
+				D0B0372F0FA61471000EC42B /* UI */,
+				D0510A710F9E14F200B735FA /* Misc */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Chatty.app */,
+				DAF65B1E159F684A001BEA75 /* Chatty-iPad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65B2F159F6C6D001BEA75 /* Chatty copy3-Info.plist */,
+				DAF65A04159EEED1001BEA75 /* dependencies */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				DAF65AAA159F4A6C001BEA75 /* iPad */,
+				DAF65A6F159F03B6001BEA75 /* Resources-iPad */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* Chatty_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */,
+				DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */,
+				D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */,
+				2899E5210DE3E06400AC0155 /* ChattyViewController.xib */,
+				D0510A470F9DFD0300B735FA /* ChatRoomViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D043D8EE0F9A1C980030638C /* CFNetwork.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D043D7F00F94AA0B0030638C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D043D7F10F94AA2A0030638C /* Server.h */,
+				D043D7F20F94AA2A0030638C /* Server.m */,
+				D043D7F40F94AF8C0030638C /* ServerDelegate.h */,
+				D043D7F90F94B0BD0030638C /* Connection.h */,
+				D043D7FA0F94B0BD0030638C /* Connection.m */,
+				D043D7FF0F94B27E0030638C /* ConnectionDelegate.h */,
+				D043DA9B0F9CEA100030638C /* ServerBrowser.h */,
+				D043DA9C0F9CEA100030638C /* ServerBrowser.m */,
+				D039DD800F9E33C100C77B72 /* ServerBrowserDelegate.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		D043DA070F9CC4C40030638C /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				D043D8020F9736E60030638C /* Room.h */,
+				D0510A510F9E00BB00B735FA /* Room.m */,
+				D043D8030F97459E0030638C /* RoomDelegate.h */,
+				D043D8040F99B6A90030638C /* RemoteRoom.h */,
+				D043D8050F99B6A90030638C /* RemoteRoom.m */,
+				D043D8460F99BB250030638C /* LocalRoom.h */,
+				D043D8470F99BB250030638C /* LocalRoom.m */,
+			);
+			name = "Business Logic";
+			sourceTree = "<group>";
+		};
+		D0510A710F9E14F200B735FA /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */,
+				D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */,
+				D043D9180F9CB4A60030638C /* AppConfig.h */,
+				D043D9190F9CB4A60030638C /* AppConfig.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		D0B0372F0FA61471000EC42B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */,
+				DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */,
+				D039DF530F9E515F00C77B72 /* WelcomeViewController.h */,
+				D039DF540F9E515F00C77B72 /* WelcomeViewController.m */,
+				1D3623240D0F684500981E51 /* ChattyAppDelegate.h */,
+				1D3623250D0F684500981E51 /* ChattyAppDelegate.m */,
+				28D7ACF60DDB3853001CB0EB /* ChattyViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */,
+				D0510A440F9DFCB900B735FA /* ChatRoomViewController.h */,
+				D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */,
+				DAF65AA7159F2F1D001BEA75 /* ScoreBoardViewController.h */,
+				DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		DAF65A04159EEED1001BEA75 /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65A06159EEF02001BEA75 /* SBJSON */,
+			);
+			name = dependencies;
+			sourceTree = "<group>";
+		};
+		DAF65A06159EEF02001BEA75 /* SBJSON */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65A07159EEF46001BEA75 /* Classes */,
+			);
+			name = SBJSON;
+			sourceTree = "<group>";
+		};
+		DAF65A07159EEF46001BEA75 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */,
+				DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */,
+				DAF65A0A159EEF63001BEA75 /* SBJson.h */,
+				DAF65A0B159EEF63001BEA75 /* SBJsonParser.h */,
+				DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */,
+				DAF65A0D159EEF63001BEA75 /* SBJsonStreamParser.h */,
+				DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */,
+				DAF65A0F159EEF63001BEA75 /* SBJsonStreamParserAccumulator.h */,
+				DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */,
+				DAF65A11159EEF63001BEA75 /* SBJsonStreamParserAdapter.h */,
+				DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */,
+				DAF65A13159EEF63001BEA75 /* SBJsonStreamParserState.h */,
+				DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */,
+				DAF65A15159EEF63001BEA75 /* SBJsonStreamWriter.h */,
+				DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */,
+				DAF65A17159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.h */,
+				DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */,
+				DAF65A19159EEF63001BEA75 /* SBJsonStreamWriterState.h */,
+				DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */,
+				DAF65A1B159EEF63001BEA75 /* SBJsonTokeniser.h */,
+				DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */,
+				DAF65A1D159EEF63001BEA75 /* SBJsonUTF8Stream.h */,
+				DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */,
+				DAF65A1F159EEF63001BEA75 /* SBJsonWriter.h */,
+				DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */,
+				DAF65A21159EEF63001BEA75 /* WaitingForViewControler.h */,
+				DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		DAF65A6F159F03B6001BEA75 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				DAF65B22159F6853001BEA75 /* ChattyViewController.xib */,
+				DAF65B23159F6853001BEA75 /* ChatRoomViewController.xib */,
+				DAF65B24159F6853001BEA75 /* WelcomeViewController.xib */,
+				DAF65B25159F6853001BEA75 /* ScoreControlView.xib */,
+				DAF65B26159F6853001BEA75 /* ScoreBoardView.xib */,
+				DAF65B27159F6853001BEA75 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		DAF65AAA159F4A6C001BEA75 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* Chatty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Chatty" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chatty;
+			productName = Chatty;
+			productReference = 1D6058910D05DD3D006BFB54 /* Chatty.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DAF65AF0159F684A001BEA75 /* Chatty-iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF65B1B159F684A001BEA75 /* Build configuration list for PBXNativeTarget "Chatty-iPad" */;
+			buildPhases = (
+				DAF65AF1159F684A001BEA75 /* Resources */,
+				DAF65AF9159F684A001BEA75 /* Sources */,
+				DAF65B16159F684A001BEA75 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chatty-iPad";
+			productName = Chatty;
+			productReference = DAF65B1E159F684A001BEA75 /* Chatty-iPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chatty" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* Chatty */,
+				DAF65AF0159F684A001BEA75 /* Chatty-iPad */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* ChattyViewController.xib in Resources */,
+				D0510A480F9DFD0300B735FA /* ChatRoomViewController.xib in Resources */,
+				D039DF4E0F9E50E100C77B72 /* WelcomeViewController.xib in Resources */,
+				DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */,
+				DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */,
+				DAF65B30159F6C73001BEA75 /* Chatty copy3-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF65AF1159F684A001BEA75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF65B29159F6853001BEA75 /* ChattyViewController.xib in Resources */,
+				DAF65B2A159F6853001BEA75 /* ChatRoomViewController.xib in Resources */,
+				DAF65B2B159F6853001BEA75 /* WelcomeViewController.xib in Resources */,
+				DAF65B2C159F6853001BEA75 /* ScoreControlView.xib in Resources */,
+				DAF65B2D159F6853001BEA75 /* ScoreBoardView.xib in Resources */,
+				DAF65B2E159F6853001BEA75 /* MainWindow-iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* ChattyAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* ChattyViewController.m in Sources */,
+				D043D7F30F94AA2A0030638C /* Server.m in Sources */,
+				D043D7FB0F94B0BD0030638C /* Connection.m in Sources */,
+				D043D8060F99B6A90030638C /* RemoteRoom.m in Sources */,
+				D043D8480F99BB250030638C /* LocalRoom.m in Sources */,
+				D043D91A0F9CB4A60030638C /* AppConfig.m in Sources */,
+				D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */,
+				D0510A460F9DFCB900B735FA /* ChatRoomViewController.m in Sources */,
+				D0510A520F9E00BB00B735FA /* Room.m in Sources */,
+				D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */,
+				D039DF550F9E515F00C77B72 /* WelcomeViewController.m in Sources */,
+				DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */,
+				DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */,
+				DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */,
+				DAF65A26159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */,
+				DAF65A27159EEF63001BEA75 /* SBJsonStreamParserAdapter.m in Sources */,
+				DAF65A28159EEF63001BEA75 /* SBJsonStreamParserState.m in Sources */,
+				DAF65A29159EEF63001BEA75 /* SBJsonStreamWriter.m in Sources */,
+				DAF65A2A159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				DAF65A2B159EEF63001BEA75 /* SBJsonStreamWriterState.m in Sources */,
+				DAF65A2C159EEF63001BEA75 /* SBJsonTokeniser.m in Sources */,
+				DAF65A2D159EEF63001BEA75 /* SBJsonUTF8Stream.m in Sources */,
+				DAF65A2E159EEF63001BEA75 /* SBJsonWriter.m in Sources */,
+				DAF65A2F159EEF63001BEA75 /* WaitingForViewControler.m in Sources */,
+				DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */,
+				DAF65AA9159F2F1E001BEA75 /* ScoreBoardViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF65AF9159F684A001BEA75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF65AFA159F684A001BEA75 /* main.m in Sources */,
+				DAF65AFB159F684A001BEA75 /* ChattyAppDelegate.m in Sources */,
+				DAF65AFC159F684A001BEA75 /* ChattyViewController.m in Sources */,
+				DAF65AFD159F684A001BEA75 /* Server.m in Sources */,
+				DAF65AFE159F684A001BEA75 /* Connection.m in Sources */,
+				DAF65AFF159F684A001BEA75 /* RemoteRoom.m in Sources */,
+				DAF65B00159F684A001BEA75 /* LocalRoom.m in Sources */,
+				DAF65B01159F684A001BEA75 /* AppConfig.m in Sources */,
+				DAF65B02159F684A001BEA75 /* ServerBrowser.m in Sources */,
+				DAF65B03159F684A001BEA75 /* ChatRoomViewController.m in Sources */,
+				DAF65B04159F684A001BEA75 /* Room.m in Sources */,
+				DAF65B05159F684A001BEA75 /* UITextView+Utils.m in Sources */,
+				DAF65B06159F684A001BEA75 /* WelcomeViewController.m in Sources */,
+				DAF65B07159F684A001BEA75 /* NSObject+SBJson.m in Sources */,
+				DAF65B08159F684A001BEA75 /* SBJsonParser.m in Sources */,
+				DAF65B09159F684A001BEA75 /* SBJsonStreamParser.m in Sources */,
+				DAF65B0A159F684A001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */,
+				DAF65B0B159F684A001BEA75 /* SBJsonStreamParserAdapter.m in Sources */,
+				DAF65B0C159F684A001BEA75 /* SBJsonStreamParserState.m in Sources */,
+				DAF65B0D159F684A001BEA75 /* SBJsonStreamWriter.m in Sources */,
+				DAF65B0E159F684A001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				DAF65B0F159F684A001BEA75 /* SBJsonStreamWriterState.m in Sources */,
+				DAF65B10159F684A001BEA75 /* SBJsonTokeniser.m in Sources */,
+				DAF65B11159F684A001BEA75 /* SBJsonUTF8Stream.m in Sources */,
+				DAF65B12159F684A001BEA75 /* SBJsonWriter.m in Sources */,
+				DAF65B13159F684A001BEA75 /* WaitingForViewControler.m in Sources */,
+				DAF65B14159F684A001BEA75 /* ScoreControlViewController.m in Sources */,
+				DAF65B15159F684A001BEA75 /* ScoreBoardViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = Chatty;
+				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = Chatty;
+				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator2.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator2.2;
+			};
+			name = Release;
+		};
+		DAF65B1C159F684A001BEA75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
+				INFOPLIST_FILE = "Chatty copy3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "Chatty-iPad";
+				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		DAF65B1D159F684A001BEA75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
+				INFOPLIST_FILE = "Chatty copy3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "Chatty-iPad";
+				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Chatty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chatty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAF65B1B159F684A001BEA75 /* Build configuration list for PBXNativeTarget "Chatty-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF65B1C159F684A001BEA75 /* Debug */,
+				DAF65B1D159F684A001BEA75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

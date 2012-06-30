@@ -1,0 +1,4 @@
+GETOBJ
+======
+
+Object C

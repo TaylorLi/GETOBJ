@@ -29,6 +29,7 @@
 #import "ChattyAppDelegate.h"
 #import "LocalRoom.h"
 #import "RemoteRoom.h"
+#import "AppConfig.h"
 
 
 // Private properties
@@ -77,21 +78,30 @@
 - (void)joinChatRoom:(NSIndexPath*)currentRow {
   // Figure out which server is selected
   //NSIndexPath* currentRow = [serverList indexPathForSelectedRow];
-  if ( currentRow == nil ) {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which chat room?" message:@"Please select which chat room you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    return;
-  }
+    if ( currentRow == nil ) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which chat room?" message:@"Please select which chat room you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    
+    NSNetService* selectedServer = [serverBrowser.servers objectAtIndex:currentRow.row];
+    
+    // Create chat room that will connect to that chat server
+    RemoteRoom* room = [[[RemoteRoom alloc] initWithNetService:selectedServer] autorelease];
 
-  NSNetService* selectedServer = [serverBrowser.servers objectAtIndex:currentRow.row];
+    // Stop browsing and switch over to chat room
+    [serverBrowser stop];
 
-  // Create chat room that will connect to that chat server
-  RemoteRoom* room = [[[RemoteRoom alloc] initWithNetService:selectedServer] autorelease];
-  
-  // Stop browsing and switch over to chat room
-  [serverBrowser stop];
-  [[ChattyAppDelegate getInstance] showScoreControlRoom:room];
+    NSString* password = [AppConfig getInstance].password;  //要获取对应服务器的密码
+    if(password==nil || password==@"")
+    {
+        [[ChattyAppDelegate getInstance] showScoreControlRoom:room];
+    }
+    else
+    {
+        [[ChattyAppDelegate getInstance] showPermitControl:room validatePassword:YES setServerPassword:password];
+    }
 }
 
 

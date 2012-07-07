@@ -127,6 +127,11 @@
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
+- (IBAction)permit {
+    [chatRoom stop];
+    [[ChattyAppDelegate getInstance] showPermitControl:chatRoom validatePassword:NO setServerPassword:@""];
+}
+
 - (void)eraseText {
     lblMsg.text = @"";
     lblName.text=@"";

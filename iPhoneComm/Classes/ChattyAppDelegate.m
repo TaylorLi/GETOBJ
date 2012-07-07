@@ -31,6 +31,7 @@
 #import "WelcomeViewController.h"
 #import "ScoreControlViewController.h"
 #import "ScoreBoardViewController.h"
+#import "PermitControlView.h"
 
 static ChattyAppDelegate* _instance;
 
@@ -42,6 +43,7 @@ static ChattyAppDelegate* _instance;
 @synthesize welcomeViewController;
 @synthesize scoreControlViewController;
 @synthesize scoreBoardViewController;
+@synthesize permitViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     // Allow other classes to use us
@@ -53,6 +55,7 @@ static ChattyAppDelegate* _instance;
     [window addSubview:welcomeViewController.view];
     [window addSubview:scoreControlViewController.view];
     [window addSubview:scoreBoardViewController.view];
+    [window addSubview:permitViewController.view];
     [window makeKeyAndVisible];
     
     // Greet user
@@ -67,6 +70,7 @@ static ChattyAppDelegate* _instance;
     [welcomeViewController release];
     [scoreBoardViewController release];
     [scoreControlViewController release];
+    [permitViewController release];
     [window release];
     [super dealloc];
 }
@@ -105,6 +109,16 @@ static ChattyAppDelegate* _instance;
     [scoreControlViewController activate];
     
     [window bringSubviewToFront:scoreControlViewController.view];
+}
+
+-(void) showPermitControl:(Room *)room validatePassword:(Boolean)isValatePassword setServerPassword: (NSString*) serverPassword{
+    permitViewController.chatRoom = room;
+    permitViewController.isValidatePassword = isValatePassword;
+    permitViewController.serverPassword = serverPassword;
+    
+    [permitViewController activate];
+    
+    [window bringSubviewToFront:permitViewController.view];
 }
 
 @end

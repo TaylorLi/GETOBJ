@@ -31,6 +31,8 @@
 // Exit back to the welcome screen
 - (IBAction)exit;
 
+- (IBAction)permit;
+
 // View is active, start everything up
 - (void)activate;
 

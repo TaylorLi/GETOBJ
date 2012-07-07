@@ -28,7 +28,7 @@
 #import <UIKit/UIKit.h>
 #import "Room.h"
 
-@class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController;
+@class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController,PermitControlView;
 
 @interface ChattyAppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window;
@@ -37,6 +37,7 @@
   WelcomeViewController *welcomeViewController;
   ScoreControlViewController *scoreControlViewController;
   ScoreBoardViewController *scoreBoardViewController;
+  PermitControlView *permitViewController;
 }
 
 @property(nonatomic, retain) IBOutlet UIWindow *window;
@@ -45,6 +46,7 @@
 @property(nonatomic, retain) IBOutlet WelcomeViewController *welcomeViewController;
 @property(nonatomic, retain) IBOutlet ScoreControlViewController *scoreControlViewController;
 @property(nonatomic, retain) IBOutlet ScoreBoardViewController *scoreBoardViewController;
+@property(nonatomic, retain) IBOutlet PermitControlView *permitViewController;
 
 // Main instance of the app delegate
 + (ChattyAppDelegate*)getInstance;
@@ -59,5 +61,8 @@
 -(void) showScoreBoard:(Room *)room;
 //Show Controller in client
 -(void) showScoreControlRoom:(Room *) room;
+
+//Show permit control
+-(void) showPermitControl:(Room *)room validatePassword:(Boolean)isValatePassword setServerPassword: (NSString*) serverPassword;
 
 @end

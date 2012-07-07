@@ -30,9 +30,11 @@
 
 @interface AppConfig : NSObject {
   NSString* name;
+  NSString* password;
 }
 
 @property (retain) NSString* name;
+@property (retain) NSString* password;
 
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;

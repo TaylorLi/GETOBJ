@@ -32,6 +32,7 @@ static AppConfig* instance;
 @implementation AppConfig
 
 @synthesize name;
+@synthesize password;
 
 // Initialization
 - (id) init {
@@ -43,6 +44,7 @@ static AppConfig* instance;
 // Cleanup
 - (void)dealloc {
   self.name = nil;
+  self.password = nil;
   [super dealloc];
 }
 

@@ -26,7 +26,17 @@
 		D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
 		D0510A520F9E00BB00B735FA /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
 		D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
-		DA78B45215A96F0100E186CC /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DADB112315A8ABB800326B24 /* RightArrow.png */; };
+		DA00F31D15A98EFE005B2F4B /* Chatty-iPad.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA00F31C15A98EFE005B2F4B /* Chatty-iPad.plist */; };
+		DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */; };
+		DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */; };
+		DA00F33D15A9A85C005B2F4B /* LeftArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */; };
+		DA00F33E15A9A85C005B2F4B /* LeftArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33515A9A85C005B2F4B /* LeftArrow@2x.png */; };
+		DA00F33F15A9A85C005B2F4B /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33615A9A85C005B2F4B /* RightArrow.png */; };
+		DA00F34015A9A85C005B2F4B /* RightArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33715A9A85C005B2F4B /* RightArrow@1x.png */; };
+		DA00F34115A9A85C005B2F4B /* RightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33815A9A85C005B2F4B /* RightArrow@2x.png */; };
+		DA00F34215A9A85C005B2F4B /* UpArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33915A9A85C005B2F4B /* UpArrow@1x.png */; };
+		DA00F34315A9A85C005B2F4B /* UpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33A15A9A85C005B2F4B /* UpArrow@2x.png */; };
+		DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48115A96F0600E186CC /* ScoreControlView.xib */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
@@ -64,11 +74,9 @@
 		DA78B48515A96F0600E186CC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47E15A96F0600E186CC /* MainWindow.xib */; };
 		DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47F15A96F0600E186CC /* ChattyViewController.xib */; };
 		DA78B48715A96F0600E186CC /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48015A96F0600E186CC /* WelcomeViewController.xib */; };
-		DA78B48815A96F0600E186CC /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48115A96F0600E186CC /* ScoreControlView.xib */; };
 		DA78B48915A96F0600E186CC /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48215A96F0600E186CC /* ScoreBoardView.xib */; };
 		DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48315A96F0600E186CC /* PermitControlView.xib */; };
 		DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48415A96F0600E186CC /* ChatRoomViewController.xib */; };
-		DADB112415A8ABB800326B24 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DADB112315A8ABB800326B24 /* RightArrow.png */; };
 		DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735BE15A84AAE00C84157 /* CommandMsg.m */; };
 		DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C315A889C900C84157 /* PermitControlView.m */; };
 		DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735C515A889DE00C84157 /* PermitControlView.xib */; };
@@ -131,8 +139,17 @@
 		D0510A510F9E00BB00B735FA /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Utils.m"; sourceTree = "<group>"; };
 		D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Utils.h"; sourceTree = "<group>"; };
+		DA00F31C15A98EFE005B2F4B /* Chatty-iPad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chatty-iPad.plist"; sourceTree = "<group>"; };
+		DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DownArrow@1x.png"; path = "Images/DownArrow@1x.png"; sourceTree = "<group>"; };
+		DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DownArrow@2x.png"; path = "Images/DownArrow@2x.png"; sourceTree = "<group>"; };
+		DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeftArrow@1x.png"; path = "Images/LeftArrow@1x.png"; sourceTree = "<group>"; };
+		DA00F33515A9A85C005B2F4B /* LeftArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeftArrow@2x.png"; path = "Images/LeftArrow@2x.png"; sourceTree = "<group>"; };
+		DA00F33615A9A85C005B2F4B /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Images/RightArrow.png; sourceTree = "<group>"; };
+		DA00F33715A9A85C005B2F4B /* RightArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RightArrow@1x.png"; path = "Images/RightArrow@1x.png"; sourceTree = "<group>"; };
+		DA00F33815A9A85C005B2F4B /* RightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RightArrow@2x.png"; path = "Images/RightArrow@2x.png"; sourceTree = "<group>"; };
+		DA00F33915A9A85C005B2F4B /* UpArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UpArrow@1x.png"; path = "Images/UpArrow@1x.png"; sourceTree = "<group>"; };
+		DA00F33A15A9A85C005B2F4B /* UpArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UpArrow@2x.png"; path = "Images/UpArrow@2x.png"; sourceTree = "<group>"; };
 		DA78B47A15A96F0100E186CC /* Chatty-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA78B47D15A96F0200E186CC /* Chatty-iPad.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Chatty-iPad.plist"; path = "/Users/eagledu/github/repo/GETOBJ2/iPhoneComm/Chatty-iPad.plist"; sourceTree = "<absolute>"; };
 		DA78B47E15A96F0600E186CC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48015A96F0600E186CC /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
@@ -140,7 +157,6 @@
 		DA78B48215A96F0600E186CC /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DA78B48315A96F0600E186CC /* PermitControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PermitControlView.xib; path = "Resources-iPad/PermitControlView.xib"; sourceTree = "<group>"; };
 		DA78B48415A96F0600E186CC /* ChatRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatRoomViewController.xib; path = "Resources-iPad/ChatRoomViewController.xib"; sourceTree = "<group>"; };
-		DADB112315A8ABB800326B24 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Images/RightArrow.png; sourceTree = "<group>"; };
 		DAE735BD15A84AAE00C84157 /* CommandMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMsg.h; sourceTree = "<group>"; };
 		DAE735BE15A84AAE00C84157 /* CommandMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMsg.m; sourceTree = "<group>"; };
 		DAE735C215A889C900C84157 /* PermitControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermitControlView.h; sourceTree = SOURCE_ROOT; };
@@ -242,7 +258,6 @@
 				DA78B47C15A96F0100E186CC /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				DA78B47D15A96F0200E186CC /* Chatty-iPad.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -347,6 +362,7 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				DA00F31C15A98EFE005B2F4B /* Chatty-iPad.plist */,
 				DA78B47E15A96F0600E186CC /* MainWindow.xib */,
 				DA78B47F15A96F0600E186CC /* ChattyViewController.xib */,
 				DA78B48015A96F0600E186CC /* WelcomeViewController.xib */,
@@ -361,7 +377,15 @@
 		DADB112215A8AB3800326B24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				DADB112315A8ABB800326B24 /* RightArrow.png */,
+				DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */,
+				DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */,
+				DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */,
+				DA00F33515A9A85C005B2F4B /* LeftArrow@2x.png */,
+				DA00F33615A9A85C005B2F4B /* RightArrow.png */,
+				DA00F33715A9A85C005B2F4B /* RightArrow@1x.png */,
+				DA00F33815A9A85C005B2F4B /* RightArrow@2x.png */,
+				DA00F33915A9A85C005B2F4B /* UpArrow@1x.png */,
+				DA00F33A15A9A85C005B2F4B /* UpArrow@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -499,7 +523,16 @@
 				DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */,
 				DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */,
 				DAE735CB15A88C8600C84157 /* ChatRoomViewController.xib in Resources */,
-				DADB112415A8ABB800326B24 /* RightArrow.png in Resources */,
+				DA00F31D15A98EFE005B2F4B /* Chatty-iPad.plist in Resources */,
+				DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */,
+				DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */,
+				DA00F33D15A9A85C005B2F4B /* LeftArrow@1x.png in Resources */,
+				DA00F33E15A9A85C005B2F4B /* LeftArrow@2x.png in Resources */,
+				DA00F33F15A9A85C005B2F4B /* RightArrow.png in Resources */,
+				DA00F34015A9A85C005B2F4B /* RightArrow@1x.png in Resources */,
+				DA00F34115A9A85C005B2F4B /* RightArrow@2x.png in Resources */,
+				DA00F34215A9A85C005B2F4B /* UpArrow@1x.png in Resources */,
+				DA00F34315A9A85C005B2F4B /* UpArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,14 +540,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA78B45215A96F0100E186CC /* RightArrow.png in Resources */,
 				DA78B48515A96F0600E186CC /* MainWindow.xib in Resources */,
 				DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */,
 				DA78B48715A96F0600E186CC /* WelcomeViewController.xib in Resources */,
-				DA78B48815A96F0600E186CC /* ScoreControlView.xib in Resources */,
 				DA78B48915A96F0600E186CC /* ScoreBoardView.xib in Resources */,
 				DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */,
 				DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */,
+				DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

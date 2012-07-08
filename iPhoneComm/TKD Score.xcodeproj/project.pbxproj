@@ -26,17 +26,20 @@
 		D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
 		D0510A520F9E00BB00B735FA /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
 		D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
-		DA00F31D15A98EFE005B2F4B /* Chatty-iPad.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA00F31C15A98EFE005B2F4B /* Chatty-iPad.plist */; };
+		DA00F31D15A98EFE005B2F4B /* TKD Score-iPad.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */; };
 		DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */; };
 		DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */; };
 		DA00F33D15A9A85C005B2F4B /* LeftArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */; };
 		DA00F33E15A9A85C005B2F4B /* LeftArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33515A9A85C005B2F4B /* LeftArrow@2x.png */; };
-		DA00F33F15A9A85C005B2F4B /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33615A9A85C005B2F4B /* RightArrow.png */; };
 		DA00F34015A9A85C005B2F4B /* RightArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33715A9A85C005B2F4B /* RightArrow@1x.png */; };
 		DA00F34115A9A85C005B2F4B /* RightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33815A9A85C005B2F4B /* RightArrow@2x.png */; };
 		DA00F34215A9A85C005B2F4B /* UpArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33915A9A85C005B2F4B /* UpArrow@1x.png */; };
 		DA00F34315A9A85C005B2F4B /* UpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33A15A9A85C005B2F4B /* UpArrow@2x.png */; };
 		DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48115A96F0600E186CC /* ScoreControlView.xib */; };
+		DA00F38015A9DC92005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
+		DA00F38115A9DC92005B2F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37E15A9DC92005B2F4B /* icon.png */; };
+		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
+		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
@@ -105,7 +108,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* ChattyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* ChattyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* TKD Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChattyViewController.xib; sourceTree = "<group>"; };
@@ -113,7 +116,7 @@
 		28D7ACF60DDB3853001CB0EB /* ChattyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattyViewController.h; sourceTree = "<group>"; };
 		28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattyViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* Chatty_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chatty_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TKD Score_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TKD Score_Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D039DD800F9E33C100C77B72 /* ServerBrowserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBrowserDelegate.h; sourceTree = "<group>"; };
 		D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
@@ -139,17 +142,19 @@
 		D0510A510F9E00BB00B735FA /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Utils.m"; sourceTree = "<group>"; };
 		D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Utils.h"; sourceTree = "<group>"; };
-		DA00F31C15A98EFE005B2F4B /* Chatty-iPad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chatty-iPad.plist"; sourceTree = "<group>"; };
+		DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TKD Score-iPad.plist"; sourceTree = "<group>"; };
 		DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DownArrow@1x.png"; path = "Images/DownArrow@1x.png"; sourceTree = "<group>"; };
 		DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DownArrow@2x.png"; path = "Images/DownArrow@2x.png"; sourceTree = "<group>"; };
 		DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeftArrow@1x.png"; path = "Images/LeftArrow@1x.png"; sourceTree = "<group>"; };
 		DA00F33515A9A85C005B2F4B /* LeftArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeftArrow@2x.png"; path = "Images/LeftArrow@2x.png"; sourceTree = "<group>"; };
-		DA00F33615A9A85C005B2F4B /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Images/RightArrow.png; sourceTree = "<group>"; };
 		DA00F33715A9A85C005B2F4B /* RightArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RightArrow@1x.png"; path = "Images/RightArrow@1x.png"; sourceTree = "<group>"; };
 		DA00F33815A9A85C005B2F4B /* RightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RightArrow@2x.png"; path = "Images/RightArrow@2x.png"; sourceTree = "<group>"; };
 		DA00F33915A9A85C005B2F4B /* UpArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UpArrow@1x.png"; path = "Images/UpArrow@1x.png"; sourceTree = "<group>"; };
 		DA00F33A15A9A85C005B2F4B /* UpArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UpArrow@2x.png"; path = "Images/UpArrow@2x.png"; sourceTree = "<group>"; };
-		DA78B47A15A96F0100E186CC /* Chatty-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA00F37D15A9DC92005B2F4B /* app2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app2.png; sourceTree = "<group>"; };
+		DA00F37E15A9DC92005B2F4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		DA00F37F15A9DC92005B2F4B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47E15A96F0600E186CC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48015A96F0600E186CC /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
@@ -241,8 +246,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Chatty.app */,
-				DA78B47A15A96F0100E186CC /* Chatty-iPad.app */,
+				1D6058910D05DD3D006BFB54 /* TKD Score.app */,
+				DA78B47A15A96F0100E186CC /* TKD Score HD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,6 +255,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DA00F37E15A9DC92005B2F4B /* icon.png */,
+				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
+				DA00F37D15A9DC92005B2F4B /* app2.png */,
 				DADB112215A8AB3800326B24 /* Images */,
 				DAF65A04159EEED1001BEA75 /* dependencies */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -265,7 +273,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* Chatty_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* TKD Score_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -362,7 +370,7 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
-				DA00F31C15A98EFE005B2F4B /* Chatty-iPad.plist */,
+				DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */,
 				DA78B47E15A96F0600E186CC /* MainWindow.xib */,
 				DA78B47F15A96F0600E186CC /* ChattyViewController.xib */,
 				DA78B48015A96F0600E186CC /* WelcomeViewController.xib */,
@@ -381,7 +389,6 @@
 				DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */,
 				DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */,
 				DA00F33515A9A85C005B2F4B /* LeftArrow@2x.png */,
-				DA00F33615A9A85C005B2F4B /* RightArrow.png */,
 				DA00F33715A9A85C005B2F4B /* RightArrow@1x.png */,
 				DA00F33815A9A85C005B2F4B /* RightArrow@2x.png */,
 				DA00F33915A9A85C005B2F4B /* UpArrow@1x.png */,
@@ -452,9 +459,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Chatty */ = {
+		1D6058900D05DD3D006BFB54 /* TKD Score */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Chatty" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TKD Score" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -464,14 +471,14 @@
 			);
 			dependencies = (
 			);
-			name = Chatty;
+			name = "TKD Score";
 			productName = Chatty;
-			productReference = 1D6058910D05DD3D006BFB54 /* Chatty.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* TKD Score.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DA78B44915A96F0100E186CC /* Chatty-iPad */ = {
+		DA78B44915A96F0100E186CC /* TKD Score-iPad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA78B47715A96F0100E186CC /* Build configuration list for PBXNativeTarget "Chatty-iPad" */;
+			buildConfigurationList = DA78B47715A96F0100E186CC /* Build configuration list for PBXNativeTarget "TKD Score-iPad" */;
 			buildPhases = (
 				DA78B44A15A96F0100E186CC /* Resources */,
 				DA78B45315A96F0100E186CC /* Sources */,
@@ -481,9 +488,9 @@
 			);
 			dependencies = (
 			);
-			name = "Chatty-iPad";
+			name = "TKD Score-iPad";
 			productName = Chatty;
-			productReference = DA78B47A15A96F0100E186CC /* Chatty-iPad.app */;
+			productReference = DA78B47A15A96F0100E186CC /* TKD Score HD.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -494,7 +501,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chatty" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TKD Score" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -505,8 +512,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Chatty */,
-				DA78B44915A96F0100E186CC /* Chatty-iPad */,
+				1D6058900D05DD3D006BFB54 /* TKD Score */,
+				DA78B44915A96F0100E186CC /* TKD Score-iPad */,
 			);
 		};
 /* End PBXProject section */
@@ -523,16 +530,18 @@
 				DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */,
 				DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */,
 				DAE735CB15A88C8600C84157 /* ChatRoomViewController.xib in Resources */,
-				DA00F31D15A98EFE005B2F4B /* Chatty-iPad.plist in Resources */,
+				DA00F31D15A98EFE005B2F4B /* TKD Score-iPad.plist in Resources */,
 				DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */,
 				DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */,
 				DA00F33D15A9A85C005B2F4B /* LeftArrow@1x.png in Resources */,
 				DA00F33E15A9A85C005B2F4B /* LeftArrow@2x.png in Resources */,
-				DA00F33F15A9A85C005B2F4B /* RightArrow.png in Resources */,
 				DA00F34015A9A85C005B2F4B /* RightArrow@1x.png in Resources */,
 				DA00F34115A9A85C005B2F4B /* RightArrow@2x.png in Resources */,
 				DA00F34215A9A85C005B2F4B /* UpArrow@1x.png in Resources */,
 				DA00F34315A9A85C005B2F4B /* UpArrow@2x.png in Resources */,
+				DA00F38015A9DC92005B2F4B /* app2.png in Resources */,
+				DA00F38115A9DC92005B2F4B /* icon.png in Resources */,
+				DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +556,7 @@
 				DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */,
 				DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */,
 				DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */,
+				DA00F38315A9DCDD005B2F4B /* app2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,10 +650,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
+				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = Chatty;
+				PRODUCT_NAME = "TKD Score";
 				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -658,10 +668,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
+				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = Chatty;
+				PRODUCT_NAME = "TKD Score";
 				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -707,10 +717,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
-				INFOPLIST_FILE = "Chatty-iPad.plist";
+				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
+				INFOPLIST_FILE = "TKD Score-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Chatty-iPad";
+				PRODUCT_NAME = "TKD Score HD";
 				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -725,10 +735,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
-				INFOPLIST_FILE = "Chatty-iPad.plist";
+				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
+				INFOPLIST_FILE = "TKD Score-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Chatty-iPad";
+				PRODUCT_NAME = "TKD Score HD";
 				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -738,7 +748,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Chatty" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TKD Score" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -747,7 +757,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chatty" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TKD Score" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
@@ -756,7 +766,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA78B47715A96F0100E186CC /* Build configuration list for PBXNativeTarget "Chatty-iPad" */ = {
+		DA78B47715A96F0100E186CC /* Build configuration list for PBXNativeTarget "TKD Score-iPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA78B47815A96F0100E186CC /* Debug */,

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,10 +24,56 @@
 		D043D8EF0F9A1C980030638C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
 		D043D91A0F9CB4A60030638C /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D9190F9CB4A60030638C /* AppConfig.m */; };
 		D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
-		D0510A460F9DFCB900B735FA /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */; };
-		D0510A480F9DFD0300B735FA /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0510A470F9DFD0300B735FA /* ChatRoomViewController.xib */; };
 		D0510A520F9E00BB00B735FA /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
 		D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
+		DA78B45215A96F0100E186CC /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DADB112315A8ABB800326B24 /* RightArrow.png */; };
+		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
+		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
+		DA78B45715A96F0100E186CC /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; };
+		DA78B45815A96F0100E186CC /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; };
+		DA78B45915A96F0100E186CC /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8050F99B6A90030638C /* RemoteRoom.m */; };
+		DA78B45A15A96F0100E186CC /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8470F99BB250030638C /* LocalRoom.m */; };
+		DA78B45B15A96F0100E186CC /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D9190F9CB4A60030638C /* AppConfig.m */; };
+		DA78B45C15A96F0100E186CC /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
+		DA78B45D15A96F0100E186CC /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
+		DA78B45E15A96F0100E186CC /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
+		DA78B45F15A96F0100E186CC /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D039DF540F9E515F00C77B72 /* WelcomeViewController.m */; };
+		DA78B46015A96F0100E186CC /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
+		DA78B46115A96F0100E186CC /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
+		DA78B46215A96F0100E186CC /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
+		DA78B46315A96F0100E186CC /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */; };
+		DA78B46415A96F0100E186CC /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */; };
+		DA78B46515A96F0100E186CC /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */; };
+		DA78B46615A96F0100E186CC /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */; };
+		DA78B46715A96F0100E186CC /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */; };
+		DA78B46815A96F0100E186CC /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */; };
+		DA78B46915A96F0100E186CC /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */; };
+		DA78B46A15A96F0100E186CC /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */; };
+		DA78B46B15A96F0100E186CC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */; };
+		DA78B46C15A96F0100E186CC /* WaitingForViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */; };
+		DA78B46D15A96F0100E186CC /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
+		DA78B46E15A96F0100E186CC /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
+		DA78B46F15A96F0100E186CC /* CommandMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735BE15A84AAE00C84157 /* CommandMsg.m */; };
+		DA78B47015A96F0100E186CC /* PermitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C315A889C900C84157 /* PermitControlView.m */; };
+		DA78B47115A96F0100E186CC /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */; };
+		DA78B47315A96F0100E186CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		DA78B47415A96F0100E186CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		DA78B47515A96F0100E186CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		DA78B47615A96F0100E186CC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
+		DA78B48515A96F0600E186CC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47E15A96F0600E186CC /* MainWindow.xib */; };
+		DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47F15A96F0600E186CC /* ChattyViewController.xib */; };
+		DA78B48715A96F0600E186CC /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48015A96F0600E186CC /* WelcomeViewController.xib */; };
+		DA78B48815A96F0600E186CC /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48115A96F0600E186CC /* ScoreControlView.xib */; };
+		DA78B48915A96F0600E186CC /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48215A96F0600E186CC /* ScoreBoardView.xib */; };
+		DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48315A96F0600E186CC /* PermitControlView.xib */; };
+		DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48415A96F0600E186CC /* ChatRoomViewController.xib */; };
+		DADB112415A8ABB800326B24 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DADB112315A8ABB800326B24 /* RightArrow.png */; };
+		DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735BE15A84AAE00C84157 /* CommandMsg.m */; };
+		DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C315A889C900C84157 /* PermitControlView.m */; };
+		DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735C515A889DE00C84157 /* PermitControlView.xib */; };
+		DAE735C915A88C7D00C84157 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */; };
+		DAE735CB15A88C8600C84157 /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735CA15A88C8600C84157 /* ChatRoomViewController.xib */; };
 		DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
 		DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
 		DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
@@ -45,45 +91,6 @@
 		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
 		DAF65AA9159F2F1E001BEA75 /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
-		DAF65AFA159F684A001BEA75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		DAF65AFB159F684A001BEA75 /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
-		DAF65AFC159F684A001BEA75 /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
-		DAF65AFD159F684A001BEA75 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; };
-		DAF65AFE159F684A001BEA75 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; };
-		DAF65AFF159F684A001BEA75 /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8050F99B6A90030638C /* RemoteRoom.m */; };
-		DAF65B00159F684A001BEA75 /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8470F99BB250030638C /* LocalRoom.m */; };
-		DAF65B01159F684A001BEA75 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D9190F9CB4A60030638C /* AppConfig.m */; };
-		DAF65B02159F684A001BEA75 /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
-		DAF65B03159F684A001BEA75 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */; };
-		DAF65B04159F684A001BEA75 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
-		DAF65B05159F684A001BEA75 /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
-		DAF65B06159F684A001BEA75 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D039DF540F9E515F00C77B72 /* WelcomeViewController.m */; };
-		DAF65B07159F684A001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
-		DAF65B08159F684A001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
-		DAF65B09159F684A001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
-		DAF65B0A159F684A001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */; };
-		DAF65B0B159F684A001BEA75 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */; };
-		DAF65B0C159F684A001BEA75 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */; };
-		DAF65B0D159F684A001BEA75 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */; };
-		DAF65B0E159F684A001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */; };
-		DAF65B0F159F684A001BEA75 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */; };
-		DAF65B10159F684A001BEA75 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */; };
-		DAF65B11159F684A001BEA75 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */; };
-		DAF65B12159F684A001BEA75 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */; };
-		DAF65B13159F684A001BEA75 /* WaitingForViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */; };
-		DAF65B14159F684A001BEA75 /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
-		DAF65B15159F684A001BEA75 /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
-		DAF65B17159F684A001BEA75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		DAF65B18159F684A001BEA75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		DAF65B19159F684A001BEA75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		DAF65B1A159F684A001BEA75 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
-		DAF65B29159F6853001BEA75 /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B22159F6853001BEA75 /* ChattyViewController.xib */; };
-		DAF65B2A159F6853001BEA75 /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B23159F6853001BEA75 /* ChatRoomViewController.xib */; };
-		DAF65B2B159F6853001BEA75 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B24159F6853001BEA75 /* WelcomeViewController.xib */; };
-		DAF65B2C159F6853001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B25159F6853001BEA75 /* ScoreControlView.xib */; };
-		DAF65B2D159F6853001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B26159F6853001BEA75 /* ScoreBoardView.xib */; };
-		DAF65B2E159F6853001BEA75 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B27159F6853001BEA75 /* MainWindow-iPad.xib */; };
-		DAF65B30159F6C73001BEA75 /* Chatty copy3-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAF65B2F159F6C6D001BEA75 /* Chatty copy3-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,12 +128,27 @@
 		D043D9190F9CB4A60030638C /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
 		D043DA9B0F9CEA100030638C /* ServerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBrowser.h; sourceTree = "<group>"; };
 		D043DA9C0F9CEA100030638C /* ServerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerBrowser.m; sourceTree = "<group>"; };
-		D0510A440F9DFCB900B735FA /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatRoomViewController.h; path = ../ChatRoomViewController.h; sourceTree = "<group>"; };
-		D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatRoomViewController.m; path = ../ChatRoomViewController.m; sourceTree = "<group>"; };
-		D0510A470F9DFD0300B735FA /* ChatRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRoomViewController.xib; sourceTree = "<group>"; };
 		D0510A510F9E00BB00B735FA /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Utils.m"; sourceTree = "<group>"; };
 		D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Utils.h"; sourceTree = "<group>"; };
+		DA78B47A15A96F0100E186CC /* Chatty-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA78B47D15A96F0200E186CC /* Chatty-iPad.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Chatty-iPad.plist"; path = "/Users/eagledu/github/repo/GETOBJ2/iPhoneComm/Chatty-iPad.plist"; sourceTree = "<absolute>"; };
+		DA78B47E15A96F0600E186CC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
+		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
+		DA78B48015A96F0600E186CC /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
+		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
+		DA78B48215A96F0600E186CC /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
+		DA78B48315A96F0600E186CC /* PermitControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PermitControlView.xib; path = "Resources-iPad/PermitControlView.xib"; sourceTree = "<group>"; };
+		DA78B48415A96F0600E186CC /* ChatRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatRoomViewController.xib; path = "Resources-iPad/ChatRoomViewController.xib"; sourceTree = "<group>"; };
+		DADB112315A8ABB800326B24 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Images/RightArrow.png; sourceTree = "<group>"; };
+		DAE735BD15A84AAE00C84157 /* CommandMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMsg.h; sourceTree = "<group>"; };
+		DAE735BE15A84AAE00C84157 /* CommandMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMsg.m; sourceTree = "<group>"; };
+		DAE735C215A889C900C84157 /* PermitControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermitControlView.h; sourceTree = SOURCE_ROOT; };
+		DAE735C315A889C900C84157 /* PermitControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermitControlView.m; sourceTree = SOURCE_ROOT; };
+		DAE735C515A889DE00C84157 /* PermitControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PermitControlView.xib; sourceTree = "<group>"; };
+		DAE735C715A88C7D00C84157 /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = SOURCE_ROOT; };
+		DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = SOURCE_ROOT; };
+		DAE735CA15A88C8600C84157 /* ChatRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomViewController.xib; sourceTree = "<group>"; };
 		DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DAF65A0A159EEF63001BEA75 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
@@ -160,14 +182,6 @@
 		DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreBoardView.xib; sourceTree = "<group>"; };
 		DAF65AA7159F2F1D001BEA75 /* ScoreBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBoardViewController.h; sourceTree = "<group>"; };
 		DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBoardViewController.m; sourceTree = "<group>"; };
-		DAF65B1E159F684A001BEA75 /* Chatty-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chatty-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAF65B22159F6853001BEA75 /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
-		DAF65B23159F6853001BEA75 /* ChatRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChatRoomViewController.xib; path = "Resources-iPad/ChatRoomViewController.xib"; sourceTree = "<group>"; };
-		DAF65B24159F6853001BEA75 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
-		DAF65B25159F6853001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
-		DAF65B26159F6853001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
-		DAF65B27159F6853001BEA75 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		DAF65B2F159F6C6D001BEA75 /* Chatty copy3-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chatty copy3-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,14 +196,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAF65B16159F684A001BEA75 /* Frameworks */ = {
+		DA78B47215A96F0100E186CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF65B17159F684A001BEA75 /* Foundation.framework in Frameworks */,
-				DAF65B18159F684A001BEA75 /* UIKit.framework in Frameworks */,
-				DAF65B19159F684A001BEA75 /* CoreGraphics.framework in Frameworks */,
-				DAF65B1A159F684A001BEA75 /* CFNetwork.framework in Frameworks */,
+				DA78B47315A96F0100E186CC /* Foundation.framework in Frameworks */,
+				DA78B47415A96F0100E186CC /* UIKit.framework in Frameworks */,
+				DA78B47515A96F0100E186CC /* CoreGraphics.framework in Frameworks */,
+				DA78B47615A96F0100E186CC /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +213,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DAE735BB15A8494A00C84157 /* Model */,
 				D043DA070F9CC4C40030638C /* Business Logic */,
 				D043D7F00F94AA0B0030638C /* Networking */,
 				D0B0372F0FA61471000EC42B /* UI */,
@@ -211,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Chatty.app */,
-				DAF65B1E159F684A001BEA75 /* Chatty-iPad.app */,
+				DA78B47A15A96F0100E186CC /* Chatty-iPad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,15 +234,15 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				DAF65B2F159F6C6D001BEA75 /* Chatty copy3-Info.plist */,
+				DADB112215A8AB3800326B24 /* Images */,
 				DAF65A04159EEED1001BEA75 /* dependencies */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				DAF65AAA159F4A6C001BEA75 /* iPad */,
-				DAF65A6F159F03B6001BEA75 /* Resources-iPad */,
+				DA78B47C15A96F0100E186CC /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				DA78B47D15A96F0200E186CC /* Chatty-iPad.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -244,11 +259,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DAE735CA15A88C8600C84157 /* ChatRoomViewController.xib */,
+				DAE735C515A889DE00C84157 /* PermitControlView.xib */,
 				DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */,
 				DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */,
 				D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */,
 				2899E5210DE3E06400AC0155 /* ChattyViewController.xib */,
-				D0510A470F9DFD0300B735FA /* ChatRoomViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
@@ -310,6 +326,10 @@
 		D0B0372F0FA61471000EC42B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DAE735C715A88C7D00C84157 /* ChatRoomViewController.h */,
+				DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */,
+				DAE735C215A889C900C84157 /* PermitControlView.h */,
+				DAE735C315A889C900C84157 /* PermitControlView.m */,
 				DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */,
 				DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */,
 				D039DF530F9E515F00C77B72 /* WelcomeViewController.h */,
@@ -318,12 +338,41 @@
 				1D3623250D0F684500981E51 /* ChattyAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* ChattyViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */,
-				D0510A440F9DFCB900B735FA /* ChatRoomViewController.h */,
-				D0510A450F9DFCB900B735FA /* ChatRoomViewController.m */,
 				DAF65AA7159F2F1D001BEA75 /* ScoreBoardViewController.h */,
 				DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				DA78B47E15A96F0600E186CC /* MainWindow.xib */,
+				DA78B47F15A96F0600E186CC /* ChattyViewController.xib */,
+				DA78B48015A96F0600E186CC /* WelcomeViewController.xib */,
+				DA78B48115A96F0600E186CC /* ScoreControlView.xib */,
+				DA78B48215A96F0600E186CC /* ScoreBoardView.xib */,
+				DA78B48315A96F0600E186CC /* PermitControlView.xib */,
+				DA78B48415A96F0600E186CC /* ChatRoomViewController.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		DADB112215A8AB3800326B24 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DADB112315A8ABB800326B24 /* RightArrow.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		DAE735BB15A8494A00C84157 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAE735BD15A84AAE00C84157 /* CommandMsg.h */,
+				DAE735BE15A84AAE00C84157 /* CommandMsg.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		DAF65A04159EEED1001BEA75 /* dependencies */ = {
@@ -376,26 +425,6 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		DAF65A6F159F03B6001BEA75 /* Resources-iPad */ = {
-			isa = PBXGroup;
-			children = (
-				DAF65B22159F6853001BEA75 /* ChattyViewController.xib */,
-				DAF65B23159F6853001BEA75 /* ChatRoomViewController.xib */,
-				DAF65B24159F6853001BEA75 /* WelcomeViewController.xib */,
-				DAF65B25159F6853001BEA75 /* ScoreControlView.xib */,
-				DAF65B26159F6853001BEA75 /* ScoreBoardView.xib */,
-				DAF65B27159F6853001BEA75 /* MainWindow-iPad.xib */,
-			);
-			name = "Resources-iPad";
-			sourceTree = "<group>";
-		};
-		DAF65AAA159F4A6C001BEA75 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -416,13 +445,13 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Chatty.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DAF65AF0159F684A001BEA75 /* Chatty-iPad */ = {
+		DA78B44915A96F0100E186CC /* Chatty-iPad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAF65B1B159F684A001BEA75 /* Build configuration list for PBXNativeTarget "Chatty-iPad" */;
+			buildConfigurationList = DA78B47715A96F0100E186CC /* Build configuration list for PBXNativeTarget "Chatty-iPad" */;
 			buildPhases = (
-				DAF65AF1159F684A001BEA75 /* Resources */,
-				DAF65AF9159F684A001BEA75 /* Sources */,
-				DAF65B16159F684A001BEA75 /* Frameworks */,
+				DA78B44A15A96F0100E186CC /* Resources */,
+				DA78B45315A96F0100E186CC /* Sources */,
+				DA78B47215A96F0100E186CC /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -430,7 +459,7 @@
 			);
 			name = "Chatty-iPad";
 			productName = Chatty;
-			productReference = DAF65B1E159F684A001BEA75 /* Chatty-iPad.app */;
+			productReference = DA78B47A15A96F0100E186CC /* Chatty-iPad.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -438,8 +467,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Chatty" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -450,7 +482,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Chatty */,
-				DAF65AF0159F684A001BEA75 /* Chatty-iPad */,
+				DA78B44915A96F0100E186CC /* Chatty-iPad */,
 			);
 		};
 /* End PBXProject section */
@@ -462,24 +494,27 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* ChattyViewController.xib in Resources */,
-				D0510A480F9DFD0300B735FA /* ChatRoomViewController.xib in Resources */,
 				D039DF4E0F9E50E100C77B72 /* WelcomeViewController.xib in Resources */,
 				DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */,
 				DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */,
-				DAF65B30159F6C73001BEA75 /* Chatty copy3-Info.plist in Resources */,
+				DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */,
+				DAE735CB15A88C8600C84157 /* ChatRoomViewController.xib in Resources */,
+				DADB112415A8ABB800326B24 /* RightArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAF65AF1159F684A001BEA75 /* Resources */ = {
+		DA78B44A15A96F0100E186CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF65B29159F6853001BEA75 /* ChattyViewController.xib in Resources */,
-				DAF65B2A159F6853001BEA75 /* ChatRoomViewController.xib in Resources */,
-				DAF65B2B159F6853001BEA75 /* WelcomeViewController.xib in Resources */,
-				DAF65B2C159F6853001BEA75 /* ScoreControlView.xib in Resources */,
-				DAF65B2D159F6853001BEA75 /* ScoreBoardView.xib in Resources */,
-				DAF65B2E159F6853001BEA75 /* MainWindow-iPad.xib in Resources */,
+				DA78B45215A96F0100E186CC /* RightArrow.png in Resources */,
+				DA78B48515A96F0600E186CC /* MainWindow.xib in Resources */,
+				DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */,
+				DA78B48715A96F0600E186CC /* WelcomeViewController.xib in Resources */,
+				DA78B48815A96F0600E186CC /* ScoreControlView.xib in Resources */,
+				DA78B48915A96F0600E186CC /* ScoreBoardView.xib in Resources */,
+				DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */,
+				DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +534,6 @@
 				D043D8480F99BB250030638C /* LocalRoom.m in Sources */,
 				D043D91A0F9CB4A60030638C /* AppConfig.m in Sources */,
 				D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */,
-				D0510A460F9DFCB900B735FA /* ChatRoomViewController.m in Sources */,
 				D0510A520F9E00BB00B735FA /* Room.m in Sources */,
 				D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */,
 				D039DF550F9E515F00C77B72 /* WelcomeViewController.m in Sources */,
@@ -518,41 +552,46 @@
 				DAF65A2F159EEF63001BEA75 /* WaitingForViewControler.m in Sources */,
 				DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */,
 				DAF65AA9159F2F1E001BEA75 /* ScoreBoardViewController.m in Sources */,
+				DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */,
+				DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */,
+				DAE735C915A88C7D00C84157 /* ChatRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAF65AF9159F684A001BEA75 /* Sources */ = {
+		DA78B45315A96F0100E186CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF65AFA159F684A001BEA75 /* main.m in Sources */,
-				DAF65AFB159F684A001BEA75 /* ChattyAppDelegate.m in Sources */,
-				DAF65AFC159F684A001BEA75 /* ChattyViewController.m in Sources */,
-				DAF65AFD159F684A001BEA75 /* Server.m in Sources */,
-				DAF65AFE159F684A001BEA75 /* Connection.m in Sources */,
-				DAF65AFF159F684A001BEA75 /* RemoteRoom.m in Sources */,
-				DAF65B00159F684A001BEA75 /* LocalRoom.m in Sources */,
-				DAF65B01159F684A001BEA75 /* AppConfig.m in Sources */,
-				DAF65B02159F684A001BEA75 /* ServerBrowser.m in Sources */,
-				DAF65B03159F684A001BEA75 /* ChatRoomViewController.m in Sources */,
-				DAF65B04159F684A001BEA75 /* Room.m in Sources */,
-				DAF65B05159F684A001BEA75 /* UITextView+Utils.m in Sources */,
-				DAF65B06159F684A001BEA75 /* WelcomeViewController.m in Sources */,
-				DAF65B07159F684A001BEA75 /* NSObject+SBJson.m in Sources */,
-				DAF65B08159F684A001BEA75 /* SBJsonParser.m in Sources */,
-				DAF65B09159F684A001BEA75 /* SBJsonStreamParser.m in Sources */,
-				DAF65B0A159F684A001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */,
-				DAF65B0B159F684A001BEA75 /* SBJsonStreamParserAdapter.m in Sources */,
-				DAF65B0C159F684A001BEA75 /* SBJsonStreamParserState.m in Sources */,
-				DAF65B0D159F684A001BEA75 /* SBJsonStreamWriter.m in Sources */,
-				DAF65B0E159F684A001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */,
-				DAF65B0F159F684A001BEA75 /* SBJsonStreamWriterState.m in Sources */,
-				DAF65B10159F684A001BEA75 /* SBJsonTokeniser.m in Sources */,
-				DAF65B11159F684A001BEA75 /* SBJsonUTF8Stream.m in Sources */,
-				DAF65B12159F684A001BEA75 /* SBJsonWriter.m in Sources */,
-				DAF65B13159F684A001BEA75 /* WaitingForViewControler.m in Sources */,
-				DAF65B14159F684A001BEA75 /* ScoreControlViewController.m in Sources */,
-				DAF65B15159F684A001BEA75 /* ScoreBoardViewController.m in Sources */,
+				DA78B45415A96F0100E186CC /* main.m in Sources */,
+				DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */,
+				DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */,
+				DA78B45715A96F0100E186CC /* Server.m in Sources */,
+				DA78B45815A96F0100E186CC /* Connection.m in Sources */,
+				DA78B45915A96F0100E186CC /* RemoteRoom.m in Sources */,
+				DA78B45A15A96F0100E186CC /* LocalRoom.m in Sources */,
+				DA78B45B15A96F0100E186CC /* AppConfig.m in Sources */,
+				DA78B45C15A96F0100E186CC /* ServerBrowser.m in Sources */,
+				DA78B45D15A96F0100E186CC /* Room.m in Sources */,
+				DA78B45E15A96F0100E186CC /* UITextView+Utils.m in Sources */,
+				DA78B45F15A96F0100E186CC /* WelcomeViewController.m in Sources */,
+				DA78B46015A96F0100E186CC /* NSObject+SBJson.m in Sources */,
+				DA78B46115A96F0100E186CC /* SBJsonParser.m in Sources */,
+				DA78B46215A96F0100E186CC /* SBJsonStreamParser.m in Sources */,
+				DA78B46315A96F0100E186CC /* SBJsonStreamParserAccumulator.m in Sources */,
+				DA78B46415A96F0100E186CC /* SBJsonStreamParserAdapter.m in Sources */,
+				DA78B46515A96F0100E186CC /* SBJsonStreamParserState.m in Sources */,
+				DA78B46615A96F0100E186CC /* SBJsonStreamWriter.m in Sources */,
+				DA78B46715A96F0100E186CC /* SBJsonStreamWriterAccumulator.m in Sources */,
+				DA78B46815A96F0100E186CC /* SBJsonStreamWriterState.m in Sources */,
+				DA78B46915A96F0100E186CC /* SBJsonTokeniser.m in Sources */,
+				DA78B46A15A96F0100E186CC /* SBJsonUTF8Stream.m in Sources */,
+				DA78B46B15A96F0100E186CC /* SBJsonWriter.m in Sources */,
+				DA78B46C15A96F0100E186CC /* WaitingForViewControler.m in Sources */,
+				DA78B46D15A96F0100E186CC /* ScoreControlViewController.m in Sources */,
+				DA78B46E15A96F0100E186CC /* ScoreBoardViewController.m in Sources */,
+				DA78B46F15A96F0100E186CC /* CommandMsg.m in Sources */,
+				DA78B47015A96F0100E186CC /* PermitControlView.m in Sources */,
+				DA78B47115A96F0100E186CC /* ChatRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,10 +610,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = Chatty;
-				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -589,10 +628,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = Chatty;
-				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -601,12 +640,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2;
+				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -614,15 +655,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2;
+				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		DAF65B1C159F684A001BEA75 /* Debug */ = {
+		DA78B47815A96F0100E186CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -633,16 +676,16 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
-				INFOPLIST_FILE = "Chatty copy3-Info.plist";
+				INFOPLIST_FILE = "Chatty-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Chatty-iPad";
-				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
-		DAF65B1D159F684A001BEA75 /* Release */ = {
+		DA78B47915A96F0100E186CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -651,11 +694,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Chatty_Prefix.pch;
-				INFOPLIST_FILE = "Chatty copy3-Info.plist";
+				INFOPLIST_FILE = "Chatty-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Chatty-iPad";
-				PROVISIONING_PROFILE = "A97DBB52-2DF2-42E6-B7A8-C7B9A89D2D70";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "295B76C3-04A4-4866-89E0-E61C371D7BB9";
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -681,11 +724,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAF65B1B159F684A001BEA75 /* Build configuration list for PBXNativeTarget "Chatty-iPad" */ = {
+		DA78B47715A96F0100E186CC /* Build configuration list for PBXNativeTarget "Chatty-iPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DAF65B1C159F684A001BEA75 /* Debug */,
-				DAF65B1D159F684A001BEA75 /* Release */,
+				DA78B47815A96F0100E186CC /* Debug */,
+				DA78B47915A96F0100E186CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

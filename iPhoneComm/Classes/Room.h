@@ -28,7 +28,6 @@
 #import <Foundation/Foundation.h>
 #import "RoomDelegate.h"
 
-
 @interface Room : NSObject {
   id<RoomDelegate> delegate;
 }
@@ -37,6 +36,6 @@
 
 - (BOOL)start;
 - (void)stop;
-- (void)broadcastChatMessage:(NSString*)message fromUser:(NSString*)name;
+- (void)sendCommand:(CommandMsg *) cmdMsg;
 
 @end

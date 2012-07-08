@@ -73,6 +73,6 @@
 - (void)close;
 
 // Send network message
-- (void)sendNetworkPacket:(NSDictionary*)packet;
+- (void)sendNetworkPacket:(id)packet;
 
 @end

@@ -45,13 +45,15 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    for(int i=0;i<5;i++)
-        {
+    //background
+    isBlueSide=YES;
+    [self setStyleBySide];
+    //guesture
     UISwipeGestureRecognizer *top;   
     top = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                      action:@selector(reportSwipeUp:)] autorelease];
     top.direction = UISwipeGestureRecognizerDirectionUp;
-    top.numberOfTouchesRequired = i;
+    top.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:top];
     
     UISwipeGestureRecognizer *down;   
@@ -60,7 +62,7 @@
                                                       action:@selector(reportSwipeDown:)] autorelease];
     down.direction = 
     UISwipeGestureRecognizerDirectionDown;
-    down.numberOfTouchesRequired = i;
+    down.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:down];
     
     UISwipeGestureRecognizer *left;
@@ -68,20 +70,41 @@
                                                       action:@selector(reportSwipeLeft:)] autorelease];
     left.direction = UISwipeGestureRecognizerDirectionLeft;
     
-    left.numberOfTouchesRequired = i;
+    left.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:left];
     
     UISwipeGestureRecognizer *right;
     right = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                        action:@selector(reportSwipeRight:)] autorelease];
     right.direction = UISwipeGestureRecognizerDirectionRight    ;
-    left.numberOfTouchesRequired = i;
+    right.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:right];
-            }
+            
+    UISwipeGestureRecognizer *switchRcgn;
+    switchRcgn = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                       action:@selector(switchSide:)] autorelease];
+    switchRcgn.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+    switchRcgn.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:switchRcgn];
+    
+    UISwipeGestureRecognizer *switchRcgnVertical;
+    switchRcgnVertical = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                            action:@selector(switchSide:)] autorelease];
+    switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
+    switchRcgnVertical.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:switchRcgnVertical];
     
 }
 
-
+-(void)setStyleBySide
+{
+    if(isBlueSide){
+        self.view.backgroundColor=[UIColor blueColor];
+    }
+    else{
+        self.view.backgroundColor=[UIColor redColor];
+    }
+}
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -117,23 +140,28 @@
 
 #pragma mark -
 - (void)reportSwipeUp:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:4];
+    [self reportSwipe:2];
 }
 - (void)reportSwipeDown:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:3];
+    [self reportSwipe:2];
 }
 - (void)reportSwipeLeft:(UIGestureRecognizer *)recognizer {
     [self reportSwipe:1];
 }
 - (void)reportSwipeRight:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:2];
+    [self reportSwipe:1];
 }
 - (void)reportSwipe:(NSInteger)score {
-    NSString *scoreStr=[self descriptionForScore:score];
-        [self sendScore:scoreStr];    
+        [self sendScore:score];    
         label.text = [NSString stringWithFormat:@"%i Score Record",
                       score];;
         [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
+}
+
+-(void)switchSide:(UIGestureRecognizer *)recognizer
+{
+    isBlueSide=!isBlueSide;
+    [self setStyleBySide];
 }
 
 - (void)activate {
@@ -144,7 +172,7 @@
 }
 
 // We are being asked to display a chat message
-- (void)displayChatMessage:(NSString*)message fromUser:(NSString*)userName {
+- (void)processCmd:(CommandMsg *)cmdMsg {
     //label.text=message;
 }
 
@@ -173,10 +201,9 @@
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
--(void)sendScore:(NSString *)score
+-(void)sendScore:(NSInteger) score
 {
-    [chatRoom broadcastChatMessage:score fromUser:[AppConfig getInstance].name];
-    
+    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:kCmdScore andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score]] autorelease]];
 }
 
 @end

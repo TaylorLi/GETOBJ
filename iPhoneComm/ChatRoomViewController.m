@@ -53,9 +53,12 @@
 
 
 // We are being asked to display a chat message
-- (void)displayChatMessage:(NSString*)message fromUser:(NSString*)userName {
-  [chat appendTextAfterLinebreak:[NSString stringWithFormat:@"%@: %@", userName, message]];
-  [chat scrollToBottom];
+- (void)processCmd:(CommandMsg *)cmdMsg{
+  if([cmdMsg.type isEqualToString:kCmdSms])
+  {
+      [chat appendTextAfterLinebreak:[NSString stringWithFormat:@"%@: %@", cmdMsg.from, cmdMsg.desc]];
+      [chat scrollToBottom];
+  }
 }
 
 
@@ -92,8 +95,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
 	if (theTextField == input) {
 		// processs input
-    [chatRoom broadcastChatMessage:input.text fromUser:[AppConfig getInstance].name];
-
+        CommandMsg *cmd=[[[CommandMsg alloc] initWithType:kCmdSms andFrom:[AppConfig getInstance].name andDesc:input.text andData:nil] autorelease];
+        [chatRoom sendCommand: cmd];
 		// clear input
 		[input setText:@""];
 	}

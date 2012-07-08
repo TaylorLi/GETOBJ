@@ -14,6 +14,7 @@
     UILabel     *label;
     CGPoint     gestureStartPoint;
     Room* chatRoom;
+    Boolean isBlueSide;
 }
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property(nonatomic,retain) Room* chatRoom;
@@ -26,6 +27,7 @@
 // View is active, start everything up
 - (void)activate;
 
--(void)sendScore:(NSString*)score;
+-(void)sendScore:(NSInteger)score;
 -(void)reportSwipe:(NSInteger)score;
+-(void)setStyleBySide;
 @end

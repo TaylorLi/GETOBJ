@@ -84,12 +84,10 @@
 
 
 // Send chat message to the server
-- (void)broadcastChatMessage:(NSString*)message fromUser:(NSString*)name {
+- (void)sendCommand:(CommandMsg *) cmdMsg {
   // Create network packet to be sent to all clients
-  NSDictionary* packet = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", name, @"from", nil];
-
   // Send it out
-  [connection sendNetworkPacket:packet];
+  [connection sendNetworkPacket:cmdMsg];
 }
 
 
@@ -108,7 +106,8 @@
 
 - (void)receivedNetworkPacket:(NSMutableDictionary*)packet viaConnection:(Connection*)connection {
   // Display message locally
-  [delegate displayChatMessage:[packet objectForKey:@"message"] fromUser:[packet objectForKey:@"from"]];
+    CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+    [delegate processCmd:cmd];
 }
 
 

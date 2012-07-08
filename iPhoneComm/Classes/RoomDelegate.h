@@ -31,7 +31,7 @@
 
 @protocol RoomDelegate
 
-- (void) displayChatMessage:(NSString*)message fromUser:(NSString*)userName;
+- (void) processCmd:(CommandMsg *) cmdMsg;
 - (void) roomTerminated:(id)room reason:(NSString*)string;
 
 @end

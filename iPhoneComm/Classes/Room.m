@@ -51,8 +51,8 @@
   // Crude way to emulate "abstract" class
   [self doesNotRecognizeSelector:_cmd];
 }
-
-- (void)broadcastChatMessage:(NSString*)message fromUser:(NSString*)name {
+//send command to other device
+- (void)sendCommand:(CommandMsg *) cmdMsg{
   // Crude way to emulate "abstract" class
   [self doesNotRecognizeSelector:_cmd];
 }

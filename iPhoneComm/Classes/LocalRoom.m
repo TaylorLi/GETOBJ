@@ -28,7 +28,6 @@
 #import "LocalRoom.h"
 #import "Connection.h"
 
-
 // Private properties
 @interface LocalRoom ()
 @property(nonatomic,retain) Server* server;
@@ -86,15 +85,14 @@
 
 
 // Send chat message to all connected clients
-- (void)broadcastChatMessage:(NSString*)message fromUser:(NSString*)name {
+- (void)sendCommand:(CommandMsg *) cmdMsg{
   // Display message locally
-  [delegate displayChatMessage:message fromUser:name];
+  //[delegate processCmd:cmdMsg];
 
   // Create network packet to be sent to all clients
-  NSDictionary* packet = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", name, @"from", nil];
 
   // Send it out
-  [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:packet];
+  [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:cmdMsg];
 }
 
 
@@ -136,7 +134,8 @@
 // One of connected clients sent a chat message. Propagate it further.
 - (void) receivedNetworkPacket:(NSDictionary*)packet viaConnection:(Connection*)connection {
   // Display message locally
-  [delegate displayChatMessage:[packet objectForKey:@"message"] fromUser:[packet objectForKey:@"from"]];
+    CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+    [delegate processCmd:cmd];
 
   // Broadcast this message to all connected clients, including the one that sent it
   [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:packet];

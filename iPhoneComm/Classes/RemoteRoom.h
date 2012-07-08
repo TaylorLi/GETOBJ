@@ -28,6 +28,7 @@
 #import <Foundation/Foundation.h>
 #import "Room.h"
 #import "Connection.h"
+#import "SBJson.h"
 
 
 @interface RemoteRoom : Room <ConnectionDelegate> {

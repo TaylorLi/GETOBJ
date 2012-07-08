@@ -11,21 +11,29 @@
 #import "RoomDelegate.h"
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate>{
-    UILabel *lblMsg;
     Room* chatRoom;
     UILabel *lblTitle;
-    UILabel *lblTotal;
-    UILabel *lblName;
+    UILabel *lblRedImg1;
+    UILabel *lblRedImg2;
+    UILabel *lblBlueImg1;
+    UILabel *lblBlueImg2;
+    UILabel *lblRedTotal;
+    UILabel *lblBlueTotal;
     UITextView *txtHistory;
-    NSInteger totalScore;
+    NSInteger blueTotalScore;
+    NSInteger redTotalScore;
+    UILabel *lblCoachName;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *lblMsg;
 @property (nonatomic, retain) IBOutlet UILabel *lblTitle;
-@property (nonatomic, retain) IBOutlet UILabel *lblTotal;
-@property (nonatomic, retain) IBOutlet UILabel *lblName;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedImg1;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedImg2;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg1;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg2;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedTotal;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueTotal;
+@property (nonatomic, retain) IBOutlet UILabel *lblCoachName;
 @property (nonatomic, retain) IBOutlet UITextView *txtHistory;
-@property  NSInteger totalScore;
 @property(nonatomic,retain) Room* chatRoom;
 
 // Exit back to the welcome screen

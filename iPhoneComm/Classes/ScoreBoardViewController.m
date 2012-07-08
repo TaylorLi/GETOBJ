@@ -19,8 +19,12 @@
 @synthesize chatRoom;
 @synthesize lblRedImg1;
 @synthesize lblRedImg2;
+@synthesize lblRedImg3;
+@synthesize lblRedImg4;
 @synthesize lblBlueImg1;
 @synthesize lblBlueImg2;
+@synthesize lblBlueImg3;
+@synthesize lblBlueImg4;
 @synthesize lblBlueTotal;
 @synthesize lblRedTotal;
 
@@ -59,20 +63,23 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)dealloc {
-    [lblCoachName release];
-    [lblTitle release];
-    [txtHistory release];
-    [lblRedTotal release];
-    [lblRedImg2 release];
-    [lblRedImg1 release];
-    [lblBlueTotal release];
-    [lblBlueImg1 release];
-    [lblBlueImg2 release];
+    lblCoachName=nil;
+    lblTitle=nil;;
+    txtHistory=nil;
+    lblRedTotal=nil;
+    for (NSArray *flags in dicSideFlags.allValues) {
+        for (UILabel *flag in flags) {
+            flag.hidden=YES;
+        }
+    }
+    lblBlueTotal=nil;
     self.chatRoom = nil;
+    dicSideFlags=nil;
     [super dealloc];
 }
 
@@ -83,6 +90,7 @@
         lblTitle.text=[NSString stringWithFormat:@"%@'s Score Server", [[AppConfig getInstance] name]];
         redTotalScore=0;
         blueTotalScore=0;
+        dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg1,lblBlueImg2,lblBlueImg3,lblBlueImg4, nil],kSideBlue, nil];
         lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",blueTotalScore];
     }
@@ -95,34 +103,18 @@
         Boolean isRedSide=[cmdMsg.desc isEqualToString:kSideRed];
         if(isRedSide){
             redTotalScore+=[score intValue];
-            lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];
+            lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];           
         }else{
             blueTotalScore+=[score intValue];
             lblBlueTotal.text=[NSString stringWithFormat:@"%i",blueTotalScore];
         }
-        
-        switch ([score intValue]) {
-            case 1:            
-                if (isRedSide) {
-                    lblRedImg1.hidden=NO;
-                }else{
-                    lblBlueImg1.hidden=NO;
-                }
-                break;
-            case 2:
-                if (isRedSide) {
-                    lblRedImg1.hidden=NO;
-                    lblRedImg2.hidden=NO;
-                }
-                else{
-                    lblBlueImg1.hidden=NO;
-                    lblBlueImg2.hidden=NO;
-                }
-                break;                
-            default:
-                break;
+        NSArray *flags= [dicSideFlags valueForKey:cmdMsg.desc];
+        for (int i=0; i<flags.count; i++) {
+            if (i<[score intValue]) {
+                UILabel *lblFlag=  [flags objectAtIndex:i];
+                lblFlag.hidden=NO;
+            }
         }
-        
         NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         [txtHistory prependTextAfterLinebreak:[NSString stringWithFormat:@"%@ %@:%@ %@",[dateFormatter stringFromDate:[NSDate date]], cmdMsg.from,cmdMsg.desc,score]];
@@ -164,10 +156,11 @@
 }
 
 - (void)eraseText {
-    lblBlueImg1.hidden =YES;
-    lblBlueImg2.hidden=YES;    
-    lblRedImg1.hidden=YES;
-    lblRedImg2.hidden=YES;
+    for (NSArray *flags in dicSideFlags.allValues) {
+        for (UILabel *flag in flags) {
+            flag.hidden=YES;
+        }
+    }
 }
 
 @end

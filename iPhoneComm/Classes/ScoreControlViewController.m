@@ -106,13 +106,12 @@
     }
 }
 
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return YES;
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -140,7 +139,7 @@
 
 #pragma mark -
 - (void)reportSwipeUp:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:2];
+    [self reportSwipe:4];
 }
 - (void)reportSwipeDown:(UIGestureRecognizer *)recognizer {
     [self reportSwipe:2];
@@ -149,7 +148,7 @@
     [self reportSwipe:1];
 }
 - (void)reportSwipeRight:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:1];
+    [self reportSwipe:3];
 }
 - (void)reportSwipe:(NSInteger)score {
         [self sendScore:score];    

@@ -38,6 +38,12 @@
   [input becomeFirstResponder];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return YES;
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 // This is called whenever "Return" is touched on iPhone's keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {

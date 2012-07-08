@@ -78,13 +78,12 @@
 - (void)joinChatRoom:(NSIndexPath*)currentRow {
   // Figure out which server is selected
   //NSIndexPath* currentRow = [serverList indexPathForSelectedRow];
-    if ( currentRow == nil ) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which chat room?" message:@"Please select which chat room you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    if ( currentRow == nil ||serverBrowser.servers==nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         [alert release];
         return;
     }
-    
     NSNetService* selectedServer = [serverBrowser.servers objectAtIndex:currentRow.row];
     
     // Create chat room that will connect to that chat server
@@ -102,6 +101,13 @@
     {
         [[ChattyAppDelegate getInstance] showPermitControl:room validatePassword:YES setServerPassword:password];
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return YES;
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 

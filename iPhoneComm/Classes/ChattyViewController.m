@@ -78,7 +78,7 @@
 - (void)joinChatRoom:(NSIndexPath*)currentRow {
   // Figure out which server is selected
   //NSIndexPath* currentRow = [serverList indexPathForSelectedRow];
-    if ( currentRow == nil ||serverBrowser.servers==nil) {
+    if ( currentRow == nil ||serverBrowser.servers==nil||[serverBrowser.servers count]<currentRow.row+1) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         [alert release];

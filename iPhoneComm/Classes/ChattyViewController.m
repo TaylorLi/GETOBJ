@@ -41,6 +41,7 @@
 @implementation ChattyViewController
 
 @synthesize serverBrowser;
+@synthesize settingViewController;
 
 // View loaded
 - (void)viewDidLoad {
@@ -67,10 +68,14 @@
 - (IBAction)createNewChatRoom:(id)sender {
   // Stop browsing for servers
   [serverBrowser stop];
-
+    GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
+    self.settingViewController=settingView;
+   [settingView release];
+    [self.view addSubview:settingView.view];
+    [self.view bringSubviewToFront:settingView.view];
   // Create local chat room and go
-  LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
-  [[ChattyAppDelegate getInstance] showScoreBoard:room];
+  //LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
+  //[[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 
 

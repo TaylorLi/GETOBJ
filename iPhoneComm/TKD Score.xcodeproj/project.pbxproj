@@ -40,6 +40,15 @@
 		DA00F38115A9DC92005B2F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37E15A9DC92005B2F4B /* icon.png */; };
 		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
 		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
+		DA10C1CE15B117A400153392 /* StaticTableGroupData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA10C1CD15B117A400153392 /* StaticTableGroupData.m */; };
+		DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; };
+		DA279BF815B16BC000C6B1DC /* PickerBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DA279BF215B16BC000C6B1DC /* PickerBG.png */; };
+		DA279BFA15B16BC000C6B1DC /* pickerGlassHightlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA279BF415B16BC000C6B1DC /* pickerGlassHightlight.png */; };
+		DA279BFC15B16BC000C6B1DC /* PickerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA279BF615B16BC000C6B1DC /* PickerShadow.png */; };
+		DA279C0915B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; };
+		DA279C0B15B198A300C6B1DC /* PickerBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA279BF315B16BC000C6B1DC /* PickerBG@2x.png */; };
+		DA279C0D15B198A300C6B1DC /* pickerGlassHIghtlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA279BF515B16BC000C6B1DC /* pickerGlassHIghtlight@2x.png */; };
+		DA279C0F15B198A300C6B1DC /* PickerShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA279BF715B16BC000C6B1DC /* PickerShadow@2x.png */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
@@ -80,11 +89,14 @@
 		DA78B48915A96F0600E186CC /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48215A96F0600E186CC /* ScoreBoardView.xib */; };
 		DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48315A96F0600E186CC /* PermitControlView.xib */; };
 		DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48415A96F0600E186CC /* ChatRoomViewController.xib */; };
+		DAE4183A15B132F300C7BC8D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */; };
 		DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735BE15A84AAE00C84157 /* CommandMsg.m */; };
 		DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C315A889C900C84157 /* PermitControlView.m */; };
 		DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735C515A889DE00C84157 /* PermitControlView.xib */; };
 		DAE735C915A88C7D00C84157 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */; };
 		DAE735CB15A88C8600C84157 /* ChatRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735CA15A88C8600C84157 /* ChatRoomViewController.xib */; };
+		DAE73CC215AC77340083CAF1 /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */; };
+		DAE73CC315AC77340083CAF1 /* GameSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE73CC115AC77340083CAF1 /* GameSettingView.xib */; };
 		DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
 		DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
 		DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
@@ -102,6 +114,8 @@
 		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
 		DAF65AA9159F2F1E001BEA75 /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
+		DAF8F5B615B13C9600497FC5 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B515B13C9600497FC5 /* UIHelper.m */; };
+		DAF8F5B915B14CCE00497FC5 /* ServerSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B815B14CCE00497FC5 /* ServerSetting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +168,18 @@
 		DA00F37D15A9DC92005B2F4B /* app2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app2.png; sourceTree = "<group>"; };
 		DA00F37E15A9DC92005B2F4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DA00F37F15A9DC92005B2F4B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DA10C1CC15B117A400153392 /* StaticTableGroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTableGroupData.h; sourceTree = "<group>"; };
+		DA10C1CD15B117A400153392 /* StaticTableGroupData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTableGroupData.m; sourceTree = "<group>"; };
+		DA279BEE15B16BB400C6B1DC /* AFPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFPickerView.h; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.h; sourceTree = "<group>"; };
+		DA279BEF15B16BB400C6B1DC /* AFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFPickerView.m; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.m; sourceTree = "<group>"; };
+		DA279BF215B16BC000C6B1DC /* PickerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerBG.png; path = ../Controls/AFKPickerView/PickerView/Resources/PickerBG.png; sourceTree = "<group>"; };
+		DA279BF315B16BC000C6B1DC /* PickerBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PickerBG@2x.png"; path = "../Controls/AFKPickerView/PickerView/Resources/PickerBG@2x.png"; sourceTree = "<group>"; };
+		DA279BF415B16BC000C6B1DC /* pickerGlassHightlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pickerGlassHightlight.png; path = ../Controls/AFKPickerView/PickerView/Resources/pickerGlassHightlight.png; sourceTree = "<group>"; };
+		DA279BF515B16BC000C6B1DC /* pickerGlassHIghtlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pickerGlassHIghtlight@2x.png"; path = "../Controls/AFKPickerView/PickerView/Resources/pickerGlassHIghtlight@2x.png"; sourceTree = "<group>"; };
+		DA279BF615B16BC000C6B1DC /* PickerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerShadow.png; path = ../Controls/AFKPickerView/PickerView/Resources/PickerShadow.png; sourceTree = "<group>"; };
+		DA279BF715B16BC000C6B1DC /* PickerShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PickerShadow@2x.png"; path = "../Controls/AFKPickerView/PickerView/Resources/PickerShadow@2x.png"; sourceTree = "<group>"; };
+		DA279C0715B178A100C6B1DC /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47E15A96F0600E186CC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
@@ -170,6 +196,9 @@
 		DAE735C715A88C7D00C84157 /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = SOURCE_ROOT; };
 		DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = SOURCE_ROOT; };
 		DAE735CA15A88C8600C84157 /* ChatRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomViewController.xib; sourceTree = "<group>"; };
+		DAE73CBF15AC77340083CAF1 /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSettingViewController.h; path = ../GameSettingViewController.h; sourceTree = "<group>"; };
+		DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameSettingViewController.m; path = ../GameSettingViewController.m; sourceTree = "<group>"; };
+		DAE73CC115AC77340083CAF1 /* GameSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameSettingView.xib; sourceTree = "<group>"; };
 		DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DAF65A0A159EEF63001BEA75 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
@@ -203,6 +232,10 @@
 		DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreBoardView.xib; sourceTree = "<group>"; };
 		DAF65AA7159F2F1D001BEA75 /* ScoreBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBoardViewController.h; sourceTree = "<group>"; };
 		DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBoardViewController.m; sourceTree = "<group>"; };
+		DAF8F5B415B13C9600497FC5 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIHelper.h; path = ../Util/UIHelper.h; sourceTree = "<group>"; };
+		DAF8F5B515B13C9600497FC5 /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIHelper.m; path = ../Util/UIHelper.m; sourceTree = "<group>"; };
+		DAF8F5B715B14CCE00497FC5 /* ServerSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSetting.h; sourceTree = "<group>"; };
+		DAF8F5B815B14CCE00497FC5 /* ServerSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerSetting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +267,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA10C1D315B11D3600153392 /* Controls */,
 				DAE735BB15A8494A00C84157 /* Model */,
 				D043DA070F9CC4C40030638C /* Business Logic */,
 				D043D7F00F94AA0B0030638C /* Networking */,
@@ -282,6 +316,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA279BF215B16BC000C6B1DC /* PickerBG.png */,
+				DA279BF415B16BC000C6B1DC /* pickerGlassHightlight.png */,
+				DA279BF615B16BC000C6B1DC /* PickerShadow.png */,
 				DAE735CA15A88C8600C84157 /* ChatRoomViewController.xib */,
 				DAE735C515A889DE00C84157 /* PermitControlView.xib */,
 				DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */,
@@ -290,6 +327,7 @@
 				2899E5210DE3E06400AC0155 /* ChattyViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				DAE73CC115AC77340083CAF1 /* GameSettingView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -342,6 +380,8 @@
 				D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */,
 				D043D9180F9CB4A60030638C /* AppConfig.h */,
 				D043D9190F9CB4A60030638C /* AppConfig.m */,
+				DA10C1CC15B117A400153392 /* StaticTableGroupData.h */,
+				DA10C1CD15B117A400153392 /* StaticTableGroupData.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -349,6 +389,8 @@
 		D0B0372F0FA61471000EC42B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DAE73CBF15AC77340083CAF1 /* GameSettingViewController.h */,
+				DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */,
 				DAE735C715A88C7D00C84157 /* ChatRoomViewController.h */,
 				DAE735C815A88C7D00C84157 /* ChatRoomViewController.m */,
 				DAE735C215A889C900C84157 /* PermitControlView.h */,
@@ -367,9 +409,28 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		DA10C1D315B11D3600153392 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		DA279C0615B1787B00C6B1DC /* AvoidKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DA279C0715B178A100C6B1DC /* TPKeyboardAvoidingScrollView.h */,
+				DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */,
+			);
+			name = AvoidKeyboard;
+			sourceTree = "<group>";
+		};
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				DA279BF315B16BC000C6B1DC /* PickerBG@2x.png */,
+				DA279BF515B16BC000C6B1DC /* pickerGlassHIghtlight@2x.png */,
+				DA279BF715B16BC000C6B1DC /* PickerShadow@2x.png */,
 				DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */,
 				DA78B47E15A96F0600E186CC /* MainWindow.xib */,
 				DA78B47F15A96F0600E186CC /* ChattyViewController.xib */,
@@ -402,6 +463,8 @@
 			children = (
 				DAE735BD15A84AAE00C84157 /* CommandMsg.h */,
 				DAE735BE15A84AAE00C84157 /* CommandMsg.m */,
+				DAF8F5B715B14CCE00497FC5 /* ServerSetting.h */,
+				DAF8F5B815B14CCE00497FC5 /* ServerSetting.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -409,6 +472,8 @@
 		DAF65A04159EEED1001BEA75 /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DAF8F5C215B1677B00497FC5 /* Controls */,
+				DAF8F5B215B13C8400497FC5 /* Util */,
 				DAF65A06159EEF02001BEA75 /* SBJSON */,
 			);
 			name = dependencies;
@@ -454,6 +519,33 @@
 				DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		DAF8F5B215B13C8400497FC5 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				DAF8F5B415B13C9600497FC5 /* UIHelper.h */,
+				DAF8F5B515B13C9600497FC5 /* UIHelper.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		DAF8F5C215B1677B00497FC5 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				DA279C0615B1787B00C6B1DC /* AvoidKeyboard */,
+				DAF8F5C715B16B0D00497FC5 /* AFPickerView */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		DAF8F5C715B16B0D00497FC5 /* AFPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				DA279BEE15B16BB400C6B1DC /* AFPickerView.h */,
+				DA279BEF15B16BB400C6B1DC /* AFPickerView.m */,
+			);
+			name = AFPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -542,6 +634,10 @@
 				DA00F38015A9DC92005B2F4B /* app2.png in Resources */,
 				DA00F38115A9DC92005B2F4B /* icon.png in Resources */,
 				DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */,
+				DAE73CC315AC77340083CAF1 /* GameSettingView.xib in Resources */,
+				DA279BF815B16BC000C6B1DC /* PickerBG.png in Resources */,
+				DA279BFA15B16BC000C6B1DC /* pickerGlassHightlight.png in Resources */,
+				DA279BFC15B16BC000C6B1DC /* PickerShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +653,9 @@
 				DA78B48B15A96F0600E186CC /* ChatRoomViewController.xib in Resources */,
 				DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */,
 				DA00F38315A9DCDD005B2F4B /* app2.png in Resources */,
+				DA279C0B15B198A300C6B1DC /* PickerBG@2x.png in Resources */,
+				DA279C0D15B198A300C6B1DC /* pickerGlassHIghtlight@2x.png in Resources */,
+				DA279C0F15B198A300C6B1DC /* PickerShadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +696,12 @@
 				DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */,
 				DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */,
 				DAE735C915A88C7D00C84157 /* ChatRoomViewController.m in Sources */,
+				DAE73CC215AC77340083CAF1 /* GameSettingViewController.m in Sources */,
+				DA10C1CE15B117A400153392 /* StaticTableGroupData.m in Sources */,
+				DAF8F5B615B13C9600497FC5 /* UIHelper.m in Sources */,
+				DAF8F5B915B14CCE00497FC5 /* ServerSetting.m in Sources */,
+				DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */,
+				DA279C0915B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +739,7 @@
 				DA78B46F15A96F0100E186CC /* CommandMsg.m in Sources */,
 				DA78B47015A96F0100E186CC /* PermitControlView.m in Sources */,
 				DA78B47115A96F0100E186CC /* ChatRoomViewController.m in Sources */,
+				DAE4183A15B132F300C7BC8D /* GameSettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +760,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "351BE794-86B7-45ED-92AD-AB3DD12DDCBA";
+				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -672,7 +778,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "351BE794-86B7-45ED-92AD-AB3DD12DDCBA";
+				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -688,7 +794,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "EDECDD06-210A-42CA-A41E-267D3128BE07";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -702,7 +808,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PROVISIONING_PROFILE = "EDECDD06-210A-42CA-A41E-267D3128BE07";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -721,7 +827,7 @@
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "351BE794-86B7-45ED-92AD-AB3DD12DDCBA";
+				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -739,7 +845,7 @@
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "351BE794-86B7-45ED-92AD-AB3DD12DDCBA";
+				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

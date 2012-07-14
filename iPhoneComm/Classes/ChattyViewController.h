@@ -28,12 +28,15 @@
 #import <UIKit/UIKit.h>
 #import "ServerBrowserDelegate.h"
 #import "ServerBrowser.h"
-
+#import "GameSettingViewController.h"
 
 @interface ChattyViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, ServerBrowserDelegate> {
   ServerBrowser* serverBrowser;
   IBOutlet UITableView* serverList;
+    GameSettingViewController *settingViewController;  
 }
+
+@property (nonatomic,retain) GameSettingViewController *settingViewController;
 
 - (IBAction)createNewChatRoom:(id)sender;
 - (void)joinChatRoom:(NSIndexPath*)currentRow;

@@ -90,7 +90,7 @@
         if([view isMemberOfClass:[UITextField class]])
         {            
             UITextField *field=(id)view;
-            if(field!=nil && field.text.length==0)
+            if(field!=nil &&![field isHidden]&& field.text.length==0)
             {
                 success=[UIHelper validateTextFieldErrorCss:field] && success;                          
             }            

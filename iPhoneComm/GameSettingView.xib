@@ -321,7 +321,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Blue Side</string>
+								<string key="IBUIText">Security Info</string>
 								<reference key="IBUITextColor" ref="155383970"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -510,7 +510,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUILabel" id="821843713">
+							<object class="IBUILabel" id="737375707">
 								<reference key="NSNextResponder" ref="228541320"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{127, 160}, {130, 21}}</string>
@@ -750,7 +750,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">roundTime</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="821843713"/>
+						<reference key="destination" ref="737375707"/>
 					</object>
 					<int key="connectionID">110</int>
 				</object>
@@ -779,6 +779,54 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<int key="connectionID">52</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1055909429"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">118</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1005948333"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">119</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="743528193"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">125</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="908067222"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">121</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="922588524"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">122</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="180863905"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">123</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">chgUsagePwd:</string>
 						<reference key="source" ref="349743319"/>
@@ -786,6 +834,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<int key="IBEventType">13</int>
 					</object>
 					<int key="connectionID">63</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="285787232"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">124</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -873,7 +929,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<reference ref="922588524"/>
 							<reference ref="1055909429"/>
 							<reference ref="705595346"/>
-							<reference ref="821843713"/>
+							<reference ref="737375707"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -964,7 +1020,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">109</int>
-						<reference key="object" ref="821843713"/>
+						<reference key="object" ref="737375707"/>
 						<reference key="parent" ref="228541320"/>
 					</object>
 				</array>
@@ -1004,7 +1060,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">110</int>
+			<int key="maxID">125</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

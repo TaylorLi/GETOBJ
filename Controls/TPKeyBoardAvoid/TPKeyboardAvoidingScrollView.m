@@ -6,6 +6,7 @@
 //
 
 #import "TPKeyboardAvoidingScrollView.h"
+#import "GameSettingViewController.h"
 
 #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
 

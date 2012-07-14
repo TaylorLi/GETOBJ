@@ -16,7 +16,7 @@
 
 @class  TPKeyboardAvoidingScrollView;
 
-@interface GameSettingViewController : UIViewController<UITextFieldDelegate, AFPickerViewDataSource, AFPickerViewDelegate>
+@interface GameSettingViewController : UIViewController<AFPickerViewDataSource, AFPickerViewDelegate,UIScrollViewDelegate,UITextFieldDelegate>
 {
     int minutes;
 }
@@ -33,7 +33,6 @@
 - (IBAction)chgUsagePwd:(id)sender;
 - (IBAction)StartGame:(id)sender;
 - (IBAction)backToSeverList:(id)sender;
-- (IBAction)selectRoundTime:(id)sender;
 - (IBAction)showTimePicker:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UILabel *roundTime;

@@ -27,17 +27,19 @@
 
 #import "LocalRoom.h"
 #import "Connection.h"
+#import "ServerSetting.h"
 
 // Private properties
-@interface LocalRoom ()
-@property(nonatomic,retain) Server* server;
-@property(nonatomic,retain) NSMutableSet* clients;
-@end
+//@interface LocalRoom ()
+//@property(nonatomic,retain) Server* server;
+//@property(nonatomic,retain) NSMutableSet* clients;
+//@end
 
+@class ServerSetting;
 
 @implementation LocalRoom
 
-@synthesize server, clients;
+@synthesize server, clients,gameSetting;
 
 // Initialization
 - (id)init {
@@ -51,6 +53,7 @@
 - (void)dealloc {
   self.clients = nil;
   self.server = nil;
+    self.gameSetting=nil;
   [super dealloc];
 }
 

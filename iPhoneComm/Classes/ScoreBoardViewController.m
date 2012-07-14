@@ -10,6 +10,7 @@
 #import "ChattyAppDelegate.h"
 #import "AppConfig.h"
 #import "UITextView+Utils.h"
+#import "ServerSetting.h"
 
 @implementation ScoreBoardViewController
 
@@ -45,17 +46,17 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
-*/
+
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
+    [super viewDidUnload];    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -63,7 +64,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return YES;
+   return (interfaceOrientation == UIInterfaceOrientationPortrait);
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -87,7 +88,7 @@
     if (chatRoom != nil ) {
         chatRoom.delegate = self;
         [chatRoom start];
-        lblTitle.text=[NSString stringWithFormat:@"%@'s Score Server", [[AppConfig getInstance] name]];
+        lblTitle.text=[NSString stringWithFormat:@"%@",chatRoom.gameSetting.gameName];
         redTotalScore=0;
         blueTotalScore=0;
         dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg1,lblBlueImg2,lblBlueImg3,lblBlueImg4, nil],kSideBlue, nil];

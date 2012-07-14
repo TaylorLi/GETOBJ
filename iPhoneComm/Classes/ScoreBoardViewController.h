@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Room.h"
+#import "LocalRoom.h"
 #import "RoomDelegate.h"
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate>{
-    Room* chatRoom;
+    LocalRoom* chatRoom;
     UILabel *lblTitle;
     UILabel *lblRedImg1;
     UILabel *lblRedImg2;

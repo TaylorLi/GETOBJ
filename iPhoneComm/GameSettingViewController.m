@@ -101,9 +101,28 @@
 }
 
 - (IBAction)StartGame:(id)sender {
+    if(![UIHelper validateTextFields:settingView.subviews])
+    {
+        [UIHelper showAlert:@"Information" message:@"Please input the required fields" delegate:nil];
+        return;
+    }
     //Create local chat room and go
     LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
+    room.gameSetting=[[ServerSetting alloc] init];
+    room.gameSetting.gameDesc=txtGameName.text;
+    room.gameSetting.gameName=txtGameDesc.text;
+    room.gameSetting.blueSideDesc=txtBlueSidePlace.text;
+    room.gameSetting.blueSideName=txtblueSideName.text;
+    room.gameSetting.redSideDesc=txtRedSidePlace.text;
+    room.gameSetting.redSideName=txtRedSidePlace.text;
+    room.gameSetting.roundTime=minutes*60;
+    room.gameSetting.roundCount=[roundCount.text intValue];
+    if(sldPsw.isOn)
+        room.gameSetting.password=txtPwd.text;
+    else
+        room.gameSetting.password=nil;
     [self.view removeFromSuperview];
+    [room.gameSetting release];
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 
@@ -119,14 +138,13 @@
 //    [self setCenterPoint:height];
 }
 
-- (IBAction)selectRoundTime:(id)sender {
-}
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [UIHelper alternateTextField:self.settingView.subviews];
     [textField resignFirstResponder];
     return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    [textField resignFirstResponder];
+    
 }
 
 - (IBAction)showTimePicker:(id)sender {
@@ -176,4 +194,23 @@ numberOfRowsInComponent:(NSInteger)component {
     roundTime.text=[NSString stringWithFormat:@"%i Minutes", row+1];
     minutes=row+1;
 }
+#pragma mark – 
+#pragma mark UIScrollViewDelegate Methods 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{    
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{ 
+    for(UIView *view in self.settingView.subviews)
+    {
+        if([view isMemberOfClass:[UITextField class]] && [view isFirstResponder])
+        {
+            [view resignFirstResponder];
+        }
+    }
+    if([settingView isFirstResponder])
+        {
+            [settingView resignFirstResponder];
+        }
+} 
 @end

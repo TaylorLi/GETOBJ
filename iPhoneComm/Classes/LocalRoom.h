@@ -30,8 +30,9 @@
 #import "Server.h"
 #import "ServerDelegate.h"
 #import "ConnectionDelegate.h"
+#import "ServerSetting.h"
 
-
+@class ServerSetting;
 @interface LocalRoom : Room <ServerDelegate, ConnectionDelegate> {
   // We accept connections from other clients using an instance of the Server class
   Server* server;
@@ -42,5 +43,8 @@
 
 // Initialize everything
 - (id)init;
+@property (nonatomic,retain) ServerSetting *gameSetting;
+@property(nonatomic,retain) Server* server;
+@property(nonatomic,retain) NSMutableSet* clients;
 
 @end

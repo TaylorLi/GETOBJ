@@ -44,7 +44,6 @@
     return YES;
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
 // This is called whenever "Return" is touched on iPhone's keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
   if ( theTextField.text == nil || [theTextField.text length] < 1 ) {

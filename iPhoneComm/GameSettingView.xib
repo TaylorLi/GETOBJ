@@ -379,7 +379,6 @@
 								<string key="NSFrame">{{20, 470}, {269, 31}}</string>
 								<reference key="NSSuperview" ref="228541320"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:304</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -430,7 +429,7 @@
 								<string key="NSFrame">{{25, 159}, {100, 21}}</string>
 								<reference key="NSSuperview" ref="228541320"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="737375707"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -516,6 +515,7 @@
 								<string key="NSFrame">{{127, 160}, {130, 21}}</string>
 								<reference key="NSSuperview" ref="228541320"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="128177434"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -755,6 +755,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<int key="connectionID">110</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">navBar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="676236043"/>
+					</object>
+					<int key="connectionID">126</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">StartGame:</string>
 						<reference key="source" ref="695993508"/>
@@ -842,6 +850,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">124</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="705595346"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">127</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1060,7 +1076,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">125</int>
+			<int key="maxID">127</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1079,7 +1095,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="StartGame:">id</string>
 						<string key="backToSeverList:">id</string>
 						<string key="chgUsagePwd:">id</string>
-						<string key="selectRoundTime:">id</string>
 						<string key="showTimePicker:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -1095,16 +1110,13 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<string key="name">chgUsagePwd:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="selectRoundTime:">
-							<string key="name">selectRoundTime:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="showTimePicker:">
 							<string key="name">showTimePicker:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="navBar">UINavigationBar</string>
 						<string key="roundCount">UITextField</string>
 						<string key="roundTime">UILabel</string>
 						<string key="selRoundTime">AFPickerView</string>
@@ -1119,6 +1131,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="txtblueSideName">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="navBar">
+							<string key="name">navBar</string>
+							<string key="candidateClassName">UINavigationBar</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="roundCount">
 							<string key="name">roundCount</string>
 							<string key="candidateClassName">UITextField</string>

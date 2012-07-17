@@ -20,4 +20,8 @@
 @synthesize roundTime;
 @synthesize roundCount;
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"Name:%@,Desc:%@,Pwd:%@,Time:%f,Round:%i,Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@",gameName,gameDesc,password,roundTime,roundCount, redSideName,redSideDesc,blueSideName,blueSideDesc];
+}
 @end

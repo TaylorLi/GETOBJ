@@ -30,6 +30,8 @@
 @property (retain, nonatomic) IBOutlet UISwitch *sldPsw;
 @property (retain, nonatomic) IBOutlet UITextField *txtPwd;
 @property (retain, nonatomic) IBOutlet AFPickerView *selRoundTime;
+@property (retain, nonatomic) IBOutlet UINavigationBar *navBar;
+
 - (IBAction)chgUsagePwd:(id)sender;
 - (IBAction)StartGame:(id)sender;
 - (IBAction)backToSeverList:(id)sender;

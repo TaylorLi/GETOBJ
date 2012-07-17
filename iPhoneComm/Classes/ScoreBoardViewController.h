@@ -12,7 +12,7 @@
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate>{
     LocalRoom* chatRoom;
-    UILabel *lblTitle;
+    UILabel *lblGameName;
     UILabel *lblRedImg1;
     UILabel *lblRedImg2;
     UILabel *lblRedImg3;
@@ -30,7 +30,7 @@
     NSDictionary *dicSideFlags;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *lblTitle;
+@property (nonatomic, retain) IBOutlet UILabel *lblGameName;
 @property (nonatomic, retain) IBOutlet UILabel *lblRedImg1;
 @property (nonatomic, retain) IBOutlet UILabel *lblRedImg2;
 @property (nonatomic, retain) IBOutlet UILabel *lblRedImg3;
@@ -44,6 +44,13 @@
 @property (nonatomic, retain) IBOutlet UILabel *lblCoachName;
 @property (nonatomic, retain) IBOutlet UITextView *txtHistory;
 @property(nonatomic,retain) Room* chatRoom;
+@property (retain, nonatomic) IBOutlet UILabel *lblGameDesc;
+@property (retain, nonatomic) IBOutlet UILabel *lblBluePlayerName;
+@property (retain, nonatomic) IBOutlet UILabel *lblBluePlayerDesc;
+@property (retain, nonatomic) IBOutlet UILabel *lblTime;
+@property (retain, nonatomic) IBOutlet UILabel *lblRoundSeq;
+@property (retain, nonatomic) IBOutlet UILabel *lblRedPlayerDesc;
+@property (retain, nonatomic) IBOutlet UILabel *lblRedPlayerName;
 
 // Exit back to the welcome screen
 - (IBAction)exit;

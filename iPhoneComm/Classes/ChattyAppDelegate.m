@@ -27,7 +27,6 @@
 
 #import "ChattyAppDelegate.h"
 #import "ChattyViewController.h"
-#import "ChatRoomViewController.h"
 #import "WelcomeViewController.h"
 #import "ScoreControlViewController.h"
 #import "ScoreBoardViewController.h"
@@ -35,11 +34,14 @@
 
 static ChattyAppDelegate* _instance;
 
+@interface ChattyAppDelegate()
+    -(void) swithView:(UIView *) view;
+@end
+
 @implementation ChattyAppDelegate
 
 @synthesize window;
 @synthesize viewController;
-@synthesize chatRoomViewController;
 @synthesize welcomeViewController;
 @synthesize scoreControlViewController;
 @synthesize scoreBoardViewController;
@@ -47,15 +49,12 @@ static ChattyAppDelegate* _instance;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     // Allow other classes to use us
+    //不自动锁屏
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
     _instance = self;
     
     // Override point for customization after app launch
-    [window addSubview:chatRoomViewController.view];
-    [window addSubview:viewController.view];
-    [window addSubview:welcomeViewController.view];
-    [window addSubview:scoreControlViewController.view];
-    [window addSubview:scoreBoardViewController.view];
-    [window addSubview:permitViewController.view];
+    [window addSubview:welcomeViewController.view];   
     [window makeKeyAndVisible];
     
     // Greet user
@@ -66,7 +65,6 @@ static ChattyAppDelegate* _instance;
 
 - (void)dealloc {
     [viewController release];
-    [chatRoomViewController release];
     [welcomeViewController release];
     [scoreBoardViewController release];
     [scoreControlViewController release];
@@ -80,36 +78,30 @@ static ChattyAppDelegate* _instance;
   return _instance;
 }
 
-
-// Show chat room
-- (void)showChatRoom:(Room*)room {
-  chatRoomViewController.chatRoom = room;
-  [chatRoomViewController activate];
-  
-  [window bringSubviewToFront:chatRoomViewController.view];
+-(void) swithView:(UIView *) view{
+    for (UIView *subView in window.subviews) {
+        [subView removeFromSuperview];
+    }
+    [window insertSubview:view atIndex:0];
 }
-
-
 // Show screen with room selection
 - (void)showRoomSelection {
+    [self swithView:viewController.view];
   [viewController activate];
-  
-  [window bringSubviewToFront:viewController.view];
 }
 
 -(void) showScoreBoard:(Room *)room{
+    NSLog(@"%i",scoreBoardViewController.view.superview==nil);
+    [self swithView:scoreBoardViewController.view];
     scoreBoardViewController.chatRoom = room;
     [scoreBoardViewController activate];
-    
-    [window bringSubviewToFront:scoreBoardViewController.view];
 }
 
 -(void) showScoreControlRoom:(Room *) room{
     scoreControlViewController.chatRoom = room;
     [scoreControlViewController activate];
     
-    [window bringSubviewToFront:scoreControlViewController.view];
-}
+    [self swithView:scoreControlViewController.view];}
 
 -(void) showPermitControl:(Room *)room validatePassword:(Boolean)isValatePassword setServerPassword: (NSString*) serverPassword{
     permitViewController.chatRoom = room;
@@ -118,7 +110,7 @@ static ChattyAppDelegate* _instance;
     
     [permitViewController activate];
     
-    [window bringSubviewToFront:permitViewController.view];
+    [self swithView:permitViewController.view];
 }
 
 @end

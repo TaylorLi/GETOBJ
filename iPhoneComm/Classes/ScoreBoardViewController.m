@@ -15,9 +15,16 @@
 @implementation ScoreBoardViewController
 
 @synthesize lblCoachName;
-@synthesize lblTitle;
+@synthesize lblGameName;
 @synthesize txtHistory;
 @synthesize chatRoom;
+@synthesize lblGameDesc;
+@synthesize lblBluePlayerName;
+@synthesize lblBluePlayerDesc;
+@synthesize lblTime;
+@synthesize lblRoundSeq;
+@synthesize lblRedPlayerDesc;
+@synthesize lblRedPlayerName;
 @synthesize lblRedImg1;
 @synthesize lblRedImg2;
 @synthesize lblRedImg3;
@@ -56,6 +63,13 @@
 
 - (void)viewDidUnload
 {
+    [self setLblGameDesc:nil];
+    [self setLblBluePlayerName:nil];
+    [self setLblBluePlayerDesc:nil];
+    [self setLblTime:nil];
+    [self setLblRoundSeq:nil];
+    [self setLblRedPlayerDesc:nil];
+    [self setLblRedPlayerName:nil];
     [super viewDidUnload];    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -64,23 +78,29 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-   return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
 }
 
 - (void)dealloc {
     lblCoachName=nil;
-    lblTitle=nil;;
+    lblGameName=nil;;
     txtHistory=nil;
     lblRedTotal=nil;
     for (NSArray *flags in dicSideFlags.allValues) {
         for (UILabel *flag in flags) {
-            flag.hidden=YES;
+            flag=nil;
         }
     }
     lblBlueTotal=nil;
     self.chatRoom = nil;
     dicSideFlags=nil;
+    [lblGameName release];
+    [lblBluePlayerName release];
+    [lblBluePlayerDesc release];
+    [lblTime release];
+    [lblRoundSeq release];
+    [lblRedPlayerDesc release];
+    [lblRedPlayerName release];
     [super dealloc];
 }
 
@@ -88,7 +108,14 @@
     if (chatRoom != nil ) {
         chatRoom.delegate = self;
         [chatRoom start];
-        lblTitle.text=[NSString stringWithFormat:@"%@",chatRoom.gameSetting.gameName];
+        lblGameName.text=[NSString stringWithFormat:@"%@",chatRoom.gameSetting.gameName];
+        lblGameDesc.text=chatRoom.gameSetting.gameDesc;
+        lblRedPlayerName.text=chatRoom.gameSetting.redSideName;
+        lblRedPlayerDesc.text=chatRoom.gameSetting.redSideDesc;
+        lblBluePlayerDesc.text=chatRoom.gameSetting.blueSideDesc;
+        lblBluePlayerName.text=chatRoom.gameSetting.blueSideName;
+        lblTime.text=[NSString stringWithFormat:@"%i",chatRoom.gameSetting.roundTime];
+        lblRoundSeq.text=[NSString stringWithFormat:@"%i",chatRoom.gameSetting.roundCount];
         redTotalScore=0;
         blueTotalScore=0;
         dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg1,lblBlueImg2,lblBlueImg3,lblBlueImg4, nil],kSideBlue, nil];
@@ -124,7 +151,8 @@
     }
 }
 
-
+#pragma mark -
+#pragma mark RoomDelegate
 // Room closed from outside
 - (void)roomTerminated:(id)room reason:(NSString*)reason {
     // Explain what happened
@@ -133,7 +161,14 @@
     [alert release];
     [self exit];
 }
-
+-(void) alreadyConnectToServer
+{
+    
+}
+-(void) failureToConnectToServer
+{
+    
+}
 
 // User decided to exit room
 - (IBAction)exit {
@@ -146,7 +181,7 @@
     [self eraseText];
     lblBlueTotal.text=@"0";
     lblRedTotal.text=@"0";
-    lblTitle.text=@"";
+    lblGameName.text=@"";
     // Switch back to welcome view
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }

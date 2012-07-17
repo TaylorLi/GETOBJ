@@ -9,6 +9,7 @@
 #import "ScoreControlViewController.h"
 #import "ChattyAppDelegate.h"
 #import "AppConfig.h"
+#import "UILoadingBox.h"
 
 #define kMinimumGestureLength    25
 #define kMaximumVariance         5
@@ -41,7 +42,11 @@
  */
 
 
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,17 +84,17 @@
     right.direction = UISwipeGestureRecognizerDirectionRight    ;
     right.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:right];
-            
+    
     UISwipeGestureRecognizer *switchRcgn;
     switchRcgn = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                       action:@selector(switchSide:)] autorelease];
+                                                            action:@selector(switchSide:)] autorelease];
     switchRcgn.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
     switchRcgn.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:switchRcgn];
     
     UISwipeGestureRecognizer *switchRcgnVertical;
     switchRcgnVertical = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                            action:@selector(switchSide:)] autorelease];
+                                                                    action:@selector(switchSide:)] autorelease];
     switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
     switchRcgnVertical.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:switchRcgnVertical];
@@ -104,13 +109,6 @@
     else{
         self.view.backgroundColor=[UIColor redColor];
     }
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);;
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +128,7 @@
 - (void)dealloc {
     [label release];
     self.chatRoom = nil;
+    loadingBox=nil;
     [super dealloc];
 }
 
@@ -151,10 +150,10 @@
     [self reportSwipe:3];
 }
 - (void)reportSwipe:(NSInteger)score {
-        [self sendScore:score];    
-        label.text = [NSString stringWithFormat:@"%i Score Record",
-                      score];;
-        [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
+    [self sendScore:score];    
+    label.text = [NSString stringWithFormat:@"%i Score Record",
+                  score];;
+    [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
 }
 
 -(void)switchSide:(UIGestureRecognizer *)recognizer
@@ -167,9 +166,15 @@
     if ( chatRoom != nil ) {
         chatRoom.delegate = self;
         [chatRoom start];
+        loadingBox =[[[UILoadingBox alloc ]initWithLoading:@"Connection..." showCloseImage:YES onClosed:^{
+            [self exit];    
+        }] autorelease];
+        [loadingBox showLoading];
     }
 }
 
+#pragma mark -
+#pragma mark RoomDeleagate
 // We are being asked to display a chat message
 - (void)processCmd:(CommandMsg *)cmdMsg {
     //label.text=message;
@@ -199,7 +204,21 @@
     // Switch back to welcome view
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
-
+-(void) alreadyConnectToServer
+{
+    if(loadingBox!=nil)
+    {
+        [loadingBox hideLoading];
+        [loadingBox release];
+    }
+}
+-(void) failureToConnectToServer
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:@"Failure to connect" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    [self exit];
+}
 -(void)sendScore:(NSInteger) score
 {
     [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:kCmdScore andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score]] autorelease]];

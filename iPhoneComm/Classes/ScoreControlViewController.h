@@ -10,11 +10,15 @@
 #import "Room.h"
 #import "RoomDelegate.h"
 
+@class  UILoadingBox;
+
 @interface ScoreControlViewController : UIViewController<RoomDelegate> {
     UILabel     *label;
     CGPoint     gestureStartPoint;
     Room* chatRoom;
     Boolean isBlueSide;
+    UILoadingBox* loadingBox;
+    
 }
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property(nonatomic,retain) Room* chatRoom;

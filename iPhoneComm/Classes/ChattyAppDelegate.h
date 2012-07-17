@@ -33,7 +33,6 @@
 @interface ChattyAppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window;
   ChattyViewController *viewController;
-  ChatRoomViewController *chatRoomViewController;
   WelcomeViewController *welcomeViewController;
   ScoreControlViewController *scoreControlViewController;
   ScoreBoardViewController *scoreBoardViewController;
@@ -42,7 +41,6 @@
 
 @property(nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) IBOutlet ChattyViewController *viewController;
-@property(nonatomic, retain) IBOutlet ChatRoomViewController *chatRoomViewController;
 @property(nonatomic, retain) IBOutlet WelcomeViewController *welcomeViewController;
 @property(nonatomic, retain) IBOutlet ScoreControlViewController *scoreControlViewController;
 @property(nonatomic, retain) IBOutlet ScoreBoardViewController *scoreBoardViewController;
@@ -52,8 +50,6 @@
 + (ChattyAppDelegate*)getInstance;
 
 // Show chat room
-- (void)showChatRoom:(Room*)room;
-
 // Go back to the room selection
 - (void)showRoomSelection;
 

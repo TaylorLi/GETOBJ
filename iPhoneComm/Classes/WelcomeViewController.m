@@ -32,6 +32,8 @@
 
 @implementation WelcomeViewController
 
+@synthesize input;
+
 // App delegate will call this whenever this view becomes active
 - (void)activate {
   // Display keyboard
@@ -41,8 +43,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return YES;
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 // This is called whenever "Return" is touched on iPhone's keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {

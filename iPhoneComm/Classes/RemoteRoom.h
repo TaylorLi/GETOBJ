@@ -29,11 +29,13 @@
 #import "Room.h"
 #import "Connection.h"
 #import "SBJson.h"
+#import "PeerClient.h"
 
 
 @interface RemoteRoom : Room <ConnectionDelegate> {
   // Our connection to the chat server
   Connection* connection;
+  PeerClient  *bluetoothClient;
 }
 
 // Initialize with host address and port
@@ -41,5 +43,7 @@
 
 // Initialize with a reference to a net service discovered via Bonjour
 - (id)initWithNetService:(NSNetService*)netService;
+
+-(id)initWithPeerId:(NSString *)serverPeerId;
 
 @end

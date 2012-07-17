@@ -33,10 +33,16 @@ static AppConfig* instance;
 
 @synthesize name;
 @synthesize password;
-
+@synthesize isIPAD;
+@synthesize networkUsingWifi;
+@synthesize timeout;
 // Initialization
 - (id) init {
   self.name = @"unknown";
+    NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
+  isIPAD=[UIScreen mainScreen].bounds.size.width>=600 && [UIScreen mainScreen].bounds.size.height>=600;
+    networkUsingWifi=NO;  
+    timeout=30;
   return self;
 }
 
@@ -60,4 +66,12 @@ static AppConfig* instance;
   return instance;
 }
 
++ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    if([AppConfig getInstance].isIPAD)
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+    else
+        return  interfaceOrientation==UIInterfaceOrientationPortrait;
+}
 @end

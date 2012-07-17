@@ -7,3 +7,9 @@
     #import <UIKit/UIKit.h>
     #import "CommandMsg.h"
 #endif
+
+#if NS_BLOCKS_AVAILABLE
+typedef void (^FuncBlock)(void);
+typedef void (^FuncHandlerBlock)(id sender,id args);
+typedef void (^FuncResultBlock)(id result);
+#endif

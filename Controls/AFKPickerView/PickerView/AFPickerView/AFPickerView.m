@@ -79,7 +79,7 @@
 
 - (id)initWithFrame:(CGRect)frame backgroundImage:(NSString *)backgroundImage shadowImage:(NSString *)shadowImage glassImage:(NSString *)glassImage title:(NSString *)title {
     self = [super initWithFrame:frame];
-    self.frame = CGRectMake(0, self.frame.origin.y + self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    self.frame = CGRectMake(0, self.frame.origin.y + [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.height);
     self.isHidden = YES;
     if (self)
     {
@@ -98,7 +98,7 @@
 - (void)setup
 {
     _rowFont = [UIFont boldSystemFontOfSize:24.0];
-    _rowIndent = 50.0;
+    _rowIndent = 0.0;
 
     currentRow = 0;
     rowsCount = 0;
@@ -228,6 +228,7 @@
                 label = [[UILabel alloc] initWithFrame:CGRectMake(_rowIndent, 0, self.frame.size.width - _rowIndent, ROW_SPACE)];
                 label.backgroundColor = [UIColor clearColor];
                 label.font = self.rowFont;
+                label.textAlignment=UITextAlignmentCenter;
                 label.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
             }
 
@@ -251,7 +252,7 @@
 - (void)hidePicker {
     if (!isHidden) {
         [UIView animateWithDuration:0.3 animations:^(void) {
-            self.frame = CGRectMake(0, self.frame.origin.y + self.frame.size.height, self.frame.size.width, self.frame.size.height);
+            self.frame = CGRectMake(0, self.frame.origin.y + [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.height);
         }];
         self.isHidden = YES;
     }
@@ -260,7 +261,7 @@
 - (void)showPicker {
     if (isHidden) {
         [UIView animateWithDuration:0.3 animations:^(void) {
-            self.frame = CGRectMake(0, self.frame.origin.y - self.frame.size.height, self.frame.size.width, self.frame.size.height);
+            self.frame = CGRectMake(0, self.frame.origin.y - [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.height);
         }];
         self.isHidden = NO;
     }

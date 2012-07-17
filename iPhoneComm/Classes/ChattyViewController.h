@@ -28,10 +28,12 @@
 #import <UIKit/UIKit.h>
 #import "ServerBrowserDelegate.h"
 #import "ServerBrowser.h"
+#import "PeerBrowser.h"
 #import "GameSettingViewController.h"
 
 @interface ChattyViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, ServerBrowserDelegate> {
   ServerBrowser* serverBrowser;
+    PeerBrowser* peerServerBrowser;
   IBOutlet UITableView* serverList;
     GameSettingViewController *settingViewController;  
 }
@@ -43,6 +45,7 @@
 
 // View is active, start everything up
 - (void)activate;
+-(void)stopBrowser;
 
 @end
 

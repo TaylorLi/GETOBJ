@@ -17,7 +17,7 @@
     NSString *blueSideName;
     NSString *blueSideDesc;
     NSString *password;
-    NSInteger roundTime;
+    NSTimeInterval roundTime;
     NSInteger roundCount;
 }
 
@@ -29,5 +29,5 @@
 @property (nonatomic,copy) NSString *blueSideDesc;
 @property (nonatomic,copy) NSString *password;
 @property NSInteger roundCount;
-@property NSInteger roundTime;
+@property NSTimeInterval roundTime;
 @end

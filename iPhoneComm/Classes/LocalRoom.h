@@ -30,15 +30,22 @@
 #import "Server.h"
 #import "ServerDelegate.h"
 #import "ConnectionDelegate.h"
+#import <GameKit/GameKit.h>
+#import "PeerServerDelegate.h"
 #import "ServerSetting.h"
 
+#import "PeerServer.h"
+
 @class ServerSetting;
-@interface LocalRoom : Room <ServerDelegate, ConnectionDelegate> {
+@interface LocalRoom : Room <ServerDelegate, ConnectionDelegate,PeerServerDelegate,GKSessionDelegate> {
   // We accept connections from other clients using an instance of the Server class
   Server* server;
   
   // Container for all connected clients
   NSMutableSet* clients;
+    
+  PeerServer *bluetoothServer;
+    
 }
 
 // Initialize everything
@@ -46,5 +53,6 @@
 @property (nonatomic,retain) ServerSetting *gameSetting;
 @property(nonatomic,retain) Server* server;
 @property(nonatomic,retain) NSMutableSet* clients;
+@property(nonatomic,retain) PeerServer *bluetoothServer;
 
 @end

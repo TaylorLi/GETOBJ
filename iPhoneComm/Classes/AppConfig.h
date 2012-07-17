@@ -30,13 +30,17 @@
 
 @interface AppConfig : NSObject {
   NSString* name;
-  NSString* password;
+  NSString* password;   
 }
 
 @property (retain) NSString* name;
 @property (retain) NSString* password;
-
+@property  NSTimeInterval timeout;
+@property BOOL isIPAD;
+@property BOOL networkUsingWifi;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
+
++(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 
 @end

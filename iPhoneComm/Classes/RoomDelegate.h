@@ -33,5 +33,7 @@
 
 - (void) processCmd:(CommandMsg *) cmdMsg;
 - (void) roomTerminated:(id)room reason:(NSString*)string;
-
+-(void) alreadyConnectToServer;
+-(void) failureToConnectToServer;
+    
 @end

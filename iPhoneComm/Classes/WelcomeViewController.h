@@ -29,9 +29,10 @@
 
 
 @interface WelcomeViewController : UIViewController <UITextFieldDelegate> {
-  IBOutlet UITextField* input;
+   UITextField* input;
 }
 
+@property (nonatomic,retain) UITextField *input;
 // App delegate will call this whenever this view becomes active
 - (void)activate;
 

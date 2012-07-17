@@ -11,6 +11,8 @@
 #import "LocalRoom.h"
 #import "ChattyAppDelegate.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "AppConfig.h"
+#import "ChattyViewController.h"
 
 @implementation GameSettingViewController
 @synthesize roundTime;
@@ -26,6 +28,7 @@
 @synthesize sldPsw;
 @synthesize txtPwd;
 @synthesize selRoundTime;
+@synthesize navBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,7 +56,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     settingView.contentSize =CGSizeMake(settingView.frame.size.width, settingView.frame.size.height*1.2);
-    selRoundTime = [[AFPickerView alloc] initWithFrame:CGRectMake(0,245,320,216) backgroundImage:@"PickerBG.png" shadowImage:@"PickerShadow.png" glassImage:@"PickerGlassHightlight.png" title:@"Round Time (Minutes)"];
+    float height=self.view.frame.size.height/2;
+    selRoundTime = [[AFPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height+navBar.frame.size.height+1-height,self.view.frame.size.width,height) backgroundImage:@"PickerBG.png" shadowImage:@"PickerShadow.png" glassImage:@"PickerGlassHightlight.png" title:@"Round Time (Minutes)"];
     selRoundTime.dataSource = self;
     selRoundTime.delegate = self;
     [self.view addSubview:selRoundTime];
@@ -72,16 +76,12 @@
     [self setSelRoundTime:nil];
     [self setRoundCount:nil];
     [self setRoundTime:nil];
+    [self setNavBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 - (void)dealloc {
     [txtGameName release];
     [txtGameDesc release];
@@ -94,10 +94,22 @@
     [selRoundTime release];
     [roundCount release];
     [roundTime release];
+    [navBar release];
     [super dealloc];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
 - (IBAction)chgUsagePwd:(id)sender {
     txtPwd.hidden=!sldPsw.on;
+    if(sldPsw.on)
+        [txtPwd becomeFirstResponder];
+    else
+        [txtPwd resignFirstResponder];
 }
 
 - (IBAction)StartGame:(id)sender {
@@ -109,8 +121,8 @@
     //Create local chat room and go
     LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
     room.gameSetting=[[ServerSetting alloc] init];
-    room.gameSetting.gameDesc=txtGameName.text;
-    room.gameSetting.gameName=txtGameDesc.text;
+    room.gameSetting.gameDesc=txtGameDesc.text;
+    room.gameSetting.gameName=txtGameName.text;
     room.gameSetting.blueSideDesc=txtBlueSidePlace.text;
     room.gameSetting.blueSideName=txtblueSideName.text;
     room.gameSetting.redSideDesc=txtRedSidePlace.text;
@@ -121,26 +133,28 @@
         room.gameSetting.password=txtPwd.text;
     else
         room.gameSetting.password=nil;
+    NSLog(@"Game Setting:%@",[room.gameSetting description]);
     [self.view removeFromSuperview];
     [room.gameSetting release];
+    [[ChattyAppDelegate getInstance].viewController stopBrowser];
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 
 - (IBAction)backToSeverList:(id)sender {
     [self.view removeFromSuperview];
+    //[[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
 #pragma Text input event
--(IBAction)textFieldDidBeginEditing:(UITextField *)textField
+-(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [settingView adjustOffsetToIdealIfNeeded];
-//    float height= textField.center.y> self.view.frame.size.height/2-textField.frame.size.height*3?(self.view.frame.size.height/2-textField.frame.size.height*3): self.view.frame.size.height/2;
-//    [self setCenterPoint:height];
+    [selRoundTime hidePicker];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [UIHelper alternateTextField:self.settingView.subviews];
-    [textField resignFirstResponder];
+    [textField resignFirstResponder];    
     return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -148,9 +162,14 @@
 }
 
 - (IBAction)showTimePicker:(id)sender {
+    if([selRoundTime isHidden]){
+    [UIHelper resignResponser:self.settingView.subviews];
     [selRoundTime showPicker];
     [selRoundTime reloadData];
     [selRoundTime setSelectedRow:minutes-1];
+    }else{
+        [selRoundTime hidePicker];
+    }
 }
 
 #pragma mark -
@@ -201,16 +220,8 @@ numberOfRowsInComponent:(NSInteger)component {
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{ 
-    for(UIView *view in self.settingView.subviews)
-    {
-        if([view isMemberOfClass:[UITextField class]] && [view isFirstResponder])
-        {
-            [view resignFirstResponder];
-        }
-    }
-    if([settingView isFirstResponder])
-        {
-            [settingView resignFirstResponder];
-        }
+    [UIHelper resignResponser:self.settingView.subviews];
+    [settingView resignFirstResponder];
+    [selRoundTime hidePicker];
 } 
 @end

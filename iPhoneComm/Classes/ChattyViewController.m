@@ -30,73 +30,118 @@
 #import "LocalRoom.h"
 #import "RemoteRoom.h"
 #import "AppConfig.h"
-
+#import "ServerRelateInfo.h"
 
 // Private properties
 @interface ChattyViewController ()
 @property(nonatomic,retain) ServerBrowser* serverBrowser;
+@property(nonatomic,retain) PeerBrowser *peerServerBrowser;
 @end
 
 
 @implementation ChattyViewController
 
 @synthesize serverBrowser;
+@synthesize peerServerBrowser;
 @synthesize settingViewController;
 
 // View loaded
 - (void)viewDidLoad {
-  serverBrowser = [[ServerBrowser alloc] init];
-  serverBrowser.delegate = self;
+    if([AppConfig getInstance].networkUsingWifi)
+    {
+        serverBrowser = [[ServerBrowser alloc] init];
+        serverBrowser.delegate = self;
+    }
+    else
+    {
+        peerServerBrowser=[[PeerBrowser alloc] init];
+        peerServerBrowser.delegate=self;
+    }
 }
-
 
 // Cleanup
 - (void)dealloc {
-  self.serverBrowser = nil;
-  [super dealloc];
+    self.serverBrowser = nil;
+    self.peerServerBrowser=nil;
+    [super dealloc];
 }
 
 
 // View became active, start your engines
 - (void)activate {
-  // Start browsing for services
-  [serverBrowser start];
+    // Start browsing for services
+    if ([AppConfig getInstance].networkUsingWifi) {
+        [serverBrowser start];
+    }
+    else
+        [peerServerBrowser start];
+    [self updateServerList];
 }
-
+-(void)stopBrowser
+{
+    if ([AppConfig getInstance].networkUsingWifi) {
+        [serverBrowser stop];
+    }
+    else
+        [peerServerBrowser stop];
+}
 
 // User is asking to create new chat room
 - (IBAction)createNewChatRoom:(id)sender {
-  // Stop browsing for servers
-  [serverBrowser stop];
+    // Stop browsing for servers
+//    if ([AppConfig getInstance].networkUsingWifi) {
+//        [serverBrowser stop];
+//    }else{
+//        [peerServerBrowser stop];
+//    }
     GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
     self.settingViewController=settingView;
-   [settingView release];
+    [settingView release];
     [self.view addSubview:settingView.view];
     [self.view bringSubviewToFront:settingView.view];
-  // Create local chat room and go
-  //LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
-  //[[ChattyAppDelegate getInstance] showScoreBoard:room];
+    // Create local chat room and go
+    //LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
+    //[[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
 
 // User is asking to join an existing chat room
 - (void)joinChatRoom:(NSIndexPath*)currentRow {
-  // Figure out which server is selected
-  //NSIndexPath* currentRow = [serverList indexPathForSelectedRow];
-    if ( currentRow == nil ||serverBrowser.servers==nil||[serverBrowser.servers count]<currentRow.row+1) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        return;
+    // Figure out which server is selected
+    //NSIndexPath* currentRow = [serverList indexPathForSelectedRow];
+    RemoteRoom* room ;
+    if ([AppConfig getInstance].networkUsingWifi) {
+        if ( currentRow == nil ||serverBrowser.servers==nil||[serverBrowser.servers count]<currentRow.row+1) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            return;
+        }
+        NSNetService* selectedServer = [serverBrowser.servers objectAtIndex:currentRow.row];
+        
+        // Create chat room that will connect to that chat server
+        room = [[[RemoteRoom alloc] initWithNetService:selectedServer] autorelease];
+        [serverBrowser stop];
+    }else{
+        if ( currentRow == nil ||peerServerBrowser.servers==nil||[peerServerBrowser.servers count]<currentRow.row+1) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            return;
+        }
+        ServerRelateInfo* selectedPeerServer = [peerServerBrowser.servers objectAtIndex:currentRow.row];
+        NSLog(@"Connect to Server:%@",[selectedPeerServer description]); 
+        room=[[[RemoteRoom alloc] initWithPeerId:selectedPeerServer.peerId] autorelease];
+        [peerServerBrowser stop];
     }
-    NSNetService* selectedServer = [serverBrowser.servers objectAtIndex:currentRow.row];
-    
-    // Create chat room that will connect to that chat server
-    RemoteRoom* room = [[[RemoteRoom alloc] initWithNetService:selectedServer] autorelease];
-
     // Stop browsing and switch over to chat room
-    [serverBrowser stop];
-
+    
+    
     NSString* password = [AppConfig getInstance].password;  //要获取对应服务器的密码
     if(password==nil || password==@"")
     {
@@ -108,19 +153,11 @@
     }
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 #pragma mark -
 #pragma mark ServerBrowserDelegate Method Implementations
 
 - (void)updateServerList {
-  [serverList reloadData];
+    [serverList reloadData];
 }
 
 
@@ -129,24 +166,37 @@
 
 // Number of rows in each section. One section by default.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [serverBrowser.servers count];
+    if([AppConfig getInstance].networkUsingWifi)
+    {
+        return [serverBrowser.servers count];
+    }
+    else
+    {
+        return [peerServerBrowser.servers count];
+    }
 }
 
 
 // Table view is requesting a cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString* serverListIdentifier = @"serverListIdentifier";
-
-  UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
+    static NSString* serverListIdentifier = @"serverListIdentifier";
+    
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:serverListIdentifier] autorelease];
 	}
-
-  // Set cell's text to server's name
-  NSNetService* server = [serverBrowser.servers objectAtIndex:indexPath.row];
-  cell.textLabel.text = [server name];
-  
-  return cell;
+    
+    // Set cell's text to server's name
+    if([AppConfig getInstance].networkUsingWifi)
+    {
+        NSNetService* server = [serverBrowser.servers objectAtIndex:indexPath.row];
+        cell.textLabel.text = [server name];
+    }
+    else{
+        ServerRelateInfo *sri=  [peerServerBrowser.servers objectAtIndex:indexPath.row];
+        cell.textLabel.text= sri.displaySeverName;
+    }
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

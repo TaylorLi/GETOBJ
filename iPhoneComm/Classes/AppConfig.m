@@ -73,8 +73,16 @@ static AppConfig* instance;
 {
     // Return YES for supported orientations
     if([AppConfig getInstance].isIPAD)
-        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight||interfaceOrientation== UIInterfaceOrientationLandscapeLeft;
     else
         return  interfaceOrientation==UIInterfaceOrientationPortrait;
+}
++ (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    if([AppConfig getInstance].isIPAD)
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+    else
+        return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
 }
 @end

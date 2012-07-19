@@ -43,5 +43,5 @@
 + (AppConfig*)getInstance;
 
 +(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
-
++ (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation;
 @end

@@ -46,7 +46,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+    return [AppConfig shouldAutorotateToInterfaceOrientationLandscape:interfaceOrientation];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {

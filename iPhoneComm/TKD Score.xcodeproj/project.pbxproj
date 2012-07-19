@@ -238,7 +238,6 @@
 		DAE7E6AE15B81E4E00363399 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothDevice.h; path = ../BluetoothManager/BluetoothDevice.h; sourceTree = "<group>"; };
 		DAE7E6AF15B81E4E00363399 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothManager.h; path = ../BluetoothManager/BluetoothManager.h; sourceTree = "<group>"; };
 		DAE7E6B015B81E4E00363399 /* CDStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDStructures.h; path = ../BluetoothManager/CDStructures.h; sourceTree = "<group>"; };
-		DAE7E6B115B8219A00363399 /* BluetoothManager */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = BluetoothManager; path = System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager; sourceTree = SDKROOT; };
 		DAE7E6B315B8223100363399 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = SDKROOT; };
 		DAE7E6B515B82C9000363399 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
 		DAE7E70C15B82DE900363399 /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
@@ -340,7 +339,6 @@
 			isa = PBXGroup;
 			children = (
 				DAE7E6B315B8223100363399 /* BluetoothManager.framework */,
-				DAE7E6B115B8219A00363399 /* BluetoothManager */,
 				DAE7A26A15B4371A001FF160 /* GameKit.framework */,
 				DA00F37E15A9DC92005B2F4B /* icon.png */,
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,

@@ -18,6 +18,7 @@
 @synthesize label;
 @synthesize gestureStartPoint;
 @synthesize chatRoom;
+@synthesize screenWidth;
 
 - (void)eraseText {
     label.text = @"";
@@ -50,9 +51,19 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    BOOL isHorizontal = [self shouldAutorotateToInterfaceOrientation:UIInterfaceOrientationLandscapeLeft] || [self shouldAutorotateToInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
+    if(isHorizontal)
+    {
+        screenWidth = [[UIScreen mainScreen] bounds].size.height;
+    }
+    else
+    {
+        screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    }
+    
     //background
-    isBlueSide=YES;
-    [self setStyleBySide];
+//    isBlueSide=YES;
+//    [self setStyleBySide];
     //guesture
     UISwipeGestureRecognizer *top;   
     top = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
@@ -85,7 +96,7 @@
     right.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:right];
     
-    UISwipeGestureRecognizer *switchRcgn;
+ /*   UISwipeGestureRecognizer *switchRcgn;
     switchRcgn = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                             action:@selector(switchSide:)] autorelease];
     switchRcgn.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
@@ -97,11 +108,11 @@
                                                                     action:@selector(switchSide:)] autorelease];
     switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
     switchRcgnVertical.numberOfTouchesRequired = 2;
-    [self.view addGestureRecognizer:switchRcgnVertical];
+    [self.view addGestureRecognizer:switchRcgnVertical];*/
     
 }
 
--(void)setStyleBySide
+/*-(void)setStyleBySide
 {
     if(isBlueSide){
         self.view.backgroundColor=[UIColor blueColor];
@@ -109,7 +120,7 @@
     else{
         self.view.backgroundColor=[UIColor redColor];
     }
-}
+}*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -137,30 +148,33 @@
 }
 
 #pragma mark -
-- (void)reportSwipeUp:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:4];
+- (void)reportSwipeUp:(UIGestureRecognizer *)recognizer {  
+    [self reportSwipe:4 fromGestureRecognizer:recognizer];
 }
 - (void)reportSwipeDown:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:2];
+    [self reportSwipe:2 fromGestureRecognizer:recognizer];
 }
 - (void)reportSwipeLeft:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:1];
+    [self reportSwipe:1 fromGestureRecognizer:recognizer];
 }
 - (void)reportSwipeRight:(UIGestureRecognizer *)recognizer {
-    [self reportSwipe:3];
+    [self reportSwipe:3 fromGestureRecognizer:recognizer];
 }
-- (void)reportSwipe:(NSInteger)score {
+- (void)reportSwipe:(NSInteger)score fromGestureRecognizer:(UIGestureRecognizer *) recognizer{
+    CGPoint currentPosition = [recognizer locationInView:self.view];
+    isBlueSide = currentPosition.x >= screenWidth/2;
+    
     [self sendScore:score];    
-    label.text = [NSString stringWithFormat:@"%i Score Record",
-                  score];;
+    label.text = [NSString stringWithFormat:@"%@ %i Score Record",
+                  isBlueSide?[kSideBlue uppercaseString]:[kSideRed uppercaseString] ,score];;
     [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
 }
 
--(void)switchSide:(UIGestureRecognizer *)recognizer
+/*-(void)switchSide:(UIGestureRecognizer *)recognizer
 {
     isBlueSide=!isBlueSide;
     [self setStyleBySide];
-}
+}*/
 
 - (void)activate {
     if ( chatRoom != nil ) {

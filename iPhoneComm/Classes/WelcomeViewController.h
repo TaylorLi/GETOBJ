@@ -26,14 +26,20 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/PrivateFrameworks/BluetoothManager.framework
+//#import <BluetoothManager/BluetoothManager.h>
+#import "BluetoothManager.h"
+#import "BluetoothDevice.h"
 
-
-@interface WelcomeViewController : UIViewController <UITextFieldDelegate> {
+@interface WelcomeViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate> {
    UITextField* input;
+    // bluetooth manager
+    BluetoothManager *btManager;
 }
 
 @property (nonatomic,retain) UITextField *input;
 // App delegate will call this whenever this view becomes active
+@property (retain, nonatomic) IBOutlet UISegmentedControl *segNetwork;
 - (void)activate;
 
 @end

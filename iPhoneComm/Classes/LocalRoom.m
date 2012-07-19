@@ -76,7 +76,7 @@
             self.server = nil;
             return NO;
         }
-        
+        [delegate alreadyConnectToServer];
         return YES;
     }else
     {

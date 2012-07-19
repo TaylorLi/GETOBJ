@@ -11,11 +11,11 @@
 @implementation UIHelper
 
 +(void) showAlert:(NSString*) title message:(NSString*)msg delegate:(id)func{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:title
                                                         message:msg
                                                        delegate:func 
                                               cancelButtonTitle:@"确认" 
-                                              otherButtonTitles:nil];
+                                              otherButtonTitles:nil] autorelease];
     [alertView show];
 }
 
@@ -98,4 +98,5 @@
     }
     return success;
 }
+
 @end

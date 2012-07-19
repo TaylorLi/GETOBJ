@@ -31,6 +31,7 @@
 #import "ScoreControlViewController.h"
 #import "ScoreBoardViewController.h"
 #import "PermitControlView.h"
+#import "UIHelper.h"
 
 static ChattyAppDelegate* _instance;
 
@@ -58,10 +59,21 @@ static ChattyAppDelegate* _instance;
     [window makeKeyAndVisible];
     
     // Greet user
-    [window bringSubviewToFront:welcomeViewController.view];
+    //[window bringSubviewToFront:welcomeViewController.view];
     [welcomeViewController activate];
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver:self
+//     selector:@selector(bluetoothAvailabilityChanged:)
+//     name:@"BluetoothAvailabilityChangedNotification"
+//     object:nil];
 }
 
+/* Bluetooth notifications */
+- (void)bluetoothAvailabilityChanged:(NSNotification *)notification {
+//    BluetoothManager *blManager=[BluetoothManager sharedInstance];
+//    NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
+//    [UIHelper showAlert:@"Error" message:@"Bluetooth status changed,please restart the app." delegate:nil];
+}
 
 - (void)dealloc {
     [viewController release];

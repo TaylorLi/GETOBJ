@@ -100,7 +100,6 @@
 		DAE45AB815B273A600F9A847 /* pickerGlassHIghtlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AB215B2737A00F9A847 /* pickerGlassHIghtlight.png */; };
 		DAE45AB915B273AA00F9A847 /* PickerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AB315B2737A00F9A847 /* PickerShadow.png */; };
 		DAE45ABA15B278E700F9A847 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */; };
-		DAE45AC915B28B1A00F9A847 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AC715B2874200F9A847 /* MainWindow-iPad.xib */; };
 		DAE64A0315B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0415B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0515B313830062A2B9 /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
@@ -114,6 +113,11 @@
 		DAE7A26B15B4371A001FF160 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7A26A15B4371A001FF160 /* GameKit.framework */; };
 		DAE7A26C15B43730001FF160 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7A26A15B4371A001FF160 /* GameKit.framework */; };
 		DAE7A27415B46D05001FF160 /* ServerRelateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */; };
+		DAE7E6B415B8223100363399 /* BluetoothManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7E6B315B8223100363399 /* BluetoothManager.framework */; };
+		DAE7E6B615B82C9000363399 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE7E6B515B82C9000363399 /* MainWindow.xib */; };
+		DAE7E6B715B82CD700363399 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A26415B42BAC001FF160 /* PeerBrowser.m */; };
+		DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */; };
+		DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7E6B315B8223100363399 /* BluetoothManager.framework */; };
 		DAE804F615B3055000CBC42F /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
 		DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
 		DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
@@ -212,7 +216,6 @@
 		DAE45AB115B2737A00F9A847 /* PickerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerBG.png; path = "Resources-iPad/PickerBG.png"; sourceTree = "<group>"; };
 		DAE45AB215B2737A00F9A847 /* pickerGlassHIghtlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pickerGlassHIghtlight.png; path = "Resources-iPad/pickerGlassHIghtlight.png"; sourceTree = "<group>"; };
 		DAE45AB315B2737A00F9A847 /* PickerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerShadow.png; path = "Resources-iPad/PickerShadow.png"; sourceTree = "<group>"; };
-		DAE45AC715B2874200F9A847 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		DAE64A0115B3137F0062A2B9 /* PeerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerClient.h; sourceTree = "<group>"; };
 		DAE64A0215B3137F0062A2B9 /* PeerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerClient.m; sourceTree = "<group>"; };
 		DAE735BD15A84AAE00C84157 /* CommandMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMsg.h; sourceTree = "<group>"; };
@@ -231,6 +234,15 @@
 		DAE7A27215B46D04001FF160 /* ServerRelateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerRelateInfo.h; sourceTree = "<group>"; };
 		DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerRelateInfo.m; sourceTree = "<group>"; };
 		DAE7A27515B474AC001FF160 /* PeerServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServerDelegate.h; sourceTree = "<group>"; };
+		DAE7E6AD15B81E4E00363399 /* BluetoothAudioJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothAudioJack.h; path = ../BluetoothManager/BluetoothAudioJack.h; sourceTree = "<group>"; };
+		DAE7E6AE15B81E4E00363399 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothDevice.h; path = ../BluetoothManager/BluetoothDevice.h; sourceTree = "<group>"; };
+		DAE7E6AF15B81E4E00363399 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothManager.h; path = ../BluetoothManager/BluetoothManager.h; sourceTree = "<group>"; };
+		DAE7E6B015B81E4E00363399 /* CDStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDStructures.h; path = ../BluetoothManager/CDStructures.h; sourceTree = "<group>"; };
+		DAE7E6B115B8219A00363399 /* BluetoothManager */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = BluetoothManager; path = System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager; sourceTree = SDKROOT; };
+		DAE7E6B315B8223100363399 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = SDKROOT; };
+		DAE7E6B515B82C9000363399 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
+		DAE7E70C15B82DE900363399 /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
+		DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DAE804F415B3055000CBC42F /* PeerServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServer.h; sourceTree = "<group>"; };
 		DAE804F515B3055000CBC42F /* PeerServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerServer.m; sourceTree = "<group>"; };
 		DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -277,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE7E6B415B8223100363399 /* BluetoothManager.framework in Frameworks */,
 				DAE7A26B15B4371A001FF160 /* GameKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -289,6 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */,
 				DAE7A26C15B43730001FF160 /* GameKit.framework in Frameworks */,
 				DA78B47315A96F0100E186CC /* Foundation.framework in Frameworks */,
 				DA78B47415A96F0100E186CC /* UIKit.framework in Frameworks */,
@@ -325,6 +339,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DAE7E6B315B8223100363399 /* BluetoothManager.framework */,
+				DAE7E6B115B8219A00363399 /* BluetoothManager */,
 				DAE7A26A15B4371A001FF160 /* GameKit.framework */,
 				DA00F37E15A9DC92005B2F4B /* icon.png */,
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
@@ -479,8 +495,10 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				DAE7E70C15B82DE900363399 /* ScoreControlView.xib */,
+				DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */,
+				DAE7E6B515B82C9000363399 /* MainWindow.xib */,
 				DA78B47F15A96F0600E186CC /* ChattyViewController.xib */,
-				DAE45AC715B2874200F9A847 /* MainWindow-iPad.xib */,
 				DAE45AB115B2737A00F9A847 /* PickerBG.png */,
 				DAE45AB215B2737A00F9A847 /* pickerGlassHIghtlight.png */,
 				DAE45AB315B2737A00F9A847 /* PickerShadow.png */,
@@ -521,9 +539,21 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		DAE7E6AB15B81E2F00363399 /* BluetoothManager */ = {
+			isa = PBXGroup;
+			children = (
+				DAE7E6AD15B81E4E00363399 /* BluetoothAudioJack.h */,
+				DAE7E6AE15B81E4E00363399 /* BluetoothDevice.h */,
+				DAE7E6AF15B81E4E00363399 /* BluetoothManager.h */,
+				DAE7E6B015B81E4E00363399 /* CDStructures.h */,
+			);
+			name = BluetoothManager;
+			sourceTree = "<group>";
+		};
 		DAF65A04159EEED1001BEA75 /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DAE7E6AB15B81E2F00363399 /* BluetoothManager */,
 				DAF8F5C215B1677B00497FC5 /* Controls */,
 				DAF8F5B215B13C8400497FC5 /* Util */,
 				DAF65A06159EEF02001BEA75 /* SBJSON */,
@@ -706,9 +736,9 @@
 				DAE45AB815B273A600F9A847 /* pickerGlassHIghtlight.png in Resources */,
 				DAE45AB915B273AA00F9A847 /* PickerShadow.png in Resources */,
 				DAE45ABA15B278E700F9A847 /* ScoreBoardView.xib in Resources */,
-				DAE45AC915B28B1A00F9A847 /* MainWindow-iPad.xib in Resources */,
 				DAD80F3D15B2A852004B76B4 /* WelcomeViewController.xib in Resources */,
 				DA43FDB815B5DF1C0083D1B7 /* close.png in Resources */,
+				DAE7E6B615B82C9000363399 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,6 +838,8 @@
 				DA43FDB115B5DA840083D1B7 /* AlertView.m in Sources */,
 				DA43FDB315B5DA840083D1B7 /* UIImageActionSheet.m in Sources */,
 				DA43FDB515B5DA840083D1B7 /* UILoadingBox.m in Sources */,
+				DAE7E6B715B82CD700363399 /* PeerBrowser.m in Sources */,
+				DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,12 +853,20 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
+				);
 				PRODUCT_NAME = "TKD Score";
 				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
@@ -841,10 +881,18 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
+				);
 				PRODUCT_NAME = "TKD Score";
 				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
@@ -888,12 +936,16 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "TKD Score HD";
 				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
@@ -908,10 +960,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "TKD Score HD";
 				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;

@@ -21,10 +21,10 @@
         
         activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];        
         activityView.frame = CGRectMake(120.f, 48.0f, 36.0f, 36.0f);
-        [self addSubview:activityView];  
+        [self addSubview:activityView];
         if(showClose)
         {
-            completedFunc=onCompleted;        
+            completedFunc=[onCompleted copy];
             UIImage *closeImage=[UIImage imageNamed:@"close.png"];
             closeView = [[[UIImageView alloc] initWithImage:closeImage] autorelease];
             closeView.frame = CGRectMake(250.0f, 5.0f, 24.0f, 24.0f);
@@ -47,7 +47,7 @@
     UITouch *touch = [[event allTouches] anyObject];
     if([touch view]==closeView){
         [self dismissWithClickedButtonIndex:0 animated:YES];
-        if(completedFunc!=NULL)
+        if(completedFunc!=nil)
             completedFunc(); 
     }
 }
@@ -55,5 +55,6 @@
 {
     activityView=nil;
     closeView=nil;
+    completedFunc=nil;
 }
 @end

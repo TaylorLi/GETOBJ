@@ -10,6 +10,7 @@
 #import "ServerBrowserDelegate.h"
 #import "PeerBrowser.h"
 #import "ServerRelateInfo.h"
+#import "AppConfig.h"
 
 // Private properties and methods
 @interface PeerBrowser ()
@@ -50,6 +51,8 @@
     if ( schSession != nil ) {
         [self stop];
     }
+    [servers removeAllObjects];
+    [peerIds removeAllObjects];
     //NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
     schPeerId=[NSString stringWithFormat:@"%@",KEY_PEER_SEVICE_TYPE_SEARCH];
 	schSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
@@ -73,8 +76,8 @@
     }
     //[schSession disconnectFromAllPeers];
     schSession.available = NO;
-    [schSession release];
     schSession = nil;
+    [schSession release];
     [peerIds removeAllObjects];
     [servers removeAllObjects];
 }
@@ -93,8 +96,8 @@
     switch (state)
     {
             
-        case GKPeerStateAvailable:
-            if ( ![peerIds containsObject:peerID] &&[[session displayNameForPeer:peerID] hasPrefix:KEY_PEER_SEVICE_TYPE_SERVER] ) {
+        case GKPeerStateAvailable:           
+            if (![peerIds containsObject:peerID] &&[[session displayNameForPeer:peerID] hasPrefix:KEY_PEER_SEVICE_TYPE_SERVER] ) {
                 // Add it to our list
                 ServerRelateInfo *sri=[[[ServerRelateInfo alloc] init] autorelease];
                 sri.orgSeverName=[session displayNameForPeer:peerID];
@@ -118,7 +121,11 @@
                 [delegate updateServerList];
             }
             break;
-        case GKPeerStateUnavailable:    
+        case GKPeerStateUnavailable:   
+            break;
+        case GKPeerStateConnected:                        
+            break;
+        case GKPeerStateDisconnected:   
             for (ServerRelateInfo *sri in servers) {
                 if([sri.peerId isEqualToString:peerID])
                 {
@@ -129,10 +136,6 @@
                     break;
                 }
             }
-            break;
-        case GKPeerStateConnected:                        
-            break;
-        case GKPeerStateDisconnected:            
             break;
         default:
             break;

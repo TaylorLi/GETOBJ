@@ -64,6 +64,7 @@
 
 // Start everything up, connect to server
 - (BOOL)start {
+    isRunning=YES;
     if([AppConfig getInstance].networkUsingWifi)
     {
         if ( connection == nil ) {
@@ -95,6 +96,7 @@
 
 // Stop everything, disconnect from server
 - (void)stop {
+    isRunning=NO;
     if ( connection == nil ) {
         return;
     }
@@ -149,7 +151,11 @@
 /* Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
  */
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error{
-    [delegate failureToConnectToServer];
+    if(isRunning){
+        [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
+        [delegate failureToConnectToServer];
+        isRunning=NO;
+    }
 }
 
 /* Indicates an error occurred with the session such as failing to make available.
@@ -173,7 +179,8 @@
             /**
              First time lose a server;
              */
-            if([peerID isEqualToString:bluetoothClient.serverPeerId]){  
+            if(isRunning && [peerID isEqualToString:bluetoothClient.serverPeerId]){  
+                [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
                 [delegate roomTerminated:self reason:@"Server has disconnect"];
             }
             break;
@@ -192,8 +199,12 @@
             
             break;
         case GKPeerStateDisconnected:
-            if([peerID isEqualToString:bluetoothClient.serverPeerId]){  
-            //self terminate
+            /*first StateDisconnected,then stateUnavailale,then connectionWithPeerFailed 
+             */
+            if(isRunning && [peerID isEqualToString:bluetoothClient.serverPeerId]){  
+                [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
+                isRunning=NO;
+                //self terminate
                 [delegate roomTerminated:self reason:@"Server has disconnect"];
             }
             break;

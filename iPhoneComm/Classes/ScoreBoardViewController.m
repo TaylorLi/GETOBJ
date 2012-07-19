@@ -161,10 +161,12 @@
     [alert release];
     [self exit];
 }
+//we not care this delegate
 -(void) alreadyConnectToServer
 {
     
 }
+//we not care this delegate
 -(void) failureToConnectToServer
 {
     
@@ -173,6 +175,7 @@
 // User decided to exit room
 - (IBAction)exit {
     // Close the room
+    [[AppConfig getInstance].invalidServerPeerIds addObject:chatRoom.bluetoothServer.serverSession.peerID];
     [chatRoom stop];
     
     // Remove keyboard

@@ -164,12 +164,13 @@
 
 - (void)activate {
     if ( chatRoom != nil ) {
+        loadingBox =[[UILoadingBox alloc ]initWithLoading:@"Connection..." showCloseImage:YES onClosed:^{
+            [self exit];    
+        }];
+        [loadingBox showLoading];
         chatRoom.delegate = self;
         [chatRoom start];
-        loadingBox =[[[UILoadingBox alloc ]initWithLoading:@"Connection..." showCloseImage:YES onClosed:^{
-            [self exit];    
-        }] autorelease];
-        [loadingBox showLoading];
+        
     }
 }
 
@@ -209,14 +210,21 @@
     if(loadingBox!=nil)
     {
         [loadingBox hideLoading];
+        loadingBox=nil;
         [loadingBox release];
     }
 }
 -(void) failureToConnectToServer
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:@"Failure to connect" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connect failure" message:@"Failure to connect" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
+    if(loadingBox!=nil)
+    {
+        [loadingBox hideLoading];
+        loadingBox=nil;
+        [loadingBox release];
+    }
     [self exit];
 }
 -(void)sendScore:(NSInteger) score

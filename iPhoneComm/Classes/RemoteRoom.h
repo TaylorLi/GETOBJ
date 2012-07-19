@@ -36,6 +36,7 @@
   // Our connection to the chat server
   Connection* connection;
   PeerClient  *bluetoothClient;
+    BOOL isRunning;
 }
 
 // Initialize with host address and port

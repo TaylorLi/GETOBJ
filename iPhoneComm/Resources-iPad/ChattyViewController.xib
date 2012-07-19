@@ -53,7 +53,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUIHighlightedTitle">Start new chat room</string>
+						<string key="IBUIHighlightedTitle">Start new server</string>
 						<string key="IBUIDisabledTitle">Start new chat room</string>
 						<string key="IBUISelectedTitle">Start new chat room</string>
 						<string key="IBUINormalTitle">Start new server</string>
@@ -227,6 +227,7 @@
 					<string>6.IBLastUsedUIStatusBarStylesToTargetRuntimesMap</string>
 					<string>6.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
+					<string>8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -241,6 +242,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="1"/>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">

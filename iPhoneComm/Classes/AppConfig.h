@@ -38,6 +38,7 @@
 @property  NSTimeInterval timeout;
 @property BOOL isIPAD;
 @property BOOL networkUsingWifi;
+@property (retain) NSMutableSet *invalidServerPeerIds;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 

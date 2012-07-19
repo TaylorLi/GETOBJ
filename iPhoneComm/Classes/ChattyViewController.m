@@ -172,6 +172,16 @@
     }
     else
     {
+        
+        for (ServerRelateInfo *sr in peerServerBrowser.servers){
+            if([[AppConfig getInstance].invalidServerPeerIds containsObject:sr.peerId])
+            {
+                [[AppConfig getInstance].invalidServerPeerIds removeObject:sr.peerId];            
+                [peerServerBrowser.servers removeObject:sr];
+            }
+        }
+        
+        NSLog(@"%i",[peerServerBrowser.servers count]);
         return [peerServerBrowser.servers count];
     }
 }

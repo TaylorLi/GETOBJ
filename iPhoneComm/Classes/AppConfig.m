@@ -36,13 +36,15 @@ static AppConfig* instance;
 @synthesize isIPAD;
 @synthesize networkUsingWifi;
 @synthesize timeout;
+@synthesize invalidServerPeerIds;
+
 // Initialization
 - (id) init {
   self.name = @"unknown";
     NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
-  isIPAD=[UIScreen mainScreen].bounds.size.width>=600 && [UIScreen mainScreen].bounds.size.height>=600;
-    networkUsingWifi=NO;  
+  isIPAD=![[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;  
     timeout=30;
+    invalidServerPeerIds=[[NSMutableSet alloc] init];
   return self;
 }
 
@@ -51,6 +53,7 @@ static AppConfig* instance;
 - (void)dealloc {
   self.name = nil;
   self.password = nil;
+    invalidServerPeerIds=nil;
   [super dealloc];
 }
 

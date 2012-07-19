@@ -23,6 +23,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property(nonatomic,retain) Room* chatRoom;
 @property CGPoint gestureStartPoint;
+@property CGFloat screenWidth;
 
 - (void)eraseText;
 // Exit back to the welcome screen
@@ -32,6 +33,7 @@
 - (void)activate;
 
 -(void)sendScore:(NSInteger)score;
--(void)reportSwipe:(NSInteger)score;
--(void)setStyleBySide;
+-(void)reportSwipe:(NSInteger)score fromGestureRecognizer:(UIGestureRecognizer *) recognizer;
+//-(void)setStyleBySide;
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

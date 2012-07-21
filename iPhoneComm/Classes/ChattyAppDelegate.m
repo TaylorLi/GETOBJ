@@ -32,11 +32,15 @@
 #import "ScoreBoardViewController.h"
 #import "PermitControlView.h"
 #import "UIHelper.h"
+#import "AppConfig.h"
 
 static ChattyAppDelegate* _instance;
 
 @interface ChattyAppDelegate()
-    -(void) swithView:(UIView *) view;
+-(void) swithView:(UIView *) view;
+-(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
+-(void)detectBluetoothStatus;
+-(void)testNetworkStatus;
 @end
 
 @implementation ChattyAppDelegate
@@ -60,19 +64,14 @@ static ChattyAppDelegate* _instance;
     
     // Greet user
     //[window bringSubviewToFront:welcomeViewController.view];
+    
+    
+    // 监测网络情况
+    
+    wifiReach = [[Reachability reachabilityForLocalWiFi] retain];	
+    btManager = [BluetoothManager sharedInstance];
+    [self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
-//    [[NSNotificationCenter defaultCenter]
-//     addObserver:self
-//     selector:@selector(bluetoothAvailabilityChanged:)
-//     name:@"BluetoothAvailabilityChangedNotification"
-//     object:nil];
-}
-
-/* Bluetooth notifications */
-- (void)bluetoothAvailabilityChanged:(NSNotification *)notification {
-//    BluetoothManager *blManager=[BluetoothManager sharedInstance];
-//    NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
-//    [UIHelper showAlert:@"Error" message:@"Bluetooth status changed,please restart the app." delegate:nil];
 }
 
 - (void)dealloc {
@@ -87,7 +86,7 @@ static ChattyAppDelegate* _instance;
 
 
 + (ChattyAppDelegate*)getInstance {
-  return _instance;
+    return _instance;
 }
 
 -(void) swithView:(UIView *) view{
@@ -99,7 +98,7 @@ static ChattyAppDelegate* _instance;
 // Show screen with room selection
 - (void)showRoomSelection {
     [self swithView:viewController.view];
-  [viewController activate];
+    [viewController activate];
 }
 
 -(void) showScoreBoard:(Room *)room{
@@ -123,6 +122,70 @@ static ChattyAppDelegate* _instance;
     [permitViewController activate];
     
     [self swithView:permitViewController.view];
+}
+
+
+-(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:msg
+                                                       delegate:self 
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [btManager setPowered:YES];
+    [btManager setEnabled:YES];
+    [self performSelector:@selector(detectBluetoothStatus) withObject:nil afterDelay:2];
+}
+-(void)detectBluetoothStatus
+{
+    if(![btManager enabled]){
+        [UIHelper showAlert:@"Error" message:@"Failre to turn on your bluetooth device." delegate:nil];
+        return;
+    }
+    //detect network status
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name: kReachabilityChangedNotification
+                                               object: nil];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(bluetoothAvailabilityChanged:)
+     name:@"BluetoothPowerChangedNotification"
+     object:nil];
+    [wifiReach startNotifier];
+}
+
+-(void)testNetworkStatus
+{
+    if([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus]!=ReachableViaWiFi &&![btManager enabled])
+    {
+        [self showConfrimMsg:@"Information" message:@"This application need to use either bluetooth or wifi,continue to turn on bluetooth?"];
+        return ; 
+    }    
+}
+/*wifi status change*/
+- (void)reachabilityChanged:(NSNotification *)note {
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    NetworkStatus status = [curReach currentReachabilityStatus];
+    NSLog(@"Wifi status change:curent is %i",status);
+    if (![btManager enabled] && status != ReachableViaWiFi) {
+        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." delegate:nil];
+    }
+}
+
+
+/* Bluetooth notifications */
+- (void)bluetoothAvailabilityChanged:(NSNotification *)notification {
+    BluetoothManager *blManager=[BluetoothManager sharedInstance];
+    NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
+    if (![btManager enabled] && [wifiReach currentReachabilityStatus] != ReachableViaWiFi)
+        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." delegate:nil];
 }
 
 @end

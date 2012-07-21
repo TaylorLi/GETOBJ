@@ -36,6 +36,7 @@
     PeerBrowser* peerServerBrowser;
   IBOutlet UITableView* serverList;
     GameSettingViewController *settingViewController;  
+    UIImage *lockImg;
 }
 
 @property (nonatomic,retain) GameSettingViewController *settingViewController;

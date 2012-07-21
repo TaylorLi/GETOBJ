@@ -25,7 +25,7 @@
         if(showClose)
         {
             completedFunc=[onCompleted copy];
-            UIImage *closeImage=[UIImage imageNamed:@"close.png"];
+            UIImage *closeImage=[UIImage imageNamed:@"alert-close.png"];
             closeView = [[[UIImageView alloc] initWithImage:closeImage] autorelease];
             closeView.frame = CGRectMake(250.0f, 5.0f, 24.0f, 24.0f);
             [closeView setUserInteractionEnabled:YES];

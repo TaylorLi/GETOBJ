@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LocalRoom.h"
 #import "RoomDelegate.h"
+#import "UIWaitForUserViewController.h"
 
-@interface ScoreBoardViewController : UIViewController<RoomDelegate>{
+@interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
     UILabel *lblGameName;
     UILabel *lblRedImg1;
@@ -28,6 +29,8 @@
     NSInteger redTotalScore;
     UILabel *lblCoachName;
     NSDictionary *dicSideFlags;
+    NSTimer *timer;
+    UIWaitForUserViewController *waitUserPanel;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *lblGameName;
@@ -61,4 +64,7 @@
 - (void)activate;
 
 - (void)eraseText;
+
+-(void)showWaitingUserBox;
+
 @end

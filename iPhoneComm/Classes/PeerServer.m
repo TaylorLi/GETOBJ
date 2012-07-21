@@ -49,7 +49,7 @@
      svcSetting.gameName,svcSetting.password]
      */
     //NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
-    NSString *displayName=[NSString stringWithFormat:@"%@||%@||%@",KEY_PEER_SEVICE_TYPE_SERVER,svcSetting.gameName,@""];
+    NSString *displayName=[NSString stringWithFormat:@"%@||%@||%@",KEY_PEER_SEVICE_TYPE_SERVER,[svcSetting.gameName stringByReplacingOccurrencesOfString:@" " withString:@"_"],svcSetting.password==nil?@"":svcSetting.password];
 	serverSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
                                              displayName:displayName
                                              sessionMode: GKSessionModePeer ];
@@ -60,7 +60,7 @@
     serverSession.delegate = gkSessionDelegate;
     serverSession.available = YES;
     [serverSession setDataReceiveHandler:gkSessionDelegate withContext:nil];
-    NSLog(@"New Server Start:%@",serverSession.peerID);
+    NSLog(@"New Server Start:%@,Desc:%@",serverSession.peerID,displayName);
     return YES;
 }
 

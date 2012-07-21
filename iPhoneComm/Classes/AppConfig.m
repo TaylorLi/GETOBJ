@@ -41,6 +41,7 @@ static AppConfig* instance;
 // Initialization
 - (id) init {
   self.name = @"unknown";
+    networkUsingWifi=NO;
     NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
   isIPAD=![[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;  
     timeout=30;

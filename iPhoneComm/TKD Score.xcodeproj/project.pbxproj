@@ -49,8 +49,8 @@
 		DA43FDB315B5DA840083D1B7 /* UIImageActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAD15B5DA840083D1B7 /* UIImageActionSheet.m */; };
 		DA43FDB415B5DA840083D1B7 /* UILoadingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAF15B5DA840083D1B7 /* UILoadingBox.m */; };
 		DA43FDB515B5DA840083D1B7 /* UILoadingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAF15B5DA840083D1B7 /* UILoadingBox.m */; };
-		DA43FDB715B5DF1C0083D1B7 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DA43FDB615B5DF1C0083D1B7 /* close.png */; };
-		DA43FDB815B5DF1C0083D1B7 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DA43FDB615B5DF1C0083D1B7 /* close.png */; };
+		DA43FDB715B5DF1C0083D1B7 /* alert-close.png in Resources */ = {isa = PBXBuildFile; fileRef = DA43FDB615B5DF1C0083D1B7 /* alert-close.png */; };
+		DA43FDB815B5DF1C0083D1B7 /* alert-close.png in Resources */ = {isa = PBXBuildFile; fileRef = DA43FDB615B5DF1C0083D1B7 /* alert-close.png */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
@@ -100,6 +100,44 @@
 		DAE45AB815B273A600F9A847 /* pickerGlassHIghtlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AB215B2737A00F9A847 /* pickerGlassHIghtlight.png */; };
 		DAE45AB915B273AA00F9A847 /* PickerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AB315B2737A00F9A847 /* PickerShadow.png */; };
 		DAE45ABA15B278E700F9A847 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */; };
+		DAE498EF15BA47C600C21671 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498EE15BA47C600C21671 /* GameInfo.m */; };
+		DAE498F015BA47C600C21671 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498EE15BA47C600C21671 /* GameInfo.m */; };
+		DAE498F415BA525700C21671 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498F315BA525700C21671 /* Reachability.m */; };
+		DAE498F515BA525700C21671 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498F315BA525700C21671 /* Reachability.m */; };
+		DAE498F715BA52CB00C21671 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */; };
+		DAE498F815BA52E400C21671 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */; };
+		DAE4991115BA821700C21671 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498FD15BA821700C21671 /* UIView+JMNoise.m */; };
+		DAE4991215BA821700C21671 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498FD15BA821700C21671 /* UIView+JMNoise.m */; };
+		DAE4991315BA821700C21671 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE498FF15BA821700C21671 /* close.png */; };
+		DAE4991415BA821700C21671 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE498FF15BA821700C21671 /* close.png */; };
+		DAE4991515BA821700C21671 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990015BA821700C21671 /* close@2x.png */; };
+		DAE4991615BA821700C21671 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990015BA821700C21671 /* close@2x.png */; };
+		DAE4991715BA821700C21671 /* modalButton-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990115BA821700C21671 /* modalButton-selected.png */; };
+		DAE4991815BA821700C21671 /* modalButton-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990115BA821700C21671 /* modalButton-selected.png */; };
+		DAE4991915BA821700C21671 /* modalButton-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990215BA821700C21671 /* modalButton-selected@2x.png */; };
+		DAE4991A15BA821700C21671 /* modalButton-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990215BA821700C21671 /* modalButton-selected@2x.png */; };
+		DAE4991B15BA821700C21671 /* modalButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990315BA821700C21671 /* modalButton.png */; };
+		DAE4991C15BA821700C21671 /* modalButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990315BA821700C21671 /* modalButton.png */; };
+		DAE4991D15BA821700C21671 /* modalButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990415BA821700C21671 /* modalButton@2x.png */; };
+		DAE4991E15BA821700C21671 /* modalButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990415BA821700C21671 /* modalButton@2x.png */; };
+		DAE4991F15BA821700C21671 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990715BA821700C21671 /* UAModalPanel.m */; };
+		DAE4992015BA821700C21671 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990715BA821700C21671 /* UAModalPanel.m */; };
+		DAE4992115BA821700C21671 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990915BA821700C21671 /* UATitledModalPanel.m */; };
+		DAE4992215BA821700C21671 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990915BA821700C21671 /* UATitledModalPanel.m */; };
+		DAE4992315BA821700C21671 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990C15BA821700C21671 /* UAGradientBackground.m */; };
+		DAE4992415BA821700C21671 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990C15BA821700C21671 /* UAGradientBackground.m */; };
+		DAE4992515BA821700C21671 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */; };
+		DAE4992615BA821700C21671 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */; };
+		DAE4992715BA821700C21671 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4991015BA821700C21671 /* UARoundedRectView.m */; };
+		DAE4992815BA821700C21671 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4991015BA821700C21671 /* UARoundedRectView.m */; };
+		DAE4992A15BA829500C21671 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE4992915BA829400C21671 /* QuartzCore.framework */; };
+		DAE4992B15BA829F00C21671 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE4992915BA829400C21671 /* QuartzCore.framework */; };
+		DAE4992F15BA851000C21671 /* UIWaitForUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4992D15BA850E00C21671 /* UIWaitForUserViewController.m */; };
+		DAE4993015BA851000C21671 /* UIWaitForUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4992D15BA850E00C21671 /* UIWaitForUserViewController.m */; };
+		DAE4993115BA851000C21671 /* UIWaitForUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */; };
+		DAE4993215BA851000C21671 /* UIWaitForUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */; };
+		DAE4993515BAA44500C21671 /* JudgeClientInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4993415BAA44500C21671 /* JudgeClientInfo.m */; };
+		DAE4993615BAA44500C21671 /* JudgeClientInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4993415BAA44500C21671 /* JudgeClientInfo.m */; };
 		DAE64A0315B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0415B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0515B313830062A2B9 /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
@@ -113,6 +151,10 @@
 		DAE7A26B15B4371A001FF160 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7A26A15B4371A001FF160 /* GameKit.framework */; };
 		DAE7A26C15B43730001FF160 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7A26A15B4371A001FF160 /* GameKit.framework */; };
 		DAE7A27415B46D05001FF160 /* ServerRelateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */; };
+		DAE7E4DE15B9A7EE009B456F /* 54-lock.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE7E4DD15B9A7EE009B456F /* 54-lock.png */; };
+		DAE7E4DF15B9A7EE009B456F /* 54-lock.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE7E4DD15B9A7EE009B456F /* 54-lock.png */; };
+		DAE7E4E815B9BD46009B456F /* UIPasswordBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7E4E715B9BD46009B456F /* UIPasswordBox.m */; };
+		DAE7E4E915B9BD46009B456F /* UIPasswordBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7E4E715B9BD46009B456F /* UIPasswordBox.m */; };
 		DAE7E6B415B8223100363399 /* BluetoothManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7E6B315B8223100363399 /* BluetoothManager.framework */; };
 		DAE7E6B615B82C9000363399 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE7E6B515B82C9000363399 /* MainWindow.xib */; };
 		DAE7E6B715B82CD700363399 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A26415B42BAC001FF160 /* PeerBrowser.m */; };
@@ -202,7 +244,7 @@
 		DA43FDAD15B5DA840083D1B7 /* UIImageActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageActionSheet.m; path = ../../Controls/GET/UIImageActionSheet.m; sourceTree = "<group>"; };
 		DA43FDAE15B5DA840083D1B7 /* UILoadingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILoadingBox.h; path = ../../Controls/GET/UILoadingBox.h; sourceTree = "<group>"; };
 		DA43FDAF15B5DA840083D1B7 /* UILoadingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILoadingBox.m; path = ../../Controls/GET/UILoadingBox.m; sourceTree = "<group>"; };
-		DA43FDB615B5DF1C0083D1B7 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = Images/close.png; sourceTree = "<group>"; };
+		DA43FDB615B5DF1C0083D1B7 /* alert-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "alert-close.png"; path = "Images/alert-close.png"; sourceTree = "<group>"; };
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
@@ -216,6 +258,35 @@
 		DAE45AB115B2737A00F9A847 /* PickerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerBG.png; path = "Resources-iPad/PickerBG.png"; sourceTree = "<group>"; };
 		DAE45AB215B2737A00F9A847 /* pickerGlassHIghtlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pickerGlassHIghtlight.png; path = "Resources-iPad/pickerGlassHIghtlight.png"; sourceTree = "<group>"; };
 		DAE45AB315B2737A00F9A847 /* PickerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerShadow.png; path = "Resources-iPad/PickerShadow.png"; sourceTree = "<group>"; };
+		DAE498ED15BA47C600C21671 /* GameInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
+		DAE498EE15BA47C600C21671 /* GameInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameInfo.m; sourceTree = "<group>"; };
+		DAE498F215BA525700C21671 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Util/Reachability.h; sourceTree = "<group>"; };
+		DAE498F315BA525700C21671 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Util/Reachability.m; sourceTree = "<group>"; };
+		DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DAE498FC15BA821700C21671 /* UIView+JMNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMNoise.h"; sourceTree = "<group>"; };
+		DAE498FD15BA821700C21671 /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
+		DAE498FF15BA821700C21671 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		DAE4990015BA821700C21671 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
+		DAE4990115BA821700C21671 /* modalButton-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalButton-selected.png"; sourceTree = "<group>"; };
+		DAE4990215BA821700C21671 /* modalButton-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalButton-selected@2x.png"; sourceTree = "<group>"; };
+		DAE4990315BA821700C21671 /* modalButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modalButton.png; sourceTree = "<group>"; };
+		DAE4990415BA821700C21671 /* modalButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalButton@2x.png"; sourceTree = "<group>"; };
+		DAE4990615BA821700C21671 /* UAModalPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAModalPanel.h; sourceTree = "<group>"; };
+		DAE4990715BA821700C21671 /* UAModalPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAModalPanel.m; sourceTree = "<group>"; };
+		DAE4990815BA821700C21671 /* UATitledModalPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UATitledModalPanel.h; sourceTree = "<group>"; };
+		DAE4990915BA821700C21671 /* UATitledModalPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UATitledModalPanel.m; sourceTree = "<group>"; };
+		DAE4990B15BA821700C21671 /* UAGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGradientBackground.h; sourceTree = "<group>"; };
+		DAE4990C15BA821700C21671 /* UAGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGradientBackground.m; sourceTree = "<group>"; };
+		DAE4990D15BA821700C21671 /* UANoisyGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UANoisyGradientBackground.h; sourceTree = "<group>"; };
+		DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UANoisyGradientBackground.m; sourceTree = "<group>"; };
+		DAE4990F15BA821700C21671 /* UARoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UARoundedRectView.h; sourceTree = "<group>"; };
+		DAE4991015BA821700C21671 /* UARoundedRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UARoundedRectView.m; sourceTree = "<group>"; };
+		DAE4992915BA829400C21671 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DAE4992C15BA850E00C21671 /* UIWaitForUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWaitForUserViewController.h; sourceTree = "<group>"; };
+		DAE4992D15BA850E00C21671 /* UIWaitForUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWaitForUserViewController.m; sourceTree = "<group>"; };
+		DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWaitForUserView.xib; path = Classes/UIWaitForUserView.xib; sourceTree = "<group>"; };
+		DAE4993315BAA44500C21671 /* JudgeClientInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgeClientInfo.h; sourceTree = "<group>"; };
+		DAE4993415BAA44500C21671 /* JudgeClientInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgeClientInfo.m; sourceTree = "<group>"; };
 		DAE64A0115B3137F0062A2B9 /* PeerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerClient.h; sourceTree = "<group>"; };
 		DAE64A0215B3137F0062A2B9 /* PeerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerClient.m; sourceTree = "<group>"; };
 		DAE735BD15A84AAE00C84157 /* CommandMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMsg.h; sourceTree = "<group>"; };
@@ -234,6 +305,9 @@
 		DAE7A27215B46D04001FF160 /* ServerRelateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerRelateInfo.h; sourceTree = "<group>"; };
 		DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerRelateInfo.m; sourceTree = "<group>"; };
 		DAE7A27515B474AC001FF160 /* PeerServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServerDelegate.h; sourceTree = "<group>"; };
+		DAE7E4DD15B9A7EE009B456F /* 54-lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "54-lock.png"; path = "Images/54-lock.png"; sourceTree = "<group>"; };
+		DAE7E4E615B9BD46009B456F /* UIPasswordBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIPasswordBox.h; path = ../../Controls/GET/UIPasswordBox.h; sourceTree = "<group>"; };
+		DAE7E4E715B9BD46009B456F /* UIPasswordBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPasswordBox.m; path = ../../Controls/GET/UIPasswordBox.m; sourceTree = "<group>"; };
 		DAE7E6AD15B81E4E00363399 /* BluetoothAudioJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothAudioJack.h; path = ../BluetoothManager/BluetoothAudioJack.h; sourceTree = "<group>"; };
 		DAE7E6AE15B81E4E00363399 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothDevice.h; path = ../BluetoothManager/BluetoothDevice.h; sourceTree = "<group>"; };
 		DAE7E6AF15B81E4E00363399 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothManager.h; path = ../BluetoothManager/BluetoothManager.h; sourceTree = "<group>"; };
@@ -288,11 +362,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE4992B15BA829F00C21671 /* QuartzCore.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				DAE498F815BA52E400C21671 /* SystemConfiguration.framework in Frameworks */,
 				DAE7E6B415B8223100363399 /* BluetoothManager.framework in Frameworks */,
 				DAE7A26B15B4371A001FF160 /* GameKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				D043D8EF0F9A1C980030638C /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +377,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE4992A15BA829500C21671 /* QuartzCore.framework in Frameworks */,
+				DAE498F715BA52CB00C21671 /* SystemConfiguration.framework in Frameworks */,
 				DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */,
 				DAE7A26C15B43730001FF160 /* GameKit.framework in Frameworks */,
 				DA78B47315A96F0100E186CC /* Foundation.framework in Frameworks */,
@@ -338,9 +416,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				DAE7E6B315B8223100363399 /* BluetoothManager.framework */,
-				DAE7A26A15B4371A001FF160 /* GameKit.framework */,
-				DA00F37E15A9DC92005B2F4B /* icon.png */,
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
 				DA00F37D15A9DC92005B2F4B /* app2.png */,
 				DADB112215A8AB3800326B24 /* Images */,
@@ -367,6 +442,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */,
 				DAE45AAB15B2733A00F9A847 /* PickerBG.png */,
 				DAE45AAC15B2733A00F9A847 /* pickerGlassHightlight.png */,
 				DAE45AAD15B2733A00F9A847 /* PickerShadow.png */,
@@ -385,6 +461,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA00F37E15A9DC92005B2F4B /* icon.png */,
+				DAE4992915BA829400C21671 /* QuartzCore.framework */,
+				DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */,
+				DAE7E6B315B8223100363399 /* BluetoothManager.framework */,
+				DAE7A26A15B4371A001FF160 /* GameKit.framework */,
 				D043D8EE0F9A1C980030638C /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -464,6 +545,8 @@
 				28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */,
 				DAF65AA7159F2F1D001BEA75 /* ScoreBoardViewController.h */,
 				DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */,
+				DAE4992C15BA850E00C21671 /* UIWaitForUserViewController.h */,
+				DAE4992D15BA850E00C21671 /* UIWaitForUserViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -471,12 +554,14 @@
 		DA10C1D315B11D3600153392 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DAE7E4E615B9BD46009B456F /* UIPasswordBox.h */,
+				DAE7E4E715B9BD46009B456F /* UIPasswordBox.m */,
+				DA43FDAF15B5DA840083D1B7 /* UILoadingBox.m */,
+				DA43FDAE15B5DA840083D1B7 /* UILoadingBox.h */,
 				DA43FDAA15B5DA840083D1B7 /* AlertView.h */,
 				DA43FDAB15B5DA840083D1B7 /* AlertView.m */,
 				DA43FDAC15B5DA840083D1B7 /* UIImageActionSheet.h */,
 				DA43FDAD15B5DA840083D1B7 /* UIImageActionSheet.m */,
-				DA43FDAE15B5DA840083D1B7 /* UILoadingBox.h */,
-				DA43FDAF15B5DA840083D1B7 /* UILoadingBox.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -513,7 +598,8 @@
 		DADB112215A8AB3800326B24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				DA43FDB615B5DF1C0083D1B7 /* close.png */,
+				DAE7E4DD15B9A7EE009B456F /* 54-lock.png */,
+				DA43FDB615B5DF1C0083D1B7 /* alert-close.png */,
 				DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */,
 				DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */,
 				DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */,
@@ -526,6 +612,72 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		DAE498F915BA820C00C21671 /* UAModelPanel */ = {
+			isa = PBXGroup;
+			children = (
+				DAE498FA15BA821700C21671 /* Panel */,
+			);
+			name = UAModelPanel;
+			sourceTree = "<group>";
+		};
+		DAE498FA15BA821700C21671 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				DAE498FB15BA821700C21671 /* Categories */,
+				DAE498FE15BA821700C21671 /* Images */,
+				DAE4990515BA821700C21671 /* Panels */,
+				DAE4990A15BA821700C21671 /* Views */,
+			);
+			name = Panel;
+			path = ../Submodules/UAModalPanel/UAModalPanel/Panel;
+			sourceTree = "<group>";
+		};
+		DAE498FB15BA821700C21671 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DAE498FC15BA821700C21671 /* UIView+JMNoise.h */,
+				DAE498FD15BA821700C21671 /* UIView+JMNoise.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DAE498FE15BA821700C21671 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DAE498FF15BA821700C21671 /* close.png */,
+				DAE4990015BA821700C21671 /* close@2x.png */,
+				DAE4990115BA821700C21671 /* modalButton-selected.png */,
+				DAE4990215BA821700C21671 /* modalButton-selected@2x.png */,
+				DAE4990315BA821700C21671 /* modalButton.png */,
+				DAE4990415BA821700C21671 /* modalButton@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DAE4990515BA821700C21671 /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				DAE4990615BA821700C21671 /* UAModalPanel.h */,
+				DAE4990715BA821700C21671 /* UAModalPanel.m */,
+				DAE4990815BA821700C21671 /* UATitledModalPanel.h */,
+				DAE4990915BA821700C21671 /* UATitledModalPanel.m */,
+			);
+			path = Panels;
+			sourceTree = "<group>";
+		};
+		DAE4990A15BA821700C21671 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DAE4990B15BA821700C21671 /* UAGradientBackground.h */,
+				DAE4990C15BA821700C21671 /* UAGradientBackground.m */,
+				DAE4990D15BA821700C21671 /* UANoisyGradientBackground.h */,
+				DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */,
+				DAE4990F15BA821700C21671 /* UARoundedRectView.h */,
+				DAE4991015BA821700C21671 /* UARoundedRectView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DAE735BB15A8494A00C84157 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +685,10 @@
 				DAE735BE15A84AAE00C84157 /* CommandMsg.m */,
 				DAF8F5B715B14CCE00497FC5 /* ServerSetting.h */,
 				DAF8F5B815B14CCE00497FC5 /* ServerSetting.m */,
+				DAE498ED15BA47C600C21671 /* GameInfo.h */,
+				DAE498EE15BA47C600C21671 /* GameInfo.m */,
+				DAE4993315BAA44500C21671 /* JudgeClientInfo.h */,
+				DAE4993415BAA44500C21671 /* JudgeClientInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -604,6 +760,8 @@
 		DAF8F5B215B13C8400497FC5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DAE498F215BA525700C21671 /* Reachability.h */,
+				DAE498F315BA525700C21671 /* Reachability.m */,
 				DAF8F5B415B13C9600497FC5 /* UIHelper.h */,
 				DAF8F5B515B13C9600497FC5 /* UIHelper.m */,
 			);
@@ -613,6 +771,7 @@
 		DAF8F5C215B1677B00497FC5 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DAE498F915BA820C00C21671 /* UAModelPanel */,
 				DA279C0615B1787B00C6B1DC /* AvoidKeyboard */,
 				DAF8F5C715B16B0D00497FC5 /* AFPickerView */,
 			);
@@ -717,7 +876,15 @@
 				DAE45AAE15B2733A00F9A847 /* PickerBG.png in Resources */,
 				DAE45AAF15B2733A00F9A847 /* pickerGlassHightlight.png in Resources */,
 				DAE45AB015B2733A00F9A847 /* PickerShadow.png in Resources */,
-				DA43FDB715B5DF1C0083D1B7 /* close.png in Resources */,
+				DA43FDB715B5DF1C0083D1B7 /* alert-close.png in Resources */,
+				DAE7E4DE15B9A7EE009B456F /* 54-lock.png in Resources */,
+				DAE4991315BA821700C21671 /* close.png in Resources */,
+				DAE4991515BA821700C21671 /* close@2x.png in Resources */,
+				DAE4991715BA821700C21671 /* modalButton-selected.png in Resources */,
+				DAE4991915BA821700C21671 /* modalButton-selected@2x.png in Resources */,
+				DAE4991B15BA821700C21671 /* modalButton.png in Resources */,
+				DAE4991D15BA821700C21671 /* modalButton@2x.png in Resources */,
+				DAE4993115BA851000C21671 /* UIWaitForUserView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,8 +902,16 @@
 				DAE45AB915B273AA00F9A847 /* PickerShadow.png in Resources */,
 				DAE45ABA15B278E700F9A847 /* ScoreBoardView.xib in Resources */,
 				DAD80F3D15B2A852004B76B4 /* WelcomeViewController.xib in Resources */,
-				DA43FDB815B5DF1C0083D1B7 /* close.png in Resources */,
+				DA43FDB815B5DF1C0083D1B7 /* alert-close.png in Resources */,
 				DAE7E6B615B82C9000363399 /* MainWindow.xib in Resources */,
+				DAE7E4DF15B9A7EE009B456F /* 54-lock.png in Resources */,
+				DAE4991415BA821700C21671 /* close.png in Resources */,
+				DAE4991615BA821700C21671 /* close@2x.png in Resources */,
+				DAE4991815BA821700C21671 /* modalButton-selected.png in Resources */,
+				DAE4991A15BA821700C21671 /* modalButton-selected@2x.png in Resources */,
+				DAE4991C15BA821700C21671 /* modalButton.png in Resources */,
+				DAE4991E15BA821700C21671 /* modalButton@2x.png in Resources */,
+				DAE4993215BA851000C21671 /* UIWaitForUserView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +965,17 @@
 				DA43FDB015B5DA840083D1B7 /* AlertView.m in Sources */,
 				DA43FDB215B5DA840083D1B7 /* UIImageActionSheet.m in Sources */,
 				DA43FDB415B5DA840083D1B7 /* UILoadingBox.m in Sources */,
+				DAE7E4E815B9BD46009B456F /* UIPasswordBox.m in Sources */,
+				DAE498EF15BA47C600C21671 /* GameInfo.m in Sources */,
+				DAE498F415BA525700C21671 /* Reachability.m in Sources */,
+				DAE4991115BA821700C21671 /* UIView+JMNoise.m in Sources */,
+				DAE4991F15BA821700C21671 /* UAModalPanel.m in Sources */,
+				DAE4992115BA821700C21671 /* UATitledModalPanel.m in Sources */,
+				DAE4992315BA821700C21671 /* UAGradientBackground.m in Sources */,
+				DAE4992515BA821700C21671 /* UANoisyGradientBackground.m in Sources */,
+				DAE4992715BA821700C21671 /* UARoundedRectView.m in Sources */,
+				DAE4992F15BA851000C21671 /* UIWaitForUserViewController.m in Sources */,
+				DAE4993515BAA44500C21671 /* JudgeClientInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +1024,17 @@
 				DA43FDB515B5DA840083D1B7 /* UILoadingBox.m in Sources */,
 				DAE7E6B715B82CD700363399 /* PeerBrowser.m in Sources */,
 				DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */,
+				DAE7E4E915B9BD46009B456F /* UIPasswordBox.m in Sources */,
+				DAE498F015BA47C600C21671 /* GameInfo.m in Sources */,
+				DAE498F515BA525700C21671 /* Reachability.m in Sources */,
+				DAE4991215BA821700C21671 /* UIView+JMNoise.m in Sources */,
+				DAE4992015BA821700C21671 /* UAModalPanel.m in Sources */,
+				DAE4992215BA821700C21671 /* UATitledModalPanel.m in Sources */,
+				DAE4992415BA821700C21671 /* UAGradientBackground.m in Sources */,
+				DAE4992615BA821700C21671 /* UANoisyGradientBackground.m in Sources */,
+				DAE4992815BA821700C21671 /* UARoundedRectView.m in Sources */,
+				DAE4993015BA851000C21671 /* UIWaitForUserViewController.m in Sources */,
+				DAE4993615BAA44500C21671 /* JudgeClientInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,7 +1057,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
@@ -886,7 +1083,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
@@ -943,7 +1140,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
 				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;
@@ -965,7 +1162,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
 				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
 				SDKROOT = iphoneos5.0;

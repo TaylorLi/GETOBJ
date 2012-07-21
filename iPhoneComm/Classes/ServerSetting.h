@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ServerSetting : NSObject
+@interface ServerSetting : NSObject<NSCopying>
 {
     NSString *gameName;
     NSString *gameDesc;
@@ -19,6 +19,7 @@
     NSString *password;
     NSTimeInterval roundTime;
     NSInteger roundCount;
+    NSInteger judgeCount;
 }
 
 @property (nonatomic,copy) NSString *gameName;
@@ -30,4 +31,9 @@
 @property (nonatomic,copy) NSString *password;
 @property NSInteger roundCount;
 @property NSTimeInterval roundTime;
+@property NSInteger judgeCount;
+
+-(id) initWithDefault;
+-(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
+        andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime;
 @end

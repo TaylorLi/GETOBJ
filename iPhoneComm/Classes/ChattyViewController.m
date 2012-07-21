@@ -31,7 +31,10 @@
 #import "RemoteRoom.h"
 #import "AppConfig.h"
 #import "ServerRelateInfo.h"
-
+#import "UIPasswordBox.h"
+#import "UIHelper.h"
+#import "ServerSetting.h"
+#import "GameInfo.h"
 // Private properties
 @interface ChattyViewController ()
 @property(nonatomic,retain) ServerBrowser* serverBrowser;
@@ -47,6 +50,7 @@
 
 // View loaded
 - (void)viewDidLoad {
+    lockImg=[UIImage imageNamed:@"54-lock.png"];
     if([AppConfig getInstance].networkUsingWifi)
     {
         serverBrowser = [[ServerBrowser alloc] init];
@@ -62,7 +66,11 @@
 // Cleanup
 - (void)dealloc {
     self.serverBrowser = nil;
+    [self.serverBrowser release];
     self.peerServerBrowser=nil;
+    [self.peerServerBrowser release];
+    lockImg=nil;
+    [lockImg release];
     [super dealloc];
 }
 
@@ -89,11 +97,17 @@
 // User is asking to create new chat room
 - (IBAction)createNewChatRoom:(id)sender {
     // Stop browsing for servers
-//    if ([AppConfig getInstance].networkUsingWifi) {
-//        [serverBrowser stop];
-//    }else{
-//        [peerServerBrowser stop];
-//    }
+    //    if ([AppConfig getInstance].networkUsingWifi) {
+    //        [serverBrowser stop];
+    //    }else{
+    //        [peerServerBrowser stop];
+    //    }        
+        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[[GameInfo alloc] initWithGameSetting:[[[ServerSetting alloc] initWithDefault] autorelease]] autorelease]];
+       
+        [self stopBrowser];
+        [[ChattyAppDelegate getInstance] showScoreBoard:room];
+    return;
+    
     GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
     self.settingViewController=settingView;
     [settingView release];
@@ -193,7 +207,7 @@
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:serverListIdentifier] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier] autorelease];
 	}
     
     // Set cell's text to server's name
@@ -203,18 +217,52 @@
         cell.textLabel.text = [server name];
     }
     else{
-        ServerRelateInfo *sri=  [peerServerBrowser.servers objectAtIndex:indexPath.row];
+        ServerRelateInfo *sri =  [peerServerBrowser.servers objectAtIndex:indexPath.row];
         cell.textLabel.text= sri.displaySeverName;
+        if([sri.password isEqualToString:@""] ||sri==nil)
+            cell.imageView.hidden=YES;
+        else{
+            cell.imageView.image=lockImg;
+            cell.imageView.hidden=NO;
+        }    
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self joinChatRoom:indexPath];    
+    if([AppConfig getInstance].networkUsingWifi)
+    {
+        [self joinChatRoom:indexPath];
+    }
+    else
+    {
+        ServerRelateInfo *sri =  [peerServerBrowser.servers objectAtIndex:indexPath.row];
+        if([sri.password isEqualToString:@""] ||sri==nil)
+            [self joinChatRoom:indexPath];
+        else{
+            __block UIPasswordBox *pwdBox= [[UIPasswordBox alloc] initWithLoading:@"Please input password" onComplete:^(id result){
+                NSString *password=result;
+                [pwdBox dismissWithClickedButtonIndex:0 animated:YES];
+                if ([password isEqualToString:@""])
+                {
+                    ;//nothing to do   
+                }
+                else if ([[password uppercaseString] isEqualToString:[sri.password uppercaseString]]) {                    
+                    [self joinChatRoom:indexPath];                    
+                }
+                else{
+                    [UIHelper showAlert:@"Invalid Password" message:@"Can not connect to the game server" delegate:nil];                   
+                }
+            }];
+            [pwdBox release];
+        }
+    }
+    
 }
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return  indexPath;
 }
+
 @end

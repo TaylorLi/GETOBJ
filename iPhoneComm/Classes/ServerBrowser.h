@@ -29,7 +29,7 @@
 
 @class ServerBrowserDelegate;
 
-@interface ServerBrowser : NSObject {
+@interface ServerBrowser : NSObject <NSNetServiceBrowserDelegate>{
   NSNetServiceBrowser* netServiceBrowser;
   NSMutableArray* servers;
   id<ServerBrowserDelegate> delegate;

@@ -13,6 +13,8 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "AppConfig.h"
 #import "ChattyViewController.h"
+#import "ServerSetting.h"
+#import "GameInfo.h"
 
 @implementation GameSettingViewController
 @synthesize roundTime;
@@ -118,24 +120,24 @@
         [UIHelper showAlert:@"Information" message:@"Please input the required fields" delegate:nil];
         return;
     }
-    //Create local chat room and go
-    LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
-    room.gameSetting=[[ServerSetting alloc] init];
-    room.gameSetting.gameDesc=txtGameDesc.text;
-    room.gameSetting.gameName=txtGameName.text;
-    room.gameSetting.blueSideDesc=txtBlueSidePlace.text;
-    room.gameSetting.blueSideName=txtblueSideName.text;
-    room.gameSetting.redSideDesc=txtRedSidePlace.text;
-    room.gameSetting.redSideName=txtRedSidePlace.text;
-    room.gameSetting.roundTime=minutes*60;
-    room.gameSetting.roundCount=[roundCount.text intValue];
+    //Create local chat room and go    
+    ServerSetting *gameSetting=[[ServerSetting alloc] init];
+    gameSetting.gameDesc=txtGameDesc.text;
+    gameSetting.gameName=txtGameName.text;
+    gameSetting.blueSideDesc=txtBlueSidePlace.text;
+    gameSetting.blueSideName=txtblueSideName.text;
+    gameSetting.redSideDesc=txtRedSidePlace.text;
+    gameSetting.redSideName=txtRedSidePlace.text;
+    gameSetting.roundTime=minutes*60;
+    gameSetting.roundCount=[roundCount.text intValue];
     if(sldPsw.isOn)
-        room.gameSetting.password=txtPwd.text;
+        gameSetting.password=txtPwd.text;
     else
-        room.gameSetting.password=nil;
-    NSLog(@"Game Setting:%@",[room.gameSetting description]);
+        gameSetting.password=nil;
+    NSLog(@"Game Setting:%@",[gameSetting description]);
+    LocalRoom* room = [[[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:gameSetting]] autorelease];
     [self.view removeFromSuperview];
-    [room.gameSetting release];
+    [gameSetting release];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }

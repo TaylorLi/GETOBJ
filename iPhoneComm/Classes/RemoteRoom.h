@@ -30,15 +30,18 @@
 #import "Connection.h"
 #import "SBJson.h"
 #import "PeerClient.h"
+#import "JudgeClientInfo.h"
 
 
 @interface RemoteRoom : Room <ConnectionDelegate> {
   // Our connection to the chat server
   Connection* connection;
   PeerClient  *bluetoothClient;
-    BOOL isRunning;
+  BOOL isRunning;
+    JudgeClientInfo *clientInfo;
 }
 
+@property (nonatomic,retain) JudgeClientInfo *clientInfo;;
 // Initialize with host address and port
 - (id)initWithHost:(NSString*)host andPort:(int)port;
 

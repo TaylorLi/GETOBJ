@@ -28,13 +28,8 @@
 #import "WelcomeViewController.h"
 #import "AppConfig.h"
 #import "ChattyAppDelegate.h"
-#import "BluetoothManager.h"
 #import "UIHelper.h"
 
-@interface WelcomeViewController ()    
--(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
-
-@end
 
 @implementation WelcomeViewController
 @synthesize segNetwork;
@@ -43,7 +38,7 @@
 
 -(void)viewDidLoad
 {
-    btManager = [BluetoothManager sharedInstance];
+    
 }
 -(void)viewDidUnload
 {
@@ -71,22 +66,22 @@
     if ( theTextField.text == nil || [theTextField.text length] < 1 ) {
         return NO;
     }
-    if( [segNetwork selectedSegmentIndex]==1)//wifi
-    {
-        
-    }
-    else
-    {
-        if ([btManager enabled]) {//bluetooth enable
-            
-            
-        }
-        else{
-            [self showConfrimMsg:@"Information" message:@"This application need to user you bluetooth device,continue to turn on?"];
-            return NO;
-        }
-    }
-    [AppConfig getInstance].networkUsingWifi=[segNetwork selectedSegmentIndex]==1;
+//    if( [segNetwork selectedSegmentIndex]==1)//wifi
+//    {
+//        
+//    }
+//    else
+//    {
+//        if ([btManager enabled]) {//bluetooth enable
+//            
+//            
+//        }
+//        else{
+//            [self showConfrimMsg:@"Information" message:@"This application need to use your bluetooth device,continue to turn on?"];
+//            return NO;
+//        }
+//    }    
+    
     // Save user's name
     [AppConfig getInstance].name = theTextField.text;
     
@@ -99,34 +94,4 @@
 	return YES;
 }
 
--(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                         message:msg
-                                                        delegate:self 
-                                               cancelButtonTitle:@"Cancel" 
-                                               otherButtonTitles:@"OK",nil];
-    [alertView show];
-    [alertView release];
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex==1)
-    {
-        [btManager setPowered:YES];
-        [btManager setEnabled:YES];
-        [[ChattyAppDelegate getInstance] showRoomSelection];
-        
-        [AppConfig getInstance].networkUsingWifi=[segNetwork selectedSegmentIndex]==1;
-        // Save user's name
-        [AppConfig getInstance].name = input.text;
-        
-        // Dismiss keyboard
-        [input resignFirstResponder];
-        
-        
-        // Move on to the next screen
-        [[ChattyAppDelegate getInstance] showRoomSelection];
-    }
-}
 @end

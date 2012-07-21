@@ -36,7 +36,7 @@
 
 @implementation RemoteRoom
 
-@synthesize connection;
+@synthesize connection,clientInfo;
 
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
@@ -58,6 +58,7 @@
 // Cleanup
 - (void)dealloc {
     self.connection = nil;
+    clientInfo=nil;
     [super dealloc];
 }
 
@@ -89,6 +90,8 @@
         }
         bluetoothClient.gkSessionDelegate=self;
         [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
+        NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+        clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:[AppConfig getInstance].name andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
         return YES;
     }
 }
@@ -195,6 +198,9 @@
             
             if([peerID isEqualToString:bluetoothClient.serverPeerId]){                
                 [delegate alreadyConnectToServer];
+                CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_CLIENT_INFO andFrom:clientInfo.displayName andDesc:nil andData:clientInfo];
+                [self sendCommand:cmd];
+                [cmd release];
             }
             
             break;

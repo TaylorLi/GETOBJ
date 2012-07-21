@@ -73,7 +73,9 @@
 - (void)sendNetworkPacket:(id)packet {
     
     // Encode packet
-    NSData* rawPacket=  [[[[SBJsonWriter alloc] init] dataWithObject:packet] autorelease];
+    SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
+    NSLog(@"Client %@ Send Server %@ Command:%@",[gameSession displayName],serverPeerId,[wr stringWithObject:packet]);
+    NSData* rawPacket=  [wr dataWithObject:packet];
     //NSDictionary packet;
     //NSData* rawPacket = [NSKeyedArchiver archivedDataWithRootObject:packet];
     

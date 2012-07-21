@@ -16,19 +16,19 @@
 @synthesize from;
 
 -(void)dealloc{
-    [type release];
     [desc release];
     [data release];
     [from release];
+    [type release];
 }
 
--(id)initWithType:(NSString *)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data{
+-(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data{
     if(!(self = [super init]))
     {
         return nil;
     }
     // Initialize members    
-    self.type=_type;
+    self.type=[NSNumber numberWithInt:_type];
     self.from=_from;
     self.desc=_desc;
     self.data=_data;
@@ -48,7 +48,14 @@
 }
 
 -(NSDictionary*) proxyForJson {
-    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.from,@"from",self.data,@"data",self.type,@"type",self.desc,@"desc", nil];
+    id dataInfo;
+    if([data respondsToSelector:@selector(proxyForJson)])
+        {
+            dataInfo=[data performSelector:@selector(proxyForJson)];
+        }
+    else
+    dataInfo=self.data;
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.from==nil?[NSNull null]:self.from,@"from",dataInfo==nil?[NSNull null]: dataInfo,@"data",self.type,@"type",self.desc==nil?[NSNull null]:self.desc,@"desc", nil];
     return result;
 }
 @end

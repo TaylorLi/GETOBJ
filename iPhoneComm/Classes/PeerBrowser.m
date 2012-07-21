@@ -92,7 +92,6 @@
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
-    NSLog(@"Browser Peer:%@",[session displayNameForPeer:peerID]);
     switch (state)
     {
             
@@ -101,7 +100,7 @@
                 // Add it to our list
                 ServerRelateInfo *sri=[[[ServerRelateInfo alloc] init] autorelease];
                 sri.orgSeverName=[session displayNameForPeer:peerID];
-                NSLog(@"Server PeerID:%@,DisplayName:%@",peerID,sri.orgSeverName);
+                NSLog(@"Found Server PeerID:%@,DisplayName:%@",peerID,sri.orgSeverName);
                 sri.peerId=peerID;
                 sri.sessionId=session.sessionID;
                 NSArray *servInfo = [sri.orgSeverName componentsSeparatedByString:@"||"]; 
@@ -109,7 +108,7 @@
                     return;
                 }
                 //sri.uuid=[servInfo objectAtIndex:1];
-                sri.displaySeverName=[servInfo objectAtIndex:1];
+                sri.displaySeverName=[[servInfo objectAtIndex:1] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
                 sri.password=[servInfo objectAtIndex:2];
                 [servers addObject:sri];
                 [peerIds addObject:sri.peerId];

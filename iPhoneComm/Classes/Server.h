@@ -29,7 +29,7 @@
 #import "ServerDelegate.h"
 
 
-@interface Server : NSObject {
+@interface Server : NSObject <NSNetServiceDelegate>{
     uint16_t port;
     CFSocketRef listeningSocket;
     id<ServerDelegate> delegate;

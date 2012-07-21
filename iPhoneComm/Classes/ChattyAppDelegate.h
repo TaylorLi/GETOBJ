@@ -27,6 +27,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Room.h"
+#import "BluetoothManager.h"
+#import "BluetoothDevice.h"
+#import "Reachability.h"
 
 @class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController,PermitControlView;
 
@@ -37,6 +40,9 @@
   ScoreControlViewController *scoreControlViewController;
   ScoreBoardViewController *scoreBoardViewController;
   PermitControlView *permitViewController;
+    // bluetooth manager
+    BluetoothManager *btManager;
+    Reachability* wifiReach;
 }
 
 @property(nonatomic, retain) IBOutlet UIWindow *window;

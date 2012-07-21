@@ -30,7 +30,7 @@
 #import "ConnectionDelegate.h"
 #import "SBJson.h"
 
-@interface Connection : NSObject {
+@interface Connection : NSObject<NSNetServiceDelegate> {
   id<ConnectionDelegate> delegate;
   
   // Connection info: host address and port

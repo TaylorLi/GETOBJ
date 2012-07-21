@@ -29,7 +29,8 @@
 #import "Connection.h"
 #import "ServerSetting.h"
 #import "AppConfig.h"
-
+#import "ServerSetting.h"
+#import "GameInfo.h"
 // Private properties
 //@interface LocalRoom ()
 //@property(nonatomic,retain) Server* server;
@@ -40,7 +41,7 @@
 
 @implementation LocalRoom
 
-@synthesize server, clients,gameSetting,bluetoothServer;
+@synthesize server, clients,gameInfo,bluetoothServer;
 
 // Initialization
 - (id)init {
@@ -51,12 +52,21 @@
     return self;
 }
 
-
+- (id)initWithGameInfo:(GameInfo *)info
+{
+    self=[super init];
+    if(self)
+        {
+            gameInfo=  info;
+        }
+     return self;
+}
 // Cleanup
 - (void)dealloc {
     self.clients = nil;
     self.server = nil;
-    self.gameSetting=nil;
+    self.gameInfo=nil;
+    [self.gameInfo release];
     self.bluetoothServer=nil;
     [super dealloc];
 }
@@ -83,7 +93,7 @@
         bluetoothServer=[[PeerServer alloc] init];
         bluetoothServer.delegate=self;
         bluetoothServer.gkSessionDelegate=self;
-        if(![bluetoothServer start:gameSetting]){
+        if(![bluetoothServer start:gameInfo.gameSetting]){
             self.bluetoothServer=nil;
             return NO;
         }

@@ -8,6 +8,7 @@
 
 #import "ScoreControlViewController.h"
 #import "ChattyAppDelegate.h"
+#import "Definition.h"
 #import "AppConfig.h"
 #import "UILoadingBox.h"
 
@@ -243,7 +244,7 @@
 }
 -(void)sendScore:(NSInteger) score
 {
-    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:kCmdScore andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score]] autorelease]];
+    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score]] autorelease]];
 }
 
 @end

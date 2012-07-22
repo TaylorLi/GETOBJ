@@ -35,6 +35,11 @@ typedef enum {
 #define kSideBlue @"blue"
 #define kSideRed @"red"
 
+//test last heartbeat time span
+#define  kHeartbeatTimeMaxDelay  1.0;
+//loop for event interval
+#define  kHeartbeatTimeInterval  0.08;
+
 @interface Definition : NSObject
 
 @end

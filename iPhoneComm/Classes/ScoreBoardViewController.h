@@ -10,6 +10,7 @@
 #import "LocalRoom.h"
 #import "RoomDelegate.h"
 #import "UIWaitForUserViewController.h"
+#import "DDActionHeaderView.h"
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
@@ -31,6 +32,9 @@
     NSDictionary *dicSideFlags;
     NSTimer *timer;
     UIWaitForUserViewController *waitUserPanel;
+    DDActionHeaderView *actionHeaderView;
+    NSTimer *gameLoopTimer;
+    BOOL clientChange;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *lblGameName;
@@ -54,6 +58,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *lblRoundSeq;
 @property (retain, nonatomic) IBOutlet UILabel *lblRedPlayerDesc;
 @property (retain, nonatomic) IBOutlet UILabel *lblRedPlayerName;
+@property(nonatomic, retain) DDActionHeaderView *actionHeaderView;
 
 // Exit back to the welcome screen
 - (IBAction)exit;

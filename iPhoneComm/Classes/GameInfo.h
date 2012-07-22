@@ -10,7 +10,7 @@
 #import "Definition.h"
 
 @class ServerSetting;
-@interface GameInfo : NSObject
+@interface GameInfo : NSObject<NSCopying>
 
 @property (nonatomic,retain) ServerSetting *gameSetting;
 @property NSTimeInterval currentRemainTime;
@@ -23,5 +23,7 @@
 @property GameStates gameStatus;
 @property (nonatomic,retain) NSMutableDictionary *clients;
 @property NSInteger needClientsCount;
+@property (nonatomic,retain)NSDate *serverLastHeartbeatDate;
 -(id) initWithGameSetting:(ServerSetting *)setting;
+-(id)initWithDictionary:(NSDictionary *) disc;
 @end

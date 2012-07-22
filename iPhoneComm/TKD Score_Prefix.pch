@@ -6,6 +6,7 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import "CommandMsg.h"
+#import "UtilHelper.h"
 #endif
 
 #if NS_BLOCKS_AVAILABLE

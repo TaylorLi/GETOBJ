@@ -30,10 +30,8 @@
 //#import <BluetoothManager/BluetoothManager.h>
 
 @interface WelcomeViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate> {
-   UITextField* input;   
 }
-
-@property (nonatomic,retain) UITextField *input;
+@property (retain, nonatomic) IBOutlet UITextField *playName;
 // App delegate will call this whenever this view becomes active
 @property (retain, nonatomic) IBOutlet UISegmentedControl *segNetwork;
 - (void)activate;

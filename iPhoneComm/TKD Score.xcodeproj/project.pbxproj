@@ -138,6 +138,20 @@
 		DAE4993215BA851000C21671 /* UIWaitForUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */; };
 		DAE4993515BAA44500C21671 /* JudgeClientInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4993415BAA44500C21671 /* JudgeClientInfo.m */; };
 		DAE4993615BAA44500C21671 /* JudgeClientInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4993415BAA44500C21671 /* JudgeClientInfo.m */; };
+		DAE4994415BB07DF00C21671 /* DDActionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4994315BB07DF00C21671 /* DDActionHeaderView.m */; };
+		DAE4994515BB07DF00C21671 /* DDActionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4994315BB07DF00C21671 /* DDActionHeaderView.m */; };
+		DAE4994C15BB08BA00C21671 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994615BB08BA00C21671 /* facebook.png */; };
+		DAE4994D15BB08BA00C21671 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994615BB08BA00C21671 /* facebook.png */; };
+		DAE4994E15BB08BA00C21671 /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994715BB08BA00C21671 /* facebook@2x.png */; };
+		DAE4994F15BB08BA00C21671 /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994715BB08BA00C21671 /* facebook@2x.png */; };
+		DAE4995015BB08BA00C21671 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994815BB08BA00C21671 /* mail.png */; };
+		DAE4995115BB08BA00C21671 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994815BB08BA00C21671 /* mail.png */; };
+		DAE4995215BB08BA00C21671 /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994915BB08BA00C21671 /* mail@2x.png */; };
+		DAE4995315BB08BA00C21671 /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994915BB08BA00C21671 /* mail@2x.png */; };
+		DAE4995415BB08BA00C21671 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994A15BB08BA00C21671 /* twitter.png */; };
+		DAE4995515BB08BA00C21671 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994A15BB08BA00C21671 /* twitter.png */; };
+		DAE4995615BB08BA00C21671 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994B15BB08BA00C21671 /* twitter@2x.png */; };
+		DAE4995715BB08BA00C21671 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4994B15BB08BA00C21671 /* twitter@2x.png */; };
 		DAE64A0315B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0415B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0515B313830062A2B9 /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
@@ -146,6 +160,10 @@
 		DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735C515A889DE00C84157 /* PermitControlView.xib */; };
 		DAE73CC215AC77340083CAF1 /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */; };
 		DAE73CC315AC77340083CAF1 /* GameSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE73CC115AC77340083CAF1 /* GameSettingView.xib */; };
+		DAE79D9415BC364E00BC594E /* SafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */; };
+		DAE79D9515BC364E00BC594E /* SafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */; };
+		DAE79D9815BC40AC00BC594E /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9715BC40AB00BC594E /* UtilHelper.m */; };
+		DAE79D9915BC40AC00BC594E /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9715BC40AB00BC594E /* UtilHelper.m */; };
 		DAE7A26515B42BAC001FF160 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A26415B42BAC001FF160 /* PeerBrowser.m */; };
 		DAE7A26915B42DE1001FF160 /* Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A26815B42DE1001FF160 /* Definition.m */; };
 		DAE7A26B15B4371A001FF160 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7A26A15B4371A001FF160 /* GameKit.framework */; };
@@ -287,6 +305,14 @@
 		DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWaitForUserView.xib; path = Classes/UIWaitForUserView.xib; sourceTree = "<group>"; };
 		DAE4993315BAA44500C21671 /* JudgeClientInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgeClientInfo.h; sourceTree = "<group>"; };
 		DAE4993415BAA44500C21671 /* JudgeClientInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgeClientInfo.m; sourceTree = "<group>"; };
+		DAE4994215BB07DF00C21671 /* DDActionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDActionHeaderView.h; path = ../Submodules/DDActionHeaderView/DDActionHeaderView.h; sourceTree = "<group>"; };
+		DAE4994315BB07DF00C21671 /* DDActionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDActionHeaderView.m; path = ../Submodules/DDActionHeaderView/DDActionHeaderView.m; sourceTree = "<group>"; };
+		DAE4994615BB08BA00C21671 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = ../Submodules/DDActionHeaderView/Demo/facebook.png; sourceTree = "<group>"; };
+		DAE4994715BB08BA00C21671 /* facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook@2x.png"; path = "../Submodules/DDActionHeaderView/Demo/facebook@2x.png"; sourceTree = "<group>"; };
+		DAE4994815BB08BA00C21671 /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mail.png; path = ../Submodules/DDActionHeaderView/Demo/mail.png; sourceTree = "<group>"; };
+		DAE4994915BB08BA00C21671 /* mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mail@2x.png"; path = "../Submodules/DDActionHeaderView/Demo/mail@2x.png"; sourceTree = "<group>"; };
+		DAE4994A15BB08BA00C21671 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = ../Submodules/DDActionHeaderView/Demo/twitter.png; sourceTree = "<group>"; };
+		DAE4994B15BB08BA00C21671 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter@2x.png"; path = "../Submodules/DDActionHeaderView/Demo/twitter@2x.png"; sourceTree = "<group>"; };
 		DAE64A0115B3137F0062A2B9 /* PeerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerClient.h; sourceTree = "<group>"; };
 		DAE64A0215B3137F0062A2B9 /* PeerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerClient.m; sourceTree = "<group>"; };
 		DAE735BD15A84AAE00C84157 /* CommandMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMsg.h; sourceTree = "<group>"; };
@@ -297,6 +323,10 @@
 		DAE73CBF15AC77340083CAF1 /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSettingViewController.h; path = ../GameSettingViewController.h; sourceTree = "<group>"; };
 		DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameSettingViewController.m; path = ../GameSettingViewController.m; sourceTree = "<group>"; };
 		DAE73CC115AC77340083CAF1 /* GameSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameSettingView.xib; sourceTree = "<group>"; };
+		DAE79D8D15BBC50B00BC594E /* UtilHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilHelper.h; sourceTree = "<group>"; };
+		DAE79D9215BC364D00BC594E /* SafeMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeMutableDictionary.h; sourceTree = "<group>"; };
+		DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeMutableDictionary.m; sourceTree = "<group>"; };
+		DAE79D9715BC40AB00BC594E /* UtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilHelper.m; sourceTree = "<group>"; };
 		DAE7A26315B42BAC001FF160 /* PeerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerBrowser.h; sourceTree = "<group>"; };
 		DAE7A26415B42BAC001FF160 /* PeerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerBrowser.m; sourceTree = "<group>"; };
 		DAE7A26715B42DE1001FF160 /* Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definition.h; sourceTree = "<group>"; };
@@ -516,6 +546,7 @@
 		D0510A710F9E14F200B735FA /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				DAE79D8D15BBC50B00BC594E /* UtilHelper.h */,
 				D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */,
 				D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */,
 				D043D9180F9CB4A60030638C /* AppConfig.h */,
@@ -524,6 +555,9 @@
 				DA10C1CD15B117A400153392 /* StaticTableGroupData.m */,
 				DAE7A26715B42DE1001FF160 /* Definition.h */,
 				DAE7A26815B42DE1001FF160 /* Definition.m */,
+				DAE79D9215BC364D00BC594E /* SafeMutableDictionary.h */,
+				DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */,
+				DAE79D9715BC40AB00BC594E /* UtilHelper.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -598,6 +632,12 @@
 		DADB112215A8AB3800326B24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAE4994615BB08BA00C21671 /* facebook.png */,
+				DAE4994715BB08BA00C21671 /* facebook@2x.png */,
+				DAE4994815BB08BA00C21671 /* mail.png */,
+				DAE4994915BB08BA00C21671 /* mail@2x.png */,
+				DAE4994A15BB08BA00C21671 /* twitter.png */,
+				DAE4994B15BB08BA00C21671 /* twitter@2x.png */,
 				DAE7E4DD15B9A7EE009B456F /* 54-lock.png */,
 				DA43FDB615B5DF1C0083D1B7 /* alert-close.png */,
 				DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */,
@@ -676,6 +716,15 @@
 				DAE4991015BA821700C21671 /* UARoundedRectView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DAE4994115BB07D200C21671 /* DDActionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				DAE4994215BB07DF00C21671 /* DDActionHeaderView.h */,
+				DAE4994315BB07DF00C21671 /* DDActionHeaderView.m */,
+			);
+			name = DDActionHeader;
 			sourceTree = "<group>";
 		};
 		DAE735BB15A8494A00C84157 /* Model */ = {
@@ -771,6 +820,7 @@
 		DAF8F5C215B1677B00497FC5 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DAE4994115BB07D200C21671 /* DDActionHeader */,
 				DAE498F915BA820C00C21671 /* UAModelPanel */,
 				DA279C0615B1787B00C6B1DC /* AvoidKeyboard */,
 				DAF8F5C715B16B0D00497FC5 /* AFPickerView */,
@@ -885,6 +935,12 @@
 				DAE4991B15BA821700C21671 /* modalButton.png in Resources */,
 				DAE4991D15BA821700C21671 /* modalButton@2x.png in Resources */,
 				DAE4993115BA851000C21671 /* UIWaitForUserView.xib in Resources */,
+				DAE4994C15BB08BA00C21671 /* facebook.png in Resources */,
+				DAE4994E15BB08BA00C21671 /* facebook@2x.png in Resources */,
+				DAE4995015BB08BA00C21671 /* mail.png in Resources */,
+				DAE4995215BB08BA00C21671 /* mail@2x.png in Resources */,
+				DAE4995415BB08BA00C21671 /* twitter.png in Resources */,
+				DAE4995615BB08BA00C21671 /* twitter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +968,12 @@
 				DAE4991C15BA821700C21671 /* modalButton.png in Resources */,
 				DAE4991E15BA821700C21671 /* modalButton@2x.png in Resources */,
 				DAE4993215BA851000C21671 /* UIWaitForUserView.xib in Resources */,
+				DAE4994D15BB08BA00C21671 /* facebook.png in Resources */,
+				DAE4994F15BB08BA00C21671 /* facebook@2x.png in Resources */,
+				DAE4995115BB08BA00C21671 /* mail.png in Resources */,
+				DAE4995315BB08BA00C21671 /* mail@2x.png in Resources */,
+				DAE4995515BB08BA00C21671 /* twitter.png in Resources */,
+				DAE4995715BB08BA00C21671 /* twitter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,6 +1038,9 @@
 				DAE4992715BA821700C21671 /* UARoundedRectView.m in Sources */,
 				DAE4992F15BA851000C21671 /* UIWaitForUserViewController.m in Sources */,
 				DAE4993515BAA44500C21671 /* JudgeClientInfo.m in Sources */,
+				DAE4994415BB07DF00C21671 /* DDActionHeaderView.m in Sources */,
+				DAE79D9415BC364E00BC594E /* SafeMutableDictionary.m in Sources */,
+				DAE79D9815BC40AC00BC594E /* UtilHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,6 +1100,9 @@
 				DAE4992815BA821700C21671 /* UARoundedRectView.m in Sources */,
 				DAE4993015BA851000C21671 /* UIWaitForUserViewController.m in Sources */,
 				DAE4993615BAA44500C21671 /* JudgeClientInfo.m in Sources */,
+				DAE4994515BB07DF00C21671 /* DDActionHeaderView.m in Sources */,
+				DAE79D9515BC364E00BC594E /* SafeMutableDictionary.m in Sources */,
+				DAE79D9915BC40AC00BC594E /* UtilHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -74,14 +74,19 @@
     
     // Encode packet
     SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
-    NSLog(@"Client %@ Send Server %@ Command:%@",[gameSession displayName],serverPeerId,[wr stringWithObject:packet]);
+    //NSLog(@"Client %@ Send Server %@ Command:%@",[gameSession displayName],serverPeerId,[wr stringWithObject:packet]);
     NSData* rawPacket=  [wr dataWithObject:packet];
     //NSDictionary packet;
     //NSData* rawPacket = [NSKeyedArchiver archivedDataWithRootObject:packet];
-    
-    // Write header: lengh of raw packet
-    NSArray *peerIds=[[NSArray alloc] initWithObjects:serverPeerId, nil];
-    [gameSession sendData:rawPacket toPeers:peerIds withDataMode:GKSendDataReliable error:nil];
+    if(wr.error!=nil)
+    {
+        NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,[packet description]);
+    }
+    else{
+        // Write header: lengh of raw packet
+        NSArray *peerIds=[[[NSArray alloc] initWithObjects:serverPeerId, nil] autorelease];
+        [gameSession sendData:rawPacket toPeers:peerIds withDataMode:GKSendDataReliable error:nil];
+    }
 }
 
 @end

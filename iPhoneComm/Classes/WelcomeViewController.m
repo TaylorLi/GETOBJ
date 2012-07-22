@@ -34,7 +34,16 @@
 @implementation WelcomeViewController
 @synthesize segNetwork;
 
-@synthesize input;
+@synthesize playName;
+
+-(id)init{
+    self = [super init];
+    if(self==nil)
+        return nil;
+    NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
+    playName.text=[nd stringForKey:@"playName"];
+    return  self;
+}
 
 -(void)viewDidLoad
 {
@@ -42,18 +51,20 @@
 }
 -(void)viewDidUnload
 {
+    [self setPlayName:nil];
     [self setSegNetwork:nil];
-    input=nil;
+    playName=nil;
 }
 -(void)dealloc
 {
+    [playName release];
     [segNetwork release];
-    [input release];
+    [playName release];
 }
 // App delegate will call this whenever this view becomes active
 - (void)activate {
     // Display keyboard
-    [input becomeFirstResponder];
+    [playName becomeFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -66,29 +77,29 @@
     if ( theTextField.text == nil || [theTextField.text length] < 1 ) {
         return NO;
     }
-//    if( [segNetwork selectedSegmentIndex]==1)//wifi
-//    {
-//        
-//    }
-//    else
-//    {
-//        if ([btManager enabled]) {//bluetooth enable
-//            
-//            
-//        }
-//        else{
-//            [self showConfrimMsg:@"Information" message:@"This application need to use your bluetooth device,continue to turn on?"];
-//            return NO;
-//        }
-//    }    
+    //    if( [segNetwork selectedSegmentIndex]==1)//wifi
+    //    {
+    //        
+    //    }
+    //    else
+    //    {
+    //        if ([btManager enabled]) {//bluetooth enable
+    //            
+    //            
+    //        }
+    //        else{
+    //            [self showConfrimMsg:@"Information" message:@"This application need to use your bluetooth device,continue to turn on?"];
+    //            return NO;
+    //        }
+    //    }    
     
     // Save user's name
     [AppConfig getInstance].name = theTextField.text;
-    
+    NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
     // Dismiss keyboard
     [theTextField resignFirstResponder];
     
-    
+    [nd setObject:theTextField.text forKey:@"playName"];
     // Move on to the next screen
     [[ChattyAppDelegate getInstance] showRoomSelection];
 	return YES;

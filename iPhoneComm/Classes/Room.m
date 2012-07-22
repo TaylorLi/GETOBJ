@@ -28,7 +28,6 @@
 #import "RoomDelegate.h"
 #import "Room.h"
 
-
 @implementation Room
 
 @synthesize delegate;
@@ -57,4 +56,8 @@
   [self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable{
+    // Crude way to emulate "abstract" class
+    [self doesNotRecognizeSelector:_cmd];
+}
 @end

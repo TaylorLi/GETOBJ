@@ -135,11 +135,11 @@
     else
         gameSetting.password=nil;
     NSLog(@"Game Setting:%@",[gameSetting description]);
-    LocalRoom* room = [[[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:gameSetting]] autorelease];
+//    LocalRoom* room = [[[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:gameSetting]] autorelease];
     [self.view removeFromSuperview];
     [gameSetting release];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
-    [[ChattyAppDelegate getInstance] showScoreBoard:room];
+    //[[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 
 - (IBAction)backToSeverList:(id)sender {

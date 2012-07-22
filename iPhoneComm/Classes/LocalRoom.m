@@ -56,10 +56,10 @@
 {
     self=[super init];
     if(self)
-        {
-            gameInfo=  info;
-        }
-     return self;
+    {
+        gameInfo=  info;
+    }
+    return self;
 }
 // Cleanup
 - (void)dealloc {
@@ -135,10 +135,46 @@
     }
     else
     {
-        
+        SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
+        NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
+        NSData *data=[wr dataWithObject:cmdMsg];
+        if(wr.error!=nil)
+        {
+            NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
+        }
+        else
+        {
+            [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
+        }
     }
 }
-
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable{
+    if([AppConfig getInstance].networkUsingWifi)
+    {
+        [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:cmdMsg];
+    }
+    else{
+        if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count>0)
+        {
+            SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
+            NSData *data=[wr dataWithObject:cmdMsg];
+            if(wr.error!=nil)
+            {
+                NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
+            }
+            else{
+                //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
+                if (peerId!=0) {
+                    [bluetoothServer.serverSession sendData:data toPeers:
+                     [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:nil];
+                }
+                else{
+                    [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:nil];
+                } 
+            }
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark ServerDelegate Method Implementations
@@ -182,7 +218,7 @@
     [delegate processCmd:cmd];
     
     // Broadcast this message to all connected clients, including the one that sent it
-//    [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:packet];
+    //    [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:packet];
 }
 
 #pragma mark -
@@ -232,7 +268,7 @@
              then to initialize the game.
              */            
             
-           //client has connected
+            //client has connected
             
             break;
         case GKPeerStateDisconnected:
@@ -247,11 +283,19 @@
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
 {
-    //NSDictionary* packet = [NSKeyedUnarchiver unarchiveObjectWithData:raw];
-    NSMutableDictionary* packet =[[[[SBJsonParser alloc] init] objectWithData:data] autorelease];
-    CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
-    [delegate processCmd:cmd];
     //NSLog([NSString stringWithUTF8String:(const char*)[data bytes]]);
+    SBJsonParser *parser= [[[SBJsonParser alloc] init] autorelease];
+    NSMutableDictionary* packet =[parser objectWithData:data];
+    if(parser.error!=nil)
+    {
+        NSLog(@"JSON Deserilize error:%@",parser.error);
+    }
+    else{
+        
+        CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+        [delegate processCmd:cmd];
+    }
+
     
 }
 

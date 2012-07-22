@@ -7,17 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Room.h"
+#import "GameInfo.h"
+#import "RemoteRoom.h"
 #import "RoomDelegate.h"
+
 
 @class  UILoadingBox;
 
 @interface ScoreControlViewController : UIViewController<RoomDelegate> {
     UILabel     *label;
     CGPoint     gestureStartPoint;
-    Room* chatRoom;
+    RemoteRoom* chatRoom;
     Boolean isBlueSide;
     UILoadingBox* loadingBox;
+    NSTimer *gameLoopTimer;
+    NSDate *serverLastMsgDate;
+    GameStates preGameStates;
     
 }
 @property (nonatomic, retain) IBOutlet UILabel *label;

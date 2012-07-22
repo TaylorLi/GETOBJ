@@ -49,11 +49,11 @@
         if(!cltInfo.hasConnected)
             return;
     }
-    if ([delegate respondsToSelector:@selector(startOrContinueGame:)]) {
+    if ([delegate respondsToSelector:@selector(startGame:)]) {
         [self hideWithOnComplete:^(BOOL finished) {
             [self removeFromSuperview];
         }];
-		[delegate performSelector:@selector(startOrContinueGame:) withObject:sender];
+		[delegate performSelector:@selector(startGame:) withObject:sender];
     }    
 }
 
@@ -64,7 +64,7 @@
 
 - (void)dealloc {
 	[viewLoadedFromXib release];
-    //clients=nil;
+    clients=nil;
     [txtNeedClientCount release];
     [lblWaitForClientsCount release];
     [tbClientList release];

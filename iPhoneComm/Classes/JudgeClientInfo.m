@@ -15,6 +15,7 @@
 @synthesize uuid;
 @synthesize peerId;
 @synthesize hasConnected;
+@synthesize lastHeartbeatDate;
 
 -(void) dealloc
 {
@@ -38,7 +39,7 @@
 }
 
 -(NSDictionary*) proxyForJson {
-    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.sessionId==nil?[NSNull null]: self.sessionId,@"sessionId",self.displayName==nil?[NSNull null]:self.displayName,@"displayName",self.uuid==nil?[NSNull null]:self.uuid,@"uuid",self.peerId ==nil?[NSNull null]:self.peerId,@"peerId",[NSNumber numberWithBool: self.hasConnected],@"hasConnected",nil];
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.sessionId==nil?[NSNull null]: self.sessionId,@"sessionId",self.displayName==nil?[NSNull null]:self.displayName,@"displayName",self.uuid==nil?[NSNull null]:self.uuid,@"uuid",self.peerId ==nil?[NSNull null]:self.peerId,@"peerId",[NSNumber numberWithBool: self.hasConnected],@"hasConnected",self.lastHeartbeatDate,@"lastHeartbeatDate",nil];
     return result;
 }
 
@@ -53,12 +54,13 @@
     self.uuid=[disc objectForKey:@"uuid"];
     self.peerId=[disc objectForKey:@"peerId"];
     self.hasConnected=[[disc objectForKey:@"hasConnected"] boolValue];
+    self.lastHeartbeatDate=[disc objectForKey:@"lastHeartbeatDate"];
     return self;
 }
 
--(NSString *)descritptio
+-(NSString *)description
 {
-    return [NSString stringWithFormat:@"displayName:%@,hasConnected:%i",hasConnected,displayName];
+    return [NSString stringWithFormat:@"displayName:%@,hasConnected:%i",displayName,hasConnected];
 }
 
 @end

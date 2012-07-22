@@ -31,6 +31,7 @@
 #import "SBJson.h"
 #import "PeerClient.h"
 #import "JudgeClientInfo.h"
+#import "GameInfo.h"
 
 
 @interface RemoteRoom : Room <ConnectionDelegate> {
@@ -39,9 +40,11 @@
   PeerClient  *bluetoothClient;
   BOOL isRunning;
     JudgeClientInfo *clientInfo;
+    GameInfo *serverInfo;;
 }
 
-@property (nonatomic,retain) JudgeClientInfo *clientInfo;;
+@property (nonatomic,retain) JudgeClientInfo *clientInfo;
+@property (nonatomic,retain) GameInfo *serverInfo;
 // Initialize with host address and port
 - (id)initWithHost:(NSString*)host andPort:(int)port;
 

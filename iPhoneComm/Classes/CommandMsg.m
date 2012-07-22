@@ -14,6 +14,7 @@
 @synthesize desc;
 @synthesize data;
 @synthesize from;
+@synthesize date;
 
 -(void)dealloc{
     [desc release];
@@ -22,7 +23,7 @@
     [type release];
 }
 
--(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data{
+-(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data andDate:(NSDate *)_date{
     if(!(self = [super init]))
     {
         return nil;
@@ -32,6 +33,7 @@
     self.from=_from;
     self.desc=_desc;
     self.data=_data;
+    self.date=_date;
     return self;
 }
 -(id)initWithDictionary:(NSDictionary *) disc
@@ -44,6 +46,8 @@
     self.data=[disc objectForKey:@"data"];
     self.type=[disc objectForKey:@"type"];
     self.desc=[disc objectForKey:@"desc"];
+    NSNumber *d=[disc objectForKey:@"date"];
+    self.date=[NSDate dateWithTimeIntervalSince1970:[d doubleValue]]; 
     return self;
 }
 
@@ -55,7 +59,7 @@
         }
     else
     dataInfo=self.data;
-    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.from==nil?[NSNull null]:self.from,@"from",dataInfo==nil?[NSNull null]: dataInfo,@"data",self.type,@"type",self.desc==nil?[NSNull null]:self.desc,@"desc", nil];
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.from==nil?[NSNull null]:self.from,@"from",dataInfo==nil?[NSNull null]: dataInfo,@"data",self.type,@"type",self.desc==nil?[NSNull null]:self.desc,@"desc",[NSNumber numberWithDouble:[self.date timeIntervalSince1970] ],@"date", nil];
     return result;
 }
 @end

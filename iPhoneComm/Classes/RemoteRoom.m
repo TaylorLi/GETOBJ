@@ -36,7 +36,7 @@
 
 @implementation RemoteRoom
 
-@synthesize connection,clientInfo;
+@synthesize connection,clientInfo,serverInfo;
 
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
@@ -121,7 +121,15 @@
         [bluetoothClient sendNetworkPacket:cmdMsg];
     }
 }
-
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable{
+    if([AppConfig getInstance].networkUsingWifi)
+    {
+        [connection sendNetworkPacket:cmdMsg];
+    }
+    else{
+        [bluetoothClient sendNetworkPacket:cmdMsg];
+    }
+}
 
 #pragma mark -
 #pragma mark ConnectionDelegate Method Implementations
@@ -196,11 +204,9 @@
              then to initialize the game.
              */            
             
-            if([peerID isEqualToString:bluetoothClient.serverPeerId]){                
-                [delegate alreadyConnectToServer];
-                CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_CLIENT_INFO andFrom:clientInfo.displayName andDesc:nil andData:clientInfo];
-                [self sendCommand:cmd];
-                [cmd release];
+            if([peerID isEqualToString:bluetoothClient.serverPeerId]){  
+                //bluetoothClient.gameSession.available=NO;
+                [delegate alreadyConnectToServer];                
             }
             
             break;
@@ -224,7 +230,16 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
 {
     //NSLog([NSString stringWithUTF8String:(const char*)[data bytes]]);
-    
+    SBJsonParser *parser= [[[SBJsonParser alloc] init] autorelease];
+    NSMutableDictionary* packet =[parser objectWithData:data];
+    if(parser.error!=nil)
+    {
+        NSLog(@"JSON Deserilize error:%@",parser.error);
+    }
+    else{
+        CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+        [delegate processCmd:cmd];
+    }
 }
 
 @end

@@ -37,5 +37,6 @@
 - (BOOL)start;
 - (void)stop;
 - (void)sendCommand:(CommandMsg *) cmdMsg;
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable;
 
 @end

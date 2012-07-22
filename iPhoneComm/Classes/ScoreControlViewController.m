@@ -11,9 +11,20 @@
 #import "Definition.h"
 #import "AppConfig.h"
 #import "UILoadingBox.h"
+#import "JudgeClientInfo.h"
+#import "GameInfo.h"
 
 #define kMinimumGestureLength    25
 #define kMaximumVariance         5
+
+@interface ScoreControlViewController ()
+
+-(void)gameLoop;
+-(void)reportClientInfo;
+-(void) showConnectingBox:(BOOL)show andTitle:(NSString *)title;
+-(void) showTipBox:(NSString *)tip;
+-(void) closeTipBox:(NSTimer *)timer;
+@end
 
 @implementation ScoreControlViewController
 @synthesize label;
@@ -63,8 +74,8 @@
     }
     
     //background
-//    isBlueSide=YES;
-//    [self setStyleBySide];
+    //    isBlueSide=YES;
+    //    [self setStyleBySide];
     //guesture
     UISwipeGestureRecognizer *top;   
     top = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
@@ -97,31 +108,31 @@
     right.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:right];
     
- /*   UISwipeGestureRecognizer *switchRcgn;
-    switchRcgn = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                            action:@selector(switchSide:)] autorelease];
-    switchRcgn.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
-    switchRcgn.numberOfTouchesRequired = 2;
-    [self.view addGestureRecognizer:switchRcgn];
-    
-    UISwipeGestureRecognizer *switchRcgnVertical;
-    switchRcgnVertical = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                    action:@selector(switchSide:)] autorelease];
-    switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
-    switchRcgnVertical.numberOfTouchesRequired = 2;
-    [self.view addGestureRecognizer:switchRcgnVertical];*/
+    /*   UISwipeGestureRecognizer *switchRcgn;
+     switchRcgn = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+     action:@selector(switchSide:)] autorelease];
+     switchRcgn.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+     switchRcgn.numberOfTouchesRequired = 2;
+     [self.view addGestureRecognizer:switchRcgn];
+     
+     UISwipeGestureRecognizer *switchRcgnVertical;
+     switchRcgnVertical = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+     action:@selector(switchSide:)] autorelease];
+     switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
+     switchRcgnVertical.numberOfTouchesRequired = 2;
+     [self.view addGestureRecognizer:switchRcgnVertical];*/
     
 }
 
 /*-(void)setStyleBySide
-{
-    if(isBlueSide){
-        self.view.backgroundColor=[UIColor blueColor];
-    }
-    else{
-        self.view.backgroundColor=[UIColor redColor];
-    }
-}*/
+ {
+ if(isBlueSide){
+ self.view.backgroundColor=[UIColor blueColor];
+ }
+ else{
+ self.view.backgroundColor=[UIColor redColor];
+ }
+ }*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -172,35 +183,67 @@
 }
 
 /*-(void)switchSide:(UIGestureRecognizer *)recognizer
-{
-    isBlueSide=!isBlueSide;
-    [self setStyleBySide];
-}*/
+ {
+ isBlueSide=!isBlueSide;
+ [self setStyleBySide];
+ }*/
 
 - (void)activate {
-    if ( chatRoom != nil ) {
-        loadingBox =[[UILoadingBox alloc ]initWithLoading:@"Connection..." showCloseImage:YES onClosed:^{
-            [self exit];    
-        }];
-        [loadingBox showLoading];
+    if ( chatRoom != nil ) {        
         chatRoom.delegate = self;
-        [chatRoom start];
-        
+        [chatRoom start];        
     }
+    [self showConnectingBox:YES andTitle:@"Connecting to Server..."];
 }
 
+-(void) showConnectingBox:(BOOL)show andTitle:(NSString *)title;
+{ if(show)
+{
+    if(loadingBox==nil){
+        loadingBox =[[UILoadingBox alloc ]initWithLoading:title showCloseImage:YES onClosed:^{
+            [self exit];    
+        }];
+        
+    }
+    else{
+        loadingBox.message=title;
+    }
+    [loadingBox showLoading];
+}
+else{
+    if(loadingBox!=nil)
+        [loadingBox hideLoading];
+}
+}
 #pragma mark -
 #pragma mark RoomDeleagate
 // We are being asked to display a chat message
 - (void)processCmd:(CommandMsg *)cmdMsg {
-    //label.text=message;
+    //no process old message
+    if(serverLastMsgDate!=nil&&[serverLastMsgDate timeIntervalSince1970]>[cmdMsg.date timeIntervalSince1970])
+        return;
+    serverLastMsgDate=[NSDate date];
+    switch ([cmdMsg.type intValue]) {
+        case  NETWORK_HEARTBEAT://server heartbeat
+        { 
+            if(chatRoom.serverInfo!=nil)
+                [chatRoom.serverInfo release];
+            chatRoom.serverInfo=[[GameInfo alloc] initWithDictionary: cmdMsg.data];
+            chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
+            NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 
 // Room closed from outside
 - (void)roomTerminated:(id)room reason:(NSString*)reason {
     // Explain what happened
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:reason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:reason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
     [self exit];
@@ -218,22 +261,18 @@
     
     
     // Switch back to welcome view
+    [gameLoopTimer invalidate];
+    gameLoopTimer=nil;
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 -(void) alreadyConnectToServer
 {
-    if(loadingBox!=nil)
-    {
-        [loadingBox hideLoading];
-        loadingBox=nil;
-        [loadingBox release];
-    }
+    [self reportClientInfo];
+    double inv=kHeartbeatTimeInterval;
+    gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval: inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 }
 -(void) failureToConnectToServer
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connect failure" message:@"Failure to connect" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
     if(loadingBox!=nil)
     {
         [loadingBox hideLoading];
@@ -241,10 +280,83 @@
         [loadingBox release];
     }
     [self exit];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connect failure" message:@"Failure to connect" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
 }
 -(void)sendScore:(NSInteger) score
 {
-    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score]] autorelease]];
+    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] autorelease]];
 }
 
+-(void) showTipBox:(NSString *)tip;
+{
+    [loadingBox hideLoading];
+   UIAlertView *tipBox= [[[UIAlertView alloc] initWithTitle:@"Information" message:tip delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil] autorelease];
+    [tipBox show];
+    [tipBox retain];
+    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(closeTipBox:) userInfo:tipBox repeats:NO];
+    
+}
+-(void) closeTipBox:(NSTimer *)timer
+{
+    UIAlertView *tipBox=[timer userInfo];
+    [tipBox dismissWithClickedButtonIndex:-1 animated:YES];
+    [tipBox release];
+}
+-(void)gameLoop
+{
+    
+    static int counter = 0;    
+    counter++;
+    // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state          
+    if(counter%3==0) {
+        [self reportClientInfo];
+        double inv=kHeartbeatTimeMaxDelay;
+        if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
+            [self showConnectingBox:YES andTitle:@"Seems to lose connect for server,now reconnecting..."];
+        }
+    }
+    switch (chatRoom.serverInfo.gameStatus) {
+        case kStatePrepareGame:
+            break;
+        case kStateWaitJudge:
+            [self showConnectingBox:YES andTitle:@"Wait for other judges..."];
+            break;
+        case  kStateRunning:
+        {
+            [self showConnectingBox:NO andTitle:nil];
+            if(preGameStates== kStateWaitJudge){
+                [self showTipBox:@"Game start"];
+            }else if(preGameStates==kStateMultiplayerReconnect){
+                [self showTipBox:@"Lost judge back and game continue"];
+            }
+        }
+            break;
+        case  kStateCalcScore:
+            break;
+        case kStateMultiplayerReconnect:
+        {
+            [self showConnectingBox:YES andTitle:@"Wait for lost judges..."];
+        }
+            break;
+        case kStateGamePause:
+            [self showConnectingBox:YES andTitle:@"Game pause"];
+            break;
+        case kStateGameEnd:
+            [self showConnectingBox:YES andTitle:@"Game has been ended."];
+            break;	
+        default:
+            break;
+    }
+    preGameStates=chatRoom.serverInfo.gameStatus;
+}
+
+-(void)reportClientInfo
+{
+    CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_CLIENT_INFO andFrom:chatRoom.clientInfo.displayName andDesc:nil andData:chatRoom.clientInfo andDate:[NSDate date]];
+    [chatRoom sendCommand:cmd];
+    [cmd release];
+}
 @end

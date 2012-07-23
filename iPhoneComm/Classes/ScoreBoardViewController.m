@@ -15,8 +15,13 @@
 #import "JudgeClientInfo.h"
 #import "UIHelper.h"
 
+#define  kMenuItemMenu 0
 #define  kMenuItemExit 1
 #define  kMenuItemContinueGame 2
+#define  kMenuItemWarmningBlue 3
+#define  kMenuItemWarmningRed 4
+#define kMenuItemNextMatch 5
+
 @interface ScoreBoardViewController ()
 
 -(void)updatTime;
@@ -452,30 +457,57 @@
     self.actionHeaderView.titleLabel.text = @"";
 	
     // Create action items, have to be UIView subclass, and set frame position by yourself.
-    UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [facebookButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
-    [facebookButton setImage:[UIImage imageNamed:@"facebook"] forState:UIControlStateNormal];
-    facebookButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    facebookButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    facebookButton.center = CGPointMake(25.0f, 25.0f);
+    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [menuButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    [menuButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+    menuButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    menuButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    menuButton.center = CGPointMake(25.0f, 25.0f);
+    menuButton.tag=kMenuItemMenu;
     
-    UIButton *twitterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [twitterButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
-    [twitterButton setImage:[UIImage imageNamed:@"twitter"] forState:UIControlStateNormal];
-    twitterButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    twitterButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    twitterButton.center = CGPointMake(75.0f, 25.0f);
-    twitterButton.tag=kMenuItemContinueGame;
+    UIButton *continueButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [continueButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    [continueButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    continueButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    continueButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    continueButton.center = CGPointMake(75.0f, 25.0f);
+    continueButton.tag=kMenuItemContinueGame;
     
-    UIButton *mailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [mailButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mailButton setImage:[UIImage imageNamed:@"mail"] forState:UIControlStateNormal];
-    mailButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    mailButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    mailButton.center = CGPointMake(125.0f, 25.0f);
-	mailButton.tag=kMenuItemExit;
+    // Create action items, have to be UIView subclass, and set frame position by yourself.
+    UIButton *redWarmningButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [redWarmningButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    [redWarmningButton setImage:[UIImage imageNamed:@"minus-red"] forState:UIControlStateNormal];
+    redWarmningButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    redWarmningButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    redWarmningButton.center = CGPointMake(125.0f, 25.0f);
+    redWarmningButton.tag=kMenuItemWarmningRed;
+    
+    UIButton *blueWarmningButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [blueWarmningButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    [blueWarmningButton setImage:[UIImage imageNamed:@"minus-blue"] forState:UIControlStateNormal];
+    blueWarmningButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    blueWarmningButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    blueWarmningButton.center = CGPointMake(175.0f, 25.0f);
+    blueWarmningButton.tag=kMenuItemWarmningBlue;
+    
+    UIButton *nextMatchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [nextMatchButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    [nextMatchButton setImage:[UIImage imageNamed:@"next-match"] forState:UIControlStateNormal];
+    nextMatchButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    nextMatchButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    nextMatchButton.center = CGPointMake(225.0f, 25.0f);
+	nextMatchButton.tag=kMenuItemNextMatch;
+    
+    
+    UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [exitButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    [exitButton setImage:[UIImage imageNamed:@"exit"] forState:UIControlStateNormal];
+    exitButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    exitButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    exitButton.center = CGPointMake(275.0f, 25.0f);
+	exitButton.tag=kMenuItemExit;
     // Set action items, and previous items will be removed from action picker if there is any.
-    self.actionHeaderView.items = [NSArray arrayWithObjects:facebookButton, twitterButton, mailButton, nil];	
+    self.actionHeaderView.items = [NSArray arrayWithObjects:menuButton, continueButton,redWarmningButton,blueWarmningButton,nextMatchButton, exitButton, nil];	
 	
     [self.view addSubview:self.actionHeaderView];
 }
@@ -483,21 +515,28 @@
     
     // Reset action picker
     int tag=[(UIButton *)sender tag];
-    if(tag==kMenuItemExit)
-    {
-        [self exit];
+    switch (tag) {
+        case kMenuItemMenu:
+            [self.actionHeaderView shrinkActionPicker];
+            break;
+        case kMenuItemExit:
+            [self exit];
+            break;
+        case kMenuItemContinueGame:
+            if(chatRoom.gameInfo.gameStatus==kStateGamePause)
+            {
+                [sender setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+                [self contiueGame];
+            }
+            else{
+                [self pauseGame];
+                [sender setImage:[UIImage imageNamed:@"continue"] forState:UIControlStateNormal];
+            }
+            break;
+        default:
+            break;
     }
-    else if(tag==kMenuItemContinueGame)
-    {
-        if(chatRoom.gameInfo.gameStatus==kStateGamePause)
-        {
-            [self contiueGame];
-        }
-        else{
-            [self pauseGame];
-        }
-    }
-    [self.actionHeaderView shrinkActionPicker];
+    //[self.actionHeaderView shrinkActionPicker];
 }
 -(void)startGame:(id)sender
 {

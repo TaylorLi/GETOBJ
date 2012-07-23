@@ -7,7 +7,7 @@
 //
 
 #import "CommandMsg.h"
-
+#import "UtilHelper.h"
 @implementation CommandMsg
 
 @synthesize type;

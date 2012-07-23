@@ -35,6 +35,7 @@
     DDActionHeaderView *actionHeaderView;
     NSTimer *gameLoopTimer;
     BOOL clientChange;
+    NSMutableArray *cmdHis;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *lblGameName;

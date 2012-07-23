@@ -220,8 +220,11 @@ else{
 // We are being asked to display a chat message
 - (void)processCmd:(CommandMsg *)cmdMsg {
     //no process old message
-    if(serverLastMsgDate!=nil&&[serverLastMsgDate timeIntervalSince1970]>[cmdMsg.date timeIntervalSince1970])
-        return;
+    //NSLog(@"client receive msg time:old:%f,new:%f",[serverLastMsgDate timeIntervalSince1970],[cmdMsg.date timeIntervalSince1970]);
+//    if(serverLastMsgDate!=nil&&[serverLastMsgDate timeIntervalSince1970]>[cmdMsg.date timeIntervalSince1970]){
+//        NSLog(@"message old return");
+//        return;
+//    }
     serverLastMsgDate=[NSDate date];
     switch ([cmdMsg.type intValue]) {
         case  NETWORK_HEARTBEAT://server heartbeat
@@ -230,7 +233,7 @@ else{
                 [chatRoom.serverInfo release];
             chatRoom.serverInfo=[[GameInfo alloc] initWithDictionary: cmdMsg.data];
             chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
-            NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
+            //NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
         }
             break;
         default:
@@ -287,7 +290,9 @@ else{
 }
 -(void)sendScore:(NSInteger) score
 {
-    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:[AppConfig getInstance].name andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] autorelease]];
+    NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
+    [self showConnectingBox:YES andTitle:@"waitForResult"];
+    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] autorelease]];
 }
 
 -(void) showTipBox:(NSString *)tip;
@@ -313,9 +318,14 @@ else{
     // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state          
     if(counter%3==0) {
         [self reportClientInfo];
+                
+    }
+    if(counter%9==0) {
         double inv=kHeartbeatTimeMaxDelay;
         if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
+            //NSLog(@"last heart:%@,%f",serverLastMsgDate,[serverLastMsgDate timeIntervalSinceNow]);
             [self showConnectingBox:YES andTitle:@"Seems to lose connect for server,now reconnecting..."];
+            return;
         }
     }
     switch (chatRoom.serverInfo.gameStatus) {

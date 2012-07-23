@@ -26,6 +26,7 @@ typedef enum {
 	kStateRunning,//game has run now
     kStateCalcScore,//wait other juge to send score and calc result score
 	kStateMultiplayerReconnect,//judge has lost
+    kStateRoundEnd,//round end
     kStateGamePause,//game stop
     kStateGameEnd,//game has complete
 } GameStates;
@@ -39,6 +40,8 @@ typedef enum {
 #define  kHeartbeatTimeMaxDelay  1.0;
 //loop for event interval
 #define  kHeartbeatTimeInterval  0.08;
+
+#define kScoreCalcMaxDelay 1.0;
 
 @interface Definition : NSObject
 

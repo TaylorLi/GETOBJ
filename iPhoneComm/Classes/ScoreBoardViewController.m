@@ -30,6 +30,9 @@
 -(void)gameLoop;
 -(BOOL)testSomeClientDisconnect;
 -(void)sendServerInfo;
+-(void)pauseTime:(BOOL) stop;
+-(void)testIfScoreCanSubmit;
+-(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 
 @end 
 
@@ -108,6 +111,7 @@
     waitUserPanel=nil;
     txtHistory=nil;
     lblRedTotal=nil;
+    cmdHis=nil;
     for (NSArray *flags in dicSideFlags.allValues) {
         for (UILabel *flag in flags) {
             flag=nil;
@@ -131,41 +135,145 @@
     [self prepareForGame];
 }
 //when game going on,we need to refresh time 
--(void)updatTime {    
+-(void)updatTime { 
+    chatRoom.gameInfo.currentRemainTime--;
 	int min = chatRoom.gameInfo.currentRemainTime/60;
     int sec=fmod(chatRoom.gameInfo.currentRemainTime,60);
 	lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
-    chatRoom.gameInfo.currentRemainTime--;
+    if(chatRoom.gameInfo.currentRemainTime==0){
+        [self pauseTime:YES];
+        chatRoom.gameInfo.gameStatus=kStateRoundEnd;
+    }    
 } 
 
+-(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
+{
+    chatRoom.gameInfo.gameStatus=kStateRunning;
+    if(isRedSide){
+        redTotalScore+=score;
+        lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];           
+    }else{
+        blueTotalScore+=score;
+        lblBlueTotal.text=[NSString stringWithFormat:@"%i",blueTotalScore];
+    }
+    NSArray *flags= [dicSideFlags valueForKey:isRedSide?kSideRed:kSideBlue];
+    for (int i=0; i<flags.count; i++) {
+        if (i<score) {
+            UILabel *lblFlag=  [flags objectAtIndex:i];
+            lblFlag.hidden=NO;
+        }
+    }
+    [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
+}
+/*
+ 所有裁判提交的分数必须相同,并且提交时间在1s之内,否则无效
+ */
+-(void)testIfScoreCanSubmit
+{    
+    if(cmdHis==nil)
+        return;
+    NSLog(@"Cmd his count:%i,client cout:%i",cmdHis.count,chatRoom.gameInfo.clients.count);
+    int score=0;
+    BOOL timeout=NO;
+    NSDate *minTime=nil;
+    for (CommandMsg *cmd in cmdHis) {
+        if(minTime==nil)
+        {
+            minTime=cmd.date;
+            continue;
+        }
+        else{
+            if (cmd.date<minTime) {
+                minTime=cmd.date;
+            }
+        }
+        
+    }
+    double elaspedTime=kScoreCalcMaxDelay;
+    //timeout now
+    NSLog(@"%f",fabs([minTime timeIntervalSinceNow]));
+    if(fabs([minTime timeIntervalSinceNow]) >= elaspedTime){
+        timeout=YES;
+    }
+    if(timeout){
+        chatRoom.gameInfo.gameStatus=kStateRunning;
+        cmdHis = nil;
+        return;
+    }
+    
+    NSMutableArray *scores=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
+    [scores autorelease];
+    NSMutableArray *uuids=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
+    [uuids autorelease];
+    CommandMsg *firstCmd=[cmdHis objectAtIndex:0];
+    [scores addObject:firstCmd.data];
+    score=[[firstCmd data] intValue];
+    NSString *side=firstCmd.desc;
+    if(cmdHis.count>chatRoom.gameInfo.clients.count)
+    {
+        chatRoom.gameInfo.gameStatus=kStateRunning;
+        cmdHis = nil;
+        return;
+    }
+    else if(cmdHis.count==chatRoom.gameInfo.clients.count){
+        for (CommandMsg *cmd in cmdHis) {
+            if(![cmd.desc isEqualToString:side])//not the same side,cancel
+            {
+                chatRoom.gameInfo.gameStatus=kStateRunning;
+                cmdHis = nil;
+                return;
+            }
+            if([scores containsObject:cmd.data]){//score
+                
+            }
+            else{
+                chatRoom.gameInfo.gameStatus=kStateRunning;
+                cmdHis = nil;
+                return; //not same score
+            }
+            if([uuids containsObject:cmd.from]){//uuid
+                chatRoom.gameInfo.gameStatus=kStateRunning;
+                cmdHis = nil;
+                return;
+            }
+            else
+                [uuids addObject:cmd.from];
+        }
+        for (NSString *cltUuid in chatRoom.gameInfo.clients.allKeys) {
+            if(![uuids containsObject:cltUuid]){
+                return;//wait for next test
+            }
+        }
+        
+        [self submitScore:score andIsRedSize:[side isEqualToString:kSideRed]];
+        
+    }  
+    
+    
+    
+}
 // We are being asked to process cmd
 - (void)processCmd:(CommandMsg *)cmdMsg {
     
     switch ([cmdMsg.type intValue]) {
         case NETWORK_REPORT_SCORE:
         {
-            NSNumber *score;  score=(NSNumber *)cmdMsg.data;
-            lblCoachName.text=[NSString stringWithFormat:@"%@:",cmdMsg.from];
-            Boolean isRedSide=[cmdMsg.desc isEqualToString:kSideRed];
-            if(isRedSide){
-                redTotalScore+=[score intValue];
-                lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];           
-            }else{
-                blueTotalScore+=[score intValue];
-                lblBlueTotal.text=[NSString stringWithFormat:@"%i",blueTotalScore];
-            }
-            NSArray *flags= [dicSideFlags valueForKey:cmdMsg.desc];
-            for (int i=0; i<flags.count; i++) {
-                if (i<[score intValue]) {
-                    UILabel *lblFlag=  [flags objectAtIndex:i];
-                    lblFlag.hidden=NO;
+            //NSLog(@"msg date:%f",[cmdMsg.date timeIntervalSince1970]);
+            //NSLog(@"receive date:%f",[[NSDate date] timeIntervalSince1970]);
+            //NSLog(@"%f",[cmdMsg.date timeIntervalSince1970]-[[NSDate date] timeIntervalSince1970]);
+            if(chatRoom.gameInfo.gameStatus==kStateRunning||chatRoom.gameInfo.gameStatus==kStateCalcScore)
+            {
+                chatRoom.gameInfo.gameStatus=kStateCalcScore;
+                cmdMsg.date=[NSDate date];
+                if(cmdHis==nil){
+                    cmdHis = [[NSMutableArray alloc] initWithObjects:[cmdMsg retain], nil];
                 }
-            }
-            NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            [txtHistory prependTextAfterLinebreak:[NSString stringWithFormat:@"%@ %@:%@ %@",[dateFormatter stringFromDate:[NSDate date]], cmdMsg.from,cmdMsg.desc,score]];
-            [txtHistory scrollsToTop];
-            [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
+                else{
+                    [cmdHis addObject:[cmdMsg retain]];
+                }
+                //test if all judges have sent score
+                [self testIfScoreCanSubmit];
+            }            
         }
             break;
         case  NETWORK_CLIENT_INFO:
@@ -273,6 +381,7 @@
 
 -(void)showWaitingUserBox
 {
+    [self pauseTime:YES];
     if(waitUserPanel==nil)
     {
         waitUserPanel = [[[UIWaitForUserViewController alloc] initWithFrame:self.view.bounds title:@"Connecting Judge"] autorelease];
@@ -395,7 +504,6 @@
     waitUserPanel=nil;
     if(timer==nil){
         timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatTime) userInfo:nil repeats:YES];
-        [timer fire];
     } 
     chatRoom.gameInfo.gameStatus=kStateRunning;
     
@@ -406,16 +514,26 @@
         [waitUserPanel removeFromSuperview];
         waitUserPanel=nil;
     }
-    if(timer==nil){
-        timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatTime) userInfo:nil repeats:YES];
-        [timer fire];
-    } 
+    [self pauseTime:NO];
     chatRoom.gameInfo.gameStatus=kStateRunning;
+}
+-(void)pauseTime:(BOOL) stop;
+{
+    if(stop){
+        if(timer!=nil){
+            [timer invalidate];
+            timer=nil;
+        }
+    }
+    else{
+        if (timer==nil) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatTime) userInfo:nil repeats:YES];            
+        }
+    }
 }
 -(void)pauseGame
 {
-    [timer invalidate];
-    timer=nil;
+    [self pauseTime:YES];
     chatRoom.gameInfo.gameStatus=kStateGamePause;
 }
 -(void)resetRound
@@ -440,10 +558,10 @@
             [self sendServerInfo];
         }
         
-        if(counter%6==0){
+        if(counter%9==0){
             [self testSomeClientDisconnect];          
         }    
-    }    
+    }     
 	switch (chatRoom.gameInfo.gameStatus) {
 		case kStatePrepareGame:
             break;
@@ -456,6 +574,7 @@
         }
             break;
         case  kStateCalcScore:
+            [self testIfScoreCanSubmit];
             break;
         case kStateMultiplayerReconnect:
         {
@@ -473,6 +592,7 @@
 {
     BOOL hasDisconnect=NO;
     double inv=kHeartbeatTimeMaxDelay;
+    //NSLog(@"tesc disconnect:%i",chatRoom.gameInfo.clients.count);
     for (JudgeClientInfo *clt in chatRoom.gameInfo.clients.allValues) {
         if(!clt.hasConnected)
             hasDisconnect=YES;

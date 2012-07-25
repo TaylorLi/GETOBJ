@@ -10,6 +10,7 @@
 #import "LocalRoom.h"
 #import "RoomDelegate.h"
 #import "UIWaitForUserViewController.h"
+#import "RoundRestTimeViewController.h"
 #import "DDActionHeaderView.h"
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
@@ -23,15 +24,22 @@
     UILabel *lblBlueImg2;
     UILabel *lblBlueImg3;
     UILabel *lblBlueImg4;
+    UILabel *lblRedImg5;
+    UILabel *lblRedImg6;
+    UILabel *lblRedImg7;
+    UILabel *lblRedImg8;
+    UILabel *lblBlueImg5;
+    UILabel *lblBlueImg6;
+    UILabel *lblBlueImg7;
+    UILabel *lblBlueImg8;
     UILabel *lblRedTotal;
     UILabel *lblBlueTotal;
     UITextView *txtHistory;
-    NSInteger blueTotalScore;
-    NSInteger redTotalScore;
     UILabel *lblCoachName;
     NSDictionary *dicSideFlags;
     NSTimer *timer;
     UIWaitForUserViewController *waitUserPanel;
+    RoundRestTimeViewController *roundResetPanel;
     DDActionHeaderView *actionHeaderView;
     NSTimer *gameLoopTimer;
     BOOL clientChange;
@@ -47,6 +55,14 @@
 @property (nonatomic, retain) IBOutlet UILabel *lblBlueImg2;
 @property (nonatomic, retain) IBOutlet UILabel *lblBlueImg3;
 @property (nonatomic, retain) IBOutlet UILabel *lblBlueImg4;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedImg5;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedImg6;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedImg7;
+@property (nonatomic, retain) IBOutlet UILabel *lblRedImg8;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg5;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg6;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg7;
+@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg8;
 @property (nonatomic, retain) IBOutlet UILabel *lblRedTotal;
 @property (nonatomic, retain) IBOutlet UILabel *lblBlueTotal;
 @property (nonatomic, retain) IBOutlet UILabel *lblCoachName;

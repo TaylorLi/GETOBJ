@@ -18,6 +18,8 @@
 @property NSInteger currentMatch;
 @property NSInteger redSideScore;
 @property NSInteger blueSideScore;
+@property NSInteger redSideWarmning;
+@property NSInteger blueSideWarmning;
 @property (nonatomic,retain)NSString *serverPeerId;
 @property (nonatomic,retain)NSString *serverUuid;
 @property GameStates gameStatus;

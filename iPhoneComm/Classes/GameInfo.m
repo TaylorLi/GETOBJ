@@ -11,7 +11,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarmning,redSideWarmning;
 -(void) dealloc
 {
     [gameSetting release];
@@ -27,11 +27,12 @@
     {
         gameSetting=setting;
         gameStatus=kStatePrepareGame;
-        currentRound=1;
-        currentRemainTime=setting.roundTime;
+        currentRound=0;        
         currentMatch=1;
         blueSideScore=0;
         redSideScore=0;
+        redSideWarmning=0;
+        blueSideWarmning=0;
         needClientsCount=2;
         clients=[[NSMutableDictionary alloc] init];
     }
@@ -45,7 +46,9 @@
                           self.serverUuid==nil?[NSNull null]:self.serverUuid,@"serverUuid",
                           [NSNumber numberWithInt:self.gameStatus],@"gameStatus",[NSNumber numberWithInt:self.currentRound],@"currentRound",
                           [NSNumber numberWithInt:self.currentMatch],@"currentMatch",[NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
-                          [NSNumber numberWithInt:self.redSideScore],@"redSideScore",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate",nil];
+                          [NSNumber numberWithInt:self.redSideWarmning],@"redSideWarmning",
+                          [NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
+                          [NSNumber numberWithInt:self.blueSideWarmning],@"blueSideWarmning",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate",nil];
     return result;
 }
 
@@ -63,6 +66,8 @@
     self.currentMatch=[[disc objectForKey:@"currentMatch"] intValue];
     self.blueSideScore=[[disc objectForKey:@"blueSideScore"] intValue];
     self.redSideScore=[[disc objectForKey:@"redSideScore"] intValue];
+    self.blueSideWarmning=[[disc objectForKey:@"blueSideWarmning"] intValue];
+    self.redSideWarmning=[[disc objectForKey:@"redSideWarmning"] intValue];
     NSNumber *inv=[disc objectForKey:@"lastHeartbeatDate"];
     self.serverLastHeartbeatDate=[NSDate dateWithTimeIntervalSince1970:[inv doubleValue]];
     return self;
@@ -79,6 +84,8 @@
     copyObj.currentMatch=self.currentMatch;
     copyObj.blueSideScore=self.blueSideScore;
     copyObj.redSideScore=self.redSideScore;
+    copyObj.blueSideWarmning=self.blueSideWarmning;
+    copyObj.redSideWarmning=self.redSideWarmning;
     copyObj.serverLastHeartbeatDate=[self.serverLastHeartbeatDate copy];
     copyObj.clients=[self.clients copy];
     return  copyObj;

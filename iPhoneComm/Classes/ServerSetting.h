@@ -18,6 +18,7 @@
     NSString *blueSideDesc;
     NSString *password;
     NSTimeInterval roundTime;
+    NSTimeInterval restTime;
     NSInteger roundCount;
     NSInteger judgeCount;
 }
@@ -31,9 +32,10 @@
 @property (nonatomic,copy) NSString *password;
 @property NSInteger roundCount;
 @property NSTimeInterval roundTime;
+@property NSTimeInterval restTime;
 @property NSInteger judgeCount;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
-        andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime;
+        andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime;
 @end

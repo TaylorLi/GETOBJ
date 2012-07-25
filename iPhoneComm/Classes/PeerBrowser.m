@@ -62,7 +62,7 @@
     if( !schSession ) {
 		return NO;
 	}
-    [schSession setDataReceiveHandler:self withContext:nil];
+    //[schSession setDataReceiveHandler:self withContext:nil];
     schSession.delegate = self;
     schSession.available = YES;
     return YES;

@@ -26,7 +26,7 @@ typedef enum {
 	kStateRunning,//game has run now
     kStateCalcScore,//wait other juge to send score and calc result score
 	kStateMultiplayerReconnect,//judge has lost
-    kStateRoundEnd,//round end
+    kStateRoundReset,//round end
     kStateGamePause,//game stop
     kStateGameEnd,//game has complete
 } GameStates;

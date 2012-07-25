@@ -1,6 +1,0 @@
-[submodule "Submodules/UAModalPanel"]
-	path = Submodules/UAModalPanel
-	url = git://github.com/coneybeare/UAModalPanel.git
-[submodule "Submodules/DDActionHeaderView"]
-	path = Submodules/DDActionHeaderView
-	url = git://github.com/digdog/DDActionHeaderView.git

@@ -26,10 +26,11 @@
 
 -(void)updatTime;
 -(void)prepareForGame;
--(void)startGame:(id)sender;
+-(void)startRound:(id)sender;
 -(void)contiueGame;
 -(void)pauseGame;
 -(void)resetRound;
+-(void)goToNextMatch;
 -(void)setupMenu;
 - (void)menuItemAction:(id)sender;
 -(void)gameLoop;
@@ -38,6 +39,10 @@
 -(void)pauseTime:(BOOL) stop;
 -(void)testIfScoreCanSubmit;
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
+-(void)showRoundRestTimeBox;
+-(void)resetTimeEnd:(id)sender;
+-(void)warmningPlayer:(Boolean) isForRedSide;
+-(void)drawWarmningFlagForRed:(Boolean)isForRedSide;
 
 @end 
 
@@ -62,6 +67,14 @@
 @synthesize lblBlueImg2;
 @synthesize lblBlueImg3;
 @synthesize lblBlueImg4;
+@synthesize lblRedImg5;
+@synthesize lblRedImg6;
+@synthesize lblRedImg7;
+@synthesize lblRedImg8;
+@synthesize lblBlueImg5;
+@synthesize lblBlueImg6;
+@synthesize lblBlueImg7;
+@synthesize lblBlueImg8;
 @synthesize lblBlueTotal;
 @synthesize lblRedTotal;
 @synthesize actionHeaderView;
@@ -137,6 +150,7 @@
 }
 
 - (void)activate {
+    //[self showRoundRestTimeBox];
     [self prepareForGame];
 }
 //when game going on,we need to refresh time 
@@ -147,28 +161,49 @@
 	lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
     if(chatRoom.gameInfo.currentRemainTime==0){
         [self pauseTime:YES];
-        chatRoom.gameInfo.gameStatus=kStateRoundEnd;
+        if(chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount){
+            chatRoom.gameInfo.gameStatus=kStateGameEnd; 
+            [UIHelper showAlert:@"Information" message:@"The match has completed." delegate:nil];
+        }else{    
+            chatRoom.gameInfo.gameStatus=kStateRoundReset;            
+            [self resetRound];
+            [self showRoundRestTimeBox];
+        }
     }    
 } 
-
+//show round rest when round end
+-(void)showRoundRestTimeBox{
+    if(roundResetPanel==nil)
+    {
+        roundResetPanel = [[[RoundRestTimeViewController alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width/2, self.view.bounds.size.height/2) title:@"Rest Time" andRestTime:chatRoom.gameInfo.gameSetting.restTime] autorelease];
+        roundResetPanel.onClosePressed = ^(UAModalPanel* panel) {
+            // [panel hide];
+            //UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+        };
+        roundResetPanel.delegate=self;
+    }
+    if (roundResetPanel!=nil) {
+        if(![self.view.subviews containsObject:roundResetPanel])
+        {
+            ///////////////////////////////////
+            // Add the panel to our view
+            [self.view addSubview:roundResetPanel];	
+            [roundResetPanel showFromPoint:[self.view center]];
+            ///////////////////////////////////
+            // Show the panel from the center of the button that was pressed
+        }
+    }    
+}
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 {
     chatRoom.gameInfo.gameStatus=kStateRunning;
     if(isRedSide){
-        redTotalScore+=score;
-        lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];           
+        chatRoom.gameInfo.redSideScore+=score;
+        lblRedTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.redSideScore];           
     }else{
-        blueTotalScore+=score;
-        lblBlueTotal.text=[NSString stringWithFormat:@"%i",blueTotalScore];
+        chatRoom.gameInfo.blueSideScore+=score;
+        lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
-    NSArray *flags= [dicSideFlags valueForKey:isRedSide?kSideRed:kSideBlue];
-    for (int i=0; i<flags.count; i++) {
-        if (i<score) {
-            UILabel *lblFlag=  [flags objectAtIndex:i];
-            lblFlag.hidden=NO;
-        }
-    }
-    [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
 }
 /*
  所有裁判提交的分数必须相同,并且提交时间在1s之内,否则无效
@@ -438,8 +473,7 @@
         lblRedPlayerDesc.text=chatRoom.gameInfo.gameSetting.redSideDesc;
         lblBluePlayerDesc.text=chatRoom.gameInfo.gameSetting.blueSideDesc;
         lblBluePlayerName.text=chatRoom.gameInfo.gameSetting.blueSideName;
-        lblRoundSeq.text=[NSString stringWithFormat:@"Round %i",chatRoom.gameInfo.currentRound];
-        dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg1,lblBlueImg2,lblBlueImg3,lblBlueImg4, nil],kSideBlue, nil];
+        dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4,lblRedImg5,lblRedImg6,lblRedImg7,lblRedImg8, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg5,lblBlueImg6,lblBlueImg7,lblBlueImg8, nil],kSideBlue, nil];
         
     }
     [self resetRound];
@@ -533,12 +567,49 @@
                 [sender setImage:[UIImage imageNamed:@"continue"] forState:UIControlStateNormal];
             }
             break;
+        case  kMenuItemNextMatch:
+            [self goToNextMatch];
+            break;
+            case  kMenuItemWarmningBlue:
+            [self warmningPlayer:NO];
+            break;
+        case  kMenuItemWarmningRed:
+            [self warmningPlayer:YES];
+            break;
         default:
             break;
     }
     //[self.actionHeaderView shrinkActionPicker];
 }
--(void)startGame:(id)sender
+//warming,when 2 warmning to be a Deduction(score -1)
+-(void)warmningPlayer:(Boolean) isForRedSide{
+    if(isForRedSide){
+        chatRoom.gameInfo.redSideWarmning++;
+        [self drawWarmningFlagForRed:YES];
+    }
+    else{
+        chatRoom.gameInfo.blueSideWarmning++;
+        [self drawWarmningFlagForRed:NO];
+    }
+    
+}
+
+-(void)drawWarmningFlagForRed:(Boolean)isForRedSide{
+    
+    NSArray *flags= [dicSideFlags valueForKey:isForRedSide?kSideRed: kSideBlue];
+    int warmningCount=isForRedSide?chatRoom.gameInfo.redSideWarmning:chatRoom.gameInfo.blueSideWarmning;
+    for (int i=0; i<flags.count; i++) {
+        if (i<warmningCount) {
+            UILabel *lblFlag=  [flags objectAtIndex:i];
+            lblFlag.hidden=NO;
+        }
+    }
+    //[self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
+
+}
+
+//start round
+-(void)startRound:(id)sender
 {
     waitUserPanel=nil;
     if(timer==nil){
@@ -555,6 +626,10 @@
     }
     [self pauseTime:NO];
     chatRoom.gameInfo.gameStatus=kStateRunning;
+}
+-(void)resetTimeEnd:(id)sender{
+    roundResetPanel=nil;
+    [self startRound:nil];
 }
 -(void)pauseTime:(BOOL) stop;
 {
@@ -577,14 +652,36 @@
 }
 -(void)resetRound
 {
-    redTotalScore=0;
-    blueTotalScore=0;
-    lblRedTotal.text=[NSString stringWithFormat:@"%i",redTotalScore];
-    lblBlueTotal.text=[NSString stringWithFormat:@"%i",blueTotalScore];
+    chatRoom.gameInfo.currentRemainTime=chatRoom.gameInfo.gameSetting.roundTime;
+    //chatRoom.gameInfo.redSideScore=0;
+    //chatRoom.gameInfo.blueSideScore=0;
+    lblRedTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.redSideScore];
+    lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
+    lblRoundSeq.text=[NSString stringWithFormat:@"Round %i", ++chatRoom.gameInfo.currentRound];
+//    for (NSArray *flags in dicSideFlags.allValues) {
+//        for (UILabel *flag in flags) {
+//            flag.hidden=YES;
+//        }
+//    }
     int min = chatRoom.gameInfo.currentRemainTime/60;
     int sec=(int)chatRoom.gameInfo.currentRemainTime%60;
     lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec]; 
 }
+
+-(void)goToNextMatch
+{
+    chatRoom.gameInfo.redSideScore=0;
+    chatRoom.gameInfo.blueSideScore=0;
+    chatRoom.gameInfo.redSideWarmning=0;
+    chatRoom.gameInfo.blueSideWarmning=0;
+    chatRoom.gameInfo.currentMatch++;
+    //resetRound will add round sequence
+    chatRoom.gameInfo.currentRound=0;
+    //reset round info
+    [self resetRound];
+    [self startRound:nil];
+}
+
 //game loop here,send server's status to clients
 -(void)gameLoop
 {

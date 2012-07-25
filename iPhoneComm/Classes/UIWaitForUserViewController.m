@@ -30,7 +30,7 @@
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
         self.padding=UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
-        self.titleBarHeight = 50.0f;        
+        self.titleBarHeight = 30.0f;        
         // The header label, a UILabel with the same frame as the titleBar
         self.headerLabel.font = [UIFont boldSystemFontOfSize:20];
         
@@ -49,11 +49,11 @@
         if(!cltInfo.hasConnected)
             return;
     }
-    if ([delegate respondsToSelector:@selector(startGame:)]) {
+    if ([delegate respondsToSelector:@selector(startRound:)]) {
         [self hideWithOnComplete:^(BOOL finished) {
             [self removeFromSuperview];
         }];
-		[delegate performSelector:@selector(startGame:) withObject:sender];
+		[delegate performSelector:@selector(startRound:) withObject:sender];
     }    
 }
 

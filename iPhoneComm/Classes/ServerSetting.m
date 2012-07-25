@@ -11,13 +11,14 @@
 @implementation ServerSetting
 
 @synthesize redSideDesc;
-@synthesize  redSideName;
+@synthesize redSideName;
 @synthesize blueSideDesc;
 @synthesize blueSideName;
 @synthesize gameDesc;
 @synthesize gameName;
 @synthesize password;
 @synthesize roundTime;
+@synthesize restTime;
 @synthesize roundCount;
 @synthesize judgeCount;
 
@@ -38,12 +39,13 @@
           blueSideName=@"Aks Kim";
           password=nil;
           roundCount=3;
-          roundTime=2*60;
+          roundTime=60*2;
+          restTime=30;
     }
     return self;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
-        andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime
+        andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime
 {
     self=[super init];
     if (self) {   
@@ -56,6 +58,7 @@
         password=_password;
         roundCount=_roundCount;
         roundTime=_roundTime;
+        restTime=_restTime;
     }
     return self;
 }

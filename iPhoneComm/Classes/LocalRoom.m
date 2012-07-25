@@ -30,7 +30,9 @@
 #import "ServerSetting.h"
 #import "AppConfig.h"
 #import "ServerSetting.h"
+#import "JudgeClientInfo.h"
 #import "GameInfo.h"
+
 // Private properties
 //@interface LocalRoom ()
 //@property(nonatomic,retain) Server* server;
@@ -225,7 +227,17 @@
 #pragma mark GKSession delegate bluetooth
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID{
     NSError *parseError = nil;
+    int connectedNum=0;
+    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
+        if(clt.hasConnected){
+            connectedNum++;
+        }
+    }
+    if(connectedNum<gameInfo.needClientsCount){    
     [session acceptConnectionFromPeer:peerID error:&parseError];
+    }else{
+        [session denyConnectionFromPeer:peerID];
+    }
     
 }
 

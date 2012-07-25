@@ -11,6 +11,9 @@
 
 @class ServerSetting;
 @interface GameInfo : NSObject<NSCopying>
+{
+    GameStates _gameStatus;
+}
 
 @property (nonatomic,retain) ServerSetting *gameSetting;
 @property NSTimeInterval currentRemainTime;
@@ -22,10 +25,11 @@
 @property NSInteger blueSideWarmning;
 @property (nonatomic,retain)NSString *serverPeerId;
 @property (nonatomic,retain)NSString *serverUuid;
-@property GameStates gameStatus;
+@property (nonatomic,setter = setCurrentStatus:,getter = getCurrentStatus)GameStates gameStatus;
 @property (nonatomic,retain) NSMutableDictionary *clients;
 @property NSInteger needClientsCount;
 @property (nonatomic,retain)NSDate *serverLastHeartbeatDate;
+@property (nonatomic,assign)  GameStates preGameStatus;
 -(id) initWithGameSetting:(ServerSetting *)setting;
 -(id)initWithDictionary:(NSDictionary *) disc;
 @end

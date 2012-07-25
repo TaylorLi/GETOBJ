@@ -11,7 +11,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarmning,redSideWarmning;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarmning,redSideWarmning,preGameStatus;
 -(void) dealloc
 {
     [gameSetting release];
@@ -48,7 +48,7 @@
                           [NSNumber numberWithInt:self.currentMatch],@"currentMatch",[NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
                           [NSNumber numberWithInt:self.redSideWarmning],@"redSideWarmning",
                           [NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
-                          [NSNumber numberWithInt:self.blueSideWarmning],@"blueSideWarmning",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate",nil];
+                          [NSNumber numberWithInt:self.blueSideWarmning],@"blueSideWarmning",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate", nil];
     return result;
 }
 
@@ -92,5 +92,14 @@
 }
 -(NSString *) description{
     return [NSString stringWithFormat:@"Uuid:%@,peerId:%@,gameStatus:%d,serverLastHeartbeatDate:%@",self.serverUuid,self.serverPeerId,self.gameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate]];
+}
+-(void)setCurrentStatus:(GameStates)gameCurrentStatus
+{
+    [self setPreGameStatus:_gameStatus];
+    _gameStatus=gameCurrentStatus;
+}
+-(GameStates)getCurrentStatus
+{
+    return _gameStatus;
 }
 @end

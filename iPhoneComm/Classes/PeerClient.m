@@ -50,10 +50,12 @@
 	gameSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
                                            displayName:displayName
                                            sessionMode: GKSessionModePeer ];
+    
 	if( !gameSession ) {
         return NO;
 	}
     
+    gameSession.disconnectTimeout = timeout;
     gameSession.delegate = self.gkSessionDelegate;
     [gameSession setDataReceiveHandler:gkSessionDelegate withContext:nil];
     gameSession.available = YES;

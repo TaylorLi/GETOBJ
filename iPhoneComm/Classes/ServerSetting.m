@@ -32,15 +32,15 @@
     self=[super init];
       if (self) {   
           gameDesc=@"Men 80KG Welter";
-          gameName=@"China_South_Korea_match";
+          gameName=@"China South Korea match";
           redSideDesc=@"CN";
           redSideName=@"Wu Kong Sun";
           blueSideDesc=@"KR";
           blueSideName=@"Aks Kim";
           password=nil;
           roundCount=3;
-          roundTime=60*2;
-          restTime=30;
+          roundTime=1*2;
+          restTime=3;
     }
     return self;
 }

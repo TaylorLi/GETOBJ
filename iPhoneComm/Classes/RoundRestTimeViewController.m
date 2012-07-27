@@ -39,21 +39,16 @@
         // The header label, a UILabel with the same frame as the titleBar
         self.headerLabel.font = [UIFont boldSystemFontOfSize:20];
         
-        [[NSBundle mainBundle] loadNibNamed:@"RoundRestTimeView" owner:self options:nil];
+       viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"RoundRestTimeView" owner:self options:nil] objectAtIndex:0];
         //NSLog(@"%f,%f",self.bounds.size.width,self.bounds.size.height);
         int min = restTime/60;
         int sec=fmod(restTime,60);
         lblTime.hidden=NO;
         btnStart.hidden=YES;
         lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
-        if(timer==nil){
-            timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        }
+        [self setTimerStop:NO];
         
-        [self.contentView addSubview:viewLoadedFromXib];
-        viewLoadedFromXib.center=[self.contentView center];
-//        lblTime.frame=CGRectMake(([[UIScreen mainScreen] bounds].size.width -lblTime.superview.frame.size.width )/2.0, ([[UIScreen mainScreen] bounds].size.height - lblTime.superview.frame.size.height)/2.0, viewLoadedFromXib.frame.size.width, 0);
-//        btnStart.frame=CGRectMake(([[UIScreen mainScreen] bounds].size.width-lblTime.superview.frame.size.width )/2.0, ([[UIScreen mainScreen] bounds].size.height - lblTime.superview.frame.size.height)/2.0, lblTime.superview.frame.size.width, 0);
+        [self.contentView addSubview:viewLoadedFromXib];        
 	}	
 	return self;
 }
@@ -66,8 +61,11 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	
-	[viewLoadedFromXib setFrame:self.contentView.bounds];
+    if([AppConfig getInstance].isIPAD){
+	[viewLoadedFromXib setFrame:CGRectMake(self.contentView.center.x, self.contentView.center.y-self.contentView.bounds.size.height/4, self.contentView.bounds.size.width/2, self.contentView.bounds.size.height/2)];
+    }else{
+        [viewLoadedFromXib setFrame:CGRectMake(70, 20, self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
+    }
 }
 
 -(void) updateTime
@@ -115,5 +113,20 @@
         }  
         [delegate performSelector:@selector(resetTimeEnd:) withObject:nil];
     }]; 
+}
+
+-(void)setTimerStop:(BOOL) stop;
+{
+    if(stop){
+        if(timer!=nil){
+            [timer invalidate];
+            timer=nil;
+        }
+    }
+    else{
+        if (timer==nil) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];            
+        }
+    }
 }
 @end

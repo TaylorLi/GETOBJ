@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UIView *viewLoadedFromXib;
 @property (retain, nonatomic) IBOutlet UIButton *btnStart;
 - (IBAction)startRound:(id)sender;
+-(void)setTimerStop:(BOOL) stop;
 
 @property (retain, nonatomic) IBOutlet UILabel *lblTime;
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title andRestTime:(NSTimeInterval) _restTime;

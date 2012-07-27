@@ -29,6 +29,7 @@ typedef enum {
     kStateRoundReset,//round end
     kStateGamePause,//game stop
     kStateGameEnd,//game has complete
+    kStateGameExit,//game exit
 } GameStates;
 
 //defined command type

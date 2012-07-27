@@ -189,6 +189,7 @@
 		DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */; };
 		DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7E6B315B8223100363399 /* BluetoothManager.framework */; };
 		DAE804F615B3055000CBC42F /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
+		DAE92C3515C0578B00F0515D /* RoundRestTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE92C3415C0578B00F0515D /* RoundRestTimeView.xib */; };
 		DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
 		DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
 		DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
@@ -364,6 +365,7 @@
 		DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DAE804F415B3055000CBC42F /* PeerServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServer.h; sourceTree = "<group>"; };
 		DAE804F515B3055000CBC42F /* PeerServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerServer.m; sourceTree = "<group>"; };
+		DAE92C3415C0578B00F0515D /* RoundRestTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RoundRestTimeView.xib; path = "Resources-iPad/RoundRestTimeView.xib"; sourceTree = "<group>"; };
 		DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DAF65A0A159EEF63001BEA75 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				DAE92C3415C0578B00F0515D /* RoundRestTimeView.xib */,
 				DAE7E70C15B82DE900363399 /* ScoreControlView.xib */,
 				DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */,
 				DAE7E6B515B82C9000363399 /* MainWindow.xib */,
@@ -1004,6 +1007,7 @@
 				DA5381A415BD920E00D1413B /* next-round.png in Resources */,
 				DA5381AB15BDAE5900D1413B /* RoundRestTimeView.xib in Resources */,
 				DAE5E34815BEE6F2001BC09A /* start-round.png in Resources */,
+				DAE92C3515C0578B00F0515D /* RoundRestTimeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

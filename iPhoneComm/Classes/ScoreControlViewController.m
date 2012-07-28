@@ -13,6 +13,7 @@
 #import "UILoadingBox.h"
 #import "JudgeClientInfo.h"
 #import "GameInfo.h"
+#import "UIHelper.h"
 
 #define kMinimumGestureLength    25
 #define kMaximumVariance         5
@@ -24,6 +25,12 @@
 -(void) showConnectingBox:(BOOL)show andTitle:(NSString *)title;
 -(void) showTipBox:(NSString *)tip;
 -(void) closeTipBox:(NSTimer *)timer;
+-(void) onExited;
+-(void) processGameStatus;
+-(void) retryConnect;
+-(void) showRetryConnect;
+-(void) showReconnectConfirmBox;
+-(void) testConnect:(NSTimer *)timer;
 @end
 
 @implementation ScoreControlViewController
@@ -144,21 +151,19 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.label = nil;
-    if(confirmView != nil){
-        confirmView = nil;
-        [confirmView release];
+    if(tipBox != nil){
+        tipBox = nil;
     }
+    self.chatRoom = nil;
+    loadingBox=nil;
+    reConnectBox=nil;
+    tipBox=nil;
     [super viewDidUnload];
 }
 
 - (void)dealloc {
     [label release];
-    self.chatRoom = nil;
-    loadingBox=nil;
-    if(confirmView != nil){
-        confirmView = nil;
-        [confirmView release];
-    }
+    
     [super dealloc];
 }
 
@@ -196,6 +201,7 @@
  }*/
 
 - (void)activate {
+    isExit=NO;
     if ( chatRoom != nil ) {        
         chatRoom.delegate = self;
         [chatRoom start];        
@@ -207,7 +213,7 @@
 { if(show)
 {
     if(loadingBox==nil){
-        loadingBox =[[UILoadingBox alloc ]initWithLoading:title showCloseImage:YES onClosed:^{
+        loadingBox =[[UILoadingBox alloc ]initWithLoading:title showCloseImage:YES onClosed:^{            
             [self exit];    
         }];
         
@@ -215,7 +221,11 @@
     else{
         loadingBox.message=title;
     }
-    [loadingBox showLoading];
+    if(loadingBox.superview==nil)
+        [loadingBox showLoading];
+    else{
+        
+    }
 }
 else{
     if(loadingBox!=nil)
@@ -228,10 +238,10 @@ else{
 - (void)processCmd:(CommandMsg *)cmdMsg {
     //no process old message
     //NSLog(@"client receive msg time:old:%f,new:%f",[serverLastMsgDate timeIntervalSince1970],[cmdMsg.date timeIntervalSince1970]);
-//    if(serverLastMsgDate!=nil&&[serverLastMsgDate timeIntervalSince1970]>[cmdMsg.date timeIntervalSince1970]){
-//        NSLog(@"message old return");
-//        return;
-//    }
+    //    if(serverLastMsgDate!=nil&&[serverLastMsgDate timeIntervalSince1970]>[cmdMsg.date timeIntervalSince1970]){
+    //        NSLog(@"message old return");
+    //        return;
+    //    }
     serverLastMsgDate=[NSDate date];
     switch ([cmdMsg.type intValue]) {
         case  NETWORK_HEARTBEAT://server heartbeat
@@ -241,6 +251,16 @@ else{
             chatRoom.serverInfo=[[GameInfo alloc] initWithDictionary: cmdMsg.data];
             chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
             //NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
+            [self processGameStatus];
+            if(isReconnect){
+                isReconnect=NO;
+                if(reConnectBox!=nil&&reConnectBox.superview!=nil)
+                    {
+                        [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
+                        [reConnectBox release];    
+                    }
+                [self alreadyConnectToServer];
+            }
         }
             break;
         default:
@@ -252,20 +272,16 @@ else{
 
 // Room closed from outside
 - (void)roomTerminated:(id)room reason:(NSString*)reason {   
-    // Explain what happened
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:reason delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    if(confirmView!=nil){
-        [confirmView dismissWithClickedButtonIndex:1 animated:NO];
-    }else{
-        [self exit];
-    }
+//    [UIHelper showAlert:@"Information" message:@"server exited." func:^(AlertView *a, NSInteger i) {
+//        [self exit];
+//    }];
 }
 
 
 // User decided to exit room
 - (IBAction)exit {
+    isExit=YES;
+    loadingBox.title=@"Now prepare to exit ...";
     // Close the room
     [chatRoom stop];
     
@@ -278,18 +294,28 @@ else{
     if(gameLoopTimer != nil){
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
+        [gameLoopTimer release];
     }
     
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
+    
+}
+-(void) onExited{
     if(loadingBox!=nil)
     {
         [loadingBox hideLoading];
         loadingBox=nil;
         [loadingBox release];
     }
-    
-    if(confirmView != nil){
-        confirmView = nil;
-        [confirmView release];
+    if(tipBox!=nil)
+    {
+        [tipBox removeFromSuperview];
+        tipBox=nil;
+        [tipBox release];
+    }
+    for(UIView *sview in self.view.subviews){
+        if([sview isMemberOfClass:[UIAlertView class]])
+            [sview removeFromSuperview];
     }
     
     [[ChattyAppDelegate getInstance] showRoomSelection];
@@ -298,82 +324,152 @@ else{
 {
     [self reportClientInfo];
     double inv=kHeartbeatTimeInterval;
+    if(![gameLoopTimer isValid]){
     gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval: inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+    }
 }
+//fail to connect to server,we can test this by heartbeat
 -(void) failureToConnectToServer
 {
-    if(loadingBox!=nil)
-    {
-        [loadingBox hideLoading];
-        loadingBox=nil;
-        [loadingBox release];
-    }
-    [self exit];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connect failure" message:@"Failure to connect" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+//    [UIHelper showAlert:@"Information" message:@"Unable connect to server" func:^(AlertView *a, NSInteger i) {
+//        [self exit];
+//    }];
+    
     
 }
 -(void)sendScore:(NSInteger) score
 {
     NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
-    [self showConnectingBox:YES andTitle:@"waitForResult"];
+    [self showConnectingBox:YES andTitle:@"Wait for score result"];
     [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] autorelease]];
 }
 
 -(void) showTipBox:(NSString *)tip;
 {
     [loadingBox hideLoading];
-   UIAlertView *tipBox= [[[UIAlertView alloc] initWithTitle:@"Information" message:tip delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil] autorelease];
-    [tipBox show];
+    if(tipBox==nil){
+        tipBox= [[[UIAlertView alloc] initWithTitle:@"Information" message:tip delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil] autorelease];
+    }    
+    if(tipBox.superview==nil){
+        [tipBox show];
+    }  
+    else{
+        tipBox.message=tip;
+    }
     [tipBox retain];
-    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(closeTipBox:) userInfo:tipBox repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(closeTipBox:) userInfo:tipBox repeats:NO];
     
 }
 -(void) closeTipBox:(NSTimer *)timer
 {
-    UIAlertView *tipBox=[timer userInfo];
-    [tipBox dismissWithClickedButtonIndex:-1 animated:YES];
-    [tipBox release];
+    UIAlertView *box=[timer userInfo];
+    [box dismissWithClickedButtonIndex:-1 animated:NO];
 }
 -(void)gameLoop
 {
+    if( chatRoom.serverInfo.gameStatus==kStateGameExit)
+        return;
     
     static int counter = 0;  
-    static int retryCounter = 0;
+    //static int reConnCounter = 0;
     counter++;
     // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state          
     if(counter%3==0) {
         [self reportClientInfo];
-                
+        
     }
     if(counter%9==0) {
         double inv=kHeartbeatTimeMaxDelay;
-        retryCounter++;
         if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
-            //NSLog(@"last heart:%@,%f",serverLastMsgDate,[serverLastMsgDate timeIntervalSinceNow]);
-            if(retryCounter%3==0){
-                if(loadingBox!=nil)
-                    [loadingBox hideLoading];
-                [gameLoopTimer invalidate];
-                gameLoopTimer = nil;
-                
-                if(confirmView == nil){
-                    confirmView=[[UIAlertView alloc] initWithTitle:@"Server terminated" message:@"Do you want to retry?" delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Exit",nil];
-                }
-                [confirmView show];
-                return;
-            }
-            [self showConnectingBox:YES andTitle:@"Seems to lose connect for server,now reconnecting..."];
+            //reConnCounter++;
+            //if(reConnCounter%5==0){
+            //NSLog(@"last heart:%@,%f",serverLastMsgDate,[serverLastMsgDate timeIntervalSinceNow]);    
+            isReconnect=YES;
+            [self showRetryConnect];    
+            
             return;
+//                }
+//            else
+//                return;
         }
     }
-    if(preGameStates == chatRoom.serverInfo.gameStatus) return;
+    //[self processGameStatus];
+}
+-(void) retryConnect
+{
+    if(isReconnect){
+        NSLog(@"reconnect log");
+    [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
+       NSString *peerId=[ chatRoom.serverInfo.serverPeerId copy];
+        [self.chatRoom stop];
+        [self.chatRoom release];
+        chatRoom=[[[RemoteRoom alloc] initWithPeerId:peerId] autorelease];
+        [peerId release];
+        chatRoom.delegate = self;
+        [chatRoom start]; 
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
+    }
+}
+-(void) showRetryConnect
+{
+    if(isReconnect){ 
+    if(gameLoopTimer!=nil)
+    {
+        [gameLoopTimer invalidate];
+        gameLoopTimer = nil;  
+        [gameLoopTimer release];
+    }
+    if([chatRoom isConnected]){
+        [self reportClientInfo];
+    }
+           
+        if(loadingBox!=nil)
+            [loadingBox hideLoading];
+        if(tipBox!=nil)
+            [tipBox removeFromSuperview];
+        [self showConnectingBox:YES andTitle:@"Reconnecting"];
+
+        [self retryConnect];
+        }else{
+        [self alreadyConnectToServer];
+    }
+}
+
+-(void) testConnect:(NSTimer *)timer
+{
+    [timer invalidate];
+    if(!isReconnect){
+        [self alreadyConnectToServer];
+    }else{
+        [self showReconnectConfirmBox];
+    }
+}
+-(void) showReconnectConfirmBox
+{
+    if(reConnectBox==nil)
+    {
+    reConnectBox = [[AlertView alloc] initWithTitle:NSLocalizedString(@"Fail connect to server", @"") message:NSLocalizedString(@"Do you want to retry?", @"")];
+    [reConnectBox addButtonWithTitle:NSLocalizedString(@"Retry", @"") block:[^(AlertView* a, NSInteger i){
+        [self retryConnect];        
+    } copy]];
+    [reConnectBox addButtonWithTitle:NSLocalizedString(@"Exit", @"") block:[^(AlertView* a, NSInteger i){
+        [self exit];
+    } copy]];
+        reConnectBox.tag=15;
+    }
+    if(reConnectBox.superview==nil)
+    [reConnectBox show];
+    [reConnectBox release];
+}
+-(void) processGameStatus;
+{
+    if(isExit) return;
+    //if(preGameStates == chatRoom.serverInfo.gameStatus) return;
     switch (chatRoom.serverInfo.gameStatus) {
         case kStatePrepareGame:
             break;
         case kStateWaitJudge:
-            [self showConnectingBox:YES andTitle:@"Wait for other judges..."];
+            [self showConnectingBox:YES andTitle:@"Wait for other judges"];
             break;
         case  kStateRunning:
         {
@@ -389,37 +485,39 @@ else{
             break;
         case kStateMultiplayerReconnect:
         {
-            [self showConnectingBox:YES andTitle:@"Wait for lost judges..."];
+            [self showConnectingBox:YES andTitle:@"Wait for lost judges"];
         }
+            break;
+            case  kStateRoundReset:
+            [self showConnectingBox:YES andTitle:@"Round rest time"];
             break;
         case kStateGamePause:
             [self showConnectingBox:YES andTitle:@"Game pause"];
             break;
         case kStateGameEnd:
-            [self showConnectingBox:YES andTitle:@"Game has been ended."];
+            [self showConnectingBox:YES andTitle:@"Match has been ended"];
             break;	
+        case  kStateGameExit:
+            if(isExit)
+                return;
+            isExit=YES;
+            [chatRoom stop];
+            if(gameLoopTimer != nil){
+                [gameLoopTimer invalidate];
+                gameLoopTimer=nil;
+                [gameLoopTimer release];
+            }
+            [UIHelper showAlert:@"Information" message:@"Game has completed,Continue to   exit" func:^(AlertView *a, NSInteger i) {
+                [self onExited];
+            }];
+            break;
         default:
             break;
     }
     preGameStates=chatRoom.serverInfo.gameStatus;
 }
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if([buttonTitle isEqualToString:@"OK"])
-    {
-        [self exit];
-    }
-    else
-    {
-        if(buttonIndex==1){
-            [self exit];
-        }else{
-            double inv=kHeartbeatTimeInterval;
-            gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval: inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
-        }
-    }
-
+    
 }
 
 -(void)reportClientInfo

@@ -36,7 +36,7 @@
 
 @implementation RemoteRoom
 
-@synthesize connection,clientInfo,serverInfo;
+@synthesize connection,clientInfo,serverInfo,bluetoothClient;
 
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
@@ -87,7 +87,7 @@
     }else{
         if ( bluetoothClient == nil ) {
             return NO;
-        }
+        }        
         bluetoothClient.gkSessionDelegate=self;
         [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
         NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
@@ -95,7 +95,20 @@
         return YES;
     }
 }
-
+-(BOOL) restart
+{
+    isRunning=YES;
+        if(bluetoothClient!=nil){
+            [bluetoothClient release];
+            [bluetoothClient stop];             
+        }
+        bluetoothClient=[[PeerClient alloc] initWithPeerId:serverInfo.serverPeerId];
+        bluetoothClient.gkSessionDelegate=self;
+        [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
+        NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+        clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:clientInfo.displayName andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
+        return YES;
+}
 
 // Stop everything, disconnect from server
 - (void)stop {
@@ -135,7 +148,7 @@
 #pragma mark ConnectionDelegate Method Implementations
 
 - (void)connectionAttemptFailed:(Connection*)connection {
-    [delegate roomTerminated:self reason:@"Wasn't able to connect to server"];
+    //[delegate roomTerminated:self reason:@"Wasn't able to connect to server"];
 }
 
 
@@ -192,7 +205,7 @@
              */
             if(isRunning && [peerID isEqualToString:bluetoothClient.serverPeerId]){  
                 [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
-                [delegate roomTerminated:self reason:@"Server has disconnect"];
+                //[delegate roomTerminated:self reason:@"Server has disconnect"];
             }
             break;
         case GKPeerStateConnected:
@@ -242,4 +255,14 @@
     }
 }
 
+-(BOOL) isConnected
+{
+    if(bluetoothClient==nil)
+        {
+            return NO;    
+        }
+    else{
+        return [bluetoothClient.gameSession peersWithConnectionState:GKPeerStateConnected].count>0;
+    }
+}
 @end

@@ -8,15 +8,15 @@
 
 #import "UIHelper.h"
 
+
 @implementation UIHelper
 
-+(void) showAlert:(NSString*) title message:(NSString*)msg delegate:(id)func{
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:title
-                                                        message:msg
-                                                       delegate:func 
-                                              cancelButtonTitle:@"确认" 
-                                              otherButtonTitles:nil] autorelease];
-    [alertView show];
++(void) showAlert:(NSString*) title message:(NSString*)msg func:(void(^)(AlertView* a, NSInteger i))block{
+    
+    AlertView *confirmview = [[AlertView alloc] initWithTitle:title message:msg];
+    [confirmview addButtonWithTitle:NSLocalizedString(@"OK", @"") block:[block copy]];
+     [confirmview show];
+    [confirmview release];
 }
 
 + (void)setTextFieldErrorCss:(UITextField*)txtField isError:(BOOL)error

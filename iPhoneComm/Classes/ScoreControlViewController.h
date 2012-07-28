@@ -10,6 +10,7 @@
 #import "GameInfo.h"
 #import "RemoteRoom.h"
 #import "RoomDelegate.h"
+#import "AlertView.h"
 
 
 @class  UILoadingBox;
@@ -23,11 +24,14 @@
     NSTimer *gameLoopTimer;
     NSDate *serverLastMsgDate;
     GameStates preGameStates;
-    UIAlertView *confirmView;
+    UIAlertView *tipBox;
+    AlertView *reConnectBox;
+    BOOL isReconnect;
+    BOOL isExit;
     
 }
 @property (nonatomic, retain) IBOutlet UILabel *label;
-@property(nonatomic,retain) Room* chatRoom;
+@property(nonatomic,retain) RemoteRoom* chatRoom;
 @property CGPoint gestureStartPoint;
 @property CGFloat screenWidth;
 

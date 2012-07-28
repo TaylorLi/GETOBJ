@@ -39,8 +39,8 @@
           blueSideName=@"Aks Kim";
           password=nil;
           roundCount=3;
-          roundTime=1*2;
-          restTime=3;
+          roundTime=2*60;
+          restTime=2*60;
     }
     return self;
 }

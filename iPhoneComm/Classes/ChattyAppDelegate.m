@@ -144,7 +144,7 @@ static ChattyAppDelegate* _instance;
 -(void)detectBluetoothStatus
 {
     if(![btManager enabled]){
-        [UIHelper showAlert:@"Error" message:@"Failre to turn on your bluetooth device." delegate:nil];
+        [UIHelper showAlert:@"Error" message:@"Failre to turn on your bluetooth device." func:nil];
         return;
     }
     //detect network status
@@ -175,7 +175,7 @@ static ChattyAppDelegate* _instance;
     NetworkStatus status = [curReach currentReachabilityStatus];
     NSLog(@"Wifi status change:curent is %i",status);
     if (![btManager enabled] && status != ReachableViaWiFi) {
-        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." delegate:nil];
+        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
     }
 }
 
@@ -185,7 +185,7 @@ static ChattyAppDelegate* _instance;
     BluetoothManager *blManager=[BluetoothManager sharedInstance];
     NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
     if (![btManager enabled] && [wifiReach currentReachabilityStatus] != ReachableViaWiFi)
-        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." delegate:nil];
+        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
 }
 
 @end

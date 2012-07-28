@@ -40,7 +40,7 @@ typedef enum {
 //test last heartbeat time span
 #define  kHeartbeatTimeMaxDelay  1.0;
 //loop for event interval
-#define  kHeartbeatTimeInterval  0.08;
+#define  kHeartbeatTimeInterval  0.12;
 
 #define kScoreCalcMaxDelay 1.0;
 

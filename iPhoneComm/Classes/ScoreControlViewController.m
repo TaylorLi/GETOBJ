@@ -121,7 +121,6 @@
      switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
      switchRcgnVertical.numberOfTouchesRequired = 2;
      [self.view addGestureRecognizer:switchRcgnVertical];*/
-    
 }
 
 /*-(void)setStyleBySide
@@ -145,6 +144,10 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.label = nil;
+    if(confirmView != nil){
+        confirmView = nil;
+        [confirmView release];
+    }
     [super viewDidUnload];
 }
 
@@ -152,6 +155,10 @@
     [label release];
     self.chatRoom = nil;
     loadingBox=nil;
+    if(confirmView != nil){
+        confirmView = nil;
+        [confirmView release];
+    }
     [super dealloc];
 }
 
@@ -244,12 +251,16 @@ else{
 
 
 // Room closed from outside
-- (void)roomTerminated:(id)room reason:(NSString*)reason {
+- (void)roomTerminated:(id)room reason:(NSString*)reason {   
     // Explain what happened
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:reason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:reason delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
-    [self exit];
+    if(confirmView!=nil){
+        [confirmView dismissWithClickedButtonIndex:1 animated:NO];
+    }else{
+        [self exit];
+    }
 }
 
 
@@ -264,8 +275,23 @@ else{
     
     
     // Switch back to welcome view
-    [gameLoopTimer invalidate];
-    gameLoopTimer=nil;
+    if(gameLoopTimer != nil){
+        [gameLoopTimer invalidate];
+        gameLoopTimer=nil;
+    }
+    
+    if(loadingBox!=nil)
+    {
+        [loadingBox hideLoading];
+        loadingBox=nil;
+        [loadingBox release];
+    }
+    
+    if(confirmView != nil){
+        confirmView = nil;
+        [confirmView release];
+    }
+    
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 -(void) alreadyConnectToServer
@@ -313,7 +339,8 @@ else{
 -(void)gameLoop
 {
     
-    static int counter = 0;    
+    static int counter = 0;  
+    static int retryCounter = 0;
     counter++;
     // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state          
     if(counter%3==0) {
@@ -322,12 +349,26 @@ else{
     }
     if(counter%9==0) {
         double inv=kHeartbeatTimeMaxDelay;
+        retryCounter++;
         if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
             //NSLog(@"last heart:%@,%f",serverLastMsgDate,[serverLastMsgDate timeIntervalSinceNow]);
+            if(retryCounter%3==0){
+                if(loadingBox!=nil)
+                    [loadingBox hideLoading];
+                [gameLoopTimer invalidate];
+                gameLoopTimer = nil;
+                
+                if(confirmView == nil){
+                    confirmView=[[UIAlertView alloc] initWithTitle:@"Server terminated" message:@"Do you want to retry?" delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Exit",nil];
+                }
+                [confirmView show];
+                return;
+            }
             [self showConnectingBox:YES andTitle:@"Seems to lose connect for server,now reconnecting..."];
             return;
         }
     }
+    if(preGameStates == chatRoom.serverInfo.gameStatus) return;
     switch (chatRoom.serverInfo.gameStatus) {
         case kStatePrepareGame:
             break;
@@ -361,6 +402,24 @@ else{
             break;
     }
     preGameStates=chatRoom.serverInfo.gameStatus;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonTitle isEqualToString:@"OK"])
+    {
+        [self exit];
+    }
+    else
+    {
+        if(buttonIndex==1){
+            [self exit];
+        }else{
+            double inv=kHeartbeatTimeInterval;
+            gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval: inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
+        }
+    }
+
 }
 
 -(void)reportClientInfo

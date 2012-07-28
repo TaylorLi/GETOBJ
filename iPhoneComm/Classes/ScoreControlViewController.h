@@ -23,6 +23,7 @@
     NSTimer *gameLoopTimer;
     NSDate *serverLastMsgDate;
     GameStates preGameStates;
+    UIAlertView *confirmView;
     
 }
 @property (nonatomic, retain) IBOutlet UILabel *label;

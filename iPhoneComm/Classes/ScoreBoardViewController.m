@@ -106,6 +106,11 @@
 
 - (void)viewDidUnload
 {
+    if(gameLoopTimer!=nil)
+    {
+        [gameLoopTimer invalidate];
+        gameLoopTimer=nil;
+    }
     [self setLblGameDesc:nil];
     [self setLblBluePlayerName:nil];
     [self setLblBluePlayerDesc:nil];
@@ -147,6 +152,11 @@
     [lblRedPlayerDesc release];
     [lblRedPlayerName release];
     timer=nil;
+    if(gameLoopTimer!=nil)
+    {
+        [gameLoopTimer invalidate];
+        gameLoopTimer=nil;
+    }
     [super dealloc];
 }
 

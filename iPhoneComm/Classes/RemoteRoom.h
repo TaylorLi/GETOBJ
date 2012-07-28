@@ -45,6 +45,7 @@
 
 @property (nonatomic,retain) JudgeClientInfo *clientInfo;
 @property (nonatomic,retain) GameInfo *serverInfo;
+@property (nonatomic,retain) PeerClient  *bluetoothClient;
 // Initialize with host address and port
 - (id)initWithHost:(NSString*)host andPort:(int)port;
 
@@ -52,5 +53,7 @@
 - (id)initWithNetService:(NSNetService*)netService;
 
 -(id)initWithPeerId:(NSString *)serverPeerId;
+-(BOOL) isConnected;
 
+-(BOOL) restart;
 @end

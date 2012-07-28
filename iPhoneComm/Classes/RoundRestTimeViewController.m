@@ -93,6 +93,7 @@
     {
         [timer invalidate];
         timer=nil;
+        [timer release];
     }
 	[viewLoadedFromXib release];
     [lblTime release];
@@ -121,6 +122,7 @@
         if(timer!=nil){
             [timer invalidate];
             timer=nil;
+            [timer release];
         }
     }
     else{

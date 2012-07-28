@@ -26,6 +26,11 @@
 -(void)addButtonWithTitle:(NSString*)title block:(void(^)(AlertView*, NSInteger))block
 {
     [self addButtonWithTitle:title];
+    if(block==nil){
+        block=^(AlertView *a, NSInteger i){
+        };
+        [block retain];
+        }
     [buttonCallbackArray addObject:block];
 }
 

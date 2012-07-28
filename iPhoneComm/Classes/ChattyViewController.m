@@ -252,7 +252,7 @@
                     [self joinChatRoom:indexPath];                    
                 }
                 else{
-                    [UIHelper showAlert:@"Invalid Password" message:@"Can not connect to the game server" delegate:nil];                   
+                    [UIHelper showAlert:@"Invalid Password" message:@"Can not connect to the game server" func:nil];                   
                 }
             }];
             [pwdBox release];

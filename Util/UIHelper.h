@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "AlertView.h"
 
 @interface UIHelper : NSObject
-+(void) showAlert:(NSString*) title message:(NSString*)msg delegate:(id)func;
++(void) showAlert:(NSString*) title message:(NSString*)msg func:(void(^)(AlertView* a, NSInteger i))block;
 + (void)setTextFieldErrorCss:(UITextField*)txtField isError:(BOOL)error;
 + (BOOL)validateTextFieldErrorCss:(UITextField*)txtField;
 +(BOOL) alternateTextField:(NSArray *)views;

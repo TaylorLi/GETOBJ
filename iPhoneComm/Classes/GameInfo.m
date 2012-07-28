@@ -95,7 +95,8 @@
 }
 -(void)setCurrentStatus:(GameStates)gameCurrentStatus
 {
-    [self setPreGameStatus:_gameStatus];
+    if(gameCurrentStatus!=preGameStatus)
+        [self setPreGameStatus:_gameStatus];
     _gameStatus=gameCurrentStatus;
 }
 -(GameStates)getCurrentStatus

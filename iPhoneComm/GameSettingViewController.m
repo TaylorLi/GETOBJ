@@ -117,7 +117,7 @@
 - (IBAction)StartGame:(id)sender {
     if(![UIHelper validateTextFields:settingView.subviews])
     {
-        [UIHelper showAlert:@"Information" message:@"Please input the required fields" delegate:nil];
+        [UIHelper showAlert:@"Information" message:@"Please input the required fields" func:nil];
         return;
     }
     //Create local chat room and go    

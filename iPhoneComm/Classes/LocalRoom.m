@@ -92,15 +92,18 @@
         return YES;
     }else
     {
-        bluetoothServer=[[PeerServer alloc] init];
+        bluetoothServer=[[PeerServer alloc] init];        
+        gameInfo.serverUuid= [[UIDevice currentDevice] uniqueIdentifier];
         bluetoothServer.delegate=self;
         bluetoothServer.gkSessionDelegate=self;
         if(![bluetoothServer start:gameInfo.gameSetting]){
             self.bluetoothServer=nil;
             return NO;
         }
-        else
+        else{
+            gameInfo.serverPeerId=bluetoothServer.serverSession.peerID;
             return YES;
+        }            
     }
 }
 
@@ -227,17 +230,17 @@
 #pragma mark GKSession delegate bluetooth
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID{
     NSError *parseError = nil;
-    int connectedNum=0;
-    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
-        if(clt.hasConnected){
-            connectedNum++;
-        }
-    }
-    if(connectedNum<gameInfo.needClientsCount){    
+//    int connectedNum=0;
+//    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
+//        if(clt.hasConnected){
+//            connectedNum++;
+//        }
+//    }
+//    if(connectedNum<gameInfo.needClientsCount){    
     [session acceptConnectionFromPeer:peerID error:&parseError];
-    }else{
-        [session denyConnectionFromPeer:peerID];
-    }
+//    }else{
+//        [session denyConnectionFromPeer:peerID];
+//    }
     
 }
 
@@ -247,7 +250,11 @@
 /* Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
  */
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error{
-    
+    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
+        if(clt.peerId==peerID){
+            clt.hasConnected=YES;
+        }
+    }
     
 }
 

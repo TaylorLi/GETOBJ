@@ -45,6 +45,8 @@
 -(void)drawWarmningFlagForRed:(Boolean)isForRedSide;
 -(void)setMenuByGameStatus:(GameStates)status;
 -(UIButton *)getMenuItem:(int)tag;
+-(void)processByGameStatus;
+-(void) stopRoom;
 @end 
 
 @implementation ScoreBoardViewController
@@ -110,6 +112,7 @@
     {
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
+        [gameLoopTimer release];
     }
     [self setLblGameDesc:nil];
     [self setLblBluePlayerName:nil];
@@ -156,6 +159,7 @@
     {
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
+        [gameLoopTimer release];
     }
     [super dealloc];
 }
@@ -174,7 +178,7 @@
         [self pauseTime:YES];
         if(chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount){
             [self setMenuByGameStatus:kStateGameEnd]; 
-            [UIHelper showAlert:@"Information" message:@"The match has completed." delegate:nil];
+            [UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
         }else{    
             [self setMenuByGameStatus:kStateRoundReset]; 
             [self resetRound];
@@ -355,7 +359,8 @@
                     }
                     else{
                         //every one back to game
-                        if(chatRoom.gameInfo.preGameStatus==kStateRunning)
+                        chatRoom.gameInfo.gameStatus=chatRoom.gameInfo.preGameStatus;
+                        if(chatRoom.gameInfo.gameStatus==kStateRunning)
                             [self contiueGame];
                         else
                         {
@@ -363,7 +368,7 @@
                                 [waitUserPanel removeFromSuperview];
                                 waitUserPanel=nil;
                             }
-                            if(chatRoom.gameInfo.preGameStatus==kStateRoundReset)
+                            if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
                             {
                                 [roundResetPanel setTimerStop:NO];
                             }
@@ -406,7 +411,6 @@
     [self setMenuByGameStatus:kStateGameExit];
     [self sendServerInfo];
     [[AppConfig getInstance].invalidServerPeerIds addObject:chatRoom.bluetoothServer.serverSession.peerID];
-    [chatRoom stop];
     
     // Remove keyboard
     
@@ -425,11 +429,21 @@
     {
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
+        [gameLoopTimer release];
     }
     waitUserPanel=nil;
-    [[ChattyAppDelegate getInstance] showRoomSelection];
+    [roundResetPanel removeFromSuperview];
+    roundResetPanel=nil;
     [self.actionHeaderView removeFromSuperview];
     self.actionHeaderView=nil;
+    //send last message
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(stopRoom) userInfo:nil repeats:NO];
+}
+
+-(void)stopRoom
+{
+    [chatRoom stop];
+    [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
 - (IBAction)permit {
@@ -503,7 +517,7 @@
         lblRedPlayerDesc.text=chatRoom.gameInfo.gameSetting.redSideDesc;
         lblBluePlayerDesc.text=chatRoom.gameInfo.gameSetting.blueSideDesc;
         lblBluePlayerName.text=chatRoom.gameInfo.gameSetting.blueSideName;
-        dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4,lblRedImg5,lblRedImg6,lblRedImg7,lblRedImg8, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg5,lblBlueImg6,lblBlueImg7,lblBlueImg8, nil],kSideBlue, nil];
+        dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4,lblRedImg5,lblRedImg6,lblRedImg7,lblRedImg8, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg1,lblBlueImg2,lblBlueImg3,lblBlueImg4,lblBlueImg5,lblBlueImg6,lblBlueImg7,lblBlueImg8, nil],kSideBlue, nil];
         
     }
     [self resetRound];
@@ -671,6 +685,7 @@
         if(timer!=nil){
             [timer invalidate];
             timer=nil;
+            [timer release];
         }
     }
     else{
@@ -727,7 +742,11 @@
             [self testSomeClientDisconnect];          
         }    
     }   
-	switch (chatRoom.gameInfo.gameStatus) {
+	[self processByGameStatus];
+}
+-(void)processByGameStatus
+{
+    switch (chatRoom.gameInfo.gameStatus) {
 		case kStatePrepareGame:
             break;
         case kStateWaitJudge:
@@ -743,6 +762,7 @@
             break;
         case kStateMultiplayerReconnect:
         {
+            [self showWaitingUserBox];
         }
             break;
         case kStateGamePause:
@@ -768,7 +788,7 @@
             {
                 [roundResetPanel setTimerStop:YES];
             }
-            [self setMenuByGameStatus:kStateMultiplayerReconnect];
+            [self setMenuByGameStatus:kStateMultiplayerReconnect];   
             [self showWaitingUserBox];
         }
     }
@@ -779,32 +799,36 @@
     chatRoom.gameInfo.serverLastHeartbeatDate=[NSDate date];
     CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_HEARTBEAT andFrom:[AppConfig getInstance].name 
                                                       andDesc:nil andData:chatRoom.gameInfo andDate:[NSDate date]];
-    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:NO];
+    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
 }
 
 -(void)setMenuByGameStatus:(GameStates)status;
 {
     chatRoom.gameInfo.gameStatus = status;
     [self sendServerInfo];
+    [self processByGameStatus];
     UIButton *continueButton=[self getMenuItem:kMenuItemContinueGame];
     UIButton *redWarmningButton=[self getMenuItem:kMenuItemWarmningRed];
     UIButton *blueWarmningButton=[self getMenuItem:kMenuItemWarmningBlue];
     UIButton *nextMatchButton=[self getMenuItem:kMenuItemNextMatch];
-    if(kStateGameEnd==status)
+    if(chatRoom.gameInfo.gameStatus==kStateGameEnd)
     {
         continueButton.hidden=YES;
         redWarmningButton.hidden=YES;
         blueWarmningButton.hidden=YES;
         nextMatchButton.hidden=NO;
     }
-    else if(kStateRunning==status)
+    else if(chatRoom.gameInfo.gameStatus==kStateRunning)
     {
         continueButton.hidden=NO;
         redWarmningButton.hidden=NO;
         blueWarmningButton.hidden=NO;
         nextMatchButton.hidden=YES;
     }else{
-        continueButton.hidden=YES;
+        if(chatRoom.gameInfo.gameStatus==kStateGamePause)
+            continueButton.hidden=NO;
+        else
+            continueButton.hidden=YES;
         redWarmningButton.hidden=YES;
         blueWarmningButton.hidden=YES;
         nextMatchButton.hidden=YES;

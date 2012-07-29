@@ -29,10 +29,6 @@
     self.requiredClientCount=0;
     return self;
 }
--(void)dealloc{
-    svcSetting=nil;
-    serverSession=nil;
-}
 
 #pragma mark -
 #pragma mark Public Function

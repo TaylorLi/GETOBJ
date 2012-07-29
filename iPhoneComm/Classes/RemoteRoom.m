@@ -30,7 +30,7 @@
 
 // Private properties
 @interface RemoteRoom ()
-@property(nonatomic,retain) Connection* connection;
+@property(nonatomic,strong) Connection* connection;
 @end
 
 
@@ -56,11 +56,6 @@
 }
 
 // Cleanup
-- (void)dealloc {
-    self.connection = nil;
-    clientInfo=nil;
-    [super dealloc];
-}
 
 
 // Start everything up, connect to server
@@ -99,7 +94,6 @@
 {
     isRunning=YES;
         if(bluetoothClient!=nil){
-            [bluetoothClient release];
             [bluetoothClient stop];             
         }
         bluetoothClient=[[PeerClient alloc] initWithPeerId:serverInfo.serverPeerId];
@@ -134,7 +128,7 @@
         [bluetoothClient sendNetworkPacket:cmdMsg];
     }
 }
-- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable{
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL)reliable{
     if([AppConfig getInstance].networkUsingWifi)
     {
         [connection sendNetworkPacket:cmdMsg];
@@ -159,7 +153,7 @@
 
 - (void)receivedNetworkPacket:(NSMutableDictionary*)packet viaConnection:(Connection*)connection {
     // Display message locally
-    CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+    CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
     [delegate processCmd:cmd];
 }
 
@@ -243,14 +237,14 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
 {
     //NSLog([NSString stringWithUTF8String:(const char*)[data bytes]]);
-    SBJsonParser *parser= [[[SBJsonParser alloc] init] autorelease];
+    SBJsonParser *parser= [[SBJsonParser alloc] init];
     NSMutableDictionary* packet =[parser objectWithData:data];
     if(parser.error!=nil)
     {
         NSLog(@"JSON Deserilize error:%@",parser.error);
     }
     else{
-        CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+        CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
         [delegate processCmd:cmd];
     }
 }

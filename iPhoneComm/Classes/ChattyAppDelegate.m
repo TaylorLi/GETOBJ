@@ -30,7 +30,6 @@
 #import "WelcomeViewController.h"
 #import "ScoreControlViewController.h"
 #import "ScoreBoardViewController.h"
-#import "PermitControlView.h"
 #import "UIHelper.h"
 #import "AppConfig.h"
 
@@ -50,7 +49,6 @@ static ChattyAppDelegate* _instance;
 @synthesize welcomeViewController;
 @synthesize scoreControlViewController;
 @synthesize scoreBoardViewController;
-@synthesize permitViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     // Allow other classes to use us
@@ -68,20 +66,14 @@ static ChattyAppDelegate* _instance;
     
     // 监测网络情况
     
-    wifiReach = [[Reachability reachabilityForLocalWiFi] retain];	
+    wifiReach = [Reachability reachabilityForLocalWiFi];	
     btManager = [BluetoothManager sharedInstance];
     [self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
 }
 
 - (void)dealloc {
-    [viewController release];
-    [welcomeViewController release];
-    [scoreBoardViewController release];
-    [scoreControlViewController release];
-    [permitViewController release];
-    [window release];
-    [super dealloc];
+    
 }
 
 
@@ -108,20 +100,11 @@ static ChattyAppDelegate* _instance;
     [scoreBoardViewController activate];
 }
 
--(void) showScoreControlRoom:(Room *) room{
+-(void) showScoreControlRoom:(RemoteRoom *) room{
     scoreControlViewController.chatRoom = room;
     [scoreControlViewController activate];
     
-    [self swithView:scoreControlViewController.view];}
-
--(void) showPermitControl:(Room *)room validatePassword:(Boolean)isValatePassword setServerPassword: (NSString*) serverPassword{
-    permitViewController.chatRoom = room;
-    permitViewController.isValidatePassword = isValatePassword;
-    permitViewController.serverPassword = serverPassword;
-    
-    [permitViewController activate];
-    
-    [self swithView:permitViewController.view];
+    [self swithView:scoreControlViewController.view];
 }
 
 
@@ -133,7 +116,6 @@ static ChattyAppDelegate* _instance;
                                               cancelButtonTitle:@"OK" 
                                               otherButtonTitles:nil];
     [alertView show];
-    [alertView release];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

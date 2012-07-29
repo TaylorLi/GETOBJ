@@ -13,9 +13,9 @@
 @interface PeerClient : NSObject
 {
 }
-@property (nonatomic,retain) id gkSessionDelegate;
-@property (nonatomic,retain) GKSession *gameSession;
-@property (nonatomic,retain) NSString *serverPeerId;
+@property (nonatomic,strong) id gkSessionDelegate;
+@property (nonatomic,strong) GKSession *gameSession;
+@property (nonatomic,strong) NSString *serverPeerId;
 
 -(id) initWithPeerId:(NSString *)peerId;
 - (BOOL)start:(NSString *)playerName andTimeout:(NSTimeInterval) timeout;

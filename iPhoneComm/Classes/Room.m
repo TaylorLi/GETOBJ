@@ -33,10 +33,6 @@
 @synthesize delegate;
 
 // Cleanup
-- (void)dealloc {
-  self.delegate = nil;
-  [super dealloc];
-}
 
 
 // "Abstract" methods
@@ -56,7 +52,7 @@
   [self doesNotRecognizeSelector:_cmd];
 }
 
-- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable{
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL)reliable{
     // Crude way to emulate "abstract" class
     [self doesNotRecognizeSelector:_cmd];
 }

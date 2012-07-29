@@ -19,14 +19,14 @@
     
     if (self) {
         
-        activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];        
+        activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];        
         activityView.frame = CGRectMake(120.f, 48.0f, 36.0f, 36.0f);
         [self addSubview:activityView];
         if(showClose)
         {
             completedFunc=[onCompleted copy];
             UIImage *closeImage=[UIImage imageNamed:@"alert-close.png"];
-            closeView = [[[UIImageView alloc] initWithImage:closeImage] autorelease];
+            closeView = [[UIImageView alloc] initWithImage:closeImage];
             closeView.frame = CGRectMake(250.0f, 5.0f, 24.0f, 24.0f);
             [closeView setUserInteractionEnabled:YES];
             [self addSubview:closeView];

@@ -33,12 +33,12 @@
   NSString* password;   
 }
 
-@property (retain) NSString* name;
-@property (retain) NSString* password;
+@property (strong) NSString* name;
+@property (strong) NSString* password;
 @property  NSTimeInterval timeout;
 @property BOOL isIPAD;
 @property BOOL networkUsingWifi;
-@property (retain) NSMutableSet *invalidServerPeerIds;
+@property (strong) NSMutableSet *invalidServerPeerIds;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 

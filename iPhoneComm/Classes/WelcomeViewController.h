@@ -31,9 +31,9 @@
 
 @interface WelcomeViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate> {
 }
-@property (retain, nonatomic) IBOutlet UITextField *playName;
+@property (strong, nonatomic) IBOutlet UITextField *playName;
 // App delegate will call this whenever this view becomes active
-@property (retain, nonatomic) IBOutlet UISegmentedControl *segNetwork;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segNetwork;
 - (void)activate;
 
 @end

@@ -16,12 +16,6 @@
 @synthesize from;
 @synthesize date;
 
--(void)dealloc{
-    [desc release];
-    [data release];
-    [from release];
-    [type release];
-}
 
 -(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data andDate:(NSDate *)_date{
     if(!(self = [super init]))

@@ -31,7 +31,7 @@
 #import "BluetoothDevice.h"
 #import "Reachability.h"
 
-@class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController,PermitControlView;
+@class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController;
 
 @interface ChattyAppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window;
@@ -39,18 +39,16 @@
   WelcomeViewController *welcomeViewController;
   ScoreControlViewController *scoreControlViewController;
   ScoreBoardViewController *scoreBoardViewController;
-  PermitControlView *permitViewController;
     // bluetooth manager
     BluetoothManager *btManager;
     Reachability* wifiReach;
 }
 
-@property(nonatomic, retain) IBOutlet UIWindow *window;
-@property(nonatomic, retain) IBOutlet ChattyViewController *viewController;
-@property(nonatomic, retain) IBOutlet WelcomeViewController *welcomeViewController;
-@property(nonatomic, retain) IBOutlet ScoreControlViewController *scoreControlViewController;
-@property(nonatomic, retain) IBOutlet ScoreBoardViewController *scoreBoardViewController;
-@property(nonatomic, retain) IBOutlet PermitControlView *permitViewController;
+@property(nonatomic, strong) IBOutlet UIWindow *window;
+@property(nonatomic, strong) IBOutlet ChattyViewController *viewController;
+@property(nonatomic, strong) IBOutlet WelcomeViewController *welcomeViewController;
+@property(nonatomic, strong) IBOutlet ScoreControlViewController *scoreControlViewController;
+@property(nonatomic, strong) IBOutlet ScoreBoardViewController *scoreBoardViewController;
 
 // Main instance of the app delegate
 + (ChattyAppDelegate*)getInstance;
@@ -63,8 +61,5 @@
 -(void) showScoreBoard:(Room *)room;
 //Show Controller in client
 -(void) showScoreControlRoom:(Room *) room;
-
-//Show permit control
--(void) showPermitControl:(Room *)room validatePassword:(Boolean)isValatePassword setServerPassword: (NSString*) serverPassword;
 
 @end

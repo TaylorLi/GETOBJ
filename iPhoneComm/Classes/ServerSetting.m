@@ -79,13 +79,11 @@
 }
 -(void)dealloc
 {
-    gameDesc=nil;
-    gameName=nil;
-    redSideDesc=nil;;
-    redSideName=nil;;
-    blueSideDesc=nil;;
-    blueSideName=nil;;
-    password=nil;;
+    ;
+    ;
+    ;
+    ;
+    ;
 }
 @end
 

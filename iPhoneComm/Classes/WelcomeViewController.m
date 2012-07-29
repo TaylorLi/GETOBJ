@@ -57,9 +57,7 @@
 }
 -(void)dealloc
 {
-    [playName release];
-    [segNetwork release];
-    [playName release];
+
 }
 // App delegate will call this whenever this view becomes active
 - (void)activate {

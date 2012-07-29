@@ -18,11 +18,11 @@
     
     id data;
 }
-@property (nonatomic,retain) NSNumber *type;
+@property (nonatomic,strong) NSNumber *type;
 @property (copy,nonatomic)NSString *from;
 @property (copy,nonatomic)NSString *desc;
-@property (nonatomic,retain)id data;
-@property (nonatomic,retain)NSDate *date;
+@property (nonatomic,strong)id data;
+@property (nonatomic,strong)NSDate *date;
 
 -(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data andDate:(NSDate *)_date;
 -(id)initWithDictionary:(NSDictionary *) disc;

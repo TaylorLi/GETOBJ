@@ -39,7 +39,7 @@
     UIImage *lockImg;
 }
 
-@property (nonatomic,retain) GameSettingViewController *settingViewController;
+@property (nonatomic,strong) GameSettingViewController *settingViewController;
 
 - (IBAction)createNewChatRoom:(id)sender;
 - (void)joinChatRoom:(NSIndexPath*)currentRow;

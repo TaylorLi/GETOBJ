@@ -17,7 +17,6 @@
     //[dateFormatter setDateFormat:@"hh:mm:ss"]
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSString *d= [dateFormatter stringFromDate:[NSDate date]];
-    [dateFormatter release];
     return d;
 }
 @end

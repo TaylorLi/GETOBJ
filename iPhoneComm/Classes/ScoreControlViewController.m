@@ -85,32 +85,32 @@
     //    [self setStyleBySide];
     //guesture
     UISwipeGestureRecognizer *top;   
-    top = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                     action:@selector(reportSwipeUp:)] autorelease];
+    top = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                     action:@selector(reportSwipeUp:)];
     top.direction = UISwipeGestureRecognizerDirectionUp;
     top.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:top];
     
     UISwipeGestureRecognizer *down;   
     
-    down = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                      action:@selector(reportSwipeDown:)] autorelease];
+    down = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                      action:@selector(reportSwipeDown:)];
     down.direction = 
     UISwipeGestureRecognizerDirectionDown;
     down.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:down];
     
     UISwipeGestureRecognizer *left;
-    left = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                      action:@selector(reportSwipeLeft:)] autorelease];
+    left = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                      action:@selector(reportSwipeLeft:)];
     left.direction = UISwipeGestureRecognizerDirectionLeft;
     
     left.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:left];
     
     UISwipeGestureRecognizer *right;
-    right = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                       action:@selector(reportSwipeRight:)] autorelease];
+    right = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                       action:@selector(reportSwipeRight:)];
     right.direction = UISwipeGestureRecognizerDirectionRight    ;
     right.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:right];
@@ -161,11 +161,6 @@
     [super viewDidUnload];
 }
 
-- (void)dealloc {
-    [label release];
-    
-    [super dealloc];
-}
 
 - (NSString *)descriptionForScore:(NSUInteger)score {
     return [NSString stringWithFormat:@"%i",score];
@@ -246,8 +241,6 @@ else{
     switch ([cmdMsg.type intValue]) {
         case  NETWORK_HEARTBEAT://server heartbeat
         { 
-            if(chatRoom.serverInfo!=nil)
-                [chatRoom.serverInfo release];
             chatRoom.serverInfo=[[GameInfo alloc] initWithDictionary: cmdMsg.data];
             chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
             //NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
@@ -257,7 +250,6 @@ else{
                 if(reConnectBox!=nil&&reConnectBox.superview!=nil)
                     {
                         [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
-                        [reConnectBox release];    
                     }
                 [self alreadyConnectToServer];
             }
@@ -294,7 +286,6 @@ else{
     if(gameLoopTimer != nil){
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
-        [gameLoopTimer release];
     }
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
@@ -305,13 +296,11 @@ else{
     {
         [loadingBox hideLoading];
         loadingBox=nil;
-        [loadingBox release];
     }
     if(tipBox!=nil)
     {
         [tipBox removeFromSuperview];
         tipBox=nil;
-        [tipBox release];
     }
     for(UIView *sview in self.view.subviews){
         if([sview isMemberOfClass:[UIAlertView class]])
@@ -341,14 +330,14 @@ else{
 {
     NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
     [self showConnectingBox:YES andTitle:@"Wait for score result"];
-    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] autorelease]];
+    [chatRoom sendCommand:[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]]];
 }
 
 -(void) showTipBox:(NSString *)tip;
 {
     [loadingBox hideLoading];
     if(tipBox==nil){
-        tipBox= [[[UIAlertView alloc] initWithTitle:@"Information" message:tip delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil] autorelease];
+        tipBox= [[UIAlertView alloc] initWithTitle:@"Information" message:tip delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
     }    
     if(tipBox.superview==nil){
         [tipBox show];
@@ -356,7 +345,6 @@ else{
     else{
         tipBox.message=tip;
     }
-    [tipBox retain];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(closeTipBox:) userInfo:tipBox repeats:NO];
     
 }
@@ -402,9 +390,8 @@ else{
     [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
        NSString *peerId=[ chatRoom.serverInfo.serverPeerId copy];
         [self.chatRoom stop];
-        [self.chatRoom release];
-        chatRoom=[[[RemoteRoom alloc] initWithPeerId:peerId] autorelease];
-        [peerId release];
+        self.chatRoom=nil;
+        chatRoom=[[RemoteRoom alloc] initWithPeerId:peerId];
         chatRoom.delegate = self;
         [chatRoom start]; 
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
@@ -417,7 +404,6 @@ else{
     {
         [gameLoopTimer invalidate];
         gameLoopTimer = nil;  
-        [gameLoopTimer release];
     }
     if([chatRoom isConnected]){
         [self reportClientInfo];
@@ -459,7 +445,6 @@ else{
     }
     if(reConnectBox.superview==nil)
     [reConnectBox show];
-    [reConnectBox release];
 }
 -(void) processGameStatus;
 {
@@ -498,6 +483,7 @@ else{
             [self showConnectingBox:YES andTitle:@"Match has been ended"];
             break;	
         case  kStateGameExit:
+            {
             if(isExit)
                 return;
             isExit=YES;
@@ -505,13 +491,16 @@ else{
             if(gameLoopTimer != nil){
                 [gameLoopTimer invalidate];
                 gameLoopTimer=nil;
-                [gameLoopTimer release];
             }
             [UIHelper showAlert:@"Information" message:@"Game has completed,Continue to   exit" func:^(AlertView *a, NSInteger i) {
                 [self onExited];
             }];
+                }
             break;
         default:
+            {
+                
+            }
             break;
     }
     preGameStates=chatRoom.serverInfo.gameStatus;
@@ -524,6 +513,5 @@ else{
 {
     CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_CLIENT_INFO andFrom:chatRoom.clientInfo.displayName andDesc:nil andData:chatRoom.clientInfo andDate:[NSDate date]];
     [chatRoom sendCommand:cmd];
-    [cmd release];
 }
 @end

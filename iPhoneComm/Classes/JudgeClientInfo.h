@@ -16,7 +16,7 @@
 @property (nonatomic,copy) NSString *displayName;
 @property (nonatomic,copy) NSString *uuid;
 @property BOOL hasConnected;
-@property (nonatomic,retain) NSDate *lastHeartbeatDate;
+@property (nonatomic,strong) NSDate *lastHeartbeatDate;
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId;

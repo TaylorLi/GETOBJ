@@ -12,13 +12,6 @@
 @implementation GameInfo
 
 @synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarmning,redSideWarmning,preGameStatus;
--(void) dealloc
-{
-    [gameSetting release];
-    [serverUuid release];
-    [serverPeerId release];
-    [clients release];
-}
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {

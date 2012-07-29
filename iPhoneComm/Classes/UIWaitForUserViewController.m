@@ -63,13 +63,7 @@
 }
 
 - (void)dealloc {
-	[viewLoadedFromXib release];
     clients=nil;
-    [txtNeedClientCount release];
-    [lblWaitForClientsCount release];
-    [tbClientList release];
-    [btnStartGame release];
-    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -97,7 +91,7 @@
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
 	}
     JudgeClientInfo *cltInfo=[clients objectForKey:[clients.allKeys objectAtIndex: indexPath.row]];
     cell.textLabel.text=cltInfo.displayName;
@@ -112,7 +106,6 @@
 -(void) updateStatus:(NSMutableDictionary *)_clients
 {
     clients=_clients;
-    [clients retain];
     txtNeedClientCount.text=[NSString stringWithFormat:@"%i",needConnectedClientCount];
     int conCount=0;
     for (JudgeClientInfo *cltInfo in clients.allValues) {

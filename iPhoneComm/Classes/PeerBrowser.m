@@ -36,12 +36,9 @@
 // Cleanup
 - (void)dealloc {
     if ( servers != nil ) {
-        [servers release];
         servers = nil;
     }
     peerIds=nil;
-    self.delegate = nil;
-    [super dealloc];
 }
 
 
@@ -77,7 +74,6 @@
     //[schSession disconnectFromAllPeers];
     schSession.available = NO;
     schSession = nil;
-    [schSession release];
     [peerIds removeAllObjects];
     [servers removeAllObjects];
 }
@@ -98,7 +94,7 @@
         case GKPeerStateAvailable:           
             if (![peerIds containsObject:peerID] &&[[session displayNameForPeer:peerID] hasPrefix:KEY_PEER_SEVICE_TYPE_SERVER] ) {
                 // Add it to our list
-                ServerRelateInfo *sri=[[[ServerRelateInfo alloc] init] autorelease];
+                ServerRelateInfo *sri=[[ServerRelateInfo alloc] init];
                 sri.orgSeverName=[session displayNameForPeer:peerID];
                 NSLog(@"Found Server PeerID:%@,DisplayName:%@",peerID,sri.orgSeverName);
                 sri.peerId=peerID;

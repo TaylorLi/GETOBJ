@@ -51,12 +51,6 @@ static AppConfig* instance;
 
 
 // Cleanup
-- (void)dealloc {
-  self.name = nil;
-  self.password = nil;
-    invalidServerPeerIds=nil;
-  [super dealloc];
-}
 
 
 // Automatically initialize if called for the first time

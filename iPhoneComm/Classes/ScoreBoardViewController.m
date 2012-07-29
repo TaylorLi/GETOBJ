@@ -112,7 +112,6 @@
     {
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
-        [gameLoopTimer release];
     }
     [self setLblGameDesc:nil];
     [self setLblBluePlayerName:nil];
@@ -133,35 +132,20 @@
 }
 
 - (void)dealloc {
-    lblCoachName=nil;
-    lblGameName=nil;
     waitUserPanel=nil;
-    txtHistory=nil;
-    lblRedTotal=nil;
     cmdHis=nil;
     for (NSArray *flags in dicSideFlags.allValues) {
-        for (UILabel *flag in flags) {
+        for (__strong UILabel *flag in flags) {
             flag=nil;
         }
     }
-    lblBlueTotal=nil;
-    self.chatRoom = nil;
     dicSideFlags=nil;
-    [lblGameName release];
-    [lblBluePlayerName release];
-    [lblBluePlayerDesc release];
-    [lblTime release];
-    [lblRoundSeq release];
-    [lblRedPlayerDesc release];
-    [lblRedPlayerName release];
     timer=nil;
     if(gameLoopTimer!=nil)
     {
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
-        [gameLoopTimer release];
     }
-    [super dealloc];
 }
 
 - (void)activate {
@@ -191,7 +175,7 @@
     if(roundResetPanel==nil)
     {
         CGRect frame=[AppConfig getInstance].isIPAD?CGRectMake(self.view.bounds.size.width/8, self.view.bounds.size.height/8, self.view.bounds.size.width/2, self.view.bounds.size.height/2):self.view.bounds;
-        roundResetPanel = [[[RoundRestTimeViewController alloc] initWithFrame:frame title:@"Rest Time" andRestTime:chatRoom.gameInfo.gameSetting.restTime] autorelease];
+        roundResetPanel = [[RoundRestTimeViewController alloc] initWithFrame:frame title:@"Rest Time" andRestTime:chatRoom.gameInfo.gameSetting.restTime];
         roundResetPanel.onClosePressed = ^(UAModalPanel* panel) {
             // [panel hide];
             //UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
@@ -258,9 +242,7 @@
     }
     
     NSMutableArray *scores=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
-    [scores autorelease];
     NSMutableArray *uuids=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
-    [uuids autorelease];
     CommandMsg *firstCmd=[cmdHis objectAtIndex:0];
     [scores addObject:firstCmd.data];
     score=[[firstCmd data] intValue];
@@ -322,10 +304,10 @@
                 [self setMenuByGameStatus:kStateCalcScore];
                 cmdMsg.date=[NSDate date];
                 if(cmdHis==nil){
-                    cmdHis = [[NSMutableArray alloc] initWithObjects:[cmdMsg retain], nil];
+                    cmdHis = [[NSMutableArray alloc] initWithObjects:cmdMsg, nil];
                 }
                 else{
-                    [cmdHis addObject:[cmdMsg retain]];
+                    [cmdHis addObject:cmdMsg];
                 }
                 //test if all judges have sent score
                 [self testIfScoreCanSubmit];
@@ -391,7 +373,6 @@
     // Explain what happened
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server terminated" message:reason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
-    [alert release];
     [self exit];
 }
 //we not care this delegate
@@ -429,7 +410,6 @@
     {
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
-        [gameLoopTimer release];
     }
     waitUserPanel=nil;
     [roundResetPanel removeFromSuperview];
@@ -446,11 +426,6 @@
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
-- (IBAction)permit {
-    [chatRoom stop];
-    [[ChattyAppDelegate getInstance] showPermitControl:chatRoom validatePassword:NO setServerPassword:@""];
-}
-
 - (void)eraseText {
     for (NSArray *flags in dicSideFlags.allValues) {
         for (UILabel *flag in flags) {
@@ -464,13 +439,13 @@
     [self pauseTime:YES];
     if(waitUserPanel==nil)
     {
-        waitUserPanel = [[[UIWaitForUserViewController alloc] initWithFrame:self.view.bounds title:@"Connecting Judge"] autorelease];
+        __block typeof (self) me = self;
+        waitUserPanel = [[UIWaitForUserViewController alloc] initWithFrame:self.view.bounds title:@"Connecting Judge"];
         waitUserPanel.needConnectedClientCount=chatRoom.gameInfo.needClientsCount;
         waitUserPanel.onClosePressed = ^(UAModalPanel* panel) {
             // [panel hide];
-            UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"End Game" message:@"Continue to end the game?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"End", nil];
-            [alertView show];
-            [alertView release];            
+            UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"End Game" message:@"Continue to end the game?" delegate:me cancelButtonTitle:@"Cancel" otherButtonTitles:@"End", nil];
+            [alertView show];            
             UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
         };
         waitUserPanel.delegate=self;
@@ -529,7 +504,7 @@
 }
 -(void)setupMenu
 {
-    self.actionHeaderView = [[[DDActionHeaderView alloc] initWithFrame:self.view.bounds] autorelease];
+    self.actionHeaderView = [[DDActionHeaderView alloc] initWithFrame:self.view.bounds];
 	
     // Set title
     self.actionHeaderView.titleLabel.text = @"";
@@ -601,7 +576,6 @@
         {
             UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"End Game" message:@"Continue to end the game?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"End", nil];
             [alertView show];
-            [alertView release];
         }
             break;
         case kMenuItemContinueGame:
@@ -685,7 +659,6 @@
         if(timer!=nil){
             [timer invalidate];
             timer=nil;
-            [timer release];
         }
     }
     else{

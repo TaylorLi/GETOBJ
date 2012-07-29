@@ -43,9 +43,9 @@
     GameInfo *serverInfo;;
 }
 
-@property (nonatomic,retain) JudgeClientInfo *clientInfo;
-@property (nonatomic,retain) GameInfo *serverInfo;
-@property (nonatomic,retain) PeerClient  *bluetoothClient;
+@property (nonatomic,strong) JudgeClientInfo *clientInfo;
+@property (nonatomic,strong) GameInfo *serverInfo;
+@property (nonatomic,strong) PeerClient  *bluetoothClient;
 // Initialize with host address and port
 - (id)initWithHost:(NSString*)host andPort:(int)port;
 

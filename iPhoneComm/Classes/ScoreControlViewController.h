@@ -30,8 +30,8 @@
     BOOL isExit;
     
 }
-@property (nonatomic, retain) IBOutlet UILabel *label;
-@property(nonatomic,retain) RemoteRoom* chatRoom;
+@property (nonatomic, strong) IBOutlet UILabel *label;
+@property(nonatomic,strong) RemoteRoom* chatRoom;
 @property CGPoint gestureStartPoint;
 @property CGFloat screenWidth;
 

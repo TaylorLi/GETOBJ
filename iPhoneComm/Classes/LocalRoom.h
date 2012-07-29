@@ -48,10 +48,10 @@
 
 // Initialize everything
 - (id)init;
-@property (nonatomic,retain) GameInfo *gameInfo;
-@property(nonatomic,retain) Server* server;
-@property(nonatomic,retain) NSMutableSet* clients;
-@property(nonatomic,retain) PeerServer *bluetoothServer;
+@property (nonatomic,strong) GameInfo *gameInfo;
+@property(nonatomic,strong) Server* server;
+@property(nonatomic,strong) NSMutableSet* clients;
+@property(nonatomic,strong) PeerServer *bluetoothServer;
 
 - (id)initWithGameInfo:(GameInfo *)info;
 

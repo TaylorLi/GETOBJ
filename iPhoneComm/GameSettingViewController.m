@@ -84,21 +84,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc {
-    [txtGameName release];
-    [txtGameDesc release];
-    [txtRedSideName release];
-    [txtRedSidePlace release];
-    [txtblueSideName release];
-    [txtBlueSidePlace release];
-    [sldPsw release];
-    [txtPwd release];
-    [selRoundTime release];
-    [roundCount release];
-    [roundTime release];
-    [navBar release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -137,7 +122,6 @@
     NSLog(@"Game Setting:%@",[gameSetting description]);
 //    LocalRoom* room = [[[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:gameSetting]] autorelease];
     [self.view removeFromSuperview];
-    [gameSetting release];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
     //[[ChattyAppDelegate getInstance] showScoreBoard:room];
 }

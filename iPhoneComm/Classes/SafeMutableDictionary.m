@@ -19,12 +19,6 @@
     return self;
 }
 
-- (void) dealloc
-{
-    [lock release];
-    [underlyingDictionary release];
-    [super dealloc];
-}
 
 // forward all the calls with the lock held
 - (id) forward: (SEL) sel : (id)args

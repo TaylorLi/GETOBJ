@@ -18,15 +18,6 @@
 @synthesize displaySeverName;
 @synthesize uuid;
 @synthesize createTime;
--(void) dealloc
-{
-    peerId=nil;
-    password=nil;
-    orgSeverName=nil;
-    sessionId=nil;
-    displaySeverName=nil;
-    createTime=nil;
-}
 -(NSString *)description
 {
     if(createTime!=nil){
@@ -36,7 +27,6 @@
     //[dateFormatter setDateFormat:@"hh:mm:ss"] 
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"]; 
     NSLog(@"CreateTime:%@",[dateFormatter stringFromDate:createTime]);
-    [dateFormatter release]; 
     }
     return [NSString stringWithFormat:@"PeerId:%@,Password:%@,OrgServerName:%@,SessionId:%@,displaySeverName:%@,UUID:%@,CreateTime:%@",peerId,password,orgSeverName,sessionId,displaySeverName,uuid,createTime];
 }

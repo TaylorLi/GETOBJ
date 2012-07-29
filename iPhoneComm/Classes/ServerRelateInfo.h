@@ -16,6 +16,6 @@
 @property (nonatomic,copy) NSString *orgSeverName;
 @property (nonatomic,copy) NSString *displaySeverName;
 @property (nonatomic,copy) NSString *password;
-@property(nonatomic,retain) NSDate *createTime;
+@property(nonatomic,strong) NSDate *createTime;
 @property (nonatomic,copy)NSString *uuid;
 @end

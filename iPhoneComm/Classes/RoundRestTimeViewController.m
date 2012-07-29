@@ -93,12 +93,7 @@
     {
         [timer invalidate];
         timer=nil;
-        [timer release];
     }
-	[viewLoadedFromXib release];
-    [lblTime release];
-    [btnStart release];
-    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -122,7 +117,6 @@
         if(timer!=nil){
             [timer invalidate];
             timer=nil;
-            [timer release];
         }
     }
     else{

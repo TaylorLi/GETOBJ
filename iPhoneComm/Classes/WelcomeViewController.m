@@ -40,14 +40,14 @@
     self = [super init];
     if(self==nil)
         return nil;
-    NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
-    playName.text=[nd stringForKey:@"playName"];
+    
     return  self;
 }
 
 -(void)viewDidLoad
 {
-    
+    NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
+    playName.text=[nd stringForKey:@"playName"];
 }
 -(void)viewDidUnload
 {
@@ -57,9 +57,7 @@
 }
 -(void)dealloc
 {
-    [playName release];
-    [segNetwork release];
-    [playName release];
+
 }
 // App delegate will call this whenever this view becomes active
 - (void)activate {

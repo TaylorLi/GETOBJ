@@ -65,12 +65,7 @@
 }
 // Cleanup
 - (void)dealloc {
-    self.clients = nil;
-    self.server = nil;
     self.gameInfo=nil;
-    [self.gameInfo release];
-    self.bluetoothServer=nil;
-    [super dealloc];
 }
 
 
@@ -93,7 +88,7 @@
     }else
     {
         bluetoothServer=[[PeerServer alloc] init];        
-        gameInfo.serverUuid= [[UIDevice currentDevice] uniqueIdentifier];
+        gameInfo.serverUuid=[AppConfig getInstance].uuid;
         bluetoothServer.delegate=self;
         bluetoothServer.gkSessionDelegate=self;
         if(![bluetoothServer start:gameInfo.gameSetting]){
@@ -140,7 +135,7 @@
     }
     else
     {
-        SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
+        SBJsonWriter *wr=[[SBJsonWriter alloc] init];
         NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
         NSData *data=[wr dataWithObject:cmdMsg];
         if(wr.error!=nil)
@@ -153,7 +148,7 @@
         }
     }
 }
-- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable{
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL)reliable{
     if([AppConfig getInstance].networkUsingWifi)
     {
         [clients makeObjectsPerformSelector:@selector(sendNetworkPacket:) withObject:cmdMsg];
@@ -161,7 +156,7 @@
     else{
         if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count>0)
         {
-            SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
+            SBJsonWriter *wr=[[SBJsonWriter alloc] init];
             NSData *data=[wr dataWithObject:cmdMsg];
             if(wr.error!=nil)
             {
@@ -219,7 +214,7 @@
 // One of connected clients sent a chat message. Propagate it further.
 - (void) receivedNetworkPacket:(NSDictionary*)packet viaConnection:(Connection*)connection {
     // Display message locally
-    CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+    CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
     [delegate processCmd:cmd];
     
     // Broadcast this message to all connected clients, including the one that sent it
@@ -303,7 +298,7 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
 {
     //NSLog([NSString stringWithUTF8String:(const char*)[data bytes]]);
-    SBJsonParser *parser= [[[SBJsonParser alloc] init] autorelease];
+    SBJsonParser *parser= [[SBJsonParser alloc] init];
     NSMutableDictionary* packet =[parser objectWithData:data];
     if(parser.error!=nil)
     {
@@ -311,7 +306,7 @@
     }
     else{
         
-        CommandMsg *cmd=[[[CommandMsg alloc] initWithDictionary:packet] autorelease];
+        CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
         [delegate processCmd:cmd];
     }
 

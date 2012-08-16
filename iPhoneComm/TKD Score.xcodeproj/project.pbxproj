@@ -17,8 +17,8 @@
 		28D7ACF80DDB3853001CB0EB /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
 		D039DF4E0F9E50E100C77B72 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */; };
 		D039DF550F9E515F00C77B72 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D039DF540F9E515F00C77B72 /* WelcomeViewController.m */; };
-		D043D7F30F94AA2A0030638C /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; };
-		D043D7FB0F94B0BD0030638C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; };
+		D043D7F30F94AA2A0030638C /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D043D7FB0F94B0BD0030638C /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D043D8060F99B6A90030638C /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8050F99B6A90030638C /* RemoteRoom.m */; };
 		D043D8480F99BB250030638C /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8470F99BB250030638C /* LocalRoom.m */; };
 		D043D8EF0F9A1C980030638C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
@@ -41,8 +41,10 @@
 		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
 		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
 		DA10C1CE15B117A400153392 /* StaticTableGroupData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA10C1CD15B117A400153392 /* StaticTableGroupData.m */; };
-		DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; };
-		DA279C0915B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; };
+		DA20D20215D16CF500FB22B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */; };
+		DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */; };
+		DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA279C0915B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA43FDB015B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
 		DA43FDB115B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
 		DA43FDB215B5DA840083D1B7 /* UIImageActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAD15B5DA840083D1B7 /* UIImageActionSheet.m */; };
@@ -74,8 +76,8 @@
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
-		DA78B45715A96F0100E186CC /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; };
-		DA78B45815A96F0100E186CC /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; };
+		DA78B45715A96F0100E186CC /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7F20F94AA2A0030638C /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA78B45815A96F0100E186CC /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D7FA0F94B0BD0030638C /* Connection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA78B45915A96F0100E186CC /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8050F99B6A90030638C /* RemoteRoom.m */; };
 		DA78B45A15A96F0100E186CC /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D8470F99BB250030638C /* LocalRoom.m */; };
 		DA78B45B15A96F0100E186CC /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D043D9190F9CB4A60030638C /* AppConfig.m */; };
@@ -83,33 +85,42 @@
 		DA78B45D15A96F0100E186CC /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
 		DA78B45E15A96F0100E186CC /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
 		DA78B45F15A96F0100E186CC /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D039DF540F9E515F00C77B72 /* WelcomeViewController.m */; };
-		DA78B46015A96F0100E186CC /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
-		DA78B46115A96F0100E186CC /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
-		DA78B46215A96F0100E186CC /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
-		DA78B46315A96F0100E186CC /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */; };
-		DA78B46415A96F0100E186CC /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */; };
-		DA78B46515A96F0100E186CC /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */; };
-		DA78B46615A96F0100E186CC /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */; };
-		DA78B46715A96F0100E186CC /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */; };
-		DA78B46815A96F0100E186CC /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */; };
-		DA78B46915A96F0100E186CC /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */; };
-		DA78B46A15A96F0100E186CC /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */; };
-		DA78B46B15A96F0100E186CC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */; };
-		DA78B46C15A96F0100E186CC /* WaitingForViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */; };
 		DA78B46D15A96F0100E186CC /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
 		DA78B46E15A96F0100E186CC /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65AA8159F2F1E001BEA75 /* ScoreBoardViewController.m */; };
 		DA78B46F15A96F0100E186CC /* CommandMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735BE15A84AAE00C84157 /* CommandMsg.m */; };
-		DA78B47015A96F0100E186CC /* PermitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C315A889C900C84157 /* PermitControlView.m */; };
 		DA78B47315A96F0100E186CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		DA78B47415A96F0100E186CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		DA78B47515A96F0100E186CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		DA78B47615A96F0100E186CC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
 		DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47F15A96F0600E186CC /* ChattyViewController.xib */; };
-		DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B48315A96F0600E186CC /* PermitControlView.xib */; };
+		DAAA377015C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
+		DAAA377115C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
+		DAAA377215C531250086F00B /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375B15C531250086F00B /* SBJsonParser.m */; };
+		DAAA377315C531250086F00B /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375B15C531250086F00B /* SBJsonParser.m */; };
+		DAAA377415C531250086F00B /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375D15C531250086F00B /* SBJsonStreamParser.m */; };
+		DAAA377515C531250086F00B /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375D15C531250086F00B /* SBJsonStreamParser.m */; };
+		DAAA377615C531250086F00B /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375F15C531250086F00B /* SBJsonStreamParserAccumulator.m */; };
+		DAAA377715C531250086F00B /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375F15C531250086F00B /* SBJsonStreamParserAccumulator.m */; };
+		DAAA377815C531250086F00B /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376115C531250086F00B /* SBJsonStreamParserAdapter.m */; };
+		DAAA377915C531250086F00B /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376115C531250086F00B /* SBJsonStreamParserAdapter.m */; };
+		DAAA377A15C531250086F00B /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376315C531250086F00B /* SBJsonStreamParserState.m */; };
+		DAAA377B15C531250086F00B /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376315C531250086F00B /* SBJsonStreamParserState.m */; };
+		DAAA377C15C531250086F00B /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376515C531250086F00B /* SBJsonStreamWriter.m */; };
+		DAAA377D15C531250086F00B /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376515C531250086F00B /* SBJsonStreamWriter.m */; };
+		DAAA377E15C531250086F00B /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376715C531250086F00B /* SBJsonStreamWriterAccumulator.m */; };
+		DAAA377F15C531250086F00B /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376715C531250086F00B /* SBJsonStreamWriterAccumulator.m */; };
+		DAAA378015C531250086F00B /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376915C531250086F00B /* SBJsonStreamWriterState.m */; };
+		DAAA378115C531250086F00B /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376915C531250086F00B /* SBJsonStreamWriterState.m */; };
+		DAAA378215C531250086F00B /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376B15C531250086F00B /* SBJsonTokeniser.m */; };
+		DAAA378315C531250086F00B /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376B15C531250086F00B /* SBJsonTokeniser.m */; };
+		DAAA378415C531250086F00B /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376D15C531250086F00B /* SBJsonUTF8Stream.m */; };
+		DAAA378515C531250086F00B /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376D15C531250086F00B /* SBJsonUTF8Stream.m */; };
+		DAAA378615C531250086F00B /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376F15C531250086F00B /* SBJsonWriter.m */; };
+		DAAA378715C531250086F00B /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA376F15C531250086F00B /* SBJsonWriter.m */; };
 		DAD80F3D15B2A852004B76B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */; };
 		DAE4183A15B132F300C7BC8D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */; };
-		DAE459F215B25E8900F9A847 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; };
-		DAE459F415B25E9000F9A847 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; };
+		DAE459F215B25E8900F9A847 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE459F415B25E9000F9A847 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAE459F515B25E9800F9A847 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B515B13C9600497FC5 /* UIHelper.m */; };
 		DAE459F615B25EA600F9A847 /* ServerSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B815B14CCE00497FC5 /* ServerSetting.m */; };
 		DAE45A4D15B2601B00F9A847 /* GameSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE45A4015B25FB000F9A847 /* GameSettingView.xib */; };
@@ -122,12 +133,10 @@
 		DAE45ABA15B278E700F9A847 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */; };
 		DAE498EF15BA47C600C21671 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498EE15BA47C600C21671 /* GameInfo.m */; };
 		DAE498F015BA47C600C21671 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498EE15BA47C600C21671 /* GameInfo.m */; };
-		DAE498F415BA525700C21671 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498F315BA525700C21671 /* Reachability.m */; };
-		DAE498F515BA525700C21671 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498F315BA525700C21671 /* Reachability.m */; };
 		DAE498F715BA52CB00C21671 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */; };
 		DAE498F815BA52E400C21671 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */; };
-		DAE4991115BA821700C21671 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498FD15BA821700C21671 /* UIView+JMNoise.m */; };
-		DAE4991215BA821700C21671 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498FD15BA821700C21671 /* UIView+JMNoise.m */; };
+		DAE4991115BA821700C21671 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498FD15BA821700C21671 /* UIView+JMNoise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4991215BA821700C21671 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE498FD15BA821700C21671 /* UIView+JMNoise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAE4991315BA821700C21671 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE498FF15BA821700C21671 /* close.png */; };
 		DAE4991415BA821700C21671 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE498FF15BA821700C21671 /* close.png */; };
 		DAE4991515BA821700C21671 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990015BA821700C21671 /* close@2x.png */; };
@@ -140,16 +149,16 @@
 		DAE4991C15BA821700C21671 /* modalButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990315BA821700C21671 /* modalButton.png */; };
 		DAE4991D15BA821700C21671 /* modalButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990415BA821700C21671 /* modalButton@2x.png */; };
 		DAE4991E15BA821700C21671 /* modalButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE4990415BA821700C21671 /* modalButton@2x.png */; };
-		DAE4991F15BA821700C21671 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990715BA821700C21671 /* UAModalPanel.m */; };
-		DAE4992015BA821700C21671 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990715BA821700C21671 /* UAModalPanel.m */; };
-		DAE4992115BA821700C21671 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990915BA821700C21671 /* UATitledModalPanel.m */; };
-		DAE4992215BA821700C21671 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990915BA821700C21671 /* UATitledModalPanel.m */; };
-		DAE4992315BA821700C21671 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990C15BA821700C21671 /* UAGradientBackground.m */; };
-		DAE4992415BA821700C21671 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990C15BA821700C21671 /* UAGradientBackground.m */; };
-		DAE4992515BA821700C21671 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */; };
-		DAE4992615BA821700C21671 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */; };
-		DAE4992715BA821700C21671 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4991015BA821700C21671 /* UARoundedRectView.m */; };
-		DAE4992815BA821700C21671 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4991015BA821700C21671 /* UARoundedRectView.m */; };
+		DAE4991F15BA821700C21671 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990715BA821700C21671 /* UAModalPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992015BA821700C21671 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990715BA821700C21671 /* UAModalPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992115BA821700C21671 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990915BA821700C21671 /* UATitledModalPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992215BA821700C21671 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990915BA821700C21671 /* UATitledModalPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992315BA821700C21671 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990C15BA821700C21671 /* UAGradientBackground.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992415BA821700C21671 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990C15BA821700C21671 /* UAGradientBackground.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992515BA821700C21671 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992615BA821700C21671 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4990E15BA821700C21671 /* UANoisyGradientBackground.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992715BA821700C21671 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4991015BA821700C21671 /* UARoundedRectView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE4992815BA821700C21671 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4991015BA821700C21671 /* UARoundedRectView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAE4992A15BA829500C21671 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE4992915BA829400C21671 /* QuartzCore.framework */; };
 		DAE4992B15BA829F00C21671 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE4992915BA829400C21671 /* QuartzCore.framework */; };
 		DAE4992F15BA851000C21671 /* UIWaitForUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE4992D15BA850E00C21671 /* UIWaitForUserViewController.m */; };
@@ -165,13 +174,14 @@
 		DAE64A0315B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0415B3137F0062A2B9 /* PeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE64A0215B3137F0062A2B9 /* PeerClient.m */; };
 		DAE64A0515B313830062A2B9 /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
+		DAE6863A15CECA2A002A69B9 /* MainGameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE6863915CECA2A002A69B9 /* MainGameSettingViewController.m */; };
+		DAE6863D15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE6863C15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m */; };
+		DAE6863E15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE6863C15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m */; };
 		DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735BE15A84AAE00C84157 /* CommandMsg.m */; };
-		DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE735C315A889C900C84157 /* PermitControlView.m */; };
-		DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE735C515A889DE00C84157 /* PermitControlView.xib */; };
 		DAE73CC215AC77340083CAF1 /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */; };
 		DAE73CC315AC77340083CAF1 /* GameSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE73CC115AC77340083CAF1 /* GameSettingView.xib */; };
-		DAE79D9415BC364E00BC594E /* SafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */; };
-		DAE79D9515BC364E00BC594E /* SafeMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */; };
+		DAE78A0015C4D07C007A3A29 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE789FF15C4D07C007A3A29 /* Reachability.m */; };
+		DAE78A0115C4D07C007A3A29 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE789FF15C4D07C007A3A29 /* Reachability.m */; };
 		DAE79D9815BC40AC00BC594E /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9715BC40AB00BC594E /* UtilHelper.m */; };
 		DAE79D9915BC40AC00BC594E /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE79D9715BC40AB00BC594E /* UtilHelper.m */; };
 		DAE7A26515B42BAC001FF160 /* PeerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A26415B42BAC001FF160 /* PeerBrowser.m */; };
@@ -189,20 +199,50 @@
 		DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */; };
 		DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7E6B315B8223100363399 /* BluetoothManager.framework */; };
 		DAE804F615B3055000CBC42F /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
+		DAE8D41615DBF4DF002E0CCA /* circle_green.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8D41415DBF4DF002E0CCA /* circle_green.png */; };
+		DAE8D41715DBF4DF002E0CCA /* circle_green.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8D41415DBF4DF002E0CCA /* circle_green.png */; };
+		DAE8D41815DBF4DF002E0CCA /* circle_red.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8D41515DBF4DF002E0CCA /* circle_red.png */; };
+		DAE8D41915DBF4DF002E0CCA /* circle_red.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8D41515DBF4DF002E0CCA /* circle_red.png */; };
 		DAE92C3515C0578B00F0515D /* RoundRestTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE92C3415C0578B00F0515D /* RoundRestTimeView.xib */; };
-		DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */; };
-		DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */; };
-		DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */; };
-		DAF65A26159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */; };
-		DAF65A27159EEF63001BEA75 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */; };
-		DAF65A28159EEF63001BEA75 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */; };
-		DAF65A29159EEF63001BEA75 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */; };
-		DAF65A2A159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */; };
-		DAF65A2B159EEF63001BEA75 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */; };
-		DAF65A2C159EEF63001BEA75 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */; };
-		DAF65A2D159EEF63001BEA75 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */; };
-		DAF65A2E159EEF63001BEA75 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */; };
-		DAF65A2F159EEF63001BEA75 /* WaitingForViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */; };
+		DAE9779C15D61ACF00A5AF7E /* GameSettingDetailControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE9779A15D61ACF00A5AF7E /* GameSettingDetailControllerHD.m */; };
+		DAE9779D15D61ACF00A5AF7E /* GameSettingDetailControllerHD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE9779B15D61ACF00A5AF7E /* GameSettingDetailControllerHD.xib */; };
+		DAE977A615D61BE200A5AF7E /* GameSettingRootControllerHD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE977A415D61BE200A5AF7E /* GameSettingRootControllerHD.xib */; };
+		DAE977A915D61DC100A5AF7E /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAE977A815D61DC100A5AF7E /* Settings.plist */; };
+		DAE977AA15D61DC100A5AF7E /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAE977A815D61DC100A5AF7E /* Settings.plist */; };
+		DAE977AB15D6273F00A5AF7E /* MainGameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE6863915CECA2A002A69B9 /* MainGameSettingViewController.m */; };
+		DAE977AE15D627F300A5AF7E /* GameSettingDetailControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE9779A15D61ACF00A5AF7E /* GameSettingDetailControllerHD.m */; };
+		DAE977AF15D627F500A5AF7E /* GameSettingRootControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977A315D61BE200A5AF7E /* GameSettingRootControllerHD.m */; };
+		DAE977B015D627F600A5AF7E /* GameSettingRootControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977A315D61BE200A5AF7E /* GameSettingRootControllerHD.m */; };
+		DAE977BA15D6398400A5AF7E /* DateInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B315D6398400A5AF7E /* DateInputTableViewCell.m */; };
+		DAE977BB15D6398400A5AF7E /* DateInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B315D6398400A5AF7E /* DateInputTableViewCell.m */; };
+		DAE977BC15D6398400A5AF7E /* PickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B515D6398400A5AF7E /* PickerInputTableViewCell.m */; };
+		DAE977BD15D6398400A5AF7E /* PickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B515D6398400A5AF7E /* PickerInputTableViewCell.m */; };
+		DAE977BE15D6398400A5AF7E /* SimplePickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B715D6398400A5AF7E /* SimplePickerInputTableViewCell.m */; };
+		DAE977BF15D6398400A5AF7E /* SimplePickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B715D6398400A5AF7E /* SimplePickerInputTableViewCell.m */; };
+		DAE977C015D6398400A5AF7E /* StringInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B915D6398400A5AF7E /* StringInputTableViewCell.m */; };
+		DAE977C115D6398400A5AF7E /* StringInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977B915D6398400A5AF7E /* StringInputTableViewCell.m */; };
+		DAE977D915D6407B00A5AF7E /* JMStaticContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D215D6407B00A5AF7E /* JMStaticContentTableViewCell.m */; };
+		DAE977DA15D6407B00A5AF7E /* JMStaticContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D215D6407B00A5AF7E /* JMStaticContentTableViewCell.m */; };
+		DAE977DB15D6407B00A5AF7E /* JMStaticContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D415D6407B00A5AF7E /* JMStaticContentTableViewController.m */; };
+		DAE977DC15D6407B00A5AF7E /* JMStaticContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D415D6407B00A5AF7E /* JMStaticContentTableViewController.m */; };
+		DAE977DD15D6407B00A5AF7E /* JMStaticContentTableViewSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D615D6407B00A5AF7E /* JMStaticContentTableViewSection.m */; };
+		DAE977DE15D6407B00A5AF7E /* JMStaticContentTableViewSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D615D6407B00A5AF7E /* JMStaticContentTableViewSection.m */; };
+		DAE977DF15D6407B00A5AF7E /* StaticTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D815D6407B00A5AF7E /* StaticTextFieldTableViewCell.m */; };
+		DAE977E015D6407B00A5AF7E /* StaticTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D815D6407B00A5AF7E /* StaticTextFieldTableViewCell.m */; };
+		DAE977E715D6654800A5AF7E /* TimePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */; };
+		DAE977E815D6654800A5AF7E /* TimePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */; };
+		DAEA364115DD3FA200FCB8CA /* TouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA364015DD3FA200FCB8CA /* TouchExt.m */; };
+		DAEA364215DD3FA200FCB8CA /* TouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA364015DD3FA200FCB8CA /* TouchExt.m */; };
+		DAEA465215DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */; };
+		DAEA465315DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */; };
+		DAEA465415DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA465115DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m */; };
+		DAEA465515DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA465115DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m */; };
+		DAEA465915DAA3E800B1C83C /* DuringMatchSettingDetailControllerHD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAEA465615DAA3E800B1C83C /* DuringMatchSettingDetailControllerHD.xib */; };
+		DAEA465B15DAA3E800B1C83C /* DuringMatchSettingRootControllerHD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAEA465715DAA3E800B1C83C /* DuringMatchSettingRootControllerHD.xib */; };
+		DAEC18EA15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEC18EB15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEC18EC15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEC18ED15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
 		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
@@ -263,6 +303,7 @@
 		DA00F37F15A9DC92005B2F4B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		DA10C1CC15B117A400153392 /* StaticTableGroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTableGroupData.h; sourceTree = "<group>"; };
 		DA10C1CD15B117A400153392 /* StaticTableGroupData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTableGroupData.m; sourceTree = "<group>"; };
+		DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DA279BEE15B16BB400C6B1DC /* AFPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFPickerView.h; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.h; sourceTree = "<group>"; };
 		DA279BEF15B16BB400C6B1DC /* AFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFPickerView.m; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.m; sourceTree = "<group>"; };
 		DA279C0715B178A100C6B1DC /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
@@ -288,7 +329,31 @@
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
-		DA78B48315A96F0600E186CC /* PermitControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PermitControlView.xib; path = "Resources-iPad/PermitControlView.xib"; sourceTree = "<group>"; };
+		DAAA375715C531250086F00B /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
+		DAAA375815C531250086F00B /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
+		DAAA375915C531250086F00B /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
+		DAAA375A15C531250086F00B /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = ../SBJson/Classes/SBJsonParser.h; sourceTree = "<group>"; };
+		DAAA375B15C531250086F00B /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = ../SBJson/Classes/SBJsonParser.m; sourceTree = "<group>"; };
+		DAAA375C15C531250086F00B /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParser.h; path = ../SBJson/Classes/SBJsonStreamParser.h; sourceTree = "<group>"; };
+		DAAA375D15C531250086F00B /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParser.m; path = ../SBJson/Classes/SBJsonStreamParser.m; sourceTree = "<group>"; };
+		DAAA375E15C531250086F00B /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAccumulator.h; path = ../SBJson/Classes/SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		DAAA375F15C531250086F00B /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserAccumulator.m; path = ../SBJson/Classes/SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		DAAA376015C531250086F00B /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAdapter.h; path = ../SBJson/Classes/SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		DAAA376115C531250086F00B /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserAdapter.m; path = ../SBJson/Classes/SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		DAAA376215C531250086F00B /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserState.h; path = ../SBJson/Classes/SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		DAAA376315C531250086F00B /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserState.m; path = ../SBJson/Classes/SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		DAAA376415C531250086F00B /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriter.h; path = ../SBJson/Classes/SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		DAAA376515C531250086F00B /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriter.m; path = ../SBJson/Classes/SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		DAAA376615C531250086F00B /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterAccumulator.h; path = ../SBJson/Classes/SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		DAAA376715C531250086F00B /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriterAccumulator.m; path = ../SBJson/Classes/SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		DAAA376815C531250086F00B /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterState.h; path = ../SBJson/Classes/SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		DAAA376915C531250086F00B /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriterState.m; path = ../SBJson/Classes/SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		DAAA376A15C531250086F00B /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonTokeniser.h; path = ../SBJson/Classes/SBJsonTokeniser.h; sourceTree = "<group>"; };
+		DAAA376B15C531250086F00B /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonTokeniser.m; path = ../SBJson/Classes/SBJsonTokeniser.m; sourceTree = "<group>"; };
+		DAAA376C15C531250086F00B /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonUTF8Stream.h; path = ../SBJson/Classes/SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		DAAA376D15C531250086F00B /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonUTF8Stream.m; path = ../SBJson/Classes/SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		DAAA376E15C531250086F00B /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = ../SBJson/Classes/SBJsonWriter.h; sourceTree = "<group>"; };
+		DAAA376F15C531250086F00B /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = ../SBJson/Classes/SBJsonWriter.m; sourceTree = "<group>"; };
 		DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
 		DAE45A4015B25FB000F9A847 /* GameSettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GameSettingView.xib; path = "Resources-iPad/GameSettingView.xib"; sourceTree = "<group>"; };
 		DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
@@ -300,8 +365,6 @@
 		DAE45AB315B2737A00F9A847 /* PickerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerShadow.png; path = "Resources-iPad/PickerShadow.png"; sourceTree = "<group>"; };
 		DAE498ED15BA47C600C21671 /* GameInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
 		DAE498EE15BA47C600C21671 /* GameInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameInfo.m; sourceTree = "<group>"; };
-		DAE498F215BA525700C21671 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Util/Reachability.h; sourceTree = "<group>"; };
-		DAE498F315BA525700C21671 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Util/Reachability.m; sourceTree = "<group>"; };
 		DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DAE498FC15BA821700C21671 /* UIView+JMNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMNoise.h"; sourceTree = "<group>"; };
 		DAE498FD15BA821700C21671 /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
@@ -332,17 +395,18 @@
 		DAE5E34615BEE6F2001BC09A /* start-round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "start-round.png"; path = "Resources-iPad/start-round.png"; sourceTree = "<group>"; };
 		DAE64A0115B3137F0062A2B9 /* PeerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerClient.h; sourceTree = "<group>"; };
 		DAE64A0215B3137F0062A2B9 /* PeerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerClient.m; sourceTree = "<group>"; };
+		DAE6863815CECA2A002A69B9 /* MainGameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameSettingViewController.h; sourceTree = "<group>"; };
+		DAE6863915CECA2A002A69B9 /* MainGameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameSettingViewController.m; sourceTree = "<group>"; };
+		DAE6863B15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingTableView.h; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		DAE6863C15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		DAE735BD15A84AAE00C84157 /* CommandMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMsg.h; sourceTree = "<group>"; };
 		DAE735BE15A84AAE00C84157 /* CommandMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMsg.m; sourceTree = "<group>"; };
-		DAE735C215A889C900C84157 /* PermitControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermitControlView.h; sourceTree = SOURCE_ROOT; };
-		DAE735C315A889C900C84157 /* PermitControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermitControlView.m; sourceTree = SOURCE_ROOT; };
-		DAE735C515A889DE00C84157 /* PermitControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PermitControlView.xib; sourceTree = "<group>"; };
 		DAE73CBF15AC77340083CAF1 /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSettingViewController.h; path = ../GameSettingViewController.h; sourceTree = "<group>"; };
 		DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameSettingViewController.m; path = ../GameSettingViewController.m; sourceTree = "<group>"; };
 		DAE73CC115AC77340083CAF1 /* GameSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameSettingView.xib; sourceTree = "<group>"; };
+		DAE789FE15C4D07C007A3A29 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Util/Reachability.h; sourceTree = "<group>"; };
+		DAE789FF15C4D07C007A3A29 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Util/Reachability.m; sourceTree = "<group>"; };
 		DAE79D8D15BBC50B00BC594E /* UtilHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilHelper.h; sourceTree = "<group>"; };
-		DAE79D9215BC364D00BC594E /* SafeMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeMutableDictionary.h; sourceTree = "<group>"; };
-		DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeMutableDictionary.m; sourceTree = "<group>"; };
 		DAE79D9715BC40AB00BC594E /* UtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilHelper.m; sourceTree = "<group>"; };
 		DAE7A26315B42BAC001FF160 /* PeerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerBrowser.h; sourceTree = "<group>"; };
 		DAE7A26415B42BAC001FF160 /* PeerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerBrowser.m; sourceTree = "<group>"; };
@@ -365,34 +429,47 @@
 		DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DAE804F415B3055000CBC42F /* PeerServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServer.h; sourceTree = "<group>"; };
 		DAE804F515B3055000CBC42F /* PeerServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerServer.m; sourceTree = "<group>"; };
+		DAE8D41415DBF4DF002E0CCA /* circle_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle_green.png; path = Images/circle_green.png; sourceTree = "<group>"; };
+		DAE8D41515DBF4DF002E0CCA /* circle_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle_red.png; path = Images/circle_red.png; sourceTree = "<group>"; };
 		DAE92C3415C0578B00F0515D /* RoundRestTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RoundRestTimeView.xib; path = "Resources-iPad/RoundRestTimeView.xib"; sourceTree = "<group>"; };
-		DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
-		DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
-		DAF65A0A159EEF63001BEA75 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
-		DAF65A0B159EEF63001BEA75 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = ../SBJson/Classes/SBJsonParser.h; sourceTree = "<group>"; };
-		DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = ../SBJson/Classes/SBJsonParser.m; sourceTree = "<group>"; };
-		DAF65A0D159EEF63001BEA75 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParser.h; path = ../SBJson/Classes/SBJsonStreamParser.h; sourceTree = "<group>"; };
-		DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParser.m; path = ../SBJson/Classes/SBJsonStreamParser.m; sourceTree = "<group>"; };
-		DAF65A0F159EEF63001BEA75 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAccumulator.h; path = ../SBJson/Classes/SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
-		DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserAccumulator.m; path = ../SBJson/Classes/SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
-		DAF65A11159EEF63001BEA75 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAdapter.h; path = ../SBJson/Classes/SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
-		DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserAdapter.m; path = ../SBJson/Classes/SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
-		DAF65A13159EEF63001BEA75 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserState.h; path = ../SBJson/Classes/SBJsonStreamParserState.h; sourceTree = "<group>"; };
-		DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParserState.m; path = ../SBJson/Classes/SBJsonStreamParserState.m; sourceTree = "<group>"; };
-		DAF65A15159EEF63001BEA75 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriter.h; path = ../SBJson/Classes/SBJsonStreamWriter.h; sourceTree = "<group>"; };
-		DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriter.m; path = ../SBJson/Classes/SBJsonStreamWriter.m; sourceTree = "<group>"; };
-		DAF65A17159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterAccumulator.h; path = ../SBJson/Classes/SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
-		DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriterAccumulator.m; path = ../SBJson/Classes/SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
-		DAF65A19159EEF63001BEA75 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterState.h; path = ../SBJson/Classes/SBJsonStreamWriterState.h; sourceTree = "<group>"; };
-		DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriterState.m; path = ../SBJson/Classes/SBJsonStreamWriterState.m; sourceTree = "<group>"; };
-		DAF65A1B159EEF63001BEA75 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonTokeniser.h; path = ../SBJson/Classes/SBJsonTokeniser.h; sourceTree = "<group>"; };
-		DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonTokeniser.m; path = ../SBJson/Classes/SBJsonTokeniser.m; sourceTree = "<group>"; };
-		DAF65A1D159EEF63001BEA75 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonUTF8Stream.h; path = ../SBJson/Classes/SBJsonUTF8Stream.h; sourceTree = "<group>"; };
-		DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonUTF8Stream.m; path = ../SBJson/Classes/SBJsonUTF8Stream.m; sourceTree = "<group>"; };
-		DAF65A1F159EEF63001BEA75 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = ../SBJson/Classes/SBJsonWriter.h; sourceTree = "<group>"; };
-		DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = ../SBJson/Classes/SBJsonWriter.m; sourceTree = "<group>"; };
-		DAF65A21159EEF63001BEA75 /* WaitingForViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitingForViewControler.h; path = ../SBJson/Classes/WaitingForViewControler.h; sourceTree = "<group>"; };
-		DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitingForViewControler.m; path = ../SBJson/Classes/WaitingForViewControler.m; sourceTree = "<group>"; };
+		DAE9779915D61ACF00A5AF7E /* GameSettingDetailControllerHD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingDetailControllerHD.h; sourceTree = "<group>"; };
+		DAE9779A15D61ACF00A5AF7E /* GameSettingDetailControllerHD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingDetailControllerHD.m; sourceTree = "<group>"; };
+		DAE9779B15D61ACF00A5AF7E /* GameSettingDetailControllerHD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GameSettingDetailControllerHD.xib; path = Classes/GameSettingDetailControllerHD.xib; sourceTree = "<group>"; };
+		DAE977A215D61BE200A5AF7E /* GameSettingRootControllerHD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingRootControllerHD.h; sourceTree = "<group>"; };
+		DAE977A315D61BE200A5AF7E /* GameSettingRootControllerHD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingRootControllerHD.m; sourceTree = "<group>"; };
+		DAE977A415D61BE200A5AF7E /* GameSettingRootControllerHD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GameSettingRootControllerHD.xib; path = Classes/GameSettingRootControllerHD.xib; sourceTree = "<group>"; };
+		DAE977A815D61DC100A5AF7E /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		DAE977B215D6398400A5AF7E /* DateInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateInputTableViewCell.h; path = ../Controls/TableCellControl/DateInputTableViewCell.h; sourceTree = "<group>"; };
+		DAE977B315D6398400A5AF7E /* DateInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateInputTableViewCell.m; path = ../Controls/TableCellControl/DateInputTableViewCell.m; sourceTree = "<group>"; };
+		DAE977B415D6398400A5AF7E /* PickerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerInputTableViewCell.h; path = ../Controls/TableCellControl/PickerInputTableViewCell.h; sourceTree = "<group>"; };
+		DAE977B515D6398400A5AF7E /* PickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerInputTableViewCell.m; path = ../Controls/TableCellControl/PickerInputTableViewCell.m; sourceTree = "<group>"; };
+		DAE977B615D6398400A5AF7E /* SimplePickerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplePickerInputTableViewCell.h; path = ../Controls/TableCellControl/SimplePickerInputTableViewCell.h; sourceTree = "<group>"; };
+		DAE977B715D6398400A5AF7E /* SimplePickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimplePickerInputTableViewCell.m; path = ../Controls/TableCellControl/SimplePickerInputTableViewCell.m; sourceTree = "<group>"; };
+		DAE977B815D6398400A5AF7E /* StringInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringInputTableViewCell.h; path = ../Controls/TableCellControl/StringInputTableViewCell.h; sourceTree = "<group>"; };
+		DAE977B915D6398400A5AF7E /* StringInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringInputTableViewCell.m; path = ../Controls/TableCellControl/StringInputTableViewCell.m; sourceTree = "<group>"; };
+		DAE977D015D6407B00A5AF7E /* JMStaticContentTableViewBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMStaticContentTableViewBlocks.h; sourceTree = "<group>"; };
+		DAE977D115D6407B00A5AF7E /* JMStaticContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMStaticContentTableViewCell.h; sourceTree = "<group>"; };
+		DAE977D215D6407B00A5AF7E /* JMStaticContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMStaticContentTableViewCell.m; sourceTree = "<group>"; };
+		DAE977D315D6407B00A5AF7E /* JMStaticContentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMStaticContentTableViewController.h; sourceTree = "<group>"; };
+		DAE977D415D6407B00A5AF7E /* JMStaticContentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMStaticContentTableViewController.m; sourceTree = "<group>"; };
+		DAE977D515D6407B00A5AF7E /* JMStaticContentTableViewSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMStaticContentTableViewSection.h; sourceTree = "<group>"; };
+		DAE977D615D6407B00A5AF7E /* JMStaticContentTableViewSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMStaticContentTableViewSection.m; sourceTree = "<group>"; };
+		DAE977D715D6407B00A5AF7E /* StaticTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		DAE977D815D6407B00A5AF7E /* StaticTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		DAE977E515D6654300A5AF7E /* TimePickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimePickerTableViewCell.h; path = ../Controls/TableCellControl/TimePickerTableViewCell.h; sourceTree = "<group>"; };
+		DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimePickerTableViewCell.m; path = ../Controls/TableCellControl/TimePickerTableViewCell.m; sourceTree = "<group>"; };
+		DAEA363F15DD3FA100FCB8CA /* TouchExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchExt.h; sourceTree = "<group>"; };
+		DAEA364015DD3FA200FCB8CA /* TouchExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchExt.m; sourceTree = "<group>"; };
+		DAEA464E15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringMatchSettingDetailControllerHD.h; sourceTree = "<group>"; };
+		DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuringMatchSettingDetailControllerHD.m; sourceTree = "<group>"; };
+		DAEA465015DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringMatchSettingRootControllerHD.h; sourceTree = "<group>"; };
+		DAEA465115DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuringMatchSettingRootControllerHD.m; sourceTree = "<group>"; };
+		DAEA465615DAA3E800B1C83C /* DuringMatchSettingDetailControllerHD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DuringMatchSettingDetailControllerHD.xib; path = Classes/DuringMatchSettingDetailControllerHD.xib; sourceTree = "<group>"; };
+		DAEA465715DAA3E800B1C83C /* DuringMatchSettingRootControllerHD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DuringMatchSettingRootControllerHD.xib; path = Classes/DuringMatchSettingRootControllerHD.xib; sourceTree = "<group>"; };
+		DAEC18E615D76A1D00C13772 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
+		DAEC18E815D76A1D00C13772 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreControlViewController.h; sourceTree = "<group>"; };
 		DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreControlViewController.m; sourceTree = "<group>"; };
 		DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreControlView.xib; sourceTree = "<group>"; };
@@ -410,6 +487,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA20D20215D16CF500FB22B9 /* AudioToolbox.framework in Frameworks */,
 				DAE4992B15BA829F00C21671 /* QuartzCore.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				DAE498F815BA52E400C21671 /* SystemConfiguration.framework in Frameworks */,
@@ -425,6 +503,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */,
 				DAE4992A15BA829500C21671 /* QuartzCore.framework in Frameworks */,
 				DAE498F715BA52CB00C21671 /* SystemConfiguration.framework in Frameworks */,
 				DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */,
@@ -466,8 +545,8 @@
 			children = (
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
 				DA00F37D15A9DC92005B2F4B /* app2.png */,
-				DADB112215A8AB3800326B24 /* Images */,
 				DAF65A04159EEED1001BEA75 /* dependencies */,
+				DADB112215A8AB3800326B24 /* Images */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -481,6 +560,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DAE977A815D61DC100A5AF7E /* Settings.plist */,
 				32CA4F630368D1EE00C91783 /* TKD Score_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -495,7 +575,6 @@
 				DAE45AAB15B2733A00F9A847 /* PickerBG.png */,
 				DAE45AAC15B2733A00F9A847 /* pickerGlassHightlight.png */,
 				DAE45AAD15B2733A00F9A847 /* PickerShadow.png */,
-				DAE735C515A889DE00C84157 /* PermitControlView.xib */,
 				DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */,
 				DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */,
 				D039DF4D0F9E50E100C77B72 /* WelcomeViewController.xib */,
@@ -510,6 +589,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */,
 				DA00F37E15A9DC92005B2F4B /* icon.png */,
 				DAE4992915BA829400C21671 /* QuartzCore.framework */,
 				DAE498F615BA52CB00C21671 /* SystemConfiguration.framework */,
@@ -574,8 +654,6 @@
 				DA10C1CD15B117A400153392 /* StaticTableGroupData.m */,
 				DAE7A26715B42DE1001FF160 /* Definition.h */,
 				DAE7A26815B42DE1001FF160 /* Definition.m */,
-				DAE79D9215BC364D00BC594E /* SafeMutableDictionary.h */,
-				DAE79D9315BC364D00BC594E /* SafeMutableDictionary.m */,
 				DAE79D9715BC40AB00BC594E /* UtilHelper.m */,
 			);
 			name = Misc;
@@ -584,10 +662,14 @@
 		D0B0372F0FA61471000EC42B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DAEA363F15DD3FA100FCB8CA /* TouchExt.h */,
+				DAEA364015DD3FA200FCB8CA /* TouchExt.m */,
+				DAEA464E15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.h */,
+				DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */,
+				DAEA465015DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.h */,
+				DAEA465115DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m */,
 				DAE73CBF15AC77340083CAF1 /* GameSettingViewController.h */,
 				DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */,
-				DAE735C215A889C900C84157 /* PermitControlView.h */,
-				DAE735C315A889C900C84157 /* PermitControlView.m */,
 				DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */,
 				DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */,
 				D039DF530F9E515F00C77B72 /* WelcomeViewController.h */,
@@ -602,6 +684,12 @@
 				DAE4992D15BA850E00C21671 /* UIWaitForUserViewController.m */,
 				DA5381A515BDAE5800D1413B /* RoundRestTimeViewController.h */,
 				DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */,
+				DAE6863815CECA2A002A69B9 /* MainGameSettingViewController.h */,
+				DAE6863915CECA2A002A69B9 /* MainGameSettingViewController.m */,
+				DAE9779915D61ACF00A5AF7E /* GameSettingDetailControllerHD.h */,
+				DAE9779A15D61ACF00A5AF7E /* GameSettingDetailControllerHD.m */,
+				DAE977A215D61BE200A5AF7E /* GameSettingRootControllerHD.h */,
+				DAE977A315D61BE200A5AF7E /* GameSettingRootControllerHD.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -624,6 +712,8 @@
 		DA279C0615B1787B00C6B1DC /* AvoidKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				DAE6863B15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.h */,
+				DAE6863C15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m */,
 				DA279C0715B178A100C6B1DC /* TPKeyboardAvoidingScrollView.h */,
 				DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */,
 			);
@@ -633,6 +723,10 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				DAEA465615DAA3E800B1C83C /* DuringMatchSettingDetailControllerHD.xib */,
+				DAEA465715DAA3E800B1C83C /* DuringMatchSettingRootControllerHD.xib */,
+				DAE977A415D61BE200A5AF7E /* GameSettingRootControllerHD.xib */,
+				DAE9779B15D61ACF00A5AF7E /* GameSettingDetailControllerHD.xib */,
 				DAE92C3415C0578B00F0515D /* RoundRestTimeView.xib */,
 				DAE7E70C15B82DE900363399 /* ScoreControlView.xib */,
 				DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */,
@@ -645,7 +739,6 @@
 				DAE45A4015B25FB000F9A847 /* GameSettingView.xib */,
 				DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */,
 				DA78B48115A96F0600E186CC /* ScoreControlView.xib */,
-				DA78B48315A96F0600E186CC /* PermitControlView.xib */,
 				DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */,
 			);
 			name = "Resources-iPad";
@@ -654,6 +747,8 @@
 		DADB112215A8AB3800326B24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAE8D41415DBF4DF002E0CCA /* circle_green.png */,
+				DAE8D41515DBF4DF002E0CCA /* circle_red.png */,
 				DAE5E34615BEE6F2001BC09A /* start-round.png */,
 				DA53819F15BD920E00D1413B /* next-match.png */,
 				DA5381A015BD920E00D1413B /* next-round.png */,
@@ -778,9 +873,56 @@
 			name = BluetoothManager;
 			sourceTree = "<group>";
 		};
+		DAE977B115D6397100A5AF7E /* TableCellControl */ = {
+			isa = PBXGroup;
+			children = (
+				DAE977E515D6654300A5AF7E /* TimePickerTableViewCell.h */,
+				DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */,
+				DAE977B215D6398400A5AF7E /* DateInputTableViewCell.h */,
+				DAE977B315D6398400A5AF7E /* DateInputTableViewCell.m */,
+				DAE977B415D6398400A5AF7E /* PickerInputTableViewCell.h */,
+				DAE977B515D6398400A5AF7E /* PickerInputTableViewCell.m */,
+				DAE977B615D6398400A5AF7E /* SimplePickerInputTableViewCell.h */,
+				DAE977B715D6398400A5AF7E /* SimplePickerInputTableViewCell.m */,
+				DAE977B815D6398400A5AF7E /* StringInputTableViewCell.h */,
+				DAE977B915D6398400A5AF7E /* StringInputTableViewCell.m */,
+			);
+			name = TableCellControl;
+			sourceTree = "<group>";
+		};
+		DAE977CF15D6407B00A5AF7E /* JMStaticContentTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAE977D015D6407B00A5AF7E /* JMStaticContentTableViewBlocks.h */,
+				DAE977D115D6407B00A5AF7E /* JMStaticContentTableViewCell.h */,
+				DAE977D215D6407B00A5AF7E /* JMStaticContentTableViewCell.m */,
+				DAE977D315D6407B00A5AF7E /* JMStaticContentTableViewController.h */,
+				DAE977D415D6407B00A5AF7E /* JMStaticContentTableViewController.m */,
+				DAE977D515D6407B00A5AF7E /* JMStaticContentTableViewSection.h */,
+				DAE977D615D6407B00A5AF7E /* JMStaticContentTableViewSection.m */,
+				DAE977D715D6407B00A5AF7E /* StaticTextFieldTableViewCell.h */,
+				DAE977D815D6407B00A5AF7E /* StaticTextFieldTableViewCell.m */,
+			);
+			name = JMStaticContentTableViewController;
+			path = ../Controls/JMStaticContentTableViewController;
+			sourceTree = "<group>";
+		};
+		DAEC18E515D76A1D00C13772 /* UIDeviceAddition */ = {
+			isa = PBXGroup;
+			children = (
+				DAEC18E615D76A1D00C13772 /* NSString+MD5Addition.h */,
+				DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */,
+				DAEC18E815D76A1D00C13772 /* UIDevice+IdentifierAddition.h */,
+				DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */,
+			);
+			name = UIDeviceAddition;
+			path = ../Util/UIDeviceAddition;
+			sourceTree = "<group>";
+		};
 		DAF65A04159EEED1001BEA75 /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DAE977CF15D6407B00A5AF7E /* JMStaticContentTableViewController */,
 				DAE7E6AB15B81E2F00363399 /* BluetoothManager */,
 				DAF8F5C215B1677B00497FC5 /* Controls */,
 				DAF8F5B215B13C8400497FC5 /* Util */,
@@ -800,33 +942,31 @@
 		DAF65A07159EEF46001BEA75 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DAF65A08159EEF63001BEA75 /* NSObject+SBJson.h */,
-				DAF65A09159EEF63001BEA75 /* NSObject+SBJson.m */,
-				DAF65A0A159EEF63001BEA75 /* SBJson.h */,
-				DAF65A0B159EEF63001BEA75 /* SBJsonParser.h */,
-				DAF65A0C159EEF63001BEA75 /* SBJsonParser.m */,
-				DAF65A0D159EEF63001BEA75 /* SBJsonStreamParser.h */,
-				DAF65A0E159EEF63001BEA75 /* SBJsonStreamParser.m */,
-				DAF65A0F159EEF63001BEA75 /* SBJsonStreamParserAccumulator.h */,
-				DAF65A10159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m */,
-				DAF65A11159EEF63001BEA75 /* SBJsonStreamParserAdapter.h */,
-				DAF65A12159EEF63001BEA75 /* SBJsonStreamParserAdapter.m */,
-				DAF65A13159EEF63001BEA75 /* SBJsonStreamParserState.h */,
-				DAF65A14159EEF63001BEA75 /* SBJsonStreamParserState.m */,
-				DAF65A15159EEF63001BEA75 /* SBJsonStreamWriter.h */,
-				DAF65A16159EEF63001BEA75 /* SBJsonStreamWriter.m */,
-				DAF65A17159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.h */,
-				DAF65A18159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m */,
-				DAF65A19159EEF63001BEA75 /* SBJsonStreamWriterState.h */,
-				DAF65A1A159EEF63001BEA75 /* SBJsonStreamWriterState.m */,
-				DAF65A1B159EEF63001BEA75 /* SBJsonTokeniser.h */,
-				DAF65A1C159EEF63001BEA75 /* SBJsonTokeniser.m */,
-				DAF65A1D159EEF63001BEA75 /* SBJsonUTF8Stream.h */,
-				DAF65A1E159EEF63001BEA75 /* SBJsonUTF8Stream.m */,
-				DAF65A1F159EEF63001BEA75 /* SBJsonWriter.h */,
-				DAF65A20159EEF63001BEA75 /* SBJsonWriter.m */,
-				DAF65A21159EEF63001BEA75 /* WaitingForViewControler.h */,
-				DAF65A22159EEF63001BEA75 /* WaitingForViewControler.m */,
+				DAAA375715C531250086F00B /* NSObject+SBJson.h */,
+				DAAA375815C531250086F00B /* NSObject+SBJson.m */,
+				DAAA375915C531250086F00B /* SBJson.h */,
+				DAAA375A15C531250086F00B /* SBJsonParser.h */,
+				DAAA375B15C531250086F00B /* SBJsonParser.m */,
+				DAAA375C15C531250086F00B /* SBJsonStreamParser.h */,
+				DAAA375D15C531250086F00B /* SBJsonStreamParser.m */,
+				DAAA375E15C531250086F00B /* SBJsonStreamParserAccumulator.h */,
+				DAAA375F15C531250086F00B /* SBJsonStreamParserAccumulator.m */,
+				DAAA376015C531250086F00B /* SBJsonStreamParserAdapter.h */,
+				DAAA376115C531250086F00B /* SBJsonStreamParserAdapter.m */,
+				DAAA376215C531250086F00B /* SBJsonStreamParserState.h */,
+				DAAA376315C531250086F00B /* SBJsonStreamParserState.m */,
+				DAAA376415C531250086F00B /* SBJsonStreamWriter.h */,
+				DAAA376515C531250086F00B /* SBJsonStreamWriter.m */,
+				DAAA376615C531250086F00B /* SBJsonStreamWriterAccumulator.h */,
+				DAAA376715C531250086F00B /* SBJsonStreamWriterAccumulator.m */,
+				DAAA376815C531250086F00B /* SBJsonStreamWriterState.h */,
+				DAAA376915C531250086F00B /* SBJsonStreamWriterState.m */,
+				DAAA376A15C531250086F00B /* SBJsonTokeniser.h */,
+				DAAA376B15C531250086F00B /* SBJsonTokeniser.m */,
+				DAAA376C15C531250086F00B /* SBJsonUTF8Stream.h */,
+				DAAA376D15C531250086F00B /* SBJsonUTF8Stream.m */,
+				DAAA376E15C531250086F00B /* SBJsonWriter.h */,
+				DAAA376F15C531250086F00B /* SBJsonWriter.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -834,8 +974,9 @@
 		DAF8F5B215B13C8400497FC5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				DAE498F215BA525700C21671 /* Reachability.h */,
-				DAE498F315BA525700C21671 /* Reachability.m */,
+				DAEC18E515D76A1D00C13772 /* UIDeviceAddition */,
+				DAE789FE15C4D07C007A3A29 /* Reachability.h */,
+				DAE789FF15C4D07C007A3A29 /* Reachability.m */,
 				DAF8F5B415B13C9600497FC5 /* UIHelper.h */,
 				DAF8F5B515B13C9600497FC5 /* UIHelper.m */,
 			);
@@ -845,6 +986,7 @@
 		DAF8F5C215B1677B00497FC5 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DAE977B115D6397100A5AF7E /* TableCellControl */,
 				DAE4994115BB07D200C21671 /* DDActionHeader */,
 				DAE498F915BA820C00C21671 /* UAModelPanel */,
 				DA279C0615B1787B00C6B1DC /* AvoidKeyboard */,
@@ -934,7 +1076,6 @@
 				D039DF4E0F9E50E100C77B72 /* WelcomeViewController.xib in Resources */,
 				DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */,
 				DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */,
-				DAE735C615A889DE00C84157 /* PermitControlView.xib in Resources */,
 				DA00F31D15A98EFE005B2F4B /* TKD Score-iPad.plist in Resources */,
 				DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */,
 				DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */,
@@ -970,6 +1111,9 @@
 				DA5381A315BD920E00D1413B /* next-round.png in Resources */,
 				DA5381AA15BDAE5900D1413B /* RoundRestTimeView.xib in Resources */,
 				DAE5E34715BEE6F2001BC09A /* start-round.png in Resources */,
+				DAE977A915D61DC100A5AF7E /* Settings.plist in Resources */,
+				DAE8D41615DBF4DF002E0CCA /* circle_green.png in Resources */,
+				DAE8D41815DBF4DF002E0CCA /* circle_red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,7 +1122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */,
-				DA78B48A15A96F0600E186CC /* PermitControlView.xib in Resources */,
 				DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */,
 				DA00F38315A9DCDD005B2F4B /* app2.png in Resources */,
 				DAE45A4D15B2601B00F9A847 /* GameSettingView.xib in Resources */,
@@ -1008,6 +1151,13 @@
 				DA5381AB15BDAE5900D1413B /* RoundRestTimeView.xib in Resources */,
 				DAE5E34815BEE6F2001BC09A /* start-round.png in Resources */,
 				DAE92C3515C0578B00F0515D /* RoundRestTimeView.xib in Resources */,
+				DAE9779D15D61ACF00A5AF7E /* GameSettingDetailControllerHD.xib in Resources */,
+				DAE977A615D61BE200A5AF7E /* GameSettingRootControllerHD.xib in Resources */,
+				DAE977AA15D61DC100A5AF7E /* Settings.plist in Resources */,
+				DAEA465915DAA3E800B1C83C /* DuringMatchSettingDetailControllerHD.xib in Resources */,
+				DAEA465B15DAA3E800B1C83C /* DuringMatchSettingRootControllerHD.xib in Resources */,
+				DAE8D41715DBF4DF002E0CCA /* circle_green.png in Resources */,
+				DAE8D41915DBF4DF002E0CCA /* circle_red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,23 +1180,9 @@
 				D0510A520F9E00BB00B735FA /* Room.m in Sources */,
 				D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */,
 				D039DF550F9E515F00C77B72 /* WelcomeViewController.m in Sources */,
-				DAF65A23159EEF63001BEA75 /* NSObject+SBJson.m in Sources */,
-				DAF65A24159EEF63001BEA75 /* SBJsonParser.m in Sources */,
-				DAF65A25159EEF63001BEA75 /* SBJsonStreamParser.m in Sources */,
-				DAF65A26159EEF63001BEA75 /* SBJsonStreamParserAccumulator.m in Sources */,
-				DAF65A27159EEF63001BEA75 /* SBJsonStreamParserAdapter.m in Sources */,
-				DAF65A28159EEF63001BEA75 /* SBJsonStreamParserState.m in Sources */,
-				DAF65A29159EEF63001BEA75 /* SBJsonStreamWriter.m in Sources */,
-				DAF65A2A159EEF63001BEA75 /* SBJsonStreamWriterAccumulator.m in Sources */,
-				DAF65A2B159EEF63001BEA75 /* SBJsonStreamWriterState.m in Sources */,
-				DAF65A2C159EEF63001BEA75 /* SBJsonTokeniser.m in Sources */,
-				DAF65A2D159EEF63001BEA75 /* SBJsonUTF8Stream.m in Sources */,
-				DAF65A2E159EEF63001BEA75 /* SBJsonWriter.m in Sources */,
-				DAF65A2F159EEF63001BEA75 /* WaitingForViewControler.m in Sources */,
 				DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */,
 				DAF65AA9159F2F1E001BEA75 /* ScoreBoardViewController.m in Sources */,
 				DAE735BF15A84AAE00C84157 /* CommandMsg.m in Sources */,
-				DAE735C415A889CA00C84157 /* PermitControlView.m in Sources */,
 				DAE73CC215AC77340083CAF1 /* GameSettingViewController.m in Sources */,
 				DA10C1CE15B117A400153392 /* StaticTableGroupData.m in Sources */,
 				DAF8F5B615B13C9600497FC5 /* UIHelper.m in Sources */,
@@ -1063,7 +1199,6 @@
 				DA43FDB415B5DA840083D1B7 /* UILoadingBox.m in Sources */,
 				DAE7E4E815B9BD46009B456F /* UIPasswordBox.m in Sources */,
 				DAE498EF15BA47C600C21671 /* GameInfo.m in Sources */,
-				DAE498F415BA525700C21671 /* Reachability.m in Sources */,
 				DAE4991115BA821700C21671 /* UIView+JMNoise.m in Sources */,
 				DAE4991F15BA821700C21671 /* UAModalPanel.m in Sources */,
 				DAE4992115BA821700C21671 /* UATitledModalPanel.m in Sources */,
@@ -1073,9 +1208,39 @@
 				DAE4992F15BA851000C21671 /* UIWaitForUserViewController.m in Sources */,
 				DAE4993515BAA44500C21671 /* JudgeClientInfo.m in Sources */,
 				DAE4994415BB07DF00C21671 /* DDActionHeaderView.m in Sources */,
-				DAE79D9415BC364E00BC594E /* SafeMutableDictionary.m in Sources */,
 				DAE79D9815BC40AC00BC594E /* UtilHelper.m in Sources */,
 				DA5381A815BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */,
+				DAE78A0015C4D07C007A3A29 /* Reachability.m in Sources */,
+				DAAA377015C531250086F00B /* NSObject+SBJson.m in Sources */,
+				DAAA377215C531250086F00B /* SBJsonParser.m in Sources */,
+				DAAA377415C531250086F00B /* SBJsonStreamParser.m in Sources */,
+				DAAA377615C531250086F00B /* SBJsonStreamParserAccumulator.m in Sources */,
+				DAAA377815C531250086F00B /* SBJsonStreamParserAdapter.m in Sources */,
+				DAAA377A15C531250086F00B /* SBJsonStreamParserState.m in Sources */,
+				DAAA377C15C531250086F00B /* SBJsonStreamWriter.m in Sources */,
+				DAAA377E15C531250086F00B /* SBJsonStreamWriterAccumulator.m in Sources */,
+				DAAA378015C531250086F00B /* SBJsonStreamWriterState.m in Sources */,
+				DAAA378215C531250086F00B /* SBJsonTokeniser.m in Sources */,
+				DAAA378415C531250086F00B /* SBJsonUTF8Stream.m in Sources */,
+				DAAA378615C531250086F00B /* SBJsonWriter.m in Sources */,
+				DAE6863A15CECA2A002A69B9 /* MainGameSettingViewController.m in Sources */,
+				DAE6863D15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m in Sources */,
+				DAE977AE15D627F300A5AF7E /* GameSettingDetailControllerHD.m in Sources */,
+				DAE977B015D627F600A5AF7E /* GameSettingRootControllerHD.m in Sources */,
+				DAE977BA15D6398400A5AF7E /* DateInputTableViewCell.m in Sources */,
+				DAE977BC15D6398400A5AF7E /* PickerInputTableViewCell.m in Sources */,
+				DAE977BE15D6398400A5AF7E /* SimplePickerInputTableViewCell.m in Sources */,
+				DAE977C015D6398400A5AF7E /* StringInputTableViewCell.m in Sources */,
+				DAE977D915D6407B00A5AF7E /* JMStaticContentTableViewCell.m in Sources */,
+				DAE977DB15D6407B00A5AF7E /* JMStaticContentTableViewController.m in Sources */,
+				DAE977DD15D6407B00A5AF7E /* JMStaticContentTableViewSection.m in Sources */,
+				DAE977DF15D6407B00A5AF7E /* StaticTextFieldTableViewCell.m in Sources */,
+				DAE977E715D6654800A5AF7E /* TimePickerTableViewCell.m in Sources */,
+				DAEC18EA15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */,
+				DAEC18EC15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */,
+				DAEA465215DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */,
+				DAEA465415DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */,
+				DAEA364115DD3FA200FCB8CA /* TouchExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,23 +1260,9 @@
 				DA78B45D15A96F0100E186CC /* Room.m in Sources */,
 				DA78B45E15A96F0100E186CC /* UITextView+Utils.m in Sources */,
 				DA78B45F15A96F0100E186CC /* WelcomeViewController.m in Sources */,
-				DA78B46015A96F0100E186CC /* NSObject+SBJson.m in Sources */,
-				DA78B46115A96F0100E186CC /* SBJsonParser.m in Sources */,
-				DA78B46215A96F0100E186CC /* SBJsonStreamParser.m in Sources */,
-				DA78B46315A96F0100E186CC /* SBJsonStreamParserAccumulator.m in Sources */,
-				DA78B46415A96F0100E186CC /* SBJsonStreamParserAdapter.m in Sources */,
-				DA78B46515A96F0100E186CC /* SBJsonStreamParserState.m in Sources */,
-				DA78B46615A96F0100E186CC /* SBJsonStreamWriter.m in Sources */,
-				DA78B46715A96F0100E186CC /* SBJsonStreamWriterAccumulator.m in Sources */,
-				DA78B46815A96F0100E186CC /* SBJsonStreamWriterState.m in Sources */,
-				DA78B46915A96F0100E186CC /* SBJsonTokeniser.m in Sources */,
-				DA78B46A15A96F0100E186CC /* SBJsonUTF8Stream.m in Sources */,
-				DA78B46B15A96F0100E186CC /* SBJsonWriter.m in Sources */,
-				DA78B46C15A96F0100E186CC /* WaitingForViewControler.m in Sources */,
 				DA78B46D15A96F0100E186CC /* ScoreControlViewController.m in Sources */,
 				DA78B46E15A96F0100E186CC /* ScoreBoardViewController.m in Sources */,
 				DA78B46F15A96F0100E186CC /* CommandMsg.m in Sources */,
-				DA78B47015A96F0100E186CC /* PermitControlView.m in Sources */,
 				DAE4183A15B132F300C7BC8D /* GameSettingViewController.m in Sources */,
 				DAE459F215B25E8900F9A847 /* AFPickerView.m in Sources */,
 				DAE459F415B25E9000F9A847 /* TPKeyboardAvoidingScrollView.m in Sources */,
@@ -1126,7 +1277,6 @@
 				DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */,
 				DAE7E4E915B9BD46009B456F /* UIPasswordBox.m in Sources */,
 				DAE498F015BA47C600C21671 /* GameInfo.m in Sources */,
-				DAE498F515BA525700C21671 /* Reachability.m in Sources */,
 				DAE4991215BA821700C21671 /* UIView+JMNoise.m in Sources */,
 				DAE4992015BA821700C21671 /* UAModalPanel.m in Sources */,
 				DAE4992215BA821700C21671 /* UATitledModalPanel.m in Sources */,
@@ -1136,9 +1286,39 @@
 				DAE4993015BA851000C21671 /* UIWaitForUserViewController.m in Sources */,
 				DAE4993615BAA44500C21671 /* JudgeClientInfo.m in Sources */,
 				DAE4994515BB07DF00C21671 /* DDActionHeaderView.m in Sources */,
-				DAE79D9515BC364E00BC594E /* SafeMutableDictionary.m in Sources */,
 				DAE79D9915BC40AC00BC594E /* UtilHelper.m in Sources */,
 				DA5381A915BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */,
+				DAE78A0115C4D07C007A3A29 /* Reachability.m in Sources */,
+				DAAA377115C531250086F00B /* NSObject+SBJson.m in Sources */,
+				DAAA377315C531250086F00B /* SBJsonParser.m in Sources */,
+				DAAA377515C531250086F00B /* SBJsonStreamParser.m in Sources */,
+				DAAA377715C531250086F00B /* SBJsonStreamParserAccumulator.m in Sources */,
+				DAAA377915C531250086F00B /* SBJsonStreamParserAdapter.m in Sources */,
+				DAAA377B15C531250086F00B /* SBJsonStreamParserState.m in Sources */,
+				DAAA377D15C531250086F00B /* SBJsonStreamWriter.m in Sources */,
+				DAAA377F15C531250086F00B /* SBJsonStreamWriterAccumulator.m in Sources */,
+				DAAA378115C531250086F00B /* SBJsonStreamWriterState.m in Sources */,
+				DAAA378315C531250086F00B /* SBJsonTokeniser.m in Sources */,
+				DAAA378515C531250086F00B /* SBJsonUTF8Stream.m in Sources */,
+				DAAA378715C531250086F00B /* SBJsonWriter.m in Sources */,
+				DAE6863E15CECAF9002A69B9 /* TPKeyboardAvoidingTableView.m in Sources */,
+				DAE9779C15D61ACF00A5AF7E /* GameSettingDetailControllerHD.m in Sources */,
+				DAE977AB15D6273F00A5AF7E /* MainGameSettingViewController.m in Sources */,
+				DAE977AF15D627F500A5AF7E /* GameSettingRootControllerHD.m in Sources */,
+				DAE977BB15D6398400A5AF7E /* DateInputTableViewCell.m in Sources */,
+				DAE977BD15D6398400A5AF7E /* PickerInputTableViewCell.m in Sources */,
+				DAE977BF15D6398400A5AF7E /* SimplePickerInputTableViewCell.m in Sources */,
+				DAE977C115D6398400A5AF7E /* StringInputTableViewCell.m in Sources */,
+				DAE977DA15D6407B00A5AF7E /* JMStaticContentTableViewCell.m in Sources */,
+				DAE977DC15D6407B00A5AF7E /* JMStaticContentTableViewController.m in Sources */,
+				DAE977DE15D6407B00A5AF7E /* JMStaticContentTableViewSection.m in Sources */,
+				DAE977E015D6407B00A5AF7E /* StaticTextFieldTableViewCell.m in Sources */,
+				DAE977E815D6654800A5AF7E /* TimePickerTableViewCell.m in Sources */,
+				DAEC18EB15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */,
+				DAEC18ED15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */,
+				DAEA465315DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */,
+				DAEA465515DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */,
+				DAEA364215DD3FA200FCB8CA /* TouchExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1330,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1167,7 +1348,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
+				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1178,6 +1359,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1193,7 +1375,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
+				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1204,13 +1386,14 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "EDECDD06-210A-42CA-A41E-267D3128BE07";
 				SDKROOT = iphoneos5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1219,12 +1402,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PROVISIONING_PROFILE = "EDECDD06-210A-42CA-A41E-267D3128BE07";
 				SDKROOT = iphoneos5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1233,6 +1417,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1243,10 +1428,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
+				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1257,6 +1443,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1265,10 +1452,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "TKD Score-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "B5EFEE5C-B9CB-4081-BB2E-FEFD622716A1";
+				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

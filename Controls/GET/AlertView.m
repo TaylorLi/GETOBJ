@@ -29,7 +29,6 @@
     if(block==nil){
         block=^(AlertView *a, NSInteger i){
         };
-        [block retain];
         }
     [buttonCallbackArray addObject:block];
 }

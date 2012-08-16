@@ -30,14 +30,12 @@
 #import "WelcomeViewController.h"
 #import "ScoreControlViewController.h"
 #import "ScoreBoardViewController.h"
-#import "PermitControlView.h"
 #import "UIHelper.h"
 #import "AppConfig.h"
 
 static ChattyAppDelegate* _instance;
 
 @interface ChattyAppDelegate()
--(void) swithView:(UIView *) view;
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
 -(void)detectBluetoothStatus;
 -(void)testNetworkStatus;
@@ -45,12 +43,13 @@ static ChattyAppDelegate* _instance;
 
 @implementation ChattyAppDelegate
 
+@synthesize splitSettingViewController;
+@synthesize duringMathSplitViewCtl;
 @synthesize window;
 @synthesize viewController;
 @synthesize welcomeViewController;
 @synthesize scoreControlViewController;
 @synthesize scoreBoardViewController;
-@synthesize permitViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     // Allow other classes to use us
@@ -68,20 +67,15 @@ static ChattyAppDelegate* _instance;
     
     // 监测网络情况
     
-    wifiReach = [[Reachability reachabilityForLocalWiFi] retain];	
+    wifiReach = [Reachability reachabilityForLocalWiFi];	
     btManager = [BluetoothManager sharedInstance];
     [self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
+    welcomeViewController=nil;
 }
 
 - (void)dealloc {
-    [viewController release];
-    [welcomeViewController release];
-    [scoreBoardViewController release];
-    [scoreControlViewController release];
-    [permitViewController release];
-    [window release];
-    [super dealloc];
+    
 }
 
 
@@ -91,7 +85,9 @@ static ChattyAppDelegate* _instance;
 
 -(void) swithView:(UIView *) view{
     for (UIView *subView in window.subviews) {
+        if(subView.superview!=nil){
         [subView removeFromSuperview];
+            }
     }
     [window insertSubview:view atIndex:0];
 }
@@ -101,30 +97,30 @@ static ChattyAppDelegate* _instance;
     [viewController activate];
 }
 
--(void) showScoreBoard:(Room *)room{
+-(void) showScoreBoard:(LocalRoom *)room{
     NSLog(@"%i",scoreBoardViewController.view.superview==nil);
     [self swithView:scoreBoardViewController.view];
     scoreBoardViewController.chatRoom = room;
     [scoreBoardViewController activate];
 }
 
--(void) showScoreControlRoom:(Room *) room{
+-(void) showScoreControlRoom:(RemoteRoom *) room{
     scoreControlViewController.chatRoom = room;
     [scoreControlViewController activate];
     
-    [self swithView:scoreControlViewController.view];}
-
--(void) showPermitControl:(Room *)room validatePassword:(Boolean)isValatePassword setServerPassword: (NSString*) serverPassword{
-    permitViewController.chatRoom = room;
-    permitViewController.isValidatePassword = isValatePassword;
-    permitViewController.serverPassword = serverPassword;
-    
-    [permitViewController activate];
-    
-    [self swithView:permitViewController.view];
+    [self swithView:scoreControlViewController.view];
 }
 
-
+-(void) showGameSettingView{
+    if([AppConfig getInstance].serverSettingInfo==nil){
+        [AppConfig getInstance].serverSettingInfo=[[ServerSetting alloc] initWithDefault];
+    }
+    [self swithView:splitSettingViewController.view];
+}
+-(void) showDuringMatchSettingView
+{
+    [self swithView:duringMathSplitViewCtl.view];
+}
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
@@ -133,7 +129,6 @@ static ChattyAppDelegate* _instance;
                                               cancelButtonTitle:@"OK" 
                                               otherButtonTitles:nil];
     [alertView show];
-    [alertView release];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

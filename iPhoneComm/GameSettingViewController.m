@@ -84,21 +84,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc {
-    [txtGameName release];
-    [txtGameDesc release];
-    [txtRedSideName release];
-    [txtRedSidePlace release];
-    [txtblueSideName release];
-    [txtBlueSidePlace release];
-    [sldPsw release];
-    [txtPwd release];
-    [selRoundTime release];
-    [roundCount release];
-    [roundTime release];
-    [navBar release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -135,11 +120,10 @@
     else
         gameSetting.password=nil;
     NSLog(@"Game Setting:%@",[gameSetting description]);
-//    LocalRoom* room = [[[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:gameSetting]] autorelease];
+    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:gameSetting]];
     [self.view removeFromSuperview];
-    [gameSetting release];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
-    //[[ChattyAppDelegate getInstance] showScoreBoard:room];
+    [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 
 - (IBAction)backToSeverList:(id)sender {
@@ -226,4 +210,20 @@ numberOfRowsInComponent:(NSInteger)component {
     [settingView resignFirstResponder];
     [selRoundTime hidePicker];
 } 
+
+#pragma mark -
+#pragma mark AFPPickerDelegate
+- (NSInteger)numberOfRowsInPickerView:(AFPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSString *)pickerView:(AFPickerView *)pickerView titleForRow:(NSInteger)row{
+    return @"";
+}
+
+- (void)pickerView:(AFPickerView *)pickerView didSelectRow:(NSInteger)row
+{
+    
+}
 @end

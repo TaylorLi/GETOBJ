@@ -16,7 +16,6 @@
     AlertView *confirmview = [[AlertView alloc] initWithTitle:title message:msg];
     [confirmview addButtonWithTitle:NSLocalizedString(@"OK", @"") block:[block copy]];
      [confirmview show];
-    [confirmview release];
 }
 
 + (void)setTextFieldErrorCss:(UITextField*)txtField isError:(BOOL)error

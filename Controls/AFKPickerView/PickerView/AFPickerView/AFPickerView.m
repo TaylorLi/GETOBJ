@@ -14,7 +14,6 @@
 - (UIImageView *)shadowView:(NSString *)imageURL;
 - (UIImageView *)glassView:(NSString *)imageURL;
 - (void)initContentView;
-- (void)doneSelectPicker;
 @end
 
 @implementation AFPickerView
@@ -36,7 +35,7 @@
         return;
 
     currentRow = selectedRow;
-    [contentView setContentOffset:CGPointMake(0.0, ROW_SPACE * currentRow+ROW_SPACE/2) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0, ROW_SPACE * currentRow) animated:NO];
 }
 
 - (void)setRowFont:(UIFont *)rowFont
@@ -79,7 +78,7 @@
 
 - (id)initWithFrame:(CGRect)frame backgroundImage:(NSString *)backgroundImage shadowImage:(NSString *)shadowImage glassImage:(NSString *)glassImage title:(NSString *)title {
     self = [super initWithFrame:frame];
-    self.frame = CGRectMake(0, self.frame.origin.y + [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.height);
+    self.frame = CGRectMake(0, self.frame.origin.y + self.frame.size.height, self.frame.size.width, self.frame.size.height);
     self.isHidden = YES;
     if (self)
     {
@@ -98,7 +97,7 @@
 - (void)setup
 {
     _rowFont = [UIFont boldSystemFontOfSize:24.0];
-    _rowIndent = 0.0;
+    _rowIndent = 50.0;
 
     currentRow = 0;
     rowsCount = 0;
@@ -122,7 +121,8 @@
 
     visibleViews = [[NSMutableSet alloc] init];
     recycledViews = [[NSMutableSet alloc] init];
-    rowsCount = [dataSource pickerView:self numberOfRowsInComponent:1];
+
+    rowsCount = [dataSource numberOfRowsInPickerView:self];
     [contentView setContentOffset:CGPointMake(0.0, CONTENT_OFFSET_Y) animated:NO];
     contentView.contentSize = CGSizeMake(contentView.frame.size.width, ROW_SPACE * rowsCount + 3 * ROW_SPACE);
     [self tileViews];
@@ -134,7 +134,7 @@
     int position = round(delta / ROW_SPACE);
     currentRow = position;
     [contentView setContentOffset:CGPointMake(0.0, ROW_SPACE * position + CONTENT_OFFSET_Y) animated:YES];
-    [delegate pickerView:self didSelectRow:currentRow inComponent:1];
+    [delegate pickerView:self didSelectRow:currentRow];
 }
 
 - (void)didTap:(id)sender
@@ -165,7 +165,7 @@
 
     currentRow = currentRow + steps;
     [contentView setContentOffset:CGPointMake(0.0, ROW_SPACE * currentRow) animated:YES];
-    [delegate pickerView:self didSelectRow:currentRow inComponent:1];
+    [delegate pickerView:self didSelectRow:currentRow];
 }
 
 #pragma mark - recycle queue
@@ -228,7 +228,6 @@
                 label = [[UILabel alloc] initWithFrame:CGRectMake(_rowIndent, 0, self.frame.size.width - _rowIndent, ROW_SPACE)];
                 label.backgroundColor = [UIColor clearColor];
                 label.font = self.rowFont;
-                label.textAlignment=UITextAlignmentCenter;
                 label.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
             }
 
@@ -242,7 +241,7 @@
 - (void)configureView:(UIView *)view atIndex:(NSUInteger)index
 {
     UILabel *label = (UILabel *)view;
-    label.text = [dataSource pickerView:self titleForRow:index forComponent:1];
+    label.text = [dataSource pickerView:self titleForRow:index];
     CGRect frame = label.frame;
     frame.origin.y = ROW_SPACE * index + 78.0;
     label.frame = frame;
@@ -252,7 +251,7 @@
 - (void)hidePicker {
     if (!isHidden) {
         [UIView animateWithDuration:0.3 animations:^(void) {
-            self.frame = CGRectMake(0, self.frame.origin.y + [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.height);
+            self.frame = CGRectMake(0, self.frame.origin.y + self.frame.size.height, self.frame.size.width, self.frame.size.height);
         }];
         self.isHidden = YES;
     }
@@ -261,7 +260,7 @@
 - (void)showPicker {
     if (isHidden) {
         [UIView animateWithDuration:0.3 animations:^(void) {
-            self.frame = CGRectMake(0, self.frame.origin.y - [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.height);
+            self.frame = CGRectMake(0, self.frame.origin.y - self.frame.size.height, self.frame.size.width, self.frame.size.height);
         }];
         self.isHidden = NO;
     }
@@ -299,7 +298,7 @@
 - (UIToolbar *)toolbar:(NSString *)title {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOOLBAR_HEIGHT)];
     toolbar.tintColor = RGBACOLOR(255, 144, 39, 1);
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:nil action:@selector(doneSelectPicker)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:nil action:@selector(hidePicker)];
     UIBarButtonItem *placeHolderButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolbar setItems:[NSArray arrayWithObjects:[self toolbarTitleItem:title], placeHolderButton, doneButton, nil]];
     return toolbar;
@@ -355,8 +354,4 @@
                                  userInfo:nil];
 }
 
-- (void)doneSelectPicker{
-    [self hidePicker];
-    [delegate doneSelect:self didSelectRow:currentRow inComponent:1];
-}
 @end

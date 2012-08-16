@@ -27,9 +27,9 @@
 #import "DDActionHeaderView.h"
 
 @interface DDActionHeaderView ()
-@property(nonatomic, retain) UILabel *titleLabel;
-@property(nonatomic, retain) UIView *actionPickerView;
-@property(nonatomic, retain) CAGradientLayer *actionPickerGradientLayer;
+@property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) UIView *actionPickerView;
+@property(nonatomic, strong) CAGradientLayer *actionPickerGradientLayer;
 
 - (void)setup;
 - (void)drawLinearGradientInRect:(CGRect)rect colors:(CGFloat[])colours;
@@ -86,7 +86,7 @@
 	actionPickerView_.layer.borderColor = [UIColor darkGrayColor].CGColor;
 	actionPickerView_.clipsToBounds = YES;
 	
-	actionPickerGradientLayer_ = [[CAGradientLayer layer] retain];
+	actionPickerGradientLayer_ = [CAGradientLayer layer];
 	actionPickerGradientLayer_.anchorPoint = CGPointMake(0.0f, 0.0f);
 	actionPickerGradientLayer_.position = CGPointMake(0.0f, 0.0f);
 	actionPickerGradientLayer_.startPoint = CGPointZero;
@@ -99,19 +99,10 @@
 	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleActionPickerViewTap:)];
 	tapGesture.delegate = self;
 	[actionPickerView_ addGestureRecognizer:tapGesture];
-	[tapGesture release];
     
 	borderGradientHidden_ = NO;	
 }
 
-- (void)dealloc {
-    [titleLabel_ release];
-    [items_ release];
-    [actionPickerView_ release];
-    [actionPickerGradientLayer_ release];
-    
-    [super dealloc];
-}
 
 #pragma mark Layout & Redraw
 
@@ -222,7 +213,6 @@
             [subview removeFromSuperview];
         }
         
-        [items_ release];
         items_ = [newItems copy];
         
         for (id item in items_) {

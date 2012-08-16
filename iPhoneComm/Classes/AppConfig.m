@@ -26,6 +26,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import "AppConfig.h"
+#import "UIDevice+IdentifierAddition.h"
 
 static AppConfig* instance;
 
@@ -37,26 +38,26 @@ static AppConfig* instance;
 @synthesize networkUsingWifi;
 @synthesize timeout;
 @synthesize invalidServerPeerIds;
+@synthesize uuid;
+@synthesize serverSettingInfo;
+//当前比赛信息
+@synthesize currentGameInfo;
 
 // Initialization
 - (id) init {
+  self=[super init];
   self.name = @"unknown";
     networkUsingWifi=NO;
     NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
   isIPAD=![[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;  
     timeout=30;
     invalidServerPeerIds=[[NSMutableSet alloc] init];
+    uuid=[[UIDevice currentDevice] uniqueDeviceIdentifier];
   return self;
 }
 
 
 // Cleanup
-- (void)dealloc {
-  self.name = nil;
-  self.password = nil;
-    invalidServerPeerIds=nil;
-  [super dealloc];
-}
 
 
 // Automatically initialize if called for the first time

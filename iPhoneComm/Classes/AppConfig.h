@@ -26,19 +26,25 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
+#import "ServerSetting.h"
+#import "GameInfo.h"
 
 @interface AppConfig : NSObject {
   NSString* name;
   NSString* password;   
 }
 
-@property (retain) NSString* name;
-@property (retain) NSString* password;
+@property (copy) NSString* name;
+@property (strong) NSString* password;
 @property  NSTimeInterval timeout;
 @property BOOL isIPAD;
 @property BOOL networkUsingWifi;
-@property (retain) NSMutableSet *invalidServerPeerIds;
+@property (strong) NSMutableSet *invalidServerPeerIds;
+@property (strong) NSString *uuid;
+//比赛设置
+@property (strong,nonatomic) ServerSetting *serverSettingInfo;
+//当前进行的比赛信息
+@property(weak,nonatomic) GameInfo *currentGameInfo;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 

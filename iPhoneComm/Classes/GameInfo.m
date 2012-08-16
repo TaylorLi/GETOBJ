@@ -12,28 +12,21 @@
 @implementation GameInfo
 
 @synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarmning,redSideWarmning,preGameStatus;
--(void) dealloc
-{
-    [gameSetting release];
-    [serverUuid release];
-    [serverPeerId release];
-    [clients release];
-}
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
     self=[super init];
     if(self)
     {
-        gameSetting=setting;
+        gameSetting=[setting copyWithZone:nil];
         gameStatus=kStatePrepareGame;
-        currentRound=0;        
+        currentRound=setting.startScreening;        
         currentMatch=1;
         blueSideScore=0;
         redSideScore=0;
         redSideWarmning=0;
         blueSideWarmning=0;
-        needClientsCount=2;
+        needClientsCount=setting.judgeCount;
         clients=[[NSMutableDictionary alloc] init];
     }
     return self;
@@ -88,6 +81,7 @@
     copyObj.redSideWarmning=self.redSideWarmning;
     copyObj.serverLastHeartbeatDate=[self.serverLastHeartbeatDate copy];
     copyObj.clients=[self.clients copy];
+    copyObj.gameSetting=[self.gameSetting copy];
     return  copyObj;
 }
 -(NSString *) description{

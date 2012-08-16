@@ -7,6 +7,7 @@
 //
 
 #import "ServerSetting.h"
+#import "AppConfig.h"
 
 @implementation ServerSetting
 
@@ -21,6 +22,7 @@
 @synthesize restTime;
 @synthesize roundCount;
 @synthesize judgeCount;
+@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarmningCount,restAndReorganizationTime;
 
 -(NSString *)description
 {
@@ -31,23 +33,39 @@
 {
     self=[super init];
       if (self) {   
-          gameDesc=@"Men 80KG Welter";
-          gameName=@"China South Korea match";
-          redSideDesc=@"CN";
-          redSideName=@"Wu Kong Sun";
-          blueSideDesc=@"KR";
-          blueSideName=@"Aks Kim";
-          password=nil;
-          roundCount=3;
-          roundTime=2*60;
-          restTime=2*60;
+          [self reset];
     }
     return self;
+}
+-(void) reset
+{
+    gameDesc=@"Men 80KG Welter";
+    gameName=@"China South Korea match";
+    redSideDesc=@"";
+    redSideName=@"PLAYER RED";
+    blueSideDesc=@"";
+    blueSideName=@"PLAYER BLUE";
+    password=nil;
+    roundCount=3;
+    roundTime=2*60;
+    restTime=30;
+    pointGap=12;
+    serverName=[AppConfig getInstance].name;
+    screeningArea=@"A";
+    skipScreening=1;
+    enableGapScore=YES;
+    startScreening=1;
+    pointGapAvailRound=2;
+    judgeCount=4;
+    availScoreWithJudesCount=3;
+    availTimeDuringScoreCalc=0.5;
+    maxWarmningCount=8;
+    restAndReorganizationTime=60;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime
 {
-    self=[super init];
+    self=[self initWithDefault];
     if (self) {   
         gameDesc=_gameDesc;
         gameName=_gameName;
@@ -74,18 +92,25 @@
     copyObj.blueSideName=[self.blueSideName copyWithZone:zone];
     copyObj.password=[self.password copyWithZone:zone];
     copyObj.roundCount=self.roundCount;
-    copyObj.roundTime=self.roundTime;    
+    copyObj.roundTime=self.roundTime;  
+    copyObj.restTime=self.restTime;
+    copyObj.pointGap=self.pointGap;
+    copyObj.serverName=self.serverName;
+    copyObj.screeningArea=[self.screeningArea copyWithZone:zone];
+    copyObj.skipScreening=self.skipScreening;
+    copyObj.enableGapScore=self.enableGapScore;
+    copyObj.startScreening=self.startScreening;
+    copyObj.pointGapAvailRound=self.pointGapAvailRound;
+    copyObj.judgeCount=self.judgeCount;
+    copyObj.availScoreWithJudesCount=self.availScoreWithJudesCount;
+    copyObj.availTimeDuringScoreCalc=self.availTimeDuringScoreCalc;
+    copyObj.maxWarmningCount=self.maxWarmningCount;
+    copyObj.restAndReorganizationTime=self.restAndReorganizationTime;
     return copyObj;
 }
 -(void)dealloc
 {
-    gameDesc=nil;
-    gameName=nil;
-    redSideDesc=nil;;
-    redSideName=nil;;
-    blueSideDesc=nil;;
-    blueSideName=nil;;
-    password=nil;;
+
 }
 @end
 

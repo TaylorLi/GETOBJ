@@ -27,10 +27,6 @@
     serverPeerId=peerId;
     return self;
 }
--(void)dealloc{
-    gameSession=nil;
-    serverPeerId=nil;
-}
 
 #pragma mark -
 #pragma mark Public Function
@@ -75,7 +71,7 @@
 - (void)sendNetworkPacket:(id)packet {
     
     // Encode packet
-    SBJsonWriter *wr=[[[SBJsonWriter alloc] init] autorelease];
+    SBJsonWriter *wr=[[SBJsonWriter alloc] init];
     //NSLog(@"Client %@ Send Server %@ Command:%@",[gameSession displayName],serverPeerId,[wr stringWithObject:packet]);
     NSData* rawPacket=  [wr dataWithObject:packet];
     //NSDictionary packet;
@@ -86,7 +82,7 @@
     }
     else{
         // Write header: lengh of raw packet
-        NSArray *peerIds=[[[NSArray alloc] initWithObjects:serverPeerId, nil] autorelease];
+        NSArray *peerIds=[[NSArray alloc] initWithObjects:serverPeerId, nil];
         [gameSession sendData:rawPacket toPeers:peerIds withDataMode:GKSendDataReliable error:nil];
     }
 }

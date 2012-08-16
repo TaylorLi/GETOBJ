@@ -16,12 +16,13 @@
     NSTimeInterval restTime;
 }
 
-@property (nonatomic, retain) IBOutlet UIView *viewLoadedFromXib;
-@property (retain, nonatomic) IBOutlet UIButton *btnStart;
+@property (nonatomic, strong) IBOutlet UIView *viewLoadedFromXib;
+@property (strong, nonatomic) IBOutlet UIButton *btnStart;
+@property (strong,nonatomic) id relatedData;
 - (IBAction)startRound:(id)sender;
 -(void)setTimerStop:(BOOL) stop;
 
-@property (retain, nonatomic) IBOutlet UILabel *lblTime;
+@property (strong, nonatomic) IBOutlet UILabel *lblTime;
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title andRestTime:(NSTimeInterval) _restTime;
 
 @end

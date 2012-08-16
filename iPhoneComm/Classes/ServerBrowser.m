@@ -58,6 +58,7 @@
 // Initialize
 - (id)init {
   servers = [[NSMutableArray alloc] init];
+    self=[super init];
   return self;
 }
 
@@ -65,11 +66,8 @@
 // Cleanup
 - (void)dealloc {
   if ( servers != nil ) {
-    [servers release];
     servers = nil;
   }
-  self.delegate = nil;
-  [super dealloc];
 }
 
 
@@ -99,7 +97,6 @@
   }
   
   [netServiceBrowser stop];
-  [netServiceBrowser release];
   netServiceBrowser = nil;
   
   [servers removeAllObjects];

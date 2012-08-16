@@ -88,16 +88,6 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
 			</object>
-			<object class="IBUIViewController" id="368838421">
-				<string key="IBUINibName">PermitControlView</string>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-					<int key="IBUIInterfaceOrientation">1</int>
-					<int key="interfaceOrientation">1</int>
-				</object>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<bool key="IBUIHorizontal">NO</bool>
-			</object>
 			<object class="IBUIWindow" id="117978783">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
@@ -163,14 +153,6 @@
 					</object>
 					<int key="connectionID">25</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">permitViewController</string>
-						<reference key="source" ref="664661524"/>
-						<reference key="destination" ref="368838421"/>
-					</object>
-					<int key="connectionID">27</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -226,11 +208,6 @@
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">26</int>
-						<reference key="object" ref="368838421"/>
-						<reference key="parent" ref="957960031"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
 						<reference key="object" ref="353041927"/>
 						<reference key="parent" ref="957960031"/>
@@ -254,8 +231,6 @@
 					<string>22.IBPluginDependency</string>
 					<string>23.CustomClassName</string>
 					<string>23.IBPluginDependency</string>
-					<string>26.CustomClassName</string>
-					<string>26.IBPluginDependency</string>
 					<string>28.CustomClassName</string>
 					<string>28.IBPluginDependency</string>
 					<string>3.CustomClassName</string>
@@ -275,8 +250,6 @@
 					<string>ScoreBoardViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ScoreControlViewController</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>PermitControlView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GameSettingViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -316,7 +289,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>permitViewController</string>
 							<string>scoreBoardViewController</string>
 							<string>scoreControlViewController</string>
 							<string>viewController</string>
@@ -325,7 +297,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>PermitControlView</string>
 							<string>ScoreBoardViewController</string>
 							<string>ScoreControlViewController</string>
 							<string>ChattyViewController</string>
@@ -337,7 +308,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>permitViewController</string>
 							<string>scoreBoardViewController</string>
 							<string>scoreControlViewController</string>
 							<string>viewController</string>
@@ -346,10 +316,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">permitViewController</string>
-								<string key="candidateClassName">PermitControlView</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">scoreBoardViewController</string>
 								<string key="candidateClassName">ScoreBoardViewController</string>
@@ -571,89 +537,17 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PermitControlView</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>cancel</string>
-							<string>confirm</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>cancel</string>
-							<string>confirm</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">cancel</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">confirm</string>
-								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">password</string>
-						<string key="NS.object.0">UITextField</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">password</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">password</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PermitControlView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">ScoreBoardViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>exit</string>
-							<string>permit</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">exit</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>exit</string>
-							<string>permit</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">exit</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">permit</string>
-								<string key="candidateClassName">id</string>
-							</object>
+						<string key="NS.key.0">exit</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">exit</string>
+							<string key="candidateClassName">id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -664,18 +558,48 @@
 							<string>lblBlueImg2</string>
 							<string>lblBlueImg3</string>
 							<string>lblBlueImg4</string>
+							<string>lblBlueImg5</string>
+							<string>lblBlueImg6</string>
+							<string>lblBlueImg7</string>
+							<string>lblBlueImg8</string>
+							<string>lblBluePlayerDesc</string>
+							<string>lblBluePlayerName</string>
 							<string>lblBlueTotal</string>
 							<string>lblCoachName</string>
+							<string>lblGameDesc</string>
+							<string>lblGameName</string>
 							<string>lblRedImg1</string>
 							<string>lblRedImg2</string>
 							<string>lblRedImg3</string>
 							<string>lblRedImg4</string>
+							<string>lblRedImg5</string>
+							<string>lblRedImg6</string>
+							<string>lblRedImg7</string>
+							<string>lblRedImg8</string>
+							<string>lblRedPlayerDesc</string>
+							<string>lblRedPlayerName</string>
 							<string>lblRedTotal</string>
-							<string>lblTitle</string>
+							<string>lblRoundSeq</string>
+							<string>lblTime</string>
 							<string>txtHistory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -699,14 +623,29 @@
 							<string>lblBlueImg2</string>
 							<string>lblBlueImg3</string>
 							<string>lblBlueImg4</string>
+							<string>lblBlueImg5</string>
+							<string>lblBlueImg6</string>
+							<string>lblBlueImg7</string>
+							<string>lblBlueImg8</string>
+							<string>lblBluePlayerDesc</string>
+							<string>lblBluePlayerName</string>
 							<string>lblBlueTotal</string>
 							<string>lblCoachName</string>
+							<string>lblGameDesc</string>
+							<string>lblGameName</string>
 							<string>lblRedImg1</string>
 							<string>lblRedImg2</string>
 							<string>lblRedImg3</string>
 							<string>lblRedImg4</string>
+							<string>lblRedImg5</string>
+							<string>lblRedImg6</string>
+							<string>lblRedImg7</string>
+							<string>lblRedImg8</string>
+							<string>lblRedPlayerDesc</string>
+							<string>lblRedPlayerName</string>
 							<string>lblRedTotal</string>
-							<string>lblTitle</string>
+							<string>lblRoundSeq</string>
+							<string>lblTime</string>
 							<string>txtHistory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -728,11 +667,43 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">lblBlueImg5</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblBlueImg6</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblBlueImg7</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblBlueImg8</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblBluePlayerDesc</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblBluePlayerName</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">lblBlueTotal</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">lblCoachName</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblGameDesc</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblGameName</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -752,11 +723,39 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">lblRedImg5</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblRedImg6</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblRedImg7</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblRedImg8</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblRedPlayerDesc</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblRedPlayerName</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">lblRedTotal</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">lblTitle</string>
+								<string key="name">lblRoundSeq</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblTime</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -812,14 +811,35 @@
 					<string key="className">WelcomeViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">input</string>
-						<string key="NS.object.0">UITextField</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>playName</string>
+							<string>segNetwork</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UITextField</string>
+							<string>UISegmentedControl</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">input</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">input</string>
-							<string key="candidateClassName">UITextField</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>playName</string>
+							<string>segNetwork</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">playName</string>
+								<string key="candidateClassName">UITextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">segNetwork</string>
+								<string key="candidateClassName">UISegmentedControl</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

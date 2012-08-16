@@ -32,11 +32,11 @@
   id<RoomDelegate> delegate;
 }
 
-@property(nonatomic,retain) id<RoomDelegate> delegate;
+@property(nonatomic,strong) id<RoomDelegate> delegate;
 
 - (BOOL)start;
 - (void)stop;
 - (void)sendCommand:(CommandMsg *) cmdMsg;
-- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL *)reliable;
+- (void)sendCommand:(CommandMsg *) cmdMsg andPeerId:(NSString *)peerId andSendDataReliable:(BOOL)reliable;
 
 @end

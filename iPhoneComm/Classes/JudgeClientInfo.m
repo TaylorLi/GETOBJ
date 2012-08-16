@@ -17,12 +17,6 @@
 @synthesize hasConnected;
 @synthesize lastHeartbeatDate;
 
--(void) dealloc
-{
-    peerId=nil;
-    sessionId=nil;
-    displayName=nil;
-}
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId

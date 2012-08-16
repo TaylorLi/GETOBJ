@@ -13,6 +13,9 @@
 #import "RoundRestTimeViewController.h"
 #import "DDActionHeaderView.h"
 
+#define kWaitBoxForReset 1
+#define kWaitBoxForReOrg 2
+
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
     UILabel *lblGameName;
@@ -46,41 +49,42 @@
     NSMutableArray *cmdHis;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *lblGameName;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg1;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg2;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg3;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg4;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg1;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg2;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg3;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg4;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg5;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg6;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg7;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedImg8;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg5;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg6;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg7;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueImg8;
-@property (nonatomic, retain) IBOutlet UILabel *lblRedTotal;
-@property (nonatomic, retain) IBOutlet UILabel *lblBlueTotal;
-@property (nonatomic, retain) IBOutlet UILabel *lblCoachName;
-@property (nonatomic, retain) IBOutlet UITextView *txtHistory;
-@property(nonatomic,retain) Room* chatRoom;
-@property (retain, nonatomic) IBOutlet UILabel *lblGameDesc;
-@property (retain, nonatomic) IBOutlet UILabel *lblBluePlayerName;
-@property (retain, nonatomic) IBOutlet UILabel *lblBluePlayerDesc;
-@property (retain, nonatomic) IBOutlet UILabel *lblTime;
-@property (retain, nonatomic) IBOutlet UILabel *lblRoundSeq;
-@property (retain, nonatomic) IBOutlet UILabel *lblRedPlayerDesc;
-@property (retain, nonatomic) IBOutlet UILabel *lblRedPlayerName;
-@property(nonatomic, retain) DDActionHeaderView *actionHeaderView;
+@property (nonatomic, strong) IBOutlet UILabel *lblGameName;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg1;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg2;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg3;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg4;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg1;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg2;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg3;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg4;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg5;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg6;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg7;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedImg8;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg5;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg6;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg7;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg8;
+@property (nonatomic, strong) IBOutlet UILabel *lblRedTotal;
+@property (nonatomic, strong) IBOutlet UILabel *lblBlueTotal;
+@property (nonatomic, strong) IBOutlet UILabel *lblCoachName;
+@property (nonatomic, strong) IBOutlet UITextView *txtHistory;
+@property(nonatomic,strong) LocalRoom* chatRoom;
+@property (strong, nonatomic) IBOutlet UILabel *lblGameDesc;
+@property (strong, nonatomic) IBOutlet UILabel *lblBluePlayerName;
+@property (strong, nonatomic) IBOutlet UILabel *lblBluePlayerDesc;
+@property (strong, nonatomic) IBOutlet UILabel *lblTime;
+@property (strong, nonatomic) IBOutlet UILabel *lblRoundSeq;
+@property (strong, nonatomic) IBOutlet UILabel *lblRedPlayerDesc;
+@property (strong, nonatomic) IBOutlet UILabel *lblRedPlayerName;
+@property(nonatomic, strong) DDActionHeaderView *actionHeaderView;
+@property (strong, nonatomic) IBOutlet UILabel *lblScreening;
+@property (strong, nonatomic) IBOutlet UIView *viewRedWarmningBox;
+@property (strong, nonatomic) IBOutlet UIView *viewBlueWarmningBox;
 
 // Exit back to the welcome screen
 - (IBAction)exit;
-
-- (IBAction)permit;
 
 // View is active, start everything up
 - (void)activate;
@@ -89,4 +93,7 @@
 
 -(void)showWaitingUserBox;
 
+-(void)goToNextMatch;
+
+-(void)updateForGameSetting:(BOOL)hasChange;
 @end

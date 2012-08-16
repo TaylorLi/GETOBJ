@@ -35,10 +35,14 @@
 #import "UIHelper.h"
 #import "ServerSetting.h"
 #import "GameInfo.h"
+#import "MainGameSettingViewController.h"
+#import "GameSettingDetailControllerHD.h"
+#import "GameSettingRootControllerHD.h"
+
 // Private properties
 @interface ChattyViewController ()
-@property(nonatomic,retain) ServerBrowser* serverBrowser;
-@property(nonatomic,retain) PeerBrowser *peerServerBrowser;
+@property(nonatomic,strong) ServerBrowser* serverBrowser;
+@property(nonatomic,strong) PeerBrowser *peerServerBrowser;
 @end
 
 
@@ -65,13 +69,9 @@
 
 // Cleanup
 - (void)dealloc {
-    self.serverBrowser = nil;
-    [self.serverBrowser release];
+    self.serverBrowser=nil;
     self.peerServerBrowser=nil;
-    [self.peerServerBrowser release];
     lockImg=nil;
-    [lockImg release];
-    [super dealloc];
 }
 
 
@@ -102,20 +102,40 @@
     //    }else{
     //        [peerServerBrowser stop];
     //    }        
-        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[[GameInfo alloc] initWithGameSetting:[[[ServerSetting alloc] initWithDefault] autorelease]] autorelease]];
-       
-        [self stopBrowser];
-        [[ChattyAppDelegate getInstance] showScoreBoard:room];
-    return;
+    //        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]]];
     
-    GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
-    self.settingViewController=settingView;
-    [settingView release];
-    [self.view addSubview:settingView.view];
-    [self.view bringSubviewToFront:settingView.view];
-    // Create local chat room and go
-    //LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
+    //[self stopBrowser];
     //[[ChattyAppDelegate getInstance] showScoreBoard:room];
+    //return;
+    
+    //    GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
+    //    self.settingViewController=settingView;
+    //    [self.view addSubview:settingView.view];
+    //    [self.view bringSubviewToFront:settingView.view];
+    if([AppConfig getInstance].isIPAD){
+        [[ChattyAppDelegate getInstance] showGameSettingView];
+        return;
+    }else{
+        /*Show setting view first*/
+            GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
+            self.settingViewController=settingView;
+            [self.view addSubview:settingView.view];
+            [self.view bringSubviewToFront:settingView.view];        
+        return;
+        
+        /*direct to start server*/
+        // Stop browsing for servers
+//        if ([AppConfig getInstance].networkUsingWifi) {
+//            [serverBrowser stop];
+//        }else{
+//            [peerServerBrowser stop];
+//        }        
+//        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]]];
+//        
+//        [self stopBrowser];
+//        [[ChattyAppDelegate getInstance] showScoreBoard:room];
+//        return;
+    }    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -133,38 +153,27 @@
         if ( currentRow == nil ||serverBrowser.servers==nil||[serverBrowser.servers count]<currentRow.row+1) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert show];
-            [alert release];
             return;
         }
         NSNetService* selectedServer = [serverBrowser.servers objectAtIndex:currentRow.row];
         
         // Create chat room that will connect to that chat server
-        room = [[[RemoteRoom alloc] initWithNetService:selectedServer] autorelease];
+        room = [[RemoteRoom alloc] initWithNetService:selectedServer];
         [serverBrowser stop];
     }else{
         if ( currentRow == nil ||peerServerBrowser.servers==nil||[peerServerBrowser.servers count]<currentRow.row+1) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert show];
-            [alert release];
             return;
         }
         ServerRelateInfo* selectedPeerServer = [peerServerBrowser.servers objectAtIndex:currentRow.row];
         NSLog(@"Connect to Server:%@",[selectedPeerServer description]); 
-        room=[[[RemoteRoom alloc] initWithPeerId:selectedPeerServer.peerId] autorelease];
+        room=[[RemoteRoom alloc] initWithPeerId:selectedPeerServer.peerId];
         [peerServerBrowser stop];
     }
     // Stop browsing and switch over to chat room
     
-    
-    NSString* password = [AppConfig getInstance].password;  //要获取对应服务器的密码
-    if(password==nil || password==@"")
-    {
-        [[ChattyAppDelegate getInstance] showScoreControlRoom:room];
-    }
-    else
-    {
-        [[ChattyAppDelegate getInstance] showPermitControl:room validatePassword:YES setServerPassword:password];
-    }
+    [[ChattyAppDelegate getInstance] showScoreControlRoom:room];
 }
 
 #pragma mark -
@@ -207,7 +216,7 @@
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
 	}
     
     // Set cell's text to server's name
@@ -243,7 +252,8 @@
         else{
             __block UIPasswordBox *pwdBox= [[UIPasswordBox alloc] initWithLoading:@"Please input password" onComplete:^(id result){
                 NSString *password=result;
-                [pwdBox dismissWithClickedButtonIndex:0 animated:YES];
+                [pwdBox dismissWithClickedButtonIndex:-1 animated:NO];
+                pwdBox=nil;
                 if ([password isEqualToString:@""])
                 {
                     ;//nothing to do   
@@ -255,7 +265,6 @@
                     [UIHelper showAlert:@"Invalid Password" message:@"Can not connect to the game server" func:nil];                   
                 }
             }];
-            [pwdBox release];
         }
     }
     
@@ -265,4 +274,7 @@
     return  indexPath;
 }
 
+- (void)viewDidUnload {    
+    [super viewDidUnload];
+}
 @end

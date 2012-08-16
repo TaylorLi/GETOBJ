@@ -19,11 +19,11 @@
     id gkSessionDelegate;
 }
 
-@property (nonatomic,retain) id<PeerServerDelegate> delegate;
+@property (nonatomic,strong) id<PeerServerDelegate> delegate;
 @property NSInteger requiredClientCount;
-@property (nonatomic,retain) ServerSetting *svcSetting;
-@property (nonatomic,retain) id<GKSessionDelegate> gkSessionDelegate;
-@property (nonatomic,retain) GKSession *serverSession;
+@property (nonatomic,strong) ServerSetting *svcSetting;
+@property (nonatomic,strong) id<GKSessionDelegate> gkSessionDelegate;
+@property (nonatomic,strong) GKSession *serverSession;
 - (BOOL)start:(ServerSetting *) setting;
 - (void)stop;
 

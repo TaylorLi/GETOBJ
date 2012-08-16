@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MaingGameSetting</key>
+	<dict>
+		<key>Game Setting</key>
+		<string></string>
+		<key>Round Setting</key>
+		<dict>
+			<key>Round Time</key>
+			<string></string>
+			<key>Rest Time</key>
+			<string></string>
+			<key>Total Round</key>
+			<string></string>
+		</dict>
+		<key>Screening Setting</key>
+		<dict>
+			<key>Screening Area</key>
+			<string></string>
+			<key>Start Screening</key>
+			<string></string>
+			<key>Skip Screeing</key>
+			<string></string>
+		</dict>
+		<key>Match Setting</key>
+		<dict>
+			<key>Judge Count</key>
+			<string></string>
+			<key>Score Criteria</key>
+			<string></string>
+			<key>Score Buffer</key>
+			<string></string>
+			<key>Top Score</key>
+			<string></string>
+			<key>Point Gap</key>
+			<string></string>
+			<key>Point Gap Effect Round</key>
+			<string></string>
+		</dict>
+		<key>System Setting</key>
+		<dict>
+			<key>Server Name</key>
+			<string></string>
+			<key>Clear History</key>
+			<string></string>
+			<key>Reset Setting</key>
+			<string></string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -358,7 +358,7 @@ void readStreamEventHandler(CFReadStreamRef stream, CFStreamEventType eventType,
       [delegate receivedNetworkPacket:packet viaConnection:self];
 
       // Remove that chunk from buffer
-      NSRange rangeToDelete = {0, packetBodySize};
+      NSRange rangeToDelete =NSMakeRange(0, packetBodySize);
       [incomingDataBuffer replaceBytesInRange:rangeToDelete withBytes:NULL length:0];
       
       // We have processed the packet. Resetting the state.

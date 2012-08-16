@@ -19,7 +19,7 @@
     
     if (self) {        
         
-        passwordField = [[[UITextField alloc] init] autorelease];             
+        passwordField = [[UITextField alloc] init];             
         passwordField.text=@"";      
         passwordField.delegate=self;
         passwordField.borderStyle= UITextBorderStyleRoundedRect;

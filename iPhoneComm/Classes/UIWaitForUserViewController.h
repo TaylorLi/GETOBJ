@@ -13,14 +13,14 @@
 {
 	IBOutlet UIView	*viewLoadedFromXib;
 }
-@property (nonatomic, retain) IBOutlet UIView *viewLoadedFromXib;
+@property (nonatomic, strong) IBOutlet UIView *viewLoadedFromXib;
 @property (nonatomic,assign) NSMutableDictionary *clients;
 @property NSInteger needConnectedClientCount;
-@property (retain, nonatomic) IBOutlet UILabel *txtNeedClientCount;
-@property (retain, nonatomic) IBOutlet UIButton *btnStartGame;
+@property (strong, nonatomic) IBOutlet UILabel *txtNeedClientCount;
+@property (strong, nonatomic) IBOutlet UIButton *btnStartGame;
 
-@property (retain, nonatomic) IBOutlet UILabel *lblWaitForClientsCount;
-@property (retain, nonatomic) IBOutlet UITableView *tbClientList;
+@property (strong, nonatomic) IBOutlet UILabel *lblWaitForClientsCount;
+@property (strong, nonatomic) IBOutlet UITableView *tbClientList;
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title;
 
 - (IBAction)startGame:(id)sender;

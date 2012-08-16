@@ -79,7 +79,7 @@
 						<string key="NSFrame">{{368, 172}, {232, 53}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="649064683"/>
+						<reference key="NSNextKeyView" ref="391599211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -140,7 +140,7 @@
 							<reference ref="4"/>
 						</object>
 					</object>
-					<object class="IBUITextField" id="649064683">
+					<object class="IBUITextField" id="391599211">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{367, 265}, {238, 31}}</string>
@@ -164,8 +164,10 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
+						<int key="IBUIClearButtonMode">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
@@ -216,14 +218,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">playName</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="649064683"/>
+						<reference key="destination" ref="391599211"/>
 					</object>
 					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="649064683"/>
+						<reference key="source" ref="391599211"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">17</int>
@@ -248,7 +250,7 @@
 							<reference ref="239454788"/>
 							<reference ref="139616374"/>
 							<reference ref="744073908"/>
-							<reference ref="649064683"/>
+							<reference ref="391599211"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -280,7 +282,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
-						<reference key="object" ref="649064683"/>
+						<reference key="object" ref="391599211"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

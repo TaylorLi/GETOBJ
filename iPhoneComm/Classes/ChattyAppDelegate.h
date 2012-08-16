@@ -30,6 +30,7 @@
 #import "BluetoothManager.h"
 #import "BluetoothDevice.h"
 #import "Reachability.h"
+#import "LocalRoom.h"
 
 @class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController;
 
@@ -43,6 +44,8 @@
     BluetoothManager *btManager;
     Reachability* wifiReach;
 }
+@property (weak, nonatomic) IBOutlet UISplitViewController *splitSettingViewController;
+@property (weak, nonatomic) IBOutlet UISplitViewController *duringMathSplitViewCtl;
 
 @property(nonatomic, strong) IBOutlet UIWindow *window;
 @property(nonatomic, strong) IBOutlet ChattyViewController *viewController;
@@ -58,8 +61,13 @@
 - (void)showRoomSelection;
 
 //Show board in server
--(void) showScoreBoard:(Room *)room;
+-(void) showScoreBoard:(LocalRoom *)room;
 //Show Controller in client
 -(void) showScoreControlRoom:(Room *) room;
+
+-(void) showGameSettingView;
+-(void) showDuringMatchSettingView;
+
+-(void) swithView:(UIView *) view;
 
 @end

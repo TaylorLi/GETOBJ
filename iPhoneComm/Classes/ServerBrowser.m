@@ -58,6 +58,7 @@
 // Initialize
 - (id)init {
   servers = [[NSMutableArray alloc] init];
+    self=[super init];
   return self;
 }
 

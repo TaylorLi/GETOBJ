@@ -27,6 +27,7 @@
 
 // Initialize
 - (id)init {
+    self=[super init];
     servers = [[NSMutableArray alloc] init];
     peerIds=[[NSMutableArray alloc] init];
     return self;

@@ -45,7 +45,7 @@
      svcSetting.gameName,svcSetting.password]
      */
     //NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
-    NSString *displayName=[NSString stringWithFormat:@"%@||%@||%@",KEY_PEER_SEVICE_TYPE_SERVER,[[AppConfig getInstance].name stringByReplacingOccurrencesOfString:@" " withString:@"_"],svcSetting.password==nil?@"":svcSetting.password];
+    NSString *displayName=[NSString stringWithFormat:@"%@||%@||%@",KEY_PEER_SEVICE_TYPE_SERVER,[svcSetting.serverName stringByReplacingOccurrencesOfString:@" " withString:@"_"],svcSetting.password==nil?@"":svcSetting.password];
 	serverSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
                                              displayName:displayName
                                              sessionMode: GKSessionModePeer ];

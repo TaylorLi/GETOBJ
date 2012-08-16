@@ -88,7 +88,7 @@
     }else
     {
         bluetoothServer=[[PeerServer alloc] init];        
-        gameInfo.serverUuid= [[UIDevice currentDevice] uniqueIdentifier];
+        gameInfo.serverUuid=[AppConfig getInstance].uuid;
         bluetoothServer.delegate=self;
         bluetoothServer.gkSessionDelegate=self;
         if(![bluetoothServer start:gameInfo.gameSetting]){

@@ -14,6 +14,8 @@
 #import "GameInfo.h"
 #import "JudgeClientInfo.h"
 #import "UIHelper.h"
+#import <QuartzCore/QuartzCore.h>
+#import "DuringMatchSettingDetailControllerHD.h"
 
 #define  kMenuItemMenu 0
 #define  kMenuItemExit 1
@@ -29,8 +31,7 @@
 -(void)startRound:(id)sender;
 -(void)contiueGame;
 -(void)pauseGame;
--(void)resetRound;
--(void)goToNextMatch;
+-(void)resetRound:(BOOL)init;
 -(void)setupMenu;
 - (void)menuItemAction:(id)sender;
 -(void)gameLoop;
@@ -39,14 +40,28 @@
 -(void)pauseTime:(BOOL) stop;
 -(void)testIfScoreCanSubmit;
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
--(void)showRoundRestTimeBox;
+-(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType;
 -(void)resetTimeEnd:(id)sender;
--(void)warmningPlayer:(Boolean) isForRedSide;
+-(void)warmningPlayer:(Boolean) isForRedSide andCount:(NSInteger) count;
+-(void)warmningAddToBluePlayer;
+-(void)warmningAddToRedPlayer;
+-(void)warmningMinusToBluePlayer;
+-(void)warmningMinusToRedPlayer;
 -(void)drawWarmningFlagForRed:(Boolean)isForRedSide;
 -(void)setMenuByGameStatus:(GameStates)status;
 -(UIButton *)getMenuItem:(int)tag;
 -(void)processByGameStatus;
 -(void) stopRoom;
+-(void)gamePauseContinueToggle;
+-(void)gamePauseAndShowResetTimeBox;
+-(void)blueAddScore;
+-(void)blueMinusScore;
+-(void)redAddScore;
+-(void)redMinusScore;
+-(void)showGameSettingDialog:(UIGestureRecognizer *)recognizer;
+-(void)refreshGamesettingDialogJudges;
+-(void)drawRect:(CGRect)rect;
+-(void)drawWarmningFlag;
 @end 
 
 @implementation ScoreBoardViewController
@@ -81,6 +96,9 @@
 @synthesize lblBlueTotal;
 @synthesize lblRedTotal;
 @synthesize actionHeaderView;
+@synthesize lblScreening;
+@synthesize viewRedWarmningBox;
+@synthesize viewBlueWarmningBox;
 
 - (void)didReceiveMemoryWarning
 {
@@ -98,12 +116,112 @@
  {
  }
  */
-
+- (void)drawRect:(CGRect)rect {
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext(); //获取上下文 
+    CGFloat dash[] = {4.0, 4.0};//第一个是8.0是实线的长度，第2个8.0是空格的长度
+    CGContextSetLineDash(ctx, 0.0, dash, 2);//给虚线设置下类型，其中2是dash数组大小，如果想设置个性化的虚线 可以将dash数组扩展下即可
+    CGContextSetLineWidth(ctx, 1.0f); //设置线的宽度 为1个像素
+    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1.0].CGColor); //设置线的颜色为灰色
+    CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y); //设置线的起始点
+    CGContextAddLineToPoint(ctx,rect.origin.x+rect.size.width,rect.origin.y); //设置线中间的一个点 
+    CGContextStrokePath(ctx);//直接把所有的点连起来
+    
+    CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y); //设置线的起始点
+    CGContextAddLineToPoint(ctx,rect.origin.x,rect.origin.y+rect.size.height); //设置线中间的一个点
+    CGContextStrokePath(ctx);//直接把所有的点连起来
+    
+    CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y+rect.size.height); //设置线的起始点
+    CGContextAddLineToPoint(ctx,rect.origin.x+rect.size.width,rect.origin.y+rect.size.height); //设置线中间的一个点 
+    CGContextStrokePath(ctx);//直接把所有的点连起来
+    CGContextMoveToPoint(ctx, rect.origin.x+rect.size.width, rect.origin.y); //设置线的起始点
+    CGContextAddLineToPoint(ctx,rect.origin.x+rect.size.width,rect.origin.y+rect.size.height); //设置线中间的一个点
+    CGContextStrokePath(ctx);//直接把所有的点连起来
+    
+    CGContextSetLineDash(ctx, 0.0, NULL, 0); //要画其他的线的话记得清理一下
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewBlueWarmningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
+    self.viewBlueWarmningBox.layer.borderWidth = 1.0f;
+    self.viewRedWarmningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
+    self.viewRedWarmningBox.layer.borderWidth = 1.0f;    
+    //    [self drawRect:self.viewBlueWarmningBox.frame];
+    //    [self drawRect:self.viewRedWarmningBox.frame];
+    
+    /*recognizer*/
+    /*顶部向下滑动,显示设置面板*/
+    UISwipeGestureRecognizer *viewSwapDownRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showGameSettingDialog:)];
+    viewSwapDownRecg.numberOfTouchesRequired=1;
+    viewSwapDownRecg.direction= UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:viewSwapDownRecg];
+    
+    /*双击时间控件,继续或者暂停*/
+    UITapGestureRecognizer *startStopGame=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gamePauseContinueToggle)];
+    startStopGame.numberOfTapsRequired=2;
+    startStopGame.numberOfTouchesRequired=1;
+    self.lblTime.userInteractionEnabled=YES;
+    [self.lblTime addGestureRecognizer:startStopGame];
+    
+    /*向上滑动时间控件,暂停比赛并显示休息时间*/
+    UISwipeGestureRecognizer *pauseGameAndShowResetBox=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gamePauseAndShowResetTimeBox)];
+    pauseGameAndShowResetBox.numberOfTouchesRequired=1;
+    pauseGameAndShowResetBox.direction= UISwipeGestureRecognizerDirectionUp;
+    [self.lblTime addGestureRecognizer:pauseGameAndShowResetBox];
+    
+    /*向上滑动分数控件,直接加1分*/
+    UISwipeGestureRecognizer *blueAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(blueAddScore)];
+    blueAddRecg.numberOfTouchesRequired=1;
+    blueAddRecg.direction= UISwipeGestureRecognizerDirectionUp;
+    self.lblBlueTotal.userInteractionEnabled=YES;
+    [self.lblBlueTotal addGestureRecognizer:blueAddRecg];
+    
+    /*向上滑动分数控件,直接减1分*/
+    UISwipeGestureRecognizer *blueMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(blueMinusScore)];
+    blueMinusRecg.numberOfTouchesRequired=1;
+    blueMinusRecg.direction= UISwipeGestureRecognizerDirectionDown;
+    self.lblBlueTotal.userInteractionEnabled=YES;
+    [self.lblBlueTotal addGestureRecognizer:blueMinusRecg];
+    
+    UISwipeGestureRecognizer *redAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(redAddScore)];
+    redAddRecg.numberOfTouchesRequired=1;
+    redAddRecg.direction= UISwipeGestureRecognizerDirectionUp;
+    self.lblRedTotal.userInteractionEnabled=YES;
+    [self.lblRedTotal addGestureRecognizer:redAddRecg];
+    
+    UISwipeGestureRecognizer *redMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(redMinusScore)];
+    redMinusRecg.numberOfTouchesRequired=1;
+    redMinusRecg.direction= UISwipeGestureRecognizerDirectionDown;
+    self.lblRedTotal.userInteractionEnabled=YES;
+    [self.lblRedTotal addGestureRecognizer:redMinusRecg];
+    
+    /*在警告控件向左拖拉,累積警告分數加一次*/
+    UISwipeGestureRecognizer *blueWarmningAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(warmningAddToBluePlayer)];
+    blueWarmningAddRecg.numberOfTouchesRequired=1;
+    blueWarmningAddRecg.direction= UISwipeGestureRecognizerDirectionLeft;
+    [self.viewBlueWarmningBox addGestureRecognizer:blueWarmningAddRecg];
+    
+    /*在警告控件向右拖拉,累積警告分數减一次*/
+    UISwipeGestureRecognizer *blueWarmningMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(warmningMinusToBluePlayer)];
+    blueWarmningMinusRecg.numberOfTouchesRequired=1;
+    blueWarmningMinusRecg.direction= UISwipeGestureRecognizerDirectionRight;
+    [self.viewBlueWarmningBox addGestureRecognizer:blueWarmningMinusRecg];
+    
+    
+    /*在警告控件向右拖拉,累積警告分數加一次*/
+    UISwipeGestureRecognizer *redWarmningAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(warmningAddToRedPlayer)];
+    redWarmningAddRecg.numberOfTouchesRequired=1;
+    redWarmningAddRecg.direction= UISwipeGestureRecognizerDirectionRight;
+    [self.viewRedWarmningBox addGestureRecognizer:redWarmningAddRecg];
+    
+    /*在警告控件向左拖拉,累積警告分數减一次*/
+    UISwipeGestureRecognizer *redWarmningMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(warmningMinusToRedPlayer)];
+    redWarmningMinusRecg.numberOfTouchesRequired=1;
+    redWarmningMinusRecg.direction= UISwipeGestureRecognizerDirectionLeft;
+    [self.viewRedWarmningBox addGestureRecognizer:redWarmningMinusRecg];
 }
 
 - (void)viewDidUnload
@@ -120,6 +238,9 @@
     [self setLblRoundSeq:nil];
     [self setLblRedPlayerDesc:nil];
     [self setLblRedPlayerName:nil];
+    [self setLblScreening:nil];
+    [self setViewRedWarmningBox:nil];
+    [self setViewBlueWarmningBox:nil];
     [super viewDidUnload];    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -149,9 +270,88 @@
 }
 
 - (void)activate {
-    //[self showRoundRestTimeBox];
-    [self prepareForGame];
+    //[self prepareForGame];
+    [self showRoundRestTimeBox:1 andEventType:1];
 }
+
+-(void)drawWarmningFlag
+{
+    [self drawWarmningFlagForRed:YES];
+    [self drawWarmningFlagForRed:NO];
+}
+//warming,when 2 warmning to be a Deduction(score -1)
+-(void)warmningPlayer:(Boolean) isForRedSide andCount:(NSInteger)count{
+    if(isForRedSide){
+        if(chatRoom.gameInfo.redSideWarmning+count<0)
+            return;
+        else if(chatRoom.gameInfo.redSideWarmning+count>chatRoom.gameInfo.gameSetting.maxWarmningCount){
+            return;
+        }
+        else{
+            chatRoom.gameInfo.redSideWarmning+=count;
+            //合计2次警告自动加对方1分
+            if(count>0 && chatRoom.gameInfo.redSideWarmning%2==0){
+                [self submitScore:1 andIsRedSize:NO];
+            }            
+            [self drawWarmningFlagForRed:YES];
+        }
+    }
+    else{
+        if(chatRoom.gameInfo.blueSideWarmning+count<0)
+            return;
+        else if(chatRoom.gameInfo.blueSideWarmning+count>chatRoom.gameInfo.gameSetting.maxWarmningCount){
+            return;
+        }
+        else{
+            chatRoom.gameInfo.blueSideWarmning+=count;
+            if(count>0 && chatRoom.gameInfo.blueSideWarmning%2==0){
+                [self submitScore:1 andIsRedSize:YES];
+            }
+            [self drawWarmningFlagForRed:NO];
+        }    
+    }
+}
+
+-(void)warmningAddToBluePlayer{
+    [self warmningPlayer:NO andCount:1];
+}
+-(void)warmningAddToRedPlayer{
+    [self warmningPlayer:YES andCount:1];
+}
+-(void)warmningMinusToBluePlayer{
+    [self warmningPlayer:NO andCount:-1];
+}
+-(void)warmningMinusToRedPlayer{
+    [self warmningPlayer:YES andCount:-1];
+}
+-(void)drawWarmningFlagForRed:(Boolean)isForRedSide{
+    BOOL isBlue=!isForRedSide;
+    UIView *view=isBlue?viewBlueWarmningBox:viewRedWarmningBox;
+    int warmningCount=isBlue?chatRoom.gameInfo.blueSideWarmning:chatRoom.gameInfo.redSideWarmning;
+    int maxWarmingCount=chatRoom.gameInfo.gameSetting.maxWarmningCount;
+    view.frame=CGRectMake(view.frame.origin.x, view.frame.origin.y,20+(40+20)*maxWarmingCount/2+20, view.frame.size.height);
+    for (UIView *subView in view.subviews) {
+        [subView removeFromSuperview];
+    }
+    int deducateCount=warmningCount/2;
+    BOOL hasWarmning=warmningCount%2;
+    float initX=isBlue?view.frame.size.width-20-40 : 20;
+    for (int i=0; i<deducateCount; i++) {        
+        UILabel *lbl=[[UILabel alloc] initWithFrame:CGRectMake(initX, 10, 40, 40)];
+        initX = isBlue?(initX-(40+20)):(initX+(40+20));
+        lbl.backgroundColor=[UIColor yellowColor];
+        [view addSubview:lbl];
+    }
+    if (hasWarmning) {
+        UILabel *lbl=[[UILabel alloc] initWithFrame:CGRectMake(initX, 10, 40, 40)];
+        lbl.backgroundColor=[UIColor greenColor];
+        [view addSubview:lbl];
+    }
+    
+}
+
+#pragma mark -
+#pragma mark time hander
 //when game going on,we need to refresh time 
 -(void)updatTime { 
     chatRoom.gameInfo.currentRemainTime--;
@@ -160,28 +360,33 @@
 	lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
     if(chatRoom.gameInfo.currentRemainTime==0){
         [self pauseTime:YES];
-        if(chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount){
+        if(chatRoom.gameInfo.currentRound>=(chatRoom.gameInfo.gameSetting.roundCount-1)*chatRoom.gameInfo.gameSetting.skipScreening+chatRoom.gameInfo.gameSetting.startScreening){
             [self setMenuByGameStatus:kStateGameEnd]; 
             [UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
         }else{    
-            [self setMenuByGameStatus:kStateRoundReset]; 
-            [self resetRound];
-            [self showRoundRestTimeBox];
+            [self setMenuByGameStatus:kStateRoundReset];              
+            [self showRoundRestTimeBox:chatRoom.gameInfo.gameSetting.restTime andEventType:krestTime];
         }
     }    
 } 
 //show round rest when round end
--(void)showRoundRestTimeBox{
+-(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType{
     if(roundResetPanel==nil)
     {
-        CGRect frame=[AppConfig getInstance].isIPAD?CGRectMake(self.view.bounds.size.width/8, self.view.bounds.size.height/8, self.view.bounds.size.width/2, self.view.bounds.size.height/2):self.view.bounds;
-        roundResetPanel = [[RoundRestTimeViewController alloc] initWithFrame:frame title:@"Rest Time" andRestTime:chatRoom.gameInfo.gameSetting.restTime];
+        roundResetPanel=nil;
+    }
+        CGRect frame=self.view.bounds;
+        roundResetPanel = [[RoundRestTimeViewController alloc] initWithFrame:frame title:(eventType==krestAndReOrgTime?@"Rest for Reorganization":@"Rest Time") andRestTime:time];
+    roundResetPanel.relatedData=[[NSNumber alloc] initWithInt:eventType];
+    roundResetPanel.closeButton.hidden=eventType==krestTime;
+    __weak ScoreBoardViewController *_me=self;
+    __weak RoundRestTimeViewController *_resetPanel=roundResetPanel;
         roundResetPanel.onClosePressed = ^(UAModalPanel* panel) {
-            // [panel hide];
+            [_resetPanel hide];
+            [_me resetTimeEnd:_resetPanel.relatedData];
             //UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
         };
         roundResetPanel.delegate=self;
-    }
     if (roundResetPanel!=nil) {
         if(![self.view.subviews containsObject:roundResetPanel])
         {
@@ -194,16 +399,44 @@
         }
     }    
 }
+
+#pragma mark -
+#pragma mark score
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 {    
     if(isRedSide){
+        if(chatRoom.gameInfo.redSideScore+score<0)
+            return;
         chatRoom.gameInfo.redSideScore+=score;
         lblRedTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.redSideScore];           
     }else{
+        if(chatRoom.gameInfo.blueSideScore+score<0)
+            return;
         chatRoom.gameInfo.blueSideScore+=score;
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
-    [self setMenuByGameStatus:kStateRunning];
+    if(chatRoom.gameInfo.gameSetting.enableGapScore&&chatRoom.gameInfo.currentRound>=chatRoom.gameInfo.gameSetting.pointGapAvailRound){
+        if(fabs(chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore)>chatRoom.gameInfo.gameSetting.pointGap)
+        {
+            [self pauseTime:YES];
+            [self setMenuByGameStatus:kStateGameEnd];
+        }
+    }
+    else
+        [self setMenuByGameStatus:kStateRunning];
+}
+//add score to blue side
+-(void)blueAddScore{
+    [self submitScore:1 andIsRedSize:NO];
+}
+-(void)blueMinusScore{
+    [self submitScore:-1 andIsRedSize:NO];
+}
+-(void)redAddScore{
+    [self submitScore:1 andIsRedSize:YES];
+}
+-(void)redMinusScore{
+    [self submitScore:-1 andIsRedSize:YES];
 }
 /*
  所有裁判提交的分数必须相同,并且提交时间在1s之内,否则无效
@@ -229,7 +462,7 @@
         }
         
     }
-    double elaspedTime=kScoreCalcMaxDelay;
+    double elaspedTime=chatRoom.gameInfo.gameSetting.availTimeDuringScoreCalc;
     //timeout now
     NSLog(@"%f",fabs([minTime timeIntervalSinceNow]));
     if(fabs([minTime timeIntervalSinceNow]) >= elaspedTime){
@@ -290,6 +523,8 @@
     
     
 }
+#pragma mark -
+#pragma mark cmd handler
 // We are being asked to process cmd
 - (void)processCmd:(CommandMsg *)cmdMsg {
     
@@ -417,15 +652,17 @@
     [self.actionHeaderView removeFromSuperview];
     self.actionHeaderView=nil;
     //send last message
+    chatRoom.gameInfo=nil;
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(stopRoom) userInfo:nil repeats:NO];
 }
-
+//stop peer server
 -(void)stopRoom
 {
     [chatRoom stop];
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
+//erase warmning flags
 - (void)eraseText {
     for (NSArray *flags in dicSideFlags.allValues) {
         for (UILabel *flag in flags) {
@@ -433,7 +670,7 @@
         }
     }
 }
-
+//show waiting for user
 -(void)showWaitingUserBox
 {
     [self pauseTime:YES];
@@ -479,7 +716,7 @@
         }
     }
 }
-
+//prepare for game to start
 -(void)prepareForGame
 {
     [self setMenuByGameStatus:kStatePrepareGame];
@@ -493,15 +730,17 @@
         lblBluePlayerDesc.text=chatRoom.gameInfo.gameSetting.blueSideDesc;
         lblBluePlayerName.text=chatRoom.gameInfo.gameSetting.blueSideName;
         dicSideFlags=[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:lblRedImg1,lblRedImg2,lblRedImg3,lblRedImg4,lblRedImg5,lblRedImg6,lblRedImg7,lblRedImg8, nil],kSideRed,[[NSArray alloc] initWithObjects:lblBlueImg1,lblBlueImg2,lblBlueImg3,lblBlueImg4,lblBlueImg5,lblBlueImg6,lblBlueImg7,lblBlueImg8, nil],kSideBlue, nil];
-        
+        lblScreening.text=chatRoom.gameInfo.gameSetting.screeningArea;
     }
-    [self resetRound];
+    [self resetRound:YES];
+    [self drawWarmningFlag];
     [self setupMenu];
     [self setMenuByGameStatus:kStateWaitJudge];
     [self showWaitingUserBox];
     double inv=kHeartbeatTimeInterval;
     gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval:inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 }
+//set up bottom menu
 -(void)setupMenu
 {
     self.actionHeaderView = [[DDActionHeaderView alloc] initWithFrame:self.view.bounds];
@@ -593,41 +832,15 @@
             [self goToNextMatch];
             break;
         case  kMenuItemWarmningBlue:
-            [self warmningPlayer:NO];
+            [self warmningPlayer:NO andCount:1];
             break;
         case  kMenuItemWarmningRed:
-            [self warmningPlayer:YES];
+            [self warmningPlayer:YES andCount:1];
             break;
         default:
             break;
     }
     //[self.actionHeaderView shrinkActionPicker];
-}
-//warming,when 2 warmning to be a Deduction(score -1)
--(void)warmningPlayer:(Boolean) isForRedSide{
-    if(isForRedSide){
-        chatRoom.gameInfo.redSideWarmning++;
-        [self drawWarmningFlagForRed:YES];
-    }
-    else{
-        chatRoom.gameInfo.blueSideWarmning++;
-        [self drawWarmningFlagForRed:NO];
-    }
-    
-}
-
--(void)drawWarmningFlagForRed:(Boolean)isForRedSide{
-    
-    NSArray *flags= [dicSideFlags valueForKey:isForRedSide?kSideRed: kSideBlue];
-    int warmningCount=isForRedSide?chatRoom.gameInfo.redSideWarmning:chatRoom.gameInfo.blueSideWarmning;
-    for (int i=0; i<flags.count; i++) {
-        if (i<warmningCount) {
-            UILabel *lblFlag=  [flags objectAtIndex:i];
-            lblFlag.hidden=NO;
-        }
-    }
-    //[self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
-    
 }
 
 //start round
@@ -650,8 +863,24 @@
     [self setMenuByGameStatus:kStateRunning];
 }
 -(void)resetTimeEnd:(id)sender{
+    NSNumber *eventData=sender;
+    NSInteger eventType=[eventData intValue];
     roundResetPanel=nil;
-    [self startRound:nil];
+    switch (eventType) {
+        case krestTime:
+            {                
+                [self resetRound:NO];
+                [self startRound:nil];
+            }
+            break;
+            case krestAndReOrgTime:
+            {
+                [self contiueGame];
+            }
+            break;
+        default:
+            break;
+    }
 }
 -(void)pauseTime:(BOOL) stop;
 {
@@ -672,14 +901,37 @@
     [self pauseTime:YES];
     [self setMenuByGameStatus:kStateGamePause];
 }
--(void)resetRound
+//toggle game status to pause or continue
+-(void)gamePauseContinueToggle{
+    if(chatRoom.gameInfo.gameStatus== kStateGamePause){
+        [self contiueGame];
+    }
+    else if(chatRoom.gameInfo.gameStatus==kStateRunning){
+        [self pauseGame];
+    }
+}
+//pause game and show resetime box
+-(void)gamePauseAndShowResetTimeBox
+{
+    if (chatRoom.gameInfo.gameStatus==kStateRunning || chatRoom.gameInfo.gameStatus==kStateCalcScore) {
+        [self pauseTime:YES];        
+        [self setMenuByGameStatus:kStateGamePause];
+        [self showRoundRestTimeBox:chatRoom.gameInfo.gameSetting.restAndReorganizationTime andEventType:krestAndReOrgTime];
+    }
+}
+//重置回合信息
+-(void)resetRound:(BOOL)init;
 {
     chatRoom.gameInfo.currentRemainTime=chatRoom.gameInfo.gameSetting.roundTime;
     //chatRoom.gameInfo.redSideScore=0;
     //chatRoom.gameInfo.blueSideScore=0;
     lblRedTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.redSideScore];
     lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
-    lblRoundSeq.text=[NSString stringWithFormat:@"Round %i", ++chatRoom.gameInfo.currentRound];
+    if(init)
+        chatRoom.gameInfo.currentRound=chatRoom.gameInfo.gameSetting.startScreening;
+    else
+        chatRoom.gameInfo.currentRound=chatRoom.gameInfo.currentRound+chatRoom.gameInfo.gameSetting.skipScreening;
+    lblRoundSeq.text=[NSString stringWithFormat:@"Round %i", chatRoom.gameInfo.currentRound];
     int min = chatRoom.gameInfo.currentRemainTime/60;
     int sec=(int)chatRoom.gameInfo.currentRemainTime%60;
     lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec]; 
@@ -695,7 +947,7 @@
     //resetRound will add round sequence
     chatRoom.gameInfo.currentRound=0;
     //reset round info
-    [self resetRound];
+    [self resetRound:YES];
     [self startRound:nil];
 }
 
@@ -749,7 +1001,7 @@
 -(BOOL)testSomeClientDisconnect
 {
     BOOL hasDisconnect=NO;
-    double inv=kHeartbeatTimeMaxDelay;
+    double inv=chatRoom.gameInfo.gameSetting.availTimeDuringScoreCalc;
     //NSLog(@"tesc disconnect:%i",chatRoom.gameInfo.clients.count);
     for (JudgeClientInfo *clt in chatRoom.gameInfo.clients.allValues) {
         if(!clt.hasConnected)
@@ -817,4 +1069,32 @@
     return nil;
 }
 
+#pragma mark -
+#pragma mark During Match Setting
+
+-(void)updateForGameSetting:(BOOL)hasChange{
+    if (chatRoom.gameInfo.preGameStatus==kStateRunning||chatRoom.gameInfo.preGameStatus==kStateCalcScore) {
+        [self contiueGame];
+    }
+}
+-(void)showGameSettingDialog:(UIGestureRecognizer *)recognizer{
+    
+    CGPoint point= [recognizer locationInView:self.view];
+    if(point.y>10&&point.y<100){
+        if(chatRoom.gameInfo.gameStatus==kStateRunning||chatRoom.gameInfo.gameStatus==kStateCalcScore){
+            [self pauseGame];
+        }else{
+        
+        }
+        [[ChattyAppDelegate getInstance] showDuringMatchSettingView];
+    }
+}
+-(void)refreshGamesettingDialogJudges
+{
+    UISplitViewController *splitView=[ChattyAppDelegate getInstance].duringMathSplitViewCtl;
+    if(splitView.view.superview!=nil){
+     DuringMatchSettingDetailControllerHD *settingDetail= [splitView.viewControllers objectAtIndex:1];
+        [settingDetail refreshJudges];
+    }
+}
 @end

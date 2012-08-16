@@ -35,6 +35,10 @@
 #import "UIHelper.h"
 #import "ServerSetting.h"
 #import "GameInfo.h"
+#import "MainGameSettingViewController.h"
+#import "GameSettingDetailControllerHD.h"
+#import "GameSettingRootControllerHD.h"
+
 // Private properties
 @interface ChattyViewController ()
 @property(nonatomic,strong) ServerBrowser* serverBrowser;
@@ -98,19 +102,40 @@
     //    }else{
     //        [peerServerBrowser stop];
     //    }        
-        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]]];
-       
-        [self stopBrowser];
-        [[ChattyAppDelegate getInstance] showScoreBoard:room];
-    return;
+    //        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]]];
     
-    GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
-    self.settingViewController=settingView;
-    [self.view addSubview:settingView.view];
-    [self.view bringSubviewToFront:settingView.view];
-    // Create local chat room and go
-    //LocalRoom* room = [[[LocalRoom alloc] init] autorelease];
+    //[self stopBrowser];
     //[[ChattyAppDelegate getInstance] showScoreBoard:room];
+    //return;
+    
+    //    GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
+    //    self.settingViewController=settingView;
+    //    [self.view addSubview:settingView.view];
+    //    [self.view bringSubviewToFront:settingView.view];
+    if([AppConfig getInstance].isIPAD){
+        [[ChattyAppDelegate getInstance] showGameSettingView];
+        return;
+    }else{
+        /*Show setting view first*/
+            GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
+            self.settingViewController=settingView;
+            [self.view addSubview:settingView.view];
+            [self.view bringSubviewToFront:settingView.view];        
+        return;
+        
+        /*direct to start server*/
+        // Stop browsing for servers
+//        if ([AppConfig getInstance].networkUsingWifi) {
+//            [serverBrowser stop];
+//        }else{
+//            [peerServerBrowser stop];
+//        }        
+//        LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]]];
+//        
+//        [self stopBrowser];
+//        [[ChattyAppDelegate getInstance] showScoreBoard:room];
+//        return;
+    }    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -148,7 +173,7 @@
     }
     // Stop browsing and switch over to chat room
     
-        [[ChattyAppDelegate getInstance] showScoreControlRoom:room];
+    [[ChattyAppDelegate getInstance] showScoreControlRoom:room];
 }
 
 #pragma mark -
@@ -225,9 +250,10 @@
         if([sri.password isEqualToString:@""] ||sri==nil)
             [self joinChatRoom:indexPath];
         else{
-            UIPasswordBox *pwdBox= [[UIPasswordBox alloc] initWithLoading:@"Please input password" onComplete:^(id result){
+            __block UIPasswordBox *pwdBox= [[UIPasswordBox alloc] initWithLoading:@"Please input password" onComplete:^(id result){
                 NSString *password=result;
-                [pwdBox dismissWithClickedButtonIndex:0 animated:YES];
+                [pwdBox dismissWithClickedButtonIndex:-1 animated:NO];
+                pwdBox=nil;
                 if ([password isEqualToString:@""])
                 {
                     ;//nothing to do   
@@ -248,4 +274,7 @@
     return  indexPath;
 }
 
+- (void)viewDidUnload {    
+    [super viewDidUnload];
+}
 @end

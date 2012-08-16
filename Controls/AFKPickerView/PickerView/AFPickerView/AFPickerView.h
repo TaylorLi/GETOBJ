@@ -61,22 +61,15 @@
 
 @protocol AFPickerViewDataSource <NSObject>
 
-- (NSInteger)pickerView:(AFPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component;
+- (NSInteger)numberOfRowsInPickerView:(AFPickerView *)pickerView;
 
-- (NSString *)pickerView:(AFPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-
-- (NSInteger)numberOfComponentsInPickerView:(AFPickerView *)pickerView;
+- (NSString *)pickerView:(AFPickerView *)pickerView titleForRow:(NSInteger)row;
 
 @end
 
 
 @protocol AFPickerViewDelegate <NSObject>
 
-- (void)pickerView:(AFPickerView *)pickerView didSelectRow:(NSInteger)row 
-inComponent:(NSInteger)component;
-
--(void) doneSelect:(AFPickerView *)pickerView didSelectRow:(NSInteger)row 
-inComponent:(NSInteger)component;
+- (void)pickerView:(AFPickerView *)pickerView didSelectRow:(NSInteger)row;
 
 @end

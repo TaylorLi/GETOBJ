@@ -13,6 +13,9 @@
 #import "RoundRestTimeViewController.h"
 #import "DDActionHeaderView.h"
 
+#define kWaitBoxForReset 1
+#define kWaitBoxForReOrg 2
+
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
     UILabel *lblGameName;
@@ -67,7 +70,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblBlueTotal;
 @property (nonatomic, strong) IBOutlet UILabel *lblCoachName;
 @property (nonatomic, strong) IBOutlet UITextView *txtHistory;
-@property(nonatomic,strong) Room* chatRoom;
+@property(nonatomic,strong) LocalRoom* chatRoom;
 @property (strong, nonatomic) IBOutlet UILabel *lblGameDesc;
 @property (strong, nonatomic) IBOutlet UILabel *lblBluePlayerName;
 @property (strong, nonatomic) IBOutlet UILabel *lblBluePlayerDesc;
@@ -76,6 +79,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblRedPlayerDesc;
 @property (strong, nonatomic) IBOutlet UILabel *lblRedPlayerName;
 @property(nonatomic, strong) DDActionHeaderView *actionHeaderView;
+@property (strong, nonatomic) IBOutlet UILabel *lblScreening;
+@property (strong, nonatomic) IBOutlet UIView *viewRedWarmningBox;
+@property (strong, nonatomic) IBOutlet UIView *viewBlueWarmningBox;
 
 // Exit back to the welcome screen
 - (IBAction)exit;
@@ -87,4 +93,7 @@
 
 -(void)showWaitingUserBox;
 
+-(void)goToNextMatch;
+
+-(void)updateForGameSetting:(BOOL)hasChange;
 @end

@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) IBOutlet UIView *viewLoadedFromXib;
 @property (strong, nonatomic) IBOutlet UIButton *btnStart;
+@property (strong,nonatomic) id relatedData;
 - (IBAction)startRound:(id)sender;
 -(void)setTimerStop:(BOOL) stop;
 

@@ -23,6 +23,7 @@
 @synthesize viewLoadedFromXib;
 @synthesize btnStart;
 @synthesize lblTime;
+@synthesize relatedData;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title andRestTime:(NSTimeInterval) _restTime {
 	if ((self = [super initWithFrame:frame])) {
@@ -30,7 +31,7 @@
 		CGFloat colors[8] = BLACK_BAR_COMPONENTS;
 		[self.titleBar setColorComponents:colors];
 		self.headerLabel.text = title;
-        self.closeButton.hidden=YES;
+        //self.closeButton.hidden=YES;
 		self.margin = UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
@@ -39,7 +40,7 @@
         // The header label, a UILabel with the same frame as the titleBar
         self.headerLabel.font = [UIFont boldSystemFontOfSize:20];
         
-       viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"RoundRestTimeView" owner:self options:nil] objectAtIndex:0];
+        viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"RoundRestTimeView" owner:self options:nil] objectAtIndex:0];
         //NSLog(@"%f,%f",self.bounds.size.width,self.bounds.size.height);
         int min = restTime/60;
         int sec=fmod(restTime,60);
@@ -62,7 +63,7 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
     if([AppConfig getInstance].isIPAD){
-	[viewLoadedFromXib setFrame:CGRectMake(self.contentView.center.x, self.contentView.center.y-self.contentView.bounds.size.height/4, self.contentView.bounds.size.width/2, self.contentView.bounds.size.height/2)];
+        NSLog(@"%@",NSStringFromCGRect(self.contentView.bounds));
     }else{
         [viewLoadedFromXib setFrame:CGRectMake(70, 20, self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
     }
@@ -74,16 +75,17 @@
 	int min = restTime/60;
     int sec=fmod(restTime,60);
 	lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
-    if(restTime==0){   
+    if(restTime<=0){   
+        [self setTimerStop:YES];
         btnStart.hidden=NO;
         lblTime.hidden=YES;
         [UIView animateWithDuration:0.5 
 						 animations:^{
-                             btnStart.frame = CGRectMake(10.0f, 7.0f, btnStart.frame.size.width/2, btnStart.frame.size.height/2);
+                             btnStart.frame = CGRectMake(btnStart.frame.origin.x, btnStart.frame.origin.y, btnStart.frame.size.width/2, btnStart.frame.size.height/2);
 						 }];
         [UIView animateWithDuration:0.5 
 						 animations:^{
-                             btnStart.frame = CGRectMake(10.0f, 7.0f, btnStart.frame.size.width*2, btnStart.frame.size.height*2);
+                             btnStart.frame = CGRectMake(btnStart.frame.origin.x, btnStart.frame.origin.y, btnStart.frame.size.width*2, btnStart.frame.size.height*2);
 						 }];
     }
 }
@@ -107,7 +109,7 @@
         if ([delegate respondsToSelector:@selector(resetTimeEnd:)]) {
             [self removeFromSuperview];
         }  
-        [delegate performSelector:@selector(resetTimeEnd:) withObject:nil];
+        [delegate performSelector:@selector(resetTimeEnd:) withObject:relatedData];
     }]; 
 }
 

@@ -14,6 +14,8 @@
 #import "JudgeClientInfo.h"
 #import "GameInfo.h"
 #import "UIHelper.h"
+#import <AudioToolbox/AudioToolbox.h>  
+#import <CoreFoundation/CoreFoundation.h> 
 
 #define kMinimumGestureLength    25
 #define kMaximumVariance         5
@@ -182,7 +184,7 @@
 - (void)reportSwipe:(NSInteger)score fromGestureRecognizer:(UIGestureRecognizer *) recognizer{
     CGPoint currentPosition = [recognizer locationInView:self.view];
     isBlueSide = currentPosition.x >= screenWidth/2;
-    
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     [self sendScore:score];    
     label.text = [NSString stringWithFormat:@"%@ %i Score Record",
                   isBlueSide?[kSideBlue uppercaseString]:[kSideRed uppercaseString] ,score];;
@@ -460,7 +462,7 @@ else{
         {
             [self showConnectingBox:NO andTitle:nil];
             if(preGameStates== kStateWaitJudge){
-                [self showTipBox:@"Game start"];
+                //[self showTipBox:@"Game start"];
             }else if(preGameStates==kStateMultiplayerReconnect){
                 [self showTipBox:@"Lost judge back and game continue"];
             }

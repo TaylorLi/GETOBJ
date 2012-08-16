@@ -36,7 +36,6 @@
 static ChattyAppDelegate* _instance;
 
 @interface ChattyAppDelegate()
--(void) swithView:(UIView *) view;
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
 -(void)detectBluetoothStatus;
 -(void)testNetworkStatus;
@@ -44,6 +43,8 @@ static ChattyAppDelegate* _instance;
 
 @implementation ChattyAppDelegate
 
+@synthesize splitSettingViewController;
+@synthesize duringMathSplitViewCtl;
 @synthesize window;
 @synthesize viewController;
 @synthesize welcomeViewController;
@@ -70,6 +71,7 @@ static ChattyAppDelegate* _instance;
     btManager = [BluetoothManager sharedInstance];
     [self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
+    welcomeViewController=nil;
 }
 
 - (void)dealloc {
@@ -83,7 +85,9 @@ static ChattyAppDelegate* _instance;
 
 -(void) swithView:(UIView *) view{
     for (UIView *subView in window.subviews) {
+        if(subView.superview!=nil){
         [subView removeFromSuperview];
+            }
     }
     [window insertSubview:view atIndex:0];
 }
@@ -93,7 +97,7 @@ static ChattyAppDelegate* _instance;
     [viewController activate];
 }
 
--(void) showScoreBoard:(Room *)room{
+-(void) showScoreBoard:(LocalRoom *)room{
     NSLog(@"%i",scoreBoardViewController.view.superview==nil);
     [self swithView:scoreBoardViewController.view];
     scoreBoardViewController.chatRoom = room;
@@ -107,7 +111,16 @@ static ChattyAppDelegate* _instance;
     [self swithView:scoreControlViewController.view];
 }
 
-
+-(void) showGameSettingView{
+    if([AppConfig getInstance].serverSettingInfo==nil){
+        [AppConfig getInstance].serverSettingInfo=[[ServerSetting alloc] initWithDefault];
+    }
+    [self swithView:splitSettingViewController.view];
+}
+-(void) showDuringMatchSettingView
+{
+    [self swithView:duringMathSplitViewCtl.view];
+}
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title

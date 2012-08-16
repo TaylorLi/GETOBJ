@@ -85,7 +85,7 @@
         }        
         bluetoothClient.gkSessionDelegate=self;
         [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
-        NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+        NSString *uid = [AppConfig getInstance].uuid;
         clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:[AppConfig getInstance].name andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
         return YES;
     }
@@ -99,7 +99,7 @@
         bluetoothClient=[[PeerClient alloc] initWithPeerId:serverInfo.serverPeerId];
         bluetoothClient.gkSessionDelegate=self;
         [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
-        NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
+        NSString *uid = [AppConfig getInstance].uuid;
         clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:clientInfo.displayName andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
         return YES;
 }

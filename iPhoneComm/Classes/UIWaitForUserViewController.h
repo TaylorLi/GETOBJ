@@ -14,7 +14,7 @@
 	IBOutlet UIView	*viewLoadedFromXib;
 }
 @property (nonatomic, strong) IBOutlet UIView *viewLoadedFromXib;
-@property (nonatomic,weak) NSMutableDictionary *clients;
+@property (nonatomic,assign) NSMutableDictionary *clients;
 @property NSInteger needConnectedClientCount;
 @property (strong, nonatomic) IBOutlet UILabel *txtNeedClientCount;
 @property (strong, nonatomic) IBOutlet UIButton *btnStartGame;

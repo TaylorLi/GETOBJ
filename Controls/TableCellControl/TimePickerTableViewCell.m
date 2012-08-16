@@ -64,7 +64,7 @@
     if(component==0)
       return (_maxTime-_minTime)/60;
     else
-      return  (60%(int)_interval==0)?60/_interval-1: 60/_interval;
+      return  (60%(int)_interval==0)?60/_interval: 60/_interval+1;
 }
 
 #pragma mark -

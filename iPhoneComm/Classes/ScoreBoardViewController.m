@@ -270,8 +270,8 @@
 }
 
 - (void)activate {
-    //[self prepareForGame];
-    [self showRoundRestTimeBox:1 andEventType:1];
+    [self prepareForGame];
+    //[self showRoundRestTimeBox:1 andEventType:1];
 }
 
 -(void)drawWarmningFlag
@@ -415,6 +415,9 @@
         chatRoom.gameInfo.blueSideScore+=score;
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
+    //修改
+    cmdHis = nil;
+    //修改完
     if(chatRoom.gameInfo.gameSetting.enableGapScore&&chatRoom.gameInfo.currentRound>=chatRoom.gameInfo.gameSetting.pointGapAvailRound){
         if(fabs(chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore)>chatRoom.gameInfo.gameSetting.pointGap)
         {

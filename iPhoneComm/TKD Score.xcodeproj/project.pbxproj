@@ -231,6 +231,8 @@
 		DAE977E015D6407B00A5AF7E /* StaticTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977D815D6407B00A5AF7E /* StaticTextFieldTableViewCell.m */; };
 		DAE977E715D6654800A5AF7E /* TimePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */; };
 		DAE977E815D6654800A5AF7E /* TimePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */; };
+		DAEA364115DD3FA200FCB8CA /* TouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA364015DD3FA200FCB8CA /* TouchExt.m */; };
+		DAEA364215DD3FA200FCB8CA /* TouchExt.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA364015DD3FA200FCB8CA /* TouchExt.m */; };
 		DAEA465215DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */; };
 		DAEA465315DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */; };
 		DAEA465415DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA465115DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m */; };
@@ -456,6 +458,8 @@
 		DAE977D815D6407B00A5AF7E /* StaticTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticTextFieldTableViewCell.m; sourceTree = "<group>"; };
 		DAE977E515D6654300A5AF7E /* TimePickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimePickerTableViewCell.h; path = ../Controls/TableCellControl/TimePickerTableViewCell.h; sourceTree = "<group>"; };
 		DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimePickerTableViewCell.m; path = ../Controls/TableCellControl/TimePickerTableViewCell.m; sourceTree = "<group>"; };
+		DAEA363F15DD3FA100FCB8CA /* TouchExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchExt.h; sourceTree = "<group>"; };
+		DAEA364015DD3FA200FCB8CA /* TouchExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchExt.m; sourceTree = "<group>"; };
 		DAEA464E15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringMatchSettingDetailControllerHD.h; sourceTree = "<group>"; };
 		DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuringMatchSettingDetailControllerHD.m; sourceTree = "<group>"; };
 		DAEA465015DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuringMatchSettingRootControllerHD.h; sourceTree = "<group>"; };
@@ -658,6 +662,8 @@
 		D0B0372F0FA61471000EC42B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DAEA363F15DD3FA100FCB8CA /* TouchExt.h */,
+				DAEA364015DD3FA200FCB8CA /* TouchExt.m */,
 				DAEA464E15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.h */,
 				DAEA464F15DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m */,
 				DAEA465015DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.h */,
@@ -1234,6 +1240,7 @@
 				DAEC18EC15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */,
 				DAEA465215DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */,
 				DAEA465415DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */,
+				DAEA364115DD3FA200FCB8CA /* TouchExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1311,6 +1318,7 @@
 				DAEC18ED15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */,
 				DAEA465315DAA3D400B1C83C /* DuringMatchSettingDetailControllerHD.m in Sources */,
 				DAEA465515DAA3D400B1C83C /* DuringMatchSettingRootControllerHD.m in Sources */,
+				DAEA364215DD3FA200FCB8CA /* TouchExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

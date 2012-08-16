@@ -16,9 +16,14 @@
 #import "UIHelper.h"
 #import <AudioToolbox/AudioToolbox.h>  
 #import <CoreFoundation/CoreFoundation.h> 
+//新增
+#import "TouchExt.h"
+//新增完
 
-#define kMinimumGestureLength    25
-#define kMaximumVariance         5
+//修改
+#define kMinimumGestureLength    10
+#define kMaximumVariance         30
+//修改完
 
 @interface ScoreControlViewController ()
 
@@ -33,6 +38,9 @@
 -(void) showRetryConnect;
 -(void) showReconnectConfirmBox;
 -(void) testConnect:(NSTimer *)timer;
+//新增
+@property(nonatomic,retain) NSMutableArray *arrayTouch;
+//新增完
 @end
 
 @implementation ScoreControlViewController
@@ -40,6 +48,9 @@
 @synthesize gestureStartPoint;
 @synthesize chatRoom;
 @synthesize screenWidth;
+//新增
+@synthesize arrayTouch;
+//新增完
 
 - (void)eraseText {
     label.text = @"";
@@ -86,36 +97,43 @@
     //    isBlueSide=YES;
     //    [self setStyleBySide];
     //guesture
-    UISwipeGestureRecognizer *top;   
-    top = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                     action:@selector(reportSwipeUp:)];
-    top.direction = UISwipeGestureRecognizerDirectionUp;
-    top.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:top];
     
-    UISwipeGestureRecognizer *down;   
+    //修改
     
-    down = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                      action:@selector(reportSwipeDown:)];
-    down.direction = 
-    UISwipeGestureRecognizerDirectionDown;
-    down.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:down];
+    //    UISwipeGestureRecognizer *top;   
+    //    top = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+    //                                                     action:@selector(reportSwipeUp:)] autorelease];
+    //    top.direction = UISwipeGestureRecognizerDirectionUp;
+    //    top.numberOfTouchesRequired = 2;
+    //
+    //    [self.view addGestureRecognizer:top];
+    //    
+    //    UISwipeGestureRecognizer *down;   
+    //    
+    //    down = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+    //                                                      action:@selector(reportSwipeDown:)] autorelease];
+    //    down.direction = 
+    //    UISwipeGestureRecognizerDirectionDown;
+    //    down.numberOfTouchesRequired = 2;
+    //    
+    //    [self.view addGestureRecognizer:down];
+    //    
+    //    UISwipeGestureRecognizer *left;
+    //    left = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+    //                                                      action:@selector(reportSwipeLeft:)] autorelease];
+    //    left.direction = UISwipeGestureRecognizerDirectionLeft;
+    //    
+    //    left.numberOfTouchesRequired = 2;
+    //    [self.view addGestureRecognizer:left];
+    //    
+    //    UISwipeGestureRecognizer *right;
+    //    right = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
+    //                                                       action:@selector(reportSwipeRight:)] autorelease];
+    //    right.direction = UISwipeGestureRecognizerDirectionRight    ;
+    //    right.numberOfTouchesRequired = 2;
+    //    [self.view addGestureRecognizer:right];
     
-    UISwipeGestureRecognizer *left;
-    left = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                      action:@selector(reportSwipeLeft:)];
-    left.direction = UISwipeGestureRecognizerDirectionLeft;
-    
-    left.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:left];
-    
-    UISwipeGestureRecognizer *right;
-    right = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                       action:@selector(reportSwipeRight:)];
-    right.direction = UISwipeGestureRecognizerDirectionRight    ;
-    right.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:right];
+    //修改完
     
     /*   UISwipeGestureRecognizer *switchRcgn;
      switchRcgn = [[[UISwipeGestureRecognizer alloc] initWithTarget:self
@@ -130,6 +148,7 @@
      switchRcgnVertical.direction = UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
      switchRcgnVertical.numberOfTouchesRequired = 2;
      [self.view addGestureRecognizer:switchRcgnVertical];*/
+
 }
 
 /*-(void)setStyleBySide
@@ -141,6 +160,124 @@
  self.view.backgroundColor=[UIColor redColor];
  }
  }*/
+
+//新增
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"1======(%i)",touches.count);
+    NSLog(@"2======(%i)",[touches allObjects].count);
+    NSLog(@"3======(%i)",[event allTouches].count);
+    if(arrayTouch!=nil && arrayTouch.count==2) return;
+    for (UITouch *touch in touches) {
+        CGPoint point = [touch locationInView:self.view];
+        TouchExt *touchExt = [[TouchExt alloc] initWithTouch:touch pointInView:point];
+        [arrayTouch addObject:touchExt];
+        //[touchExt release];
+    }
+    NSLog(@"4======(%i)", arrayTouch.count);
+    
+}
+
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+//    NSLog(@"1------(%i)",touches.count);
+//    NSLog(@"2------(%i)",[touches allObjects].count);
+//    NSLog(@"3------(%i)",[event allTouches].count);
+//    if(arrayTouch!=nil && arrayTouch.count==2) return;
+//    for (UITouch* touch in touches) {
+//        CGPoint point = [touch locationInView:self.view];
+//        Boolean isExist = NO;
+//        for (TouchExt *touchExt in arrayTouch) {
+//            if (touch == touchExt.touchObj) {
+//                isExist = YES;
+//                break;
+//            }
+//        }
+//        if (!isExist) {
+//            TouchExt *touchExt = [[TouchExt alloc] initWithTouch:touch pointInView:point];
+//            [arrayTouch addObject:touchExt];
+//            [touchExt release];
+//        }
+//    }
+//    NSLog(@"4------(%i)", arrayTouch.count);
+//}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"1++++++(%i)",touches.count);
+    NSLog(@"2++++++(%i)",[touches allObjects].count);
+    NSLog(@"3++++++(%i)",[event allTouches].count);
+    for (UITouch* touch in touches) {
+        int arrayTouchCount = arrayTouch.count-1;
+        for (int i=arrayTouchCount; i>=0; i--) {
+            TouchExt *touchExt = [arrayTouch objectAtIndex:i];
+            if(touch ==  touchExt.touchObj){
+                if(!touchExt.isSendFinish){
+                    isBlueSide = touchExt.beginPoint.x >= screenWidth/2;
+                    CGPoint currenPoint = [touch locationInView:self.view];
+                    CGFloat deltaX = touchExt.beginPoint.x - currenPoint.x;
+                    CGFloat deltaY = touchExt.beginPoint.y - currenPoint.y;
+                    int score = 0;
+                    Boolean isSendMsg = NO;
+                    if(deltaX >= kMinimumGestureLength && fabsf(deltaY) <= kMaximumVariance){
+                        score = 1;
+                        isSendMsg = YES;
+                    }
+                    else if(deltaX <= -kMinimumGestureLength && fabsf(deltaY) <= kMaximumVariance){
+                        score = 3;
+                        isSendMsg = YES;
+                    }
+                    else if(deltaY >= kMinimumGestureLength && fabsf(deltaX) <= kMaximumVariance){
+                        score = 4;
+                        isSendMsg = YES;
+                    }
+                    else if(deltaY <= -kMinimumGestureLength && fabsf(deltaX) <= kMaximumVariance){
+                        score = 2;
+                        isSendMsg = YES;
+                    }
+                    if(isSendMsg){
+                        [[arrayTouch objectAtIndex:i] setIsSendFinish:YES];
+                        [self sendScore:score];    
+                        label.text = [NSString stringWithFormat:@"%@ %i Score Record",
+                                      isBlueSide?[kSideBlue uppercaseString]:[kSideRed uppercaseString] ,score];;
+                        [self performSelector:@selector(eraseText) withObject:nil afterDelay:2];
+                    }
+                }
+                
+                //为了避免弹出提示信息时触发touchesCancelled事件，事件会执行删除数组元素，导致越界
+                if(arrayTouchCount == arrayTouch.count-1){
+                    touchExt = nil;
+                    [arrayTouch removeObjectAtIndex:i];
+                }
+                break;
+            }
+        }
+        
+    }
+    NSLog(@"4++++++(%i)", arrayTouch.count);
+    
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"1~~~~~~~(%i)",touches.count);
+    NSLog(@"2~~~~~~~(%i)",[touches allObjects].count);
+    NSLog(@"3~~~~~~~(%i)",[event allTouches].count);
+    //    for (UITouch* touch in touches) {
+    //        int arrayTouchCount = arrayTouch.count-1;
+    //        for (int i=arrayTouchCount; i>=0; i--) {
+    //            TouchExt *touchExt = [arrayTouch objectAtIndex:i];
+    //            if(touch ==  touchExt.touchObj){                
+    //                if(arrayTouchCount == arrayTouch.count-1){
+    //                    [arrayTouch removeObjectAtIndex:i];
+    //                }
+    //                break;
+    //            }
+    //        }
+    //    }
+    [self touchesEnded:touches withEvent:event];
+    NSLog(@"4~~~~~~~(%i)", arrayTouch.count);
+    
+}
+
+//新增完
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -331,8 +468,11 @@ else{
 -(void)sendScore:(NSInteger) score
 {
     NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
+    //修改
+    [chatRoom sendCommand:[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] ];
+    NSLog(@"send score side is %@, score is %i",isBlueSide?kSideBlue:kSideRed, score);
     [self showConnectingBox:YES andTitle:@"Wait for score result"];
-    [chatRoom sendCommand:[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]]];
+    //修改完
 }
 
 -(void) showTipBox:(NSString *)tip;

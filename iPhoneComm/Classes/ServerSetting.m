@@ -58,7 +58,7 @@
     pointGapAvailRound=2;
     judgeCount=4;
     availScoreWithJudesCount=3;
-    availTimeDuringScoreCalc=0.5;
+    availTimeDuringScoreCalc=1;
     maxWarmningCount=8;
     restAndReorganizationTime=60;
 }

@@ -39,7 +39,6 @@
     UILabel *lblBlueTotal;
     UITextView *txtHistory;
     UILabel *lblCoachName;
-    NSDictionary *dicSideFlags;
     NSTimer *timer;
     UIWaitForUserViewController *waitUserPanel;
     RoundRestTimeViewController *roundResetPanel;
@@ -50,22 +49,6 @@
 }
 
 @property (nonatomic, strong) IBOutlet UILabel *lblGameName;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg1;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg2;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg3;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg4;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg1;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg2;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg3;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg4;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg5;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg6;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg7;
-@property (nonatomic, strong) IBOutlet UILabel *lblRedImg8;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg5;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg6;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg7;
-@property (nonatomic, strong) IBOutlet UILabel *lblBlueImg8;
 @property (nonatomic, strong) IBOutlet UILabel *lblRedTotal;
 @property (nonatomic, strong) IBOutlet UILabel *lblBlueTotal;
 @property (nonatomic, strong) IBOutlet UILabel *lblCoachName;
@@ -83,6 +66,7 @@
 @property (strong, nonatomic) IBOutlet UIView *viewRedWarmningBox;
 @property (strong, nonatomic) IBOutlet UIView *viewBlueWarmningBox;
 
+
 // Exit back to the welcome screen
 - (IBAction)exit;
 
@@ -96,4 +80,5 @@
 -(void)goToNextMatch;
 
 -(void)updateForGameSetting:(BOOL)hasChange;
+-(void)duringSettingEndPress;
 @end

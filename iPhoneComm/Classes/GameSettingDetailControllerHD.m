@@ -296,7 +296,7 @@
                     NSMutableArray *availRefCounts=[[NSMutableArray alloc] init];
                     for(int i=1;i<=si.judgeCount;i++)
                     {
-                        [availRefCounts addObject:[NSString stringWithFormat:@"%i/4",i]];
+                        [availRefCounts addObject:[NSString stringWithFormat:@"%i/%i",i,si.judgeCount]];
                     }
                     SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Judge", @"Avail Score Via Judge") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudesCount,si.judgeCount] dataSource:availRefCounts];   
                     availScoreRefCountCell.tag=kavailScoreWithJudesCount;
@@ -304,7 +304,7 @@
                     [section addCustomerCell:availScoreRefCountCell]; 
                     
                     NSMutableArray *bufferSecCounts=[[NSMutableArray alloc] init];
-                    for(float i=0.5;i<=1.1;i=i+0.1)
+                    for(float i=0.5;i<=4;i=i+0.5)
                     {
                         [bufferSecCounts addObject:[NSString stringWithFormat:@"%.1f",i]];
                     }

@@ -32,7 +32,7 @@
 		[self.titleBar setColorComponents:colors];
 		self.headerLabel.text = title;
         //self.closeButton.hidden=YES;
-		self.margin = UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
+		self.margin = UIEdgeInsetsMake(220.0f,220.0f,220.0f,220.0f);
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
         self.padding=UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
@@ -62,11 +62,7 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-    if([AppConfig getInstance].isIPAD){
-        NSLog(@"%@",NSStringFromCGRect(self.contentView.bounds));
-    }else{
-        [viewLoadedFromXib setFrame:CGRectMake(70, 20, self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
-    }
+    [viewLoadedFromXib setFrame:self.contentView.bounds];
 }
 
 -(void) updateTime

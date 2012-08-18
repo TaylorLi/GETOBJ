@@ -23,6 +23,7 @@
 -(void)backToHome;
 -(id)getTableCellByTag:(NSInteger)tag;
 -(void)saveSetting;
+-(void)refreshCurrentTime;
 @end
 
 @implementation DuringMatchSettingDetailControllerHD
@@ -31,7 +32,7 @@
 
 @synthesize toolbar, popoverController, detailItem;
 @synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer;
-@synthesize orgGameInfo;
+@synthesize orgGameInfo,currentRoundTime;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -160,6 +161,7 @@
                 
                 [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     TimePickerTableViewCell *currentTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Current time" title:NSLocalizedString(@"Current Time", @"Current Time") selectValue:gameInfo.gameSetting.roundTime - gameInfo.currentRemainTime maxTime:si.roundTime minTime:0 interval:1];
+                    selfCtl.currentRoundTime=gameInfo.gameSetting.roundTime - gameInfo.currentRemainTime;
                     currentTime.tag=kCurrentTime;
                     currentTime.delegate=selfCtl;
                     [section addCustomerCell:currentTime];
@@ -239,7 +241,22 @@
         {
             if(detailControllerMainMenu==nil){
                 detailControllerMainMenu =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                [detailControllerMainMenu addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                [detailControllerMainMenu addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {                    
+                                       
+                    [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        staticContentCell.cellStyle = UITableViewCellStyleValue1;
+                        staticContentCell.reuseIdentifier = @"End Match";                        
+                        cell.textLabel.text = NSLocalizedString(@"End Match", @"End Match");
+                        UIButton *resetBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                        [resetBtn setTitle:@"End Match" forState:UIControlStateNormal];
+                        [resetBtn setFrame:CGRectMake(0, 0, 100, 35)];
+                        [resetBtn  addTarget:selfCtl action:@selector(endMatch) forControlEvents:UIControlEventTouchUpInside];
+                        cell.accessoryView = resetBtn;
+                        //cell.detailTextLabel.text = NSLocalizedString(@"On", @"On");
+                    } whenSelected:^(NSIndexPath *indexPath) {
+                        //TODO			
+                    }];
                     
                     [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -255,21 +272,7 @@
                     } whenSelected:^(NSIndexPath *indexPath) {
                         //TODO			
                     }];
-                    
-                    [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
-                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                        staticContentCell.cellStyle = UITableViewCellStyleValue1;
-                        staticContentCell.reuseIdentifier = @"End Match";                        
-                        cell.textLabel.text = NSLocalizedString(@"End Match", @"End Match");
-                        UIButton *resetBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                        [resetBtn setTitle:@"End Match" forState:UIControlStateNormal];
-                        [resetBtn setFrame:CGRectMake(0, 0, 100, 35)];
-                        [resetBtn  addTarget:selfCtl action:@selector(endMatch) forControlEvents:UIControlEventTouchUpInside];
-                        cell.accessoryView = resetBtn;
-                        //cell.detailTextLabel.text = NSLocalizedString(@"On", @"On");
-                    } whenSelected:^(NSIndexPath *indexPath) {
-                        //TODO			
-                    }];
+
                     
                 }];
             }
@@ -334,13 +337,19 @@
     switch (cell.tag) {
         case kroundTime:
             si.roundTime=value;
+            [self refreshCurrentTime];
             isChangeSetting=YES;
             break;               
         case kCurrentTime:
-            [AppConfig getInstance].currentGameInfo.currentRemainTime= value;
+            currentRoundTime=value;
             isChangeSetting=YES;
             break;  
     }
+}
+-(void)refreshCurrentTime
+{
+    TimePickerTableViewCell *currentTime=[self getTableCellByTag:kCurrentTime];
+   currentRoundTime = [currentTime reloadPickerWithselectValue:currentRoundTime maxTime:orgGameInfo.gameSetting.roundTime minTime:0 interval:1];
 }
 - (void)valueChanged:(UISwitch *)theSwitch {
     orgGameInfo.gameSetting.enableGapScore=theSwitch.isOn;
@@ -368,6 +377,7 @@
 
 -(void)endMatch
 {
+    /*
     AlertView *confirmBox= [[AlertView alloc] initWithTitle:NSLocalizedString(@"Information", @"") message:NSLocalizedString(@"Do you want to goto next match?", @"")];
     [confirmBox addButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:[^(AlertView* a, NSInteger i){
         
@@ -378,6 +388,9 @@
         [relateGameServer goToNextMatch];
     } copy]];
     [confirmBox show];
+    */
+    [[ChattyAppDelegate getInstance] swithView:relateGameServer.view]; 
+    [relateGameServer duringSettingEndPress];
 }
 
 -(void)saveSetting
@@ -386,7 +399,9 @@
         GameInfo *currSetting=  relateGameServer.chatRoom.gameInfo;
         currSetting.gameSetting.roundTime=orgGameInfo.gameSetting.roundTime;
         currSetting.gameSetting.restTime=orgGameInfo.gameSetting.restTime;
-        currSetting.currentRemainTime=currSetting.gameSetting.roundTime-orgGameInfo.currentRemainTime;
+        currSetting.currentRemainTime=currSetting.gameSetting.roundTime-currentRoundTime;
+        if(currSetting.currentRemainTime<0)
+            currSetting.currentRemainTime=0;
         currSetting.gameSetting.availTimeDuringScoreCalc=orgGameInfo.gameSetting.availTimeDuringScoreCalc;
         currSetting.gameSetting.enableGapScore=orgGameInfo.gameSetting.enableGapScore;
         currSetting.gameSetting.pointGap=orgGameInfo.gameSetting.pointGap;
@@ -408,7 +423,7 @@
 }
 -(id)getTableCellByTag:(NSInteger)tag
 {    
-    NSArray *ctls=[[NSArray alloc] initWithObjects:detailControllerMisc,detailControllerMisc,detailControllerJudge,detailControllerMainMenu, nil];
+    NSArray *ctls=[[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu, nil];
     for (JMStaticContentTableViewController * ctl in ctls) {
         for (NSInteger j = 0; j < [ctl.tableView numberOfSections]; ++j)
         {

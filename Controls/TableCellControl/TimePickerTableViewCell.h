@@ -31,4 +31,5 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
               title:(NSString *) title selectValue:(NSTimeInterval) selValue maxTime:(NSTimeInterval) maxTime minTime:(NSTimeInterval) minTime interval:(NSTimeInterval) interval;
 
+-(NSTimeInterval)reloadPickerWithselectValue:(NSTimeInterval) selValue maxTime:(NSTimeInterval) maxTime minTime:(NSTimeInterval) minTime interval:(NSTimeInterval) interval;
 @end

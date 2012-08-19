@@ -11,7 +11,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -87,14 +87,15 @@
 -(NSString *) description{
     return [NSString stringWithFormat:@"Uuid:%@,peerId:%@,gameStatus:%d,serverLastHeartbeatDate:%@",self.serverUuid,self.serverPeerId,self.gameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate]];
 }
--(void)setCurrentStatus:(GameStates)gameCurrentStatus
+/*
+-(BOOL)getPointGapReached
 {
-    if(gameCurrentStatus!=preGameStatus)
-        [self setPreGameStatus:_gameStatus];
-    _gameStatus=gameCurrentStatus;
+    return gameSetting.enableGapScore&&currentRound>=gameSetting.pointGapAvailRound && fabs(redSideScore-blueSideScore)>=gameSetting.pointGap;
 }
--(GameStates)getCurrentStatus
+
+-(BOOL)gtWarningMaxReached
 {
-    return _gameStatus;
+   return blueSideWarning==gameSetting.maxWarningCount||redSideWarning==gameSetting.maxWarningCount;
 }
+*/
 @end

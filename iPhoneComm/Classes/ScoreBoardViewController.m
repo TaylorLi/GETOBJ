@@ -26,11 +26,16 @@
 #define  kMenuItemWarningRed 4
 #define kMenuItemNextMatch 5
 
+#define kSoundsRoundStart @"round_start.mp3"
+#define kSoundsCongratulation @"congratulation.mp3"
+
+
 @interface ScoreBoardViewController ()
 
 -(void)updatTime;
 -(void)prepareForGame;
 -(void)startRound:(id)sender;
+-(void)waitUserStartPress:(id)sender;
 -(void)contiueGame;
 -(void)pauseGame;
 -(void)resetRound:(BOOL)init;
@@ -78,6 +83,7 @@
 -(void)pointGapLoop;
 -(void)setWarningMaxProcess;
 -(void)warnmingMaxProcessLoop;
+-(BOOL)isGuestureEnable;
 @end 
 
 @implementation ScoreBoardViewController
@@ -172,7 +178,7 @@
     viewSwapDownRecg.direction= UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:viewSwapDownRecg];
     
-    /*双击时间控件,继续或者暂停*/
+    /*双击时间控件,继续或者暂停,比赛进行时有效*/
     UITapGestureRecognizer *startStopGame=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gamePauseContinueToggle)];
     startStopGame.numberOfTapsRequired=2;
     startStopGame.numberOfTouchesRequired=1;
@@ -293,6 +299,8 @@
 }
 
 - (void)activate {
+    if(player==nil)
+        player= [[SoundsPlayer alloc] init] ;    
     [self prepareForGame];
     //[self showRoundRestTimeBox:1 andEventType:1];
 }
@@ -334,16 +342,20 @@
 }
 
 -(void)warningAddToBluePlayer{
-    [self warningPlayer:NO andCount:1];
+    if([self isGuestureEnable])
+        [self warningPlayer:NO andCount:1];
 }
 -(void)warningAddToRedPlayer{
-    [self warningPlayer:YES andCount:1];
+    if([self isGuestureEnable])
+        [self warningPlayer:YES andCount:1];
 }
 -(void)warningMinusToBluePlayer{
-    [self warningPlayer:NO andCount:-1];
+    if([self isGuestureEnable])
+        [self warningPlayer:NO andCount:-1];
 }
 -(void)warningMinusToRedPlayer{
-    [self warningPlayer:YES andCount:-1];
+    if([self isGuestureEnable])
+        [self warningPlayer:YES andCount:-1];
 }
 
 #pragma mark -
@@ -387,9 +399,9 @@
     float padding=1;
     float paddingTop=1;
     if(isBlue){//蓝色框以右边端点为固定端点，向左延伸
-    view.frame=CGRectMake(view.frame.origin.x+view.frame.size.width-(padding+(actWidth)*maxWarmingCount/2+padding), view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding, view.frame.size.height);
+        view.frame=CGRectMake(view.frame.origin.x+view.frame.size.width-(padding+(actWidth)*maxWarmingCount/2+padding), view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding, view.frame.size.height);
     }else{
-             view.frame=CGRectMake(view.frame.origin.x, view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding, view.frame.size.height);
+        view.frame=CGRectMake(view.frame.origin.x, view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding, view.frame.size.height);
     }
     for (UIView *subView in view.subviews) {
         [subView removeFromSuperview];
@@ -439,20 +451,18 @@
      2. 操作減分至正常。畫面回復正常。時間可以隨時開始
      */
     if(self.chatRoom.gameInfo.blueSideWarning==self.chatRoom.gameInfo.gameSetting.maxWarningCount||self.chatRoom.gameInfo.redSideWarning==self.chatRoom.gameInfo.gameSetting.maxWarningCount){
-        [self setMenuByGameStatus:kStateMaxWarningReached];
         BOOL isRedSide=self.chatRoom.gameInfo.redSideWarning==self.chatRoom.gameInfo.gameSetting.maxWarningCount;
-        warningMaxReached = YES;
-        [self pauseTime:YES];
+        [self pauseGame];
         [self drawTotalScore:isRedSide andScore:isRedSide?chatRoom.gameInfo.redSideScore:chatRoom.gameInfo.blueSideScore andGrayStype:YES];
         if(![warningMaxTimer isValid]){
             warningMaxTimer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(warnmingMaxProcessLoop) userInfo:nil repeats:YES];
         }
     }
     else{
-        if(warningMaxReached){
+        if(self.chatRoom.gameInfo.warningMaxReached){
             if([warningMaxTimer isValid])
                 [warningMaxTimer invalidate];
-            warningMaxReached=NO;
+            self.chatRoom.gameInfo.warningMaxReached=NO;
             [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore];
             [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
         }
@@ -549,7 +559,8 @@
 #pragma mark time hander
 //when game going on,we need to refresh time 
 -(void)updatTime { 
-    chatRoom.gameInfo.currentRemainTime--;
+    if(chatRoom.gameInfo.currentRemainTime>0)
+        chatRoom.gameInfo.currentRemainTime--;
 	int min = chatRoom.gameInfo.currentRemainTime/60;
     int sec=fmod(chatRoom.gameInfo.currentRemainTime,60);
     [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
@@ -561,7 +572,7 @@
             [self showSelectWinnerBox];
             //[UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
         }else{    
-            [self setMenuByGameStatus:kStateRoundReset];              
+            [self setMenuByGameStatus:kStateRoundRest];              
             [self showRoundRestTimeBox:chatRoom.gameInfo.gameSetting.restTime andEventType:krestTime];
         }
     }    
@@ -572,18 +583,18 @@
     {
         roundResetPanel=nil;
     }
-        CGRect frame=self.view.bounds;
-        roundResetPanel = [[RoundRestTimeViewController alloc] initWithFrame:frame title:(eventType==krestAndReOrgTime?@"Rest for Reorganization":@"Rest Time") andRestTime:time];
+    CGRect frame=self.view.bounds;
+    roundResetPanel = [[RoundRestTimeViewController alloc] initWithFrame:frame title:(eventType==krestAndReOrgTime?@"Rest for Reorganization":@"Rest Time") andRestTime:time];
     roundResetPanel.relatedData=[[NSNumber alloc] initWithInt:eventType];
     roundResetPanel.closeButton.hidden=eventType==krestTime;
     __weak ScoreBoardViewController *_me=self;
     __weak RoundRestTimeViewController *_resetPanel=roundResetPanel;
-        roundResetPanel.onClosePressed = ^(UAModalPanel* panel) {
-            [_resetPanel hide];
-            [_me resetTimeEnd:_resetPanel.relatedData];
-            //UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
-        };
-        roundResetPanel.delegate=self;
+    roundResetPanel.onClosePressed = ^(UAModalPanel* panel) {
+        [_resetPanel hide];
+        [_me resetTimeEnd:_resetPanel.relatedData];
+        //UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
+    };
+    roundResetPanel.delegate=self;
     if (roundResetPanel!=nil) {
         if(![self.view.subviews containsObject:roundResetPanel])
         {
@@ -615,23 +626,34 @@
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
     //修改
-//    cmdHis = nil;
+    //    cmdHis = nil;
     //修改完
     if(![self testPointGapReached])
         [self setMenuByGameStatus:kStateRunning];
 }
+-(BOOL)isGuestureEnable{
+    return chatRoom.gameInfo.gameStatus!=kStateWaitJudge&&chatRoom.gameInfo.gameStatus!=kStateGameExit&&chatRoom.gameInfo.gameStatus!=kStateGameEnd;
+}
 //add score to blue side
 -(void)blueAddScore{
-    [self submitScore:1 andIsRedSize:NO];
+    if([self isGuestureEnable]){
+        [self submitScore:1 andIsRedSize:NO];
+    }
 }
 -(void)blueMinusScore{
-    [self submitScore:-1 andIsRedSize:NO];
+    if([self isGuestureEnable]){
+        [self submitScore:-1 andIsRedSize:NO];
+    }
 }
 -(void)redAddScore{
-    [self submitScore:1 andIsRedSize:YES];
+    if([self isGuestureEnable]){
+        [self submitScore:1 andIsRedSize:YES];
+    }
 }
 -(void)redMinusScore{
-    [self submitScore:-1 andIsRedSize:YES];
+    if([self isGuestureEnable]){
+        [self submitScore:-1 andIsRedSize:YES];
+    }
 }
 /*
  所有裁判提交的分数必须相同,并且提交时间在1s之内,否则无效
@@ -639,9 +661,9 @@
 -(void)testIfScoreCanSubmit
 {    
     if(!(chatRoom.gameInfo.gameStatus==kStateRunning||chatRoom.gameInfo.gameStatus==kStateCalcScore))
-        {
-            return;
-        }
+    {
+        return;
+    }
     if(cmdHis==nil)
         return;
     NSLog(@"Cmd his count:%i,client cout:%i",cmdHis.count,chatRoom.gameInfo.clients.count);
@@ -723,8 +745,8 @@
 -(BOOL)testPointGapReached;
 {
     if(chatRoom.gameInfo.gameSetting.enableGapScore&&chatRoom.gameInfo.currentRound>=chatRoom.gameInfo.gameSetting.pointGapAvailRound && fabs(chatRoom.gameInfo.redSideScore-chatRoom.gameInfo.blueSideScore)>=chatRoom.gameInfo.gameSetting.pointGap){
-            [self setPointGapStateFor:YES];
-            return YES;
+        [self setPointGapStateFor:YES];
+        return YES;
     }
     else{
         [self setPointGapStateFor:NO];
@@ -735,20 +757,19 @@
 -(void)setPointGapStateFor:(BOOL)hasReached
 {
     if(hasReached){
-        [self setMenuByGameStatus:kStatePointGapReached];
-        pointGapReached=YES;
-        [self pauseTime:YES];
+        self.chatRoom.gameInfo.pointGapReached=YES;
+        [self pauseGame];
         BOOL drawRedGrayStype=chatRoom.gameInfo.blueSideScore-chatRoom.gameInfo.redSideScore>0;
         [self drawTotalScore:drawRedGrayStype andScore:drawRedGrayStype?chatRoom.gameInfo.redSideScore:chatRoom.gameInfo.blueSideScore andGrayStype:YES];
         if(![pointGapTimer isValid]){
-        pointGapTimer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(pointGapLoop) userInfo:nil repeats:YES];
+            pointGapTimer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(pointGapLoop) userInfo:nil repeats:YES];
         }
     }
     else{
-        if(pointGapReached){
+        if(self.chatRoom.gameInfo.pointGapReached){
             if([pointGapTimer isValid])
                 [pointGapTimer invalidate];
-            pointGapReached=NO;
+            self.chatRoom.gameInfo.pointGapReached=NO;
             [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore];
             [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
         }
@@ -819,6 +840,7 @@
             break;
         case  NETWORK_CLIENT_INFO:
         { 
+            BOOL hasChanged=NO;
             JudgeClientInfo *cltInfo =[[JudgeClientInfo alloc] initWithDictionary:   cmdMsg.data];
             JudgeClientInfo *cltInfoOld=[chatRoom.gameInfo.clients objectForKey:cltInfo.uuid];
             if(cltInfoOld==nil)
@@ -826,24 +848,31 @@
                 cltInfo.hasConnected=YES;
                 cltInfo.lastHeartbeatDate=[NSDate date];
                 [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
-                [self showWaitingUserBox];//no all has enter the game
+                hasChanged=YES;
             }
             else
             {
                 cltInfoOld.lastHeartbeatDate=[NSDate date];
-                if(!cltInfoOld.hasConnected){                    
-                    cltInfoOld.hasConnected=YES;
-                    if(chatRoom.gameInfo.gameStatus==kStateWaitJudge){
-                        //wait for judge
-                        [self showWaitingUserBox];
-                    }
-                    else if([self testSomeClientDisconnect]){
-                        //still some one disconnect
-                        [self setMenuByGameStatus:kStateMultiplayerReconnect];
-                        [self showWaitingUserBox];
-                    }
-                    else{
-                        //every one back to game
+                if(!cltInfoOld.hasConnected){          
+                    [self refreshGamesettingDialogJudges];
+                    cltInfoOld.hasConnected=YES;                    
+                    hasChanged=YES;
+                }
+            }
+            if(hasChanged){
+                [self refreshGamesettingDialogJudges];
+                if(chatRoom.gameInfo.gameStatus==kStateWaitJudge){
+                    //wait for judge
+                    [self showWaitingUserBox];                
+                    return;
+                }
+                if([self testSomeClientDisconnect]){
+                    //still some one disconnect                        
+                    [self showWaitingUserBox];
+                }
+                else{
+                    //every one back to game
+                    if(!isAtMatchSetting){
                         chatRoom.gameInfo.gameStatus=chatRoom.gameInfo.preGameStatus;
                         if(chatRoom.gameInfo.gameStatus==kStateRunning)
                             [self contiueGame];
@@ -851,16 +880,18 @@
                         {
                             if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
                                 [waitUserPanel removeFromSuperview];
-                                waitUserPanel=nil;
+                                //waitUserPanel=nil;
                             }
-                            if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
+                            if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
                             {
                                 [roundResetPanel setTimerStop:NO];
                             }
                         }
+                    }else{
+                        if(chatRoom.gameInfo.preGameStatus==kStateRunning)
+                            chatRoom.gameInfo.gameStatus=kStateGamePause;
                     }
-                    
-                }                       
+                }
             }
         }
             break;
@@ -932,13 +963,15 @@
 
 //erase warning flags
 - (void)eraseText {
-  
+    
 }
 
 //show waiting for user
 -(void)showWaitingUserBox
 {
     [self pauseTime:YES];
+    if(self.view.subviews==nil)
+        return;
     if(waitUserPanel==nil)
     {
         __block typeof (self) me = self;
@@ -985,15 +1018,17 @@
 #pragma mark Game Logic Process
 //prepare for game to start
 -(void)prepareForGame
-{
-    pointGapReached=NO;
+{    
+    self.chatRoom.gameInfo.pointGapReached=NO;
+    self.chatRoom.gameInfo.warningMaxReached=NO;
+    isAtMatchSetting=NO;
     if(timeFlags==nil)
-        {
-            timeFlags=[[NSMutableArray alloc] initWithCapacity:10];
-            for (int i=0; i<10; i++) {
-                [timeFlags addObject:[UIImage imageNamed:[NSString stringWithFormat:@"time_%i",i]]];
-            }
+    {
+        timeFlags=[[NSMutableArray alloc] initWithCapacity:10];
+        for (int i=0; i<10; i++) {
+            [timeFlags addObject:[UIImage imageNamed:[NSString stringWithFormat:@"time_%i",i]]];
         }
+    }
     if(marksFlags==nil)
     {
         marksFlags=[[NSMutableArray alloc] initWithCapacity:10];
@@ -1132,6 +1167,7 @@
 //start round
 -(void)startRound:(id)sender
 {
+    [player playSoundWithFullPath:kSoundsRoundStart];
     if([self testPointGapReached]){
         return;
     }
@@ -1142,12 +1178,16 @@
     [self setMenuByGameStatus:kStateRunning];
     
 }
+-(void)waitUserStartPress:(id)sender{
+    [self contiueGame];
+}
 -(void)contiueGame
 {
-    if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
-        [waitUserPanel removeFromSuperview];
-        waitUserPanel=nil;
-    }
+    if(chatRoom.gameInfo.warningMaxReached||chatRoom)
+        if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
+            [waitUserPanel removeFromSuperview];
+            waitUserPanel=nil;
+        }
     [self pauseTime:NO];
     [self setMenuByGameStatus:kStateRunning];
 }
@@ -1157,15 +1197,15 @@
     roundResetPanel=nil;
     switch (eventType) {
         case krestTime:
-            {                
-                [self resetRound:NO];
-                [self startRound:nil];
-            }
+        {                
+            [self resetRound:NO];
+            [self startRound:nil];
+        }
             break;
-            case krestAndReOrgTime:
-            {
-                [self contiueGame];
-            }
+        case krestAndReOrgTime:
+        {
+            [self contiueGame];
+        }
             break;
         default:
             break;
@@ -1192,7 +1232,7 @@
 }
 //toggle game status to pause or continue
 -(void)gamePauseContinueToggle{
-    if(chatRoom.gameInfo.gameStatus== kStateGamePause){
+    if(chatRoom.gameInfo.gameStatus== kStateGamePause||chatRoom.gameInfo.gameStatus== kStateCalcScore){
         [self contiueGame];
     }
     else if(chatRoom.gameInfo.gameStatus==kStateRunning){
@@ -1203,8 +1243,7 @@
 -(void)gamePauseAndShowResetTimeBox
 {
     if (chatRoom.gameInfo.gameStatus==kStateRunning || chatRoom.gameInfo.gameStatus==kStateCalcScore) {
-        [self pauseTime:YES];        
-        [self setMenuByGameStatus:kStateGamePause];
+        [self pauseGame];
         [self showRoundRestTimeBox:chatRoom.gameInfo.gameSetting.restAndReorganizationTime andEventType:krestAndReOrgTime];
     }
 }
@@ -1230,6 +1269,8 @@
     chatRoom.gameInfo.currentMatch++;
     //resetRound will add round sequence
     chatRoom.gameInfo.currentRound=0;
+    self.chatRoom.gameInfo.pointGapReached=NO;
+    self.chatRoom.gameInfo.warningMaxReached=NO;
     //reset round info
     [self resetRound:YES];
     [self startRound:nil];
@@ -1250,7 +1291,7 @@
         }
         
         if(counter%9==0){
-            [self testSomeClientDisconnect];          
+            [self testSomeClientDisconnect];         
         }    
     }   
 	[self processByGameStatus];
@@ -1273,10 +1314,8 @@
             break;
         case kStateMultiplayerReconnect:
         {
-            [self showWaitingUserBox];
+            
         }
-            break;
-        case kStatePointGapReached:
             break;
         case kStateGamePause:
             break;
@@ -1297,13 +1336,19 @@
         else if(clt.lastHeartbeatDate!=nil && fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv) {
             clt.hasConnected=NO;
             hasDisconnect=YES;
-            if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
-            {
-                [roundResetPanel setTimerStop:YES];
-            }
-            [self setMenuByGameStatus:kStateMultiplayerReconnect];   
-            [self showWaitingUserBox];
+            
         }
+    }
+    if(hasDisconnect){
+        if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+            [roundResetPanel setTimerStop:YES];
+        [self showWaitingUserBox];
+        if(chatRoom.gameInfo.gameStatus!=kStateMultiplayerReconnect&&chatRoom.gameInfo.gameStatus!=kStateWaitJudge){
+            [self setMenuByGameStatus:kStateMultiplayerReconnect];            
+        }
+    }
+    else{
+        [self refreshGamesettingDialogJudges];
     }
     return hasDisconnect;           
 }
@@ -1317,7 +1362,11 @@
 
 -(void)setMenuByGameStatus:(GameStates)status;
 {
+    if(chatRoom.gameInfo.gameStatus!=kStateMultiplayerReconnect){
+        chatRoom.gameInfo.preGameStatus=chatRoom.gameInfo.gameStatus;
+    }
     chatRoom.gameInfo.gameStatus = status;
+    NSLog(@"Game Status:%i,Previous Status:%i",status,chatRoom.gameInfo.preGameStatus);
     [self sendServerInfo];
     [self processByGameStatus];
     UIButton *continueButton=[self getMenuItem:kMenuItemContinueGame];
@@ -1361,22 +1410,32 @@
 #pragma mark During Match Setting
 
 -(void)updateForGameSetting:(BOOL)hasChange{
+    isAtMatchSetting=NO;
     if(hasChange)
-        {
-            [self drawLayoutByGameInfo];
-        }
-    if (chatRoom.gameInfo.preGameStatus==kStateRunning||chatRoom.gameInfo.preGameStatus==kStateCalcScore) {
+    {
+        [self drawLayoutByGameInfo];
+    }
+    if (chatRoom.gameInfo.gameStatus==kStateRunning&&( chatRoom.gameInfo.preGameStatus==kStateRunning||chatRoom.gameInfo.preGameStatus==kStateCalcScore)) {
         [self contiueGame];
     }
+    else if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+    {
+        [roundResetPanel setTimerStop:NO];
+    }
+
 }
 -(void)showGameSettingDialog:(UIGestureRecognizer *)recognizer{
     
+    isAtMatchSetting=YES;
     CGPoint point= [recognizer locationInView:self.view];
     if(point.y>10&&point.y<100){
         if(chatRoom.gameInfo.gameStatus==kStateRunning||chatRoom.gameInfo.gameStatus==kStateCalcScore){
             [self pauseGame];
         }else{
-        
+            if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+                {
+                    [roundResetPanel setTimerStop:YES];
+                }
         }
         [[ChattyAppDelegate getInstance] showDuringMatchSettingView];
     }
@@ -1385,13 +1444,14 @@
 {
     UISplitViewController *splitView=[ChattyAppDelegate getInstance].duringMathSplitViewCtl;
     if(splitView.view.superview!=nil){
-     DuringMatchSettingDetailControllerHD *settingDetail= [splitView.viewControllers objectAtIndex:1];
+        DuringMatchSettingDetailControllerHD *settingDetail= [splitView.viewControllers objectAtIndex:1];
         [settingDetail refreshJudges];
     }
 }
 
 -(void)duringSettingEndPress
 {
+    isAtMatchSetting=NO;
     [self showSelectWinnerBox];
 }
 
@@ -1413,6 +1473,7 @@
 }
 -(void)showWinnerBoxForRedSide:(BOOL)isRedSide;
 {
+    [player playSoundWithFullPath:kSoundsCongratulation];
     ShowWinnerBox *box=[[ShowWinnerBox alloc] initWithFrame:self.view.bounds title:@"Winner"];
     box.gameInfo=chatRoom.gameInfo;
     box.winnerIsRedSide=isRedSide;

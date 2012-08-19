@@ -25,11 +25,14 @@
 @property NSInteger blueSideWarning;
 @property (nonatomic,strong)NSString *serverPeerId;
 @property (nonatomic,strong)NSString *serverUuid;
-@property (nonatomic,setter = setCurrentStatus:,getter = getCurrentStatus,assign)GameStates gameStatus;
+@property (nonatomic,assign)GameStates gameStatus;
 @property (nonatomic,strong) NSMutableDictionary *clients;
 @property NSInteger needClientsCount;
 @property (nonatomic,strong)NSDate *serverLastHeartbeatDate;
 @property (nonatomic,assign)  GameStates preGameStatus;
+
+@property  BOOL pointGapReached;
+@property  BOOL warningMaxReached;
 -(id) initWithGameSetting:(ServerSetting *)setting;
 -(id)initWithDictionary:(NSDictionary *) disc;
 @end

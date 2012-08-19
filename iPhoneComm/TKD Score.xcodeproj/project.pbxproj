@@ -91,6 +91,12 @@
 		DA78B47515A96F0100E186CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		DA78B47615A96F0100E186CC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
 		DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47F15A96F0600E186CC /* ChattyViewController.xib */; };
+		DA93459B15E0FD2C00A4B99B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */; };
+		DA93459D15E0FD3200A4B99B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */; };
+		DA9345AD15E1000100A4B99B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9345AC15E1000100A4B99B /* SoundsPlayer.m */; };
+		DA9345AE15E1000100A4B99B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9345AC15E1000100A4B99B /* SoundsPlayer.m */; };
+		DA9345B415E10A3100A4B99B /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA9345B315E10A3100A4B99B /* congratulation.mp3 */; };
+		DA9345B515E10A3100A4B99B /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA9345B315E10A3100A4B99B /* congratulation.mp3 */; };
 		DAAA377015C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
 		DAAA377115C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
 		DAAA377215C531250086F00B /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375B15C531250086F00B /* SBJsonParser.m */; };
@@ -371,6 +377,10 @@
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
+		DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DA9345AB15E1000100A4B99B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsPlayer.h; sourceTree = "<group>"; };
+		DA9345AC15E1000100A4B99B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsPlayer.m; sourceTree = "<group>"; };
+		DA9345B315E10A3100A4B99B /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = congratulation.mp3; path = sounds/congratulation.mp3; sourceTree = "<group>"; };
 		DAAA375715C531250086F00B /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DAAA375815C531250086F00B /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DAAA375915C531250086F00B /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
@@ -571,6 +581,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA93459D15E0FD3200A4B99B /* AVFoundation.framework in Frameworks */,
 				DA20D20215D16CF500FB22B9 /* AudioToolbox.framework in Frameworks */,
 				DAE4992B15BA829F00C21671 /* QuartzCore.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -587,6 +598,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA93459B15E0FD2C00A4B99B /* AVFoundation.framework in Frameworks */,
 				DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */,
 				DAE4992A15BA829500C21671 /* QuartzCore.framework in Frameworks */,
 				DAE498F715BA52CB00C21671 /* SystemConfiguration.framework in Frameworks */,
@@ -627,6 +639,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DA9345A715E0FDC100A4B99B /* sounds */,
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
 				DA00F37D15A9DC92005B2F4B /* app2.png */,
 				DAF65A04159EEED1001BEA75 /* dependencies */,
@@ -673,6 +686,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */,
 				DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */,
 				DA00F37E15A9DC92005B2F4B /* icon.png */,
 				DAE4992915BA829400C21671 /* QuartzCore.framework */,
@@ -739,6 +753,8 @@
 				DAE7A26715B42DE1001FF160 /* Definition.h */,
 				DAE7A26815B42DE1001FF160 /* Definition.m */,
 				DAE79D9715BC40AB00BC594E /* UtilHelper.m */,
+				DA9345AB15E1000100A4B99B /* SoundsPlayer.h */,
+				DA9345AC15E1000100A4B99B /* SoundsPlayer.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -830,6 +846,14 @@
 				DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */,
 			);
 			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		DA9345A715E0FDC100A4B99B /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				DA9345B315E10A3100A4B99B /* congratulation.mp3 */,
+			);
+			name = sounds;
 			sourceTree = "<group>";
 		};
 		DADB112215A8AB3800326B24 /* Images */ = {
@@ -1249,6 +1273,7 @@
 				DAE8D41815DBF4DF002E0CCA /* circle_red.png in Resources */,
 				DAEA364315DD48CB00FCB8CA /* RoundRestTimeView.xib in Resources */,
 				DAABDDE915DF4ECA00501D46 /* ShowWinnerBox.xib in Resources */,
+				DA9345B415E10A3100A4B99B /* congratulation.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1330,6 +1355,7 @@
 				DAEA507C15E0900D00ACB1AD /* marks_gray_7.png in Resources */,
 				DAEA507D15E0900D00ACB1AD /* marks_gray_8.png in Resources */,
 				DAEA507E15E0900D00ACB1AD /* marks_gray_9.png in Resources */,
+				DA9345B515E10A3100A4B99B /* congratulation.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,6 +1441,7 @@
 				DAEA364115DD3FA200FCB8CA /* TouchExt.m in Sources */,
 				DAABDDE215DF4AA900501D46 /* SelectWinnerBox.m in Sources */,
 				DAABDDE615DF4E8E00501D46 /* ShowWinnerBox.m in Sources */,
+				DA9345AD15E1000100A4B99B /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,6 +1522,7 @@
 				DAEA364215DD3FA200FCB8CA /* TouchExt.m in Sources */,
 				DAABDDE315DF4AA900501D46 /* SelectWinnerBox.m in Sources */,
 				DAABDDE715DF4E8E00501D46 /* ShowWinnerBox.m in Sources */,
+				DA9345AE15E1000100A4B99B /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

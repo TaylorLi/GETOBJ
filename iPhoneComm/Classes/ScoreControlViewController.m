@@ -33,6 +33,7 @@
 -(void) showRetryConnect;
 -(void) showReconnectConfirmBox;
 -(void) testConnect:(NSTimer *)timer;
+-(void)closeInfoBox;
 @end
 
 @implementation ScoreControlViewController
@@ -199,6 +200,7 @@
 
 - (void)activate {
     isExit=NO;
+    hasEverConnectd=NO;
     if ( chatRoom != nil ) {        
         chatRoom.delegate = self;
         [chatRoom start];        
@@ -240,6 +242,7 @@ else{
     //        return;
     //    }
     serverLastMsgDate=[NSDate date];
+    hasEverConnectd=YES;
     switch ([cmdMsg.type intValue]) {
         case  NETWORK_HEARTBEAT://server heartbeat
         { 
@@ -252,7 +255,7 @@ else{
                 if(reConnectBox!=nil&&reConnectBox.superview!=nil)
                 {
                     [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
-                }
+                }                
                 [self alreadyConnectToServer];
             }
         }
@@ -293,22 +296,25 @@ else{
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
     
 }
--(void) onExited{
+-(void)closeInfoBox
+{
     if(loadingBox!=nil)
     {
-        [loadingBox hideLoading];
+        [loadingBox dismissWithClickedButtonIndex:-1 animated:NO];
         loadingBox=nil;
     }
     if(tipBox!=nil)
     {
-        [tipBox removeFromSuperview];
+        [tipBox dismissWithClickedButtonIndex:-1 animated:NO];
         tipBox=nil;
     }
     for(UIView *sview in self.view.subviews){
         if([sview isMemberOfClass:[UIAlertView class]])
             [sview removeFromSuperview];
     }
-    
+}
+-(void) onExited{
+    [self closeInfoBox];    
     [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 -(void) alreadyConnectToServer
@@ -322,11 +328,13 @@ else{
 //fail to connect to server,we can test this by heartbeat
 -(void) failureToConnectToServer
 {
-    //    [UIHelper showAlert:@"Information" message:@"Unable connect to server" func:^(AlertView *a, NSInteger i) {
-    //        [self exit];
-    //    }];
-    
-    
+    if(!hasEverConnectd){
+        [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
+        [tipBox dismissWithClickedButtonIndex:-1 animated:NO];    
+    [UIHelper showAlert:@"Information" message:@"Unable connect to server" func:^(AlertView *a, NSInteger i) {
+           [self exit];
+    }];
+    }    
 }
 -(void)sendScore:(NSInteger) score
 {
@@ -461,21 +469,22 @@ else{
         case  kStateRunning:
         {
             [self showConnectingBox:NO andTitle:nil];
-            if(preGameStates== kStateWaitJudge){
-                //[self showTipBox:@"Game start"];
-            }else if(preGameStates==kStateMultiplayerReconnect){
-                [self showTipBox:@"Lost judge back and game continue"];
-            }
+//            if(preGameStates== kStateWaitJudge){
+//                //[self showTipBox:@"Game start"];
+//            }
+//            else if(preGameStates==kStateMultiplayerReconnect){
+//                [self showTipBox:@"Lost judge back and game continue"];
+//            }
         }
             break;
         case  kStateCalcScore:
             break;
-        case kStateMultiplayerReconnect:
-        {
-            [self showConnectingBox:YES andTitle:@"Wait for lost judges"];
-        }
-            break;
-        case  kStateRoundReset:
+//        case kStateMultiplayerReconnect:
+//        {
+//            [self showConnectingBox:YES andTitle:@"Wait for lost judges"];
+//        }
+//            break;
+        case  kStateRoundRest:
             [self showConnectingBox:YES andTitle:@"Round rest time"];
             break;
         case kStateGamePause:
@@ -494,7 +503,8 @@ else{
                 [gameLoopTimer invalidate];
                 gameLoopTimer=nil;
             }
-            [UIHelper showAlert:@"Information" message:@"Game has completed,Continue to   exit" func:^(AlertView *a, NSInteger i) {
+            [self closeInfoBox];
+            [UIHelper showAlert:@"Information" message:@"Game has completed,Continue to exit" func:^(AlertView *a, NSInteger i) {
                 [self onExited];
             }];
         }

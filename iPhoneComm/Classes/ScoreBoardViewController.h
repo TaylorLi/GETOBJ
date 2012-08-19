@@ -12,9 +12,11 @@
 #import "UIWaitForUserViewController.h"
 #import "RoundRestTimeViewController.h"
 #import "DDActionHeaderView.h"
+#import "SoundsPlayer.h"
 
 #define kWaitBoxForReset 1
 #define kWaitBoxForReOrg 2
+
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
@@ -38,9 +40,9 @@
     //扣分
     UIImage *imgDecicade;
     NSTimer *pointGapTimer;
-    BOOL pointGapReached;
     NSTimer *warningMaxTimer;
-    BOOL warningMaxReached;
+    BOOL isAtMatchSetting;
+    __strong SoundsPlayer *player;
 }
 
 @property (nonatomic, strong) IBOutlet UILabel *lblGameName;

@@ -27,6 +27,7 @@
     UIAlertView *tipBox;
     AlertView *reConnectBox;
     BOOL isReconnect;
+    BOOL hasEverConnectd;
     BOOL isExit;
     
 }

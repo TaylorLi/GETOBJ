@@ -49,11 +49,11 @@
         if(!cltInfo.hasConnected)
             return;
     }
-    if ([delegate respondsToSelector:@selector(startRound:)]) {
+    if ([delegate respondsToSelector:@selector(waitUserStartPress:)]) {
         [self hideWithOnComplete:^(BOOL finished) {
             [self removeFromSuperview];
         }];
-		[delegate performSelector:@selector(startRound:) withObject:sender];
+		[delegate performSelector:@selector(waitUserStartPress:) withObject:sender];
     }    
 }
 

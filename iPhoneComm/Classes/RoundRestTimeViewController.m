@@ -117,8 +117,8 @@
             timer=nil;
         }
     }
-    else{
-        if (timer==nil) {
+    else{        
+        if (restTime>0 && timer==nil) {
             timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];            
         }
     }

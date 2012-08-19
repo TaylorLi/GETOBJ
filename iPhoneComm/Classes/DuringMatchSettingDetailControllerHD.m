@@ -463,7 +463,7 @@
     
     UIImage *img;
     if (cltInfo.hasConnected) {
-        //cell.textLabel.textColor=[UIColor greenColor];
+        cell.textLabel.textColor=[UIColor darkTextColor];
         img=[UIImage imageNamed:@"circle_green.png"];
         cell.textLabel.text=cltInfo.displayName;
     }

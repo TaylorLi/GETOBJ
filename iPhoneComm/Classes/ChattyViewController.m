@@ -74,10 +74,15 @@
     lockImg=nil;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self updateServerList];
+}
 
 // View became active, start your engines
 - (void)activate {
     // Start browsing for services
+    [self updateServerList];
     if ([AppConfig getInstance].networkUsingWifi) {
         [serverBrowser start];
     }
@@ -204,7 +209,7 @@
             }
         }
         
-        NSLog(@"%i",[peerServerBrowser.servers count]);
+        NSLog(@"Server List Count:%i",[peerServerBrowser.servers count]);
         return [peerServerBrowser.servers count];
     }
 }

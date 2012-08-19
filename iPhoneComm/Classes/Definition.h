@@ -25,13 +25,13 @@ typedef enum {
 	kStateWaitJudge=1,//wait for judge
 	kStateRunning=2,//game has run now
     kStateCalcScore=3,//wait other juge to send score and calc result score
-	kStateMultiplayerReconnect=4,//judge has lost
-    kStateRoundReset=5,//round end
+    
+	//用比赛属性playerReconnect代替，这样可以避免改变服务器的状态
+    kStateMultiplayerReconnect=4,//judge has lost
+    kStateRoundRest=5,//round rest
     kStateGamePause=6,//game stop
     kStateGameEnd=7,//game has complete
     kStateGameExit=8,//game exit
-    kStatePointGapReached=9,//poit gap has reached
-    kStateMaxWarningReached=10,//max warning has reached
 } GameStates;
 
 //defined command type

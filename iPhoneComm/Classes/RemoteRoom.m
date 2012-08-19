@@ -169,9 +169,9 @@
 /* Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
  */
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error{
+    [delegate failureToConnectToServer];
     if(isRunning){
         [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
-        [delegate failureToConnectToServer];
         isRunning=NO;
     }
 }

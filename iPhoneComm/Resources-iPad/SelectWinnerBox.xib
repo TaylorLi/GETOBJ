@@ -38,7 +38,7 @@
 					<object class="IBUIButton" id="974533615">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{57, 99}, {129, 100}}</string>
+						<string key="NSFrame">{{244, 99}, {129, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="705515473"/>
@@ -77,10 +77,9 @@
 					<object class="IBUIButton" id="705515473">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{244, 99}, {137, 104}}</string>
+						<string key="NSFrame">{{57, 99}, {137, 104}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>

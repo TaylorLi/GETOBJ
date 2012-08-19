@@ -26,7 +26,7 @@
 		CGFloat colors[8] = BLACK_BAR_COMPONENTS;
 		[self.titleBar setColorComponents:colors];
 		self.headerLabel.text = title;
-		self.margin = UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
+		self.margin = UIEdgeInsetsMake(50.0f,50.0f,50.0f,50.0f);
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
         self.padding=UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
@@ -49,11 +49,11 @@
         if(!cltInfo.hasConnected)
             return;
     }
-    if ([delegate respondsToSelector:@selector(startRound:)]) {
+    if ([delegate respondsToSelector:@selector(waitUserStartPress:)]) {
         [self hideWithOnComplete:^(BOOL finished) {
             [self removeFromSuperview];
         }];
-		[delegate performSelector:@selector(startRound:) withObject:sender];
+		[delegate performSelector:@selector(waitUserStartPress:) withObject:sender];
     }    
 }
 

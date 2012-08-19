@@ -11,7 +11,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarmning,redSideWarmning,preGameStatus;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -24,8 +24,8 @@
         currentMatch=1;
         blueSideScore=0;
         redSideScore=0;
-        redSideWarmning=0;
-        blueSideWarmning=0;
+        redSideWarning=0;
+        blueSideWarning=0;
         needClientsCount=setting.judgeCount;
         clients=[[NSMutableDictionary alloc] init];
     }
@@ -39,9 +39,9 @@
                           self.serverUuid==nil?[NSNull null]:self.serverUuid,@"serverUuid",
                           [NSNumber numberWithInt:self.gameStatus],@"gameStatus",[NSNumber numberWithInt:self.currentRound],@"currentRound",
                           [NSNumber numberWithInt:self.currentMatch],@"currentMatch",[NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
-                          [NSNumber numberWithInt:self.redSideWarmning],@"redSideWarmning",
+                          [NSNumber numberWithInt:self.redSideWarning],@"redSideWarmning",
                           [NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
-                          [NSNumber numberWithInt:self.blueSideWarmning],@"blueSideWarmning",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate", nil];
+                          [NSNumber numberWithInt:self.blueSideWarning],@"blueSideWarmning",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate", nil];
     return result;
 }
 
@@ -59,8 +59,8 @@
     self.currentMatch=[[disc objectForKey:@"currentMatch"] intValue];
     self.blueSideScore=[[disc objectForKey:@"blueSideScore"] intValue];
     self.redSideScore=[[disc objectForKey:@"redSideScore"] intValue];
-    self.blueSideWarmning=[[disc objectForKey:@"blueSideWarmning"] intValue];
-    self.redSideWarmning=[[disc objectForKey:@"redSideWarmning"] intValue];
+    self.blueSideWarning=[[disc objectForKey:@"blueSideWarmning"] intValue];
+    self.redSideWarning=[[disc objectForKey:@"redSideWarmning"] intValue];
     NSNumber *inv=[disc objectForKey:@"lastHeartbeatDate"];
     self.serverLastHeartbeatDate=[NSDate dateWithTimeIntervalSince1970:[inv doubleValue]];
     return self;
@@ -77,8 +77,8 @@
     copyObj.currentMatch=self.currentMatch;
     copyObj.blueSideScore=self.blueSideScore;
     copyObj.redSideScore=self.redSideScore;
-    copyObj.blueSideWarmning=self.blueSideWarmning;
-    copyObj.redSideWarmning=self.redSideWarmning;
+    copyObj.blueSideWarning=self.blueSideWarning;
+    copyObj.redSideWarning=self.redSideWarning;
     copyObj.serverLastHeartbeatDate=[self.serverLastHeartbeatDate copy];
     copyObj.clients=[self.clients copy];
     copyObj.gameSetting=[self.gameSetting copy];
@@ -87,14 +87,15 @@
 -(NSString *) description{
     return [NSString stringWithFormat:@"Uuid:%@,peerId:%@,gameStatus:%d,serverLastHeartbeatDate:%@",self.serverUuid,self.serverPeerId,self.gameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate]];
 }
--(void)setCurrentStatus:(GameStates)gameCurrentStatus
+/*
+-(BOOL)getPointGapReached
 {
-    if(gameCurrentStatus!=preGameStatus)
-        [self setPreGameStatus:_gameStatus];
-    _gameStatus=gameCurrentStatus;
+    return gameSetting.enableGapScore&&currentRound>=gameSetting.pointGapAvailRound && fabs(redSideScore-blueSideScore)>=gameSetting.pointGap;
 }
--(GameStates)getCurrentStatus
+
+-(BOOL)gtWarningMaxReached
 {
-    return _gameStatus;
+   return blueSideWarning==gameSetting.maxWarningCount||redSideWarning==gameSetting.maxWarningCount;
 }
+*/
 @end

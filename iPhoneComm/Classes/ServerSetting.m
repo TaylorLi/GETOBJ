@@ -22,7 +22,7 @@
 @synthesize restTime;
 @synthesize roundCount;
 @synthesize judgeCount;
-@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarmningCount,restAndReorganizationTime;
+@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime;
 
 -(NSString *)description
 {
@@ -58,8 +58,8 @@
     pointGapAvailRound=2;
     judgeCount=4;
     availScoreWithJudesCount=3;
-    availTimeDuringScoreCalc=0.5;
-    maxWarmningCount=8;
+    availTimeDuringScoreCalc=1;
+    maxWarningCount=8;
     restAndReorganizationTime=60;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
@@ -104,7 +104,7 @@
     copyObj.judgeCount=self.judgeCount;
     copyObj.availScoreWithJudesCount=self.availScoreWithJudesCount;
     copyObj.availTimeDuringScoreCalc=self.availTimeDuringScoreCalc;
-    copyObj.maxWarmningCount=self.maxWarmningCount;
+    copyObj.maxWarningCount=self.maxWarningCount;
     copyObj.restAndReorganizationTime=self.restAndReorganizationTime;
     return copyObj;
 }

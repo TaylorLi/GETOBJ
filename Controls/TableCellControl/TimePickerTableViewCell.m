@@ -32,7 +32,17 @@
     }
     return self;
 }
-
+-(NSTimeInterval)reloadPickerWithselectValue:(NSTimeInterval) selValue maxTime:(NSTimeInterval) maxTime minTime:(NSTimeInterval) minTime interval:(NSTimeInterval) interval
+{
+    _minTime=minTime;
+    _maxTime=maxTime;
+    _interval=interval;
+    [self.picker reloadAllComponents];
+    [self setValue:selValue];
+    NSTimeInterval time=0;
+   time= [self.detailTextLabel.text intValue]*60+ [[self.detailTextLabel.text substringFromIndex:[self.detailTextLabel.text rangeOfString:@"Mins"].location+4] intValue]; 
+    return time;
+}
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -49,6 +59,7 @@
     mins=(int)v/60;
     [self.picker selectRow:secs inComponent:1 animated:YES];
     [self.picker selectRow:mins inComponent:0 animated:YES];
+    
 	self.detailTextLabel.text =[NSString stringWithFormat:@"%i Mins %i Seconds",(int)v/60,(int)v%60];
 }
 
@@ -62,7 +73,7 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if(component==0)
-      return (_maxTime-_minTime)/60;
+      return round((_maxTime-_minTime)/60);
     else
       return  (60%(int)_interval==0)?60/_interval: 60/_interval+1;
 }
@@ -86,8 +97,10 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {	
-    if(component==0)
+    if(component==0){
         mins=row;
+        secs=0;
+    }
     else
         secs=row*_interval;    
     NSTimeInterval time=secs+mins*60;

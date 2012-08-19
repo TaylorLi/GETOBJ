@@ -21,15 +21,17 @@ typedef enum {
 } PacketCodes;
 
 typedef enum {
-    kStatePrepareGame,//wait for prepare the game and other judges
-	kStateWaitJudge,//wait for judge
-	kStateRunning,//game has run now
-    kStateCalcScore,//wait other juge to send score and calc result score
-	kStateMultiplayerReconnect,//judge has lost
-    kStateRoundReset,//round end
-    kStateGamePause,//game stop
-    kStateGameEnd,//game has complete
-    kStateGameExit,//game exit
+    kStatePrepareGame=0,//wait for prepare the game and other judges
+	kStateWaitJudge=1,//wait for judge
+	kStateRunning=2,//game has run now
+    kStateCalcScore=3,//wait other juge to send score and calc result score
+    
+	//用比赛属性playerReconnect代替，这样可以避免改变服务器的状态
+    kStateMultiplayerReconnect=4,//judge has lost
+    kStateRoundRest=5,//round rest
+    kStateGamePause=6,//game stop
+    kStateGameEnd=7,//game has complete
+    kStateGameExit=8,//game exit
 } GameStates;
 
 //defined command type

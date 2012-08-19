@@ -64,7 +64,6 @@ static ChattyAppDelegate* _instance;
     // Greet user
     //[window bringSubviewToFront:welcomeViewController.view];
     
-    
     // 监测网络情况
     
     wifiReach = [Reachability reachabilityForLocalWiFi];	

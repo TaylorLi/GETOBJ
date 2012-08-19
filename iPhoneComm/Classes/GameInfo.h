@@ -21,8 +21,8 @@
 @property NSInteger currentMatch;
 @property NSInteger redSideScore;
 @property NSInteger blueSideScore;
-@property NSInteger redSideWarmning;
-@property NSInteger blueSideWarmning;
+@property NSInteger redSideWarning;
+@property NSInteger blueSideWarning;
 @property (nonatomic,strong)NSString *serverPeerId;
 @property (nonatomic,strong)NSString *serverUuid;
 @property (nonatomic,setter = setCurrentStatus:,getter = getCurrentStatus,assign)GameStates gameStatus;

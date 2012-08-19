@@ -30,9 +30,9 @@
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
         self.padding=UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
-        self.titleBarHeight = 30.0f;        
+        self.titleBarHeight = 50.0f;        
         // The header label, a UILabel with the same frame as the titleBar
-        self.headerLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.headerLabel.font = [UIFont boldSystemFontOfSize:35];
         
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"ShowWinnerBox" owner:self options:nil] objectAtIndex:0];
         [self.contentView addSubview:viewLoadedFromXib];         

@@ -87,7 +87,7 @@
 //服务器名称
 @property (nonatomic,copy) NSString *serverName;
 //最大警告数
-@property NSInteger maxWarmningCount;
+@property NSInteger maxWarningCount;
 //暂停并整理时间
 @property NSTimeInterval restAndReorganizationTime;
 

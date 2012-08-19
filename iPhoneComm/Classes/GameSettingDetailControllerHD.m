@@ -218,11 +218,11 @@
                 }];   
                 [detailController1 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex){
                     NSMutableArray *maxWarmning=[[NSMutableArray alloc] init];
-                    for(int i=6;i<=16;i++)
+                    for(int i=6;i<=12;i++)
                     {
                         [maxWarmning addObject:[NSString stringWithFormat:@"%i",i]];
                     }
-                    SimplePickerInputTableViewCell *maxWarmningCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Max Warmning", @"Max Warmning") selectValue:[NSString stringWithFormat:@"%i", si.maxWarmningCount] dataSource:maxWarmning];   
+                    SimplePickerInputTableViewCell *maxWarmningCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Max Warmning", @"Max Warmning") selectValue:[NSString stringWithFormat:@"%i", si.maxWarningCount] dataSource:maxWarmning];   
                     maxWarmningCell.tag=kmaxWarmningCount;
                     maxWarmningCell.delegate=selfCtl;
                     [section addCustomerCell:maxWarmningCell];
@@ -445,7 +445,7 @@
             si.restAndReorganizationTime=[value intValue];
             break;            
         case  kmaxWarmningCount:
-            si.maxWarmningCount=[value intValue];
+            si.maxWarningCount=[value intValue];
             break;
         case kscreeningArea:
             si.screeningArea=value;

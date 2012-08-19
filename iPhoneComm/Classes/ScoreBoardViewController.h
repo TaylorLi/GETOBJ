@@ -19,22 +19,6 @@
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
     UILabel *lblGameName;
-    UILabel *lblRedImg1;
-    UILabel *lblRedImg2;
-    UILabel *lblRedImg3;
-    UILabel *lblRedImg4;
-    UILabel *lblBlueImg1;
-    UILabel *lblBlueImg2;
-    UILabel *lblBlueImg3;
-    UILabel *lblBlueImg4;
-    UILabel *lblRedImg5;
-    UILabel *lblRedImg6;
-    UILabel *lblRedImg7;
-    UILabel *lblRedImg8;
-    UILabel *lblBlueImg5;
-    UILabel *lblBlueImg6;
-    UILabel *lblBlueImg7;
-    UILabel *lblBlueImg8;
     UILabel *lblRedTotal;
     UILabel *lblBlueTotal;
     UITextView *txtHistory;
@@ -46,6 +30,17 @@
     NSTimer *gameLoopTimer;
     BOOL clientChange;
     NSMutableArray *cmdHis;
+    NSMutableArray *marksFlags;
+    NSMutableArray *marksGrayFlags;
+    NSMutableArray *timeFlags;
+    //警告
+    UIImage *imgWarning;
+    //扣分
+    UIImage *imgDecicade;
+    NSTimer *pointGapTimer;
+    BOOL pointGapReached;
+    NSTimer *warningMaxTimer;
+    BOOL warningMaxReached;
 }
 
 @property (nonatomic, strong) IBOutlet UILabel *lblGameName;
@@ -63,9 +58,24 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblRedPlayerName;
 @property(nonatomic, strong) DDActionHeaderView *actionHeaderView;
 @property (strong, nonatomic) IBOutlet UILabel *lblScreening;
-@property (strong, nonatomic) IBOutlet UIView *viewRedWarmningBox;
-@property (strong, nonatomic) IBOutlet UIView *viewBlueWarmningBox;
+@property (strong, nonatomic) IBOutlet UIView *viewRedWarningBox;
+@property (strong, nonatomic) IBOutlet UIView *viewBlueWarningBox;
+@property (strong, nonatomic) IBOutlet UIView *viewBlueScore;
+@property (strong, nonatomic) IBOutlet UIView *viewRedScore;
+@property (strong, nonatomic) IBOutlet UIView *viewTime;
+//十位数
+@property (strong, nonatomic) IBOutlet UIImageView *imgBlueScoreDoubleTen;
+//个位数
+@property (strong, nonatomic) IBOutlet UIImageView *imgBlueScoreDoubleSin;
 
+@property (strong, nonatomic) IBOutlet UIImageView *imgBlueScoreSingle;
+@property (strong, nonatomic) IBOutlet UIImageView *imgRedScoreDoubleTen;
+@property (strong, nonatomic) IBOutlet UIImageView *imgRedScoreDoubleSin;
+@property (strong, nonatomic) IBOutlet UIImageView *imgRedScoreSingle;
+@property (strong, nonatomic) IBOutlet UIImageView *imgRoundNum;
+@property (strong, nonatomic) IBOutlet UIImageView *imgTimeMinus;
+@property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecTen;
+@property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecSin;
 
 // Exit back to the welcome screen
 - (IBAction)exit;

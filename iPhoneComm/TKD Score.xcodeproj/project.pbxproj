@@ -45,6 +45,14 @@
 		DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */; };
 		DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA279C0915B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA42B53C15E40DDB00456471 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B53B15E40DDB00456471 /* Icon-72.png */; };
+		DA42B54115E410EF00456471 /* game_welcome_page_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B53E15E410EF00456471 /* game_welcome_page_background.png */; };
+		DA42B54215E410EF00456471 /* game_welcome_page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA42B53F15E410EF00456471 /* game_welcome_page.jpg */; };
+		DA42B54315E410EF00456471 /* game_welcome_username.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54015E410EF00456471 /* game_welcome_username.png */; };
+		DA42B54515E4143500456471 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54415E4143500456471 /* Default@2x.png */; };
+		DA42B54715E4147B00456471 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54615E4147B00456471 /* Default.png */; };
+		DA42B54915E4149700456471 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54815E4149700456471 /* Default-Landscape~ipad.png */; };
+		DA42B54B15E414B100456471 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54A15E414B100456471 /* Default-Portrait~ipad.png */; };
 		DA439D6815E404CB0009820A /* game_welcome_page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA439D6715E404CB0009820A /* game_welcome_page.jpg */; };
 		DA43FDB015B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
 		DA43FDB115B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
@@ -382,6 +390,14 @@
 		DA279BEF15B16BB400C6B1DC /* AFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFPickerView.m; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.m; sourceTree = "<group>"; };
 		DA279C0715B178A100C6B1DC /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		DA42B53B15E40DDB00456471 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		DA42B53E15E410EF00456471 /* game_welcome_page_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_page_background.png; path = Resources/images/game_welcome_page_background.png; sourceTree = "<group>"; };
+		DA42B53F15E410EF00456471 /* game_welcome_page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = game_welcome_page.jpg; path = Resources/images/game_welcome_page.jpg; sourceTree = "<group>"; };
+		DA42B54015E410EF00456471 /* game_welcome_username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_username.png; path = Resources/images/game_welcome_username.png; sourceTree = "<group>"; };
+		DA42B54415E4143500456471 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DA42B54615E4147B00456471 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DA42B54815E4149700456471 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		DA42B54A15E414B100456471 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		DA439D6715E404CB0009820A /* game_welcome_page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = game_welcome_page.jpg; path = "Resources-iPad/Images/game_welcome_page.jpg"; sourceTree = "<group>"; };
 		DA43FDAA15B5DA840083D1B7 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../../Controls/GET/AlertView.h; sourceTree = "<group>"; };
 		DA43FDAB15B5DA840083D1B7 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertView.m; path = ../../Controls/GET/AlertView.m; sourceTree = "<group>"; };
@@ -691,6 +707,11 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DA42B54A15E414B100456471 /* Default-Portrait~ipad.png */,
+				DA42B54815E4149700456471 /* Default-Landscape~ipad.png */,
+				DA42B54615E4147B00456471 /* Default.png */,
+				DA42B54415E4143500456471 /* Default@2x.png */,
+				DA42B53B15E40DDB00456471 /* Icon-72.png */,
 				DA9345A715E0FDC100A4B99B /* sounds */,
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
 				DA00F37D15A9DC92005B2F4B /* app2.png */,
@@ -1043,6 +1064,9 @@
 		DAE856AC15E25CDE0021E9D9 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DA42B53E15E410EF00456471 /* game_welcome_page_background.png */,
+				DA42B53F15E410EF00456471 /* game_welcome_page.jpg */,
+				DA42B54015E410EF00456471 /* game_welcome_username.png */,
 				DAE856C315E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png */,
 				DAE856C415E2852A0021E9D9 /* scroe_controller_btn_exit.png */,
 				DAE856BF15E27CC70021E9D9 /* scroe_controller_2.png */,
@@ -1373,6 +1397,11 @@
 				DAE856C215E27CC70021E9D9 /* scroe_controller_4.png in Resources */,
 				DAE856C515E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png in Resources */,
 				DAE856C615E2852A0021E9D9 /* scroe_controller_btn_exit.png in Resources */,
+				DA42B54115E410EF00456471 /* game_welcome_page_background.png in Resources */,
+				DA42B54215E410EF00456471 /* game_welcome_page.jpg in Resources */,
+				DA42B54315E410EF00456471 /* game_welcome_username.png in Resources */,
+				DA42B54515E4143500456471 /* Default@2x.png in Resources */,
+				DA42B54715E4147B00456471 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1468,6 +1497,9 @@
 				DAE856A915E25AED0021E9D9 /* scroe_controller_men_show.png in Resources */,
 				DAE856AA15E25AED0021E9D9 /* scroe_controller_menu_hide.png in Resources */,
 				DA439D6815E404CB0009820A /* game_welcome_page.jpg in Resources */,
+				DA42B53C15E40DDB00456471 /* Icon-72.png in Resources */,
+				DA42B54915E4149700456471 /* Default-Landscape~ipad.png in Resources */,
+				DA42B54B15E414B100456471 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

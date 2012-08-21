@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h> 
 
 @interface UtilHelper : NSObject
 +(NSString *)formateTime:(NSDate *)date;
-+(void)playSoundWithPath:(NSString *)resourcePath ofType:(NSString *)fileType;
+
 @end

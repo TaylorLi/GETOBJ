@@ -45,7 +45,7 @@
     NSString *displayName=[NSString stringWithFormat:@"%@||%@",KEY_PEER_SEVICE_TYPE_CLIENT,playerName];
 	gameSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
                                            displayName:displayName
-                                           sessionMode: GKSessionModePeer ];
+                                           sessionMode: GKSessionModeClient ];
     
 	if( !gameSession ) {
         return NO;
@@ -83,7 +83,10 @@
     else{
         // Write header: lengh of raw packet
         NSArray *peerIds=[[NSArray alloc] initWithObjects:serverPeerId, nil];
-        [gameSession sendData:rawPacket toPeers:peerIds withDataMode:GKSendDataReliable error:nil];
+        NSError * error;
+        [gameSession sendData:rawPacket toPeers:peerIds withDataMode:GKSendDataReliable error:&error];
+        if(error!=nil)
+            NSLog(@"client send data error:%@",error);
     }
 }
 

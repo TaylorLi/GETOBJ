@@ -38,7 +38,7 @@
 					<object class="IBUILabel" id="947489271">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{335, 106}, {112, 120}}</string>
+						<string key="NSFrame">{{336, 106}, {112, 120}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="475649635"/>
@@ -1147,82 +1147,87 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ScoreBoardViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="exit">id</string>
-						<string key="permit">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="exit">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">exit</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">exit</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">exit</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="permit">
-							<string key="name">permit</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="lblBlueImg1">UILabel</string>
-						<string key="lblBlueImg2">UILabel</string>
-						<string key="lblBlueImg3">UILabel</string>
-						<string key="lblBlueImg4">UILabel</string>
-						<string key="lblBlueImg5">UILabel</string>
-						<string key="lblBlueImg6">UILabel</string>
-						<string key="lblBlueImg7">UILabel</string>
-						<string key="lblBlueImg8">UILabel</string>
+						<string key="imgBlueScoreDoubleSin">UIImageView</string>
+						<string key="imgBlueScoreDoubleTen">UIImageView</string>
+						<string key="imgBlueScoreSingle">UIImageView</string>
+						<string key="imgRedScoreDoubleSin">UIImageView</string>
+						<string key="imgRedScoreDoubleTen">UIImageView</string>
+						<string key="imgRedScoreSingle">UIImageView</string>
+						<string key="imgRoundNum">UIImageView</string>
+						<string key="imgTimeMinus">UIImageView</string>
+						<string key="imgTimeSecSin">UIImageView</string>
+						<string key="imgTimeSecTen">UIImageView</string>
 						<string key="lblBluePlayerDesc">UILabel</string>
 						<string key="lblBluePlayerName">UILabel</string>
 						<string key="lblBlueTotal">UILabel</string>
 						<string key="lblCoachName">UILabel</string>
 						<string key="lblGameDesc">UILabel</string>
 						<string key="lblGameName">UILabel</string>
-						<string key="lblRedImg1">UILabel</string>
-						<string key="lblRedImg2">UILabel</string>
-						<string key="lblRedImg3">UILabel</string>
-						<string key="lblRedImg4">UILabel</string>
-						<string key="lblRedImg5">UILabel</string>
-						<string key="lblRedImg6">UILabel</string>
-						<string key="lblRedImg7">UILabel</string>
-						<string key="lblRedImg8">UILabel</string>
 						<string key="lblRedPlayerDesc">UILabel</string>
 						<string key="lblRedPlayerName">UILabel</string>
 						<string key="lblRedTotal">UILabel</string>
 						<string key="lblRoundSeq">UILabel</string>
+						<string key="lblScreening">UILabel</string>
 						<string key="lblTime">UILabel</string>
 						<string key="txtHistory">UITextView</string>
+						<string key="viewBlueScore">UIView</string>
+						<string key="viewBlueWarningBox">UIView</string>
+						<string key="viewRedScore">UIView</string>
+						<string key="viewRedWarningBox">UIView</string>
+						<string key="viewTime">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="lblBlueImg1">
-							<string key="name">lblBlueImg1</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgBlueScoreDoubleSin">
+							<string key="name">imgBlueScoreDoubleSin</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg2">
-							<string key="name">lblBlueImg2</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgBlueScoreDoubleTen">
+							<string key="name">imgBlueScoreDoubleTen</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg3">
-							<string key="name">lblBlueImg3</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgBlueScoreSingle">
+							<string key="name">imgBlueScoreSingle</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg4">
-							<string key="name">lblBlueImg4</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgRedScoreDoubleSin">
+							<string key="name">imgRedScoreDoubleSin</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg5">
-							<string key="name">lblBlueImg5</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgRedScoreDoubleTen">
+							<string key="name">imgRedScoreDoubleTen</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg6">
-							<string key="name">lblBlueImg6</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgRedScoreSingle">
+							<string key="name">imgRedScoreSingle</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg7">
-							<string key="name">lblBlueImg7</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgRoundNum">
+							<string key="name">imgRoundNum</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblBlueImg8">
-							<string key="name">lblBlueImg8</string>
-							<string key="candidateClassName">UILabel</string>
+						<object class="IBToOneOutletInfo" key="imgTimeMinus">
+							<string key="name">imgTimeMinus</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgTimeSecSin">
+							<string key="name">imgTimeSecSin</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgTimeSecTen">
+							<string key="name">imgTimeSecTen</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lblBluePlayerDesc">
 							<string key="name">lblBluePlayerDesc</string>
@@ -1248,38 +1253,6 @@
 							<string key="name">lblGameName</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg1">
-							<string key="name">lblRedImg1</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg2">
-							<string key="name">lblRedImg2</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg3">
-							<string key="name">lblRedImg3</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg4">
-							<string key="name">lblRedImg4</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg5">
-							<string key="name">lblRedImg5</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg6">
-							<string key="name">lblRedImg6</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg7">
-							<string key="name">lblRedImg7</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblRedImg8">
-							<string key="name">lblRedImg8</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="lblRedPlayerDesc">
 							<string key="name">lblRedPlayerDesc</string>
 							<string key="candidateClassName">UILabel</string>
@@ -1296,6 +1269,10 @@
 							<string key="name">lblRoundSeq</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="lblScreening">
+							<string key="name">lblScreening</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="lblTime">
 							<string key="name">lblTime</string>
 							<string key="candidateClassName">UILabel</string>
@@ -1303,6 +1280,26 @@
 						<object class="IBToOneOutletInfo" key="txtHistory">
 							<string key="name">txtHistory</string>
 							<string key="candidateClassName">UITextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewBlueScore">
+							<string key="name">viewBlueScore</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewBlueWarningBox">
+							<string key="name">viewBlueWarningBox</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewRedScore">
+							<string key="name">viewRedScore</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewRedWarningBox">
+							<string key="name">viewRedWarningBox</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewTime">
+							<string key="name">viewTime</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

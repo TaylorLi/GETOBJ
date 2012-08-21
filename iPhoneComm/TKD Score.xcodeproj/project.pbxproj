@@ -45,6 +45,7 @@
 		DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */; };
 		DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA279C0915B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA439D6815E404CB0009820A /* game_welcome_page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA439D6715E404CB0009820A /* game_welcome_page.jpg */; };
 		DA43FDB015B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
 		DA43FDB115B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
 		DA43FDB215B5DA840083D1B7 /* UIImageActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAD15B5DA840083D1B7 /* UIImageActionSheet.m */; };
@@ -211,6 +212,31 @@
 		DAE7E6B815B82CDA00363399 /* ServerRelateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7A27315B46D04001FF160 /* ServerRelateInfo.m */; };
 		DAE7E6B915B82D2500363399 /* BluetoothManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE7E6B315B8223100363399 /* BluetoothManager.framework */; };
 		DAE804F615B3055000CBC42F /* PeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE804F515B3055000CBC42F /* PeerServer.m */; };
+		DAE8569F15E25AED0021E9D9 /* game_cover.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569315E25AED0021E9D9 /* game_cover.png */; };
+		DAE856A015E25AED0021E9D9 /* game_welcome_page_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569415E25AED0021E9D9 /* game_welcome_page_background.png */; };
+		DAE856A115E25AED0021E9D9 /* game_welcome_page_username_watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569515E25AED0021E9D9 /* game_welcome_page_username_watermark.png */; };
+		DAE856A215E25AED0021E9D9 /* game_welcome_username.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569615E25AED0021E9D9 /* game_welcome_username.png */; };
+		DAE856A315E25AED0021E9D9 /* score_controller_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569715E25AED0021E9D9 /* score_controller_background.png */; };
+		DAE856A415E25AED0021E9D9 /* scroe_controller_connection_avail.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569815E25AED0021E9D9 /* scroe_controller_connection_avail.png */; };
+		DAE856A515E25AED0021E9D9 /* scroe_controller_connection_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569915E25AED0021E9D9 /* scroe_controller_connection_background.png */; };
+		DAE856A615E25AED0021E9D9 /* scroe_controller_connection_disconect.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569A15E25AED0021E9D9 /* scroe_controller_connection_disconect.png */; };
+		DAE856A715E25AED0021E9D9 /* scroe_controller_connection_point_avail.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569B15E25AED0021E9D9 /* scroe_controller_connection_point_avail.png */; };
+		DAE856A815E25AED0021E9D9 /* scroe_controller_connection_point_disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569C15E25AED0021E9D9 /* scroe_controller_connection_point_disconnect.png */; };
+		DAE856A915E25AED0021E9D9 /* scroe_controller_men_show.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569D15E25AED0021E9D9 /* scroe_controller_men_show.png */; };
+		DAE856AA15E25AED0021E9D9 /* scroe_controller_menu_hide.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8569E15E25AED0021E9D9 /* scroe_controller_menu_hide.png */; };
+		DAE856B515E25CFE0021E9D9 /* score_controller_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856AD15E25CFE0021E9D9 /* score_controller_background.png */; };
+		DAE856B615E25CFE0021E9D9 /* scroe_controller_connection_avail.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856AE15E25CFE0021E9D9 /* scroe_controller_connection_avail.png */; };
+		DAE856B715E25CFE0021E9D9 /* scroe_controller_connection_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856AF15E25CFE0021E9D9 /* scroe_controller_connection_background.png */; };
+		DAE856B815E25CFE0021E9D9 /* scroe_controller_connection_disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856B015E25CFE0021E9D9 /* scroe_controller_connection_disconnect.png */; };
+		DAE856B915E25CFE0021E9D9 /* scroe_controller_connection_point_avail.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856B115E25CFE0021E9D9 /* scroe_controller_connection_point_avail.png */; };
+		DAE856BA15E25CFE0021E9D9 /* scroe_controller_connection_point_disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856B215E25CFE0021E9D9 /* scroe_controller_connection_point_disconnect.png */; };
+		DAE856BB15E25CFE0021E9D9 /* scroe_controller_men_show.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856B315E25CFE0021E9D9 /* scroe_controller_men_show.png */; };
+		DAE856BC15E25CFE0021E9D9 /* scroe_controller_menu_hide.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856B415E25CFE0021E9D9 /* scroe_controller_menu_hide.png */; };
+		DAE856BE15E268C90021E9D9 /* scroe_controller2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DAE856BD15E268C90021E9D9 /* scroe_controller2.jpg */; };
+		DAE856C115E27CC70021E9D9 /* scroe_controller_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856BF15E27CC70021E9D9 /* scroe_controller_2.png */; };
+		DAE856C215E27CC70021E9D9 /* scroe_controller_4.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856C015E27CC70021E9D9 /* scroe_controller_4.png */; };
+		DAE856C515E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856C315E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png */; };
+		DAE856C615E2852A0021E9D9 /* scroe_controller_btn_exit.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE856C415E2852A0021E9D9 /* scroe_controller_btn_exit.png */; };
 		DAE889E315DFAE4600818E92 /* marks_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE889CF15DFAE4600818E92 /* marks_0.png */; };
 		DAE889E415DFAE4600818E92 /* marks_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE889D015DFAE4600818E92 /* marks_1.png */; };
 		DAE889E515DFAE4600818E92 /* marks_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE889D115DFAE4600818E92 /* marks_2.png */; };
@@ -356,6 +382,7 @@
 		DA279BEF15B16BB400C6B1DC /* AFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFPickerView.m; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.m; sourceTree = "<group>"; };
 		DA279C0715B178A100C6B1DC /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = ../Controls/TPKeyBoardAvoid/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		DA439D6715E404CB0009820A /* game_welcome_page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = game_welcome_page.jpg; path = "Resources-iPad/Images/game_welcome_page.jpg"; sourceTree = "<group>"; };
 		DA43FDAA15B5DA840083D1B7 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../../Controls/GET/AlertView.h; sourceTree = "<group>"; };
 		DA43FDAB15B5DA840083D1B7 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertView.m; path = ../../Controls/GET/AlertView.m; sourceTree = "<group>"; };
 		DA43FDAC15B5DA840083D1B7 /* UIImageActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageActionSheet.h; path = ../../Controls/GET/UIImageActionSheet.h; sourceTree = "<group>"; };
@@ -488,6 +515,31 @@
 		DAE7E70D15B82DE900363399 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DAE804F415B3055000CBC42F /* PeerServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerServer.h; sourceTree = "<group>"; };
 		DAE804F515B3055000CBC42F /* PeerServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerServer.m; sourceTree = "<group>"; };
+		DAE8569315E25AED0021E9D9 /* game_cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_cover.png; path = "Resources-iPad/Images/game_cover.png"; sourceTree = "<group>"; };
+		DAE8569415E25AED0021E9D9 /* game_welcome_page_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_page_background.png; path = "Resources-iPad/Images/game_welcome_page_background.png"; sourceTree = "<group>"; };
+		DAE8569515E25AED0021E9D9 /* game_welcome_page_username_watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_page_username_watermark.png; path = "Resources-iPad/Images/game_welcome_page_username_watermark.png"; sourceTree = "<group>"; };
+		DAE8569615E25AED0021E9D9 /* game_welcome_username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_username.png; path = "Resources-iPad/Images/game_welcome_username.png"; sourceTree = "<group>"; };
+		DAE8569715E25AED0021E9D9 /* score_controller_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = score_controller_background.png; path = "Resources-iPad/Images/score_controller_background.png"; sourceTree = "<group>"; };
+		DAE8569815E25AED0021E9D9 /* scroe_controller_connection_avail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_avail.png; path = "Resources-iPad/Images/scroe_controller_connection_avail.png"; sourceTree = "<group>"; };
+		DAE8569915E25AED0021E9D9 /* scroe_controller_connection_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_background.png; path = "Resources-iPad/Images/scroe_controller_connection_background.png"; sourceTree = "<group>"; };
+		DAE8569A15E25AED0021E9D9 /* scroe_controller_connection_disconect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_disconect.png; path = "Resources-iPad/Images/scroe_controller_connection_disconect.png"; sourceTree = "<group>"; };
+		DAE8569B15E25AED0021E9D9 /* scroe_controller_connection_point_avail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_point_avail.png; path = "Resources-iPad/Images/scroe_controller_connection_point_avail.png"; sourceTree = "<group>"; };
+		DAE8569C15E25AED0021E9D9 /* scroe_controller_connection_point_disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_point_disconnect.png; path = "Resources-iPad/Images/scroe_controller_connection_point_disconnect.png"; sourceTree = "<group>"; };
+		DAE8569D15E25AED0021E9D9 /* scroe_controller_men_show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_men_show.png; path = "Resources-iPad/Images/scroe_controller_men_show.png"; sourceTree = "<group>"; };
+		DAE8569E15E25AED0021E9D9 /* scroe_controller_menu_hide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_menu_hide.png; path = "Resources-iPad/Images/scroe_controller_menu_hide.png"; sourceTree = "<group>"; };
+		DAE856AD15E25CFE0021E9D9 /* score_controller_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = score_controller_background.png; path = Resources/images/score_controller_background.png; sourceTree = "<group>"; };
+		DAE856AE15E25CFE0021E9D9 /* scroe_controller_connection_avail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_avail.png; path = Resources/images/scroe_controller_connection_avail.png; sourceTree = "<group>"; };
+		DAE856AF15E25CFE0021E9D9 /* scroe_controller_connection_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_background.png; path = Resources/images/scroe_controller_connection_background.png; sourceTree = "<group>"; };
+		DAE856B015E25CFE0021E9D9 /* scroe_controller_connection_disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_disconnect.png; path = Resources/images/scroe_controller_connection_disconnect.png; sourceTree = "<group>"; };
+		DAE856B115E25CFE0021E9D9 /* scroe_controller_connection_point_avail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_point_avail.png; path = Resources/images/scroe_controller_connection_point_avail.png; sourceTree = "<group>"; };
+		DAE856B215E25CFE0021E9D9 /* scroe_controller_connection_point_disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_connection_point_disconnect.png; path = Resources/images/scroe_controller_connection_point_disconnect.png; sourceTree = "<group>"; };
+		DAE856B315E25CFE0021E9D9 /* scroe_controller_men_show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_men_show.png; path = Resources/images/scroe_controller_men_show.png; sourceTree = "<group>"; };
+		DAE856B415E25CFE0021E9D9 /* scroe_controller_menu_hide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_menu_hide.png; path = Resources/images/scroe_controller_menu_hide.png; sourceTree = "<group>"; };
+		DAE856BD15E268C90021E9D9 /* scroe_controller2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scroe_controller2.jpg; path = Resources/images/scroe_controller2.jpg; sourceTree = "<group>"; };
+		DAE856BF15E27CC70021E9D9 /* scroe_controller_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_2.png; path = Resources/images/scroe_controller_2.png; sourceTree = "<group>"; };
+		DAE856C015E27CC70021E9D9 /* scroe_controller_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_4.png; path = Resources/images/scroe_controller_4.png; sourceTree = "<group>"; };
+		DAE856C315E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_btn_exit_bg.png; path = Resources/images/scroe_controller_btn_exit_bg.png; sourceTree = "<group>"; };
+		DAE856C415E2852A0021E9D9 /* scroe_controller_btn_exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_btn_exit.png; path = Resources/images/scroe_controller_btn_exit.png; sourceTree = "<group>"; };
 		DAE889CF15DFAE4600818E92 /* marks_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_0.png; path = "Resources-iPad/Images/marks_0.png"; sourceTree = "<group>"; };
 		DAE889D015DFAE4600818E92 /* marks_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_1.png; path = "Resources-iPad/Images/marks_1.png"; sourceTree = "<group>"; };
 		DAE889D115DFAE4600818E92 /* marks_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_2.png; path = "Resources-iPad/Images/marks_2.png"; sourceTree = "<group>"; };
@@ -667,6 +719,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DAE856AC15E25CDE0021E9D9 /* images */,
 				DA5381A715BDAE5900D1413B /* RoundRestTimeView.xib */,
 				DAE4992E15BA850F00C21671 /* UIWaitForUserView.xib */,
 				DAE45AAB15B2733A00F9A847 /* PickerBG.png */,
@@ -987,9 +1040,42 @@
 			name = BluetoothManager;
 			sourceTree = "<group>";
 		};
+		DAE856AC15E25CDE0021E9D9 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DAE856C315E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png */,
+				DAE856C415E2852A0021E9D9 /* scroe_controller_btn_exit.png */,
+				DAE856BF15E27CC70021E9D9 /* scroe_controller_2.png */,
+				DAE856C015E27CC70021E9D9 /* scroe_controller_4.png */,
+				DAE856BD15E268C90021E9D9 /* scroe_controller2.jpg */,
+				DAE856AD15E25CFE0021E9D9 /* score_controller_background.png */,
+				DAE856AE15E25CFE0021E9D9 /* scroe_controller_connection_avail.png */,
+				DAE856AF15E25CFE0021E9D9 /* scroe_controller_connection_background.png */,
+				DAE856B015E25CFE0021E9D9 /* scroe_controller_connection_disconnect.png */,
+				DAE856B115E25CFE0021E9D9 /* scroe_controller_connection_point_avail.png */,
+				DAE856B215E25CFE0021E9D9 /* scroe_controller_connection_point_disconnect.png */,
+				DAE856B315E25CFE0021E9D9 /* scroe_controller_men_show.png */,
+				DAE856B415E25CFE0021E9D9 /* scroe_controller_menu_hide.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		DAE889BF15DF977100818E92 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA439D6715E404CB0009820A /* game_welcome_page.jpg */,
+				DAE8569315E25AED0021E9D9 /* game_cover.png */,
+				DAE8569415E25AED0021E9D9 /* game_welcome_page_background.png */,
+				DAE8569515E25AED0021E9D9 /* game_welcome_page_username_watermark.png */,
+				DAE8569615E25AED0021E9D9 /* game_welcome_username.png */,
+				DAE8569715E25AED0021E9D9 /* score_controller_background.png */,
+				DAE8569815E25AED0021E9D9 /* scroe_controller_connection_avail.png */,
+				DAE8569915E25AED0021E9D9 /* scroe_controller_connection_background.png */,
+				DAE8569A15E25AED0021E9D9 /* scroe_controller_connection_disconect.png */,
+				DAE8569B15E25AED0021E9D9 /* scroe_controller_connection_point_avail.png */,
+				DAE8569C15E25AED0021E9D9 /* scroe_controller_connection_point_disconnect.png */,
+				DAE8569D15E25AED0021E9D9 /* scroe_controller_men_show.png */,
+				DAE8569E15E25AED0021E9D9 /* scroe_controller_menu_hide.png */,
 				DAEA506B15E0900D00ACB1AD /* marks_gray_0.png */,
 				DAEA506C15E0900D00ACB1AD /* marks_gray_1.png */,
 				DAEA506D15E0900D00ACB1AD /* marks_gray_2.png */,
@@ -1274,6 +1360,19 @@
 				DAEA364315DD48CB00FCB8CA /* RoundRestTimeView.xib in Resources */,
 				DAABDDE915DF4ECA00501D46 /* ShowWinnerBox.xib in Resources */,
 				DA9345B415E10A3100A4B99B /* congratulation.mp3 in Resources */,
+				DAE856B515E25CFE0021E9D9 /* score_controller_background.png in Resources */,
+				DAE856B615E25CFE0021E9D9 /* scroe_controller_connection_avail.png in Resources */,
+				DAE856B715E25CFE0021E9D9 /* scroe_controller_connection_background.png in Resources */,
+				DAE856B815E25CFE0021E9D9 /* scroe_controller_connection_disconnect.png in Resources */,
+				DAE856B915E25CFE0021E9D9 /* scroe_controller_connection_point_avail.png in Resources */,
+				DAE856BA15E25CFE0021E9D9 /* scroe_controller_connection_point_disconnect.png in Resources */,
+				DAE856BB15E25CFE0021E9D9 /* scroe_controller_men_show.png in Resources */,
+				DAE856BC15E25CFE0021E9D9 /* scroe_controller_menu_hide.png in Resources */,
+				DAE856BE15E268C90021E9D9 /* scroe_controller2.jpg in Resources */,
+				DAE856C115E27CC70021E9D9 /* scroe_controller_2.png in Resources */,
+				DAE856C215E27CC70021E9D9 /* scroe_controller_4.png in Resources */,
+				DAE856C515E2852A0021E9D9 /* scroe_controller_btn_exit_bg.png in Resources */,
+				DAE856C615E2852A0021E9D9 /* scroe_controller_btn_exit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1356,6 +1455,19 @@
 				DAEA507D15E0900D00ACB1AD /* marks_gray_8.png in Resources */,
 				DAEA507E15E0900D00ACB1AD /* marks_gray_9.png in Resources */,
 				DA9345B515E10A3100A4B99B /* congratulation.mp3 in Resources */,
+				DAE8569F15E25AED0021E9D9 /* game_cover.png in Resources */,
+				DAE856A015E25AED0021E9D9 /* game_welcome_page_background.png in Resources */,
+				DAE856A115E25AED0021E9D9 /* game_welcome_page_username_watermark.png in Resources */,
+				DAE856A215E25AED0021E9D9 /* game_welcome_username.png in Resources */,
+				DAE856A315E25AED0021E9D9 /* score_controller_background.png in Resources */,
+				DAE856A415E25AED0021E9D9 /* scroe_controller_connection_avail.png in Resources */,
+				DAE856A515E25AED0021E9D9 /* scroe_controller_connection_background.png in Resources */,
+				DAE856A615E25AED0021E9D9 /* scroe_controller_connection_disconect.png in Resources */,
+				DAE856A715E25AED0021E9D9 /* scroe_controller_connection_point_avail.png in Resources */,
+				DAE856A815E25AED0021E9D9 /* scroe_controller_connection_point_disconnect.png in Resources */,
+				DAE856A915E25AED0021E9D9 /* scroe_controller_men_show.png in Resources */,
+				DAE856AA15E25AED0021E9D9 /* scroe_controller_menu_hide.png in Resources */,
+				DA439D6815E404CB0009820A /* game_welcome_page.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

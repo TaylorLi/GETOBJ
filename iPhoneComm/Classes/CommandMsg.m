@@ -41,7 +41,8 @@
     self.type=[disc objectForKey:@"type"];
     self.desc=[disc objectForKey:@"desc"];
     NSNumber *d=[disc objectForKey:@"date"];
-    self.date=[NSDate dateWithTimeIntervalSince1970:[d doubleValue]]; 
+    if(d!=nil)
+        self.date=[NSDate dateWithTimeIntervalSince1970:[d doubleValue]]; 
     return self;
 }
 
@@ -53,7 +54,12 @@
         }
     else
     dataInfo=self.data;
-    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.from==nil?[NSNull null]:self.from,@"from",dataInfo==nil?[NSNull null]: dataInfo,@"data",self.type,@"type",self.desc==nil?[NSNull null]:self.desc,@"desc",[NSNumber numberWithDouble:[self.date timeIntervalSince1970] ],@"date", nil];
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.from==nil?[NSNull null]:self.from,@"from",dataInfo==nil?[NSNull null]: dataInfo,@"data",self.type,@"type",self.desc==nil?[NSNull null]:self.desc,@"desc",self.date==nil?nil : [NSNumber numberWithDouble:[self.date timeIntervalSince1970] ],@"date", nil];
     return result;
+}
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"from:%@,type:%@,desc:%@,date:%@,data:%@",from,type,desc,
+           [UtilHelper formateTime:date],data];
 }
 @end

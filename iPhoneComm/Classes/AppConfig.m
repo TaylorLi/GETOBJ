@@ -37,11 +37,12 @@ static AppConfig* instance;
 @synthesize isIPAD;
 @synthesize networkUsingWifi;
 @synthesize timeout;
-@synthesize invalidServerPeerIds;
+//@synthesize invalidServerPeerIds;
 @synthesize uuid;
-@synthesize serverSettingInfo;
+@synthesize serverSettingInfo,currentAppStep;
 //当前比赛信息
 @synthesize currentGameInfo;
+@synthesize isGameStart;
 
 // Initialization
 - (id) init {
@@ -51,8 +52,10 @@ static AppConfig* instance;
     NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
   isIPAD=![[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;  
     timeout=30;
-    invalidServerPeerIds=[[NSMutableSet alloc] init];
+    //invalidServerPeerIds=[[NSMutableSet alloc] init];
     uuid=[[UIDevice currentDevice] uniqueDeviceIdentifier];
+    currentAppStep=AppStepStart;
+    isGameStart=NO;
   return self;
 }
 

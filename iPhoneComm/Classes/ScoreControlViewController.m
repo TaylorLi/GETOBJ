@@ -34,6 +34,9 @@
 -(void) showReconnectConfirmBox;
 -(void) testConnect:(NSTimer *)timer;
 -(void)closeInfoBox;
+-(void)reportClientHeartbeat;
+-(void) connectedToServerSuccess;
+-(void)setConnectionIndicatorToConnected:(BOOL)connected;
 @end
 
 @implementation ScoreControlViewController
@@ -41,6 +44,15 @@
 @synthesize gestureStartPoint;
 @synthesize chatRoom;
 @synthesize screenWidth;
+@synthesize viewBlue;
+@synthesize viewRed;
+@synthesize imgBlueScore;
+@synthesize imgRedScore;
+@synthesize btnMenuHideBackground;
+@synthesize btnMenuHide;
+@synthesize btnMenuShow;
+@synthesize imgMenuShowBackground;
+@synthesize imgConnectiondicator;
 
 - (void)eraseText {
     label.text = @"";
@@ -143,6 +155,11 @@
  }
  }*/
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -161,6 +178,15 @@
     loadingBox=nil;
     reConnectBox=nil;
     tipBox=nil;
+    [self setViewBlue:nil];
+    [self setViewRed:nil];
+    [self setImgBlueScore:nil];
+    [self setImgRedScore:nil];
+    [self setImgConnectiondicator:nil];
+    [self setBtnMenuHide:nil];
+    [self setBtnMenuShow:nil];
+    [self setImgMenuShowBackground:nil];
+    [self setBtnMenuHideBackground:nil];
     [super viewDidUnload];
 }
 
@@ -184,7 +210,7 @@
 }
 - (void)reportSwipe:(NSInteger)score fromGestureRecognizer:(UIGestureRecognizer *) recognizer{
     CGPoint currentPosition = [recognizer locationInView:self.view];
-    isBlueSide = currentPosition.x >= screenWidth/2;
+    isBlueSide = currentPosition.x < screenWidth/2;
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     [self sendScore:score];    
     label.text = [NSString stringWithFormat:@"%@ %i Score Record",
@@ -199,8 +225,13 @@
  }*/
 
 - (void)activate {
+    [AppConfig getInstance].isGameStart=YES;
     isExit=NO;
     hasEverConnectd=NO;
+    imgBlueScore.hidden=YES;
+    imgRedScore.hidden=YES;
+    [self hideMenu:nil];
+    [self setConnectionIndicatorToConnected:NO];
     if ( chatRoom != nil ) {        
         chatRoom.delegate = self;
         [chatRoom start];        
@@ -241,29 +272,69 @@ else{
     //        NSLog(@"message old return");
     //        return;
     //    }
+    //NSLog(@"Receive Server Command:%@",cmdMsg);
     serverLastMsgDate=[NSDate date];
     hasEverConnectd=YES;
     switch ([cmdMsg.type intValue]) {
-        case  NETWORK_HEARTBEAT://server heartbeat
-        { 
+        case NETWORK_SERVER_WHOLE_INFO:
+        {
             chatRoom.serverInfo=[[GameInfo alloc] initWithDictionary: cmdMsg.data];
-            chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
+            if(chatRoom.orgServerInfo.uuid==nil){
+                chatRoom.orgServerInfo.uuid=chatRoom.serverInfo.serverUuid;
+            }
+            [self processGameStatus]; 
+            [self connectedToServerSuccess];
+        }
+            break;
+        case  NETWORK_HEARTBEAT://server heartbeat
+        {             
+            GameStates stauts=[cmdMsg.data intValue];
+            if(chatRoom.serverInfo.gameStatus!=stauts){
+                chatRoom.serverInfo.gameStatus=stauts;
+                [self processGameStatus];
+            }
+        }
+            break;
+        case NETWORK_SERVER_STATUS:
+        {           
+            NSNumber *gameStatus = cmdMsg.data;
+            GameStates stauts=[gameStatus intValue];
+            if(stauts==kStateRunning){
+                [self reportClientHeartbeat];
+            }
+            chatRoom.serverInfo.gameStatus=stauts;
+            chatRoom.serverInfo.statusRemark=cmdMsg.desc;
             //NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
-            [self processGameStatus];
-            if(isReconnect){
-                isReconnect=NO;
-                if(reConnectBox!=nil&&reConnectBox.superview!=nil)
-                {
-                    [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
-                }                
-                [self alreadyConnectToServer];
+            [self processGameStatus];            
+        }
+            break;
+        case NETWORK_INVALID_CLIENT:
+        {
+            if(isExit)
+                return;
+            else{
+                isExit=YES;
+                //we are not the valid client to the server
+                [UIHelper showAlert:@"Information" message:@"Can not connect to the server." func:^(AlertView *a, NSInteger i) {
+                    [self exit];
+                }];
+                return;
             }
         }
             break;
         default:
             break;
     }
-    
+    chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
+    [self setConnectionIndicatorToConnected:YES];
+    if(isReconnect){
+        isReconnect=NO;
+        if(reConnectBox!=nil&&reConnectBox.superview!=nil)
+        {
+            [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
+        }                
+        [self connectedToServerSuccess];
+    }
 }
 
 
@@ -278,6 +349,7 @@ else{
 // User decided to exit room
 - (IBAction)exit {
     isExit=YES;
+    [AppConfig getInstance].isGameStart=NO;
     loadingBox.title=@"Now prepare to exit ...";
     // Close the room
     [chatRoom stop];
@@ -295,6 +367,43 @@ else{
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
     
+}
+
+- (IBAction)showMenu:(id)sender {
+    btnMenuShow.hidden=NO;
+    imgMenuShowBackground.hidden=NO;
+    btnMenuHide.hidden=YES;
+    btnMenuHideBackground.hidden=YES;
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(hideMenuWithAnimate) userInfo:nil repeats:NO];
+}
+-(IBAction)hideMenu:(id)sender
+{
+    btnMenuShow.hidden=YES;
+    imgMenuShowBackground.hidden=YES;
+    btnMenuHide.hidden=NO;
+    btnMenuHideBackground.hidden=NO;
+}
+-(void)hideMenuWithAnimate{
+    CGRect btnFrame=btnMenuShow.frame;
+    CGRect btnBg=imgMenuShowBackground.frame;
+    CGRect btnFrameX=btnFrame;
+    CGRect btnBgX=btnBg;
+    [UIView animateWithDuration:1
+                     animations:^{
+                         btnMenuShow.frame=CGRectMake(0, 0, btnFrame.size.width, btnFrame.size.height/2);
+                         imgMenuShowBackground.frame=CGRectMake(0, 0, btnBg.size.width, btnBg.size.height/2);
+                     }];
+    [UIView animateWithDuration:1
+                     animations:^{
+                         btnMenuShow.frame=CGRectMake(0, 0, btnFrame.size.width, 0);
+                         imgMenuShowBackground.frame=CGRectMake(0, 0, btnBg.size.width, 0);                
+                     }];
+    btnMenuShow.hidden=YES;
+    imgMenuShowBackground.hidden=YES;
+    btnMenuShow.frame=btnFrameX;
+    imgMenuShowBackground.frame=btnBgX;
+    btnMenuHide.hidden=NO;
+    btnMenuHideBackground.hidden=NO;
 }
 -(void)closeInfoBox
 {
@@ -320,7 +429,10 @@ else{
 -(void) alreadyConnectToServer
 {
     [self reportClientInfo];
-    double inv=kHeartbeatTimeInterval;
+}
+-(void) connectedToServerSuccess
+{
+    double inv=kClientHeartbeatTimeInterval;
     if(![gameLoopTimer isValid]){
         gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval: inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
     }
@@ -328,13 +440,18 @@ else{
 //fail to connect to server,we can test this by heartbeat
 -(void) failureToConnectToServer
 {
+    if(isExit)
+        return;
     if(!hasEverConnectd){
         [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
         [tipBox dismissWithClickedButtonIndex:-1 animated:NO];    
-    [UIHelper showAlert:@"Information" message:@"Unable connect to server" func:^(AlertView *a, NSInteger i) {
-           [self exit];
-    }];
-    }    
+        [UIHelper showAlert:@"Information" message:@"Unable connect to server" func:^(AlertView *a, NSInteger i) {
+            [self exit];
+        }];
+    }
+    else{
+        [self testConnect:nil];
+    }
 }
 -(void)sendScore:(NSInteger) score
 {
@@ -364,47 +481,53 @@ else{
     [box dismissWithClickedButtonIndex:-1 animated:NO];
 }
 -(void)gameLoop
-{
-    if( chatRoom.serverInfo.gameStatus==kStateGameExit)
-        return;
-    
+{    
     static int counter = 0;  
     //static int reConnCounter = 0;
     counter++;
-    // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state          
-    if(counter%3==0) {
-        [self reportClientInfo];
-        
-    }
-    if(counter%9==0) {
-        double inv=kHeartbeatTimeMaxDelay;
+    
+    if( chatRoom.serverInfo.gameStatus==kStateGameExit||chatRoom.serverInfo.gameStatus== kStateGameEnd||chatRoom.serverInfo.gameStatus==kStatePrepareGame)
+        return;
+    
+    [self reportClientHeartbeat];
+    
+    if(chatRoom.serverInfo.gameStatus==kStateRoundRest||chatRoom.serverInfo.gameStatus==kStateGamePause)
+        return;
+    if(counter%(int)(kClientTestServerHearbeatTime/kClientHeartbeatTimeInterval)==0) {
+        double inv=kClientTestServerHearbeatTime;
         if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
-            //reConnCounter++;
-            //if(reConnCounter%5==0){
-            //NSLog(@"last heart:%@,%f",serverLastMsgDate,[serverLastMsgDate timeIntervalSinceNow]);    
             isReconnect=YES;
+            [self setConnectionIndicatorToConnected:NO];
             [self showRetryConnect];    
-            
             return;
-            //                }
-            //            else
-            //                return;
         }
     }
-    //[self processGameStatus];
 }
 -(void) retryConnect
 {
     if(isReconnect){
+        [self setConnectionIndicatorToConnected:NO];
         NSLog(@"reconnect log");
         [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
-        NSString *peerId=[ chatRoom.serverInfo.serverPeerId copy];
-        [self.chatRoom stop];
-        self.chatRoom=nil;
-        chatRoom=[[RemoteRoom alloc] initWithPeerId:peerId];
-        chatRoom.delegate = self;
-        [chatRoom start]; 
-        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
+        [chatRoom testUnavailableAndRestart];
+        //报告自己        
+        //        [self.chatRoom stop];
+        //        self.chatRoom=nil;
+        //        chatRoom=[[RemoteRoom alloc] initWithPeerId:peerId];
+        //        chatRoom.delegate = self;
+        //        [chatRoom start]; 
+        //        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
+    }
+}
+-(void)tryToReconnect
+{
+    [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
+    if(!isExit&&[AppConfig getInstance].isGameStart&&(!chatRoom.bluetoothClient.gameSession.isAvailable||![chatRoom isConnected])){
+            isReconnect=YES;            
+            [self retryConnect];
+    }
+    else{
+        [self alreadyConnectToServer];
     }
 }
 -(void) showRetryConnect
@@ -417,6 +540,7 @@ else{
         }
         if([chatRoom isConnected]){
             [self reportClientInfo];
+            return;
         }
         
         if(loadingBox!=nil)
@@ -433,11 +557,13 @@ else{
 
 -(void) testConnect:(NSTimer *)timer
 {
-    [timer invalidate];
+    if(timer!=nil)
+        [timer invalidate];
     if(!isReconnect){
         [self alreadyConnectToServer];
     }else{
         [self showReconnectConfirmBox];
+        [self setConnectionIndicatorToConnected:NO];
     }
 }
 -(void) showReconnectConfirmBox
@@ -469,21 +595,21 @@ else{
         case  kStateRunning:
         {
             [self showConnectingBox:NO andTitle:nil];
-//            if(preGameStates== kStateWaitJudge){
-//                //[self showTipBox:@"Game start"];
-//            }
-//            else if(preGameStates==kStateMultiplayerReconnect){
-//                [self showTipBox:@"Lost judge back and game continue"];
-//            }
+            //            if(preGameStates== kStateWaitJudge){
+            //                //[self showTipBox:@"Game start"];
+            //            }
+            //            else if(preGameStates==kStateMultiplayerReconnect){
+            //                [self showTipBox:@"Lost judge back and game continue"];
+            //            }
         }
             break;
         case  kStateCalcScore:
             break;
-//        case kStateMultiplayerReconnect:
-//        {
-//            [self showConnectingBox:YES andTitle:@"Wait for lost judges"];
-//        }
-//            break;
+        case kStateMultiplayerReconnect:
+        {
+            [self showConnectingBox:YES andTitle:@"Wait for lost judges"];
+        }
+            break;
         case  kStateRoundRest:
             [self showConnectingBox:YES andTitle:@"Round rest time"];
             break;
@@ -523,7 +649,19 @@ else{
 
 -(void)reportClientInfo
 {
-    CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_CLIENT_INFO andFrom:chatRoom.clientInfo.displayName andDesc:nil andData:chatRoom.clientInfo andDate:[NSDate date]];
+    CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_CLIENT_INFO andFrom:chatRoom.clientInfo.uuid andDesc:nil andData:chatRoom.clientInfo andDate:[NSDate date]];
     [chatRoom sendCommand:cmd];
+}
+
+-(void)reportClientHeartbeat
+{
+    CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_HEARTBEAT andFrom:chatRoom.clientInfo.uuid andDesc:nil andData:nil andDate:nil];
+    [chatRoom sendCommand:cmd];
+}
+
+#pragma draw layout
+-(void)setConnectionIndicatorToConnected:(BOOL)connected
+{   
+    imgConnectiondicator.image=[UIImage imageNamed:connected?@"scroe_controller_connection_avail":@"scroe_controller_connection_disconnect"];
 }
 @end

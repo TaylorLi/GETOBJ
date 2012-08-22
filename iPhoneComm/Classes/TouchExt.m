@@ -13,7 +13,7 @@
 @synthesize touchObj;
 @synthesize beginPoint;
 @synthesize touchPhase;
-@synthesize isSendFinish;
+@synthesize isAddedToScores;
 
 - (id)init
 {
@@ -27,7 +27,7 @@
         touchObj = touch;
         beginPoint = point;
         touchPhase = touch.phase;
-        isSendFinish = NO;
+        isAddedToScores = NO;
     }
     return self;
 }

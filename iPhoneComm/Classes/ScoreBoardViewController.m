@@ -18,6 +18,7 @@
 #import "DuringMatchSettingDetailControllerHD.h"
 #import "ShowWinnerBox.h"
 #import "SelectWinnerBox.h"
+#import "ScoreInfo.h"
 
 #define  kMenuItemMenu 0
 #define  kMenuItemExit 1
@@ -51,6 +52,7 @@
 
 -(void)pauseTime:(BOOL) stop;
 -(void)testIfScoreCanSubmit;
+-(void)submitScore:(ScoreInfo*)scoreInfo;
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 -(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType;
 -(void)resetTimeEnd:(id)sender;
@@ -579,7 +581,7 @@
             [self showSelectWinnerBox];
             //[UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
         }else{    
-            [self setMenuByGameStatus:kStateRoundRest];              
+            [self setMenuByGameStatus:kStateRoundReset];              
             [self showRoundRestTimeBox:chatRoom.gameInfo.gameSetting.restTime andEventType:krestTime];
         }
     }    
@@ -638,6 +640,31 @@
     if(![self testPointGapReached])
         [self setMenuByGameStatus:kStateRunning];
 }
+
+-(void)submitScore:(ScoreInfo*)scoreInfo{
+    if(scoreInfo!=nil){
+        switch (scoreInfo.swipeType) {
+            case kSideRed:
+                [self submitScore:scoreInfo.redSideScore andIsRedSize:YES];
+                break;
+            case kSideBlue:
+                [self submitScore:scoreInfo.blueSideScore andIsRedSize:NO];
+                break;
+            case kSideBoth:
+                if(chatRoom.gameInfo.redSideScore+scoreInfo.redSideScore<0||chatRoom.gameInfo.blueSideScore+scoreInfo.blueSideScore<0) return;
+                [self submitScore:scoreInfo.redSideScore andIsRedSize:YES];
+                [self submitScore:scoreInfo.blueSideScore andIsRedSize:NO];
+                break;
+            default:
+                break;
+        }
+        if(scoreInfos != nil){
+            [scoreInfos removeAllObjects];
+        }
+        scoreInfo = nil;
+    }
+}
+
 -(BOOL)isGuestureEnable{
     return chatRoom.gameInfo.gameStatus!=kStateWaitJudge&&chatRoom.gameInfo.gameStatus!=kStateGameExit&&chatRoom.gameInfo.gameStatus!=kStateGameEnd;
 }
@@ -674,7 +701,8 @@
     if(cmdHis==nil)
         return;
     NSLog(@"Cmd his count:%i,client cout:%i",cmdHis.count,chatRoom.gameInfo.clients.count);
-    int score=0;
+    //    int score=0;
+    ScoreInfo *scoreInfo = nil;
     BOOL timeout=NO;
     NSDate *minTime=nil;
     for (CommandMsg *cmd in cmdHis) {
@@ -701,13 +729,18 @@
         cmdHis = nil;
         return;
     }
-    
-    NSMutableArray *scores=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
+    if(scoreInfos == nil){
+        scoreInfos=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
+    }
     NSMutableArray *uuids=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
     CommandMsg *firstCmd=[cmdHis objectAtIndex:0];
-    [scores addObject:firstCmd.data];
-    score=[[firstCmd data] intValue];
-    NSString *side=firstCmd.desc;
+    [scoreInfos addObject:firstCmd.data];
+    // scoreInfo = [firstCmd data];
+    //NSLog(@"^^^^^^^^^^^^^blueScore:%i", scoreInfo.blueSideScore);
+    scoreInfo = [[ScoreInfo alloc]initWithDictionary: firstCmd.data];
+    NSLog(@"^^^^^^^^^^^^^redScore:%i  blueScore:%i", scoreInfo.redSideScore, scoreInfo.blueSideScore);
+    //score=[[firstCmd data] intValue];
+    //NSString *side=firstCmd.desc;
     if(cmdHis.count>chatRoom.gameInfo.clients.count)
     {
         [self setMenuByGameStatus:kStateRunning];
@@ -715,21 +748,38 @@
         return;
     }
     else if(cmdHis.count==chatRoom.gameInfo.clients.count){
+        int availCount = 0;
         for (CommandMsg *cmd in cmdHis) {
-            if(![cmd.desc isEqualToString:side])//not the same side,cancel
-            {
+            NSLog(@"||||||||availCount:%i  judesCount:%i", availCount, [AppConfig getInstance].serverSettingInfo.availScoreWithJudesCount);
+            
+            //if(availCount >= [AppConfig getInstance].serverSettingInfo.availScoreWithJudesCount) break;
+            //            if(![cmd.desc isEqualToString:side])//not the same side,cancel
+            //            {
+            //                [self setMenuByGameStatus:kStateRunning];
+            //                cmdHis = nil;
+            //                return;
+            //            }
+            ScoreInfo* scoreInfoTemp = [[ScoreInfo alloc]initWithDictionary: cmd.data];
+            //            if(scoreInfoTemp.swipeType != scoreInfo.swipeType){
+            //                [self setMenuByGameStatus:kStateRunning];
+            //                cmdHis = nil;
+            //                return; 
+            //            }else{
+            NSLog(@"^^^^^^^^^^^^^||||||||redScore:%i  blueScore:%i", scoreInfoTemp.redSideScore, scoreInfoTemp.blueSideScore);
+            if(scoreInfoTemp.blueSideScore != scoreInfo.blueSideScore || scoreInfoTemp.redSideScore != scoreInfo.redSideScore){
                 [self setMenuByGameStatus:kStateRunning];
                 cmdHis = nil;
-                return;
+                return; 
             }
-            if([scores containsObject:cmd.data]){//score
-                
-            }
-            else{
-                [self setMenuByGameStatus:kStateRunning];
-                cmdHis = nil;
-                return; //not same score
-            }
+            //            }
+            //            if([scoreInfos containsObject:cmd.data]){//score
+            //                
+            //            }
+            //            else{
+            //                [self setMenuByGameStatus:kStateRunning];
+            //                cmdHis = nil;
+            //                return; //not same score
+            //            }
             if([uuids containsObject:cmd.from]){//uuid
                 [self setMenuByGameStatus:kStateRunning];
                 cmdHis = nil;
@@ -737,14 +787,14 @@
             }
             else
                 [uuids addObject:cmd.from];
+            availCount++;
         }
         for (NSString *cltUuid in chatRoom.gameInfo.clients.allKeys) {
             if(![uuids containsObject:cltUuid]){
                 return;//wait for next test
             }
         }
-        
-        [self submitScore:score andIsRedSize:[side isEqualToString:kSideRed]];
+        [self submitScore:scoreInfo];
         
     } 
 }
@@ -908,7 +958,7 @@
                             [waitUserPanel removeFromSuperview];
                             //waitUserPanel=nil;
                         }
-                        if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+                        if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
                         {
                             [roundResetPanel setTimerStop:NO];
                         }
@@ -1339,7 +1389,7 @@
     counter++;
     GameStates status=chatRoom.gameInfo.gameStatus;
     //this status not need to test connection
-    if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd||status==kStateRoundRest||status==kStateGamePause) {
+    if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd||status==kStateRoundReset||status==kStateGamePause) {
         return;     
     } 
         // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
@@ -1397,7 +1447,7 @@
         }
     }
     if(hasDisconnect){
-        if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+        if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
             [roundResetPanel setTimerStop:YES];
         [self showWaitingUserBox];
         if(chatRoom.gameInfo.gameStatus!=kStateMultiplayerReconnect&&chatRoom.gameInfo.gameStatus!=kStateWaitJudge){
@@ -1468,7 +1518,7 @@
     if (chatRoom.gameInfo.gameStatus==kStateGamePause&&( chatRoom.gameInfo.preGameStatus==kStateRunning||chatRoom.gameInfo.preGameStatus==kStateCalcScore)) {
         [self contiueGame];
     }
-    else if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+    else if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
     {
         [roundResetPanel setTimerStop:NO];
     }
@@ -1482,7 +1532,7 @@
         if(chatRoom.gameInfo.gameStatus==kStateRunning||chatRoom.gameInfo.gameStatus==kStateCalcScore){
             [self pauseGame];
         }else{
-            if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+            if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
                 {
                     [roundResetPanel setTimerStop:YES];
                 }

@@ -32,16 +32,19 @@ typedef enum {
     
 	//用比赛属性playerReconnect代替，这样可以避免改变服务器的状态
     kStateMultiplayerReconnect=4,//judge has lost
-    kStateRoundRest=5,//round rest
+    kStateRoundReset=5,//round rest
     kStateGamePause=6,//game stop
     kStateGameEnd=7,//game has complete
     kStateGameExit=8,//game exit
 } GameStates;
 
-//defined command type
+typedef enum{
+    kSideBlue=0, //blue
+    kSideRed=1, //red
+    kSideBoth=2, //both
+}SwipeType;
 
-#define kSideBlue @"blue"
-#define kSideRed @"red"
+//defined command type
 
 //test last heartbeat time span
 //loop for event interval
@@ -57,6 +60,8 @@ typedef enum {
 #define kClientHeartbeatTimeInterval 0.7
 //客户端检测服务器连接状态的时间间隔
 #define kClientTestServerHearbeatTime 2.1
+//用户滑动分数板的时间间隔，在此时间间隔内可多次滑动，超过此时间间隔则发送信息
+#define kClientLoopInterval4Swipe 0.5
 //处于哪种角色中
 typedef enum{
     AppStepStart=0,

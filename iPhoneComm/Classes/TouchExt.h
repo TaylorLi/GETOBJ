@@ -12,7 +12,7 @@
 @property (nonatomic, retain) id touchObj;
 @property (nonatomic) CGPoint beginPoint;
 @property (nonatomic) UITouchPhase touchPhase;
-@property (nonatomic) Boolean isSendFinish;
+@property (nonatomic) Boolean isAddedToScores;
 
 - (id)init;
 - (id)initWithTouch:(UITouch*)touch pointInView:(CGPoint)point;

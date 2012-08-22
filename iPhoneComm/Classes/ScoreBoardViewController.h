@@ -35,6 +35,7 @@
     NSMutableArray *marksFlags;
     NSMutableArray *marksGrayFlags;
     NSMutableArray *timeFlags;
+    NSMutableArray *scoreInfos;
     //警告
     UIImage *imgWarning;
     //扣分

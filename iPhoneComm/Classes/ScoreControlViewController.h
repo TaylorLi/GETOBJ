@@ -11,6 +11,7 @@
 #import "RemoteRoom.h"
 #import "RoomDelegate.h"
 #import "AlertView.h"
+#import "ScoreInfo.h"
 
 
 @class  UILoadingBox;
@@ -19,9 +20,9 @@
     UILabel     *label;
     CGPoint     gestureStartPoint;
     RemoteRoom* chatRoom;
-    Boolean isBlueSide;
     UILoadingBox* loadingBox;
     NSTimer *gameLoopTimer;
+    NSTimer *sendLoopTimer;
     NSDate *serverLastMsgDate;
     GameStates preGameStates;
     UIAlertView *tipBox;
@@ -55,8 +56,7 @@
 // View is active, start everything up
 - (void)activate;
 
--(void)sendScore:(NSInteger)score;
--(void)reportSwipe:(NSInteger)score fromGestureRecognizer:(UIGestureRecognizer *) recognizer;
+-(void)sendScore;
 //-(void)setStyleBySide;
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 -(void)tryToReconnect;

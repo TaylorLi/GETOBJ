@@ -53,13 +53,13 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUIHighlightedTitle">Start new server</string>
+						<string key="IBUIHighlightedTitle">Refresh Server List</string>
 						<string key="IBUIDisabledTitle">Start new chat room</string>
 						<string key="IBUISelectedTitle">Start new chat room</string>
-						<string key="IBUINormalTitle">Start new server</string>
+						<string key="IBUINormalTitle">Refresh Server List</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
+							<bytes key="NSRGB">MC42IDAuOCAwLjQAA</bytes>
 						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -192,8 +192,8 @@
 						<reference key="object" ref="774585933"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="321175339"/>
 							<reference ref="631742398"/>
+							<reference ref="321175339"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>

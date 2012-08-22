@@ -8,10 +8,11 @@
 
 #import "GameInfo.h"
 #import "ServerSetting.h"
+#import "JudgeClientInfo.h"
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,needClientsCount,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -26,7 +27,7 @@
         redSideScore=0;
         redSideWarning=0;
         blueSideWarning=0;
-        needClientsCount=setting.judgeCount;
+        gameStart=NO;
         clients=[[NSMutableDictionary alloc] init];
     }
     return self;
@@ -41,7 +42,12 @@
                           [NSNumber numberWithInt:self.currentMatch],@"currentMatch",[NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
                           [NSNumber numberWithInt:self.redSideWarning],@"redSideWarmning",
                           [NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
-                          [NSNumber numberWithInt:self.blueSideWarning],@"blueSideWarmning",[NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate", nil];
+                          [NSNumber numberWithInt:self.blueSideWarning],@"blueSideWarmning",
+                          statusRemark,@"statusRemark",
+                          nil];
+    /*
+     [NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate", 
+     */
     return result;
 }
 
@@ -61,8 +67,9 @@
     self.redSideScore=[[disc objectForKey:@"redSideScore"] intValue];
     self.blueSideWarning=[[disc objectForKey:@"blueSideWarmning"] intValue];
     self.redSideWarning=[[disc objectForKey:@"redSideWarmning"] intValue];
-    NSNumber *inv=[disc objectForKey:@"lastHeartbeatDate"];
-    self.serverLastHeartbeatDate=[NSDate dateWithTimeIntervalSince1970:[inv doubleValue]];
+    self.statusRemark=[disc objectForKey:@"statusRemark"];
+    //NSNumber *inv=[disc objectForKey:@"lastHeartbeatDate"];
+    //self.serverLastHeartbeatDate=[NSDate dateWithTimeIntervalSince1970:[inv doubleValue]];
     return self;
 }
 
@@ -82,10 +89,12 @@
     copyObj.serverLastHeartbeatDate=[self.serverLastHeartbeatDate copy];
     copyObj.clients=[self.clients copy];
     copyObj.gameSetting=[self.gameSetting copy];
+    copyObj.statusRemark=[self.statusRemark copy];
+    copyObj.gameStart=self.gameStart;
     return  copyObj;
 }
 -(NSString *) description{
-    return [NSString stringWithFormat:@"Uuid:%@,peerId:%@,gameStatus:%d,serverLastHeartbeatDate:%@",self.serverUuid,self.serverPeerId,self.gameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate]];
+    return [NSString stringWithFormat:@"peerId:%@,Uuid:%@,gameStatus:%d,preGameStatus:%d,serverLastHeartbeatDate:%@,serverPeerId:%@,currentRound:%@,currentMatch:%@,gameSetting:%@,Game Start:%i",self.serverUuid,self.serverPeerId,self.gameStatus,self.preGameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate],serverPeerId,currentRound,currentMatch,gameSetting,gameStart];
 }
 /*
 -(BOOL)getPointGapReached
@@ -98,4 +107,22 @@
    return blueSideWarning==gameSetting.maxWarningCount||redSideWarning==gameSetting.maxWarningCount;
 }
 */
+
+-(NSDictionary *)gameStatusInfo
+{
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:
+                          self.serverPeerId==nil?[NSNull null]:self.serverPeerId,@"serverPeerId",
+                          [NSNumber numberWithInt:self.gameStatus],@"gameStatus",nil];
+    return result;
+}
+
+-(BOOL)allClientsReady
+{
+    int availCount=0;
+    for (JudgeClientInfo *clt in clients) {
+        if(clt.hasConnected)
+            availCount++;
+    }
+    return availCount==gameSetting.judgeCount;
+}
 @end

@@ -904,10 +904,8 @@
 						<string key="lblTime">UILabel</string>
 						<string key="txtHistory">UITextView</string>
 						<string key="viewBlueScore">UIView</string>
-						<string key="viewBlueWarmningBox">UIView</string>
 						<string key="viewBlueWarningBox">UIView</string>
 						<string key="viewRedScore">UIView</string>
-						<string key="viewRedWarmningBox">UIView</string>
 						<string key="viewRedWarningBox">UIView</string>
 						<string key="viewTime">UIView</string>
 					</dictionary>
@@ -1008,20 +1006,12 @@
 							<string key="name">viewBlueScore</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="viewBlueWarmningBox">
-							<string key="name">viewBlueWarmningBox</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="viewBlueWarningBox">
 							<string key="name">viewBlueWarningBox</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="viewRedScore">
 							<string key="name">viewRedScore</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewRedWarmningBox">
-							<string key="name">viewRedWarmningBox</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="viewRedWarningBox">

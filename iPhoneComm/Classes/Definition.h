@@ -14,10 +14,14 @@
 #define KEY_PEER_SEVICE_TYPE_SERVER @"S"
 
 typedef enum {
-	NETWORK_ACK,					// no packet
-	NETWORK_HEARTBEAT,				// send of entire state at regular intervals
-    NETWORK_REPORT_SCORE,            //score send to server
-    NETWORK_CLIENT_INFO,            //report client info
+	NETWORK_ACK = 0,					// no packet
+	NETWORK_HEARTBEAT=1,				// send of entire state at regular intervals
+    NETWORK_REPORT_SCORE=2,            //score send to server
+    NETWORK_CLIENT_INFO=3,            //report client info
+    NETWORK_SERVER_STATUS=4,          //server status
+    NETWORK_SERVER_WHOLE_INFO=5,      //whole info of server
+    NETWORK_NEED_REPORT_SELF=6,       //when receive this message,send self info
+    NETWORK_INVALID_CLIENT=7,         //client password or uuid invalid
 } PacketCodes;
 
 typedef enum {
@@ -40,9 +44,27 @@ typedef enum {
 #define kSideRed @"red"
 
 //test last heartbeat time span
-#define  kHeartbeatTimeMaxDelay  1.5
 //loop for event interval
-#define  kHeartbeatTimeInterval  0.12
+//#define  kHeartbeatTimeInterval  0.12
+
+//服务器消息循环的时间间隔，主要在与检测分数提交后是否有效的判断
+#define kServerLoopInterval 0.12
+//服务器检测客户端连接状态的时间间隔
+#define kServerTestClientHearbeatTime 2.1
+#define kServerHeartbeatTimeInterval 0.7
+
+//客户端发送心跳信息的间隔
+#define kClientHeartbeatTimeInterval 0.7
+//客户端检测服务器连接状态的时间间隔
+#define kClientTestServerHearbeatTime 2.1
+//处于哪种角色中
+typedef enum{
+    AppStepStart=0,
+    AppStepServerBrowser=1,
+    AppStepServer=2,
+    AppStepClient=3,
+    
+} AppStep;
 
 @interface Definition : NSObject
 

@@ -35,10 +35,22 @@
 @property(nonatomic,strong) RemoteRoom* chatRoom;
 @property CGPoint gestureStartPoint;
 @property CGFloat screenWidth;
+@property (strong, nonatomic) IBOutlet UIView *viewBlue;
+@property (strong, nonatomic) IBOutlet UIView *viewRed;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBlueScore;
+@property (strong, nonatomic) IBOutlet UIImageView *imgRedScore;
+@property (strong, nonatomic) IBOutlet UIButton *btnMenuHideBackground;
+@property (strong, nonatomic) IBOutlet UIButton *btnMenuHide;
+@property (strong, nonatomic) IBOutlet UIButton *btnMenuShow;
+@property (strong, nonatomic) IBOutlet UIImageView *imgMenuShowBackground;
 
+@property (strong, nonatomic) IBOutlet UIImageView *imgConnectiondicator;
 - (void)eraseText;
 // Exit back to the welcome screen
 - (IBAction)exit;
+- (IBAction)showMenu:(id)sender;
+-(IBAction)hideMenu:(id)sender;
+-(void)hideMenuWithAnimate;
 
 // View is active, start everything up
 - (void)activate;
@@ -47,4 +59,5 @@
 -(void)reportSwipe:(NSInteger)score fromGestureRecognizer:(UIGestureRecognizer *) recognizer;
 //-(void)setStyleBySide;
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+-(void)tryToReconnect;
 @end

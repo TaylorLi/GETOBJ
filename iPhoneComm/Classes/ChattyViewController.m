@@ -42,7 +42,6 @@
 // Private properties
 @interface ChattyViewController ()
 @property(nonatomic,strong) ServerBrowser* serverBrowser;
-@property(nonatomic,strong) PeerBrowser *peerServerBrowser;
 @end
 
 
@@ -121,11 +120,15 @@
         [[ChattyAppDelegate getInstance] showGameSettingView];
         return;
     }else{
-        /*Show setting view first*/
+        //重新刷新服务器列表
+        [self.peerServerBrowser restartBrowser];
+        /*
+        //Show setting view first
             GameSettingViewController *settingView= [[GameSettingViewController alloc] initWithNibName:@"GameSettingView" bundle:nil];
             self.settingViewController=settingView;
             [self.view addSubview:settingView.view];
-            [self.view bringSubviewToFront:settingView.view];        
+            [self.view bringSubviewToFront:settingView.view];     
+        */
         return;
         
         /*direct to start server*/
@@ -173,7 +176,7 @@
         }
         ServerRelateInfo* selectedPeerServer = [peerServerBrowser.servers objectAtIndex:currentRow.row];
         NSLog(@"Connect to Server:%@",[selectedPeerServer description]); 
-        room=[[RemoteRoom alloc] initWithPeerId:selectedPeerServer.peerId];
+        room=[[RemoteRoom alloc] initWithPeerId:selectedPeerServer];
         [peerServerBrowser stop];
     }
     // Stop browsing and switch over to chat room
@@ -201,13 +204,13 @@
     else
     {
         
-        for (ServerRelateInfo *sr in peerServerBrowser.servers){
-            if([[AppConfig getInstance].invalidServerPeerIds containsObject:sr.peerId])
-            {
-                [[AppConfig getInstance].invalidServerPeerIds removeObject:sr.peerId];            
-                [peerServerBrowser.servers removeObject:sr];
-            }
-        }
+//        for (ServerRelateInfo *sr in peerServerBrowser.servers){
+//            if([[AppConfig getInstance].invalidServerPeerIds containsObject:sr.peerId])
+//            {
+//                [[AppConfig getInstance].invalidServerPeerIds removeObject:sr.peerId];            
+//                [peerServerBrowser.servers removeObject:sr];
+//            }
+//        }
         
         NSLog(@"Server List Count:%i",[peerServerBrowser.servers count]);
         return [peerServerBrowser.servers count];

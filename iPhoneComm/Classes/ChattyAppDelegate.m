@@ -32,6 +32,7 @@
 #import "ScoreBoardViewController.h"
 #import "UIHelper.h"
 #import "AppConfig.h"
+#import <GameKit/GameKit.h>
 
 static ChattyAppDelegate* _instance;
 
@@ -92,18 +93,20 @@ static ChattyAppDelegate* _instance;
 }
 // Show screen with room selection
 - (void)showRoomSelection {
+    [AppConfig getInstance].currentAppStep=AppStepServerBrowser;
     [self swithView:viewController.view];
     [viewController activate];
 }
 
 -(void) showScoreBoard:(LocalRoom *)room{
-    NSLog(@"%i",scoreBoardViewController.view.superview==nil);
+    [AppConfig getInstance].currentAppStep=AppStepServer;
     [self swithView:scoreBoardViewController.view];
     scoreBoardViewController.chatRoom = room;
     [scoreBoardViewController activate];
 }
 
 -(void) showScoreControlRoom:(RemoteRoom *) room{
+    [AppConfig getInstance].currentAppStep=AppStepClient;
     scoreControlViewController.chatRoom = room;
     [scoreControlViewController activate];
     
@@ -111,6 +114,7 @@ static ChattyAppDelegate* _instance;
 }
 
 -(void) showGameSettingView{
+    [AppConfig getInstance].currentAppStep=AppStepServerBrowser;
     if([AppConfig getInstance].serverSettingInfo==nil){
         [AppConfig getInstance].serverSettingInfo=[[ServerSetting alloc] initWithDefault];
     }
@@ -118,6 +122,7 @@ static ChattyAppDelegate* _instance;
 }
 -(void) showDuringMatchSettingView
 {
+    [AppConfig getInstance].currentAppStep=AppStepServer;
     [self swithView:duringMathSplitViewCtl.view];
 }
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
@@ -156,7 +161,8 @@ static ChattyAppDelegate* _instance;
 
 -(void)testNetworkStatus
 {
-    if([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus]!=ReachableViaWiFi &&![btManager enabled])
+    NetworkStatus netWorkStatus= [[Reachability reachabilityForLocalWiFi] currentReachabilityStatus];
+    if(netWorkStatus!=ReachableViaWiFi &&![btManager enabled])
     {
         [self showConfrimMsg:@"Information" message:@"This application need to use either bluetooth or wifi,continue to turn on bluetooth?"];
         return ; 
@@ -180,6 +186,78 @@ static ChattyAppDelegate* _instance;
     NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
     if (![btManager enabled] && [wifiReach currentReachabilityStatus] != ReachableViaWiFi)
         [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
+}
+
+#pragma mark -
+#pragma mark AppDelegate
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSLog(@"Become Active");
+}
+-(void)applicationWillResignActive:(UIApplication *)application
+{
+    NSLog(@"Resign Active");
+    
+}
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+   NSLog(@"Enter Background");
+    return;
+}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application
+{
+    NSLog(@"Enter Foreround");
+    BluetoothManager *blManager=[BluetoothManager sharedInstance];
+    NSLog(@"Retest BT State: %d", [ blManager enabled]);
+    if([AppConfig getInstance].currentAppStep==AppStepStart)
+        return;
+    else 
+    {
+        GKSession *sess;
+        switch ([AppConfig getInstance].currentAppStep) {
+            case AppStepServerBrowser:{
+                sess=viewController.peerServerBrowser.schSession;
+                [viewController.peerServerBrowser restartBrowser];
+                }
+                break;
+            case AppStepServer:
+                {
+                sess=scoreBoardViewController.chatRoom.bluetoothServer.serverSession;
+                [scoreBoardViewController.chatRoom testUnavailableAndRestart];
+                }
+                break;
+                case AppStepClient:
+                {
+                    sess=scoreControlViewController.chatRoom.bluetoothClient.gameSession;
+                    [scoreControlViewController tryToReconnect];
+                }
+                break;
+            default:
+                break;
+        }
+        
+        NSLog(@"BLUE Session %@ ID:%@,Available:%i,Peer ID:%@,Mode:%i",sess.displayName, sess.sessionID,sess.available,sess.peerID,sess.sessionMode);  
+        NSArray *array=[sess peersWithConnectionState:GKPeerStateAvailable];
+        NSLog(@"GKPeerStateAvailable Peer:%i",array.count); 
+        array=[sess peersWithConnectionState:GKPeerStateConnected];
+        NSLog(@"GKPeerStateConnected Peer:%i",array.count);
+        array=[sess peersWithConnectionState:GKPeerStateDisconnected];
+        NSLog(@"GKPeerStateDisconnected Peer:%i",array.count); 
+        array=[sess peersWithConnectionState:GKPeerStateUnavailable];
+        NSLog(@"GKPeerStateUnavailable Peer:%i",array.count); 
+        array=[sess peersWithConnectionState:GKPeerStateConnecting];
+        NSLog(@"GKPeerStateConnecting Peer:%i",array.count);
+        if(!sess.isAvailable){
+            sess.available=YES;
+        }
+    }
+    return;
+}
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    NSLog(@"Receive memory warning");
 }
 
 @end

@@ -87,21 +87,38 @@
         return YES;
     }else
     {
-        bluetoothServer=[[PeerServer alloc] init];        
-        gameInfo.serverUuid=[AppConfig getInstance].uuid;
-        bluetoothServer.delegate=self;
-        bluetoothServer.gkSessionDelegate=self;
-        if(![bluetoothServer start:gameInfo.gameSetting]){
-            self.bluetoothServer=nil;
-            return NO;
-        }
-        else{
-            gameInfo.serverPeerId=bluetoothServer.serverSession.peerID;
-            return YES;
-        }            
+        return [self startBluetoothServer];
     }
 }
 
+-(BOOL) startBluetoothServer
+{
+    bluetoothServer=[[PeerServer alloc] init];        
+    gameInfo.serverUuid=[AppConfig getInstance].uuid;
+    bluetoothServer.delegate=self;
+    bluetoothServer.gkSessionDelegate=self;
+    if(![bluetoothServer start:gameInfo.gameSetting]){
+        self.bluetoothServer=nil;
+        return NO;
+    }
+    else{
+        gameInfo.serverPeerId=bluetoothServer.serverSession.peerID;
+        return YES;
+    } 
+}
+
+-(BOOL) testUnavailableAndRestart
+{
+    if(bluetoothServer==nil||bluetoothServer==nil||bluetoothServer.serverSession==nil||
+       !bluetoothServer.serverSession.available){
+        [bluetoothServer stop];
+        bluetoothServer=nil;
+       return [self startBluetoothServer];
+    }
+    else{
+        return YES;
+    }
+}
 
 // Stop everything
 - (void)stop {
@@ -163,14 +180,17 @@
                 NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
             }
             else{
+                NSError *error;
                 //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
                 if (peerId!=0) {
                     [bluetoothServer.serverSession sendData:data toPeers:
-                     [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:nil];
+                     [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
                 }
                 else{
-                    [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:nil];
+                    [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
                 } 
+                if(error!=nil)
+                    NSLog(@"Send cmd to client error:%@",error);
             }
         }
     }
@@ -225,6 +245,12 @@
 #pragma mark GKSession delegate bluetooth
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID{
     NSError *parseError = nil;
+//    if([gameInfo allClientsReady]){
+//        [session disconnectPeerFromAllPeers:peerID];
+//    }else{
+        [session acceptConnectionFromPeer:peerID error:&parseError];
+        
+//    }
 //    int connectedNum=0;
 //    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
 //        if(clt.hasConnected){
@@ -232,7 +258,6 @@
 //        }
 //    }
 //    if(connectedNum<gameInfo.needClientsCount){    
-    [session acceptConnectionFromPeer:peerID error:&parseError];
 //    }else{
 //        [session denyConnectionFromPeer:peerID];
 //    }
@@ -245,9 +270,10 @@
 /* Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
  */
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error{
+    NSLog(@"Local room(Server) connectionWithPeerFailed:%@",error);
     for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
         if(clt.peerId==peerID){
-            clt.hasConnected=YES;
+            clt.hasConnected=NO;
         }
     }
     
@@ -256,11 +282,12 @@
 /* Indicates an error occurred with the session such as failing to make available.
  */
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error{
-    
+    NSLog(@"Local room(Server) didFailWithError:%@",error);
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
+    NSLog(@"Server receive peer %@(%@) State change:%i",peerID,[session displayNameForPeer:peerID],state);
     switch (state)
     {
             

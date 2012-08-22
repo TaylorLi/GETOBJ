@@ -36,7 +36,7 @@
 
 @implementation RemoteRoom
 
-@synthesize connection,clientInfo,serverInfo,bluetoothClient;
+@synthesize connection,clientInfo,serverInfo,bluetoothClient,orgServerInfo;
 
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
@@ -50,8 +50,9 @@
     connection = [[Connection alloc] initWithNetService:netService];
     return self;
 }
--(id)initWithPeerId:(NSString *)serverPeerId{
-    bluetoothClient=[[PeerClient alloc] initWithPeerId:serverPeerId];    
+-(id)initWithPeerId:(ServerRelateInfo *)server
+{
+    orgServerInfo=server;    
     return self;
 }
 
@@ -79,29 +80,30 @@
             [delegate failureToConnectToServer];
             return NO;
         }
-    }else{
-        if ( bluetoothClient == nil ) {
-            return NO;
-        }        
-        bluetoothClient.gkSessionDelegate=self;
-        [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
+    }else{    
+        
         NSString *uid = [AppConfig getInstance].uuid;
+        bluetoothClient=[[PeerClient alloc] initWithPeerId:orgServerInfo.peerId]; 
+        bluetoothClient.gkSessionDelegate=self;
         clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:[AppConfig getInstance].name andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
-        return YES;
+        
+       return [bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
     }
 }
--(BOOL) restart
+-(BOOL) testUnavailableAndRestart
 {
-    isRunning=YES;
-        if(bluetoothClient!=nil){
-            [bluetoothClient stop];             
+     isRunning=YES;
+    if(bluetoothClient.gameSession.isAvailable&&[self isConnected])
+        {
+            return YES;
         }
-        bluetoothClient=[[PeerClient alloc] initWithPeerId:serverInfo.serverPeerId];
+    else{
+        [bluetoothClient stop];  
+        bluetoothClient=nil;
+        bluetoothClient=[[PeerClient alloc] initWithPeerId:orgServerInfo.peerId]; 
         bluetoothClient.gkSessionDelegate=self;
-        [bluetoothClient start:[AppConfig getInstance].name  andTimeout:[AppConfig getInstance].timeout];
-        NSString *uid = [AppConfig getInstance].uuid;
-        clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:clientInfo.displayName andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
-        return YES;
+        return [bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+    }
 }
 
 // Stop everything, disconnect from server
@@ -169,9 +171,10 @@
 /* Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
  */
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error{
+    NSLog(@"Remote room(Client) connectionWithPeerFailed:%@",error);
     [delegate failureToConnectToServer];
     if(isRunning){
-        [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
+        //[[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
         isRunning=NO;
     }
 }
@@ -179,11 +182,12 @@
 /* Indicates an error occurred with the session such as failing to make available.
  */
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error{
-    
+     NSLog(@"Remote room(Client) didFailWithError:%@",error);
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
+    NSLog(@"Remote room(client) receive peer %@(%@) State change:%i",peerID,[session displayNameForPeer:peerID],state);
     switch (state)
     {
             
@@ -198,7 +202,7 @@
              First time lose a server;
              */
             if(isRunning && [peerID isEqualToString:bluetoothClient.serverPeerId]){  
-                [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
+                //[[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
                 //[delegate roomTerminated:self reason:@"Server has disconnect"];
             }
             break;
@@ -221,7 +225,7 @@
             /*first StateDisconnected,then stateUnavailale,then connectionWithPeerFailed 
              */
             if(isRunning && [peerID isEqualToString:bluetoothClient.serverPeerId]){  
-                [[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
+                //[[AppConfig getInstance].invalidServerPeerIds addObject:peerID];
                 isRunning=NO;
                 //self terminate
                 [delegate roomTerminated:self reason:@"Server has disconnect"];

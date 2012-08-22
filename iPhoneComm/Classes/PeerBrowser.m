@@ -24,6 +24,7 @@
 
 @synthesize servers;
 @synthesize delegate;
+@synthesize schSession;
 
 // Initialize
 - (id)init {
@@ -55,10 +56,10 @@
     servers = [[NSMutableArray alloc] init];
     peerIds=[[NSMutableArray alloc] init];
     //NSString *uid = [[UIDevice currentDevice] uniqueIdentifier];
-    schPeerId=[NSString stringWithFormat:@"%@",KEY_PEER_SEVICE_TYPE_SEARCH];
+    schPeerId=[NSString stringWithFormat:@"%@_%@",KEY_PEER_SEVICE_TYPE_SEARCH,[AppConfig getInstance].name];
 	schSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
                                           displayName:schPeerId
-                                          sessionMode: GKSessionModePeer ];
+                                          sessionMode: GKSessionModeClient ];
 	NSLog(@"Browser Peer Start:%@,Desc:%@",schSession.peerID,schPeerId);
     if( !schSession ) {
 		return NO;
@@ -69,7 +70,10 @@
     return YES;
 }
 
-
+-(void)restartBrowser{
+    [self start];
+    [delegate updateServerList];
+}
 // Terminate current service browser and clean up
 - (void)stop {
     if ( schSession == nil ) {
@@ -90,8 +94,12 @@
 
 #pragma GKSession Delagate
 
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error{
+    NSLog(@"Server Browser %@ didFailWithError:%@",session.displayName,error);
+}
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
+    NSLog(@"Browser receive peer(%@) State change:%i",[session displayNameForPeer:peerID],state);
     switch (state)
     {
             

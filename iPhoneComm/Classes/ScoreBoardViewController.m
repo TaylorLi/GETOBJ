@@ -5,7 +5,7 @@
 //  Created by Eagle Du on 12/6/30.
 //  Copyright (c) 2012年 GET. All rights reserved.
 //
-
+#import <GameKit/GameKit.h>
 #import "ScoreBoardViewController.h"
 #import "ChattyAppDelegate.h"
 #import "AppConfig.h"
@@ -43,7 +43,12 @@
 - (void)menuItemAction:(id)sender;
 -(void)gameLoop;
 -(BOOL)testSomeClientDisconnect;
--(void)sendServerInfo;
+
+-(void)sendServerStatusAndDesc:(NSString *)desc;
+-(void)sendServerWholeInfo;
+-(void)sendServerHearbeat;
+-(void)sendDenyClientToConnectInfo:(JudgeClientInfo*)client;
+
 -(void)pauseTime:(BOOL) stop;
 -(void)testIfScoreCanSubmit;
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
@@ -84,6 +89,7 @@
 -(void)setWarningMaxProcess;
 -(void)warnmingMaxProcessLoop;
 -(BOOL)isGuestureEnable;
+-(void)processHearbeatWithClientUuid:(NSString *)uuid;
 @end 
 
 @implementation ScoreBoardViewController
@@ -302,6 +308,7 @@
     if(player==nil)
         player= [[SoundsPlayer alloc] init] ;    
     [self prepareForGame];
+    [AppConfig getInstance].isGameStart=YES;
     //[self showRoundRestTimeBox:1 andEventType:1];
 }
 
@@ -459,7 +466,7 @@
         }
     }
     else{
-        if(self.chatRoom.gameInfo.warningMaxReached){
+        if(!self.chatRoom.gameInfo.warningMaxReached){
             if([warningMaxTimer isValid])
                 [warningMaxTimer invalidate];
             self.chatRoom.gameInfo.warningMaxReached=NO;
@@ -816,7 +823,7 @@
 #pragma mark cmd handler
 // We are being asked to process cmd
 - (void)processCmd:(CommandMsg *)cmdMsg {
-    
+    //NSLog(@"Receive Client Command:%@",cmdMsg);
     switch ([cmdMsg.type intValue]) {
         case NETWORK_REPORT_SCORE:
         {
@@ -838,68 +845,113 @@
             }            
         }
             break;
+            case NETWORK_HEARTBEAT:
+            {
+                [self processHearbeatWithClientUuid:cmdMsg.from];
+            }
+            break;
         case  NETWORK_CLIENT_INFO:
-        { 
-            BOOL hasChanged=NO;
+        {             
             JudgeClientInfo *cltInfo =[[JudgeClientInfo alloc] initWithDictionary:   cmdMsg.data];
             JudgeClientInfo *cltInfoOld=[chatRoom.gameInfo.clients objectForKey:cltInfo.uuid];
             if(cltInfoOld==nil)
-            {//new client connected
-                cltInfo.hasConnected=YES;
-                cltInfo.lastHeartbeatDate=[NSDate date];
-                [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
-                hasChanged=YES;
-            }
-            else
             {
-                cltInfoOld.lastHeartbeatDate=[NSDate date];
-                if(!cltInfoOld.hasConnected){          
-                    [self refreshGamesettingDialogJudges];
-                    cltInfoOld.hasConnected=YES;                    
-                    hasChanged=YES;
-                }
-            }
-            if(hasChanged){
-                [self refreshGamesettingDialogJudges];
-                if(chatRoom.gameInfo.gameStatus==kStateWaitJudge){
-                    //wait for judge
-                    [self showWaitingUserBox];                
+                //if all client connected,new client is invalid
+                if(chatRoom.gameInfo.clients.count==chatRoom.gameInfo.gameSetting.judgeCount){
+                    [self sendDenyClientToConnectInfo:cltInfo];
                     return;
-                }
-                if([self testSomeClientDisconnect]){
-                    //still some one disconnect                        
-                    [self showWaitingUserBox];
-                }
-                else{
-                    //every one back to game
-                    if(!isAtMatchSetting){
-                        chatRoom.gameInfo.gameStatus=chatRoom.gameInfo.preGameStatus;
-                        if(chatRoom.gameInfo.gameStatus==kStateRunning)
-                            [self contiueGame];
-                        else
-                        {
-                            if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
-                                [waitUserPanel removeFromSuperview];
-                                //waitUserPanel=nil;
-                            }
-                            if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
-                            {
-                                [roundResetPanel setTimerStop:NO];
-                            }
-                        }
-                    }else{
-                        if(chatRoom.gameInfo.preGameStatus==kStateRunning)
-                            chatRoom.gameInfo.gameStatus=kStateGamePause;
-                    }
-                }
+                }                                   
+                 //new client connected
+                [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
             }
+            [self processHearbeatWithClientUuid:cltInfo.uuid];
+            [self sendServerWholeInfo];
         }
             break;
         default:
             break;
     }
 }
+//处理客户端的心跳
+-(void)processHearbeatWithClientUuid:(NSString *)uuid{
+    JudgeClientInfo *cltInfoOld=[chatRoom.gameInfo.clients objectForKey:uuid];
+    if(cltInfoOld==nil)
+    {
+        return;
+    }
+    else
+    {
+        cltInfoOld.lastHeartbeatDate=[NSDate date];
+        if(!cltInfoOld.hasConnected){          
+            [self refreshGamesettingDialogJudges];
+            cltInfoOld.hasConnected=YES;                    
+            
+            [self refreshGamesettingDialogJudges];
+            if(chatRoom.gameInfo.gameStatus==kStateWaitJudge){
+                //wait for judge
+                [self showWaitingUserBox];                
+                return;
+            }
+            if([self testSomeClientDisconnect]){
+                //still some one disconnect                        
+                [self showWaitingUserBox];
+            }
+            else{
+                //every one back to game
+                if(!isAtMatchSetting){
+                    chatRoom.gameInfo.gameStatus=chatRoom.gameInfo.preGameStatus;
+                    if(chatRoom.gameInfo.gameStatus==kStateRunning)
+                        [self contiueGame];
+                    else
+                    {
+                        if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
+                            [waitUserPanel removeFromSuperview];
+                            //waitUserPanel=nil;
+                        }
+                        if(chatRoom.gameInfo.gameStatus==kStateRoundRest)
+                        {
+                            [roundResetPanel setTimerStop:NO];
+                        }
+                    }
+                }else{
+//                    if(chatRoom.gameInfo.preGameStatus==kStateRunning)
+//                        chatRoom.gameInfo.gameStatus=kStateGamePause;
+                }
+            }
 
+        }
+    }
+}
+//发送服务器状态，在服务器游戏状态变化时发送
+-(void)sendServerStatusAndDesc:(NSString *)desc
+{
+    chatRoom.gameInfo.serverLastHeartbeatDate=[NSDate date];
+    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_STATUS andFrom:nil
+                                                      andDesc:desc andData:[NSNumber numberWithInt:chatRoom.gameInfo.gameStatus] andDate:nil];
+    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+}
+//发送完整服务器信息，主要用于首次与服务器沟通时
+-(void)sendServerWholeInfo
+{
+    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_WHOLE_INFO andFrom:nil 
+                                                      andDesc:nil andData:chatRoom.gameInfo andDate:nil];
+    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+}
+//发送心跳，不带任何额外信息
+-(void)sendServerHearbeat
+{
+    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_HEARTBEAT andFrom:nil 
+                                                      andDesc:nil andData:[NSNumber numberWithInt:chatRoom.gameInfo.gameStatus] andDate:nil];
+    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+}
+//拒绝非法客户端连接
+-(void)sendDenyClientToConnectInfo:(JudgeClientInfo*)client
+{
+    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_INVALID_CLIENT andFrom:nil 
+                                                      andDesc:@"Invalid client" andData:nil andDate:nil];
+    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+    [chatRoom.bluetoothServer.serverSession disconnectPeerFromAllPeers:client.peerId];
+}
 #pragma mark -
 #pragma mark RoomDelegate
 // Room closed from outside
@@ -922,10 +974,11 @@
 
 // User decided to exit room
 - (IBAction)exit {
+    [AppConfig getInstance].isGameStart=NO;
     // Close the room
     [self setMenuByGameStatus:kStateGameExit];
-    [self sendServerInfo];
-    [[AppConfig getInstance].invalidServerPeerIds addObject:chatRoom.bluetoothServer.serverSession.peerID];
+    [self sendServerStatusAndDesc:nil];
+    //[[AppConfig getInstance].invalidServerPeerIds addObject:chatRoom.bluetoothServer.serverSession.peerID];
     
     // Remove keyboard
     
@@ -976,7 +1029,7 @@
     {
         __block typeof (self) me = self;
         waitUserPanel = [[UIWaitForUserViewController alloc] initWithFrame:self.view.bounds title:@"Connecting Judge"];
-        waitUserPanel.needConnectedClientCount=chatRoom.gameInfo.needClientsCount;
+        waitUserPanel.needConnectedClientCount=chatRoom.gameInfo.gameSetting.judgeCount;
         waitUserPanel.onClosePressed = ^(UAModalPanel* panel) {
             // [panel hide];
             UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"End Game" message:@"Continue to end the game?" delegate:me cancelButtonTitle:@"Cancel" otherButtonTitles:@"End", nil];
@@ -1056,7 +1109,7 @@
     //[self setupMenu];
     [self setMenuByGameStatus:kStateWaitJudge];
     [self showWaitingUserBox];
-    double inv=kHeartbeatTimeInterval;
+    double inv=kServerLoopInterval;
     gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval:inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 }
 
@@ -1168,7 +1221,7 @@
 -(void)startRound:(id)sender
 {
     [player playSoundWithFullPath:kSoundsRoundStart];
-    if([self testPointGapReached]){
+    if([self testPointGapReached]||chatRoom.gameInfo.warningMaxReached){
         return;
     }
     waitUserPanel=nil;
@@ -1179,15 +1232,16 @@
     
 }
 -(void)waitUserStartPress:(id)sender{
+    if(!chatRoom.gameInfo.gameStart)
+        chatRoom.gameInfo.gameStart=YES;
     [self contiueGame];
 }
 -(void)contiueGame
-{
-    if(chatRoom.gameInfo.warningMaxReached||chatRoom)
-        if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
+{    
+    if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
             [waitUserPanel removeFromSuperview];
             waitUserPanel=nil;
-        }
+    }    
     [self pauseTime:NO];
     [self setMenuByGameStatus:kStateRunning];
 }
@@ -1281,19 +1335,22 @@
 //game loop here,send server's status to clients
 -(void)gameLoop
 {
-    static int counter = 0;    
-    if (chatRoom.gameInfo.gameStatus!=kStatePrepareGame) {
-        counter++;
+    static int counter = 0;        
+    counter++;
+    GameStates status=chatRoom.gameInfo.gameStatus;
+    //this status not need to test connection
+    if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd||status==kStateRoundRest||status==kStateGamePause) {
+        return;     
+    } 
         // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
-        if(counter%3==0) {
-            
-            [self sendServerInfo];
+        if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
+            [self sendServerHearbeat];
         }
         
-        if(counter%9==0){
+        if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
             [self testSomeClientDisconnect];         
         }    
-    }   
+     
 	[self processByGameStatus];
 }
 -(void)processByGameStatus
@@ -1352,13 +1409,6 @@
     }
     return hasDisconnect;           
 }
--(void)sendServerInfo
-{
-    chatRoom.gameInfo.serverLastHeartbeatDate=[NSDate date];
-    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_HEARTBEAT andFrom:[AppConfig getInstance].name 
-                                                      andDesc:nil andData:chatRoom.gameInfo andDate:[NSDate date]];
-    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
-}
 
 -(void)setMenuByGameStatus:(GameStates)status;
 {
@@ -1366,8 +1416,8 @@
         chatRoom.gameInfo.preGameStatus=chatRoom.gameInfo.gameStatus;
     }
     chatRoom.gameInfo.gameStatus = status;
-    NSLog(@"Game Status:%i,Previous Status:%i",status,chatRoom.gameInfo.preGameStatus);
-    [self sendServerInfo];
+    NSLog(@"Game Status:%i,Previous Status:%i",chatRoom.gameInfo.gameStatus,chatRoom.gameInfo.preGameStatus);
+    [self sendServerStatusAndDesc:nil];
     [self processByGameStatus];
     UIButton *continueButton=[self getMenuItem:kMenuItemContinueGame];
     UIButton *redWarningButton=[self getMenuItem:kMenuItemWarningRed];
@@ -1415,7 +1465,7 @@
     {
         [self drawLayoutByGameInfo];
     }
-    if (chatRoom.gameInfo.gameStatus==kStateRunning&&( chatRoom.gameInfo.preGameStatus==kStateRunning||chatRoom.gameInfo.preGameStatus==kStateCalcScore)) {
+    if (chatRoom.gameInfo.gameStatus==kStateGamePause&&( chatRoom.gameInfo.preGameStatus==kStateRunning||chatRoom.gameInfo.preGameStatus==kStateCalcScore)) {
         [self contiueGame];
     }
     else if(chatRoom.gameInfo.gameStatus==kStateRoundRest)

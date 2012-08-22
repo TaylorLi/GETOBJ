@@ -14,7 +14,6 @@
 
 @interface PeerBrowser: NSObject <GKSessionDelegate>
 {
-   GKSession *schSession;
     //arry of SeverRelateInfo
     NSMutableArray *servers;
     NSMutableArray *peerIds;
@@ -24,11 +23,14 @@
 
 @property(nonatomic,readonly) NSMutableArray* servers;
 @property(nonatomic,strong) id<ServerBrowserDelegate> delegate;
+@property(nonatomic,strong)GKSession *schSession;
 
 // Start browsing for bluetooth
 - (BOOL)start;
 
 // Stop everything
 - (void)stop;
+
+-(void)restartBrowser;
 
 @end

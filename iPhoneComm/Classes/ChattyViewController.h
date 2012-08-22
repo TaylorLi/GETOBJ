@@ -33,13 +33,13 @@
 
 @interface ChattyViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, ServerBrowserDelegate> {
   ServerBrowser* serverBrowser;
-    PeerBrowser* peerServerBrowser;
   IBOutlet UITableView* serverList;
     GameSettingViewController *settingViewController;  
     UIImage *lockImg;
 }
 
 @property (nonatomic,strong) GameSettingViewController *settingViewController;
+@property(nonatomic,strong) PeerBrowser* peerServerBrowser;
 - (IBAction)createNewChatRoom:(id)sender;
 - (void)joinChatRoom:(NSIndexPath*)currentRow;
 

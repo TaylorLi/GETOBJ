@@ -27,12 +27,15 @@
 @property (nonatomic,strong)NSString *serverUuid;
 @property (nonatomic,assign)GameStates gameStatus;
 @property (nonatomic,strong) NSMutableDictionary *clients;
-@property NSInteger needClientsCount;
 @property (nonatomic,strong)NSDate *serverLastHeartbeatDate;
 @property (nonatomic,assign)  GameStates preGameStatus;
+@property (nonatomic,strong)NSString *statusRemark;
+@property BOOL gameStart;
 
 @property  BOOL pointGapReached;
 @property  BOOL warningMaxReached;
 -(id) initWithGameSetting:(ServerSetting *)setting;
 -(id)initWithDictionary:(NSDictionary *) disc;
+-(NSDictionary *)gameStatusInfo;
+-(BOOL)allClientsReady;
 @end

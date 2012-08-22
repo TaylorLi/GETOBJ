@@ -55,4 +55,7 @@
 
 - (id)initWithGameInfo:(GameInfo *)info;
 
+-(BOOL) testUnavailableAndRestart;
+-(BOOL) startBluetoothServer;
+
 @end

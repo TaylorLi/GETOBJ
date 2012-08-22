@@ -32,7 +32,7 @@
 #import "PeerClient.h"
 #import "JudgeClientInfo.h"
 #import "GameInfo.h"
-
+#import "ServerRelateInfo.h"
 
 @interface RemoteRoom : Room <ConnectionDelegate> {
   // Our connection to the chat server
@@ -40,20 +40,22 @@
   PeerClient  *bluetoothClient;
   BOOL isRunning;
     JudgeClientInfo *clientInfo;
-    GameInfo *serverInfo;;
+    GameInfo *serverInfo;
 }
 
 @property (nonatomic,strong) JudgeClientInfo *clientInfo;
 @property (nonatomic,strong) GameInfo *serverInfo;
 @property (nonatomic,strong) PeerClient  *bluetoothClient;
+@property (nonatomic,strong) ServerRelateInfo *orgServerInfo;
+
 // Initialize with host address and port
 - (id)initWithHost:(NSString*)host andPort:(int)port;
 
 // Initialize with a reference to a net service discovered via Bonjour
 - (id)initWithNetService:(NSNetService*)netService;
 
--(id)initWithPeerId:(NSString *)serverPeerId;
+-(id)initWithPeerId:(ServerRelateInfo *)server;
 -(BOOL) isConnected;
 
--(BOOL) restart;
+-(BOOL) testUnavailableAndRestart;
 @end

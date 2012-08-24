@@ -75,6 +75,8 @@
 		DA5381A415BD920E00D1413B /* next-round.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5381A015BD920E00D1413B /* next-round.png */; };
 		DA5381A815BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */; };
 		DA5381A915BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */; };
+		DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */; };
+		DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
@@ -419,6 +421,8 @@
 		DA5381A515BDAE5800D1413B /* RoundRestTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundRestTimeViewController.h; sourceTree = "<group>"; };
 		DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRestTimeViewController.m; sourceTree = "<group>"; };
 		DA5381A715BDAE5900D1413B /* RoundRestTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RoundRestTimeView.xib; path = Classes/RoundRestTimeView.xib; sourceTree = "<group>"; };
+		DA6CE53915E7BCE400BF9D59 /* ScoreHistoryInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreHistoryInfo.h; sourceTree = "<group>"; };
+		DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreHistoryInfo.m; sourceTree = "<group>"; };
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
@@ -1047,6 +1051,8 @@
 		DAE735BB15A8494A00C84157 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DA6CE53915E7BCE400BF9D59 /* ScoreHistoryInfo.h */,
+				DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */,
 				DAA92CEC15E534DB00D6E710 /* ScoreInfo.h */,
 				DAA92CED15E534DB00D6E710 /* ScoreInfo.m */,
 				DAE735BD15A84AAE00C84157 /* CommandMsg.h */,
@@ -1604,6 +1610,7 @@
 				DA9345AD15E1000100A4B99B /* SoundsPlayer.m in Sources */,
 				DAA92CEE15E534DB00D6E710 /* ScoreInfo.m in Sources */,
 				DAEF4C8A15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
+				DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1687,6 +1694,7 @@
 				DA9345AE15E1000100A4B99B /* SoundsPlayer.m in Sources */,
 				DAA92CEF15E534DB00D6E710 /* ScoreInfo.m in Sources */,
 				DAEF4C8B15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
+				DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

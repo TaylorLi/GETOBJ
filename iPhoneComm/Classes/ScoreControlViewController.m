@@ -179,21 +179,23 @@
                             }else{
                                 scoreInfo = [[ScoreInfo alloc]initWithRedSide:score andDateNow:nil];
                             }
+                            [self sendScore];
                             //                        [self performSelector:@selector(sendScore) withObject:scoreInfo afterDelay:kHeartbeatTimeMaxDelay4Swipe];
-                        }else{
-                            SwipeType stype = isBlueSide ? kSideBlue : kSideRed;
-                            NSLog(@"%@_________2", isBlueSide?@"blue":@"red");
-                            if(scoreInfo.swipeType == stype){
-                                scoreInfo = nil;
-                            }else{
-                                scoreInfo.swipeType = kSideBoth;
-                                if(isBlueSide){
-                                    scoreInfo.blueSideScore = score;
-                                }else{
-                                    scoreInfo.redSideScore = score;
-                                }
-                            }
                         }
+//                        else{
+//                            SwipeType stype = isBlueSide ? kSideBlue : kSideRed;
+//                            NSLog(@"%@_________2", isBlueSide?@"blue":@"red");
+//                            if(scoreInfo.swipeType == stype){
+//                                scoreInfo = nil;
+//                            }else{
+//                                scoreInfo.swipeType = kSideBoth;
+//                                if(isBlueSide){
+//                                    scoreInfo.blueSideScore = score;
+//                                }else{
+//                                    scoreInfo.redSideScore = score;
+//                                }
+//                            }
+//                        }
                         //[self sendScore:score];    
                         //                        label.text = [NSString stringWithFormat:@"%@ %i Score Record",
                         //                                      isBlueSide?[kSideBlue uppercaseString]:[kSideRed uppercaseString] ,score];;
@@ -239,15 +241,21 @@
 
 //新增完
 
+//-(void)sendScore:(NS)(NSInteger) score
+//{
+//    NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
+//    [self showConnectingBox:YES andTitle:@"Wait for score result"];
+//    [chatRoom sendCommand:[[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:isBlueSide?kSideBlue:kSideRed andData:[NSNumber numberWithInt:score] andDate:[NSDate date]] autorelease]];
+//}
+
 -(void)sendScore
 {
     //修改
     if(scoreInfo!=nil){
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-        NSLog(@"%@^^^^^^^^^^^", scoreInfo.swipeType==kSideBoth?@"both":scoreInfo.swipeType==kSideBlue?@"blue":@"red");
-        NSLog(@"^^^^^^^^^^^time:%f",fabs([scoreInfo.datetime timeIntervalSinceNow]));
-        if(scoreInfo.swipeType == kSideBoth ||  fabs([scoreInfo.datetime timeIntervalSinceNow]) >= kClientLoopInterval4Swipe){
-            NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
+     //   NSLog(@"%@^^^^^^^^^^^", scoreInfo.swipeType==kSideBoth?@"both":scoreInfo.swipeType==kSideBlue?@"blue":@"red");
+      //  NSLog(@"^^^^^^^^^^^time:%f",fabs([scoreInfo.datetime timeIntervalSinceNow]));
+     //   if(scoreInfo.swipeType == kSideBoth ||  fabs([scoreInfo.datetime timeIntervalSinceNow]) >= kClientLoopInterval4Swipe){
+      //      NSLog(@"send score date:%f",[[NSDate date] timeIntervalSinceReferenceDate]);
             if(scoreInfo.swipeType == kSideBoth || scoreInfo.swipeType == kSideBlue){
                 imgBlueScore.image = [UIImage imageNamed:[NSString stringWithFormat:@"scroe_controller_%i.png", scoreInfo.blueSideScore]];
                 imgBlueScore.hidden = NO;
@@ -258,12 +266,13 @@
                 imgRedScore.hidden = NO;
                 NSLog(@"^^^^^^^^^^^red:%i",scoreInfo.redSideScore);
             }
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             [chatRoom sendCommand:[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:nil andData:scoreInfo andDate:[NSDate date]]];
             scoreInfo = nil;
             //    NSLog(@"send score side is %@, score is %i",isBlueSide?kSideBlue:kSideRed, score);
             [self performSelector:@selector(eraseText) withObject:nil afterDelay:1];
-            [self showConnectingBox:YES andTitle:@"Wait for score result"];
-        }
+        //    [self showConnectingBox:YES andTitle:@"Wait for score result"];
+    //    }
     }
     //修改完
 }
@@ -457,10 +466,10 @@ else{
         gameLoopTimer=nil;
     }
     
-    if(sendLoopTimer !=nil){
-        [sendLoopTimer invalidate];
-        sendLoopTimer = nil;
-    }
+//    if(sendLoopTimer !=nil){
+//        [sendLoopTimer invalidate];
+//        sendLoopTimer = nil;
+//    }
     
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
     

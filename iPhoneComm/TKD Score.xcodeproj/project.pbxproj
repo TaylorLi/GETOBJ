@@ -26,7 +26,6 @@
 		D043DA9D0F9CEA100030638C /* ServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D043DA9C0F9CEA100030638C /* ServerBrowser.m */; };
 		D0510A520F9E00BB00B735FA /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A510F9E00BB00B735FA /* Room.m */; };
 		D0510A700F9E14ED00B735FA /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */; };
-		DA00F31D15A98EFE005B2F4B /* TKD Score-iPad.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */; };
 		DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */; };
 		DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */; };
 		DA00F33D15A9A85C005B2F4B /* LeftArrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */; };
@@ -49,10 +48,6 @@
 		DA42B54115E410EF00456471 /* game_welcome_page_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B53E15E410EF00456471 /* game_welcome_page_background.png */; };
 		DA42B54215E410EF00456471 /* game_welcome_page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA42B53F15E410EF00456471 /* game_welcome_page.jpg */; };
 		DA42B54315E410EF00456471 /* game_welcome_username.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54015E410EF00456471 /* game_welcome_username.png */; };
-		DA42B54515E4143500456471 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54415E4143500456471 /* Default@2x.png */; };
-		DA42B54715E4147B00456471 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54615E4147B00456471 /* Default.png */; };
-		DA42B54915E4149700456471 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54815E4149700456471 /* Default-Landscape~ipad.png */; };
-		DA42B54B15E414B100456471 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54A15E414B100456471 /* Default-Portrait~ipad.png */; };
 		DA439D6815E404CB0009820A /* game_welcome_page.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA439D6715E404CB0009820A /* game_welcome_page.jpg */; };
 		DA43FDB015B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
 		DA43FDB115B5DA840083D1B7 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA43FDAB15B5DA840083D1B7 /* AlertView.m */; };
@@ -80,6 +75,8 @@
 		DA5381A415BD920E00D1413B /* next-round.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5381A015BD920E00D1413B /* next-round.png */; };
 		DA5381A815BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */; };
 		DA5381A915BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */; };
+		DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */; };
+		DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78B45515A96F0100E186CC /* ChattyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ChattyAppDelegate.m */; };
 		DA78B45615A96F0100E186CC /* ChattyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* ChattyViewController.m */; };
@@ -106,6 +103,8 @@
 		DA9345AE15E1000100A4B99B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9345AC15E1000100A4B99B /* SoundsPlayer.m */; };
 		DA9345B415E10A3100A4B99B /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA9345B315E10A3100A4B99B /* congratulation.mp3 */; };
 		DA9345B515E10A3100A4B99B /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA9345B315E10A3100A4B99B /* congratulation.mp3 */; };
+		DAA92CEE15E534DB00D6E710 /* ScoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA92CED15E534DB00D6E710 /* ScoreInfo.m */; };
+		DAA92CEF15E534DB00D6E710 /* ScoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA92CED15E534DB00D6E710 /* ScoreInfo.m */; };
 		DAAA377015C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
 		DAAA377115C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
 		DAAA377215C531250086F00B /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375B15C531250086F00B /* SBJsonParser.m */; };
@@ -144,7 +143,6 @@
 		DAE459F415B25E9000F9A847 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279C0815B178A100C6B1DC /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAE459F515B25E9800F9A847 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B515B13C9600497FC5 /* UIHelper.m */; };
 		DAE459F615B25EA600F9A847 /* ServerSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B815B14CCE00497FC5 /* ServerSetting.m */; };
-		DAE45A4D15B2601B00F9A847 /* GameSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE45A4015B25FB000F9A847 /* GameSettingView.xib */; };
 		DAE45AAE15B2733A00F9A847 /* PickerBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AAB15B2733A00F9A847 /* PickerBG.png */; };
 		DAE45AAF15B2733A00F9A847 /* pickerGlassHightlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AAC15B2733A00F9A847 /* pickerGlassHightlight.png */; };
 		DAE45AB015B2733A00F9A847 /* PickerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE45AAD15B2733A00F9A847 /* PickerShadow.png */; };
@@ -325,6 +323,15 @@
 		DAEC18EB15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEC18EC15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEC18ED15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEF4A5015E6750F006025DD /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DA42B54815E4149700456471 /* Default-Landscape~ipad.png */; };
+		DAEF4A5315E676B7006025DD /* scroe_controller_3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4A5215E676B7006025DD /* scroe_controller_3.png */; };
+		DAEF4A5515E676EB006025DD /* scroe_controller_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4A5415E676EB006025DD /* scroe_controller_1.png */; };
+		DAEF4C8A15E68729006025DD /* IntegerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEF4C8915E68729006025DD /* IntegerInputTableViewCell.m */; };
+		DAEF4C8B15E68729006025DD /* IntegerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEF4C8915E68729006025DD /* IntegerInputTableViewCell.m */; };
+		DAEF4C9015E69668006025DD /* winner.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C8D15E69668006025DD /* winner.wav */; };
+		DAEF4C9115E69668006025DD /* winner.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C8D15E69668006025DD /* winner.wav */; };
+		DAEF4C9315E69813006025DD /* rend.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C9215E69813006025DD /* rend.wav */; };
+		DAEF4C9415E69813006025DD /* rend.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C9215E69813006025DD /* rend.wav */; };
 		DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
 		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
@@ -371,7 +378,6 @@
 		D0510A510F9E00BB00B735FA /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Utils.m"; sourceTree = "<group>"; };
 		D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Utils.h"; sourceTree = "<group>"; };
-		DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TKD Score-iPad.plist"; sourceTree = "<group>"; };
 		DA00F33215A9A85C005B2F4B /* DownArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DownArrow@1x.png"; path = "Images/DownArrow@1x.png"; sourceTree = "<group>"; };
 		DA00F33315A9A85C005B2F4B /* DownArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DownArrow@2x.png"; path = "Images/DownArrow@2x.png"; sourceTree = "<group>"; };
 		DA00F33415A9A85C005B2F4B /* LeftArrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LeftArrow@1x.png"; path = "Images/LeftArrow@1x.png"; sourceTree = "<group>"; };
@@ -394,8 +400,6 @@
 		DA42B53E15E410EF00456471 /* game_welcome_page_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_page_background.png; path = Resources/images/game_welcome_page_background.png; sourceTree = "<group>"; };
 		DA42B53F15E410EF00456471 /* game_welcome_page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = game_welcome_page.jpg; path = Resources/images/game_welcome_page.jpg; sourceTree = "<group>"; };
 		DA42B54015E410EF00456471 /* game_welcome_username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_welcome_username.png; path = Resources/images/game_welcome_username.png; sourceTree = "<group>"; };
-		DA42B54415E4143500456471 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		DA42B54615E4147B00456471 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DA42B54815E4149700456471 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		DA42B54A15E414B100456471 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		DA439D6715E404CB0009820A /* game_welcome_page.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = game_welcome_page.jpg; path = "Resources-iPad/Images/game_welcome_page.jpg"; sourceTree = "<group>"; };
@@ -417,6 +421,8 @@
 		DA5381A515BDAE5800D1413B /* RoundRestTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundRestTimeViewController.h; sourceTree = "<group>"; };
 		DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRestTimeViewController.m; sourceTree = "<group>"; };
 		DA5381A715BDAE5900D1413B /* RoundRestTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RoundRestTimeView.xib; path = Classes/RoundRestTimeView.xib; sourceTree = "<group>"; };
+		DA6CE53915E7BCE400BF9D59 /* ScoreHistoryInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreHistoryInfo.h; sourceTree = "<group>"; };
+		DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreHistoryInfo.m; sourceTree = "<group>"; };
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
@@ -424,6 +430,8 @@
 		DA9345AB15E1000100A4B99B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsPlayer.h; sourceTree = "<group>"; };
 		DA9345AC15E1000100A4B99B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsPlayer.m; sourceTree = "<group>"; };
 		DA9345B315E10A3100A4B99B /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = congratulation.mp3; path = sounds/congratulation.mp3; sourceTree = "<group>"; };
+		DAA92CEC15E534DB00D6E710 /* ScoreInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreInfo.h; sourceTree = "<group>"; };
+		DAA92CED15E534DB00D6E710 /* ScoreInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreInfo.m; sourceTree = "<group>"; };
 		DAAA375715C531250086F00B /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DAAA375815C531250086F00B /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DAAA375915C531250086F00B /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
@@ -457,7 +465,6 @@
 		DAABDDE515DF4E8E00501D46 /* ShowWinnerBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWinnerBox.m; sourceTree = "<group>"; };
 		DAABDDE815DF4ECA00501D46 /* ShowWinnerBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowWinnerBox.xib; path = "Resources-iPad/ShowWinnerBox.xib"; sourceTree = "<group>"; };
 		DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
-		DAE45A4015B25FB000F9A847 /* GameSettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GameSettingView.xib; path = "Resources-iPad/GameSettingView.xib"; sourceTree = "<group>"; };
 		DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DAE45AAB15B2733A00F9A847 /* PickerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerBG.png; path = Images/PickerBG.png; sourceTree = "<group>"; };
 		DAE45AAC15B2733A00F9A847 /* pickerGlassHightlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pickerGlassHightlight.png; path = Images/pickerGlassHightlight.png; sourceTree = "<group>"; };
@@ -632,6 +639,13 @@
 		DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		DAEC18E815D76A1D00C13772 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		DAEF4A5215E676B7006025DD /* scroe_controller_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_3.png; path = Resources/images/scroe_controller_3.png; sourceTree = "<group>"; };
+		DAEF4A5415E676EB006025DD /* scroe_controller_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroe_controller_1.png; path = Resources/images/scroe_controller_1.png; sourceTree = "<group>"; };
+		DAEF4C7F15E6796B006025DD /* TKD Score-iPad-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TKD Score-iPad-Info.plist"; path = "/Users/eagledu/github/repo/GETOBJ/iPhoneComm/TKD Score-iPad-Info.plist"; sourceTree = "<absolute>"; };
+		DAEF4C8815E68729006025DD /* IntegerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntegerInputTableViewCell.h; path = ../Controls/TableCellControl/IntegerInputTableViewCell.h; sourceTree = "<group>"; };
+		DAEF4C8915E68729006025DD /* IntegerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntegerInputTableViewCell.m; path = ../Controls/TableCellControl/IntegerInputTableViewCell.m; sourceTree = "<group>"; };
+		DAEF4C8D15E69668006025DD /* winner.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = winner.wav; path = sounds/winner.wav; sourceTree = "<group>"; };
+		DAEF4C9215E69813006025DD /* rend.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rend.wav; path = sounds/rend.wav; sourceTree = "<group>"; };
 		DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreControlViewController.h; sourceTree = "<group>"; };
 		DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreControlViewController.m; sourceTree = "<group>"; };
 		DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreControlView.xib; sourceTree = "<group>"; };
@@ -709,8 +723,6 @@
 			children = (
 				DA42B54A15E414B100456471 /* Default-Portrait~ipad.png */,
 				DA42B54815E4149700456471 /* Default-Landscape~ipad.png */,
-				DA42B54615E4147B00456471 /* Default.png */,
-				DA42B54415E4143500456471 /* Default@2x.png */,
 				DA42B53B15E40DDB00456471 /* Icon-72.png */,
 				DA9345A715E0FDC100A4B99B /* sounds */,
 				DA00F37F15A9DC92005B2F4B /* Icon@2x.png */,
@@ -901,6 +913,7 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				DAEF4C7F15E6796B006025DD /* TKD Score-iPad-Info.plist */,
 				DAE889BF15DF977100818E92 /* Images */,
 				DAABDDE815DF4ECA00501D46 /* ShowWinnerBox.xib */,
 				DAEA364B15DD579700FCB8CA /* SelectWinnerBox.xib */,
@@ -914,8 +927,6 @@
 				DAE7E6B515B82C9000363399 /* MainWindow.xib */,
 				DA78B47F15A96F0600E186CC /* ChattyViewController.xib */,
 				DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */,
-				DAE45A4015B25FB000F9A847 /* GameSettingView.xib */,
-				DA00F31C15A98EFE005B2F4B /* TKD Score-iPad.plist */,
 				DA78B48115A96F0600E186CC /* ScoreControlView.xib */,
 				DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */,
 			);
@@ -925,6 +936,8 @@
 		DA9345A715E0FDC100A4B99B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				DAEF4C9215E69813006025DD /* rend.wav */,
+				DAEF4C8D15E69668006025DD /* winner.wav */,
 				DA9345B315E10A3100A4B99B /* congratulation.mp3 */,
 			);
 			name = sounds;
@@ -1038,6 +1051,10 @@
 		DAE735BB15A8494A00C84157 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DA6CE53915E7BCE400BF9D59 /* ScoreHistoryInfo.h */,
+				DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */,
+				DAA92CEC15E534DB00D6E710 /* ScoreInfo.h */,
+				DAA92CED15E534DB00D6E710 /* ScoreInfo.m */,
 				DAE735BD15A84AAE00C84157 /* CommandMsg.h */,
 				DAE735BE15A84AAE00C84157 /* CommandMsg.m */,
 				DAF8F5B715B14CCE00497FC5 /* ServerSetting.h */,
@@ -1064,6 +1081,8 @@
 		DAE856AC15E25CDE0021E9D9 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DAEF4A5415E676EB006025DD /* scroe_controller_1.png */,
+				DAEF4A5215E676B7006025DD /* scroe_controller_3.png */,
 				DA42B53E15E410EF00456471 /* game_welcome_page_background.png */,
 				DA42B53F15E410EF00456471 /* game_welcome_page.jpg */,
 				DA42B54015E410EF00456471 /* game_welcome_username.png */,
@@ -1144,6 +1163,8 @@
 		DAE977B115D6397100A5AF7E /* TableCellControl */ = {
 			isa = PBXGroup;
 			children = (
+				DAEF4C8815E68729006025DD /* IntegerInputTableViewCell.h */,
+				DAEF4C8915E68729006025DD /* IntegerInputTableViewCell.m */,
 				DAE977E515D6654300A5AF7E /* TimePickerTableViewCell.h */,
 				DAE977E615D6654400A5AF7E /* TimePickerTableViewCell.m */,
 				DAE977B215D6398400A5AF7E /* DateInputTableViewCell.h */,
@@ -1344,7 +1365,6 @@
 				D039DF4E0F9E50E100C77B72 /* WelcomeViewController.xib in Resources */,
 				DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */,
 				DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */,
-				DA00F31D15A98EFE005B2F4B /* TKD Score-iPad.plist in Resources */,
 				DA00F33B15A9A85C005B2F4B /* DownArrow@1x.png in Resources */,
 				DA00F33C15A9A85C005B2F4B /* DownArrow@2x.png in Resources */,
 				DA00F33D15A9A85C005B2F4B /* LeftArrow@1x.png in Resources */,
@@ -1400,8 +1420,10 @@
 				DA42B54115E410EF00456471 /* game_welcome_page_background.png in Resources */,
 				DA42B54215E410EF00456471 /* game_welcome_page.jpg in Resources */,
 				DA42B54315E410EF00456471 /* game_welcome_username.png in Resources */,
-				DA42B54515E4143500456471 /* Default@2x.png in Resources */,
-				DA42B54715E4147B00456471 /* Default.png in Resources */,
+				DAEF4A5315E676B7006025DD /* scroe_controller_3.png in Resources */,
+				DAEF4A5515E676EB006025DD /* scroe_controller_1.png in Resources */,
+				DAEF4C9015E69668006025DD /* winner.wav in Resources */,
+				DAEF4C9315E69813006025DD /* rend.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,7 +1434,6 @@
 				DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */,
 				DA00F34A15A9AB31005B2F4B /* ScoreControlView.xib in Resources */,
 				DA00F38315A9DCDD005B2F4B /* app2.png in Resources */,
-				DAE45A4D15B2601B00F9A847 /* GameSettingView.xib in Resources */,
 				DAE45AB715B273A100F9A847 /* PickerBG.png in Resources */,
 				DAE45AB815B273A600F9A847 /* pickerGlassHIghtlight.png in Resources */,
 				DAE45AB915B273AA00F9A847 /* PickerShadow.png in Resources */,
@@ -1498,8 +1519,9 @@
 				DAE856AA15E25AED0021E9D9 /* scroe_controller_menu_hide.png in Resources */,
 				DA439D6815E404CB0009820A /* game_welcome_page.jpg in Resources */,
 				DA42B53C15E40DDB00456471 /* Icon-72.png in Resources */,
-				DA42B54915E4149700456471 /* Default-Landscape~ipad.png in Resources */,
-				DA42B54B15E414B100456471 /* Default-Portrait~ipad.png in Resources */,
+				DAEF4A5015E6750F006025DD /* Default-Landscape~ipad.png in Resources */,
+				DAEF4C9115E69668006025DD /* winner.wav in Resources */,
+				DAEF4C9415E69813006025DD /* rend.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1586,6 +1608,9 @@
 				DAABDDE215DF4AA900501D46 /* SelectWinnerBox.m in Sources */,
 				DAABDDE615DF4E8E00501D46 /* ShowWinnerBox.m in Sources */,
 				DA9345AD15E1000100A4B99B /* SoundsPlayer.m in Sources */,
+				DAA92CEE15E534DB00D6E710 /* ScoreInfo.m in Sources */,
+				DAEF4C8A15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
+				DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,6 +1692,9 @@
 				DAABDDE315DF4AA900501D46 /* SelectWinnerBox.m in Sources */,
 				DAABDDE715DF4E8E00501D46 /* ShowWinnerBox.m in Sources */,
 				DA9345AE15E1000100A4B99B /* SoundsPlayer.m in Sources */,
+				DAA92CEF15E534DB00D6E710 /* ScoreInfo.m in Sources */,
+				DAEF4C8B15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
+				DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,7 +1724,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
+				PROVISIONING_PROFILE = "11C3ED1C-4AE5-4B07-8BFF-6A6C7BD0D057";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1723,7 +1751,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
+				PROVISIONING_PROFILE = "11C3ED1C-4AE5-4B07-8BFF-6A6C7BD0D057";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1777,10 +1805,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "TKD Score-iPad.plist";
+				INFOPLIST_FILE = "TKD Score-iPad-info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
+				PROVISIONING_PROFILE = "11C3ED1C-4AE5-4B07-8BFF-6A6C7BD0D057";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1801,10 +1829,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKD Score_Prefix.pch";
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "TKD Score-iPad.plist";
+				INFOPLIST_FILE = "TKD Score-iPad-info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "62906A5A-5155-4C94-8247-F6979E4B42BF";
+				PROVISIONING_PROFILE = "11C3ED1C-4AE5-4B07-8BFF-6A6C7BD0D057";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

@@ -36,7 +36,7 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
-    self.menus = [NSArray arrayWithObjects:@"Match Setting",@"Misc Setting",@"Judge List",@"Main Menu", nil];  
+    self.menus = [NSArray arrayWithObjects:@"Match Setting",@"Misc Setting",@"Referee List",@"Main Menu", nil];  
 }
 
 - (void)viewDidUnload

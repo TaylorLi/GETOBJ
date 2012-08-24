@@ -11,8 +11,9 @@
 #import "SimplePickerInputTableViewCell.h"
 #import "TimePickerTableViewCell.h"
 #import "StringInputTableViewCell.h"
+#import "IntegerInputTableViewCell.h"
 
-@interface GameSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate> 
+@interface GameSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate,IntegerInputTableViewCellDelegate> 
 {
     
     UIPopoverController *popoverController;

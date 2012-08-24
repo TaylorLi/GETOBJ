@@ -19,10 +19,11 @@
     self=[super init];
     if(self)
     {
-        gameSetting=[setting copyWithZone:nil];
+        //gameSetting=[setting copyWithZone:nil];
+        gameSetting=setting;
         gameStatus=kStatePrepareGame;
-        currentRound=setting.startScreening;        
-        currentMatch=1;
+        currentRound=1;        
+        currentMatch=setting.startScreening;
         blueSideScore=0;
         redSideScore=0;
         redSideWarning=0;

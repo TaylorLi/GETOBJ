@@ -175,8 +175,8 @@
                 [section addCustomerCell:blueDescCell];
             } andHeader:@"Blue Setting" andFooter:nil];
         }
-        break;
-            case 1:{
+            break;
+        case 1:{
             if(detailController1==nil){                    
                 detailController1 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
                 [detailController1 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
@@ -207,7 +207,7 @@
                     
                     
                     NSMutableArray *roundCounts=[[NSMutableArray alloc] init];
-                    for(int i=1;i<=10;i++)
+                    for(int i=1;i<=9;i++)
                     {
                         [roundCounts addObject:[NSString stringWithFormat:@"%i",i]];
                     }
@@ -241,17 +241,23 @@
                     {
                         [areas addObject:[NSString stringWithFormat:@"%c",(char)i]];
                     }
-                    SimplePickerInputTableViewCell *screenArea= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Screening Area", @"Screening Area") selectValue:si.screeningArea dataSource:areas];   
+                    SimplePickerInputTableViewCell *screenArea= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Court Area", @"Screening Court") selectValue:si.screeningArea dataSource:areas];   
                     screenArea.tag=kscreeningArea;
                     screenArea.delegate=selfCtl;
                     [section addCustomerCell:screenArea];   
                     
-                    NSMutableArray *startSeqs=[[NSMutableArray alloc] init];
-                    for(int i=1;i<=9;i++)
-                    {
-                        [startSeqs addObject:[NSString stringWithFormat:@"%i",i]];
-                    }
-                    SimplePickerInputTableViewCell *startSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Start Round", @"Start Round") selectValue:[NSString stringWithFormat:@"%i",si.startScreening] dataSource:startSeqs];      
+                    //                    NSMutableArray *startSeqs=[[NSMutableArray alloc] init];
+                    //                    for(int i=1;i<=999;i++)
+                    //                    {
+                    //                        [startSeqs addObject:[NSString stringWithFormat:@"%i",i]];
+                    //                    }
+                    //                    SimplePickerInputTableViewCell *startSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Start Court", @"Start Court") selectValue:[NSString stringWithFormat:@"%i",si.startScreening] dataSource:startSeqs];      
+                    
+                    IntegerInputTableViewCell *startSeqCell=[[IntegerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"StartCell"
+                                                                                                       title:NSLocalizedString(@"Start Court", @"Start Court") lowerLimit:1 hightLimit:999 selectedValue:si.startScreening       ];
+                    startSeqCell.lowerLimit=1;
+                    startSeqCell.upperLimit=999;
+                    startSeqCell.numberValue=si.startScreening;
                     startSeqCell.tag=kstartScreening;
                     startSeqCell.delegate=selfCtl;
                     [section addCustomerCell:startSeqCell];                                        
@@ -266,7 +272,7 @@
                         [disSample appendString:@"...)"];
                         [skipSeqs addObject:[NSString stringWithFormat:@"%@",disSample]];
                     }                    
-                    SimplePickerInputTableViewCell *skipSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Skip Round", @"Skip Round") selectValue:nil dataSource:skipSeqs];    
+                    SimplePickerInputTableViewCell *skipSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Skip Court", @"Skip Court") selectValue:nil dataSource:skipSeqs];    
                     skipSeqCell.selectedIndex=si.skipScreening-1;
                     skipSeqCell.tag=kskipScreening;
                     skipSeqCell.delegate=selfCtl;
@@ -286,9 +292,9 @@
                     NSMutableArray *refCounts=[[NSMutableArray alloc] init];
                     for(int i=1;i<=4;i++)
                     {
-                        [refCounts addObject:[NSString stringWithFormat:@"%i References",i]];
+                        [refCounts addObject:[NSString stringWithFormat:@"%i Referees",i]];
                     }
-                    SimplePickerInputTableViewCell *referenceCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Judge Count", @"Judge Count") selectValue:[NSString stringWithFormat:@"%i References",si.judgeCount] dataSource:refCounts];   
+                    SimplePickerInputTableViewCell *referenceCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Referee Count", @"Referee Count") selectValue:[NSString stringWithFormat:@"%i Referees",si.judgeCount] dataSource:refCounts];   
                     referenceCountCell.tag=kjudgeCount;
                     referenceCountCell.delegate=selfCtl;
                     [section addCustomerCell:referenceCountCell];                                          
@@ -298,7 +304,7 @@
                     {
                         [availRefCounts addObject:[NSString stringWithFormat:@"%i/%i",i,si.judgeCount]];
                     }
-                    SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Judge", @"Avail Score Via Judge") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudesCount,si.judgeCount] dataSource:availRefCounts];   
+                    SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Referee", @"Avail Score Via Referee") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudesCount,si.judgeCount] dataSource:availRefCounts];   
                     availScoreRefCountCell.tag=kavailScoreWithJudesCount;
                     availScoreRefCountCell.delegate=selfCtl;
                     [section addCustomerCell:availScoreRefCountCell]; 
@@ -427,7 +433,7 @@
 #pragma mark picker delegate
 - (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)value
 {
-    NSLog(@"simple picker selected:%@",value);
+    //NSLog(@"simple picker selected:%@",value);
     ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
     switch (cell.tag) {   
         case kroundCount:
@@ -439,7 +445,16 @@
         }
             break;
         case krestTime:
-            si.restTime=[value intValue];
+        {
+            NSTimeInterval t=[value intValue];
+            if(t<10)
+            {
+                [UIHelper showAlert:@"Information" message:@"Round can not be 0 seconds." func:nil];
+            }
+            else
+                si.restTime=t;
+        }
+            
             break;
         case krestAndReOrgTime:
             si.restAndReorganizationTime=[value intValue];
@@ -450,13 +465,13 @@
         case kscreeningArea:
             si.screeningArea=value;
             break;
-        case kstartScreening:
-        {
-            si.startScreening=[value intValue];
-            [self refreshSkipRound];
-            [self refreshPointGapEffRound];
-        }
-            break;
+            //        case kstartScreening:
+            //        {
+            //            si.startScreening=[value intValue];
+            //            [self refreshSkipRound];
+            //            [self refreshPointGapEffRound];
+            //        }
+            //            break;
         case kskipScreening:
         {
             si.skipScreening=[value intValue];
@@ -497,6 +512,14 @@
             break;
     }        
 }
+-(void)tableViewCell:(IntegerInputTableViewCell *)cell didEndEditingWithInteger:(NSUInteger)value
+{
+    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    si.startScreening=value;
+    [self refreshSkipRound];
+    [self refreshPointGapEffRound];
+}
+
 -(void)refreshStartRound
 {
     /*
@@ -558,7 +581,7 @@
         case kserverName:
             si.serverName=value;
             break;
-            case kgameName:
+        case kgameName:
             si.gameName=value;
             break;
         case kgameDesc:

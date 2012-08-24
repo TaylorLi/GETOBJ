@@ -16,7 +16,7 @@
 @synthesize datetime;
 
 -(id) init{
-    return [self initWithInfo:nil andBlueScore:0 andRedScore:0 andDateNow:nil];
+    return [self initWithInfo:kSideBlue andBlueScore:0 andRedScore:0 andDateNow:nil];
 }
 
 -(id) initWithBlueSide:(int)_blueScore andDateNow:(NSDate *)_datenow{

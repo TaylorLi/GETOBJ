@@ -283,6 +283,7 @@
  */
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error{
     NSLog(@"Local room(Server) didFailWithError:%@",error);
+    [self testUnavailableAndRestart];
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state

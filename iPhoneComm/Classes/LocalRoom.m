@@ -103,6 +103,7 @@
     }
     else{
         gameInfo.serverPeerId=bluetoothServer.serverSession.peerID;
+        gameInfo.serverFullName=bluetoothServer.serverFullName;
         return YES;
     } 
 }

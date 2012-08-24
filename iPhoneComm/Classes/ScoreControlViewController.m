@@ -556,6 +556,7 @@ else{
         }];
     }
     else{
+        isReconnect=NO;
         [self testConnect:nil];
     }
 }
@@ -600,14 +601,14 @@ else{
         if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
             isReconnect=YES;
             [self setConnectionIndicatorToConnected:NO];
-            [self showRetryConnect];    
+            [self retryConnect];    
             return;
         }
     }
 }
 -(void) retryConnect
 {
-    if(isReconnect){
+    if(isReconnect&&!isDoingReconnect){
         [self setConnectionIndicatorToConnected:NO];
         NSLog(@"reconnect log");
         [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
@@ -618,7 +619,8 @@ else{
         //        chatRoom=[[RemoteRoom alloc] initWithPeerId:peerId];
         //        chatRoom.delegate = self;
         //        [chatRoom start]; 
-        //        [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
+        isDoingReconnect=YES;
+        [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
     }
 }
 -(void)tryToReconnect
@@ -636,9 +638,9 @@ else{
 {
     if(isReconnect){ 
         if(loadingBox!=nil)
-            [loadingBox hideLoading];
+            [loadingBox removeFromSuperview];
         if(tipBox!=nil)
-            [tipBox removeFromSuperview];
+            [tipBox dismissWithClickedButtonIndex:-1 animated:NO];
         [self showConnectingBox:YES andTitle:@"Reconnecting"];
         if(gameLoopTimer!=nil)
         {
@@ -659,6 +661,7 @@ else{
 
 -(void) testConnect:(NSTimer *)timer
 {
+    isDoingReconnect=NO;
     if(timer!=nil)
         [timer invalidate];
     if(!isReconnect){
@@ -687,6 +690,7 @@ else{
 -(void) processGameStatus;
 {
     if(isExit) return;
+    isDoingReconnect=NO;
     //if(preGameStates == chatRoom.serverInfo.gameStatus) return;
     switch (chatRoom.serverInfo.gameStatus) {
         case kStatePrepareGame:

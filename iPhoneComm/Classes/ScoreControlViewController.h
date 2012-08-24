@@ -30,6 +30,7 @@
     BOOL isReconnect;
     BOOL hasEverConnectd;
     BOOL isExit;
+    BOOL isDoingReconnect;
     
 }
 @property (nonatomic, strong) IBOutlet UILabel *label;

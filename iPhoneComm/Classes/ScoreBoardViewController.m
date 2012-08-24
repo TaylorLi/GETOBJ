@@ -473,6 +473,7 @@
      2. 操作減分至正常。畫面回復正常。時間可以隨時開始
      */
     if(self.chatRoom.gameInfo.blueSideWarning==self.chatRoom.gameInfo.gameSetting.maxWarningCount||self.chatRoom.gameInfo.redSideWarning==self.chatRoom.gameInfo.gameSetting.maxWarningCount){
+        self.chatRoom.gameInfo.warningMaxReached=YES;
         BOOL isRedSide=self.chatRoom.gameInfo.redSideWarning==self.chatRoom.gameInfo.gameSetting.maxWarningCount;
         [self pauseGame];
         [self drawTotalScore:isRedSide andScore:isRedSide?chatRoom.gameInfo.redSideScore:chatRoom.gameInfo.blueSideScore andGrayStype:YES];
@@ -481,13 +482,12 @@
         }
     }
     else{
-        if(!self.chatRoom.gameInfo.warningMaxReached){
-            if([warningMaxTimer isValid])
-                [warningMaxTimer invalidate];
-            self.chatRoom.gameInfo.warningMaxReached=NO;
-            [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore];
-            [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
-        }
+        if([warningMaxTimer isValid])
+            [warningMaxTimer invalidate];
+        self.chatRoom.gameInfo.warningMaxReached=NO;
+        [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore andGrayStype:chatRoom.gameInfo.pointGapReached&&chatRoom.gameInfo.blueSideScore>chatRoom.gameInfo.redSideScore];
+        [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore andGrayStype:chatRoom.gameInfo.pointGapReached&&chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore];
+        
     }
 }
 -(void)warnmingMaxProcessLoop
@@ -639,21 +639,26 @@
     if(isRedSide){
         if(chatRoom.gameInfo.redSideScore+score<0)
             return;
+        if(chatRoom.gameInfo.redSideScore+score>99)
+            return;
         chatRoom.gameInfo.redSideScore+=score;
         [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore];
         lblRedTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.redSideScore];           
     }else{
         if(chatRoom.gameInfo.blueSideScore+score<0)
             return;
+        if(chatRoom.gameInfo.blueSideScore+score>99)
+            return;
         chatRoom.gameInfo.blueSideScore+=score;
         [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
+    [self testPointGapReached];
     //修改
     //    cmdHis = nil;
     //修改完
-    if(![self testPointGapReached])
-        [self setMenuByGameStatus:kStateRunning];
+    //if(![self testPointGapReached])
+        //[self contiueGame];
 }
 
 -(void)submitScore:(ScoreInfo *)scoreInfo{
@@ -714,8 +719,8 @@
 				    ScoreHistoryInfo *scoreHistoryInfo = [scoreDic objectForKey: scoreKey];
 				    if(scoreHistoryInfo!=nil&&scoreHistoryInfo.startTime!=nil){
                         if(scoreHistoryInfo.endTime==nil){
-                            //double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
-                            double maxDelay = 1;
+                            double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
+                            //double maxDelay = 1;
                             int judgeCount = chatRoom.gameInfo.gameSetting.availScoreWithJudesCount;
                             NSLog(@"////////////////");
                             if(fabs([scoreHistoryInfo.startTime timeIntervalSinceNow]) >= maxDelay){
@@ -837,8 +842,8 @@
         if(scoreInfos==nil){
             scoreInfos = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSMutableDictionary dictionaryWithObjectsAndKeys:scoreHistoryInfo,scoreKey,nil],sideKey,nil];
             if(!calcTimer.isValid){
-                //double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
-                double maxDelay = 1;
+                double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
+                //double maxDelay = 1;
                 calcTimer =[NSTimer scheduledTimerWithTimeInterval: maxDelay/10.0 target:self selector:@selector(submitScore4Loop) userInfo:nil repeats:YES];
             }
         }else if([scoreInfos objectForKey:sideKey]==nil){
@@ -914,9 +919,9 @@
             if([pointGapTimer isValid])
                 [pointGapTimer invalidate];
             self.chatRoom.gameInfo.pointGapReached=NO;
-            [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore];
-            [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
         }
+        [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore andGrayStype:chatRoom.gameInfo.redSideWarning==chatRoom.gameInfo.gameSetting.maxWarningCount];
+        [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore andGrayStype:chatRoom.gameInfo.blueSideWarning==chatRoom.gameInfo.gameSetting.maxWarningCount];
     }
 }
 
@@ -1070,8 +1075,9 @@
 //发送完整服务器信息，主要用于首次与服务器沟通时
 -(void)sendServerWholeInfo
 {
+    GameInfo *gi=chatRoom.gameInfo;
     CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_WHOLE_INFO andFrom:nil 
-                                                      andDesc:nil andData:chatRoom.gameInfo andDate:nil];
+                                                      andDesc:nil andData:gi andDate:nil];
     [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
 }
 //发送心跳，不带任何额外信息
@@ -1426,6 +1432,10 @@
 }
 //toggle game status to pause or continue
 -(void)gamePauseContinueToggle{
+    if(self.chatRoom.gameInfo.pointGapReached||self.chatRoom.gameInfo.warningMaxReached)
+    {
+        return;
+    }
     if(chatRoom.gameInfo.gameStatus== kStateGamePause||chatRoom.gameInfo.gameStatus== kStateCalcScore){
         [self contiueGame];
     }
@@ -1479,7 +1489,7 @@
     counter++;
     GameStates status=chatRoom.gameInfo.gameStatus;
     //this status not need to test connection
-    if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd||status==kStateRoundReset||status==kStateGamePause) {
+    if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd) {
         return;     
     } 
     // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        

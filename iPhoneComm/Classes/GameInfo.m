@@ -12,7 +12,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart,serverFullName;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {

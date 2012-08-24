@@ -196,6 +196,12 @@
             {
                 [bluetoothClient.gameSession connectToPeer:bluetoothClient.serverPeerId withTimeout:[AppConfig getInstance].timeout];
             }
+            else if([[session displayNameForPeer:peerID] isEqualToString:orgServerInfo.orgSeverName])
+                {
+                    serverInfo.serverPeerId=peerID;
+                    bluetoothClient.serverPeerId=peerID;
+                    [bluetoothClient.gameSession connectToPeer:bluetoothClient.serverPeerId withTimeout:[AppConfig getInstance].timeout];
+                }
             break;
         case GKPeerStateUnavailable:
             /**

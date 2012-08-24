@@ -25,6 +25,7 @@
 @property NSInteger blueSideWarning;
 @property (nonatomic,strong)NSString *serverPeerId;
 @property (nonatomic,strong)NSString *serverUuid;
+@property (nonatomic,strong)NSString *serverFullName;
 @property (nonatomic,assign)GameStates gameStatus;
 @property (nonatomic,strong) NSMutableDictionary *clients;
 @property (nonatomic,strong)NSDate *serverLastHeartbeatDate;

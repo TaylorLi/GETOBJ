@@ -22,7 +22,7 @@
     RemoteRoom* chatRoom;
     UILoadingBox* loadingBox;
     NSTimer *gameLoopTimer;
-    NSTimer *sendLoopTimer;
+//    NSTimer *sendLoopTimer;
     NSDate *serverLastMsgDate;
     GameStates preGameStates;
     UIAlertView *tipBox;

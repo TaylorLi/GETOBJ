@@ -78,6 +78,8 @@
 @property NSInteger availScoreWithJudesCount;
 //得分计算缓冲时间
 @property NSTimeInterval availTimeDuringScoreCalc;
+//此时间范围内计算客户端发送的分数
+@property NSTimeInterval serverLoopMaxDelay;
 //是否计算得分差距分数
 @property BOOL enableGapScore;
 //得分差距在多少分即算比赛结束

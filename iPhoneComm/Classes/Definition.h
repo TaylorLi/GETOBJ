@@ -61,7 +61,7 @@ typedef enum{
 //客户端检测服务器连接状态的时间间隔
 #define kClientTestServerHearbeatTime 2.1
 //用户滑动分数板的时间间隔，在此时间间隔内可多次滑动，超过此时间间隔则发送信息
-#define kClientLoopInterval4Swipe 0.5
+//#define kClientLoopInterval4Swipe 0.5
 //处于哪种角色中
 typedef enum{
     AppStepStart=0,

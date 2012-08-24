@@ -19,6 +19,7 @@
 #import "ShowWinnerBox.h"
 #import "SelectWinnerBox.h"
 #import "ScoreInfo.h"
+#import "ScoreHistoryInfo.h"
 
 #define  kMenuItemMenu 0
 #define  kMenuItemExit 1
@@ -53,6 +54,7 @@
 -(void)pauseTime:(BOOL) stop;
 -(void)testIfScoreCanSubmit;
 -(void)submitScore:(ScoreInfo*)scoreInfo;
+-(void)submitScore4Loop;
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 -(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType;
 -(void)resetTimeEnd:(id)sender;
@@ -92,6 +94,7 @@
 -(void)warnmingMaxProcessLoop;
 -(BOOL)isGuestureEnable;
 -(void)processHearbeatWithClientUuid:(NSString *)uuid;
+-(BOOL)isDuringSleep: (NSString *)_sideKey andScoreKey:(NSString *)_scoreKey;
 @end 
 
 @implementation ScoreBoardViewController
@@ -126,6 +129,7 @@
 @synthesize imgTimeMinus;
 @synthesize imgTimeSecTen;
 @synthesize imgTimeSecSin;
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -249,6 +253,7 @@
     redWarningMinusRecg.numberOfTouchesRequired=1;
     redWarningMinusRecg.direction= UISwipeGestureRecognizerDirectionLeft;
     [self.viewRedWarningBox addGestureRecognizer:redWarningMinusRecg];
+    
 }
 
 - (void)viewDidUnload
@@ -641,7 +646,7 @@
         [self setMenuByGameStatus:kStateRunning];
 }
 
--(void)submitScore:(ScoreInfo*)scoreInfo{
+-(void)submitScore:(ScoreInfo *)scoreInfo{
     if(scoreInfo!=nil){
         switch (scoreInfo.swipeType) {
             case kSideRed:
@@ -689,6 +694,44 @@
         [self submitScore:-1 andIsRedSize:YES];
     }
 }
+
+-(void)submitScore4Loop{
+	if(scoreInfos!=nil){
+		for(NSString *sideKey in scoreInfos){
+			NSMutableDictionary *scoreDic = [scoreInfos objectForKey: sideKey];
+			if(scoreDic!=nil){
+				for(NSString *scoreKey in scoreDic){
+				    ScoreHistoryInfo *scoreHistoryInfo = [scoreDic objectForKey: scoreKey];
+				    if(scoreHistoryInfo!=nil&&scoreHistoryInfo.startTime!=nil){
+                        if(scoreHistoryInfo.endTime==nil){
+                            //double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
+                            double maxDelay = 1;
+                            int judgeCount = chatRoom.gameInfo.gameSetting.availScoreWithJudesCount;
+                            NSLog(@"////////////////");
+                            if(fabs([scoreHistoryInfo.startTime timeIntervalSinceNow]) >= maxDelay){
+                                if(scoreHistoryInfo.uuids!=nil && scoreHistoryInfo.uuids.count<judgeCount){
+                                    scoreHistoryInfo.endTime = [NSDate date];
+                                    [scoreHistoryInfo.uuids removeAllObjects];
+                                    scoreHistoryInfo.calTimer = nil;
+                                    return;
+                                }
+                                NSLog(@"//////////sfdsfdsfds////////////");
+                            }
+                            if(scoreHistoryInfo.uuids!=nil && scoreHistoryInfo.uuids.count>=judgeCount){
+                                NSLog(@"/////sdfdsfs");
+                                scoreHistoryInfo.calTimer = nil;
+                                scoreHistoryInfo.endTime = [NSDate date];
+                                [scoreHistoryInfo.uuids removeAllObjects];
+                                [self submitScore:[scoreHistoryInfo.scoreKey intValue] andIsRedSize:[scoreHistoryInfo.sideKey isEqualToString:@"red"]];
+                            }
+                        }
+				    }
+				}
+			}
+		}
+	}
+}
+
 /*
  所有裁判提交的分数必须相同,并且提交时间在1s之内,否则无效
  */
@@ -698,105 +741,139 @@
     {
         return;
     }
-    if(cmdHis==nil)
+    if(cmdHis==nil||cmdHis.count==0)
         return;
     NSLog(@"Cmd his count:%i,client cout:%i",cmdHis.count,chatRoom.gameInfo.clients.count);
     //    int score=0;
-    ScoreInfo *scoreInfo = nil;
-    BOOL timeout=NO;
-    NSDate *minTime=nil;
-    for (CommandMsg *cmd in cmdHis) {
-        if(minTime==nil)
-        {
-            minTime=cmd.date;
-            continue;
-        }
-        else{
-            if (cmd.date<minTime) {
-                minTime=cmd.date;
-            }
-        }
-        
-    }
-    double elaspedTime=chatRoom.gameInfo.gameSetting.availTimeDuringScoreCalc;
+    //    ScoreInfo *scoreInfo = nil;
+    //    BOOL timeout=NO;
+    //    NSDate *minTime=nil;
+    //    for (CommandMsg *cmd in cmdHis) {
+    //        if(minTime==nil)
+    //        {
+    //            minTime=cmd.date;
+    //            continue;
+    //        }
+    //        else{
+    //            if (cmd.date<minTime) {
+    //                minTime=cmd.date;
+    //            }
+    //        }
+    //        
+    //    }
+    //    double elaspedTime=chatRoom.gameInfo.gameSetting.availTimeDuringScoreCalc;
     //timeout now
-    NSLog(@"%f",fabs([minTime timeIntervalSinceNow]));
-    if(fabs([minTime timeIntervalSinceNow]) >= elaspedTime){
-        timeout=YES;
-    }
-    if(timeout){
-        [self setMenuByGameStatus:kStateRunning];
-        cmdHis = nil;
-        return;
-    }
-    if(scoreInfos == nil){
-        scoreInfos=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
-    }
-    NSMutableArray *uuids=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
-    CommandMsg *firstCmd=[cmdHis objectAtIndex:0];
-    [scoreInfos addObject:firstCmd.data];
+    //    NSLog(@"%f",fabs([minTime timeIntervalSinceNow]));
+    //    if(fabs([minTime timeIntervalSinceNow]) >= elaspedTime){
+    //        timeout=YES;
+    //    }
+    //    if(timeout){
+    //        [self setMenuByGameStatus:kStateRunning];
+    //        cmdHis = nil;
+    //        return;
+    //    }
+    //    if(scoreInfos == nil){
+    //        scoreInfos=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
+    //    }
+    //    NSMutableArray *uuids=[[NSMutableArray alloc] initWithCapacity:cmdHis.count];
+    //    CommandMsg *firstCmd=[cmdHis objectAtIndex:0];
+    //    [scoreInfos addObject:firstCmd.data];
     // scoreInfo = [firstCmd data];
-    //NSLog(@"^^^^^^^^^^^^^blueScore:%i", scoreInfo.blueSideScore);
-    scoreInfo = [[ScoreInfo alloc]initWithDictionary: firstCmd.data];
-    NSLog(@"^^^^^^^^^^^^^redScore:%i  blueScore:%i", scoreInfo.redSideScore, scoreInfo.blueSideScore);
+    //    scoreInfo = [[ScoreInfo alloc]initWithDictionary: firstCmd.data];
+    //    NSLog(@"^^^^^^^^^^^^^redScore:%i  blueScore:%i", scoreInfo.redSideScore, scoreInfo.blueSideScore);
     //score=[[firstCmd data] intValue];
     //NSString *side=firstCmd.desc;
-    if(cmdHis.count>chatRoom.gameInfo.clients.count)
-    {
-        [self setMenuByGameStatus:kStateRunning];
-        cmdHis = nil;
-        return;
-    }
-    else if(cmdHis.count==chatRoom.gameInfo.clients.count){
-        int availCount = 0;
-        for (CommandMsg *cmd in cmdHis) {
-            NSLog(@"||||||||availCount:%i  judesCount:%i", availCount, [AppConfig getInstance].serverSettingInfo.availScoreWithJudesCount);
+    //    if(cmdHis.count>chatRoom.gameInfo.clients.count)
+    //    {
+    //        [self setMenuByGameStatus:kStateRunning];
+    //        cmdHis = nil;
+    //        return;
+    //    }
+    //    else if(cmdHis.count==chatRoom.gameInfo.clients.count){
+    //        int availCount = 0;
+    int cmdCount = cmdHis.count-1;
+    for (int i=cmdCount;i>=0;i--) {
+        CommandMsg *cmd = [cmdHis objectAtIndex:i];
+        //            NSLog(@"||||||||availCount:%i  judesCount:%i", availCount, [AppConfig getInstance].serverSettingInfo.availScoreWithJudesCount);
+        //            
+        //            //if(availCount >= [AppConfig getInstance].serverSettingInfo.availScoreWithJudesCount) break;
+        //
+        //            ScoreInfo* scoreInfoTemp = [[ScoreInfo alloc]initWithDictionary: cmd.data];
+        //
+        //            NSLog(@"^^^^^^^^^^^^^||||||||redScore:%i  blueScore:%i", scoreInfoTemp.redSideScore, scoreInfoTemp.blueSideScore);
+        //            if(scoreInfoTemp.blueSideScore != scoreInfo.blueSideScore || scoreInfoTemp.redSideScore != scoreInfo.redSideScore){
+        //                [self setMenuByGameStatus:kStateRunning];
+        //                cmdHis = nil;
+        //                return; 
+        //            }
+        //            if([uuids containsObject:cmd.from]){//uuid
+        //                [self setMenuByGameStatus:kStateRunning];
+        //                cmdHis = nil;
+        //                return;
+        //            }
+        //            else
+        //                [uuids addObject:cmd.from];
+        //            availCount++;
+        ScoreInfo* scoreInfoTemp = [[ScoreInfo alloc]initWithDictionary: cmd.data];
+        NSString *sideKey = scoreInfoTemp.swipeType==kSideRed? @"red": @"blue";
+        NSLog(@"]]]]]]]]]]]]]]]side:%@", sideKey);
+        NSString *scoreKey = [NSString stringWithFormat:@"%i",scoreInfoTemp.swipeType==kSideRed? scoreInfoTemp.redSideScore:scoreInfoTemp.blueSideScore];
+        if([self isDuringSleep:sideKey andScoreKey:scoreKey]){
+            cmd = nil;
+            [cmdHis removeObjectAtIndex:i];
+            continue;
+        }
+        ScoreHistoryInfo *scoreHistoryInfo = [[ScoreHistoryInfo alloc]initWithInfo:nil andEndTime:nil andSideKey:sideKey andScoreKey:scoreKey andUuid: cmd.from];
+        if(scoreInfos==nil){
+            scoreInfos = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSMutableDictionary dictionaryWithObjectsAndKeys:scoreHistoryInfo,scoreKey,nil],sideKey,nil];
+            if(!calcTimer.isValid){
+                //double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
+                double maxDelay = 1;
+                calcTimer =[NSTimer scheduledTimerWithTimeInterval: maxDelay/10.0 target:self selector:@selector(submitScore4Loop) userInfo:nil repeats:YES];
+            }
+        }else if([scoreInfos objectForKey:sideKey]==nil){
+            //                ScoreHistoryInfo *scoreHistoryInfo = [[ScoreHistoryInfo alloc]initWithInfo:nil andEndTime:nil andSideKey:sideKey andScoreKey:scoreKey andUuid: cmd.from];
+            [scoreInfos setObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:scoreHistoryInfo,scoreKey,nil] forKey:sideKey];
+        }
+        else if([[scoreInfos objectForKey:sideKey] objectForKey:scoreKey]==nil){
+            //                ScoreHistoryInfo *scoreHistoryInfo = [[ScoreHistoryInfo alloc]initWithInfo:nil andEndTime:nil andSideKey:sideKey andScoreKey:scoreKey andUuid: cmd.from];
+            [[scoreInfos objectForKey:sideKey] setObject:scoreHistoryInfo forKey:scoreKey];
+            //                if(!scoreHistoryInfo.calTimer.isValid){
+            //                    scoreHistoryInfo.calTimer =[NSTimer scheduledTimerWithTimeInterval: maxDelay/10.0 target:self selector:@selector(sendScore) userInfo:nil repeats:YES];
+            //                }
+        }else if(![[[[scoreInfos objectForKey:sideKey] objectForKey:scoreKey] uuids] containsObject:cmd.from]){
+            [[[[scoreInfos objectForKey:sideKey] objectForKey:scoreKey] uuids] addObject:cmd.from];
+        }else{
             
-            //if(availCount >= [AppConfig getInstance].serverSettingInfo.availScoreWithJudesCount) break;
-            //            if(![cmd.desc isEqualToString:side])//not the same side,cancel
-            //            {
-            //                [self setMenuByGameStatus:kStateRunning];
-            //                cmdHis = nil;
-            //                return;
-            //            }
-            ScoreInfo* scoreInfoTemp = [[ScoreInfo alloc]initWithDictionary: cmd.data];
-            //            if(scoreInfoTemp.swipeType != scoreInfo.swipeType){
-            //                [self setMenuByGameStatus:kStateRunning];
-            //                cmdHis = nil;
-            //                return; 
-            //            }else{
-            NSLog(@"^^^^^^^^^^^^^||||||||redScore:%i  blueScore:%i", scoreInfoTemp.redSideScore, scoreInfoTemp.blueSideScore);
-            if(scoreInfoTemp.blueSideScore != scoreInfo.blueSideScore || scoreInfoTemp.redSideScore != scoreInfo.redSideScore){
-                [self setMenuByGameStatus:kStateRunning];
-                cmdHis = nil;
-                return; 
-            }
-            //            }
-            //            if([scoreInfos containsObject:cmd.data]){//score
-            //                
-            //            }
-            //            else{
-            //                [self setMenuByGameStatus:kStateRunning];
-            //                cmdHis = nil;
-            //                return; //not same score
-            //            }
-            if([uuids containsObject:cmd.from]){//uuid
-                [self setMenuByGameStatus:kStateRunning];
-                cmdHis = nil;
-                return;
-            }
-            else
-                [uuids addObject:cmd.from];
-            availCount++;
         }
-        for (NSString *cltUuid in chatRoom.gameInfo.clients.allKeys) {
-            if(![uuids containsObject:cltUuid]){
-                return;//wait for next test
-            }
-        }
-        [self submitScore:scoreInfo];
         
-    } 
+        cmd = nil;
+        [cmdHis removeObjectAtIndex:i];
+    }
+    //        for (NSString *cltUuid in chatRoom.gameInfo.clients.allKeys) {
+    //            if(![uuids containsObject:cltUuid]){
+    //                return;//wait for next test
+    //            }
+    //        }
+    //        [self submitScore:scoreInfo];
+    
+    //    } 
+}
+
+-(BOOL)isDuringSleep: (NSString *)_sideKey andScoreKey:(NSString *)_scoreKey{
+    BOOL ret = NO;
+    double dulTime = chatRoom.gameInfo.gameSetting.availTimeDuringScoreCalc;
+    if(scoreInfos!=nil&& [scoreInfos objectForKey:_sideKey]!=nil&&[[scoreInfos objectForKey:_sideKey] objectForKey:_scoreKey]!=nil){
+        ScoreHistoryInfo *scoreHistoryInfo = [[scoreInfos objectForKey:_sideKey] objectForKey:_scoreKey];
+        if(scoreHistoryInfo!=nil && scoreHistoryInfo.endTime!=nil){
+            if(fabs([scoreHistoryInfo.endTime timeIntervalSinceNow]) < dulTime){
+                ret = YES;
+            }else{
+                [[scoreInfos objectForKey:_sideKey] removeObjectForKey:_scoreKey];
+            }
+        }
+    }
+    return ret;
 }
 
 -(BOOL)testPointGapReached;
@@ -895,10 +972,10 @@
             }            
         }
             break;
-            case NETWORK_HEARTBEAT:
-            {
-                [self processHearbeatWithClientUuid:cmdMsg.from];
-            }
+        case NETWORK_HEARTBEAT:
+        {
+            [self processHearbeatWithClientUuid:cmdMsg.from];
+        }
             break;
         case  NETWORK_CLIENT_INFO:
         {             
@@ -911,7 +988,7 @@
                     [self sendDenyClientToConnectInfo:cltInfo];
                     return;
                 }                                   
-                 //new client connected
+                //new client connected
                 [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
             }
             [self processHearbeatWithClientUuid:cltInfo.uuid];
@@ -964,11 +1041,11 @@
                         }
                     }
                 }else{
-//                    if(chatRoom.gameInfo.preGameStatus==kStateRunning)
-//                        chatRoom.gameInfo.gameStatus=kStateGamePause;
+                    //                    if(chatRoom.gameInfo.preGameStatus==kStateRunning)
+                    //                        chatRoom.gameInfo.gameStatus=kStateGamePause;
                 }
             }
-
+            
         }
     }
 }
@@ -1289,8 +1366,8 @@
 -(void)contiueGame
 {    
     if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
-            [waitUserPanel removeFromSuperview];
-            waitUserPanel=nil;
+        [waitUserPanel removeFromSuperview];
+        waitUserPanel=nil;
     }    
     [self pauseTime:NO];
     [self setMenuByGameStatus:kStateRunning];
@@ -1392,15 +1469,15 @@
     if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd||status==kStateRoundReset||status==kStateGamePause) {
         return;     
     } 
-        // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
-        if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
-            [self sendServerHearbeat];
-        }
-        
-        if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
-            [self testSomeClientDisconnect];         
-        }    
-     
+    // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
+    if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
+        [self sendServerHearbeat];
+    }
+    
+    if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
+        [self testSomeClientDisconnect];         
+    }    
+    
 	[self processByGameStatus];
 }
 -(void)processByGameStatus
@@ -1522,7 +1599,7 @@
     {
         [roundResetPanel setTimerStop:NO];
     }
-
+    
 }
 -(void)showGameSettingDialog:(UIGestureRecognizer *)recognizer{
     
@@ -1533,9 +1610,9 @@
             [self pauseGame];
         }else{
             if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
-                {
-                    [roundResetPanel setTimerStop:YES];
-                }
+            {
+                [roundResetPanel setTimerStop:YES];
+            }
         }
         [[ChattyAppDelegate getInstance] showDuringMatchSettingView];
     }

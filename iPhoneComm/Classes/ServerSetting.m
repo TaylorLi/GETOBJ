@@ -22,7 +22,7 @@
 @synthesize restTime;
 @synthesize roundCount;
 @synthesize judgeCount;
-@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime;
+@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
 
 -(NSString *)description
 {
@@ -61,6 +61,7 @@
     availTimeDuringScoreCalc=1;
     maxWarningCount=8;
     restAndReorganizationTime=60;
+    serverLoopMaxDelay = 1;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime

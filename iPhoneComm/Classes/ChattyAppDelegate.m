@@ -53,6 +53,7 @@ static ChattyAppDelegate* _instance;
 @synthesize scoreBoardViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
+      [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone]; 
     // Allow other classes to use us
     //不自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled=YES;

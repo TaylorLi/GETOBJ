@@ -15,13 +15,13 @@
 			<key>Total Round</key>
 			<string></string>
 		</dict>
-		<key>Screening Setting</key>
+		<key>Court Setting</key>
 		<dict>
-			<key>Screening Area</key>
+			<key>Court Area</key>
 			<string></string>
-			<key>Start Screening</key>
+			<key>Start Court</key>
 			<string></string>
-			<key>Skip Screeing</key>
+			<key>Skip Court</key>
 			<string></string>
 		</dict>
 		<key>Match Setting</key>

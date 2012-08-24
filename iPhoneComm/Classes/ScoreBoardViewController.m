@@ -27,8 +27,9 @@
 #define  kMenuItemWarningRed 4
 #define kMenuItemNextMatch 5
 
-#define kSoundsRoundStart @"round_start.mp3"
-#define kSoundsCongratulation @"congratulation.mp3"
+#define kSoundsRoundStart @"roundstart.wav"
+#define kSoundsRoundEnd @"rend.wav"
+#define kSoundsCongratulation @"winner.wav"
 
 
 @interface ScoreBoardViewController ()
@@ -101,6 +102,8 @@
 @synthesize txtHistory;
 @synthesize chatRoom;
 @synthesize lblGameDesc;
+@synthesize lblCortNo;
+@synthesize lblArea;
 @synthesize lblBluePlayerName;
 @synthesize lblBluePlayerDesc;
 @synthesize lblTime;
@@ -170,7 +173,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
-{
+{    
     [super viewDidLoad];
     self.viewBlueWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
     self.viewBlueWarningBox.layer.borderWidth = 1.0f;
@@ -225,16 +228,16 @@
     viewRedScore.userInteractionEnabled=YES;
     [viewRedScore addGestureRecognizer:redMinusRecg];
     
-    /*在警告控件向左拖拉,累積警告分數加一次*/
+    /*在警告控件向右拖拉,累積警告分數加一次*/
     UISwipeGestureRecognizer *blueWarningAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(warningAddToBluePlayer)];
     blueWarningAddRecg.numberOfTouchesRequired=1;
-    blueWarningAddRecg.direction= UISwipeGestureRecognizerDirectionLeft;
+    blueWarningAddRecg.direction= UISwipeGestureRecognizerDirectionRight;
     [self.viewBlueWarningBox addGestureRecognizer:blueWarningAddRecg];
     
-    /*在警告控件向右拖拉,累積警告分數减一次*/
+    /*在警告控件向左拖拉,累積警告分數减一次*/
     UISwipeGestureRecognizer *blueWarningMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(warningMinusToBluePlayer)];
     blueWarningMinusRecg.numberOfTouchesRequired=1;
-    blueWarningMinusRecg.direction= UISwipeGestureRecognizerDirectionRight;
+    blueWarningMinusRecg.direction= UISwipeGestureRecognizerDirectionLeft;
     [self.viewBlueWarningBox addGestureRecognizer:blueWarningMinusRecg];
     
     
@@ -281,6 +284,8 @@
     [self setViewBlueScore:nil];
     [self setViewTime:nil];
     [self setViewRedScore:nil];
+    [self setLblCortNo:nil];
+    [self setLblArea:nil];
     [super viewDidUnload];    
     marksFlags=nil;
     marksGrayFlags=nil;
@@ -311,6 +316,7 @@
         player= [[SoundsPlayer alloc] init] ;    
     [self prepareForGame];
     [AppConfig getInstance].isGameStart=YES;
+    chatRoom.gameInfo.gameStart=NO;
     //[self showRoundRestTimeBox:1 andEventType:1];
 }
 
@@ -371,7 +377,9 @@
 #pragma mark draw layout
 
 -(void)drawLayoutByGameInfo{
-    lblGameName.text=[NSString stringWithFormat:@"%@",chatRoom.gameInfo.gameSetting.gameName];
+    lblGameName.text=[NSString stringWithFormat:@"%@ %@",chatRoom.gameInfo.gameSetting.gameName,chatRoom.gameInfo.gameSetting.gameDesc];
+    lblCortNo.text=[NSString stringWithFormat:@"NO.%i",chatRoom.gameInfo.currentMatch];
+    lblArea.text=chatRoom.gameInfo.gameSetting.screeningArea;
     lblRedPlayerName.text=chatRoom.gameInfo.gameSetting.redSideName;
     lblBluePlayerName.text=chatRoom.gameInfo.gameSetting.blueSideName;
     
@@ -574,9 +582,11 @@
     int sec=fmod(chatRoom.gameInfo.currentRemainTime,60);
     [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
 	lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
+    
     if(chatRoom.gameInfo.currentRemainTime==0){
         [self pauseTime:YES];
-        if(chatRoom.gameInfo.currentRound>=(chatRoom.gameInfo.gameSetting.roundCount-1)*chatRoom.gameInfo.gameSetting.skipScreening+chatRoom.gameInfo.gameSetting.startScreening){
+        [player playSoundWithFullPath:kSoundsRoundEnd];
+        if(chatRoom.gameInfo.currentRound>=chatRoom.gameInfo.gameSetting.roundCount){
             [self setMenuByGameStatus:kStateGamePause]; 
             [self showSelectWinnerBox];
             //[UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
@@ -895,10 +905,10 @@
             }            
         }
             break;
-            case NETWORK_HEARTBEAT:
-            {
-                [self processHearbeatWithClientUuid:cmdMsg.from];
-            }
+        case NETWORK_HEARTBEAT:
+        {
+            [self processHearbeatWithClientUuid:cmdMsg.from];
+        }
             break;
         case  NETWORK_CLIENT_INFO:
         {             
@@ -911,7 +921,7 @@
                     [self sendDenyClientToConnectInfo:cltInfo];
                     return;
                 }                                   
-                 //new client connected
+                //new client connected
                 [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
             }
             [self processHearbeatWithClientUuid:cltInfo.uuid];
@@ -925,7 +935,7 @@
 //处理客户端的心跳
 -(void)processHearbeatWithClientUuid:(NSString *)uuid{
     JudgeClientInfo *cltInfoOld=[chatRoom.gameInfo.clients objectForKey:uuid];
-    if(cltInfoOld==nil)
+    if(cltInfoOld==nil)//一般不会进入到本情况
     {
         return;
     }
@@ -964,11 +974,11 @@
                         }
                     }
                 }else{
-//                    if(chatRoom.gameInfo.preGameStatus==kStateRunning)
-//                        chatRoom.gameInfo.gameStatus=kStateGamePause;
+                    //                    if(chatRoom.gameInfo.preGameStatus==kStateRunning)
+                    //                        chatRoom.gameInfo.gameStatus=kStateGamePause;
                 }
             }
-
+            
         }
     }
 }
@@ -1061,7 +1071,10 @@
 -(void)stopRoom
 {
     [chatRoom stop];
-    [[ChattyAppDelegate getInstance] showRoomSelection];
+    if([AppConfig getInstance].isIPAD)
+        [[ChattyAppDelegate getInstance] showGameSettingView];
+    else
+        [[ChattyAppDelegate getInstance] showRoomSelection];
 }
 
 //erase warning flags
@@ -1078,7 +1091,7 @@
     if(waitUserPanel==nil)
     {
         __block typeof (self) me = self;
-        waitUserPanel = [[UIWaitForUserViewController alloc] initWithFrame:self.view.bounds title:@"Connecting Judge"];
+        waitUserPanel = [[UIWaitForUserViewController alloc] initWithFrame:self.view.bounds title:@"Connecting Referee"];
         waitUserPanel.needConnectedClientCount=chatRoom.gameInfo.gameSetting.judgeCount;
         waitUserPanel.onClosePressed = ^(UAModalPanel* panel) {
             // [panel hide];
@@ -1269,7 +1282,7 @@
 
 //start round
 -(void)startRound:(id)sender
-{
+{    
     [player playSoundWithFullPath:kSoundsRoundStart];
     if([self testPointGapReached]||chatRoom.gameInfo.warningMaxReached){
         return;
@@ -1289,8 +1302,8 @@
 -(void)contiueGame
 {    
     if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
-            [waitUserPanel removeFromSuperview];
-            waitUserPanel=nil;
+        [waitUserPanel removeFromSuperview];
+        waitUserPanel=nil;
     }    
     [self pauseTime:NO];
     [self setMenuByGameStatus:kStateRunning];
@@ -1358,9 +1371,9 @@
     //chatRoom.gameInfo.redSideScore=0;
     //chatRoom.gameInfo.blueSideScore=0;
     if(init)
-        chatRoom.gameInfo.currentRound=chatRoom.gameInfo.gameSetting.startScreening;
+        chatRoom.gameInfo.currentRound=1;    
     else
-        chatRoom.gameInfo.currentRound=chatRoom.gameInfo.currentRound+chatRoom.gameInfo.gameSetting.skipScreening;
+        chatRoom.gameInfo.currentRound=chatRoom.gameInfo.currentRound+1;
     [self drawLayoutByGameInfo];
 }
 
@@ -1372,10 +1385,10 @@
     chatRoom.gameInfo.blueSideWarning=0;
     chatRoom.gameInfo.currentMatch++;
     //resetRound will add round sequence
-    chatRoom.gameInfo.currentRound=0;
     self.chatRoom.gameInfo.pointGapReached=NO;
     self.chatRoom.gameInfo.warningMaxReached=NO;
     //reset round info
+    chatRoom.gameInfo.currentMatch+=chatRoom.gameInfo.gameSetting.skipScreening;
     [self resetRound:YES];
     [self startRound:nil];
 }
@@ -1392,15 +1405,15 @@
     if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd||status==kStateRoundReset||status==kStateGamePause) {
         return;     
     } 
-        // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
-        if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
-            [self sendServerHearbeat];
-        }
-        
-        if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
-            [self testSomeClientDisconnect];         
-        }    
-     
+    // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
+    if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
+        [self sendServerHearbeat];
+    }
+    
+    if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
+        [self testSomeClientDisconnect];         
+    }    
+    
 	[self processByGameStatus];
 }
 -(void)processByGameStatus
@@ -1435,9 +1448,11 @@
 -(BOOL)testSomeClientDisconnect
 {
     BOOL hasDisconnect=NO;
-    double inv=chatRoom.gameInfo.gameSetting.availTimeDuringScoreCalc;
+    double inv=kServerTestClientHearbeatTime;
+    
     //NSLog(@"tesc disconnect:%i",chatRoom.gameInfo.clients.count);
     for (JudgeClientInfo *clt in chatRoom.gameInfo.clients.allValues) {
+        NSLog(@"test client connected(elasped time):%d",fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv);
         if(!clt.hasConnected)
             hasDisconnect=YES;
         else if(clt.lastHeartbeatDate!=nil && fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv) {
@@ -1522,7 +1537,7 @@
     {
         [roundResetPanel setTimerStop:NO];
     }
-
+    
 }
 -(void)showGameSettingDialog:(UIGestureRecognizer *)recognizer{
     
@@ -1533,9 +1548,9 @@
             [self pauseGame];
         }else{
             if(chatRoom.gameInfo.gameStatus==kStateRoundReset)
-                {
-                    [roundResetPanel setTimerStop:YES];
-                }
+            {
+                [roundResetPanel setTimerStop:YES];
+            }
         }
         [[ChattyAppDelegate getInstance] showDuringMatchSettingView];
     }

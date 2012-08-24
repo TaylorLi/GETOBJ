@@ -94,9 +94,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     arrayTouch = [[NSMutableArray alloc]initWithObjects: nil];
-    if(![sendLoopTimer isValid]){
-        sendLoopTimer=[NSTimer scheduledTimerWithTimeInterval: kClientLoopInterval4Swipe/5.0 target:self selector:@selector(sendScore) userInfo:nil repeats:YES];
-    }
+//    if(![sendLoopTimer isValid]){
+//        sendLoopTimer=[NSTimer scheduledTimerWithTimeInterval: kClientLoopInterval4Swipe/5.0 target:self selector:@selector(sendScore) userInfo:nil repeats:YES];
+//    }
     BOOL isHorizontal = [self shouldAutorotateToInterfaceOrientation:UIInterfaceOrientationLandscapeLeft] || [self shouldAutorotateToInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
     if(isHorizontal)
     {
@@ -211,6 +211,7 @@
         }
         
     }
+    [self sendScore];
     NSLog(@"4++++++(%i)", arrayTouch.count);
     
 }
@@ -242,6 +243,7 @@
 {
     //修改
     if(scoreInfo!=nil){
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         NSLog(@"%@^^^^^^^^^^^", scoreInfo.swipeType==kSideBoth?@"both":scoreInfo.swipeType==kSideBlue?@"blue":@"red");
         NSLog(@"^^^^^^^^^^^time:%f",fabs([scoreInfo.datetime timeIntervalSinceNow]));
         if(scoreInfo.swipeType == kSideBoth ||  fabs([scoreInfo.datetime timeIntervalSinceNow]) >= kClientLoopInterval4Swipe){
@@ -254,7 +256,7 @@
             if(scoreInfo.swipeType == kSideBoth || scoreInfo.swipeType == kSideRed){
                 imgRedScore.image = [UIImage imageNamed:[NSString stringWithFormat:@"scroe_controller_%i.png", scoreInfo.redSideScore]];
                 imgRedScore.hidden = NO;
-                                NSLog(@"^^^^^^^^^^^red:%i",scoreInfo.redSideScore);
+                NSLog(@"^^^^^^^^^^^red:%i",scoreInfo.redSideScore);
             }
             [chatRoom sendCommand:[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:chatRoom.clientInfo.uuid andDesc:nil andData:scoreInfo andDate:[NSDate date]]];
             scoreInfo = nil;
@@ -337,7 +339,6 @@
         loadingBox =[[UILoadingBox alloc ]initWithLoading:title showCloseImage:YES onClosed:^{            
             [self exit];    
         }];
-        
     }
     else{
         loadingBox.message=title;
@@ -461,7 +462,7 @@ else{
         sendLoopTimer = nil;
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
     
 }
 
@@ -581,10 +582,12 @@ else{
     
     [self reportClientHeartbeat];
     
+    double inv;
     if(chatRoom.serverInfo.gameStatus==kStateRoundReset||chatRoom.serverInfo.gameStatus==kStateGamePause)
-        return;
-    if(counter%(int)(kClientTestServerHearbeatTime/kClientHeartbeatTimeInterval)==0) {
-        double inv=kClientTestServerHearbeatTime;
+        inv=kClientTestServerHearbeatTimeWhenPause;
+    else
+        inv=kClientTestServerHearbeatTime;
+    if(counter%(int)(inv/kClientHeartbeatTimeInterval)==0) {
         if(serverLastMsgDate!=nil && fabs([serverLastMsgDate timeIntervalSinceNow]) >= inv){
             isReconnect=YES;
             [self setConnectionIndicatorToConnected:NO];
@@ -613,8 +616,8 @@ else{
 {
     [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
     if(!isExit&&[AppConfig getInstance].isGameStart&&(!chatRoom.bluetoothClient.gameSession.isAvailable||![chatRoom isConnected])){
-            isReconnect=YES;            
-            [self retryConnect];
+        isReconnect=YES;            
+        [self retryConnect];
     }
     else{
         [self alreadyConnectToServer];
@@ -623,6 +626,11 @@ else{
 -(void) showRetryConnect
 {
     if(isReconnect){ 
+        if(loadingBox!=nil)
+            [loadingBox hideLoading];
+        if(tipBox!=nil)
+            [tipBox removeFromSuperview];
+        [self showConnectingBox:YES andTitle:@"Reconnecting"];
         if(gameLoopTimer!=nil)
         {
             [gameLoopTimer invalidate];
@@ -631,13 +639,8 @@ else{
         if([chatRoom isConnected]){
             [self reportClientInfo];
             return;
-        }
+        }        
         
-        if(loadingBox!=nil)
-            [loadingBox hideLoading];
-        if(tipBox!=nil)
-            [tipBox removeFromSuperview];
-        [self showConnectingBox:YES andTitle:@"Reconnecting"];
         
         [self retryConnect];
     }else{
@@ -680,7 +683,7 @@ else{
         case kStatePrepareGame:
             break;
         case kStateWaitJudge:
-            [self showConnectingBox:YES andTitle:@"Wait for other judges"];
+            [self showConnectingBox:YES andTitle:@"Wait for other Referees"];
             break;
         case  kStateRunning:
         {
@@ -697,7 +700,7 @@ else{
             break;
         case kStateMultiplayerReconnect:
         {
-            [self showConnectingBox:YES andTitle:@"Wait for lost judges"];
+            [self showConnectingBox:YES andTitle:@"Wait for lost Referees"];
         }
             break;
         case  kStateRoundReset:

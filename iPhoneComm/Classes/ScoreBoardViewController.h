@@ -53,6 +53,9 @@
 @property (nonatomic, strong) IBOutlet UITextView *txtHistory;
 @property(nonatomic,strong) LocalRoom* chatRoom;
 @property (strong, nonatomic) IBOutlet UILabel *lblGameDesc;
+@property (strong, nonatomic) IBOutlet UILabel *lblCortNo;
+@property (strong, nonatomic) IBOutlet UILabel *lblArea;
+
 @property (strong, nonatomic) IBOutlet UILabel *lblBluePlayerName;
 @property (strong, nonatomic) IBOutlet UILabel *lblBluePlayerDesc;
 @property (strong, nonatomic) IBOutlet UILabel *lblTime;

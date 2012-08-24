@@ -55,9 +55,13 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     relateGameServer = [ChattyAppDelegate getInstance].scoreBoardViewController;
     // Do any additional setup after loading the view from its nib.
+    UISwipeGestureRecognizer *hideSettingRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSave)];
+    //blueMinusRecg.numberOfTouchesRequired=1;
+    hideSettingRecg.direction= UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:hideSettingRecg];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -418,8 +422,15 @@
 
 -(void) cancelSave
 {
+    if(relateGameServer.view!=nil)
+        {
+        
     [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
     [relateGameServer updateForGameSetting:NO];
+            }
+    else{
+        [[ChattyAppDelegate getInstance] showGameSettingView];
+    }
 }
 -(id)getTableCellByTag:(NSInteger)tag
 {    

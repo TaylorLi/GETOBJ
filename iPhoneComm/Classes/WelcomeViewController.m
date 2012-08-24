@@ -99,7 +99,10 @@
     
     [nd setObject:theTextField.text forKey:@"playName"];
     // Move on to the next screen
-    [[ChattyAppDelegate getInstance] showRoomSelection];
+    if([AppConfig getInstance].isIPAD)
+        [[ChattyAppDelegate getInstance] showGameSettingView];
+    else
+        [[ChattyAppDelegate getInstance] showRoomSelection];
 	return YES;
 }
 

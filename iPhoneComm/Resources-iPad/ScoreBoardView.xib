@@ -557,14 +557,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lblGameName</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="884704318"/>
-					</object>
-					<int key="connectionID">65</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">imgBlueScoreSingle</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="317657317"/>
@@ -698,6 +690,14 @@
 						<reference key="destination" ref="576147191"/>
 					</object>
 					<int key="connectionID">172</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblGameName</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="85092983"/>
+					</object>
+					<int key="connectionID">173</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -956,7 +956,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">172</int>
+			<int key="maxID">173</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

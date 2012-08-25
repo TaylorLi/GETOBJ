@@ -310,7 +310,7 @@
                     [section addCustomerCell:availScoreRefCountCell]; 
                     
                     NSMutableArray *bufferSecCounts=[[NSMutableArray alloc] init];
-                    for(float i=0.5;i<=4;i=i+0.5)
+                    for(float i=0.5;i<=2;i=i+0.1)
                     {
                         [bufferSecCounts addObject:[NSString stringWithFormat:@"%.1f",i]];
                     }

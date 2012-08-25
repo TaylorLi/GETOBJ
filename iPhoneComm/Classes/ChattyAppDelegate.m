@@ -119,11 +119,13 @@ static ChattyAppDelegate* _instance;
     if([AppConfig getInstance].serverSettingInfo==nil){
         [AppConfig getInstance].serverSettingInfo=[[ServerSetting alloc] initWithDefault];
     }
+    [splitSettingViewController setWantsFullScreenLayout:YES];
     [self swithView:splitSettingViewController.view];
 }
 -(void) showDuringMatchSettingView
 {
     [AppConfig getInstance].currentAppStep=AppStepServer;
+    [duringMathSplitViewCtl setWantsFullScreenLayout:YES];
     [self swithView:duringMathSplitViewCtl.view];
 }
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg

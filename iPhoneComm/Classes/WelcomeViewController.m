@@ -46,6 +46,7 @@
 
 -(void)viewDidLoad
 {
+    [self setWantsFullScreenLayout:YES];
     NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
     playName.text=[nd stringForKey:@"playName"];
 }

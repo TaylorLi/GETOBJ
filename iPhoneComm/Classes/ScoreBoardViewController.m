@@ -178,7 +178,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {    
-    [super viewDidLoad];
+    [self setWantsFullScreenLayout:YES];
+    [super viewDidLoad];    
     self.viewBlueWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
     self.viewBlueWarningBox.layer.borderWidth = 1.0f;
     self.viewRedWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;

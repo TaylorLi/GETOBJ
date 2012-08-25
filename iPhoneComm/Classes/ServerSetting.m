@@ -40,7 +40,7 @@
 -(void) reset
 {
     gameDesc=@"Men 80KG Welter";
-    gameName=@"China South Korea match";
+    gameName=@"Match";
     redSideDesc=@"";
     redSideName=@"PLAYER RED";
     blueSideDesc=@"";

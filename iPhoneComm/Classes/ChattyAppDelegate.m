@@ -117,8 +117,8 @@ static ChattyAppDelegate* _instance;
 
 -(void) showGameSettingView{
     [AppConfig getInstance].currentAppStep=AppStepServerBrowser;
-    if([AppConfig getInstance].serverSettingInfo==nil){
-        [AppConfig getInstance].serverSettingInfo=[[ServerSetting alloc] initWithDefault];
+    if([AppConfig getInstance].currentGameInfo==nil){
+        [AppConfig getInstance].currentGameInfo=[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]];
     }
     [splitSettingViewController setWantsFullScreenLayout:YES];
     [self swithView:splitSettingViewController.view];
@@ -208,7 +208,6 @@ static ChattyAppDelegate* _instance;
     if([UtilHelper isFileExist:KEY_FILE_SETTING])
     {
         [AppConfig getInstance].currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
-        [AppConfig getInstance].serverSettingInfo = [AppConfig getInstance].currentGameInfo.gameSetting;
         NSLog(@"Game Info:%@",[AppConfig getInstance].currentGameInfo);
     }
 }

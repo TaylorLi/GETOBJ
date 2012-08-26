@@ -39,7 +39,7 @@ static AppConfig* instance;
 @synthesize timeout;
 //@synthesize invalidServerPeerIds;
 @synthesize uuid;
-@synthesize serverSettingInfo,currentAppStep;
+@synthesize currentAppStep;
 //当前比赛信息
 @synthesize currentGameInfo;
 @synthesize isGameStart;

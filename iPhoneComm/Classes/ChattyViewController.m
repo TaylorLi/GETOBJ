@@ -159,7 +159,7 @@
     RemoteRoom* room ;
     if ([AppConfig getInstance].networkUsingWifi) {
         if ( currentRow == nil ||serverBrowser.servers==nil||[serverBrowser.servers count]<currentRow.row+1) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             return;
         }
@@ -170,7 +170,7 @@
         [serverBrowser stop];
     }else{
         if ( currentRow == nil ||peerServerBrowser.servers==nil||[peerServerBrowser.servers count]<currentRow.row+1) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Which server?" message:@"Please select which server you want to join from the list above" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             return;
         }

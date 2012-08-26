@@ -34,7 +34,7 @@
 
 @synthesize toolbar, popoverController, detailItem;
 @synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer;
-@synthesize orgGameInfo,currentRoundTime;
+@synthesize orgGameInfo,currentRoundTime,btnRestartServer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -439,15 +439,33 @@
 -(void)restartServer
 {
    UITableViewCell *cell= [self getTableCellByTag:kServerRefresh];
-    UIView *btn=[cell viewWithTag:1];
-    btn.hidden=YES;
+    btnRestartServer.hidden=YES;
+    UIActivityIndicatorView *loading=  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loading.frame=CGRectMake(0, 0, 32, 32);
+    loading.tag=2;
+    [loading startAnimating];
+    cell.accessoryView=loading;
     [relateGameServer.chatRoom start];
-    [NSTimer scheduledTimerWithTimeInterval: 3 target:self selector:@selector(restartServerEnd:) userInfo:btn repeats:NO];
+    
+    [NSTimer scheduledTimerWithTimeInterval: 5 target:self selector:@selector(restartServerEnd:) userInfo:cell repeats:NO];
 }
 -(void)restartServerEnd:(NSTimer *)timer
 {
-    UIView *btn = [timer userInfo];
-    btn.hidden=NO;
+    NSArray *availPeerIds = [relateGameServer.chatRoom.bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected];
+    for (JudgeClientInfo *clt in relateGameServer.chatRoom.gameInfo.clients.allValues) {
+        if([availPeerIds containsObject:clt.peerId]){
+            clt.hasConnected=YES;
+        }
+        else
+            clt.hasConnected=NO;
+    }
+    [detailControllerJudge.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    UITableViewCell *cell = [timer userInfo];
+    UIView *loading=[cell viewWithTag:2];
+    loading.hidden=YES;
+    loading=nil;
+    cell.accessoryView=btnRestartServer;
+    btnRestartServer.hidden=NO;    
 }
 -(id)getTableCellByTag:(NSInteger)tag
 {    
@@ -493,15 +511,17 @@
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
-        }
-        cell.textLabel.text=@"Refresh server";
-        UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [clearBtn setTitle:@"Refresh" forState:UIControlStateNormal];
-        [clearBtn setFrame:CGRectMake(0, 0, 100, 35)];                     
-        [clearBtn  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
-        clearBtn.tag=1;
-        cell.accessoryView = clearBtn;
-        cell.tag=kServerRefresh;
+            cell.textLabel.text=@"Refresh server";
+            if(btnRestartServer==nil){
+                btnRestartServer = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                [btnRestartServer setTitle:@"Refresh" forState:UIControlStateNormal];
+                [btnRestartServer setFrame:CGRectMake(0, 0, 100, 35)];                     
+                [btnRestartServer  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
+                btnRestartServer.tag=1;
+            }
+            cell.accessoryView = btnRestartServer;       
+            cell.tag=kServerRefresh;
+        }        
         return cell;
     }
         else{

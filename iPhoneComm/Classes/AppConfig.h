@@ -43,8 +43,6 @@
 @property BOOL networkUsingWifi;
 //@property (strong) NSMutableSet *invalidServerPeerIds;
 @property (strong) NSString *uuid;
-//比赛设置
-@property (weak,nonatomic) ServerSetting *serverSettingInfo;
 //当前进行的比赛信息
 @property(strong,nonatomic) GameInfo *currentGameInfo;
 @property (nonatomic) AppStep currentAppStep;

@@ -116,7 +116,7 @@
 
 -(void) touchSaveButton
 {
-    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[AppConfig getInstance].serverSettingInfo]];
+    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[AppConfig getInstance].currentGameInfo.gameSetting]];
     [AppConfig getInstance].currentGameInfo=room.gameInfo;
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
@@ -129,7 +129,7 @@
 #pragma mark Bind Table Cells 
 -(void) bindSettingGroupData:(int)group
 {
-    __weak ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    __weak ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     __weak GameSettingDetailControllerHD *selfCtl=self;
     switch (group) {
         case 0:
@@ -434,7 +434,7 @@
 - (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)value
 {
     //NSLog(@"simple picker selected:%@",value);
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     switch (cell.tag) {   
         case kroundCount:
         {
@@ -515,7 +515,7 @@
 }
 -(void)tableViewCell:(IntegerInputTableViewCell *)cell didEndEditingWithInteger:(NSUInteger)value
 {
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     si.startScreening=value;
     [self refreshSkipRound];
     [self refreshPointGapEffRound];
@@ -536,7 +536,7 @@
      */
 }
 -(void)refreshPointGapEffRound{
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     SimplePickerInputTableViewCell *cellGapEff=[self getTableCellByTag:kpointGapAvailRound];
     NSMutableArray *pointGapEffCounts=[[NSMutableArray alloc] init];
     for(int i=1;i<=si.roundCount;i=i+1)
@@ -554,7 +554,7 @@
     si.pointGapAvailRound=orgGap;
 }
 -(void)refreshSkipRound{
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     NSMutableArray *skipSeqs=[[NSMutableArray alloc] init];
     SimplePickerInputTableViewCell *cell=[self getTableCellByTag:kskipScreening];
     for(int i=1;i<=10;i++)
@@ -572,7 +572,7 @@
 - (void)tableViewCell:(TimePickerTableViewCell *)cell didEndEditingWithInterval:(NSTimeInterval)value
 {
     NSLog(@"timer picker selected:%.1f",value);
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     switch (cell.tag) {
         case kroundTime:
             si.roundTime=value;
@@ -580,11 +580,11 @@
     }
 }
 - (void)valueChanged:(UISwitch *)theSwitch {
-    [AppConfig getInstance].serverSettingInfo.enableGapScore=theSwitch.isOn;
+    [AppConfig getInstance].currentGameInfo.gameSetting.enableGapScore=theSwitch.isOn;
 }    
 
 - (void)tableViewCell:(StringInputTableViewCell *)cell didEndEditingWithString:(NSString *)value{
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     switch (cell.tag) {
         case kserverName:
             si.serverName=value;
@@ -626,7 +626,7 @@
     detailController2=nil;
     detailController3=nil;
     detailController4=nil;
-    [[AppConfig getInstance].serverSettingInfo reset];
+    [[AppConfig getInstance].currentGameInfo.gameSetting reset];
     [self bindSettingGroupData:0];
     [self bindSettingGroupData:1];
     [self bindSettingGroupData:2];

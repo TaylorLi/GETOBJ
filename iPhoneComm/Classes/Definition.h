@@ -53,14 +53,14 @@ typedef enum{
 //服务器消息循环的时间间隔，主要在与检测分数提交后是否有效的判断
 #define kServerLoopInterval 0.1
 //服务器检测客户端连接状态的时间间隔
-#define kServerTestClientHearbeatTime 4
+#define kServerTestClientHearbeatTime 3.2
 #define kServerHeartbeatTimeInterval 0.8
 
 //客户端发送心跳信息的间隔
 #define kClientHeartbeatTimeInterval 0.8
 //客户端检测服务器连接状态的时间间隔
-#define kClientTestServerHearbeatTime 4
-#define kClientTestServerHearbeatTimeWhenPause 6
+#define kClientTestServerHearbeatTime 3.2
+#define kClientTestServerHearbeatTimeWhenPause 4
 //用户滑动分数板的时间间隔，在此时间间隔内可多次滑动，超过此时间间隔则发送信息
 //#define kClientLoopInterval4Swipe 0.5
 //处于哪种角色中

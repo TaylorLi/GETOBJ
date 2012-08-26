@@ -416,8 +416,10 @@ else{
             else{
                 isExit=YES;
                 //we are not the valid client to the server
+                [self closeInfoBox];
+                __block ScoreControlViewController *seltCtl=self;
                 [UIHelper showAlert:@"Information" message:@"Can not connect to the server." func:^(AlertView *a, NSInteger i) {
-                    [self exit];
+                    [seltCtl exit];
                 }];
                 return;
             }
@@ -426,8 +428,10 @@ else{
         default:
             break;
     }
+    if(hasEverConnectd){
     chatRoom.serverInfo.serverLastHeartbeatDate=serverLastMsgDate;
     [self setConnectionIndicatorToConnected:YES];
+    }
     if(isReconnect){
         isReconnect=NO;
         if(reConnectBox!=nil&&reConnectBox.superview!=nil)
@@ -549,10 +553,10 @@ else{
     if(isExit)
         return;
     if(!hasEverConnectd){
-        [reConnectBox dismissWithClickedButtonIndex:-1 animated:NO];
-        [tipBox dismissWithClickedButtonIndex:-1 animated:NO];    
+        [self closeInfoBox];
+        __block ScoreControlViewController *seltCtl=self;
         [UIHelper showAlert:@"Information" message:@"Unable connect to server" func:^(AlertView *a, NSInteger i) {
-            [self exit];
+            [seltCtl exit];
         }];
     }
     else{
@@ -736,8 +740,9 @@ else{
                 gameLoopTimer=nil;
             }
             [self closeInfoBox];
+            __block ScoreControlViewController *seltCtl=self;
             [UIHelper showAlert:@"Information" message:@"Game has completed,Continue to exit" func:^(AlertView *a, NSInteger i) {
-                [self onExited];
+                [seltCtl exit];
             }];
         }
             break;

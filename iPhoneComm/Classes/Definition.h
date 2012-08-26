@@ -72,6 +72,9 @@ typedef enum{
     
 } AppStep;
 
+#define KEY_FILE_SETTING @"app_info"
+#define KEY_FILE_SETTING_GAME_INFO @"game_info"
+
 @interface Definition : NSObject
 
 @end

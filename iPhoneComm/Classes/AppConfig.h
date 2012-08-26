@@ -44,9 +44,9 @@
 //@property (strong) NSMutableSet *invalidServerPeerIds;
 @property (strong) NSString *uuid;
 //比赛设置
-@property (strong,nonatomic) ServerSetting *serverSettingInfo;
+@property (weak,nonatomic) ServerSetting *serverSettingInfo;
 //当前进行的比赛信息
-@property(weak,nonatomic) GameInfo *currentGameInfo;
+@property(strong,nonatomic) GameInfo *currentGameInfo;
 @property (nonatomic) AppStep currentAppStep;
 @property BOOL isGameStart;
 // Singleton - one instance for the whole app

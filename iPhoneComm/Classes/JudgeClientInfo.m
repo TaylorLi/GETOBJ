@@ -54,7 +54,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"displayName:%@,hasConnected:%i",displayName,hasConnected];
+    return [NSString stringWithFormat:@"displayName:%@,hasConnected:%i,uuid:%@,peerId:%@,last heartbeate date:%@",displayName,hasConnected,uuid,peerId,[UtilHelper formateTime:lastHeartbeatDate]];
 }
 
 @end

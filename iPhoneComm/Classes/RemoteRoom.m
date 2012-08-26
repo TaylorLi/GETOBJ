@@ -40,6 +40,7 @@
 
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
+    self=[super init];
     connection = [[Connection alloc] initWithHostAddress:host andPort:port];
     return self;
 }
@@ -47,6 +48,7 @@
 
 // Initialize and connect to a net service
 - (id)initWithNetService:(NSNetService*)netService {
+    self=[super init];
     connection = [[Connection alloc] initWithNetService:netService];
     return self;
 }
@@ -81,13 +83,16 @@
             return NO;
         }
     }else{    
-        
+        if(bluetoothClient!=nil)
+            [bluetoothClient stop];
         NSString *uid = [AppConfig getInstance].uuid;
         bluetoothClient=[[PeerClient alloc] initWithPeerId:orgServerInfo.peerId]; 
         bluetoothClient.gkSessionDelegate=self;
         clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:[AppConfig getInstance].name andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
-        
-       return [bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        BOOL success=[bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        if(success)
+            clientInfo.peerId=bluetoothClient.gameSession.peerID;
+       return success;
     }
 }
 -(BOOL) testUnavailableAndRestart
@@ -102,7 +107,10 @@
         bluetoothClient=nil;
         bluetoothClient=[[PeerClient alloc] initWithPeerId:orgServerInfo.peerId]; 
         bluetoothClient.gkSessionDelegate=self;
-        return [bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        BOOL success=[bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        if(success)
+            clientInfo.peerId=bluetoothClient.gameSession.peerID;
+        return success;
     }
 }
 

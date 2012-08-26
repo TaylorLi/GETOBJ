@@ -489,8 +489,9 @@
                     for(int i=1;i<=si.judgeCount;i++)
                     {
                         [availRefCounts addObject:[NSString stringWithFormat:@"%i/%i",i,si.judgeCount]];
-                    }
+                    }                    
                     [cell reloadPicker:availRefCounts];
+                    [cell setValue:[NSString stringWithFormat:@"%i/%i",si.judgeCount,si.judgeCount]];
                     si.availScoreWithJudesCount=[cell.value intValue];
                 }               
             }

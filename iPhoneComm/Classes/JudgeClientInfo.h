@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JudgeClientInfo : NSObject
+@interface JudgeClientInfo : NSObjectSerialization
 
 
 @property (nonatomic,copy) NSString *peerId;

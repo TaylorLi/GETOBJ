@@ -47,6 +47,7 @@
 
 // Initialization
 - (id)init {
+    self=[super init];
     if([AppConfig getInstance].networkUsingWifi)
     {    
         clients = [[NSMutableSet alloc] init];
@@ -183,7 +184,7 @@
             else{
                 NSError *error;
                 //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
-                if (peerId!=0) {
+                if (peerId!=nil&&![peerId isEqualToString:@""]) {
                     [bluetoothServer.serverSession sendData:data toPeers:
                      [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
                 }

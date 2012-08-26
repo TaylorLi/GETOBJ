@@ -10,7 +10,7 @@
 #import "Definition.h"
 
 @class ServerSetting;
-@interface GameInfo : NSObject<NSCopying>
+@interface GameInfo : NSObjectSerialization<NSCopying,NSCoding>
 {
     GameStates _gameStatus;
 }

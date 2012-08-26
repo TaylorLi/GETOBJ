@@ -26,7 +26,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"Name:%@,Desc:%@,Pwd:%@,Time:%f,Round:%i,Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@",gameName,gameDesc,password,roundTime,roundCount, redSideName,redSideDesc,blueSideName,blueSideDesc];
+    return [NSString stringWithFormat:@"Game Name:%@,Game Desc:%@,Pwd:%@,Round Time:%f,Rest Time:%f,Round Count:%i,Judge Count:%i, Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@",gameName,gameDesc,password,roundTime,restTime,roundCount,judgeCount, redSideName,redSideDesc,blueSideName,blueSideDesc];
 }
 
 -(id) initWithDefault
@@ -109,6 +109,62 @@
     copyObj.restAndReorganizationTime=self.restAndReorganizationTime;
     return copyObj;
 }
+/*NSCoding
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:gameDesc forKey:@"gameDesc"];  
+    [aCoder encodeObject:gameName forKey:@"gameName"];  
+    [aCoder encodeObject:redSideDesc forKey:@"redSideDesc"];  
+    [aCoder encodeObject:redSideName forKey:@"redSideName"];
+    [aCoder encodeObject:blueSideDesc forKey:@"blueSideDesc"];  
+    [aCoder encodeObject:blueSideName forKey:@"blueSideName"];  
+    [aCoder encodeObject:password forKey:@"password"];  
+    [aCoder encodeInt:roundCount forKey:@"roundCount"];
+    [aCoder encodeDouble:roundTime forKey:@"roundTime"];  
+    [aCoder encodeDouble:restTime forKey:@"restTime"];  
+    [aCoder encodeInt:pointGap forKey:@"pointGap"];  
+    [aCoder encodeObject:serverName forKey:@"serverName"];
+    [aCoder encodeObject:screeningArea forKey:@"screeningArea"];  
+    [aCoder encodeInt:skipScreening forKey:@"skipScreening"];  
+    [aCoder encodeBool:enableGapScore forKey:@"enableGapScore"];  
+    [aCoder encodeInt:startScreening forKey:@"startScreening"];
+    [aCoder encodeInt:pointGapAvailRound forKey:@"pointGapAvailRound"];  
+    [aCoder encodeInt:judgeCount forKey:@"judgeCount"];  
+    [aCoder encodeBool:enableGapScore forKey:@"enableGapScore"];  
+    [aCoder encodeInt:availScoreWithJudesCount forKey:@"availScoreWithJudesCount"];
+    [aCoder encodeDouble:availTimeDuringScoreCalc forKey:@"availTimeDuringScoreCalc"];
+    [aCoder encodeInt:maxWarningCount forKey:@"maxWarningCount"];
+    [aCoder encodeDouble:restAndReorganizationTime forKey:@"restAndReorganizationTime"];  
+}
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if(self = [super init]) {  
+        self.gameDesc=[decoder decodeObjectForKey:@"gameDesc"];
+        self.gameName=[decoder decodeObjectForKey:@"gameName"];
+        self.redSideDesc=[decoder decodeObjectForKey:@"redSideDesc"];
+        self.redSideName=[decoder decodeObjectForKey:@"redSideName"];
+        self.blueSideDesc=[decoder decodeObjectForKey:@"blueSideDesc"];
+        self.blueSideName=[decoder decodeObjectForKey:@"blueSideName"];
+        self.password=[decoder decodeObjectForKey:@"password"];
+        self.roundCount=[decoder decodeInt32ForKey:@"roundCount"];
+        self.roundTime=[decoder decodeDoubleForKey:@"roundTime"];  
+        self.restTime=[decoder decodeDoubleForKey:@"restTime"];
+        self.pointGap=[decoder decodeInt32ForKey:@"pointGap"];
+        self.serverName=[decoder decodeObjectForKey:@"serverName"];
+        self.screeningArea=[decoder decodeObjectForKey:@"screeningArea"];
+        self.skipScreening=[decoder decodeInt32ForKey:@"skipScreening"]                         ;
+        self.enableGapScore=[decoder decodeBoolForKey:@"enableGapScore"];
+        self.startScreening=[decoder decodeInt32ForKey:@"startScreening"];
+        self.pointGapAvailRound=[decoder decodeInt32ForKey:@"pointGapAvailRound"];
+        self.judgeCount=[decoder decodeInt32ForKey:@"judgeCount"];
+        self.availScoreWithJudesCount=[decoder decodeInt32ForKey:@"availScoreWithJudesCount"];
+        self.availTimeDuringScoreCalc=[decoder decodeDoubleForKey:@"availTimeDuringScoreCalc"];
+        self.maxWarningCount=[decoder decodeInt32ForKey:@"maxWarningCount"];
+        self.restAndReorganizationTime=[decoder decodeDoubleForKey:@"restAndReorganizationTime"];
+    }  
+    return self;  
+}
+*/
 -(void)dealloc
 {
 

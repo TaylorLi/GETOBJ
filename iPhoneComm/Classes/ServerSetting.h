@@ -32,7 +32,7 @@
 #define kpassword 21
 #define kCurrentTime 22
 
-@interface ServerSetting : NSObject<NSCopying>
+@interface ServerSetting : NSObjectSerialization<NSCopying,NSCoding>
 {
     NSString *gameName;
     NSString *gameDesc;

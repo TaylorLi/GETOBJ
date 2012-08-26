@@ -95,8 +95,12 @@
     return  copyObj;
 }
 -(NSString *) description{
-    return [NSString stringWithFormat:@"peerId:%@,Uuid:%@,gameStatus:%d,preGameStatus:%d,serverLastHeartbeatDate:%@,serverPeerId:%@,currentRound:%@,currentMatch:%@,gameSetting:%@,Game Start:%i",self.serverUuid,self.serverPeerId,self.gameStatus,self.preGameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate],serverPeerId,currentRound,currentMatch,gameSetting,gameStart];
+    return [NSString stringWithFormat:@"server peerId:%@,server Uuid:%@,gameStatus:%i,preGameStatus:%i,serverLastHeartbeatDate:%@,currentRound:%i,currentMatch:%i,Game Start:%i,gameSetting:%@,clients:%@",self.serverPeerId,self.serverUuid,self.gameStatus,self.preGameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate],currentRound,currentMatch,gameStart,gameSetting,clients];
 }
+#pragma mark -
+#pragma mark NSCoding
+
+
 /*
 -(BOOL)getPointGapReached
 {

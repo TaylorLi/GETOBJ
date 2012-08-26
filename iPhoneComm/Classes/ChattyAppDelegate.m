@@ -197,11 +197,19 @@ static ChattyAppDelegate* _instance;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     NSLog(@"Become Active");
+    if([UtilHelper isFileExist:KEY_FILE_SETTING])
+    {
+        [AppConfig getInstance].currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
+        [AppConfig getInstance].serverSettingInfo = [AppConfig getInstance].currentGameInfo.gameSetting;
+        NSLog(@"Game Info:%@",[AppConfig getInstance].currentGameInfo);
+    }
 }
 -(void)applicationWillResignActive:(UIApplication *)application
 {
     NSLog(@"Resign Active");
-    
+    GameInfo *gi=[AppConfig getInstance].currentGameInfo;
+    NSLog(@"Game Info:%@",gi);
+    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:gi dataKey:KEY_FILE_SETTING_GAME_INFO];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {

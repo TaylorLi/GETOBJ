@@ -10,5 +10,8 @@
 
 @interface UtilHelper : NSObject
 +(NSString *)formateTime:(NSDate *)date;
-
++(id)deserializeFromFile:(NSString *)fileName dataKey:(NSString *) dataKey;
++(void)serializeObjectToFile:(NSString *)fileName withObject:(id)obj dataKey:(NSString*) dataKey;
++(NSString *)dataFilePath:(NSString *)fileName;
++(BOOL)isFileExist:(NSString *)fileName;
 @end

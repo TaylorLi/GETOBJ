@@ -386,8 +386,8 @@
     lblGameName.text=[NSString stringWithFormat:@"%@ %@",chatRoom.gameInfo.gameSetting.gameName,chatRoom.gameInfo.gameSetting.gameDesc];
     lblCortNo.text=[NSString stringWithFormat:@"NO.%i",chatRoom.gameInfo.currentMatch];
     lblArea.text=chatRoom.gameInfo.gameSetting.screeningArea;
-    lblRedPlayerName.text=chatRoom.gameInfo.gameSetting.redSideName;
-    lblBluePlayerName.text=chatRoom.gameInfo.gameSetting.blueSideName;
+    lblRedPlayerName.text=[NSString stringWithFormat:@"%@ %@", chatRoom.gameInfo.gameSetting.redSideName,chatRoom.gameInfo.gameSetting.redSideDesc];
+    lblBluePlayerName.text=[NSString stringWithFormat:@"%@ %@", chatRoom.gameInfo.gameSetting.blueSideName,chatRoom.gameInfo.gameSetting.blueSideDesc];
     
     /*目前没有使用下来属性*/
     lblGameDesc.text=chatRoom.gameInfo.gameSetting.gameDesc;    
@@ -592,7 +592,11 @@
     if(chatRoom.gameInfo.currentRemainTime==0){
         [self pauseTime:YES];
         [player playSoundWithFullPath:kSoundsRoundEnd];
-        if(chatRoom.gameInfo.currentRound>=chatRoom.gameInfo.gameSetting.roundCount){
+        //比赛结束条件1：在所有回合结束后，得分间有差距；
+        //加时赛时，有选手得分
+        if((chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount&&
+            chatRoom.gameInfo.blueSideScore!=chatRoom.gameInfo.redSideScore)
+           ||chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount+1){
             [self setMenuByGameStatus:kStateGamePause]; 
             [self showSelectWinnerBox];
             //[UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
@@ -600,7 +604,13 @@
             [self setMenuByGameStatus:kStateRoundReset];              
             [self showRoundRestTimeBox:chatRoom.gameInfo.gameSetting.restTime andEventType:krestTime];
         }
-    }    
+    }
+    //加时赛
+    else if(chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount+1 && chatRoom.gameInfo.redSideScore!=chatRoom.gameInfo.blueSideScore)
+    {
+        [self pauseGame];
+        [self showWinnerBoxForRedSide:chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore];  
+    }
 } 
 //show round rest when round end
 -(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType{
@@ -654,7 +664,15 @@
         [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
-    [self testPointGapReached];
+    if(chatRoom.gameInfo.currentRound<=chatRoom.gameInfo.gameSetting.roundCount){
+        //比赛正常进行时
+        [self testPointGapReached];
+    }
+    else{
+        //加时赛处理
+        [self pauseGame];
+        [self showWinnerBoxForRedSide:chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore];
+    }
     //修改
     //    cmdHis = nil;
     //修改完
@@ -1007,6 +1025,11 @@
                 //new client connected
                 [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
             }
+            else{
+                cltInfoOld.peerId=cltInfo.peerId;
+                cltInfoOld.uuid=cltInfo.uuid;
+                cltInfoOld.displayName=cltInfo.displayName;
+            }
             [self processHearbeatWithClientUuid:cltInfo.uuid];
             [self sendServerWholeInfo];
         }
@@ -1091,9 +1114,11 @@
 //拒绝非法客户端连接
 -(void)sendDenyClientToConnectInfo:(JudgeClientInfo*)client
 {
+    if(client==nil)
+        return;
     CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_INVALID_CLIENT andFrom:nil 
                                                       andDesc:@"Invalid client" andData:nil andDate:nil];
-    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+    [chatRoom sendCommand:reconnectCmd andPeerId:client.peerId andSendDataReliable:YES];
     [chatRoom.bluetoothServer.serverSession disconnectPeerFromAllPeers:client.peerId];
 }
 #pragma mark -
@@ -1467,6 +1492,10 @@
 
 -(void)goToNextMatch
 {
+    if([pointGapTimer isValid])
+        [pointGapTimer invalidate];
+    if([warningMaxTimer isValid])
+        [warningMaxTimer invalidate];
     chatRoom.gameInfo.redSideScore=0;
     chatRoom.gameInfo.blueSideScore=0;
     chatRoom.gameInfo.redSideWarning=0;
@@ -1535,12 +1564,13 @@
 }
 -(BOOL)testSomeClientDisconnect
 {
+     NSLog(@"test client connected(elasped time)");
     BOOL hasDisconnect=NO;
     double inv=kServerTestClientHearbeatTime;
     
     //NSLog(@"tesc disconnect:%i",chatRoom.gameInfo.clients.count);
     for (JudgeClientInfo *clt in chatRoom.gameInfo.clients.allValues) {
-        NSLog(@"test client connected(elasped time):%d",fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv);
+        //NSLog(@"test client %@ heartbeat(elasped time):%d",clt.displayName, fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv);
         if(!clt.hasConnected)
             hasDisconnect=YES;
         else if(clt.lastHeartbeatDate!=nil && fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv) {

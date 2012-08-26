@@ -97,6 +97,8 @@
 		DA78B47515A96F0100E186CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		DA78B47615A96F0100E186CC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D043D8EE0F9A1C980030638C /* CFNetwork.framework */; };
 		DA78B48615A96F0600E186CC /* ChattyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78B47F15A96F0600E186CC /* ChattyViewController.xib */; };
+		DA8C937C15E9074C007F5D0B /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */; };
+		DA8C937D15E9074C007F5D0B /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */; };
 		DA93459B15E0FD2C00A4B99B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */; };
 		DA93459D15E0FD3200A4B99B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */; };
 		DA9345AD15E1000100A4B99B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9345AC15E1000100A4B99B /* SoundsPlayer.m */; };
@@ -332,6 +334,8 @@
 		DAEF4C9115E69668006025DD /* winner.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C8D15E69668006025DD /* winner.wav */; };
 		DAEF4C9315E69813006025DD /* rend.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C9215E69813006025DD /* rend.wav */; };
 		DAEF4C9415E69813006025DD /* rend.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C9215E69813006025DD /* rend.wav */; };
+		DAEFCDD015E9B20600F70994 /* Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEFCDCF15E9B20600F70994 /* Reflection.m */; };
+		DAEFCDD115E9B20600F70994 /* Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEFCDCF15E9B20600F70994 /* Reflection.m */; };
 		DAF65A97159F29B1001BEA75 /* ScoreControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */; };
 		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
@@ -426,6 +430,8 @@
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA78B47F15A96F0600E186CC /* ChattyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChattyViewController.xib; path = "Resources-iPad/ChattyViewController.xib"; sourceTree = "<group>"; };
 		DA78B48115A96F0600E186CC /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
+		DA8C937A15E9074B007F5D0B /* NSObjectSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectSerialization.h; path = ../../Util/NSObjectSerialization.h; sourceTree = "<group>"; };
+		DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSObjectSerialization.m; path = ../../Util/NSObjectSerialization.m; sourceTree = "<group>"; };
 		DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DA9345AB15E1000100A4B99B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsPlayer.h; sourceTree = "<group>"; };
 		DA9345AC15E1000100A4B99B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsPlayer.m; sourceTree = "<group>"; };
@@ -646,6 +652,8 @@
 		DAEF4C8915E68729006025DD /* IntegerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntegerInputTableViewCell.m; path = ../Controls/TableCellControl/IntegerInputTableViewCell.m; sourceTree = "<group>"; };
 		DAEF4C8D15E69668006025DD /* winner.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = winner.wav; path = sounds/winner.wav; sourceTree = "<group>"; };
 		DAEF4C9215E69813006025DD /* rend.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rend.wav; path = sounds/rend.wav; sourceTree = "<group>"; };
+		DAEFCDCE15E9B20600F70994 /* Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reflection.h; path = ../../Util/Reflection.h; sourceTree = "<group>"; };
+		DAEFCDCF15E9B20600F70994 /* Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reflection.m; path = ../../Util/Reflection.m; sourceTree = "<group>"; };
 		DAF65A95159F29B0001BEA75 /* ScoreControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreControlViewController.h; sourceTree = "<group>"; };
 		DAF65A96159F29B1001BEA75 /* ScoreControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreControlViewController.m; sourceTree = "<group>"; };
 		DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreControlView.xib; sourceTree = "<group>"; };
@@ -830,6 +838,7 @@
 			isa = PBXGroup;
 			children = (
 				DAE79D8D15BBC50B00BC594E /* UtilHelper.h */,
+				DAE79D9715BC40AB00BC594E /* UtilHelper.m */,
 				D0510A6E0F9E14ED00B735FA /* UITextView+Utils.m */,
 				D0510A6F0F9E14ED00B735FA /* UITextView+Utils.h */,
 				D043D9180F9CB4A60030638C /* AppConfig.h */,
@@ -838,9 +847,12 @@
 				DA10C1CD15B117A400153392 /* StaticTableGroupData.m */,
 				DAE7A26715B42DE1001FF160 /* Definition.h */,
 				DAE7A26815B42DE1001FF160 /* Definition.m */,
-				DAE79D9715BC40AB00BC594E /* UtilHelper.m */,
 				DA9345AB15E1000100A4B99B /* SoundsPlayer.h */,
 				DA9345AC15E1000100A4B99B /* SoundsPlayer.m */,
+				DA8C937A15E9074B007F5D0B /* NSObjectSerialization.h */,
+				DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */,
+				DAEFCDCE15E9B20600F70994 /* Reflection.h */,
+				DAEFCDCF15E9B20600F70994 /* Reflection.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -1611,6 +1623,8 @@
 				DAA92CEE15E534DB00D6E710 /* ScoreInfo.m in Sources */,
 				DAEF4C8A15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
 				DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
+				DA8C937C15E9074C007F5D0B /* NSObjectSerialization.m in Sources */,
+				DAEFCDD015E9B20600F70994 /* Reflection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1695,6 +1709,8 @@
 				DAA92CEF15E534DB00D6E710 /* ScoreInfo.m in Sources */,
 				DAEF4C8B15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
 				DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
+				DA8C937D15E9074C007F5D0B /* NSObjectSerialization.m in Sources */,
+				DAEFCDD115E9B20600F70994 /* Reflection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

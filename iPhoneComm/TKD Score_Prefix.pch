@@ -5,8 +5,9 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
+    #import "UtilHelper.h"
+    #import "NSObjectSerialization.h"
     #import "CommandMsg.h"
-#import "UtilHelper.h"
 #endif
 
 #if NS_BLOCKS_AVAILABLE

@@ -90,4 +90,8 @@ static AppConfig* instance;
     else
         return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
 }
+-(void)dealloc
+{
+    
+}
 @end

@@ -62,9 +62,11 @@
 
 -(void)stop;
 {
-    gameSession.available = NO;
-    [gameSession disconnectFromAllPeers];
-    gameSession=nil;
+    if(gameSession!=nil){
+        gameSession.available = NO;
+        [gameSession disconnectFromAllPeers];
+        gameSession=nil;
+    }    
 }
 
 // Send network message,json object

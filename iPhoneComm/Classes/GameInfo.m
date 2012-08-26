@@ -35,6 +35,7 @@
 }
 
 -(NSDictionary*) proxyForJson {
+    //return [super proxyForJson];
     NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithDouble:self.currentRemainTime],@"currentRemainTime",
                           self.serverPeerId==nil?[NSNull null]:self.serverPeerId,@"serverPeerId",

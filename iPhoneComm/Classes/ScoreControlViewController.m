@@ -39,6 +39,7 @@
 -(void)reportClientHeartbeat;
 -(void) connectedToServerSuccess;
 -(void)setConnectionIndicatorToConnected:(BOOL)connected;
+-(void)prepareForExit;
 
 @property(nonatomic,retain) NSMutableArray *arrayTouch;
 @property (nonatomic, retain) ScoreInfo *scoreInfo;
@@ -450,31 +451,37 @@ else{
     //    }];
 }
 
-
-// User decided to exit room
-- (IBAction)exit {
+-(void)prepareForExit
+{
     isExit=YES;
     [AppConfig getInstance].isGameStart=NO;
-    loadingBox.title=@"Now prepare to exit ...";
-    // Close the room
-    [chatRoom stop];
-    
-    // Remove keyboard
-    
-    // Erase chat
-    
-    
+    if(retryTimer!=nil)
+    {
+        [retryTimer invalidate];
+        retryTimer=nil;
+    }
     // Switch back to welcome view
     if(gameLoopTimer != nil){
         [gameLoopTimer invalidate];
         gameLoopTimer=nil;
     }
+    [AppConfig getInstance].isGameStart=NO;
+    [self setConnectionIndicatorToConnected:NO];
+    // Close the room
+    [chatRoom stop];
+
+}
+// User decided to exit room
+- (IBAction)exit {
+    loadingBox.title=@"Now prepare to exit ...";    
+    // Remove keyboard
+    [self prepareForExit];
+    // Erase chat
     
 //    if(sendLoopTimer !=nil){
 //        [sendLoopTimer invalidate];
 //        sendLoopTimer = nil;
 //    }
-    
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(onExited) userInfo:nil repeats:NO];
     
 }
@@ -528,7 +535,7 @@ else{
         tipBox=nil;
     }
     for(UIView *sview in self.view.subviews){
-        if([sview isMemberOfClass:[UIAlertView class]])
+        if([sview isKindOfClass:[UIAlertView class]])
             [sview removeFromSuperview];
     }
 }
@@ -538,7 +545,8 @@ else{
 }
 -(void) alreadyConnectToServer
 {
-    [self reportClientInfo];
+    if(!isExit)
+        [self reportClientInfo];
 }
 -(void) connectedToServerSuccess
 {
@@ -587,6 +595,8 @@ else{
 }
 -(void)gameLoop
 {    
+    if(isExit)
+        return;
     static int counter = 0;  
     //static int reConnCounter = 0;
     counter++;
@@ -624,7 +634,7 @@ else{
         //        chatRoom.delegate = self;
         //        [chatRoom start]; 
         isDoingReconnect=YES;
-        [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
+       retryTimer= [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(testConnect:) userInfo:nil repeats:NO];
     }
 }
 -(void)tryToReconnect
@@ -733,16 +743,11 @@ else{
         {
             if(isExit)
                 return;
-            isExit=YES;
-            [chatRoom stop];
-            if(gameLoopTimer != nil){
-                [gameLoopTimer invalidate];
-                gameLoopTimer=nil;
-            }
             [self closeInfoBox];
+            [self prepareForExit];
             __block ScoreControlViewController *seltCtl=self;
             [UIHelper showAlert:@"Information" message:@"Game has completed,Continue to exit" func:^(AlertView *a, NSInteger i) {
-                [seltCtl exit];
+                [seltCtl onExited];
             }];
         }
             break;

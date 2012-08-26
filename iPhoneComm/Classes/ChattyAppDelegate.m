@@ -40,6 +40,7 @@ static ChattyAppDelegate* _instance;
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
 -(void)detectBluetoothStatus;
 -(void)testNetworkStatus;
+-(void)processByAppStatus;
 @end
 
 @implementation ChattyAppDelegate
@@ -177,8 +178,12 @@ static ChattyAppDelegate* _instance;
     NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
     NetworkStatus status = [curReach currentReachabilityStatus];
     NSLog(@"Wifi status change:curent is %i",status);
+    BluetoothManager *blManager=[BluetoothManager sharedInstance];
     if (![btManager enabled] && status != ReachableViaWiFi) {
-        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
+        [UIHelper showAlert:@"Error" message:@"Network status changed,please turn on wifi or bluetooth." func:^(AlertView *a, NSInteger i) {
+            blManager.enabled=YES;
+            [self processByAppStatus];
+        }];
     }
 }
 
@@ -188,7 +193,10 @@ static ChattyAppDelegate* _instance;
     BluetoothManager *blManager=[BluetoothManager sharedInstance];
     NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
     if (![btManager enabled] && [wifiReach currentReachabilityStatus] != ReachableViaWiFi)
-        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
+        [UIHelper showAlert:@"Error" message:@"Network status changed,continue to turn on bluetooth." func:^(AlertView *a, NSInteger i) {
+            blManager.enabled=YES;
+            [self processByAppStatus];
+        }];
 }
 
 #pragma mark -
@@ -222,6 +230,11 @@ static ChattyAppDelegate* _instance;
     NSLog(@"Enter Foreround");
     BluetoothManager *blManager=[BluetoothManager sharedInstance];
     NSLog(@"Retest BT State: %d", [ blManager enabled]);
+    [self processByAppStatus];
+    return;
+}
+-(void)processByAppStatus
+{
     if([AppConfig getInstance].currentAppStep==AppStepStart)
         return;
     else 
@@ -231,19 +244,19 @@ static ChattyAppDelegate* _instance;
             case AppStepServerBrowser:{
                 sess=viewController.peerServerBrowser.schSession;
                 [viewController.peerServerBrowser restartBrowser];
-                }
+            }
                 break;
             case AppStepServer:
-                {
+            {
                 sess=scoreBoardViewController.chatRoom.bluetoothServer.serverSession;
                 [scoreBoardViewController.chatRoom testUnavailableAndRestart];
-                }
+            }
                 break;
-                case AppStepClient:
-                {
-                    sess=scoreControlViewController.chatRoom.bluetoothClient.gameSession;
-                    [scoreControlViewController tryToReconnect];
-                }
+            case AppStepClient:
+            {
+                sess=scoreControlViewController.chatRoom.bluetoothClient.gameSession;
+                [scoreControlViewController tryToReconnect];
+            }
                 break;
             default:
                 break;
@@ -264,7 +277,6 @@ static ChattyAppDelegate* _instance;
             sess.available=YES;
         }
     }
-    return;
 }
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {

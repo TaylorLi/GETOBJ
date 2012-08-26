@@ -117,12 +117,18 @@
 // Stop everything, disconnect from server
 - (void)stop {
     isRunning=NO;
-    if ( connection == nil ) {
-        return;
+      if([AppConfig getInstance].networkUsingWifi){
+        if ( connection == nil ) {
+            return;
+        }
+        
+        [connection close];
+        self.connection = nil;
     }
-    
-    [connection close];
-    self.connection = nil;
+    else{
+        [bluetoothClient stop];  
+        bluetoothClient=nil;
+    }
 }
 
 
@@ -144,6 +150,8 @@
         [connection sendNetworkPacket:cmdMsg];
     }
     else{
+        if([bluetoothClient.gameSession peersWithConnectionState:GKPeerStateConnected].count==0)
+            return;
         [bluetoothClient sendNetworkPacket:cmdMsg];
     }
 }

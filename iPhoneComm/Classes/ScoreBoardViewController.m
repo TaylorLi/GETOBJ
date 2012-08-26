@@ -1563,8 +1563,8 @@
 	}
 }
 -(BOOL)testSomeClientDisconnect
-{
-     NSLog(@"test client connected(elasped time)");
+{    
+    NSLog(@"test client connected(elasped time)");
     BOOL hasDisconnect=NO;
     double inv=kServerTestClientHearbeatTime;
     
@@ -1590,6 +1590,8 @@
     else{
         [self refreshGamesettingDialogJudges];
     }
+    //GKSession *gk=chatRoom.bluetoothServer.serverSession;
+    //NSLog(@"available:%i",gk.isAvailable);    
     return hasDisconnect;           
 }
 

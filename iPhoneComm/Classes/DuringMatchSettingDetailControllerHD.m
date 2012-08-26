@@ -24,6 +24,8 @@
 -(id)getTableCellByTag:(NSInteger)tag;
 -(void)saveSetting;
 -(void)refreshCurrentTime;
+-(void)restartServer;
+-(void)restartServerEnd:(NSTimer *)timer;
 @end
 
 @implementation DuringMatchSettingDetailControllerHD
@@ -182,7 +184,7 @@
                 detailControllerMisc =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];              
                 [detailControllerMisc addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     NSMutableArray *bufferSecCounts=[[NSMutableArray alloc] init];
-                    for(float i=0.5;i<=1.1;i=i+0.1)
+                    for(float i=0.5;i<=2.1;i=i+0.1)
                     {
                         [bufferSecCounts addObject:[NSString stringWithFormat:@"%.1f",i]];
                     }
@@ -216,7 +218,7 @@
                     [section addCustomerCell:pointGapCell];                 
                     
                     NSMutableArray *pointGapEffCounts=[[NSMutableArray alloc] init];
-                    for(int i=si.startScreening;i<=(si.roundCount-1)*si.skipScreening+si.startScreening;i=i+si.skipScreening)
+                    for(int i=1;i<=si.roundCount;i=i+si.skipScreening)
                     {
                         [pointGapEffCounts addObject:[NSString stringWithFormat:@"%i",i]];
                     }
@@ -233,7 +235,7 @@
         case 2:
         {
             if(detailControllerJudge==nil){
-                detailControllerJudge =  [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+                detailControllerJudge =  [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 detailControllerJudge.tableView.dataSource=self;
                 //[detailControllerJudge.tableView reloadData];
                 //detailControllerJudge.tableView.delegate=self;
@@ -410,6 +412,7 @@
         currSetting.gameSetting.enableGapScore=orgGameInfo.gameSetting.enableGapScore;
         currSetting.gameSetting.pointGap=orgGameInfo.gameSetting.pointGap;
         currSetting.gameSetting.pointGapAvailRound=orgGameInfo.gameSetting.pointGapAvailRound;
+        currSetting.gameSetting.screeningArea=orgGameInfo.gameSetting.screeningArea;
     }
 }
 
@@ -431,6 +434,20 @@
     else{
         [[ChattyAppDelegate getInstance] showGameSettingView];
     }
+}
+
+-(void)restartServer
+{
+   UITableViewCell *cell= [self getTableCellByTag:kServerRefresh];
+    UIView *btn=[cell viewWithTag:1];
+    btn.hidden=YES;
+    [relateGameServer.chatRoom start];
+    [NSTimer scheduledTimerWithTimeInterval: 3 target:self selector:@selector(restartServerEnd:) userInfo:btn repeats:NO];
+}
+-(void)restartServerEnd:(NSTimer *)timer
+{
+    UIView *btn = [timer userInfo];
+    btn.hidden=NO;
 }
 -(id)getTableCellByTag:(NSInteger)tag
 {    
@@ -454,23 +471,46 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return relateGameServer.chatRoom.gameInfo.clients.count;
+    if(section==0)
+        return 1;
+    else
+    {
+        // Return the number of rows in the section.
+        if(relateGameServer.chatRoom.gameInfo.clients==nil||[relateGameServer.chatRoom.gameInfo.clients count]==0)
+            return  0;
+        return relateGameServer.chatRoom.gameInfo.clients.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section==0){
+        static NSString* serverOptIdentifier = @"ServerRefreshIdentifier";
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
+        }
+        cell.textLabel.text=@"Refresh server";
+        UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [clearBtn setTitle:@"Refresh" forState:UIControlStateNormal];
+        [clearBtn setFrame:CGRectMake(0, 0, 100, 35)];                     
+        [clearBtn  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
+        clearBtn.tag=1;
+        cell.accessoryView = clearBtn;
+        cell.tag=kServerRefresh;
+        return cell;
+    }
+        else{
     static NSString* serverListIdentifier = @"JudgeListIdentifier";
-    
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
 	}
-    JudgeClientInfo *cltInfo=[relateGameServer.chatRoom.gameInfo.clients objectForKey:[orgGameInfo.clients.allKeys objectAtIndex: indexPath.row]];
+    JudgeClientInfo *cltInfo=[relateGameServer.chatRoom.gameInfo.clients objectForKey:[relateGameServer.chatRoom.gameInfo.clients.allKeys objectAtIndex: indexPath.row]];
     
     UIImage *img;
     if (cltInfo.hasConnected) {
@@ -487,6 +527,7 @@
     imgView.image=img;
     cell.accessoryView=imgView;
     return cell;
+        }
 }
 
 -(void)refreshJudges{

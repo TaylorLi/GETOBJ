@@ -33,7 +33,7 @@
 }
 
 -(NSDictionary*) proxyForJson {
-    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.sessionId==nil?[NSNull null]: self.sessionId,@"sessionId",self.displayName==nil?[NSNull null]:self.displayName,@"displayName",self.uuid==nil?[NSNull null]:self.uuid,@"uuid",self.peerId ==nil?[NSNull null]:self.peerId,@"peerId",[NSNumber numberWithBool: self.hasConnected],@"hasConnected",self.lastHeartbeatDate,@"lastHeartbeatDate",nil];
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.sessionId==nil?[NSNull null]: self.sessionId,@"sessionId",self.displayName==nil?[NSNull null]:self.displayName,@"displayName",self.uuid==nil?[NSNull null]:self.uuid,@"uuid",self.peerId ==nil?[NSNull null]:self.peerId,@"peerId",[NSNumber numberWithBool: self.hasConnected],@"hasConnected",[NSNumber numberWithDouble:[self.lastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate",nil];
     return result;
 }
 

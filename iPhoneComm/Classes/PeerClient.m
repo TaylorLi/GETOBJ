@@ -65,6 +65,8 @@
     if(gameSession!=nil){
         gameSession.available = NO;
         [gameSession disconnectFromAllPeers];
+        [gameSession setDataReceiveHandler: nil withContext: nil];
+        //gameSession.delegate = nil;
         gameSession=nil;
     }    
 }

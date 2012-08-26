@@ -94,6 +94,9 @@
 
 -(BOOL) startBluetoothServer
 {
+    if(bluetoothServer!=nil){
+        [self stop];
+    }
     bluetoothServer=[[PeerServer alloc] init];        
     gameInfo.serverUuid=[AppConfig getInstance].uuid;
     bluetoothServer.delegate=self;
@@ -154,6 +157,8 @@
     }
     else
     {
+        if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count==0)
+            return;
         SBJsonWriter *wr=[[SBJsonWriter alloc] init];
         NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
         NSData *data=[wr dataWithObject:cmdMsg];
@@ -177,6 +182,7 @@
         {
             SBJsonWriter *wr=[[SBJsonWriter alloc] init];
             NSData *data=[wr dataWithObject:cmdMsg];
+            //NSLog(@"JSON Serilize:%@",[wr stringWithObject:cmdMsg]);
             if(wr.error!=nil)
             {
                 NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
@@ -328,7 +334,7 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
 {
     //NSLog([NSString stringWithUTF8String:(const char*)[data bytes]]);
-    SBJsonParser *parser= [[SBJsonParser alloc] init];
+    SBJsonParser *parser= [[SBJsonParser alloc] init];    
     NSMutableDictionary* packet =[parser objectWithData:data];
     if(parser.error!=nil)
     {

@@ -12,7 +12,7 @@
 
 @implementation Reflection
 
-+(NSMutableArray *)getNameOfProperties:(Class)classType
++(NSArray *)getNameOfProperties:(Class)classType
 {
     u_int count;
     objc_property_t* properties = class_copyPropertyList(classType, &count);
@@ -33,9 +33,25 @@ static const char *getPropertyType(objc_property_t property) {
     char *state = buffer, *attribute;
     while ((attribute = strsep(&state, ",")) != NULL) {
         if (attribute[0] == 'T') {
-            return (const char *)[[NSData dataWithBytes:(attribute + 3) length:strlen(attribute) - 4] bytes];
+            return (const char *)[[NSData dataWithBytes:(attribute + 1) length:strlen(attribute) - 1] bytes];
         }
     }
     return "@";
+}
+
++(NSDictionary *)getPropertiesNameAndType:(Class)classType
+{
+    u_int count;
+    objc_property_t* properties = class_copyPropertyList(classType, &count);
+    NSMutableDictionary* propertyArray = [NSMutableDictionary dictionaryWithCapacity:count];
+    for (int i = 0; i < count ; i++)
+    {
+        const char* propertyName = property_getName(properties[i]);
+        NSString *key=[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding];
+        NSString *propertyType=[NSString  stringWithCString:getPropertyType(properties[i]) encoding:NSUTF8StringEncoding];
+        [propertyArray setValue:propertyType forKey:key];
+    }
+    free(properties);
+    return propertyArray;
 }
 @end

@@ -35,4 +35,54 @@
     return self;
 }
 
+-(NSDictionary*) proxyForJson {
+    NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
+    NSMutableDictionary *result=[NSMutableDictionary dictionaryWithCapacity:propeties.count];
+    for (NSString *propertyName in propeties.allKeys) {
+        NSString *propertyType=[propeties valueForKey:propertyName];
+        id value=[self valueForKey:propertyName];
+        if([propertyType hasPrefix:@"@"])//classTye
+        {
+            if(value==nil)
+                value=[NSNull null];
+            else{
+                if([propertyType hasPrefix:@"@\"NSDate\""])
+                {
+                    value=[NSNumber numberWithDouble:[(NSDate *)value timeIntervalSince1970]];
+                }
+            }    
+        }
+        [result setValue:value forKey:propertyName];
+    }
+    return result;
+}
+
+-(id)initWithDictionary:(NSDictionary *) dictionary
+{
+    if(!(self = [super init]))
+    {
+        return nil;
+    }
+    NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
+    for (NSString *propertyName in propeties.allKeys)
+    {
+        NSString *propertyType=[propeties valueForKey:propertyName];
+        NSString *typeName;           
+        for (NSString *key in dictionary.allKeys) {
+            if([key isEqualToString:propertyName])
+            {
+                id value = [dictionary valueForKey:propertyName]; 
+                if([propertyType hasPrefix:@"@"])//classTye
+                {
+                    if([typeName hasPrefix:@"@\"NSDate\""])
+                    {   value=[NSDate dateWithTimeIntervalSince1970:[(NSNumber *)value doubleValue]];
+                    }
+                } 
+                [self setValue:value forKey:propertyName];
+                break;
+            }
+        }
+    }
+    return self;
+}
 @end

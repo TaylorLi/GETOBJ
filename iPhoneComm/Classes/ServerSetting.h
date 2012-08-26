@@ -31,8 +31,9 @@
 #define kblueSideDesc 20
 #define kpassword 21
 #define kCurrentTime 22
+#define kServerRefresh 23
 
-@interface ServerSetting : NSObjectSerialization<NSCopying,NSCoding>
+@interface ServerSetting : NSObjectSerialization<NSCopying>
 {
     NSString *gameName;
     NSString *gameDesc;

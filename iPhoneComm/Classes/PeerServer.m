@@ -66,6 +66,7 @@
 {
     serverSession.available = NO;
     [serverSession disconnectFromAllPeers];
+    [serverSession setDataReceiveHandler: nil withContext: nil];
     serverSession=nil;
     svcSetting=nil;
 }

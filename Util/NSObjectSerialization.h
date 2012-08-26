@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObjectSerialization : NSObject<NSCoding>
-
+-(NSDictionary*) proxyForJson;
+-(id)initWithDictionary:(NSDictionary *) dictionary;
 @end

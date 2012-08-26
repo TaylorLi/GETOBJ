@@ -310,7 +310,7 @@
                     [section addCustomerCell:availScoreRefCountCell]; 
                     
                     NSMutableArray *bufferSecCounts=[[NSMutableArray alloc] init];
-                    for(float i=0.5;i<=2;i=i+0.1)
+                    for(float i=0.5;i<=2.1;i=i+0.1)
                     {
                         [bufferSecCounts addObject:[NSString stringWithFormat:@"%.1f",i]];
                     }
@@ -344,7 +344,7 @@
                     [section addCustomerCell:pointGapCell];                 
                     
                     NSMutableArray *pointGapEffCounts=[[NSMutableArray alloc] init];
-                    for(int i=si.startScreening;i<=(si.roundCount-1)*si.skipScreening+si.startScreening;i=i+si.skipScreening)
+                    for(int i=1;i<=si.roundCount;i=i+1)
                     {
                         [pointGapEffCounts addObject:[NSString stringWithFormat:@"%i",i]];
                     }
@@ -539,12 +539,19 @@
     ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
     SimplePickerInputTableViewCell *cellGapEff=[self getTableCellByTag:kpointGapAvailRound];
     NSMutableArray *pointGapEffCounts=[[NSMutableArray alloc] init];
-    for(int i=si.startScreening;i<=(si.roundCount-1)*si.skipScreening+si.startScreening;i=i+si.skipScreening)
+    for(int i=1;i<=si.roundCount;i=i+1)
     {
         [pointGapEffCounts addObject:[NSString stringWithFormat:@"%i",i]];
     }
     [cellGapEff reloadPicker:pointGapEffCounts];
-    si.pointGapAvailRound=[cellGapEff.value intValue];
+    int orgGap=[cellGapEff.value intValue];
+    if(orgGap>=si.roundCount){
+        if(si.roundCount>1)
+            orgGap=2;
+        else
+            orgGap=1;
+    }
+    si.pointGapAvailRound=orgGap;
 }
 -(void)refreshSkipRound{
     ServerSetting *si=[AppConfig getInstance].serverSettingInfo;

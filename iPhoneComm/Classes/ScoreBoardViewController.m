@@ -16,7 +16,6 @@
 #import "UIHelper.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DuringMatchSettingDetailControllerHD.h"
-#import "ShowWinnerBox.h"
 #import "SelectWinnerBox.h"
 #import "ScoreInfo.h"
 #import "ScoreHistoryInfo.h"
@@ -59,6 +58,7 @@
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 -(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType;
 -(void)resetTimeEnd:(id)sender;
+-(void)toggleReorignizeTimeBox;
 -(void)warningPlayer:(Boolean) isForRedSide andCount:(NSInteger) count;
 -(void)warningAddToBluePlayer;
 -(void)warningAddToRedPlayer;
@@ -70,7 +70,7 @@
 -(void)processByGameStatus;
 -(void) stopRoom;
 -(void)gamePauseContinueToggle;
--(void)gamePauseAndShowResetTimeBox;
+-(void)gamePauseAndShowReorignizeTimeBox;
 -(void)blueAddScore;
 -(void)blueMinusScore;
 -(void)redAddScore;
@@ -96,6 +96,7 @@
 -(BOOL)isGuestureEnable;
 -(void)processHearbeatWithClientUuid:(NSString *)uuid;
 -(BOOL)isDuringSleep: (NSString *)_sideKey andScoreKey:(NSString *)_scoreKey;
+-(BOOL)canSubmitControlCommand;
 @end 
 
 @implementation ScoreBoardViewController
@@ -415,7 +416,7 @@
     UIView *view=isBlue?viewBlueWarningBox:viewRedWarningBox;
     
     int warningCount=isBlue?chatRoom.gameInfo.blueSideWarning:chatRoom.gameInfo.redSideWarning;
-    int maxWarmingCount=chatRoom.gameInfo.gameSetting.maxWarningCount;
+    int maxWarmingCount=chatRoom.gameInfo.gameSetting.maxWarningCount+(chatRoom.gameInfo.gameSetting.maxWarningCount%2>0?1:0);
     float imgHeight=41.0;
     float imgWidth=76.0;
     float actWidth=62.0;
@@ -643,6 +644,20 @@
     }    
 }
 
+-(void)toggleReorignizeTimeBox{
+    if([self.view.subviews containsObject:roundResetPanel])
+    {
+         if([roundResetPanel.relatedData intValue]==krestAndReOrgTime)
+         {
+             [roundResetPanel hide];
+             [self resetTimeEnd:roundResetPanel.relatedData];
+         }
+    }
+    else{
+        [self gamePauseAndShowReorignizeTimeBox];
+    }
+}
+
 #pragma mark -
 #pragma mark score
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
@@ -677,7 +692,7 @@
     //    cmdHis = nil;
     //修改完
     //if(![self testPointGapReached])
-        //[self contiueGame];
+    //[self contiueGame];
 }
 
 -(void)submitScore:(ScoreInfo *)scoreInfo{
@@ -1091,35 +1106,41 @@
 //发送服务器状态，在服务器游戏状态变化时发送
 -(void)sendServerStatusAndDesc:(NSString *)desc
 {
-    chatRoom.gameInfo.serverLastHeartbeatDate=[NSDate date];
-    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_STATUS andFrom:nil
-                                                      andDesc:desc andData:[NSNumber numberWithInt:chatRoom.gameInfo.gameStatus] andDate:nil];
-    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+    if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone){
+        chatRoom.gameInfo.serverLastHeartbeatDate=[NSDate date];
+        CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_STATUS andFrom:nil
+                                                          andDesc:desc andData:[NSNumber numberWithInt:chatRoom.gameInfo.gameStatus] andDate:nil];
+        [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+    }
 }
 //发送完整服务器信息，主要用于首次与服务器沟通时
 -(void)sendServerWholeInfo
 {
-    GameInfo *gi=chatRoom.gameInfo;
-    CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_WHOLE_INFO andFrom:nil 
-                                                      andDesc:nil andData:gi andDate:nil];
-    [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+    if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone){
+        GameInfo *gi=chatRoom.gameInfo;
+        CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_SERVER_WHOLE_INFO andFrom:nil 
+                                                          andDesc:nil andData:gi andDate:nil];
+        [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
+    }
 }
 //发送心跳，不带任何额外信息
 -(void)sendServerHearbeat
-{
+{if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone){
     CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_HEARTBEAT andFrom:nil 
                                                       andDesc:nil andData:[NSNumber numberWithInt:chatRoom.gameInfo.gameStatus] andDate:nil];
     [chatRoom sendCommand:reconnectCmd andPeerId:nil andSendDataReliable:YES];
 }
+}
 //拒绝非法客户端连接
 -(void)sendDenyClientToConnectInfo:(JudgeClientInfo*)client
-{
+{if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone){
     if(client==nil)
         return;
     CommandMsg *reconnectCmd=[[CommandMsg alloc] initWithType:NETWORK_INVALID_CLIENT andFrom:nil 
                                                       andDesc:@"Invalid client" andData:nil andDate:nil];
     [chatRoom sendCommand:reconnectCmd andPeerId:client.peerId andSendDataReliable:YES];
     [chatRoom.bluetoothServer.serverSession disconnectPeerFromAllPeers:client.peerId];
+}
 }
 #pragma mark -
 #pragma mark RoomDelegate
@@ -1280,6 +1301,15 @@
     //取消原来的圆形菜单
     //[self setupMenu];
     [self setMenuByGameStatus:kStateWaitJudge];
+    //如果是非iphone作为客户端，直接视为已连接
+    if(chatRoom.gameInfo.gameSetting.currentJudgeDevice!=JudgeDeviceiPhone)  
+    {
+        for (int i=1; i<=chatRoom.gameInfo.gameSetting.judgeCount; i++) {
+            JudgeClientInfo *cltInfo=[[JudgeClientInfo alloc] initWithSessionId:@"TKD Score"andDisplayName:[NSString stringWithFormat:@"Referee %i",i] andUuid:[NSString stringWithFormat:@"%i",i] andPeerId:[NSString stringWithFormat:@"Referee Peer Id %i",i]];
+            cltInfo.hasConnected=YES;
+            [chatRoom.gameInfo.clients setValue:cltInfo forKey:cltInfo.uuid];
+        }           
+    }
     [self showWaitingUserBox];
     double inv=kServerLoopInterval;
     gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval:inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
@@ -1470,7 +1500,7 @@
     }
 }
 //pause game and show resetime box
--(void)gamePauseAndShowResetTimeBox
+-(void)gamePauseAndShowReorignizeTimeBox
 {
     if (chatRoom.gameInfo.gameStatus==kStateRunning || chatRoom.gameInfo.gameStatus==kStateCalcScore) {
         [self pauseGame];
@@ -1522,15 +1552,16 @@
     if (status==kStatePrepareGame||status==kStateGameExit||status== kStateGameEnd) {
         return;     
     } 
-    // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
-    if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
-        [self sendServerHearbeat];
+    if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone){
+        // once every 8 updates check if we have a recent heartbeat from the other player, and send a heartbeat packet with current state        
+        if(counter%(int)(kServerHeartbeatTimeInterval/kServerLoopInterval)==0) {            
+            [self sendServerHearbeat];
+        }
+        
+        if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
+            [self testSomeClientDisconnect];         
+        }    
     }
-    
-    if(counter%(int)(kServerTestClientHearbeatTime/kServerLoopInterval)==0){
-        [self testSomeClientDisconnect];         
-    }    
-    
 	[self processByGameStatus];
 }
 -(void)processByGameStatus
@@ -1564,10 +1595,9 @@
 }
 -(BOOL)testSomeClientDisconnect
 {    
-    NSLog(@"test client connected(elasped time)");
+    //NSLog(@"test client connected(elasped time)");
     BOOL hasDisconnect=NO;
     double inv=kServerTestClientHearbeatTime;
-    
     //NSLog(@"tesc disconnect:%i",chatRoom.gameInfo.clients.count);
     for (JudgeClientInfo *clt in chatRoom.gameInfo.clients.allValues) {
         //NSLog(@"test client %@ heartbeat(elasped time):%d",clt.displayName, fabs([clt.lastHeartbeatDate timeIntervalSinceNow]) >= inv);
@@ -1708,14 +1738,18 @@
 }
 -(void)showWinnerBoxForRedSide:(BOOL)isRedSide;
 {
+    [self pauseGame];
     [player playSoundWithFullPath:kSoundsCongratulation];
-    ShowWinnerBox *box=[[ShowWinnerBox alloc] initWithFrame:self.view.bounds title:@"Winner"];
-    box.gameInfo=chatRoom.gameInfo;
-    box.winnerIsRedSide=isRedSide;
-    [box bindSetting];
-    box.delegate=self;
-    [self.view addSubview:box];	
-    [box showFromPoint:[self.view center]];
+    if(showWinnerBoxPanel==nil)
+        showWinnerBoxPanel=[[ShowWinnerBox alloc] initWithFrame:self.view.bounds title:@"Winner"];
+    showWinnerBoxPanel.gameInfo=chatRoom.gameInfo;
+    showWinnerBoxPanel.winnerIsRedSide=isRedSide;
+    [showWinnerBoxPanel bindSetting];
+    showWinnerBoxPanel.delegate=self;
+    if(![self.view.subviews containsObject:showWinnerBoxPanel]){
+        [self.view addSubview:showWinnerBoxPanel];	
+        [showWinnerBoxPanel showFromPoint:[self.view center]];
+    }    
 }
 -(void)showWinnerEndAndNextRound:(id)data
 {
@@ -1723,4 +1757,139 @@
     [self goToNextMatch];
 }
 
+#pragma mark -
+#pragma mark Blue toothkey borad process
+
+-(BOOL)canSubmitControlCommand{
+    if(self.view.superview==nil)
+        return NO;
+    else
+        {
+            if([self.view.subviews containsObject:showWinnerBoxPanel])
+               return NO;
+               else
+               return YES;
+        }
+}
+/*
+ 最多4组裁判按键，每组8个按键，
+ 分别为：裁判1：A - H  4-11   控制结果 A(4):红+1 B:红+2 C:红+3 D:红+4 E:蓝+1 F:蓝+2 G:蓝+3 H(11):蓝+4
+ 裁判2：I - P  12-19  控制结果 I(12):红+1 J:红+2 K:红+3 L:红+4 M:蓝+1 N:蓝+2 O:蓝+3 P(19):蓝+4
+ 裁判3：Q - X  20-27  控制结果 Q:红+1 R:红+2 S:红+3 T:红+4 U:蓝+1 V:蓝+2 W:蓝+3 X:蓝+4
+ 裁判4：-+[]\;'~  45-49 51-53 -(45):红+1 +(46):红+2 [(47)红+3 ](48)红+4 \(49)蓝+1 ;(51)蓝+2 '(52)蓝+3 ~(53)蓝+4
+ 
+ 数字按键用来与配对蓝牙键盘时使用
+ 功能键：
+ 空格键（44） 比赛开始或者暂停、继续切换 Star Stop.
+ 斜杠键/(56) 显示或者隐藏休整时间 Injury Timer Start Stop.
+ Num 0(39) 红方加1警告 Red Warning.
+ Num 1(30) 蓝方加1警告 Blue Warning.
+ Num 2(31) 红方扣1分（两次警告） Red Penalty Deduction.
+ Num 3(32) 蓝方扣1分（两次警告） Blue Penalty Deduction.
+ Num 4(33) 红方加1分 Red Add Point Override.
+ Num 5(34) 蓝方加1分 Blue Add Point Override.
+ Num 6(35) 红方减1分 Red Deduct Point Override.
+ Num 7(36) 蓝方减1分 Blue Deduct Point Override.
+ Num 8(37) 红方胜利 Red Win Override.
+ Num 9(38) 蓝方胜利 Blue Win Override.
+ */
+-(void)bluetoothKeyboardPressed:(KeyBoradEventInfo *)keyboardArgv
+{
+    if(keyboardArgv.keyCode==GSEVENTKEY_KEYCODE_SNL_SPACE)
+    {
+        if(!chatRoom.gameInfo.gameStart)
+        {
+            if([self.view.subviews containsObject:waitUserPanel])   
+                [waitUserPanel startGame:nil];
+        }
+        else{          
+            [self gamePauseContinueToggle];
+        }
+        return;
+    }
+    if(!chatRoom.gameInfo.gameStart)
+        return;
+    switch (keyboardArgv.keyCode) {
+        case GSEVENTKEY_KEYCODE_SNL_SLASH:
+            if([self canSubmitControlCommand])
+            [self toggleReorignizeTimeBox];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_0:
+            if([self canSubmitControlCommand])
+            [self warningAddToRedPlayer];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_1:
+            if([self canSubmitControlCommand])
+            [self warningAddToBluePlayer];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_2:
+            if([self canSubmitControlCommand]){
+            [self warningAddToRedPlayer];
+            [self warningAddToRedPlayer];
+                }
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_3:
+            if([self canSubmitControlCommand]){
+            [self warningAddToBluePlayer];
+            [self warningAddToBluePlayer];
+                }
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_4:
+            if([self canSubmitControlCommand])
+            [self redAddScore];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_5:
+            if([self canSubmitControlCommand])
+             [self blueAddScore];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_6:
+            if([self canSubmitControlCommand])
+             [self redMinusScore];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_7:
+            if([self canSubmitControlCommand])
+            [self blueMinusScore];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_8:
+            [self showWinnerBoxForRedSide:YES];
+            return;
+        case GSEVENTKEY_KEYCODE_NUM_9:
+            [self showWinnerBoxForRedSide:NO];
+            return;
+        default:
+            break;
+    }
+    if(chatRoom.gameInfo.gameStatus==kStateCalcScore || chatRoom.gameInfo.gameStatus==kStateRunning)
+    {
+        if((keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_ALP_A&&keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_ALP_X)|| (keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH)||(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_SEMICOLON && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_Wave))
+        {
+            short refreedNum=(keyboardArgv.keyCode-4)/8+1;//对应哪个裁判
+            short cmdNum=(keyboardArgv.keyCode-4)%8; //对应哪个命令，0-7
+            if(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS){
+                refreedNum=4;
+                if(keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH){
+                    cmdNum=(keyboardArgv.keyCode-GSEVENTKEY_KEYCODE_SNL_HYPHENS)%8;
+                }
+                else{
+                    cmdNum=(keyboardArgv.keyCode-1-GSEVENTKEY_KEYCODE_SNL_HYPHENS)%8;
+                }
+            }
+            
+            if(refreedNum>chatRoom.gameInfo.gameSetting.judgeCount)//如果大于指定裁判数量的按键，视为无效
+                return;
+            BOOL isRedSide=cmdNum<4;
+            short score=cmdNum%4+1;
+            ScoreInfo  *scoreInfo ;
+            if(isRedSide)
+                scoreInfo = [[ScoreInfo alloc] initWithRedSide:score andDateNow:nil];
+            else
+                scoreInfo=[[ScoreInfo alloc] initWithBlueSide:score andDateNow:nil];                                        
+            CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:
+                             [NSString stringWithFormat:@"%i",refreedNum] andDesc:nil andData:[scoreInfo proxyForJson] andDate:[NSDate date]];
+            [self processCmd:cmd];
+        }
+    }
+    
+    //[UIHelper showAlert:@"" message:keyboardArgv.description func:nil];
+}
 @end

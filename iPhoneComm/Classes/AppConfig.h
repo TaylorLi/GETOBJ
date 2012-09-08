@@ -46,6 +46,7 @@
 //当前进行的比赛信息
 @property(strong,nonatomic) GameInfo *currentGameInfo;
 @property (nonatomic) AppStep currentAppStep;
+//@property (nonatomic) JudgeDevice currentJudgeDevice;
 @property BOOL isGameStart;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;

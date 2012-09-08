@@ -118,6 +118,7 @@
 {
     LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[AppConfig getInstance].currentGameInfo.gameSetting]];
     [AppConfig getInstance].currentGameInfo=room.gameInfo;
+    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
@@ -180,7 +181,7 @@
             if(detailController1==nil){                    
                 detailController1 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
                 [detailController1 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-                    TimePickerTableViewCell *roundTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Round time" title:NSLocalizedString(@"Round Time", @"Round Time") selectValue:si.roundTime maxTime:600 minTime:0 interval:10];
+                    TimePickerTableViewCell *roundTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Round time" title:NSLocalizedString(@"Round Time", @"Round Time") selectValue:si.roundTime maxTime:600 minTime:10 interval:10];
                     roundTime.tag=kroundTime;
                     roundTime.delegate=selfCtl;
                     [section addCustomerCell:roundTime];
@@ -373,7 +374,29 @@
                     joinPwdCell.textField.secureTextEntry=YES;
                     joinPwdCell.delegate=selfCtl;
                     [section addCustomerCell:joinPwdCell];
-                    
+                }];
+                [detailController4 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                    NSArray *clientDeviceType=[[NSArray alloc] initWithObjects:@"iPod or iPhone",@"Peripheral Device", nil];
+                    NSString *currentDeviceType;
+                    switch (si.currentJudgeDevice) {
+                        case JudgeDeviceiPhone:
+                            currentDeviceType=@"iPod or iPhone";
+                            break;
+                        case JudgeDeviceKeyboard:
+                            currentDeviceType=@"Peripheral Device";
+                            break;
+                        case JudgeDeviceHeadphone:
+                            currentDeviceType=@"Headphone Device";
+                            break;
+                        default:
+                            break;
+                    }
+                    SimplePickerInputTableViewCell *deviceCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Referee Device Type", @"Referee Device Type") selectValue:currentDeviceType dataSource:clientDeviceType];
+                    deviceCell.tag=kDeviceType;
+                    deviceCell.delegate=selfCtl;
+                    [section addCustomerCell:deviceCell]; 
+                }];
+                [detailController4 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
                         staticContentCell.cellStyle = UITableViewCellStyleValue1;
@@ -508,6 +531,14 @@
             break;
         case kpointGapAvailRound:
             si.pointGapAvailRound=[value intValue];
+            break;
+        case  kDeviceType:
+            if(value==@"Peripheral Device")
+                si.currentJudgeDevice=JudgeDeviceKeyboard;
+            else if(value==@"Headphone Device")
+                si.currentJudgeDevice=JudgeDeviceHeadphone ;
+            else
+                si.currentJudgeDevice=JudgeDeviceiPhone;
             break;
         default:
             break;

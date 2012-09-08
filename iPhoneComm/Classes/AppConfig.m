@@ -43,6 +43,7 @@ static AppConfig* instance;
 //当前比赛信息
 @synthesize currentGameInfo;
 @synthesize isGameStart;
+//@synthesize currentJudgeDevice;
 
 // Initialization
 - (id) init {
@@ -55,6 +56,7 @@ static AppConfig* instance;
     //invalidServerPeerIds=[[NSMutableSet alloc] init];
     uuid=[[UIDevice currentDevice] uniqueDeviceIdentifier];
     currentAppStep=AppStepStart;
+    //currentJudgeDevice=JudgeDeviceKeyboard;
     isGameStart=NO;
   return self;
 }
@@ -78,7 +80,7 @@ static AppConfig* instance;
 {
     // Return YES for supported orientations
     if([AppConfig getInstance].isIPAD)
-        return interfaceOrientation== UIInterfaceOrientationLandscapeRight||interfaceOrientation== UIInterfaceOrientationLandscapeLeft;
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
     else
         return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
 }

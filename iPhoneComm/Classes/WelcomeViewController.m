@@ -106,5 +106,4 @@
         [[ChattyAppDelegate getInstance] showRoomSelection];
 	return YES;
 }
-
 @end

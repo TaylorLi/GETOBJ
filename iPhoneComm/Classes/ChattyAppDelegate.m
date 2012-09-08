@@ -33,13 +33,16 @@
 #import "UIHelper.h"
 #import "AppConfig.h"
 #import <GameKit/GameKit.h>
+#import "KeyBoradEventInfo.h"
 
 static ChattyAppDelegate* _instance;
 
 @interface ChattyAppDelegate()
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
+/*
 -(void)detectBluetoothStatus;
 -(void)testNetworkStatus;
+*/
 -(void)processByAppStatus;
 @end
 
@@ -69,15 +72,33 @@ static ChattyAppDelegate* _instance;
     
     // 监测网络情况
     
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
+    NSMutableArray * discoveredPeripherals = [NSMutableArray new];
+    centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    [centralManager scanForPeripheralsWithServices:discoveredPeripherals options:options];
+    /* 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name: kReachabilityChangedNotification
+                                               object: nil];
+    */
+    //蓝牙键盘监听事件
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardPress:)
+                                                 name: @"UIEventGSEventKeyUpNotification"
+                                               object: nil];
+    
     wifiReach = [Reachability reachabilityForLocalWiFi];	
-    btManager = [BluetoothManager sharedInstance];
-    [self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
+    [wifiReach startNotifier];
+    //btManager = [BluetoothManager sharedInstance];
+    //[self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
     welcomeViewController=nil;
 }
 
 - (void)dealloc {
-    
+    centralManager=nil;
 }
 
 
@@ -138,6 +159,7 @@ static ChattyAppDelegate* _instance;
                                               otherButtonTitles:nil];
     [alertView show];
 }
+/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [btManager setPowered:YES];
@@ -172,7 +194,9 @@ static ChattyAppDelegate* _instance;
         return ; 
     }    
 }
+*/
 /*wifi status change*/
+/*
 - (void)reachabilityChanged:(NSNotification *)note {
     Reachability* curReach = [note object];
     NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
@@ -186,9 +210,26 @@ static ChattyAppDelegate* _instance;
         }];
     }
 }
-
+*/
+-(void)keyboardPress:(NSNotification *)note {
+   NSDictionary *info= [note userInfo];
+    KeyBoradEventInfo *keyArgv=[[KeyBoradEventInfo alloc] init];
+    keyArgv.keyCode=[((NSNumber *)[info objectForKey:@"keycode"]) shortValue];
+    keyArgv.control=[((NSNumber *)[info objectForKey:@"control"]) boolValue];
+ keyArgv.command=[((NSNumber *)[info objectForKey:@"command"]) boolValue];
+     keyArgv.option=[((NSNumber *)[info objectForKey:@"option"]) boolValue];
+     keyArgv.shift=[((NSNumber *)[info objectForKey:@"shift"]) boolValue];
+    keyArgv.keyDesc=[UtilHelper getKeyCodeDesc:keyArgv.keyCode];
+    NSLog(@"%@",keyArgv);
+    AppConfig *config = [AppConfig getInstance];
+    if(config.currentAppStep==AppStepServer && scoreBoardViewController.chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceKeyboard)
+    {
+        [scoreBoardViewController bluetoothKeyboardPressed:keyArgv];
+    }
+}
 
 /* Bluetooth notifications */
+/*
 - (void)bluetoothAvailabilityChanged:(NSNotification *)notification {
     BluetoothManager *blManager=[BluetoothManager sharedInstance];
     NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
@@ -198,7 +239,36 @@ static ChattyAppDelegate* _instance;
             [self processByAppStatus];
         }];
 }
+*/ 
 
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
+{
+    
+}
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    
+}
 #pragma mark -
 #pragma mark AppDelegate
 
@@ -208,15 +278,16 @@ static ChattyAppDelegate* _instance;
     if([UtilHelper isFileExist:KEY_FILE_SETTING])
     {
         [AppConfig getInstance].currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
-        NSLog(@"Game Info:%@",[AppConfig getInstance].currentGameInfo);
+        //NSLog(@"Game Info:%@",[AppConfig getInstance].currentGameInfo);
     }
+    
 }
 -(void)applicationWillResignActive:(UIApplication *)application
 {
     NSLog(@"Resign Active");
     GameInfo *gi=[AppConfig getInstance].currentGameInfo;
-    NSLog(@"Game Info:%@",gi);
-    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:gi dataKey:KEY_FILE_SETTING_GAME_INFO];
+    //NSLog(@"Game Info:%@",gi);
+    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:gi dataKey:KEY_FILE_SETTING_GAME_INFO];    
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -227,8 +298,6 @@ static ChattyAppDelegate* _instance;
 -(void)applicationWillEnterForeground:(UIApplication *)application
 {
     NSLog(@"Enter Foreround");
-    BluetoothManager *blManager=[BluetoothManager sharedInstance];
-    NSLog(@"Retest BT State: %d", [ blManager enabled]);
     [self processByAppStatus];
     return;
 }

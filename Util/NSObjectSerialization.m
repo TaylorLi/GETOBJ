@@ -28,8 +28,12 @@
     {        
         for (NSString *name in [Reflection getNameOfProperties:[self class]])
         {
-            id value = [decoder decodeObjectForKey:name];   
-            [self setValue:value forKey:name];
+            id value = [decoder decodeObjectForKey:name];
+            @try{
+                [self setValue:value forKey:name];
+            }@catch (NSException *ex) {
+               NSLog(@"%@",ex) ;
+            }
         }
     }
     return self;

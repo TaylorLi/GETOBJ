@@ -12,6 +12,7 @@
 
 @interface UIHelper : NSObject
 +(void) showAlert:(NSString*) title message:(NSString*)msg func:(void(^)(AlertView* a, NSInteger i))block;
++(void) showConfirm:(NSString*) title message:(NSString*)msg doneText:(NSString *)doneText doneFunc:(void(^)(AlertView* a, NSInteger i))doneBlock cancelText:(NSString *)cancelText cancelfunc:(void(^)(AlertView* a, NSInteger i))block;
 + (void)setTextFieldErrorCss:(UITextField*)txtField isError:(BOOL)error;
 + (BOOL)validateTextFieldErrorCss:(UITextField*)txtField;
 +(BOOL) alternateTextField:(NSArray *)views;

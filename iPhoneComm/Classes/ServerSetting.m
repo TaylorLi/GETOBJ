@@ -23,6 +23,7 @@
 @synthesize roundCount;
 @synthesize judgeCount;
 @synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
+@synthesize currentJudgeDevice;
 
 -(NSString *)description
 {
@@ -62,6 +63,7 @@
     maxWarningCount=8;
     restAndReorganizationTime=60;
     serverLoopMaxDelay = 1;
+    currentJudgeDevice= JudgeDeviceiPhone;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime

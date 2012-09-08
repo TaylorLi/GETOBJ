@@ -32,7 +32,7 @@
 @property (strong,nonatomic) UITableViewController *detailControllerJudge;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMainMenu;
 @property (strong,nonatomic) GameInfo *orgGameInfo;
-@property (nonatomic) NSTimeInterval currentRoundTime;
+@property (nonatomic) NSTimeInterval currentRemainTime;
 @property (strong,nonatomic) UIButton *btnRestartServer;
 
 - (IBAction)touchSaveButton;

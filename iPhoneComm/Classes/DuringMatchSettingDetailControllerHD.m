@@ -34,7 +34,7 @@
 
 @synthesize toolbar, popoverController, detailItem;
 @synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer;
-@synthesize orgGameInfo,currentRoundTime,btnRestartServer;
+@synthesize orgGameInfo,currentRemainTime,btnRestartServer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -126,15 +126,15 @@
 #pragma mark Bind Table Cells 
 -(void) bindSettingGroupData:(int)group
 {
-     __weak GameInfo *gameInfo= orgGameInfo;
-     __weak ServerSetting *si=gameInfo.gameSetting;
+    __weak GameInfo *gameInfo= orgGameInfo;
+    __weak ServerSetting *si=gameInfo.gameSetting;
     __weak DuringMatchSettingDetailControllerHD *selfCtl=self;
     switch (group) {
         case 0:{
             if(detailControllerMatch==nil){                    
                 detailControllerMatch =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
                 [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-                    TimePickerTableViewCell *roundTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Round time" title:NSLocalizedString(@"Round Time", @"Round Time") selectValue:si.roundTime maxTime:600 minTime:0 interval:10];
+                    TimePickerTableViewCell *roundTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Round time" title:NSLocalizedString(@"Round Time", @"Round Time") selectValue:si.roundTime maxTime:600 minTime:10 interval:10];
                     roundTime.tag=kroundTime;
                     roundTime.delegate=selfCtl;
                     [section addCustomerCell:roundTime];
@@ -166,8 +166,8 @@
                 }];   
                 
                 [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-                    TimePickerTableViewCell *currentTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Current time" title:NSLocalizedString(@"Current Time", @"Current Time") selectValue:gameInfo.gameSetting.roundTime - gameInfo.currentRemainTime maxTime:si.roundTime minTime:0 interval:1];
-                    selfCtl.currentRoundTime=gameInfo.gameSetting.roundTime - gameInfo.currentRemainTime;
+                    TimePickerTableViewCell *currentTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Remain time" title:NSLocalizedString(@"Remain Time", @"Remain Time") selectValue:gameInfo.currentRemainTime maxTime:si.roundTime minTime:1 interval:1];
+                    selfCtl.currentRemainTime=gameInfo.currentRemainTime;
                     currentTime.tag=kCurrentTime;
                     currentTime.delegate=selfCtl;
                     [section addCustomerCell:currentTime];
@@ -248,7 +248,7 @@
             if(detailControllerMainMenu==nil){
                 detailControllerMainMenu =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 [detailControllerMainMenu addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {                    
-                                       
+                    
                     [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
                         staticContentCell.cellStyle = UITableViewCellStyleValue1;
@@ -278,7 +278,7 @@
                     } whenSelected:^(NSIndexPath *indexPath) {
                         //TODO			
                     }];
-
+                    
                     
                 }];
             }
@@ -347,7 +347,7 @@
             isChangeSetting=YES;
             break;               
         case kCurrentTime:
-            currentRoundTime=value;
+            currentRemainTime=value;
             isChangeSetting=YES;
             break;  
     }
@@ -355,7 +355,7 @@
 -(void)refreshCurrentTime
 {
     TimePickerTableViewCell *currentTime=[self getTableCellByTag:kCurrentTime];
-   currentRoundTime = [currentTime reloadPickerWithselectValue:currentRoundTime maxTime:orgGameInfo.gameSetting.roundTime minTime:0 interval:1];
+    currentRemainTime = [currentTime reloadPickerWithselectValue:currentRemainTime maxTime:orgGameInfo.gameSetting.roundTime minTime:1 interval:1];
 }
 - (void)valueChanged:(UISwitch *)theSwitch {
     orgGameInfo.gameSetting.enableGapScore=theSwitch.isOn;
@@ -371,9 +371,9 @@
 
 -(void) backToHome
 {
-   AlertView *confirmBox= [[AlertView alloc] initWithTitle:NSLocalizedString(@"Warmning", @"") message:NSLocalizedString(@"Do you want to end this game?", @"")];
+    AlertView *confirmBox= [[AlertView alloc] initWithTitle:NSLocalizedString(@"Warmning", @"") message:NSLocalizedString(@"Do you want to end this game?", @"")];
     [confirmBox addButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:[^(AlertView* a, NSInteger i){
-     
+        
     } copy]];
     [confirmBox addButtonWithTitle:NSLocalizedString(@"Exit", @"") block:[^(AlertView* a, NSInteger i){
         [relateGameServer exit];
@@ -384,17 +384,17 @@
 -(void)endMatch
 {
     /*
-    AlertView *confirmBox= [[AlertView alloc] initWithTitle:NSLocalizedString(@"Information", @"") message:NSLocalizedString(@"Do you want to goto next match?", @"")];
-    [confirmBox addButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:[^(AlertView* a, NSInteger i){
-        
-    } copy]];
-    [confirmBox addButtonWithTitle:NSLocalizedString(@"Go", @"") block:[^(AlertView* a, NSInteger i){
-        [self saveSetting];
-        [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
-        [relateGameServer goToNextMatch];
-    } copy]];
-    [confirmBox show];
-    */
+     AlertView *confirmBox= [[AlertView alloc] initWithTitle:NSLocalizedString(@"Information", @"") message:NSLocalizedString(@"Do you want to goto next match?", @"")];
+     [confirmBox addButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:[^(AlertView* a, NSInteger i){
+     
+     } copy]];
+     [confirmBox addButtonWithTitle:NSLocalizedString(@"Go", @"") block:[^(AlertView* a, NSInteger i){
+     [self saveSetting];
+     [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
+     [relateGameServer goToNextMatch];
+     } copy]];
+     [confirmBox show];
+     */
     [[ChattyAppDelegate getInstance] swithView:relateGameServer.view]; 
     [relateGameServer duringSettingEndPress];
 }
@@ -405,14 +405,17 @@
         GameInfo *currSetting=  relateGameServer.chatRoom.gameInfo;
         currSetting.gameSetting.roundTime=orgGameInfo.gameSetting.roundTime;
         currSetting.gameSetting.restTime=orgGameInfo.gameSetting.restTime;
-        currSetting.currentRemainTime=currSetting.gameSetting.roundTime-currentRoundTime;
+        currSetting.currentRemainTime=currentRemainTime;
         if(currSetting.currentRemainTime<0)
             currSetting.currentRemainTime=0;
+        else if(currSetting.currentRemainTime>currSetting.gameSetting.roundTime)
+            currSetting.currentRemainTime=currSetting.gameSetting.roundTime;
         currSetting.gameSetting.availTimeDuringScoreCalc=orgGameInfo.gameSetting.availTimeDuringScoreCalc;
         currSetting.gameSetting.enableGapScore=orgGameInfo.gameSetting.enableGapScore;
         currSetting.gameSetting.pointGap=orgGameInfo.gameSetting.pointGap;
         currSetting.gameSetting.pointGapAvailRound=orgGameInfo.gameSetting.pointGapAvailRound;
         currSetting.gameSetting.screeningArea=orgGameInfo.gameSetting.screeningArea;
+        [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
     }
 }
 
@@ -426,11 +429,11 @@
 -(void) cancelSave
 {
     if(relateGameServer.view!=nil)
-        {
+    {
         
-    [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
-    [relateGameServer updateForGameSetting:NO];
-            }
+        [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
+        [relateGameServer updateForGameSetting:NO];
+    }
     else{
         [[ChattyAppDelegate getInstance] showGameSettingView];
     }
@@ -438,7 +441,7 @@
 
 -(void)restartServer
 {
-   UITableViewCell *cell= [self getTableCellByTag:kServerRefresh];
+    UITableViewCell *cell= [self getTableCellByTag:kServerRefresh];
     btnRestartServer.hidden=YES;
     UIActivityIndicatorView *loading=  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     loading.frame=CGRectMake(0, 0, 32, 32);
@@ -511,43 +514,50 @@
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
-            cell.textLabel.text=@"Refresh server";
-            if(btnRestartServer==nil){
-                btnRestartServer = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                [btnRestartServer setTitle:@"Refresh" forState:UIControlStateNormal];
-                [btnRestartServer setFrame:CGRectMake(0, 0, 100, 35)];                     
-                [btnRestartServer  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
-                btnRestartServer.tag=1;
+            if(relateGameServer.chatRoom.gameInfo.gameSetting.currentJudgeDevice== JudgeDeviceiPhone){
+                cell.textLabel.text=@"Refresh server";
+                if(btnRestartServer==nil){
+                    btnRestartServer = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    [btnRestartServer setTitle:@"Refresh" forState:UIControlStateNormal];
+                    [btnRestartServer setFrame:CGRectMake(0, 0, 100, 35)];                     
+                    [btnRestartServer  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
+                    btnRestartServer.tag=1;
+                }
+                cell.accessoryView = btnRestartServer;       
             }
-            cell.accessoryView = btnRestartServer;       
+            else{
+                cell.textLabel.text=@"Referee Info";
+            }
             cell.tag=kServerRefresh;
         }        
         return cell;
     }
-        else{
-    static NSString* serverListIdentifier = @"JudgeListIdentifier";
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
-	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
-	}
-    JudgeClientInfo *cltInfo=[relateGameServer.chatRoom.gameInfo.clients objectForKey:[relateGameServer.chatRoom.gameInfo.clients.allKeys objectAtIndex: indexPath.row]];
-    
-    UIImage *img;
-    if (cltInfo.hasConnected) {
-        cell.textLabel.textColor=[UIColor darkTextColor];
-        img=[UIImage imageNamed:@"circle_green.png"];
-        cell.textLabel.text=cltInfo.displayName;
-    }
     else{
-        cell.textLabel.textColor=[UIColor redColor];
-        img=[UIImage imageNamed:@"circle_red.png"];
-        cell.textLabel.text=[NSString stringWithFormat:@"%@!%", cltInfo.displayName];
-    }
-    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    imgView.image=img;
-    cell.accessoryView=imgView;
-    return cell;
+        static NSString* serverListIdentifier = @"JudgeListIdentifier";
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
         }
+        JudgeClientInfo *cltInfo=[[relateGameServer.chatRoom.gameInfo.clients.allValues sortedArrayUsingComparator:^(id obj1, id obj2){
+            return [((JudgeClientInfo *)obj1).displayName compare:((JudgeClientInfo *)obj2).displayName options:NSWidthInsensitiveSearch];
+        }] objectAtIndex: indexPath.row];
+        
+        UIImage *img;
+        if (cltInfo.hasConnected) {
+            cell.textLabel.textColor=[UIColor darkTextColor];
+            img=[UIImage imageNamed:@"circle_green.png"];
+            cell.textLabel.text=cltInfo.displayName;
+        }
+        else{
+            cell.textLabel.textColor=[UIColor redColor];
+            img=[UIImage imageNamed:@"circle_red.png"];
+            cell.textLabel.text=[NSString stringWithFormat:@"%@!%", cltInfo.displayName];
+        }
+        UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        imgView.image=img;
+        cell.accessoryView=imgView;
+        return cell;
+    }
 }
 
 -(void)refreshJudges{

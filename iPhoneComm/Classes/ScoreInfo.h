@@ -21,4 +21,5 @@
 -(id) initWithRedSide:(int)_redScore andDateNow:(NSDate *)_datenow;
 -(id) initWithInfo:(SwipeType)_swipeType andBlueScore:(int)_blueScore andRedScore:(int)_redScore andDateNow:(NSDate *)_datenow;
 -(id)initWithDictionary:(NSDictionary *) disc;
+-(NSDictionary*) proxyForJson;
 @end

@@ -639,8 +639,8 @@ else{
 }
 -(void)tryToReconnect
 {
-    [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
     if(!isExit&&[AppConfig getInstance].isGameStart&&(!chatRoom.bluetoothClient.gameSession.isAvailable||![chatRoom isConnected])){
+        [self showConnectingBox:YES andTitle:@"Try to reconnect for server..."];
         isReconnect=YES;            
         [self retryConnect];
     }

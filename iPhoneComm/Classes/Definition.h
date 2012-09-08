@@ -72,9 +72,61 @@ typedef enum{
     
 } AppStep;
 
+typedef enum {
+    JudgeDeviceiPhone=0,
+    JudgeDeviceKeyboard=1,
+    JudgeDeviceHeadphone=2,
+} JudgeDevice;
+
 #define KEY_FILE_SETTING @"app_info"
 #define KEY_FILE_SETTING_GAME_INFO @"game_info"
 
+/*蓝牙键盘按键*/
+#define GSEVENTKEY_KEYCODE_ALP_A 4
+#define GSEVENTKEY_KEYCODE_ALP_H 11
+#define GSEVENTKEY_KEYCODE_ALP_X 27
+#define GSEVENTKEY_KEYCODE_ALP_Z 29
+#define GSEVENTKEY_KEYCODE_NUM_1 30
+#define GSEVENTKEY_KEYCODE_NUM_2 31
+#define GSEVENTKEY_KEYCODE_NUM_3 32
+#define GSEVENTKEY_KEYCODE_NUM_4 33
+#define GSEVENTKEY_KEYCODE_NUM_5 34
+#define GSEVENTKEY_KEYCODE_NUM_6 35
+#define GSEVENTKEY_KEYCODE_NUM_7 36
+#define GSEVENTKEY_KEYCODE_NUM_8 37
+#define GSEVENTKEY_KEYCODE_NUM_9 38
+#define GSEVENTKEY_KEYCODE_NUM_0 39
+
+#define GSEVENTKEY_KEYCODE_SNL_HYPHENS 45 //-
+#define GSEVENTKEY_KEYCODE_SNL_REVSLASH 49 //'\'
+#define GSEVENTKEY_KEYCODE_SNL_SEMICOLON 51 //；
+#define GSEVENTKEY_KEYCODE_SNL_Wave 53 //~
+#define GSEVENTKEY_KEYCODE_SNL_SLASH 56 // /
+#define GSEVENTKEY_KEYCODE_SNL_SPACE 44
+
+/* 
+ @"-",@"45",
+ @"+",@"46",
+ @"[",@"47",
+ @"]",@"48",
+ @"\\",@"49", 
+ @";",@"51",
+ @"'",@"52",
+ @"~",@"53",
+ @",",@"54",
+ @".",@"55",
+ @"/",@"56",
+ */
+
+/*
+ 最多4组裁判按键，每组8个按键，
+ 分别为：裁判1：A - H  4-11
+       裁判2：I - P  12-19
+       裁判3：Q - X  20-27
+       裁判4：-+[]\;'~  45-49 51-53
+ 
+ 数字按键用来与配对蓝牙键盘时使用
+ */
 @interface Definition : NSObject
 
 @end

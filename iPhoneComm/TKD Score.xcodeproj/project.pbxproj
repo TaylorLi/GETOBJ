@@ -321,8 +321,16 @@
 		DAEA507C15E0900D00ACB1AD /* marks_gray_7.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507215E0900D00ACB1AD /* marks_gray_7.png */; };
 		DAEA507D15E0900D00ACB1AD /* marks_gray_8.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507315E0900D00ACB1AD /* marks_gray_8.png */; };
 		DAEA507E15E0900D00ACB1AD /* marks_gray_9.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507415E0900D00ACB1AD /* marks_gray_9.png */; };
+		DAEB1E8515F8D22A00CE98C7 /* DefinedUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEB1E8615F8D22A00CE98C7 /* DefinedUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEB1E8A15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */; };
+		DAEB1E8B15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */; };
+		DAEB1E8E15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */; };
+		DAEB1E8F15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */; };
 		DAEBBF5A15EA352000C0A69C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBBF5915EA352000C0A69C /* Default.png */; };
 		DAEBBF5E15EA35AC00C0A69C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBBF5C15EA352D00C0A69C /* Default@2x.png */; };
+		DAEBBF6015EA4BAB00C0A69C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */; };
+		DAEBBF6315EA4BC200C0A69C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */; };
 		DAEC18EA15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEC18EB15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEC18EC15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -536,10 +544,6 @@
 		DAE7E4DD15B9A7EE009B456F /* 54-lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "54-lock.png"; path = "Images/54-lock.png"; sourceTree = "<group>"; };
 		DAE7E4E615B9BD46009B456F /* UIPasswordBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIPasswordBox.h; path = ../../Controls/GET/UIPasswordBox.h; sourceTree = "<group>"; };
 		DAE7E4E715B9BD46009B456F /* UIPasswordBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPasswordBox.m; path = ../../Controls/GET/UIPasswordBox.m; sourceTree = "<group>"; };
-		DAE7E6AD15B81E4E00363399 /* BluetoothAudioJack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothAudioJack.h; path = ../BluetoothManager/BluetoothAudioJack.h; sourceTree = "<group>"; };
-		DAE7E6AE15B81E4E00363399 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothDevice.h; path = ../BluetoothManager/BluetoothDevice.h; sourceTree = "<group>"; };
-		DAE7E6AF15B81E4E00363399 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BluetoothManager.h; path = ../BluetoothManager/BluetoothManager.h; sourceTree = "<group>"; };
-		DAE7E6B015B81E4E00363399 /* CDStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDStructures.h; path = ../BluetoothManager/CDStructures.h; sourceTree = "<group>"; };
 		DAE7E6B315B8223100363399 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = SDKROOT; };
 		DAE7E6B515B82C9000363399 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
 		DAE7E70C15B82DE900363399 /* ScoreControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreControlView.xib; path = "Resources-iPad/ScoreControlView.xib"; sourceTree = "<group>"; };
@@ -643,8 +647,16 @@
 		DAEA507215E0900D00ACB1AD /* marks_gray_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_7.png; path = "Resources-iPad/Images/marks_gray_7.png"; sourceTree = "<group>"; };
 		DAEA507315E0900D00ACB1AD /* marks_gray_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_8.png; path = "Resources-iPad/Images/marks_gray_8.png"; sourceTree = "<group>"; };
 		DAEA507415E0900D00ACB1AD /* marks_gray_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_9.png; path = "Resources-iPad/Images/marks_gray_9.png"; sourceTree = "<group>"; };
+		DAEB1E8315F8D22A00CE98C7 /* DefinedUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinedUIApplication.h; sourceTree = "<group>"; };
+		DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinedUIApplication.m; sourceTree = "<group>"; };
+		DAEB1E8815F8EB1A00CE98C7 /* KeyBoradEventInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyBoradEventInfo.h; sourceTree = "<group>"; };
+		DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyBoradEventInfo.m; sourceTree = "<group>"; };
+		DAEB1E8C15F904E100CE98C7 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
+		DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
 		DAEBBF5915EA352000C0A69C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DAEBBF5C15EA352D00C0A69C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		DAEBBF6115EA4BB900C0A69C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DAEC18E615D76A1D00C13772 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
 		DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		DAEC18E815D76A1D00C13772 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
@@ -675,6 +687,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAEBBF6015EA4BAB00C0A69C /* CoreBluetooth.framework in Frameworks */,
 				DA93459D15E0FD3200A4B99B /* AVFoundation.framework in Frameworks */,
 				DA20D20215D16CF500FB22B9 /* AudioToolbox.framework in Frameworks */,
 				DAE4992B15BA829F00C21671 /* QuartzCore.framework in Frameworks */,
@@ -692,6 +705,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAEBBF6315EA4BC200C0A69C /* CoreBluetooth.framework in Frameworks */,
 				DA93459B15E0FD2C00A4B99B /* AVFoundation.framework in Frameworks */,
 				DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */,
 				DAE4992A15BA829500C21671 /* QuartzCore.framework in Frameworks */,
@@ -786,6 +800,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAEBBF6115EA4BB900C0A69C /* CoreData.framework */,
+				DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */,
 				DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */,
 				DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */,
 				DA00F37E15A9DC92005B2F4B /* icon.png */,
@@ -859,6 +875,8 @@
 				DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */,
 				DAEFCDCE15E9B20600F70994 /* Reflection.h */,
 				DAEFCDCF15E9B20600F70994 /* Reflection.m */,
+				DAEB1E8C15F904E100CE98C7 /* NSDictionary+Extendtion.h */,
+				DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -898,6 +916,8 @@
 				DAABDDE115DF4AA900501D46 /* SelectWinnerBox.m */,
 				DAABDDE415DF4E8E00501D46 /* ShowWinnerBox.h */,
 				DAABDDE515DF4E8E00501D46 /* ShowWinnerBox.m */,
+				DAEB1E8315F8D22A00CE98C7 /* DefinedUIApplication.h */,
+				DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1081,6 +1101,8 @@
 				DAE498EE15BA47C600C21671 /* GameInfo.m */,
 				DAE4993315BAA44500C21671 /* JudgeClientInfo.h */,
 				DAE4993415BAA44500C21671 /* JudgeClientInfo.m */,
+				DAEB1E8815F8EB1A00CE98C7 /* KeyBoradEventInfo.h */,
+				DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1088,10 +1110,6 @@
 		DAE7E6AB15B81E2F00363399 /* BluetoothManager */ = {
 			isa = PBXGroup;
 			children = (
-				DAE7E6AD15B81E4E00363399 /* BluetoothAudioJack.h */,
-				DAE7E6AE15B81E4E00363399 /* BluetoothDevice.h */,
-				DAE7E6AF15B81E4E00363399 /* BluetoothManager.h */,
-				DAE7E6B015B81E4E00363399 /* CDStructures.h */,
 			);
 			name = BluetoothManager;
 			sourceTree = "<group>";
@@ -1633,6 +1651,9 @@
 				DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
 				DA8C937C15E9074C007F5D0B /* NSObjectSerialization.m in Sources */,
 				DAEFCDD015E9B20600F70994 /* Reflection.m in Sources */,
+				DAEB1E8515F8D22A00CE98C7 /* DefinedUIApplication.m in Sources */,
+				DAEB1E8A15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */,
+				DAEB1E8E15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1719,6 +1740,9 @@
 				DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */,
 				DA8C937D15E9074C007F5D0B /* NSObjectSerialization.m in Sources */,
 				DAEFCDD115E9B20600F70994 /* Reflection.m in Sources */,
+				DAEB1E8615F8D22A00CE98C7 /* DefinedUIApplication.m in Sources */,
+				DAEB1E8B15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */,
+				DAEB1E8F15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

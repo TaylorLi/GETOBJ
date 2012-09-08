@@ -93,7 +93,10 @@
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
 	}
-    JudgeClientInfo *cltInfo=[clients objectForKey:[clients.allKeys objectAtIndex: indexPath.row]];
+    
+    JudgeClientInfo *cltInfo=[[[clients allValues] sortedArrayUsingComparator:^(id obj1, id obj2){
+        return [((JudgeClientInfo *)obj1).displayName compare:((JudgeClientInfo *)obj2).displayName options:NSWidthInsensitiveSearch];
+    }] objectAtIndex: indexPath.row];
     cell.textLabel.text=cltInfo.displayName;
     cell.detailTextLabel.text=cltInfo.hasConnected?@"Connected":@"Wait for connecting";
     return cell;

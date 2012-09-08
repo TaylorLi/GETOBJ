@@ -13,6 +13,8 @@
 #import "RoundRestTimeViewController.h"
 #import "DDActionHeaderView.h"
 #import "SoundsPlayer.h"
+#import "KeyBoradEventInfo.h"
+#import "ShowWinnerBox.h"
 
 #define kWaitBoxForReset 1
 #define kWaitBoxForReOrg 2
@@ -28,6 +30,7 @@
     NSTimer *timer;
     UIWaitForUserViewController *waitUserPanel;
     RoundRestTimeViewController *roundResetPanel;
+    ShowWinnerBox *showWinnerBoxPanel;
     DDActionHeaderView *actionHeaderView;
     NSTimer *gameLoopTimer;
     BOOL clientChange;
@@ -98,4 +101,6 @@
 
 -(void)updateForGameSetting:(BOOL)hasChange;
 -(void)duringSettingEndPress;
+
+-(void)bluetoothKeyboardPressed:(KeyBoradEventInfo *)keyboardArgv;
 @end

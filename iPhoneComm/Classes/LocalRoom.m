@@ -88,7 +88,10 @@
         return YES;
     }else
     {
-        return [self startBluetoothServer];
+        if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)            
+            return [self startBluetoothServer];
+        else
+            return YES;
     }
 }
 
@@ -118,7 +121,7 @@
        !bluetoothServer.serverSession.available){
         [bluetoothServer stop];
         bluetoothServer=nil;
-       return [self startBluetoothServer];
+        return [self startBluetoothServer];
     }
     else{
         return YES;
@@ -137,8 +140,11 @@
         [clients makeObjectsPerformSelector:@selector(close)];
     }
     else{
-        [bluetoothServer stop];
-        self.bluetoothServer=nil;
+        if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)   
+        {
+            [bluetoothServer stop];
+            self.bluetoothServer=nil;
+        }
     }
 }
 
@@ -157,18 +163,20 @@
     }
     else
     {
-        if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count==0)
-            return;
-        SBJsonWriter *wr=[[SBJsonWriter alloc] init];
-        NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
-        NSData *data=[wr dataWithObject:cmdMsg];
-        if(wr.error!=nil)
-        {
-            NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
-        }
-        else
-        {
-            [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
+        if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)   {
+            if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count==0)
+                return;
+            SBJsonWriter *wr=[[SBJsonWriter alloc] init];
+            NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
+            NSData *data=[wr dataWithObject:cmdMsg];
+            if(wr.error!=nil)
+            {
+                NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
+            }
+            else
+            {
+                [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
+            }
         }
     }
 }
@@ -180,25 +188,27 @@
     else{
         if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count>0)
         {
-            SBJsonWriter *wr=[[SBJsonWriter alloc] init];
-            NSData *data=[wr dataWithObject:cmdMsg];
-            //NSLog(@"JSON Serilize:%@",[wr stringWithObject:cmdMsg]);
-            if(wr.error!=nil)
-            {
-                NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
-            }
-            else{
-                NSError *error;
-                //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
-                if (peerId!=nil&&![peerId isEqualToString:@""]) {
-                    [bluetoothServer.serverSession sendData:data toPeers:
-                     [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
+            if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)   {
+                SBJsonWriter *wr=[[SBJsonWriter alloc] init];
+                NSData *data=[wr dataWithObject:cmdMsg];
+                //NSLog(@"JSON Serilize:%@",[wr stringWithObject:cmdMsg]);
+                if(wr.error!=nil)
+                {
+                    NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
                 }
                 else{
-                    [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
-                } 
-                if(error!=nil)
-                    NSLog(@"Send cmd to client error:%@",error);
+                    NSError *error;
+                    //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
+                    if (peerId!=nil&&![peerId isEqualToString:@""]) {
+                        [bluetoothServer.serverSession sendData:data toPeers:
+                         [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
+                    }
+                    else{
+                        [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
+                    } 
+                    if(error!=nil)
+                        NSLog(@"Send cmd to client error:%@",error);
+                }
             }
         }
     }
@@ -253,22 +263,22 @@
 #pragma mark GKSession delegate bluetooth
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID{
     NSError *parseError = nil;
-//    if([gameInfo allClientsReady]){
-//        [session disconnectPeerFromAllPeers:peerID];
-//    }else{
-        [session acceptConnectionFromPeer:peerID error:&parseError];
-        
-//    }
-//    int connectedNum=0;
-//    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
-//        if(clt.hasConnected){
-//            connectedNum++;
-//        }
-//    }
-//    if(connectedNum<gameInfo.needClientsCount){    
-//    }else{
-//        [session denyConnectionFromPeer:peerID];
-//    }
+    //    if([gameInfo allClientsReady]){
+    //        [session disconnectPeerFromAllPeers:peerID];
+    //    }else{
+    [session acceptConnectionFromPeer:peerID error:&parseError];
+    
+    //    }
+    //    int connectedNum=0;
+    //    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
+    //        if(clt.hasConnected){
+    //            connectedNum++;
+    //        }
+    //    }
+    //    if(connectedNum<gameInfo.needClientsCount){    
+    //    }else{
+    //        [session denyConnectionFromPeer:peerID];
+    //    }
     
 }
 
@@ -345,7 +355,7 @@
         CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
         [delegate processCmd:cmd];
     }
-
+    
     
 }
 

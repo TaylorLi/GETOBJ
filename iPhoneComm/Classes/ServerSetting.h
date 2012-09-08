@@ -32,6 +32,7 @@
 #define kpassword 21
 #define kCurrentTime 22
 #define kServerRefresh 23
+#define kDeviceType 24
 
 @interface ServerSetting : NSObjectSerialization<NSCopying>
 {
@@ -93,6 +94,8 @@
 @property NSInteger maxWarningCount;
 //暂停并整理时间
 @property NSTimeInterval restAndReorganizationTime;
+//客户端使用的设备类型
+@property (nonatomic) JudgeDevice currentJudgeDevice;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc

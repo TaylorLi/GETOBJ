@@ -16,6 +16,10 @@
             if([key isEqualToString:k])
                 return YES;
         }
+        else if([key isKindOfClass:[NSNumber class]]){
+            if([key doubleValue]==[k doubleValue])
+                return YES;
+        }
         else if(k==key)
             return YES;
     }

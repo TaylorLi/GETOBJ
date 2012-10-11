@@ -83,6 +83,7 @@ typedef enum {
 
 /*蓝牙键盘按键*/
 #define GSEVENTKEY_KEYCODE_ALP_A 4
+#define GSEVENTKEY_KEYCODE_ALP_B 5
 #define GSEVENTKEY_KEYCODE_ALP_H 11
 #define GSEVENTKEY_KEYCODE_ALP_X 27
 #define GSEVENTKEY_KEYCODE_ALP_Z 29
@@ -100,9 +101,14 @@ typedef enum {
 #define GSEVENTKEY_KEYCODE_SNL_HYPHENS 45 //-
 #define GSEVENTKEY_KEYCODE_SNL_REVSLASH 49 //'\'
 #define GSEVENTKEY_KEYCODE_SNL_SEMICOLON 51 //；
-#define GSEVENTKEY_KEYCODE_SNL_Wave 53 //~
+#define GSEVENTKEY_KEYCODE_SNL_Wave 53 //`
 #define GSEVENTKEY_KEYCODE_SNL_SLASH 56 // /
 #define GSEVENTKEY_KEYCODE_SNL_SPACE 44
+
+#define GSEVENTKEY_KEYCODE_ARROW_RIGHT 79
+#define GSEVENTKEY_KEYCODE_ARROW_LEFT 80
+#define GSEVENTKEY_KEYCODE_ARROW_DOWN 81
+#define GSEVENTKEY_KEYCODE_ARROW_UP 82
 
 /* 
  @"-",@"45",
@@ -112,7 +118,7 @@ typedef enum {
  @"\\",@"49", 
  @";",@"51",
  @"'",@"52",
- @"~",@"53",
+ @"`",@"53",
  @",",@"54",
  @".",@"55",
  @"/",@"56",

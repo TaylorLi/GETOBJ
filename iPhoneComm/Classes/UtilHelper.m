@@ -86,6 +86,10 @@
                                  @",",@"54",
                                  @".",@"55",
                                  @"/",@"56",
+                                @"ARROW RIGHT",@"79",
+                                @"ARROW LEFT",@"80",
+                                @"ARROW DOWN",@"81",
+                                @"ARROW UP",@"82",
                                 nil];
         if([codeDesc containKey:[NSString stringWithFormat:@"%i",keyCode]])
             {

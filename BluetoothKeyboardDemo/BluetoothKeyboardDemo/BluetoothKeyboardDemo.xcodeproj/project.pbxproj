@@ -1,0 +1,398 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAE8CAB31625AA50007C22FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE8CAB21625AA50007C22FC /* UIKit.framework */; };
+		DAE8CAB51625AA50007C22FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE8CAB41625AA50007C22FC /* Foundation.framework */; };
+		DAE8CAB71625AA50007C22FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE8CAB61625AA50007C22FC /* CoreGraphics.framework */; };
+		DAE8CABD1625AA50007C22FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DAE8CABB1625AA50007C22FC /* InfoPlist.strings */; };
+		DAE8CABF1625AA50007C22FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CABE1625AA50007C22FC /* main.m */; };
+		DAE8CAC31625AA50007C22FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CAC21625AA50007C22FC /* AppDelegate.m */; };
+		DAE8CAC61625AA50007C22FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CAC51625AA50007C22FC /* ViewController.m */; };
+		DAE8CAC91625AA50007C22FC /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE8CAC71625AA50007C22FC /* ViewController_iPhone.xib */; };
+		DAE8CACC1625AA50007C22FC /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE8CACA1625AA50007C22FC /* ViewController_iPad.xib */; };
+		DAE8CADD1625ABEC007C22FC /* DefinedUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CADC1625ABEC007C22FC /* DefinedUIApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAE8CAE31625AD8D007C22FC /* KeyBoradEventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CAE21625AD8D007C22FC /* KeyBoradEventInfo.m */; };
+		DAE8CAE71625ADF3007C22FC /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CAE61625ADF3007C22FC /* UtilHelper.m */; };
+		DAE8CAEA1625AEAA007C22FC /* Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CAE91625AEAA007C22FC /* Definition.m */; };
+		DAE8CAEE1625B068007C22FC /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8CAED1625B068007C22FC /* NSDictionary+Extendtion.m */; };
+		DAE8CAF71625B67E007C22FC /* cursor1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8CAF51625B67E007C22FC /* cursor1.png */; };
+		DAE8CAF81625B67E007C22FC /* cursor2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8CAF61625B67E007C22FC /* cursor2.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DAE8CAAE1625AA50007C22FC /* BluetoothKeyboardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothKeyboardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE8CAB21625AA50007C22FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DAE8CAB41625AA50007C22FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DAE8CAB61625AA50007C22FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DAE8CABA1625AA50007C22FC /* BluetoothKeyboardDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BluetoothKeyboardDemo-Info.plist"; sourceTree = "<group>"; };
+		DAE8CABC1625AA50007C22FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DAE8CABE1625AA50007C22FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DAE8CAC01625AA50007C22FC /* BluetoothKeyboardDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BluetoothKeyboardDemo-Prefix.pch"; sourceTree = "<group>"; };
+		DAE8CAC11625AA50007C22FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DAE8CAC21625AA50007C22FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DAE8CAC41625AA50007C22FC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DAE8CAC51625AA50007C22FC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAE8CAC81625AA50007C22FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		DAE8CACB1625AA50007C22FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		DAE8CADB1625ABEC007C22FC /* DefinedUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefinedUIApplication.h; path = Classs/UI/DefinedUIApplication.h; sourceTree = "<group>"; };
+		DAE8CADC1625ABEC007C22FC /* DefinedUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefinedUIApplication.m; path = Classs/UI/DefinedUIApplication.m; sourceTree = "<group>"; };
+		DAE8CAE11625AD8D007C22FC /* KeyBoradEventInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyBoradEventInfo.h; path = ../../../iPhoneComm/Classes/KeyBoradEventInfo.h; sourceTree = "<group>"; };
+		DAE8CAE21625AD8D007C22FC /* KeyBoradEventInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyBoradEventInfo.m; path = ../../../iPhoneComm/Classes/KeyBoradEventInfo.m; sourceTree = "<group>"; };
+		DAE8CAE51625ADF3007C22FC /* UtilHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilHelper.h; path = ../../../iPhoneComm/Classes/UtilHelper.h; sourceTree = "<group>"; };
+		DAE8CAE61625ADF3007C22FC /* UtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilHelper.m; path = ../../../iPhoneComm/Classes/UtilHelper.m; sourceTree = "<group>"; };
+		DAE8CAE81625AE9A007C22FC /* Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Definition.h; path = ../../../iPhoneComm/Classes/Definition.h; sourceTree = "<group>"; };
+		DAE8CAE91625AEAA007C22FC /* Definition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Definition.m; path = ../../../iPhoneComm/Classes/Definition.m; sourceTree = "<group>"; };
+		DAE8CAEC1625B068007C22FC /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../../../iPhoneComm/Classes/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
+		DAE8CAED1625B068007C22FC /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Extendtion.m"; path = "../../../iPhoneComm/Classes/NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
+		DAE8CAF51625B67E007C22FC /* cursor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cursor1.png; path = Resources/Images/cursor1.png; sourceTree = "<group>"; };
+		DAE8CAF61625B67E007C22FC /* cursor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cursor2.png; path = Resources/Images/cursor2.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAE8CAAB1625AA50007C22FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE8CAB31625AA50007C22FC /* UIKit.framework in Frameworks */,
+				DAE8CAB51625AA50007C22FC /* Foundation.framework in Frameworks */,
+				DAE8CAB71625AA50007C22FC /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAE8CAA31625AA50007C22FC = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAB81625AA50007C22FC /* BluetoothKeyboardDemo */,
+				DAE8CAB11625AA50007C22FC /* Frameworks */,
+				DAE8CAAF1625AA50007C22FC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAE8CAAF1625AA50007C22FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAAE1625AA50007C22FC /* BluetoothKeyboardDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAE8CAB11625AA50007C22FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAB21625AA50007C22FC /* UIKit.framework */,
+				DAE8CAB41625AA50007C22FC /* Foundation.framework */,
+				DAE8CAB61625AA50007C22FC /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DAE8CAB81625AA50007C22FC /* BluetoothKeyboardDemo */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAEF1625B33E007C22FC /* Resources */,
+				DAE8CAD71625AB82007C22FC /* Class */,
+				DAE8CAC11625AA50007C22FC /* AppDelegate.h */,
+				DAE8CAC21625AA50007C22FC /* AppDelegate.m */,
+				DAE8CAC41625AA50007C22FC /* ViewController.h */,
+				DAE8CAC51625AA50007C22FC /* ViewController.m */,
+				DAE8CAC71625AA50007C22FC /* ViewController_iPhone.xib */,
+				DAE8CACA1625AA50007C22FC /* ViewController_iPad.xib */,
+				DAE8CAB91625AA50007C22FC /* Supporting Files */,
+			);
+			path = BluetoothKeyboardDemo;
+			sourceTree = "<group>";
+		};
+		DAE8CAB91625AA50007C22FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CABA1625AA50007C22FC /* BluetoothKeyboardDemo-Info.plist */,
+				DAE8CABB1625AA50007C22FC /* InfoPlist.strings */,
+				DAE8CABE1625AA50007C22FC /* main.m */,
+				DAE8CAC01625AA50007C22FC /* BluetoothKeyboardDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DAE8CAD71625AB82007C22FC /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAEB1625B03F007C22FC /* Misc */,
+				DAE8CAE41625ADE1007C22FC /* Util */,
+				DAE8CAE01625AD6D007C22FC /* Model */,
+				DAE8CAD81625AB8A007C22FC /* UI */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		DAE8CAD81625AB8A007C22FC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CADB1625ABEC007C22FC /* DefinedUIApplication.h */,
+				DAE8CADC1625ABEC007C22FC /* DefinedUIApplication.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		DAE8CAE01625AD6D007C22FC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAE91625AEAA007C22FC /* Definition.m */,
+				DAE8CAE81625AE9A007C22FC /* Definition.h */,
+				DAE8CAE11625AD8D007C22FC /* KeyBoradEventInfo.h */,
+				DAE8CAE21625AD8D007C22FC /* KeyBoradEventInfo.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DAE8CAE41625ADE1007C22FC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAE51625ADF3007C22FC /* UtilHelper.h */,
+				DAE8CAE61625ADF3007C22FC /* UtilHelper.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		DAE8CAEB1625B03F007C22FC /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAEC1625B068007C22FC /* NSDictionary+Extendtion.h */,
+				DAE8CAED1625B068007C22FC /* NSDictionary+Extendtion.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		DAE8CAEF1625B33E007C22FC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAF01625B349007C22FC /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DAE8CAF01625B349007C22FC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DAE8CAF51625B67E007C22FC /* cursor1.png */,
+				DAE8CAF61625B67E007C22FC /* cursor2.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAE8CAAD1625AA50007C22FC /* BluetoothKeyboardDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAE8CACF1625AA50007C22FC /* Build configuration list for PBXNativeTarget "BluetoothKeyboardDemo" */;
+			buildPhases = (
+				DAE8CAAA1625AA50007C22FC /* Sources */,
+				DAE8CAAB1625AA50007C22FC /* Frameworks */,
+				DAE8CAAC1625AA50007C22FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BluetoothKeyboardDemo;
+			productName = BluetoothKeyboardDemo;
+			productReference = DAE8CAAE1625AA50007C22FC /* BluetoothKeyboardDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAE8CAA51625AA50007C22FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = GET;
+			};
+			buildConfigurationList = DAE8CAA81625AA50007C22FC /* Build configuration list for PBXProject "BluetoothKeyboardDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DAE8CAA31625AA50007C22FC;
+			productRefGroup = DAE8CAAF1625AA50007C22FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAE8CAAD1625AA50007C22FC /* BluetoothKeyboardDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAE8CAAC1625AA50007C22FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE8CABD1625AA50007C22FC /* InfoPlist.strings in Resources */,
+				DAE8CAC91625AA50007C22FC /* ViewController_iPhone.xib in Resources */,
+				DAE8CACC1625AA50007C22FC /* ViewController_iPad.xib in Resources */,
+				DAE8CAF71625B67E007C22FC /* cursor1.png in Resources */,
+				DAE8CAF81625B67E007C22FC /* cursor2.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAE8CAAA1625AA50007C22FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE8CABF1625AA50007C22FC /* main.m in Sources */,
+				DAE8CAC31625AA50007C22FC /* AppDelegate.m in Sources */,
+				DAE8CAC61625AA50007C22FC /* ViewController.m in Sources */,
+				DAE8CADD1625ABEC007C22FC /* DefinedUIApplication.m in Sources */,
+				DAE8CAE31625AD8D007C22FC /* KeyBoradEventInfo.m in Sources */,
+				DAE8CAE71625ADF3007C22FC /* UtilHelper.m in Sources */,
+				DAE8CAEA1625AEAA007C22FC /* Definition.m in Sources */,
+				DAE8CAEE1625B068007C22FC /* NSDictionary+Extendtion.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DAE8CABB1625AA50007C22FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAE8CABC1625AA50007C22FC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DAE8CAC71625AA50007C22FC /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAE8CAC81625AA50007C22FC /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		DAE8CACA1625AA50007C22FC /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAE8CACB1625AA50007C22FC /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAE8CACD1625AA50007C22FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAE8CACE1625AA50007C22FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAE8CAD01625AA50007C22FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BluetoothKeyboardDemo/BluetoothKeyboardDemo-Prefix.pch";
+				INFOPLIST_FILE = "BluetoothKeyboardDemo/BluetoothKeyboardDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "94A04552-7A93-41E2-B18A-5D0D67ACA0D1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94A04552-7A93-41E2-B18A-5D0D67ACA0D1";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DAE8CAD11625AA50007C22FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BluetoothKeyboardDemo/BluetoothKeyboardDemo-Prefix.pch";
+				INFOPLIST_FILE = "BluetoothKeyboardDemo/BluetoothKeyboardDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "94A04552-7A93-41E2-B18A-5D0D67ACA0D1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94A04552-7A93-41E2-B18A-5D0D67ACA0D1";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAE8CAA81625AA50007C22FC /* Build configuration list for PBXProject "BluetoothKeyboardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE8CACD1625AA50007C22FC /* Debug */,
+				DAE8CACE1625AA50007C22FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAE8CACF1625AA50007C22FC /* Build configuration list for PBXNativeTarget "BluetoothKeyboardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE8CAD01625AA50007C22FC /* Debug */,
+				DAE8CAD11625AA50007C22FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAE8CAA51625AA50007C22FC /* Project object */;
+}

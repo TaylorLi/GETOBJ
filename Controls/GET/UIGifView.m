@@ -49,11 +49,12 @@
 }
 -(void)stopAnimate
 {
+    UIView *view = btnOrImageView;
+    if(!view.hidden)
+        view.hidden=YES;
     if(isAminmating){
         isAminmating=NO;
         [transferTimer invalidate];
-        UIView *view=btnOrImageView;
-        view.hidden=YES;
     }
 }
 -(void)updateInterval

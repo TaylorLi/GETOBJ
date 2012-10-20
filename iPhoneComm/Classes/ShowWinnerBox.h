@@ -10,12 +10,13 @@
 #import "GameInfo.h"
 #import "UATitledModalPanel.h"
 
-@interface ShowWinnerBox : UATitledModalPanel
+@interface ShowWinnerBox : UAModalPanel
 
 @property (nonatomic,weak) GameInfo *gameInfo;
 @property (nonatomic) BOOL winnerIsRedSide;
 @property (nonatomic, strong) IBOutlet UIView *viewLoadedFromXib;
 @property (strong, nonatomic) IBOutlet UILabel *lblWinner;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 - (IBAction)btnNextRound:(id)sender;
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title;
 -(void)bindSetting;

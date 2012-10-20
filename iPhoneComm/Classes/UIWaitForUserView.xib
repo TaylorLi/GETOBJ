@@ -42,6 +42,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{314, 3}, {73, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="982087170"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -81,6 +82,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{10, 0}, {99, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="175268649"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -112,6 +114,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{112, 7}, {25, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="284106386"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -142,6 +145,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{134, 0}, {66, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="506493576"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -169,6 +173,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{202, 8}, {25, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="644539558"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -192,6 +197,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 44}, {398, 143}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:418</string>
 						<reference key="IBUIBackgroundColor" ref="743594108"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -208,6 +214,7 @@
 				</array>
 				<string key="NSFrameSize">{398, 187}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="282864691"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -371,7 +378,91 @@
 			<nil key="sourceID"/>
 			<int key="maxID">19</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">UAModalPanel</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UAModalPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIWaitForUserViewController</string>
+					<string key="superclassName">UAModalPanel</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">startGame:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">startGame:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">startGame:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnStartGame">UIButton</string>
+						<string key="imgControl">UIImageView</string>
+						<string key="imgReferee1">UIImageView</string>
+						<string key="imgReferee2">UIImageView</string>
+						<string key="imgReferee3">UIImageView</string>
+						<string key="imgReferee4">UIImageView</string>
+						<string key="lblWaitForClientsCount">UILabel</string>
+						<string key="tbClientList">UITableView</string>
+						<string key="txtNeedClientCount">UILabel</string>
+						<string key="viewLoadedFromXib">UIView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnStartGame">
+							<string key="name">btnStartGame</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgControl">
+							<string key="name">imgControl</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgReferee1">
+							<string key="name">imgReferee1</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgReferee2">
+							<string key="name">imgReferee2</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgReferee3">
+							<string key="name">imgReferee3</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgReferee4">
+							<string key="name">imgReferee4</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblWaitForClientsCount">
+							<string key="name">lblWaitForClientsCount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tbClientList">
+							<string key="name">tbClientList</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="txtNeedClientCount">
+							<string key="name">txtNeedClientCount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewLoadedFromXib">
+							<string key="name">viewLoadedFromXib</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UIWaitForUserViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

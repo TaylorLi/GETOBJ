@@ -125,10 +125,19 @@
 -(BOOL)allClientsReady
 {
     int availCount=0;
-    for (JudgeClientInfo *clt in clients) {
+    for (JudgeClientInfo *clt in clients.allValues) {
         if(clt.hasConnected)
             availCount++;
     }
     return availCount==gameSetting.judgeCount;
+}
+
+-(JudgeClientInfo *)clientBySequence:(int)sequence
+{
+    for (JudgeClientInfo *clt in clients.allValues) {
+        if(clt.sequence==sequence)
+            return clt;
+    }
+    return nil;
 }
 @end

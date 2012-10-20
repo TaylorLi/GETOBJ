@@ -60,23 +60,25 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
 
 - (void)sendEvent:(UIEvent *)event
 {
-    [super sendEvent:event];
-   if(![AppConfig getInstance].isIPAD)
-       return;
-    
-    if ([event respondsToSelector:@selector(_gsEvent)]) {
-        // Hardware Key events are of kind UIInternalEvent which are a wrapper of GSEventRef which is wrapper of GSEventRecord
-        int *eventMemory = (int *)[event performSelector:@selector(_gsEvent)];
-        if (eventMemory) {
-            
-            int eventType = eventMemory[GSEVENT_TYPE];
-            //NSLog(@"event type = %d", eventType);
-            if (eventType == GSEVENT_TYPE_KEYUP) {
+    @try {        
+        
+        [super sendEvent:event];
+        if(![AppConfig getInstance].isIPAD)
+            return;
+        
+        if ([event respondsToSelector:@selector(_gsEvent)]) {
+            // Hardware Key events are of kind UIInternalEvent which are a wrapper of GSEventRef which is wrapper of GSEventRecord
+            int *eventMemory = (int *)[event performSelector:@selector(_gsEvent)];
+            if (eventMemory) {
                 
-                // Since the event type is key up we can assume is a GSEventKey struct
-                // Get flags from GSEvent
-                int eventFlags = eventMemory[GSEVENT_FLAGS];
-                //if (eventFlags) {
+                int eventType = eventMemory[GSEVENT_TYPE];
+                //NSLog(@"event type = %d", eventType);
+                if (eventType == GSEVENT_TYPE_KEYDOWN) {
+                    
+                    // Since the event type is key up we can assume is a GSEventKey struct
+                    // Get flags from GSEvent
+                    int eventFlags = eventMemory[GSEVENT_FLAGS];
+                    //if (eventFlags) {
                     // Only post notifications when Shift, Ctrl, Cmd or Alt key were pressed.
                     
                     // Get keycode from GSEventKey
@@ -90,12 +92,11 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
                     //tmp = tmp << 16;
                     //UniChar keycode = tmp;
                     //NSLog(@"keycode char %d", keycode[0]);
-                BOOL shift=(eventFlags&(1<<17))?YES:NO;
-                BOOL command=(eventFlags&(1<<18))?YES:NO;
-                BOOL option=(eventFlags&(1<<19))?YES:NO;
-                BOOL control=(eventFlags&(1<<20))?YES:NO;
-                    printf("Shift Ctrl Alt Cmd %i %i %i %d\n ",shift, control,option,command);
-                    
+                    BOOL shift=(eventFlags&(1<<17))?YES:NO;
+                    BOOL command=(eventFlags&(1<<18))?YES:NO;
+                    BOOL option=(eventFlags&(1<<19))?YES:NO;
+                    BOOL control=(eventFlags&(1<<20))?YES:NO;
+                    //printf("Shift Ctrl Alt Cmd %i %i %i %d\n ",shift, control,option,command);
                     NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithShort:keycode[0]], @"keycode", [NSNumber numberWithInt:eventFlags], @"eventFlags",[NSNumber numberWithBool:shift],@"shift",[NSNumber numberWithBool:command],@"command",[NSNumber numberWithBool:option],@"option",[NSNumber numberWithBool:control],@"control", nil];
                     [[NSNotificationCenter defaultCenter] postNotificationName:UIEventGSEventKeyUpNotification object:nil userInfo:userInfo];
                     
@@ -130,9 +131,16 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
                      Control = 1 << 20
                      
                      */
-                //}
+                    //}
+                }
             }
         }
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
     }
 }
 

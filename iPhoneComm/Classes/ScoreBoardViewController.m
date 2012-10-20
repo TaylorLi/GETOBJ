@@ -181,10 +181,12 @@
 {    
     [self setWantsFullScreenLayout:YES];
     [super viewDidLoad];    
-    self.viewBlueWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
-    self.viewBlueWarningBox.layer.borderWidth = 1.0f;
-    self.viewRedWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
-    self.viewRedWarningBox.layer.borderWidth = 1.0f;    
+    /*
+     self.viewBlueWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
+     self.viewBlueWarningBox.layer.borderWidth = 1.0f;
+     self.viewRedWarningBox.layer.borderColor = [UIColor colorWithRed:255/255 green:0/255 blue:0/255 alpha:0.8].CGColor;
+     self.viewRedWarningBox.layer.borderWidth = 1.0f;    
+     */  
     //    [self drawRect:self.viewBlueWarningBox.frame];
     //    [self drawRect:self.viewRedWarningBox.frame];
     
@@ -203,7 +205,7 @@
     [self.viewTime addGestureRecognizer:startStopGame];
     
     /*向上滑动时间控件,暂停比赛并显示休息时间*/
-    UISwipeGestureRecognizer *pauseGameAndShowResetBox=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gamePauseAndShowResetTimeBox)];
+    UISwipeGestureRecognizer *pauseGameAndShowResetBox=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gamePauseAndShowReorignizeTimeBox)];
     pauseGameAndShowResetBox.numberOfTouchesRequired=1;
     pauseGameAndShowResetBox.direction= UISwipeGestureRecognizerDirectionUp;
     [self.viewTime addGestureRecognizer:pauseGameAndShowResetBox];
@@ -297,6 +299,7 @@
     marksFlags=nil;
     marksGrayFlags=nil;
     timeFlags=nil;
+    timeFlags2=nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -417,15 +420,15 @@
     
     int warningCount=isBlue?chatRoom.gameInfo.blueSideWarning:chatRoom.gameInfo.redSideWarning;
     int maxWarmingCount=chatRoom.gameInfo.gameSetting.maxWarningCount+(chatRoom.gameInfo.gameSetting.maxWarningCount%2>0?1:0);
-    float imgHeight=41.0;
-    float imgWidth=76.0;
-    float actWidth=62.0;
+    float imgHeight=63.0;
+    float imgWidth=127.0;
+    float actWidth=108.0;
     float padding=1;
     float paddingTop=1;
     if(isBlue){//蓝色框以右边端点为固定端点，向左延伸
-        view.frame=CGRectMake(view.frame.origin.x+view.frame.size.width-(padding+(actWidth)*maxWarmingCount/2+padding), view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding, view.frame.size.height);
+        view.frame=CGRectMake(view.frame.origin.x, view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding*2, view.frame.size.height);
     }else{
-        view.frame=CGRectMake(view.frame.origin.x, view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding, view.frame.size.height);
+        view.frame=CGRectMake(view.frame.origin.x, view.frame.origin.y,padding+(actWidth)*maxWarmingCount/2+padding*2, view.frame.size.height);
     }
     for (UIView *subView in view.subviews) {
         [subView removeFromSuperview];
@@ -573,10 +576,18 @@
     int sec=(int)time%60;
     int secSin=sec%10;
     int secTen=sec/10;
-    lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec]; 
-    imgTimeMinus.image=[timeFlags objectAtIndex:min];
-    imgTimeSecTen.image=[timeFlags objectAtIndex:secTen];
-    imgTimeSecSin.image=[timeFlags objectAtIndex:secSin];
+    lblTime.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
+    NSArray *useFlags;
+    if(chatRoom.gameInfo.gameStatus==kStateGamePause){
+        useFlags=timeFlags2;
+    }else
+    {
+        useFlags=timeFlags;
+    }
+    
+    imgTimeMinus.image=[useFlags objectAtIndex:min];
+    imgTimeSecTen.image=[useFlags objectAtIndex:secTen];
+    imgTimeSecSin.image=[useFlags objectAtIndex:secSin];
 }
 
 #pragma mark -
@@ -647,11 +658,11 @@
 -(void)toggleReorignizeTimeBox{
     if([self.view.subviews containsObject:roundResetPanel])
     {
-         if([roundResetPanel.relatedData intValue]==krestAndReOrgTime)
-         {
-             [roundResetPanel hide];
-             [self resetTimeEnd:roundResetPanel.relatedData];
-         }
+        if([roundResetPanel.relatedData intValue]==krestAndReOrgTime)
+        {
+            [roundResetPanel hide];
+            [self resetTimeEnd:roundResetPanel.relatedData];
+        }
     }
     else{
         [self gamePauseAndShowReorignizeTimeBox];
@@ -1038,6 +1049,7 @@
                     return;
                 }                                   
                 //new client connected
+                cltInfo.sequence=chatRoom.gameInfo.clients.count+1;
                 [chatRoom.gameInfo.clients setObject:cltInfo forKey:cltInfo.uuid];
             }
             else{
@@ -1275,6 +1287,13 @@
             [timeFlags addObject:[UIImage imageNamed:[NSString stringWithFormat:@"time_%i",i]]];
         }
     }
+    if(timeFlags2==nil)
+    {
+        timeFlags2=[[NSMutableArray alloc] initWithCapacity:10];
+        for (int i=0; i<10; i++) {
+            [timeFlags2 addObject:[UIImage imageNamed:[NSString stringWithFormat:@"time_s2_%i",i]]];
+        }
+    }
     if(marksFlags==nil)
     {
         marksFlags=[[NSMutableArray alloc] initWithCapacity:10];
@@ -1306,7 +1325,8 @@
     {
         for (int i=1; i<=chatRoom.gameInfo.gameSetting.judgeCount; i++) {
             JudgeClientInfo *cltInfo=[[JudgeClientInfo alloc] initWithSessionId:@"TKD Score"andDisplayName:[NSString stringWithFormat:@"Referee %i",i] andUuid:[NSString stringWithFormat:@"%i",i] andPeerId:[NSString stringWithFormat:@"Referee Peer Id %i",i]];
-            cltInfo.hasConnected=YES;
+            cltInfo.sequence=chatRoom.gameInfo.clients.count+1;
+            cltInfo.hasConnected=NO;
             [chatRoom.gameInfo.clients setValue:cltInfo forKey:cltInfo.uuid];
         }           
     }
@@ -1494,10 +1514,13 @@
     }
     if(chatRoom.gameInfo.gameStatus== kStateGamePause||chatRoom.gameInfo.gameStatus== kStateCalcScore){
         [self contiueGame];
+        [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
     }
     else if(chatRoom.gameInfo.gameStatus==kStateRunning){
         [self pauseGame];
+        [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
     }
+    
 }
 //pause game and show resetime box
 -(void)gamePauseAndShowReorignizeTimeBox
@@ -1724,11 +1747,14 @@
 #pragma mark Winner Selected
 -(void)showSelectWinnerBox
 {
-    SelectWinnerBox *box=[[SelectWinnerBox alloc] initWithFrame:self.view.bounds title:@"Please Select Winner"];
-    box.gameInfo=chatRoom.gameInfo;
-    box.delegate=self;
-    [self.view addSubview:box];	
-    [box showFromPoint:[self.view center]];
+    if(selectWinnerBoxPanel==nil)
+        selectWinnerBoxPanel=[[SelectWinnerBox alloc] initWithFrame:self.view.bounds title:@"Please Select Winner"];
+    selectWinnerBoxPanel.gameInfo=chatRoom.gameInfo;
+    selectWinnerBoxPanel.delegate=self;
+    if(![self.view.subviews containsObject:selectWinnerBoxPanel]){
+        [self.view addSubview:selectWinnerBoxPanel];	
+        [selectWinnerBoxPanel showFromPoint:[self.view center]];
+    }
 }
 -(void)selectedWinnerEnd:(id)data
 {
@@ -1764,26 +1790,27 @@
     if(self.view.superview==nil)
         return NO;
     else
-        {
-            if([self.view.subviews containsObject:showWinnerBoxPanel])
-               return NO;
-               else
-               return YES;
-        }
+    {
+        if(showWinnerBoxPanel.superview!=nil ||roundResetPanel.superview!=nil ||selectWinnerBoxPanel.superview!=nil)
+            return NO;
+        else
+            return YES;
+    }
 }
 /*
  最多4组裁判按键，每组8个按键，
  分别为：裁判1：A - H  4-11   控制结果 A(4):红+1 B:红+2 C:红+3 D:红+4 E:蓝+1 F:蓝+2 G:蓝+3 H(11):蓝+4
  裁判2：I - P  12-19  控制结果 I(12):红+1 J:红+2 K:红+3 L:红+4 M:蓝+1 N:蓝+2 O:蓝+3 P(19):蓝+4
  裁判3：Q - X  20-27  控制结果 Q:红+1 R:红+2 S:红+3 T:红+4 U:蓝+1 V:蓝+2 W:蓝+3 X:蓝+4
- 裁判4：-+[]\;'`  45-49 51-53 -(45):红+1 +(46):红+2 [(47)红+3 ](48)红+4 \(49)蓝+1 ;(51)蓝+2 '(52)蓝+3 ~(53)蓝+4
+ 裁判4：-=[]\;'`  45-49 51-53 -(45):红+1 +(46):红+2 [(47)红+3 ](48)红+4 \(49)蓝+1 ;(51)蓝+2 '(52)蓝+3 ~(53)蓝+4
  
- 数字按键用来与配对蓝牙键盘时使用
+ 数字按键用来与配对蓝牙键盘时使用,使用回车键结束配对
  功能键：
- 空格键（44） 比赛开始或者暂停、继续切换 Star Stop.
+ 空格键（44） 比赛开始或者暂停、继续切换，休息时间到时按此键可继续下一回合比赛 Start Stop.
  斜杠键/(56) 显示或者隐藏休整时间 Injury Timer Start Stop.
- Num 0(39) 红方加1警告 Red Warning.
- Num 1(30) 蓝方加1警告 Blue Warning.
+ 回车键 (40) 蓝牙匹配时输入确认；
+ Num 0(39) 红方加1警告 Red Warning;选择胜利方时，选择红方.
+ Num 1(30) 蓝方加1警告 Blue Warning；选择胜利方时，选择蓝方.
  Num 2(31) 红方扣1分（两次警告） Red Penalty Deduction.
  Num 3(32) 蓝方扣1分（两次警告） Blue Penalty Deduction.
  Num 4(33) 红方加1分 Red Add Point Override.
@@ -1795,66 +1822,124 @@
  */
 -(void)bluetoothKeyboardPressed:(KeyBoradEventInfo *)keyboardArgv
 {
+    if(chatRoom.gameInfo.gameStatus==kStateWaitJudge || chatRoom.gameInfo.gameStatus ==kStateMultiplayerReconnect){
+        int pointToReferee=-1;
+        if(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_ALP_A&&keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_ALP_H)
+            pointToReferee=1;
+        else if(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_ALP_I&&keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_ALP_P)
+            pointToReferee=2;
+        else if(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_ALP_Q&&keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_ALP_X)
+            pointToReferee=3;
+        else if((keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH)
+                ||(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_SEMICOLON && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_Wave))
+        {
+            pointToReferee=4;
+        }
+        if(pointToReferee>0&&pointToReferee<=chatRoom.gameInfo.gameSetting.judgeCount){
+            JudgeClientInfo *cltInfo=  [chatRoom.gameInfo clientBySequence:pointToReferee];
+            if(!cltInfo.hasConnected){
+                cltInfo.hasConnected=YES;
+                [self refreshGamesettingDialogJudges];
+                [self showWaitingUserBox];
+            }
+            return;
+        }        
+    }
     if(keyboardArgv.keyCode==GSEVENTKEY_KEYCODE_SNL_SPACE)
     {
         if(!chatRoom.gameInfo.gameStart)
         {
-            if([self.view.subviews containsObject:waitUserPanel])   
-                [waitUserPanel startGame:nil];
+            if((self.chatRoom.gameInfo.gameStatus==kStateMultiplayerReconnect
+                ||self.chatRoom.gameInfo.gameStatus==kStateWaitJudge)&&
+               waitUserPanel.btnStartGame.hidden==NO){
+                [waitUserPanel startGame:self];
+            }
         }
-        else{          
-            [self gamePauseContinueToggle];
+        else{       
+            if(self.chatRoom.gameInfo.gameStatus==kStateRunning)
+                [self gamePauseContinueToggle]; 
+            else if(self.chatRoom.gameInfo.gameStatus==kStateGamePause)
+            {
+                if(showWinnerBoxPanel.superview!=nil||selectWinnerBoxPanel.superview!=nil){
+                    //显示选择胜利者或者显示胜利者时不做处理
+                }else
+                {
+                    [self gamePauseContinueToggle]; 
+                }
+            }
+            else if(self.chatRoom.gameInfo.gameStatus==kStateRoundReset){
+                if(roundResetPanel.btnStart.hidden==NO)
+                    [roundResetPanel startRound:self];
+            }
         }
         return;
     }
     if(!chatRoom.gameInfo.gameStart)
+    {
         return;
+    }
+    
     switch (keyboardArgv.keyCode) {
         case GSEVENTKEY_KEYCODE_SNL_SLASH:
             if([self canSubmitControlCommand])
-            [self toggleReorignizeTimeBox];
+            {
+                [self toggleReorignizeTimeBox];
+            }
             return;
         case GSEVENTKEY_KEYCODE_NUM_0:
-            if([self canSubmitControlCommand])
-            [self warningAddToRedPlayer];
+            if(selectWinnerBoxPanel.superview!=nil)
+            {
+                [selectWinnerBoxPanel showWinner:YES];  
+            }
+            else  if([self canSubmitControlCommand])
+                [self warningAddToRedPlayer];
             return;
         case GSEVENTKEY_KEYCODE_NUM_1:
+            if(selectWinnerBoxPanel.superview!=nil)
+            {
+                [selectWinnerBoxPanel showWinner:NO];  
+            }
             if([self canSubmitControlCommand])
-            [self warningAddToBluePlayer];
+                [self warningAddToBluePlayer];
             return;
         case GSEVENTKEY_KEYCODE_NUM_2:
             if([self canSubmitControlCommand]){
-            [self warningAddToRedPlayer];
-            [self warningAddToRedPlayer];
-                }
+                [self warningAddToRedPlayer];
+                [self warningAddToRedPlayer];
+            }
             return;
         case GSEVENTKEY_KEYCODE_NUM_3:
             if([self canSubmitControlCommand]){
-            [self warningAddToBluePlayer];
-            [self warningAddToBluePlayer];
-                }
+                [self warningAddToBluePlayer];
+                [self warningAddToBluePlayer];
+            }
             return;
         case GSEVENTKEY_KEYCODE_NUM_4:
             if([self canSubmitControlCommand])
-            [self redAddScore];
+                [self redAddScore];
             return;
         case GSEVENTKEY_KEYCODE_NUM_5:
             if([self canSubmitControlCommand])
-             [self blueAddScore];
+                [self blueAddScore];
             return;
         case GSEVENTKEY_KEYCODE_NUM_6:
             if([self canSubmitControlCommand])
-             [self redMinusScore];
+                [self redMinusScore];
             return;
         case GSEVENTKEY_KEYCODE_NUM_7:
             if([self canSubmitControlCommand])
-            [self blueMinusScore];
+                [self blueMinusScore];
             return;
         case GSEVENTKEY_KEYCODE_NUM_8:
             [self showWinnerBoxForRedSide:YES];
             return;
         case GSEVENTKEY_KEYCODE_NUM_9:
             [self showWinnerBoxForRedSide:NO];
+            return;
+        case GSEVENTKEY_KEYCODE_SNL_RETURN:
+            if(showWinnerBoxPanel.superview!=nil){
+                [showWinnerBoxPanel btnNextRound:self];
+            }
             return;
         default:
             break;

@@ -219,7 +219,7 @@
                 }];   
                 [detailController1 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex){
                     NSMutableArray *maxWarmning=[[NSMutableArray alloc] init];
-                    for(int i=6;i<=12;i++)
+                    for(int i=4;i<=8;i++)
                     {
                         [maxWarmning addObject:[NSString stringWithFormat:@"%i",i]];
                     }

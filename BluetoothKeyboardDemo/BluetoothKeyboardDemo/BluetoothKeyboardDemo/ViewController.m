@@ -37,16 +37,42 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
+   }
 
 - (void)viewDidAppear:(BOOL)animated
-{
+{    
     [super viewDidAppear:animated];
+    UIDevice *device = [UIDevice currentDevice];
+    
+    BOOL backgroundSupported = NO;
+    
+    if ( [device respondsToSelector:@selector(isMultitaskingSupported)] )
+        
+    {
+        
+        backgroundSupported = device.multitaskingSupported;
+        
+    }
+    
+    if ( backgroundSupported == YES )
+        
+    {
+        
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        
+        //注意这里，告诉系统已经准备好了
+        
+        [self becomeFirstResponder];
+        
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+	[super viewWillDisappear:animated];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -98,4 +124,33 @@
             break;
     }
 }
+
+
+
+- (void) remoteControlReceivedWithEvent: (UIEvent *) receivedEvent {
+    if (receivedEvent.type == UIEventTypeRemoteControl) {
+        switch (receivedEvent.subtype) {                   
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+                NSLog(@"Play Pause Press");               
+                break;                
+            case UIEventSubtypeRemoteControlPreviousTrack:
+                NSLog(@"Previous Press");
+                break;
+            case UIEventSubtypeRemoteControlNextTrack:
+                NSLog(@"Next Press");
+                break;
+            default:
+                break;
+                
+        }
+    }
+}
+
+
+- (BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+
+
 @end

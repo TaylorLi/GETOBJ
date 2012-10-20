@@ -9,7 +9,7 @@
 #import "ShowWinnerBox.h"
 #import "ServerSetting.h"
 
-#define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
+//#define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
 @implementation ShowWinnerBox
 
@@ -17,22 +17,24 @@
 @synthesize winnerIsRedSide;
 @synthesize viewLoadedFromXib;
 @synthesize lblWinner;
+@synthesize imgBackground;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title
 {
     self = [super initWithFrame:frame];
     if (self) {
-		CGFloat colors[8] = BLACK_BAR_COMPONENTS;
-		[self.titleBar setColorComponents:colors];
-		self.headerLabel.text = title;
+		//CGFloat colors[8] = BLACK_BAR_COMPONENTS;
+		//[self.titleBar setColorComponents:colors];
+		//self.headerLabel.text = title;
         //self.closeButton.hidden=YES;
-		self.margin = UIEdgeInsetsMake(220.0f,220.0f,220.0f,220.0f);
+		self.margin = UIEdgeInsetsMake(111.0f,109.0f,111.0f,109.0f);
+        self.borderWidth=0;
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
-        self.padding=UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
-        self.titleBarHeight = 50.0f;        
+        self.padding=UIEdgeInsetsMake(0.0f,0.0f,0.0f,0.0f);
+        //self.titleBarHeight = 50.0f;        
         // The header label, a UILabel with the same frame as the titleBar
-        self.headerLabel.font = [UIFont boldSystemFontOfSize:35];
+        //self.headerLabel.font = [UIFont boldSystemFontOfSize:35];
         
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"ShowWinnerBox" owner:self options:nil] objectAtIndex:0];
         [self.contentView addSubview:viewLoadedFromXib];         
@@ -41,15 +43,31 @@
 }
 -(void)bindSetting{
      self.lblWinner.text=winnerIsRedSide?gameInfo.gameSetting.redSideName:gameInfo.gameSetting.blueSideName;
-    if(winnerIsRedSide)
+    if(winnerIsRedSide){
         self.lblWinner.textColor=[UIColor colorWithRed:255 green:0 blue:0 alpha:1];
-    else
+        self.imgBackground.image=[UIImage imageNamed:@"game_winner_red_bg.png"];
+    }    
+    else{
         self.lblWinner.textColor=[UIColor colorWithRed:0 green:0 blue:255 alpha:1];
+        self.imgBackground.image=[UIImage imageNamed:@"game_winner_blue_bg.png"];
+    }    
 }
 - (void)layoutSubviews {
 	[super layoutSubviews];
     NSLog(@"%@",NSStringFromCGRect(self.contentView.bounds));
     [viewLoadedFromXib setFrame:self.contentView.bounds];
+    /*
+    self.closeButton.imageView.autoresizingMask=YES;
+    [self.closeButton setFrame:CGRectMake(self.closeButton.frame.origin.x, self.closeButton.frame.origin.y, 70.0f, 70.0f)];     
+    self.closeButton.imageView.image=[UIImage imageNamed:@"game_close_btn.png"];
+    NSLog(@"%@",NSStringFromCGRect(self.closeButton.frame));   
+     */
+    CGRect f = [self roundedRectFrame];
+    
+    self.closeButton.frame = CGRectMake(f.origin.x+f.size.width - floor(closeButton.frame.size.width*0.5),
+                                        f.origin.y - floor(closeButton.frame.size.height*0.5),
+                                        closeButton.frame.size.width,
+                                        closeButton.frame.size.height);
 }
 
 #pragma mark - View lifecycle

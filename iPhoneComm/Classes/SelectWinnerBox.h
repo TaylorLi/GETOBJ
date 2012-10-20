@@ -10,7 +10,7 @@
 #import "UATitledModalPanel.h"
 #import "GameInfo.h"
 
-@interface SelectWinnerBox : UATitledModalPanel
+@interface SelectWinnerBox : UAModalPanel
 
 - (IBAction)selectRedToWinner:(id)sender;
 - (IBAction)selectBlueToWinner:(id)sender;

@@ -17,6 +17,7 @@
 @property (nonatomic,copy) NSString *uuid;
 @property BOOL hasConnected;
 @property (nonatomic,strong) NSDate *lastHeartbeatDate;
+@property (nonatomic) int sequence;
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Definition.h"
 
-@class ServerSetting;
+@class ServerSetting,JudgeClientInfo;
 @interface GameInfo : NSObjectSerialization<NSCopying,NSCoding>
 {
     GameStates _gameStatus;
@@ -39,4 +39,5 @@
 -(id)initWithDictionary:(NSDictionary *) disc;
 -(NSDictionary *)gameStatusInfo;
 -(BOOL)allClientsReady;
+-(JudgeClientInfo *)clientBySequence:(int)sequence;
 @end

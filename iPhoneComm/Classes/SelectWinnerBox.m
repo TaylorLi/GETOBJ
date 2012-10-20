@@ -10,7 +10,7 @@
 #import "AppConfig.h"
 #import "ShowWinnerBox.h"
 
-#define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
+//#define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
 @implementation SelectWinnerBox
 
@@ -21,18 +21,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-		CGFloat colors[8] = BLACK_BAR_COMPONENTS;
-		[self.titleBar setColorComponents:colors];
-		self.headerLabel.text = title;
+		//CGFloat colors[8] = BLACK_BAR_COMPONENTS;
+		//[self.titleBar setColorComponents:colors];
+		//self.headerLabel.text = title;
         //self.closeButton.hidden=YES;
-		self.margin = UIEdgeInsetsMake(220.0f,220.0f,220.0f,220.0f);
-        
+		self.margin = UIEdgeInsetsMake(111.0f,109.0f,111.0f,109.0f);
+        self.borderWidth=0;
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
-        self.padding=UIEdgeInsetsMake(20.0f,20.0f,20.0f,20.0f);
-        self.titleBarHeight = 30.0f;        
+        self.padding=UIEdgeInsetsMake(0.0f,0.0f,0.0f,0.0f);
+        //self.titleBarHeight = 30.0f;        
         // The header label, a UILabel with the same frame as the titleBar
-        self.headerLabel.font = [UIFont boldSystemFontOfSize:20];
-        
+        //self.headerLabel.font = [UIFont boldSystemFontOfSize:20];        
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"SelectWinnerBox" owner:self options:nil] objectAtIndex:0];
        [self.contentView addSubview:viewLoadedFromXib];    
     }
@@ -42,6 +41,12 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
     [viewLoadedFromXib setFrame:self.contentView.bounds];
+    CGRect f = [self roundedRectFrame];
+    
+    self.closeButton.frame = CGRectMake(f.origin.x+f.size.width - floor(closeButton.frame.size.width*0.5),
+                                        f.origin.y - floor(closeButton.frame.size.height*0.5),
+                                        closeButton.frame.size.width,
+                                        closeButton.frame.size.height);
 }
 
 #pragma mark - View lifecycle

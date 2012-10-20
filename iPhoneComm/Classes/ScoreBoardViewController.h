@@ -19,6 +19,7 @@
 #define kWaitBoxForReset 1
 #define kWaitBoxForReOrg 2
 
+@class SelectWinnerBox;
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
@@ -31,6 +32,7 @@
     UIWaitForUserViewController *waitUserPanel;
     RoundRestTimeViewController *roundResetPanel;
     ShowWinnerBox *showWinnerBoxPanel;
+    SelectWinnerBox *selectWinnerBoxPanel;
     DDActionHeaderView *actionHeaderView;
     NSTimer *gameLoopTimer;
     BOOL clientChange;
@@ -38,6 +40,7 @@
     NSMutableArray *marksFlags;
     NSMutableArray *marksGrayFlags;
     NSMutableArray *timeFlags;
+    NSMutableArray *timeFlags2;
     NSMutableDictionary *scoreInfos;
 	NSTimer *calcTimer;
     //警告

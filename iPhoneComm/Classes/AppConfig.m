@@ -92,6 +92,20 @@ static AppConfig* instance;
     else
         return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
 }
+
+-(void)saveGameInfoToFile
+{
+    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
+    NSLog(@"Game Info:%@",currentGameInfo);
+}
+-(void)restoreGameInfoFromFile
+{
+    if([UtilHelper isFileExist:KEY_FILE_SETTING])
+    {
+        currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
+        NSLog(@"Game Info:%@",currentGameInfo);
+    }
+}
 -(void)dealloc
 {
     

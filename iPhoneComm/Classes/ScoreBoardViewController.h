@@ -89,6 +89,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeMinus;
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecTen;
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecSin;
+@property (strong, nonatomic) IBOutlet UIButton *btnShowSelectWinner;
 
 // Exit back to the welcome screen
 - (IBAction)exit;
@@ -106,4 +107,6 @@
 -(void)duringSettingEndPress;
 
 -(void)bluetoothKeyboardPressed:(KeyBoradEventInfo *)keyboardArgv;
+- (IBAction)btnShowSelectWinnerPressed:(id)sender;
+
 @end

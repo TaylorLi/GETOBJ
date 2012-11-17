@@ -31,6 +31,7 @@
 @property (strong,nonatomic) JMStaticContentTableViewController *detailController3;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailController4;
 - (IBAction)touchSaveButton;
+- (void)startGame:(BOOL)isCallByRestoreFromGameInfo;
 -(void) bindSettingGroupData:(int)group;
 -(void)resetSetting;
 

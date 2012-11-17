@@ -133,6 +133,7 @@
 @synthesize imgTimeMinus;
 @synthesize imgTimeSecTen;
 @synthesize imgTimeSecSin;
+@synthesize btnShowSelectWinner;
 
 
 - (void)didReceiveMemoryWarning
@@ -295,6 +296,7 @@
     [self setViewRedScore:nil];
     [self setLblCortNo:nil];
     [self setLblArea:nil];
+    [self setBtnShowSelectWinner:nil];
     [super viewDidUnload];    
     marksFlags=nil;
     marksGrayFlags=nil;
@@ -610,7 +612,19 @@
             chatRoom.gameInfo.blueSideScore!=chatRoom.gameInfo.redSideScore)
            ||chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount+1){
             [self setMenuByGameStatus:kStateGamePause]; 
-            [self showSelectWinnerBox];
+            //[self showSelectWinnerBox];
+            self.btnShowSelectWinner.hidden=NO;
+            [UIView animateWithDuration:0.5 
+                             animations:^{
+                                 btnShowSelectWinner.frame = CGRectMake(btnShowSelectWinner.frame.origin.x, btnShowSelectWinner.frame.origin.y, btnShowSelectWinner.frame.size.width/2, btnShowSelectWinner.frame.size.height/2);
+                             } completion:^(BOOL finished) {
+                                 [UIView animateWithDuration:0.5 
+                                                  animations:^{
+                                                      btnShowSelectWinner.frame = CGRectMake(btnShowSelectWinner.frame.origin.x, btnShowSelectWinner.frame.origin.y, btnShowSelectWinner.frame.size.width*2, btnShowSelectWinner.frame.size.height*2);
+                                                  } completion:^(BOOL finished) {
+                                                      
+                                                  }];
+                             }];
             //[UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
         }else{    
             [self setMenuByGameStatus:kStateRoundReset];              
@@ -1178,6 +1192,8 @@
 - (IBAction)exit {
     [AppConfig getInstance].isGameStart=NO;
     // Close the room
+    chatRoom.gameInfo.gameEnded=YES;
+    chatRoom.gameInfo.gameEndTime=[NSDate date];
     [self setMenuByGameStatus:kStateGameExit];
     [self sendServerStatusAndDesc:nil];
     //[[AppConfig getInstance].invalidServerPeerIds addObject:chatRoom.bluetoothServer.serverSession.peerID];
@@ -1311,25 +1327,43 @@
         imgDecicade=[UIImage imageNamed:@"dedecade_flag"];
     if(imgWarning==nil)
         imgWarning =[UIImage imageNamed:@"warning_flag"];
-    [self setMenuByGameStatus:kStatePrepareGame];
+    if(!chatRoom.isRestoredGame){
+        [self setMenuByGameStatus:kStatePrepareGame];
+    }
     if (chatRoom != nil ) {
         chatRoom.delegate = self;
         [chatRoom start];
     }
-    [self resetRound:YES];    
-    //取消原来的圆形菜单
-    //[self setupMenu];
-    [self setMenuByGameStatus:kStateWaitJudge];
-    //如果是非iphone作为客户端，直接视为已连接
-    if(chatRoom.gameInfo.gameSetting.currentJudgeDevice!=JudgeDeviceiPhone)  
-    {
-        for (int i=1; i<=chatRoom.gameInfo.gameSetting.judgeCount; i++) {
-            JudgeClientInfo *cltInfo=[[JudgeClientInfo alloc] initWithSessionId:@"TKD Score"andDisplayName:[NSString stringWithFormat:@"Referee %i",i] andUuid:[NSString stringWithFormat:@"%i",i] andPeerId:[NSString stringWithFormat:@"Referee Peer Id %i",i]];
-            cltInfo.sequence=chatRoom.gameInfo.clients.count+1;
-            cltInfo.hasConnected=NO;
-            [chatRoom.gameInfo.clients setValue:cltInfo forKey:cltInfo.uuid];
-        }           
+    if(!chatRoom.isRestoredGame){
+        [self resetRound:YES];    
     }
+    else{
+        [self drawLayoutByGameInfo];
+    }
+    //取消原来的圆形菜单
+    //[self setupMenu];    
+    if(chatRoom.isRestoredGame)
+    {
+        if(chatRoom.gameInfo.clients!=nil)
+        {
+            for (JudgeClientInfo *clt in chatRoom.gameInfo.clients.allValues) {
+                clt.hasConnected=NO;
+            }
+        }
+    }
+    else{
+        //如果是非iphone作为客户端，直接视为已连接
+        if(chatRoom.gameInfo.gameSetting.currentJudgeDevice!=JudgeDeviceiPhone)  
+        {
+            for (int i=1; i<=chatRoom.gameInfo.gameSetting.judgeCount; i++) {
+                JudgeClientInfo *cltInfo=[[JudgeClientInfo alloc] initWithSessionId:@"TKD Score"andDisplayName:[NSString stringWithFormat:@"Referee %i",i] andUuid:[NSString stringWithFormat:@"%i",i] andPeerId:[NSString stringWithFormat:@"Referee Peer Id %i",i]];
+                cltInfo.sequence=chatRoom.gameInfo.clients.count+1;
+                cltInfo.hasConnected=NO;
+                [chatRoom.gameInfo.clients setValue:cltInfo forKey:cltInfo.uuid];
+            }           
+        }
+    }
+    [self setMenuByGameStatus:kStateWaitJudge];
     [self showWaitingUserBox];
     double inv=kServerLoopInterval;
     gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval:inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
@@ -1454,8 +1488,10 @@
     
 }
 -(void)waitUserStartPress:(id)sender{
-    if(!chatRoom.gameInfo.gameStart)
+    if(!chatRoom.gameInfo.gameStart){
         chatRoom.gameInfo.gameStart=YES;
+        chatRoom.gameInfo.gameStartTime=[NSDate date];
+    }    
     [self contiueGame];
 }
 -(void)contiueGame
@@ -1650,6 +1686,7 @@
 
 -(void)setMenuByGameStatus:(GameStates)status;
 {
+    self.btnShowSelectWinner.hidden=YES;
     if(chatRoom.gameInfo.gameStatus!=kStateMultiplayerReconnect){
         chatRoom.gameInfo.preGameStatus=chatRoom.gameInfo.gameStatus;
     }
@@ -1683,7 +1720,7 @@
         blueWarningButton.hidden=YES;
         nextMatchButton.hidden=YES;
     }
-    
+    [[AppConfig getInstance] saveGameInfoToFile];
 }
 
 -(UIButton *)getMenuItem:(int)tag{
@@ -1976,5 +2013,10 @@
     }
     
     //[UIHelper showAlert:@"" message:keyboardArgv.description func:nil];
+}
+
+- (IBAction)btnShowSelectWinnerPressed:(id)sender
+{
+    [self showSelectWinnerBox];
 }
 @end

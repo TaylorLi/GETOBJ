@@ -26,11 +26,12 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "AppConfig.h"
 
 int main(int argc, char *argv[]) {
     
     @autoreleasepool {
-        int retVal = UIApplicationMain(argc, argv, @"DefinedUIApplication", @"ChattyAppDelegate");
+        int retVal = UIApplicationMain(argc, argv,[AppConfig getInstance].isIPAD? @"DefinedUIApplication":@"", @"ChattyAppDelegate");
         return retVal;
     }
 }

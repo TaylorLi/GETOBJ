@@ -35,9 +35,16 @@
 
 @property  BOOL pointGapReached;
 @property  BOOL warningMaxReached;
+//比赛开始时间，从比赛正式开始时刻算起
+@property (nonatomic,strong) NSDate *gameStartTime;
+//比赛结束时间，比赛完成时的时刻，如果比赛为正常完成，改值为0
+@property (nonatomic,strong) NSDate *gameEndTime;
+//比赛正常完成，包括完成和退出
+@property BOOL gameEnded;
 -(id) initWithGameSetting:(ServerSetting *)setting;
 -(id)initWithDictionary:(NSDictionary *) disc;
 -(NSDictionary *)gameStatusInfo;
 -(BOOL)allClientsReady;
 -(JudgeClientInfo *)clientBySequence:(int)sequence;
+-(void) resetGameInfo;
 @end

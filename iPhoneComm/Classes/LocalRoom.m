@@ -43,7 +43,7 @@
 
 @implementation LocalRoom
 
-@synthesize server, clients,gameInfo,bluetoothServer;
+@synthesize server, clients,gameInfo,bluetoothServer,isRestoredGame;
 
 // Initialization
 - (id)init {
@@ -52,6 +52,7 @@
     {    
         clients = [[NSMutableSet alloc] init];
     }
+    isRestoredGame = NO;
     return self;
 }
 
@@ -61,6 +62,7 @@
     if(self)
     {
         gameInfo=  info;
+        isRestoredGame = NO;
     }
     return self;
 }

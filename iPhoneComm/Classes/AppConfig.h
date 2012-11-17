@@ -53,4 +53,6 @@
 
 +(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 + (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation;
+-(void)saveGameInfoToFile;
+-(void)restoreGameInfoFromFile;
 @end

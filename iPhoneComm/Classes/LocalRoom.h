@@ -52,6 +52,7 @@
 @property(nonatomic,strong) Server* server;
 @property(nonatomic,strong) NSMutableSet* clients;
 @property(nonatomic,strong) PeerServer *bluetoothServer;
+@property BOOL isRestoredGame;
 
 - (id)initWithGameInfo:(GameInfo *)info;
 

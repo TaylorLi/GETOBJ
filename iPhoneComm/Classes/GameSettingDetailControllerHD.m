@@ -63,6 +63,15 @@
     [self bindSettingGroupData:3];
     [self bindSettingGroupData:4];
     [self bindSettingGroupData:0];
+    GameInfo *gi=[AppConfig getInstance].currentGameInfo;
+    if(gi.gameStart&&!gi.gameEnded)//未成功结束
+    {
+        [UIHelper showConfirm:@"Information" message:[NSString stringWithFormat:@"Game %@ %@ is not compeleted yet,continue the game?",gi.gameSetting.gameName,gi.gameSetting.gameDesc] doneText:@"OK" doneFunc:^(AlertView *a, NSInteger i) {
+            [self startGame:YES];
+        } cancelText:@"Cancel" cancelfunc:^(AlertView *a, NSInteger i) {
+            ;
+        }];           
+    }
 }
 
 - (void)viewDidUnload
@@ -116,10 +125,16 @@
 
 -(void) touchSaveButton
 {
-    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[AppConfig getInstance].currentGameInfo.gameSetting]];
-    [AppConfig getInstance].currentGameInfo=room.gameInfo;
+    [self startGame:NO];
+}
+- (void)startGame:(BOOL)isCallByRestoreFromGameInfo
+{
+    if(!isCallByRestoreFromGameInfo)
+        [[AppConfig getInstance].currentGameInfo resetGameInfo];
+    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[AppConfig getInstance].currentGameInfo];
     [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
+    room.isRestoredGame=isCallByRestoreFromGameInfo;
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 - (IBAction)touchCancelButton:(id)sender {

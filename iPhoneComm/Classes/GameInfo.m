@@ -12,7 +12,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart,serverFullName;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart,serverFullName,gameEnded,gameEndTime,gameStartTime;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -29,9 +29,28 @@
         redSideWarning=0;
         blueSideWarning=0;
         gameStart=NO;
+        gameEnded=NO;
+        gameStartTime=nil;
+        gameEndTime=nil;
         clients=[[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+-(void) resetGameInfo
+{
+    gameStatus=kStatePrepareGame;
+    currentRound=1;        
+    currentMatch=gameSetting.startScreening;
+    blueSideScore=0;
+    redSideScore=0;
+    redSideWarning=0;
+    blueSideWarning=0;
+    gameStart=NO;
+    gameEnded=NO;
+    gameStartTime=nil;
+    gameEndTime=nil;
+    clients=[[NSMutableDictionary alloc] init];
 }
 
 -(NSDictionary*) proxyForJson {
@@ -46,6 +65,10 @@
                           [NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
                           [NSNumber numberWithInt:self.blueSideWarning],@"blueSideWarmning",
                           statusRemark,@"statusRemark",
+                          [NSNumber numberWithDouble:[self.gameStartTime timeIntervalSince1970]],@"gameStartTime",
+                          [NSNumber numberWithDouble:[self.gameEndTime timeIntervalSince1970]],@"gameEndTime",
+                          [NSNumber numberWithBool:self.gameStart],@"gameStart",
+                           [NSNumber numberWithBool:self.gameEnded],@"gameEnded",
                           nil];
     /*
      [NSNumber numberWithDouble:[self.serverLastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate", 
@@ -93,10 +116,13 @@
     copyObj.gameSetting=[self.gameSetting copy];
     copyObj.statusRemark=[self.statusRemark copy];
     copyObj.gameStart=self.gameStart;
+    copyObj.gameEndTime=[self.gameEndTime copy];
+    copyObj.gameStartTime=[self.gameStartTime copy];
+    copyObj.gameEnded=self.gameEnded;
     return  copyObj;
 }
 -(NSString *) description{
-    return [NSString stringWithFormat:@"server peerId:%@,server Uuid:%@,gameStatus:%i,preGameStatus:%i,serverLastHeartbeatDate:%@,currentRound:%i,currentMatch:%i,Game Start:%i,gameSetting:%@,clients:%@",self.serverPeerId,self.serverUuid,self.gameStatus,self.preGameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate],currentRound,currentMatch,gameStart,gameSetting,clients];
+    return [NSString stringWithFormat:@"server peerId:%@,server Uuid:%@,\ngameStatus:%i,preGameStatus:%i,serverLastHeartbeatDate:%@,\ncurrentRound:%i,currentMatch:%i,Game Start:%i,\ngameSetting:[%@],\nclients:[%@],\nStarted:%i,StartTime:%@,Ended:%i,EndTime:%@,current RemainTime:%f,\nblueSideScore:%i,blueSideWarning:%i,\nredSideScore:%i,redSideWarning:%i",self.serverPeerId,self.serverUuid,self.gameStatus,self.preGameStatus,[UtilHelper formateTime: self.serverLastHeartbeatDate],currentRound,currentMatch,gameStart,gameSetting,clients,gameStart,[UtilHelper formateTime:gameStartTime],gameEnded,[UtilHelper formateTime:gameEndTime],currentRemainTime,blueSideScore,blueSideWarning,redSideScore,redSideWarning];
 }
 #pragma mark -
 #pragma mark NSCoding

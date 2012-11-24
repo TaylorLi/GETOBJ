@@ -213,7 +213,7 @@
 	self.closeButton.frame	= [self closeButtonFrame];
 	self.actionButton.frame	= [self actionButtonFrame];
 	self.contentView.frame	= [self contentViewFrame];
-	
+	UADebugLog(@"self frame: %@", NSStringFromCGRect(self.frame));
 	UADebugLog(@"roundedRect frame: %@", NSStringFromCGRect(self.roundedRect.frame));
 	UADebugLog(@"contentView frame: %@", NSStringFromCGRect(self.contentView.frame));
 }

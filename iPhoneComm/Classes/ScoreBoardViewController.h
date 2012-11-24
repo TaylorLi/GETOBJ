@@ -42,6 +42,9 @@
     NSMutableArray *timeFlags;
     NSMutableArray *timeFlags2;
     NSMutableDictionary *scoreInfos;
+    NSMutableArray *scoreReportIndicators;
+    NSMutableDictionary *scoreReportIndicatorTimers;
+    NSDictionary *scoreReportPointColors;
 	NSTimer *calcTimer;
     //警告
     UIImage *imgWarning;
@@ -90,6 +93,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecTen;
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecSin;
 @property (strong, nonatomic) IBOutlet UIButton *btnShowSelectWinner;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport1;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport2;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport3;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport4;
 
 // Exit back to the welcome screen
 - (IBAction)exit;

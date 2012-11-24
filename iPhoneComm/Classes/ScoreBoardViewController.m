@@ -25,9 +25,14 @@
 #define  kMenuItemContinueGame 2
 #define  kMenuItemWarningBlue 3
 #define  kMenuItemWarningRed 4
-#define kMenuItemNextMatch 5
+#define  kMenuItemNextMatch 5
+#define  kMenuItemEndMatch 6
+#define  kMenuItemRestReorgernizeTimer 7
+#define  kMenuItemFlight 8
+#define  kMenuItemTxnReport 9
 
 #define kSoundsRoundStart @"roundstart.wav"
+#define kSoundsPointEstablished @"point_established.mp3"
 #define kSoundsRoundEnd @"rend.wav"
 #define kSoundsCongratulation @"winner.wav"
 
@@ -97,6 +102,13 @@
 -(void)processHearbeatWithClientUuid:(NSString *)uuid;
 -(BOOL)isDuringSleep: (NSString *)_sideKey andScoreKey:(NSString *)_scoreKey;
 -(BOOL)canSubmitControlCommand;
+-(void) backToHome;
+//报告分数提示，关闭显示标识
+-(void)reportScoreIndicatorLoop:(NSTimer *)timerIns;
+//成功提交分数，闪现分数后关闭
+-(void)effectivedSubmitScoreTip:(ScoreHistoryInfo *)score;
+-(void)effectivedSubmitScoreTipLoop:(NSTimer *)timerIns;
+-(void)showSelectWinnerButton:(BOOL)show;
 @end 
 
 @implementation ScoreBoardViewController
@@ -134,6 +146,10 @@
 @synthesize imgTimeSecTen;
 @synthesize imgTimeSecSin;
 @synthesize btnShowSelectWinner;
+@synthesize imgScoreReport1;
+@synthesize imgScoreReport2;
+@synthesize imgScoreReport3;
+@synthesize imgScoreReport4;
 
 
 - (void)didReceiveMemoryWarning
@@ -198,9 +214,9 @@
     viewSwapDownRecg.direction= UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:viewSwapDownRecg];
     
-    /*双击时间控件,继续或者暂停,比赛进行时有效*/
+    /*单击时间控件,继续或者暂停,比赛进行时有效*/
     UITapGestureRecognizer *startStopGame=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gamePauseContinueToggle)];
-    startStopGame.numberOfTapsRequired=2;
+    startStopGame.numberOfTapsRequired=1;//单击
     startStopGame.numberOfTouchesRequired=1;
     self.viewTime.userInteractionEnabled=YES;
     [self.viewTime addGestureRecognizer:startStopGame];
@@ -211,26 +227,26 @@
     pauseGameAndShowResetBox.direction= UISwipeGestureRecognizerDirectionUp;
     [self.viewTime addGestureRecognizer:pauseGameAndShowResetBox];
     
-    /*向上滑动分数控件,直接加1分*/
+    /*红方：向上滑动分数控件,直接加1分*/
     UISwipeGestureRecognizer *blueAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(blueAddScore)];
     blueAddRecg.numberOfTouchesRequired=1;
     blueAddRecg.direction= UISwipeGestureRecognizerDirectionUp;
     self.viewBlueScore.userInteractionEnabled=YES;
     [self.viewBlueScore addGestureRecognizer:blueAddRecg];
     
-    /*向上滑动分数控件,直接减1分*/
+    /*红方：向上滑动分数控件,直接减1分*/
     UISwipeGestureRecognizer *blueMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(blueMinusScore)];
     blueMinusRecg.numberOfTouchesRequired=1;
     blueMinusRecg.direction= UISwipeGestureRecognizerDirectionDown;
     self.viewBlueScore.userInteractionEnabled=YES;
     [self.viewBlueScore addGestureRecognizer:blueMinusRecg];
-    
+    /*蓝方：向上滑动分数控件,直接加1分*/
     UISwipeGestureRecognizer *redAddRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(redAddScore)];
     redAddRecg.numberOfTouchesRequired=1;
     redAddRecg.direction= UISwipeGestureRecognizerDirectionUp;
     self.viewRedScore.userInteractionEnabled=YES;
     [self.viewRedScore addGestureRecognizer:redAddRecg];
-    
+    /*蓝方：向上滑动分数控件,直接减1分*/
     UISwipeGestureRecognizer *redMinusRecg=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(redMinusScore)];
     redMinusRecg.numberOfTouchesRequired=1;
     redMinusRecg.direction= UISwipeGestureRecognizerDirectionDown;
@@ -297,11 +313,18 @@
     [self setLblCortNo:nil];
     [self setLblArea:nil];
     [self setBtnShowSelectWinner:nil];
+    [self setImgScoreReport1:nil];
+    [self setImgScoreReport2:nil];
+    [self setImgScoreReport3:nil];
+    [self setImgScoreReport4:nil];
     [super viewDidUnload];    
     marksFlags=nil;
-    marksGrayFlags=nil;
+    scoreReportIndicators=nil;
+    scoreReportIndicatorTimers=nil;
     timeFlags=nil;
     timeFlags2=nil;
+    marksGrayFlags=nil;
+    scoreReportPointColors=nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -487,6 +510,7 @@
         if(![warningMaxTimer isValid]){
             warningMaxTimer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(warnmingMaxProcessLoop) userInfo:nil repeats:YES];
         }
+        [self showSelectWinnerButton:YES];
     }
     else{
         if([warningMaxTimer isValid])
@@ -494,7 +518,7 @@
         self.chatRoom.gameInfo.warningMaxReached=NO;
         [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore andGrayStype:chatRoom.gameInfo.pointGapReached&&chatRoom.gameInfo.blueSideScore>chatRoom.gameInfo.redSideScore];
         [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore andGrayStype:chatRoom.gameInfo.pointGapReached&&chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore];
-        
+        [self showSelectWinnerButton:NO];
     }
 }
 -(void)warnmingMaxProcessLoop
@@ -613,18 +637,7 @@
            ||chatRoom.gameInfo.currentRound==chatRoom.gameInfo.gameSetting.roundCount+1){
             [self setMenuByGameStatus:kStateGamePause]; 
             //[self showSelectWinnerBox];
-            self.btnShowSelectWinner.hidden=NO;
-            [UIView animateWithDuration:0.5 
-                             animations:^{
-                                 btnShowSelectWinner.frame = CGRectMake(btnShowSelectWinner.frame.origin.x, btnShowSelectWinner.frame.origin.y, btnShowSelectWinner.frame.size.width/2, btnShowSelectWinner.frame.size.height/2);
-                             } completion:^(BOOL finished) {
-                                 [UIView animateWithDuration:0.5 
-                                                  animations:^{
-                                                      btnShowSelectWinner.frame = CGRectMake(btnShowSelectWinner.frame.origin.x, btnShowSelectWinner.frame.origin.y, btnShowSelectWinner.frame.size.width*2, btnShowSelectWinner.frame.size.height*2);
-                                                  } completion:^(BOOL finished) {
-                                                      
-                                                  }];
-                             }];
+            [self showSelectWinnerButton:YES];
             //[UIHelper showAlert:@"Information" message:@"The match has completed." func:nil];
         }else{    
             [self setMenuByGameStatus:kStateRoundReset];              
@@ -638,6 +651,27 @@
         [self showWinnerBoxForRedSide:chatRoom.gameInfo.redSideScore>chatRoom.gameInfo.blueSideScore];  
     }
 } 
+-(void)showSelectWinnerButton:(BOOL)show
+{
+    if(show){
+        self.btnShowSelectWinner.hidden=NO;
+        [UIView animateWithDuration:0.5 
+                         animations:^{
+                             btnShowSelectWinner.frame = CGRectMake(btnShowSelectWinner.frame.origin.x, btnShowSelectWinner.frame.origin.y, btnShowSelectWinner.frame.size.width/2, btnShowSelectWinner.frame.size.height/2);
+                         } completion:^(BOOL finished) {
+                             [UIView animateWithDuration:0.5 
+                                              animations:^{
+                                                  btnShowSelectWinner.frame = CGRectMake(btnShowSelectWinner.frame.origin.x, btnShowSelectWinner.frame.origin.y, btnShowSelectWinner.frame.size.width*2, btnShowSelectWinner.frame.size.height*2);
+                                              } completion:^(BOOL finished) {
+                                                  
+                                              }];
+                         }];
+    }
+    else{
+        self.btnShowSelectWinner.hidden=YES;
+    }
+    
+}
 //show round rest when round end
 -(void)showRoundRestTimeBox:(NSTimeInterval) time andEventType:(NSInteger)eventType{
     if(roundResetPanel==nil)
@@ -704,6 +738,8 @@
         [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore];
         lblBlueTotal.text=[NSString stringWithFormat:@"%i",chatRoom.gameInfo.blueSideScore];
     }
+    //warmning competitor/instructor when point is established
+    [player playSoundWithFullPath:kSoundsPointEstablished];
     if(chatRoom.gameInfo.currentRound<=chatRoom.gameInfo.gameSetting.roundCount){
         //比赛正常进行时
         [self testPointGapReached];
@@ -795,7 +831,8 @@
                                 NSLog(@"/////sdfdsfs");
                                 scoreHistoryInfo.calTimer = nil;
                                 scoreHistoryInfo.endTime = [NSDate date];
-                                [scoreHistoryInfo.uuids removeAllObjects];
+                                [self effectivedSubmitScoreTip:scoreHistoryInfo];
+                                [scoreHistoryInfo.uuids removeAllObjects];                                
                                 [self submitScore:[scoreHistoryInfo.scoreKey intValue] andIsRedSize:[scoreHistoryInfo.sideKey isEqualToString:@"red"]];
                             }
                         }
@@ -972,6 +1009,7 @@
         if(![pointGapTimer isValid]){
             pointGapTimer=[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(pointGapLoop) userInfo:nil repeats:YES];
         }
+        [self showSelectWinnerButton:YES];
     }
     else{
         if(self.chatRoom.gameInfo.pointGapReached){
@@ -981,6 +1019,7 @@
         }
         [self drawTotalScore:YES andScore:chatRoom.gameInfo.redSideScore andGrayStype:chatRoom.gameInfo.redSideWarning==chatRoom.gameInfo.gameSetting.maxWarningCount];
         [self drawTotalScore:NO andScore:chatRoom.gameInfo.blueSideScore andGrayStype:chatRoom.gameInfo.blueSideWarning==chatRoom.gameInfo.gameSetting.maxWarningCount];
+        [self showSelectWinnerButton:NO];
     }
 }
 
@@ -1020,6 +1059,46 @@
         }
     }
 }
+-(void)reportScoreIndicatorLoop:(NSTimer *)timerIns
+{
+    NSNumber *inx=timerIns.userInfo;
+    UIImageView *img= [scoreReportIndicators objectAtIndex:[inx intValue]];
+    img.hidden=YES;
+}
+
+-(void)effectivedSubmitScoreTip:(ScoreHistoryInfo *)score
+{
+    NSMutableArray *relatedJudges=[[NSMutableArray alloc] initWithCapacity:4];
+    for(NSTimer *timerIns in scoreReportIndicatorTimers.allValues)
+    {
+        [timerIns invalidate];
+    }
+    for (NSString *uuid in score.uuids) {
+        JudgeClientInfo *clt=[chatRoom.gameInfo.clients objectForKey:uuid];
+        [relatedJudges addObject:[scoreReportIndicators objectAtIndex:clt.sequence-1]];
+    }
+    for (UIImageView *img in relatedJudges) {
+        img.hidden=NO;
+    }  
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(effectivedSubmitScoreTipLoop:) userInfo:[[NSArray alloc] initWithObjects:relatedJudges,[NSDate date], nil] repeats:YES];
+}
+-(void)effectivedSubmitScoreTipLoop:(NSTimer *)timerIns
+{
+    NSArray *info= [timerIns userInfo];
+    NSMutableArray *relatedJudges=[info objectAtIndex:0];
+    NSDate * startDate=[info objectAtIndex:1];    
+    if(fabs([startDate timeIntervalSinceNow])<chatRoom.gameInfo.gameSetting.serverLoopMaxDelay/2){
+        for (UIImageView *img in relatedJudges) {
+            img.hidden=!img.hidden;
+        }
+    }
+    else{
+        for (UIImageView *img in relatedJudges) {
+            img.hidden=YES;
+        }
+        [timerIns invalidate];
+    }
+}
 #pragma mark -
 #pragma mark cmd handler
 // We are being asked to process cmd
@@ -1040,6 +1119,20 @@
                 }
                 else{
                     [cmdHis addObject:cmdMsg];
+                }
+                JudgeClientInfo *cltInfo = [chatRoom.gameInfo.clients objectForKey:cmdMsg.from];
+                if(cltInfo!=nil){
+                    ScoreInfo* scoreInfoTemp = [[ScoreInfo alloc]initWithDictionary: cmdMsg.data];
+                    UIImageView *img= [scoreReportIndicators objectAtIndex:cltInfo.sequence-1];
+                    img.hidden=NO;
+                    img.backgroundColor=[scoreReportPointColors objectForKey:[NSString stringWithFormat:@"%i",scoreInfoTemp.swipeType== kSideRed? scoreInfoTemp.redSideScore:scoreInfoTemp.blueSideScore]];
+                    NSTimer *reportTimer=[scoreReportIndicatorTimers objectForKey:
+                                          [NSString stringWithFormat:@"%i",cltInfo.sequence-1]];
+                    if(reportTimer!=nil){
+                        [reportTimer invalidate];
+                    }
+                    reportTimer =[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reportScoreIndicatorLoop:) userInfo:[NSNumber numberWithInt:cltInfo.sequence-1] repeats:NO];
+                    [scoreReportIndicatorTimers setObject:reportTimer forKey:[NSString stringWithFormat:@"%i",cltInfo.sequence-1]];
                 }
                 //test if all judges have sent score
                 [self testIfScoreCanSubmit];
@@ -1255,7 +1348,6 @@
             // [panel hide];
             UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"End Game" message:@"Continue to end the game?" delegate:me cancelButtonTitle:@"Cancel" otherButtonTitles:@"End", nil];
             [alertView show];            
-            UADebugLog(@"onClosePressed block called from panel: %@", modalPanel);
         };
         waitUserPanel.delegate=self;
     }
@@ -1272,7 +1364,17 @@
         [waitUserPanel updateStatus:chatRoom.gameInfo.clients];
     }    
 }
-
+-(void) backToHome
+{
+    AlertView *confirmBox= [[AlertView alloc] initWithTitle:NSLocalizedString(@"Warmning", @"") message:NSLocalizedString(@"Do you want to end this game?", @"")];
+    [confirmBox addButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:[^(AlertView* a, NSInteger i){
+        
+    } copy]];
+    [confirmBox addButtonWithTitle:NSLocalizedString(@"Exit", @"") block:[^(AlertView* a, NSInteger i){
+        [self exit];
+    } copy]];
+    [confirmBox show];
+}
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==1)
@@ -1323,6 +1425,15 @@
             [marksGrayFlags addObject:[UIImage imageNamed:[NSString stringWithFormat:@"marks_gray_%i",i]]];
         }
     }
+    if(scoreReportIndicators==nil){
+        scoreReportIndicators=[[NSMutableArray alloc] initWithObjects:imgScoreReport1,imgScoreReport2,imgScoreReport3,imgScoreReport4, nil];
+    }
+    if(scoreReportIndicatorTimers==nil){
+        scoreReportIndicatorTimers=[[NSMutableDictionary alloc] initWithCapacity:4];
+    }
+    if(scoreReportPointColors==nil){
+        scoreReportPointColors=[[NSDictionary alloc] initWithObjectsAndKeys:[UIColor grayColor],@"1", [UIColor yellowColor],@"2",[UIColor orangeColor],@"3",[UIColor greenColor],@"4",nil];
+    }
     if(imgDecicade==nil)
         imgDecicade=[UIImage imageNamed:@"dedecade_flag"];
     if(imgWarning==nil)
@@ -1340,7 +1451,7 @@
     else{
         [self drawLayoutByGameInfo];
     }
-    //取消原来的圆形菜单
+    //恢复原来的圆形菜单，2012-11-24
     //[self setupMenu];    
     if(chatRoom.isRestoredGame)
     {
@@ -1369,6 +1480,12 @@
     gameLoopTimer=[NSTimer scheduledTimerWithTimeInterval:inv target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
 }
 
+-(CGPoint)calMenuCenter:(int)index
+{
+    float centerX=25.0+50.0*index;
+    float centerY=25.0f;
+    return CGPointMake(centerX, centerY);
+}
 //set up bottom menu
 -(void)setupMenu
 {
@@ -1376,55 +1493,58 @@
 	
     // Set title
     self.actionHeaderView.titleLabel.text = @"";
-	
+	CGRect iconRect = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    UIEdgeInsets iconEdge = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    int i=0;
+    
     // Create action items, have to be UIView subclass, and set frame position by yourself.
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [menuButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
     [menuButton setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    menuButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    menuButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    menuButton.center = CGPointMake(25.0f, 25.0f);
+    menuButton.frame = iconRect;
+    menuButton.imageEdgeInsets = iconEdge;
+    menuButton.center = [self calMenuCenter:i++];
     menuButton.tag=kMenuItemMenu;
     
     UIButton *continueButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [continueButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
     [continueButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-    continueButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    continueButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    continueButton.center = CGPointMake(75.0f, 25.0f);
+    continueButton.frame = iconRect;
+    continueButton.imageEdgeInsets = iconEdge;
+    continueButton.center = [self calMenuCenter:i++];
     continueButton.tag=kMenuItemContinueGame;
     
     // Create action items, have to be UIView subclass, and set frame position by yourself.
     UIButton *redWarningButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [redWarningButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
     [redWarningButton setImage:[UIImage imageNamed:@"minus-red"] forState:UIControlStateNormal];
-    redWarningButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    redWarningButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    redWarningButton.center = CGPointMake(125.0f, 25.0f);
+    redWarningButton.frame = iconRect;
+    redWarningButton.imageEdgeInsets = iconEdge;
+    redWarningButton.center = [self calMenuCenter:i++];
     redWarningButton.tag=kMenuItemWarningRed;
     
     UIButton *blueWarningButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [blueWarningButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
     [blueWarningButton setImage:[UIImage imageNamed:@"minus-blue"] forState:UIControlStateNormal];
-    blueWarningButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    blueWarningButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    blueWarningButton.center = CGPointMake(175.0f, 25.0f);
+    blueWarningButton.frame = iconRect;
+    blueWarningButton.imageEdgeInsets = iconEdge;
+    blueWarningButton.center = [self calMenuCenter:i++];
     blueWarningButton.tag=kMenuItemWarningBlue;
     
     UIButton *nextMatchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [nextMatchButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
     [nextMatchButton setImage:[UIImage imageNamed:@"next-match"] forState:UIControlStateNormal];
-    nextMatchButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    nextMatchButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
-    nextMatchButton.center = CGPointMake(225.0f, 25.0f);
+    nextMatchButton.frame = iconRect;
+    nextMatchButton.imageEdgeInsets = iconEdge;
+    nextMatchButton.center = [self calMenuCenter:i++];
 	nextMatchButton.tag=kMenuItemNextMatch;
     
     
     UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [exitButton addTarget:self action:@selector(menuItemAction:) forControlEvents:UIControlEventTouchUpInside];
     [exitButton setImage:[UIImage imageNamed:@"exit"] forState:UIControlStateNormal];
-    exitButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    exitButton.imageEdgeInsets = UIEdgeInsetsMake(13.0f, 13.0f, 13.0f, 13.0f);
+    exitButton.frame = iconRect;
+    exitButton.imageEdgeInsets = iconEdge;
     exitButton.center = CGPointMake(275.0f, 25.0f);
 	exitButton.tag=kMenuItemExit;
     // Set action items, and previous items will be removed from action picker if there is any.
@@ -1442,8 +1562,7 @@
             break;
         case kMenuItemExit:
         {
-            UIAlertView *alertView= [[UIAlertView alloc] initWithTitle:@"End Game" message:@"Continue to end the game?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"End", nil];
-            [alertView show];
+            [self backToHome];
         }
             break;
         case kMenuItemContinueGame:
@@ -1469,8 +1588,8 @@
         default:
             break;
     }
-    self.actionHeaderView.hidden=YES;
-    //[self.actionHeaderView shrinkActionPicker];
+    //self.actionHeaderView.hidden=YES;
+    [self.actionHeaderView shrinkActionPicker];
 }
 
 //start round
@@ -1481,18 +1600,24 @@
         return;
     }
     waitUserPanel=nil;
-    if(timer==nil){
-        timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatTime) userInfo:nil repeats:YES];
-    } 
-    [self setMenuByGameStatus:kStateRunning];
-    
+    /*Do not start timmer automatically when start match/round*/
+    /*
+     if(timer==nil){
+     timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatTime) userInfo:nil repeats:YES];
+     } 
+     [self setMenuByGameStatus:kStateRunning]; 
+     */
+    [self pauseGame];
+    [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
 }
 -(void)waitUserStartPress:(id)sender{
     if(!chatRoom.gameInfo.gameStart){
         chatRoom.gameInfo.gameStart=YES;
         chatRoom.gameInfo.gameStartTime=[NSDate date];
-    }    
-    [self contiueGame];
+    } 
+    
+    [self pauseGame];
+    [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
 }
 -(void)contiueGame
 {    
@@ -1516,7 +1641,9 @@
             break;
         case krestAndReOrgTime:
         {
-            [self contiueGame];
+            [self pauseGame];
+            [self drawRemainTime:chatRoom.gameInfo.currentRemainTime];
+            //[self contiueGame];
         }
             break;
         default:
@@ -1540,11 +1667,15 @@
 -(void)pauseGame
 {
     [self pauseTime:YES];
-    [self setMenuByGameStatus:kStateGamePause];
+    [self setMenuByGameStatus:kStateGamePause];    
 }
 //toggle game status to pause or continue
 -(void)gamePauseContinueToggle{
     if(self.chatRoom.gameInfo.pointGapReached||self.chatRoom.gameInfo.warningMaxReached)
+    {
+        return;
+    }
+    if(roundResetPanel!=nil&&roundResetPanel.superview!=nil)
     {
         return;
     }
@@ -1686,7 +1817,7 @@
 
 -(void)setMenuByGameStatus:(GameStates)status;
 {
-    self.btnShowSelectWinner.hidden=YES;
+    [self showSelectWinnerButton:NO];
     if(chatRoom.gameInfo.gameStatus!=kStateMultiplayerReconnect){
         chatRoom.gameInfo.preGameStatus=chatRoom.gameInfo.gameStatus;
     }

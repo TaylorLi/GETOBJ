@@ -75,20 +75,21 @@ static AppConfig* instance;
   
   return instance;
 }
-
+//其他页面，除比赛界面
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     if([AppConfig getInstance].isIPAD)
-        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight||interfaceOrientation== UIInterfaceOrientationLandscapeLeft;
     else
-        return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
 }
+//控制主界面,分数主界面
 + (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     if([AppConfig getInstance].isIPAD)
-        return interfaceOrientation== UIInterfaceOrientationLandscapeRight;
+        return interfaceOrientation== UIInterfaceOrientationLandscapeRight||interfaceOrientation== UIInterfaceOrientationLandscapeLeft;
     else
         return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
 }

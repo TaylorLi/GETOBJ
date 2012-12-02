@@ -78,25 +78,46 @@
                                 @"~",@"53",
                                 @"-",@"45",
                                 @"+",@"46",
-                                 @"\\",@"49",
-                                 @"[",@"47",
-                                 @"]",@"48",
-                                 @";",@"51",
-                                 @"'",@"52",
-                                 @",",@"54",
-                                 @".",@"55",
-                                 @"/",@"56",
+                                @"\\",@"49",
+                                @"[",@"47",
+                                @"]",@"48",
+                                @";",@"51",
+                                @"'",@"52",
+                                @",",@"54",
+                                @".",@"55",
+                                @"/",@"56",
                                 @"ARROW RIGHT",@"79",
                                 @"ARROW LEFT",@"80",
                                 @"ARROW DOWN",@"81",
                                 @"ARROW UP",@"82",
                                 nil];
         if([codeDesc containKey:[NSString stringWithFormat:@"%i",keyCode]])
-            {
-                return [codeDesc objectForKey:[NSString stringWithFormat:@"Char %i",keyCode]];
-            }
+        {
+            return [codeDesc objectForKey:[NSString stringWithFormat:@"Char %i",keyCode]];
+        }
         else
             return [NSString stringWithFormat:@"Unmatch code %i",keyCode];
     }
 }
++(NSString *)getWinTypeDesc:(WinType)type{
+    switch (type) {
+        case kWinByPoint:            
+            return @"Win By Point";
+        case kWinByPointGap:
+            return @"Win By Point Gap";
+        case  kWinByByWarning:
+            return @"Win By Warning";
+        default:
+            return @"";
+    }
+}
+
++ (NSString*) stringWithUUID {
+     CFUUIDRef    uuidObj = CFUUIDCreate(nil);//create a new UUID
+     //get the string representation of the UUID
+     NSString    *uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(nil, uuidObj);
+     CFRelease(uuidObj);
+     return uuidString;
+     }
+
 @end

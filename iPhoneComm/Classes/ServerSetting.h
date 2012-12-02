@@ -96,6 +96,12 @@
 @property NSTimeInterval restAndReorganizationTime;
 //客户端使用的设备类型
 @property (nonatomic) JudgeDevice currentJudgeDevice;
+@property (nonatomic,copy) NSString *profileName;
+@property (nonatomic,strong) NSDate *createDate;
+@property BOOL isDefaultProfile;
+@property (nonatomic,strong) NSString *uuid;
+@property (nonatomic,strong) NSString *settingId;
+@property (nonatomic,strong) NSString *gameId;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc

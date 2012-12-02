@@ -138,6 +138,12 @@ typedef enum {
  
  数字按键用来与配对蓝牙键盘时使用
  */
+
+typedef enum{
+    kWinByPoint=0, //blue
+    kWinByPointGap=1, //red
+    kWinByByWarning=2, //both
+}WinType;
 @interface Definition : NSObject
 
 @end

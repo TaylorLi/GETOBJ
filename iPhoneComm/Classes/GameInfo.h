@@ -14,7 +14,7 @@
 {
     GameStates _gameStatus;
 }
-
+@property (nonatomic,strong) NSString *gameId;
 @property (nonatomic,strong) ServerSetting *gameSetting;
 @property NSTimeInterval currentRemainTime;
 @property NSInteger currentRound;
@@ -26,6 +26,7 @@
 @property (nonatomic,strong)NSString *serverPeerId;
 @property (nonatomic,strong)NSString *serverUuid;
 @property (nonatomic,strong)NSString *serverFullName;
+@property (nonatomic,strong) NSString *serverUserId;
 @property (nonatomic,assign)GameStates gameStatus;
 @property (nonatomic,strong) NSMutableDictionary *clients;
 @property (nonatomic,strong)NSDate *serverLastHeartbeatDate;
@@ -41,6 +42,9 @@
 @property (nonatomic,strong) NSDate *gameEndTime;
 //比赛正常完成，包括完成和退出
 @property BOOL gameEnded;
+@property WinType winByType;
+@property BOOL isRedToBeWinner;
+
 -(id) initWithGameSetting:(ServerSetting *)setting;
 -(id)initWithDictionary:(NSDictionary *) disc;
 -(NSDictionary *)gameStatusInfo;

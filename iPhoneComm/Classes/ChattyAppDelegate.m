@@ -71,7 +71,7 @@ static ChattyAppDelegate* _instance;
     //[window bringSubviewToFront:welcomeViewController.view];
     
     // 监测网络情况
-    
+    NSLog(@"%@,%@",[AppConfig getInstance].uuid,[UtilHelper stringWithUUID]);
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
     NSMutableArray * discoveredPeripherals = [NSMutableArray new];

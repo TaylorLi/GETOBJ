@@ -15,6 +15,8 @@
 @property int redSideScore;
 @property SwipeType swipeType;
 @property (nonatomic, retain) NSDate *datetime;
+@property (nonatomic,strong) NSString *clientUuid;
+@property (nonatomic,strong) NSString *gameId;
 
 -(id) init;
 -(id) initWithBlueSide:(int)_blueScore andDateNow:(NSDate *)_datenow;

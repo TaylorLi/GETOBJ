@@ -23,7 +23,7 @@
 @synthesize roundCount;
 @synthesize judgeCount;
 @synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
-@synthesize currentJudgeDevice;
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId;
 
 -(NSString *)description
 {
@@ -109,6 +109,9 @@
     copyObj.availTimeDuringScoreCalc=self.availTimeDuringScoreCalc;
     copyObj.maxWarningCount=self.maxWarningCount;
     copyObj.restAndReorganizationTime=self.restAndReorganizationTime;
+    copyObj.profileName=self.profileName;
+    copyObj.isDefaultProfile=self.isDefaultProfile;
+    copyObj.uuid=self.uuid;
     return copyObj;
 }
 /*NSCoding

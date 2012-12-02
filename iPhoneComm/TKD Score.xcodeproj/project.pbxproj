@@ -75,6 +75,10 @@
 		DA5381A415BD920E00D1413B /* next-round.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5381A015BD920E00D1413B /* next-round.png */; };
 		DA5381A815BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */; };
 		DA5381A915BDAE5900D1413B /* RoundRestTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */; };
+		DA656E261663B88400D691B0 /* enable-timer.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E221663B88400D691B0 /* enable-timer.png */; };
+		DA656E271663B88400D691B0 /* end-match.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E231663B88400D691B0 /* end-match.png */; };
+		DA656E281663B88400D691B0 /* fight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E241663B88400D691B0 /* fight.png */; };
+		DA656E291663B88400D691B0 /* txn-report.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E251663B88400D691B0 /* txn-report.png */; };
 		DA6CE53B15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */; };
 		DA6CE53C15E7BCE400BF9D59 /* ScoreHistoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */; };
 		DA78B45415A96F0100E186CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -354,12 +358,24 @@
 		DAEAD242162EF37400950C8F /* game_wait_user_referee4_wait.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEAD232162EF37400950C8F /* game_wait_user_referee4_wait.png */; };
 		DAEAD245162EF38200950C8F /* UIWaitForUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAEAD244162EF38200950C8F /* UIWaitForUserView.xib */; };
 		DAEAD247162EF4D800950C8F /* game_wait_user_referee1_wait_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEAD246162EF4D800950C8F /* game_wait_user_referee1_wait_clear.png */; };
+		DAEAEA711663A72700FDC47A /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA671663A72700FDC47A /* FMDatabase.m */; };
+		DAEAEA721663A72700FDC47A /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA691663A72700FDC47A /* FMDatabaseAdditions.m */; };
+		DAEAEA731663A72700FDC47A /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA6B1663A72700FDC47A /* FMDatabasePool.m */; };
+		DAEAEA741663A72700FDC47A /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA6D1663A72700FDC47A /* FMDatabaseQueue.m */; };
+		DAEAEA761663A72700FDC47A /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA701663A72700FDC47A /* FMResultSet.m */; };
+		DAEAEA7C1663A7A900FDC47A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEAEA7B1663A7A900FDC47A /* libsqlite3.dylib */; };
 		DAEB1E8515F8D22A00CE98C7 /* DefinedUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEB1E8615F8D22A00CE98C7 /* DefinedUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEB1E8A15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */; };
 		DAEB1E8B15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */; };
 		DAEB1E8E15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */; };
 		DAEB1E8F15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */; };
+		DAEB2BB5166B47A60044706E /* PickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB4166B47A60044706E /* PickerButton.m */; };
+		DAEB2BB6166B47A60044706E /* PickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB4166B47A60044706E /* PickerButton.m */; };
+		DAEB2BBA166B7FAD0044706E /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB9166B7FAD0044706E /* Database.m */; };
+		DAEB2BBB166B7FAD0044706E /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB9166B7FAD0044706E /* Database.m */; };
+		DAEB2BC2166B88FA0044706E /* TKDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BC1166B88FA0044706E /* TKDDatabase.m */; };
+		DAEB2BC3166B88FA0044706E /* TKDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BC1166B88FA0044706E /* TKDDatabase.m */; };
 		DAEBA08916324FDD001A58C7 /* game_select_winner_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBA07D16324FDD001A58C7 /* game_select_winner_bg.png */; };
 		DAEBA08A16324FDD001A58C7 /* game_select_winner_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBA07E16324FDD001A58C7 /* game_select_winner_blue.png */; };
 		DAEBA08B16324FDD001A58C7 /* game_select_winner_red.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBA07F16324FDD001A58C7 /* game_select_winner_red.png */; };
@@ -504,6 +520,10 @@
 		DA5381A515BDAE5800D1413B /* RoundRestTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundRestTimeViewController.h; sourceTree = "<group>"; };
 		DA5381A615BDAE5800D1413B /* RoundRestTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRestTimeViewController.m; sourceTree = "<group>"; };
 		DA5381A715BDAE5900D1413B /* RoundRestTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RoundRestTimeView.xib; path = Classes/RoundRestTimeView.xib; sourceTree = "<group>"; };
+		DA656E221663B88400D691B0 /* enable-timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enable-timer.png"; path = "Resources-iPad/enable-timer.png"; sourceTree = "<group>"; };
+		DA656E231663B88400D691B0 /* end-match.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "end-match.png"; path = "Resources-iPad/end-match.png"; sourceTree = "<group>"; };
+		DA656E241663B88400D691B0 /* fight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fight.png; path = "Resources-iPad/fight.png"; sourceTree = "<group>"; };
+		DA656E251663B88400D691B0 /* txn-report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "txn-report.png"; path = "Resources-iPad/txn-report.png"; sourceTree = "<group>"; };
 		DA6CE53915E7BCE400BF9D59 /* ScoreHistoryInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreHistoryInfo.h; sourceTree = "<group>"; };
 		DA6CE53A15E7BCE400BF9D59 /* ScoreHistoryInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreHistoryInfo.m; sourceTree = "<group>"; };
 		DA78B47A15A96F0100E186CC /* TKD Score HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TKD Score HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -750,12 +770,30 @@
 		DAEAD232162EF37400950C8F /* game_wait_user_referee4_wait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_wait_user_referee4_wait.png; path = "Resources-iPad/Images/game_wait_user_referee4_wait.png"; sourceTree = "<group>"; };
 		DAEAD244162EF38200950C8F /* UIWaitForUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWaitForUserView.xib; path = "Resources-iPad/UIWaitForUserView.xib"; sourceTree = "<group>"; };
 		DAEAD246162EF4D800950C8F /* game_wait_user_referee1_wait_clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_wait_user_referee1_wait_clear.png; path = "Resources-iPad/Images/game_wait_user_referee1_wait_clear.png"; sourceTree = "<group>"; };
+		DAEAEA661663A72700FDC47A /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = ../Submodules/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		DAEAEA671663A72700FDC47A /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = ../Submodules/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		DAEAEA681663A72700FDC47A /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = ../Submodules/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		DAEAEA691663A72700FDC47A /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = ../Submodules/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		DAEAEA6A1663A72700FDC47A /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = ../Submodules/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		DAEAEA6B1663A72700FDC47A /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = ../Submodules/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		DAEAEA6C1663A72700FDC47A /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = ../Submodules/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		DAEAEA6D1663A72700FDC47A /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = ../Submodules/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		DAEAEA6F1663A72700FDC47A /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = ../Submodules/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		DAEAEA701663A72700FDC47A /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = ../Submodules/fmdb/FMResultSet.m; sourceTree = "<group>"; };
+		DAEAEA7B1663A7A900FDC47A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DAEAEA811663AE7D00FDC47A /* MacroUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacroUtils.h; path = Classes/MacroUtils.h; sourceTree = "<group>"; };
 		DAEB1E8315F8D22A00CE98C7 /* DefinedUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinedUIApplication.h; sourceTree = "<group>"; };
 		DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinedUIApplication.m; sourceTree = "<group>"; };
 		DAEB1E8815F8EB1A00CE98C7 /* KeyBoradEventInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyBoradEventInfo.h; sourceTree = "<group>"; };
 		DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyBoradEventInfo.m; sourceTree = "<group>"; };
 		DAEB1E8C15F904E100CE98C7 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
 		DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
+		DAEB2BB3166B47A60044706E /* PickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerButton.h; path = ../../Controls/GET/PickerButton.h; sourceTree = "<group>"; };
+		DAEB2BB4166B47A60044706E /* PickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerButton.m; path = ../../Controls/GET/PickerButton.m; sourceTree = "<group>"; };
+		DAEB2BB8166B7FAD0044706E /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Database.h; path = Database/Database.h; sourceTree = "<group>"; };
+		DAEB2BB9166B7FAD0044706E /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Database.m; path = Database/Database.m; sourceTree = "<group>"; };
+		DAEB2BC0166B88FA0044706E /* TKDDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKDDatabase.h; path = Database/TKDDatabase.h; sourceTree = "<group>"; };
+		DAEB2BC1166B88FA0044706E /* TKDDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKDDatabase.m; path = Database/TKDDatabase.m; sourceTree = "<group>"; };
 		DAEBA07D16324FDD001A58C7 /* game_select_winner_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_select_winner_bg.png; path = "Resources-iPad/Images/game_select_winner_bg.png"; sourceTree = "<group>"; };
 		DAEBA07E16324FDD001A58C7 /* game_select_winner_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_select_winner_blue.png; path = "Resources-iPad/Images/game_select_winner_blue.png"; sourceTree = "<group>"; };
 		DAEBA07F16324FDD001A58C7 /* game_select_winner_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_select_winner_red.png; path = "Resources-iPad/Images/game_select_winner_red.png"; sourceTree = "<group>"; };
@@ -844,6 +882,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAEAEA7C1663A7A900FDC47A /* libsqlite3.dylib in Frameworks */,
 				DAEBBF6315EA4BC200C0A69C /* CoreBluetooth.framework in Frameworks */,
 				DA93459B15E0FD2C00A4B99B /* AVFoundation.framework in Frameworks */,
 				DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */,
@@ -864,6 +903,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DAEB2BB7166B7F800044706E /* Database */,
 				DA10C1D315B11D3600153392 /* Controls */,
 				DAE735BB15A8494A00C84157 /* Model */,
 				D043DA070F9CC4C40030638C /* Business Logic */,
@@ -912,6 +952,7 @@
 				DAE977A815D61DC100A5AF7E /* Settings.plist */,
 				32CA4F630368D1EE00C91783 /* TKD Score_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				DAEAEA811663AE7D00FDC47A /* MacroUtils.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -939,6 +980,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAEAEA7B1663A7A900FDC47A /* libsqlite3.dylib */,
 				DAEBBF6115EA4BB900C0A69C /* CoreData.framework */,
 				DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */,
 				DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */,
@@ -1064,6 +1106,8 @@
 		DA10C1D315B11D3600153392 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DAEB2BB3166B47A60044706E /* PickerButton.h */,
+				DAEB2BB4166B47A60044706E /* PickerButton.m */,
 				DAE7E4E615B9BD46009B456F /* UIPasswordBox.h */,
 				DAE7E4E715B9BD46009B456F /* UIPasswordBox.m */,
 				DA43FDAF15B5DA840083D1B7 /* UILoadingBox.m */,
@@ -1127,6 +1171,10 @@
 		DADB112215A8AB3800326B24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA656E221663B88400D691B0 /* enable-timer.png */,
+				DA656E231663B88400D691B0 /* end-match.png */,
+				DA656E241663B88400D691B0 /* fight.png */,
+				DA656E251663B88400D691B0 /* txn-report.png */,
 				DAABDDDE15DF49D400501D46 /* W1-icon@1x.png */,
 				DAABDDDB15DF494B00501D46 /* W1-icon.png */,
 				DAE8D41415DBF4DF002E0CCA /* circle_green.png */,
@@ -1441,6 +1489,34 @@
 			path = ../Controls/JMStaticContentTableViewController;
 			sourceTree = "<group>";
 		};
+		DAEAEA641663A70700FDC47A /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				DAEAEA661663A72700FDC47A /* FMDatabase.h */,
+				DAEAEA671663A72700FDC47A /* FMDatabase.m */,
+				DAEAEA681663A72700FDC47A /* FMDatabaseAdditions.h */,
+				DAEAEA691663A72700FDC47A /* FMDatabaseAdditions.m */,
+				DAEAEA6A1663A72700FDC47A /* FMDatabasePool.h */,
+				DAEAEA6B1663A72700FDC47A /* FMDatabasePool.m */,
+				DAEAEA6C1663A72700FDC47A /* FMDatabaseQueue.h */,
+				DAEAEA6D1663A72700FDC47A /* FMDatabaseQueue.m */,
+				DAEAEA6F1663A72700FDC47A /* FMResultSet.h */,
+				DAEAEA701663A72700FDC47A /* FMResultSet.m */,
+			);
+			name = fmdb;
+			sourceTree = "<group>";
+		};
+		DAEB2BB7166B7F800044706E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				DAEB2BB8166B7FAD0044706E /* Database.h */,
+				DAEB2BB9166B7FAD0044706E /* Database.m */,
+				DAEB2BC0166B88FA0044706E /* TKDDatabase.h */,
+				DAEB2BC1166B88FA0044706E /* TKDDatabase.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		DAEC18E515D76A1D00C13772 /* UIDeviceAddition */ = {
 			isa = PBXGroup;
 			children = (
@@ -1456,6 +1532,7 @@
 		DAF65A04159EEED1001BEA75 /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DAEAEA641663A70700FDC47A /* fmdb */,
 				DAE977CF15D6407B00A5AF7E /* JMStaticContentTableViewController */,
 				DAE7E6AB15B81E2F00363399 /* BluetoothManager */,
 				DAF8F5C215B1677B00497FC5 /* Controls */,
@@ -1836,6 +1913,10 @@
 				DAEBA0C816328409001A58C7 /* time_s2_8.png in Resources */,
 				DAEBA0C916328409001A58C7 /* time_s2_9.png in Resources */,
 				DAE8990A16611576003BFAA1 /* point_established.mp3 in Resources */,
+				DA656E261663B88400D691B0 /* enable-timer.png in Resources */,
+				DA656E271663B88400D691B0 /* end-match.png in Resources */,
+				DA656E281663B88400D691B0 /* fight.png in Resources */,
+				DA656E291663B88400D691B0 /* txn-report.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1931,6 +2012,9 @@
 				DAEB1E8A15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */,
 				DAEB1E8E15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */,
 				DAEBA0B4163260A1001A58C7 /* UIGifView.m in Sources */,
+				DAEB2BB5166B47A60044706E /* PickerButton.m in Sources */,
+				DAEB2BBA166B7FAD0044706E /* Database.m in Sources */,
+				DAEB2BC2166B88FA0044706E /* TKDDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2021,6 +2105,14 @@
 				DAEB1E8B15F8EB1A00CE98C7 /* KeyBoradEventInfo.m in Sources */,
 				DAEB1E8F15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */,
 				DAEBA0B5163260A1001A58C7 /* UIGifView.m in Sources */,
+				DAEAEA711663A72700FDC47A /* FMDatabase.m in Sources */,
+				DAEAEA721663A72700FDC47A /* FMDatabaseAdditions.m in Sources */,
+				DAEAEA731663A72700FDC47A /* FMDatabasePool.m in Sources */,
+				DAEAEA741663A72700FDC47A /* FMDatabaseQueue.m in Sources */,
+				DAEAEA761663A72700FDC47A /* FMResultSet.m in Sources */,
+				DAEB2BB6166B47A60044706E /* PickerButton.m in Sources */,
+				DAEB2BBB166B7FAD0044706E /* Database.m in Sources */,
+				DAEB2BC3166B88FA0044706E /* TKDDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,9 @@
 @property BOOL hasConnected;
 @property (nonatomic,strong) NSDate *lastHeartbeatDate;
 @property (nonatomic) int sequence;
+@property (nonatomic,copy) NSString *gameId;
+@property (nonatomic,strong) NSString *clientId;
+@property (nonatomic,strong) NSString *userId;
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId;

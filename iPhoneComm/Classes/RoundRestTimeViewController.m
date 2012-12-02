@@ -94,7 +94,7 @@
     [self.roundedRect setFrame:CGRectMake(0.0f,0.0f,self.roundedRect.frame.size.width,self.roundedRect.frame.size.height)];
     [self.closeButton setFrame:CGRectMake(0.0f,0.0f,self.closeButton.frame.size.width,self.closeButton.frame.size.height)];
     
-    [closeButton setFrame:CGRectMake(closeButton.frame.origin.x-closeButton.frame.size.width/4, closeButton.frame.origin.y-closeButton.frame.size.height/4, closeButton.frame.size.width/2, closeButton.frame.size.height/2)];
+    [closeButton setFrame:CGRectMake(closeButton.frame.origin.x-closeButton.frame.size.width/4, closeButton.frame.origin.y-closeButton.frame.size.height/4, closeButton.frame.size.width, closeButton.frame.size.height)];
     
     /*以屏幕宽度作为大小时自适应处理
     [viewLoadedFromXib setFrame:self.contentView.bounds];

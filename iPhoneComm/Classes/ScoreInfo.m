@@ -14,6 +14,8 @@
 @synthesize redSideScore;
 @synthesize swipeType;
 @synthesize datetime;
+@synthesize clientUuid;
+@synthesize gameId;
 
 -(id) init{
     return [self initWithInfo:kSideBlue andBlueScore:0 andRedScore:0 andDateNow:nil];

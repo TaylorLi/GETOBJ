@@ -9,6 +9,7 @@
     #import "UtilHelper.h"
     #import "NSObjectSerialization.h"
     #import "CommandMsg.h"
+    #import "MacroUtils.h"
 #endif
 
 #define UAMODALVIEW_DEBUG 1

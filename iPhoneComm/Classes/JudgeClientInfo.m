@@ -17,6 +17,9 @@
 @synthesize hasConnected;
 @synthesize lastHeartbeatDate;
 @synthesize sequence;
+@synthesize gameId;
+@synthesize clientId;
+@synthesize userId;
 
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName

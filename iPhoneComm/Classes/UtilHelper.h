@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Definition.h"
 
 @interface UtilHelper : NSObject
 +(NSString *)formateTime:(NSDate *)date;
@@ -15,4 +16,6 @@
 +(NSString *)dataFilePath:(NSString *)fileName;
 +(BOOL)isFileExist:(NSString *)fileName;
 +(NSString *)getKeyCodeDesc:(short)keyCode;
++(NSString *)getWinTypeDesc:(WinType)type;
++ (NSString*) stringWithUUID;
 @end

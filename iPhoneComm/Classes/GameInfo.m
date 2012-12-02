@@ -12,7 +12,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart,serverFullName,gameEnded,gameEndTime,gameStartTime;
+@synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart,serverFullName,gameEnded,gameEndTime,gameStartTime,winByType,gameId,isRedToBeWinner,serverUserId;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -32,6 +32,7 @@
         gameEnded=NO;
         gameStartTime=nil;
         gameEndTime=nil;
+        winByType=kWinByPoint;
         clients=[[NSMutableDictionary alloc] init];
     }
     return self;
@@ -50,6 +51,7 @@
     gameEnded=NO;
     gameStartTime=nil;
     gameEndTime=nil;
+    winByType=kWinByPoint;
     clients=[[NSMutableDictionary alloc] init];
 }
 

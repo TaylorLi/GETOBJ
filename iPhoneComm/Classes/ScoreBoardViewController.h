@@ -42,8 +42,10 @@
     NSMutableArray *timeFlags;
     NSMutableArray *timeFlags2;
     NSMutableDictionary *scoreInfos;
-    NSMutableArray *scoreReportIndicators;
-    NSMutableDictionary *scoreReportIndicatorTimers;
+    NSMutableArray *scoreReportIndicatorsBlue;
+    NSMutableDictionary *scoreReportIndicatorTimersBlue;
+    NSMutableArray *scoreReportIndicatorsRed;
+    NSMutableDictionary *scoreReportIndicatorTimersRed;
     NSDictionary *scoreReportPointColors;
 	NSTimer *calcTimer;
     //警告
@@ -93,10 +95,14 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecTen;
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecSin;
 @property (strong, nonatomic) IBOutlet UIButton *btnShowSelectWinner;
-@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport1;
-@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport2;
-@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport3;
-@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReport4;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue1;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue2;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue3;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue4;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed1;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed2;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed3;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed4;
 
 // Exit back to the welcome screen
 - (IBAction)exit;

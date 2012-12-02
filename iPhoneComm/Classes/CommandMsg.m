@@ -14,7 +14,7 @@
 @synthesize desc;
 @synthesize data;
 @synthesize from;
-@synthesize date;
+@synthesize date,msgId,gameId;
 
 
 -(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data andDate:(NSDate *)_date{

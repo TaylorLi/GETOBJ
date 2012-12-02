@@ -27,7 +27,7 @@
 		//[self.titleBar setColorComponents:colors];
 		//self.headerLabel.text = title;
         //self.closeButton.hidden=YES;
-		self.margin = UIEdgeInsetsMake(111.0f,109.0f,111.0f,109.0f);
+		//self.margin = UIEdgeInsetsMake(111.0f,109.0f,111.0f,109.0f);
         self.borderWidth=0;
         
         // Margin between edge of panel and the content area. Default = {20.0, 20.0, 20.0, 20.0}
@@ -37,6 +37,12 @@
         //self.headerLabel.font = [UIFont boldSystemFontOfSize:35];
         
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"ShowWinnerBox" owner:self options:nil] objectAtIndex:0];
+        //横向时，宽度与高度互换
+        CGSize mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+        CGSize contentViewSize=viewLoadedFromXib.bounds.size;
+        //以屏幕宽度作为大小时自适应处理
+        self.margin = UIEdgeInsetsMake((mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2,(mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2);
+        [self setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.1]];
         [self.contentView addSubview:viewLoadedFromXib];         
     }
     return self;
@@ -55,7 +61,7 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
     NSLog(@"%@",NSStringFromCGRect(self.contentView.bounds));
-    [viewLoadedFromXib setFrame:self.contentView.bounds];
+    //[viewLoadedFromXib setFrame:self.contentView.bounds];
     /*
     self.closeButton.imageView.autoresizingMask=YES;
     [self.closeButton setFrame:CGRectMake(self.closeButton.frame.origin.x, self.closeButton.frame.origin.y, 70.0f, 70.0f)];     

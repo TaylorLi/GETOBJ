@@ -826,7 +826,7 @@
                         if(scoreHistoryInfo.endTime==nil){
                             double maxDelay = chatRoom.gameInfo.gameSetting.serverLoopMaxDelay;
                             //double maxDelay = 1;
-                            int judgeCount = chatRoom.gameInfo.gameSetting.availScoreWithJudesCount;
+                            int judgeCount = chatRoom.gameInfo.gameSetting.availScoreWithJudgesCount;
                             NSLog(@"////////////////");
                             if(fabs([scoreHistoryInfo.startTime timeIntervalSinceNow]) >= maxDelay){
                                 if(scoreHistoryInfo.uuids!=nil && scoreHistoryInfo.uuids.count<judgeCount){

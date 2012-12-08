@@ -14,6 +14,9 @@
 
 @synthesize gameSetting,gameStatus,serverUuid,currentRound,redSideScore,serverPeerId,blueSideScore,currentRemainTime,currentMatch,clients,serverLastHeartbeatDate,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,gameStart,serverFullName,gameEnded,gameEndTime,gameStartTime,winByType,gameId,isRedToBeWinner,serverUserId;
 
+-(NSString*) primaryKey{
+    return @"gameId";
+}
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
     self=[super init];
@@ -32,7 +35,7 @@
         gameEnded=NO;
         gameStartTime=nil;
         gameEndTime=nil;
-        winByType=kWinByPoint;
+        winByType=kWinByPoint;        
         clients=[[NSMutableDictionary alloc] init];
     }
     return self;

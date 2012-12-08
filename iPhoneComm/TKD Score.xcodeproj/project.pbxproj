@@ -340,6 +340,10 @@
 		DAEA507C15E0900D00ACB1AD /* marks_gray_7.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507215E0900D00ACB1AD /* marks_gray_7.png */; };
 		DAEA507D15E0900D00ACB1AD /* marks_gray_8.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507315E0900D00ACB1AD /* marks_gray_8.png */; };
 		DAEA507E15E0900D00ACB1AD /* marks_gray_9.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507415E0900D00ACB1AD /* marks_gray_9.png */; };
+		DAEACD64166E41AD00F3A505 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD63166E41AD00F3A505 /* UserInfo.m */; };
+		DAEACD65166E41AD00F3A505 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD63166E41AD00F3A505 /* UserInfo.m */; };
+		DAEACD69166E41C000F3A505 /* MatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD68166E41C000F3A505 /* MatchInfo.m */; };
+		DAEACD6A166E41C000F3A505 /* MatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD68166E41C000F3A505 /* MatchInfo.m */; };
 		DAEAD233162EF37400950C8F /* game_wait_user_background_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEAD223162EF37300950C8F /* game_wait_user_background_clear.png */; };
 		DAEAD234162EF37400950C8F /* game_wait_user_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEAD224162EF37300950C8F /* game_wait_user_background.png */; };
 		DAEAD235162EF37400950C8F /* game_wait_user_control_ready.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEAD225162EF37300950C8F /* game_wait_user_control_ready.png */; };
@@ -752,6 +756,10 @@
 		DAEA507215E0900D00ACB1AD /* marks_gray_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_7.png; path = "Resources-iPad/Images/marks_gray_7.png"; sourceTree = "<group>"; };
 		DAEA507315E0900D00ACB1AD /* marks_gray_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_8.png; path = "Resources-iPad/Images/marks_gray_8.png"; sourceTree = "<group>"; };
 		DAEA507415E0900D00ACB1AD /* marks_gray_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_9.png; path = "Resources-iPad/Images/marks_gray_9.png"; sourceTree = "<group>"; };
+		DAEACD62166E41AD00F3A505 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		DAEACD63166E41AD00F3A505 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		DAEACD67166E41C000F3A505 /* MatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchInfo.h; sourceTree = "<group>"; };
+		DAEACD68166E41C000F3A505 /* MatchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchInfo.m; sourceTree = "<group>"; };
 		DAEAD223162EF37300950C8F /* game_wait_user_background_clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_wait_user_background_clear.png; path = "Resources-iPad/Images/game_wait_user_background_clear.png"; sourceTree = "<group>"; };
 		DAEAD224162EF37300950C8F /* game_wait_user_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_wait_user_background.png; path = "Resources-iPad/Images/game_wait_user_background.png"; sourceTree = "<group>"; };
 		DAEAD225162EF37300950C8F /* game_wait_user_control_ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_wait_user_control_ready.png; path = "Resources-iPad/Images/game_wait_user_control_ready.png"; sourceTree = "<group>"; };
@@ -1294,6 +1302,10 @@
 				DAE4993415BAA44500C21671 /* JudgeClientInfo.m */,
 				DAEB1E8815F8EB1A00CE98C7 /* KeyBoradEventInfo.h */,
 				DAEB1E8915F8EB1A00CE98C7 /* KeyBoradEventInfo.m */,
+				DAEACD62166E41AD00F3A505 /* UserInfo.h */,
+				DAEACD67166E41C000F3A505 /* MatchInfo.h */,
+				DAEACD68166E41C000F3A505 /* MatchInfo.m */,
+				DAEACD63166E41AD00F3A505 /* UserInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2015,6 +2027,8 @@
 				DAEB2BB5166B47A60044706E /* PickerButton.m in Sources */,
 				DAEB2BBA166B7FAD0044706E /* Database.m in Sources */,
 				DAEB2BC2166B88FA0044706E /* TKDDatabase.m in Sources */,
+				DAEACD64166E41AD00F3A505 /* UserInfo.m in Sources */,
+				DAEACD69166E41C000F3A505 /* MatchInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2113,6 +2127,8 @@
 				DAEB2BB6166B47A60044706E /* PickerButton.m in Sources */,
 				DAEB2BBB166B7FAD0044706E /* Database.m in Sources */,
 				DAEB2BC3166B88FA0044706E /* TKDDatabase.m in Sources */,
+				DAEACD65166E41AD00F3A505 /* UserInfo.m in Sources */,
+				DAEACD6A166E41C000F3A505 /* MatchInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,9 +16,12 @@
 - (void)encodeWithCoder:(NSCoder*)coder
 {
     for (NSString *name in [Reflection getNameOfProperties:[self class]])
-    {
+    {@try{
         id value = [self valueForKey:name];
         [coder encodeObject:value forKey:name];
+    }@catch (NSException *ex) {
+        NSLog(@"%@",ex);
+    }
     }
 }
 
@@ -26,13 +29,26 @@
 {
     if (self = [super init])
     {        
-        for (NSString *name in [Reflection getNameOfProperties:[self class]])
+        NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
+        for (NSString *name in propeties.allKeys)
         {
+            NSString *propertyType=[propeties valueForKey:name];
             id value = [decoder decodeObjectForKey:name];
+            if(value==nil){
+                if([propertyType isEqualToString:@"c"]){
+                    value=[NSNumber numberWithBool:NO];
+                }
+                else if([propertyType isEqualToString:@"d"]){
+                    value=[NSNumber numberWithFloat:0.0];
+                }
+                else if([propertyType isEqualToString:@"i"]){
+                    value=[NSNumber numberWithInt:0];
+                }
+            }
             @try{
                 [self setValue:value forKey:name];
             }@catch (NSException *ex) {
-               NSLog(@"%@",ex) ;
+                NSLog(@"%@",ex) ;
             }
         }
     }
@@ -61,12 +77,50 @@
     return result;
 }
 
+-(NSDictionary*) proxyForSqlite
+{
+    NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
+    NSMutableDictionary *result=[NSMutableDictionary dictionaryWithCapacity:propeties.count];
+    for (NSString *propertyName in propeties.allKeys) {
+        @try{
+            NSString *propertyType=[propeties valueForKey:propertyName];
+            id value=[self valueForKey:propertyName];
+            if([propertyType hasPrefix:@"@"])//classTye
+            {
+                if(value==nil)
+                    value=[NSNull null];                
+            }
+            if(value==nil){
+                if([propertyType isEqualToString:@"c"]){
+                    value=[NSNumber numberWithBool:NO];
+                }
+                else if([propertyType isEqualToString:@"d"]){
+                    value=[NSNumber numberWithFloat:0.0];
+                }
+                else if([propertyType isEqualToString:@"i"]){
+                    value=[NSNumber numberWithInt:0];
+                }
+            }
+            [result setValue:value forKey:propertyName];
+        }@catch (NSException *ex) {
+            NSLog(@"%@",ex) ;
+        }
+    }
+    return result;
+    
+}    
+
 -(id)initWithDictionary:(NSDictionary *) dictionary
 {
     if(!(self = [super init]))
     {
         return nil;
     }
+    self=[self bindingWithDictionary:dictionary];
+    return self;
+}
+-(id)bindingWithDictionary:(NSDictionary *) dictionary
+{
     NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
     for (NSString *propertyName in propeties.allKeys)
     {
@@ -79,7 +133,9 @@
                 if([propertyType hasPrefix:@"@"])//classTye
                 {
                     if([typeName hasPrefix:@"@\"NSDate\""])
-                    {   value=[NSDate dateWithTimeIntervalSince1970:[(NSNumber *)value doubleValue]];
+                    {   
+                        if([value isKindOfClass:[NSNumber class]])
+                            value=[NSDate dateWithTimeIntervalSince1970:[(NSNumber *)value doubleValue]];
                     }
                 } 
                 [self setValue:value forKey:propertyName];

@@ -22,8 +22,12 @@
 @synthesize restTime;
 @synthesize roundCount;
 @synthesize judgeCount;
-@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
-@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId;
+@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudgesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType;
+
+-(NSString*) primaryKey{
+    return @"settingId";
+}
 
 -(NSString *)description
 {
@@ -58,12 +62,13 @@
     startScreening=1;
     pointGapAvailRound=2;
     judgeCount=4;
-    availScoreWithJudesCount=3;
+    availScoreWithJudgesCount=3;
     availTimeDuringScoreCalc=1;
     maxWarningCount=8;
     restAndReorganizationTime=60;
     serverLoopMaxDelay = 1;
     currentJudgeDevice= JudgeDeviceiPhone;
+    settingType=SettingTypeProfile;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime
@@ -105,7 +110,7 @@
     copyObj.startScreening=self.startScreening;
     copyObj.pointGapAvailRound=self.pointGapAvailRound;
     copyObj.judgeCount=self.judgeCount;
-    copyObj.availScoreWithJudesCount=self.availScoreWithJudesCount;
+    copyObj.availScoreWithJudgesCount=self.availScoreWithJudgesCount;
     copyObj.availTimeDuringScoreCalc=self.availTimeDuringScoreCalc;
     copyObj.maxWarningCount=self.maxWarningCount;
     copyObj.restAndReorganizationTime=self.restAndReorganizationTime;

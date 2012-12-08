@@ -8,7 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol SqliteORMDelegate
+-(NSString *) primaryKey;
+-(NSDictionary*) proxyForSqlite;
+-(id)bindingWithDictionary:(NSDictionary *) dictionary;
+@end
 @interface NSObjectSerialization : NSObject<NSCoding>
 -(NSDictionary*) proxyForJson;
 -(id)initWithDictionary:(NSDictionary *) dictionary;
+-(NSDictionary*) proxyForSqlite;
+-(id)bindingWithDictionary:(NSDictionary *) dictionary;
 @end

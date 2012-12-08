@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JudgeClientInfo : NSObjectSerialization
+@interface JudgeClientInfo : NSObjectSerialization<SqliteORMDelegate>
 
 
 @property (nonatomic,copy) NSString *peerId;

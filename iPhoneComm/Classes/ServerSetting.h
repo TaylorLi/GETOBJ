@@ -34,7 +34,7 @@
 #define kServerRefresh 23
 #define kDeviceType 24
 
-@interface ServerSetting : NSObjectSerialization<NSCopying>
+@interface ServerSetting : NSObjectSerialization<NSCopying,SqliteORMDelegate>
 {
     NSString *gameName;
     NSString *gameDesc;
@@ -77,7 +77,7 @@
 //跳场
 @property NSInteger skipScreening;
 //判分标准,多少个副裁判评分分数有效
-@property NSInteger availScoreWithJudesCount;
+@property NSInteger availScoreWithJudgesCount;
 //得分计算缓冲时间
 @property NSTimeInterval availTimeDuringScoreCalc;
 //此时间范围内计算客户端发送的分数
@@ -102,6 +102,7 @@
 @property (nonatomic,strong) NSString *uuid;
 @property (nonatomic,strong) NSString *settingId;
 @property (nonatomic,strong) NSString *gameId;
+@property  GameSettingType settingType;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc

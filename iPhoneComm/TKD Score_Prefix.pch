@@ -13,6 +13,7 @@
 #endif
 
 #define UAMODALVIEW_DEBUG 1
+#define DEBUG 1
 
 #if NS_BLOCKS_AVAILABLE
 typedef void (^FuncBlock)(void);

@@ -17,6 +17,10 @@
 @synthesize clientUuid;
 @synthesize gameId;
 
+-(NSString*) primaryKey{
+    return @"scoreId";
+}
+
 -(id) init{
     return [self initWithInfo:kSideBlue andBlueScore:0 andRedScore:0 andDateNow:nil];
 }

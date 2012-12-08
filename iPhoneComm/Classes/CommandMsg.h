@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Definition.h"
 
-@interface CommandMsg : NSObject
+@interface CommandMsg : NSObjectSerialization<SqliteORMDelegate>
 {
     NSNumber *type;
     NSString *from;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Definition.h"
 
-@interface ScoreInfo : NSObject
+@interface ScoreInfo : NSObjectSerialization<SqliteORMDelegate>
 
 @property int blueSideScore;
 @property int redSideScore;

@@ -27,6 +27,7 @@
 
 #import "AppConfig.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "TKDDatabase.h"
 
 static AppConfig* instance;
 
@@ -105,6 +106,7 @@ static AppConfig* instance;
     {
         currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
         NSLog(@"Game Info:%@",currentGameInfo);
+        [[TKDDatabase getInstance] saveServerSettting:currentGameInfo.gameSetting];
     }
 }
 -(void)dealloc

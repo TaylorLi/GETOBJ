@@ -320,7 +320,7 @@
                     {
                         [availRefCounts addObject:[NSString stringWithFormat:@"%i/%i",i,si.judgeCount]];
                     }
-                    SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Referee", @"Avail Score Via Referee") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudesCount,si.judgeCount] dataSource:availRefCounts];   
+                    SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Referee", @"Avail Score Via Referee") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudgesCount,si.judgeCount] dataSource:availRefCounts];   
                     availScoreRefCountCell.tag=kavailScoreWithJudesCount;
                     availScoreRefCountCell.delegate=selfCtl;
                     [section addCustomerCell:availScoreRefCountCell]; 
@@ -530,13 +530,13 @@
                     }                    
                     [cell reloadPicker:availRefCounts];
                     [cell setValue:[NSString stringWithFormat:@"%i/%i",si.judgeCount,si.judgeCount]];
-                    si.availScoreWithJudesCount=[cell.value intValue];
+                    si.availScoreWithJudgesCount=[cell.value intValue];
                 }               
             }
         }
             break;
         case kavailScoreWithJudesCount:
-            si.availScoreWithJudesCount=[value intValue];
+            si.availScoreWithJudgesCount=[value intValue];
             break;
         case kavailTimeDuringScoreCalc:
             si.availTimeDuringScoreCalc=[value floatValue];

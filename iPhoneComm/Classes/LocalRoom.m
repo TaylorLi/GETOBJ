@@ -26,7 +26,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import "LocalRoom.h"
-#import "Connection.h"
+#import "HttpConnection.h"
 #import "ServerSetting.h"
 #import "AppConfig.h"
 #import "ServerSetting.h"
@@ -228,7 +228,7 @@
 
 
 // New client connected to our server. Add it.
-- (void) handleNewConnection:(Connection*)connection {
+- (void) handleNewConnection:(HttpConnection*)connection {
     // Delegate everything to us
     connection.delegate = self;
     
@@ -241,18 +241,18 @@
 #pragma mark ConnectionDelegate Method Implementations
 
 // We won't be initiating connections, so this is not important
-- (void) connectionAttemptFailed:(Connection*)connection {
+- (void) connectionAttemptFailed:(HttpConnection*)connection {
 }
 
 
 // One of the clients disconnected, remove it from our list
-- (void) connectionTerminated:(Connection*)connection {
+- (void) connectionTerminated:(HttpConnection*)connection {
     [clients removeObject:connection];
 }
 
 
 // One of connected clients sent a chat message. Propagate it further.
-- (void) receivedNetworkPacket:(NSDictionary*)packet viaConnection:(Connection*)connection {
+- (void) receivedNetworkPacket:(NSDictionary*)packet viaConnection:(HttpConnection*)connection {
     // Display message locally
     CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
     [delegate processCmd:cmd];

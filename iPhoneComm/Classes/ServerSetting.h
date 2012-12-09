@@ -103,9 +103,12 @@
 @property (nonatomic,strong) NSString *settingId;
 @property (nonatomic,strong) NSString *gameId;
 @property  GameSettingType settingType;
+@property (nonatomic,strong) NSString *userId;
+@property (nonatomic,strong) NSDate *lastUsingDate;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime;
 -(void) reset;
+-(void) renewSettingForGame;
 @end

@@ -18,6 +18,7 @@
 @synthesize viewLoadedFromXib;
 @synthesize lblWinner;
 @synthesize imgBackground;
+@synthesize winnerWinType;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title
 {
@@ -106,7 +107,7 @@
         if ([delegate respondsToSelector:@selector(showWinnerEndAndNextRound:)]) {
             [self removeFromSuperview];
             
-            [delegate performSelector:@selector(showWinnerEndAndNextRound:) withObject:nil];
+            [delegate performSelector:@selector(showWinnerEndAndNextRound:) withObject:self];
         }  
     }]; 
 }

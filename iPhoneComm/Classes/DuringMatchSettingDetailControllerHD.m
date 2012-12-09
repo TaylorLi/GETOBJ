@@ -16,6 +16,13 @@
 #import "UIHelper.h"
 #import "LocalRoom.h"
 #import "JudgeClientInfo.h"
+#import "MatchInfo.h"
+#import "BO_GameInfo.h"
+#import "BO_JudgeClientInfo.h"
+#import "BO_MatchInfo.h"
+#import "BO_ScoreInfo.h"
+#import "BO_ServerSetting.h"
+#import "BO_UserInfo.h"
 
 @interface DuringMatchSettingDetailControllerHD ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -166,8 +173,8 @@
                 }];   
                 
                 [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-                    TimePickerTableViewCell *currentTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Remain time" title:NSLocalizedString(@"Remain Time", @"Remain Time") selectValue:gameInfo.currentRemainTime maxTime:si.roundTime minTime:1 interval:1];
-                    selfCtl.currentRemainTime=gameInfo.currentRemainTime;
+                    TimePickerTableViewCell *currentTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Remain time" title:NSLocalizedString(@"Remain Time", @"Remain Time") selectValue:gameInfo.currentMatchInfo.currentRemainTime maxTime:si.roundTime minTime:1 interval:1];
+                    selfCtl.currentRemainTime=gameInfo.currentMatchInfo.currentRemainTime;
                     currentTime.tag=kCurrentTime;
                     currentTime.delegate=selfCtl;
                     [section addCustomerCell:currentTime];
@@ -405,17 +412,19 @@
         GameInfo *currSetting=  relateGameServer.chatRoom.gameInfo;
         currSetting.gameSetting.roundTime=orgGameInfo.gameSetting.roundTime;
         currSetting.gameSetting.restTime=orgGameInfo.gameSetting.restTime;
-        currSetting.currentRemainTime=currentRemainTime;
-        if(currSetting.currentRemainTime<0)
-            currSetting.currentRemainTime=0;
-        else if(currSetting.currentRemainTime>currSetting.gameSetting.roundTime)
-            currSetting.currentRemainTime=currSetting.gameSetting.roundTime;
+        currSetting.currentMatchInfo.currentRemainTime=currentRemainTime;
+        if(currSetting.currentMatchInfo.currentRemainTime<0)
+            currSetting.currentMatchInfo.currentRemainTime=0;
+        else if(currSetting.currentMatchInfo.currentRemainTime>currSetting.gameSetting.roundTime)
+            currSetting.currentMatchInfo.currentRemainTime=currSetting.gameSetting.roundTime;
         currSetting.gameSetting.availTimeDuringScoreCalc=orgGameInfo.gameSetting.availTimeDuringScoreCalc;
         currSetting.gameSetting.enableGapScore=orgGameInfo.gameSetting.enableGapScore;
         currSetting.gameSetting.pointGap=orgGameInfo.gameSetting.pointGap;
         currSetting.gameSetting.pointGapAvailRound=orgGameInfo.gameSetting.pointGapAvailRound;
         currSetting.gameSetting.screeningArea=orgGameInfo.gameSetting.screeningArea;
-        [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
+        [[BO_ServerSetting getInstance] updateObject:currSetting.gameSetting];
+        [[BO_MatchInfo getInstance] updateObject:currSetting.currentMatchInfo];
+        //[UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
     }
 }
 

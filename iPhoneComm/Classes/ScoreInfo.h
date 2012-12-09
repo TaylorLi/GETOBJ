@@ -14,9 +14,14 @@
 @property int blueSideScore;
 @property int redSideScore;
 @property SwipeType swipeType;
-@property (nonatomic, retain) NSDate *datetime;
+@property (nonatomic, retain) NSDate *createTime;
 @property (nonatomic,strong) NSString *clientUuid;
 @property (nonatomic,strong) NSString *gameId;
+@property (nonatomic,strong) NSString *clientId;
+@property (nonatomic,strong) NSString *scoreId;
+@property int roundSeq;
+@property (nonatomic,strong) NSString *matchId;
+//@property BOOL successSubmited;
 
 -(id) init;
 -(id) initWithBlueSide:(int)_blueScore andDateNow:(NSDate *)_datenow;

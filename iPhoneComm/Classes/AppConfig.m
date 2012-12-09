@@ -27,7 +27,7 @@
 
 #import "AppConfig.h"
 #import "UIDevice+IdentifierAddition.h"
-#import "TKDDatabase.h"
+#import "BO_ServerSetting.h"
 
 static AppConfig* instance;
 
@@ -48,18 +48,37 @@ static AppConfig* instance;
 
 // Initialization
 - (id) init {
-  self=[super init];
-  self.name = @"unknown";
+    self=[super init];
+    self.name = @"unknown";
     networkUsingWifi=NO;
-    NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
-  isIPAD=![[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;  
+    //NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
+    isIPAD=YES;    
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        isIPAD=NO;
+    }
+    else{
+        //应用程序的名称和版本号等信息都保存在mainBundle的一个字典中，用下面代码可以取出来。
+        
+        NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+        //NSString* versionNum =[infoDict objectForKey:@"CFBundleVersion"];
+        NSString *appName =[infoDict objectForKey:@"CFBundleDisplayName"];
+        if([appName hasSuffix:@"HD"]){
+            isIPAD=YES;
+        }
+        else{
+            isIPAD=NO;
+        }
+    }
+    
+    
     timeout=30;
     //invalidServerPeerIds=[[NSMutableSet alloc] init];
     uuid=[[UIDevice currentDevice] uniqueDeviceIdentifier];
     currentAppStep=AppStepStart;
     //currentJudgeDevice=JudgeDeviceKeyboard;
     isGameStart=NO;
-  return self;
+    return self;
 }
 
 
@@ -68,13 +87,13 @@ static AppConfig* instance;
 
 // Automatically initialize if called for the first time
 + (AppConfig*) getInstance {
-  @synchronized([AppConfig class]) {
-    if ( instance == nil ) {
-      instance = [[AppConfig alloc] init];
+    @synchronized([AppConfig class]) {
+        if ( instance == nil ) {
+            instance = [[AppConfig alloc] init];
+        }
     }
-  }
-  
-  return instance;
+    
+    return instance;
 }
 //其他页面，除比赛界面
 + (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -98,15 +117,14 @@ static AppConfig* instance;
 -(void)saveGameInfoToFile
 {
     [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
-    NSLog(@"Game Info:%@",currentGameInfo);
+    //NSLog(@"Save Game Info to file:%@",currentGameInfo);
 }
 -(void)restoreGameInfoFromFile
 {
     if([UtilHelper isFileExist:KEY_FILE_SETTING])
     {
         currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
-        NSLog(@"Game Info:%@",currentGameInfo);
-        [[TKDDatabase getInstance] saveServerSettting:currentGameInfo.gameSetting];
+        //NSLog(@"Restore Game Info from file:%@",currentGameInfo);
     }
 }
 -(void)dealloc

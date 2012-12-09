@@ -7,6 +7,7 @@
 //
 
 #import "ScoreHistoryInfo.h"
+#import "ScoreInfo.h"
 
 @implementation ScoreHistoryInfo
 
@@ -26,6 +27,9 @@
         if(self.uuids==nil){
             uuids = [[NSMutableArray alloc]initWithObjects:nil];
         }
+//        if(self.scoreInfos==nil){
+//            scoreInfos=[[NSMutableArray alloc] init];
+//        }
     }
     return self;
 }
@@ -34,6 +38,8 @@
     self = [self  initWithInfo:_startTime andEndTime:_endTime andSideKey:_sideKey andScoreKey:_scoreKey andUuids:nil];
     if(_uuid != nil){
         [self.uuids addObject:_uuid];
+        //[scoreInfos addObject:scoreInfo];
+        //NSLog(@"his infos:%i",scoreInfos.count);
     }
     return self;
 }

@@ -21,16 +21,13 @@
 @synthesize clientId;
 @synthesize userId;
 
--(NSString*) primaryKey{
-    return @"clientId";
-}
-
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId
 {
     self=[super init];
     if(self)
     {
+        clientId=[UtilHelper stringWithUUID];
         self.sessionId=_sessionId;
         self.displayName=_displayName;
         self.uuid=_uuid;
@@ -63,7 +60,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"displayName:%@,hasConnected:%i,uuid:%@,peerId:%@,last heartbeate date:%@,seq:%i",displayName,hasConnected,uuid,peerId,[UtilHelper formateTime:lastHeartbeatDate],sequence];
+    return [NSString stringWithFormat:@"clientId:%@,displayName:%@,hasConnected:%i,uuid:%@,peerId:%@,last heartbeate date:%@,seq:%i",clientId,displayName,hasConnected,uuid,peerId,[UtilHelper formateTime:lastHeartbeatDate],sequence];
 }
 
 @end

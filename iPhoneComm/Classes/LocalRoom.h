@@ -35,7 +35,7 @@
 #import "PeerServer.h"
 
 @class ServerSetting,GameInfo,ServerSetting;
-@interface LocalRoom : Room <ServerDelegate, ConnectionDelegate,PeerServerDelegate,GKSessionDelegate> {
+@interface LocalRoom : Room <ServerDelegate, HttpConnectionDelegate,PeerServerDelegate,GKSessionDelegate> {
   // We accept connections from other clients using an instance of the Server class
   Server* server;
   

@@ -12,8 +12,4 @@
 
 @synthesize pwd,name,email,userId,createTime;
 
--(NSString*) primaryKey{
-    return @"userId";
-}
-
 @end

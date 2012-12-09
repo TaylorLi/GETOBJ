@@ -30,8 +30,8 @@
 #import "ConnectionDelegate.h"
 #import "SBJson.h"
 
-@interface Connection : NSObject<NSNetServiceDelegate> {
-  id<ConnectionDelegate> delegate;
+@interface HttpConnection : NSObject<NSNetServiceDelegate> {
+  id<HttpConnectionDelegate> delegate;
   
   // Connection info: host address and port
   NSString* host;
@@ -55,7 +55,7 @@
   NSMutableData* outgoingDataBuffer;
 }
 
-@property(nonatomic,retain) id<ConnectionDelegate> delegate;
+@property(nonatomic,retain) id<HttpConnectionDelegate> delegate;
 
 // Initialize and store connection information until 'connect' is called
 - (id)initWithHostAddress:(NSString*)host andPort:(int)port;

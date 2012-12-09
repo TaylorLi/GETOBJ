@@ -43,6 +43,9 @@
 }
 
 - (void)setValue:(NSString *)v {
+    if(values==nil||values.count==0){
+        return;
+    }
     if(v==nil)
         _value=[values objectAtIndex:0];
 	else{

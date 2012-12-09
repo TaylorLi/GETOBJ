@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class ServerSetting;
 @interface MatchInfo : NSObjectSerialization<SqliteORMDelegate>
 
+@property (nonatomic,strong) NSString *matchId;
 @property (nonatomic,strong) NSString *gameId;
 @property NSTimeInterval currentRemainTime;
 @property NSInteger currentRound;
@@ -25,5 +27,8 @@
 @property (nonatomic,strong)NSString *statusRemark;
 @property WinType winByType;
 @property BOOL isRedToBeWinner;
+
+-(id) initWithGameSetting:(ServerSetting *)setting;
+-(void) resetMatchInfoToStart:(ServerSetting *)setting;
 
 @end

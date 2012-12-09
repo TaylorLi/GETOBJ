@@ -13,13 +13,12 @@
 @synthesize blueSideScore;
 @synthesize redSideScore;
 @synthesize swipeType;
-@synthesize datetime;
+@synthesize createTime;
 @synthesize clientUuid;
 @synthesize gameId;
-
--(NSString*) primaryKey{
-    return @"scoreId";
-}
+@synthesize clientId;
+@synthesize scoreId,matchId,roundSeq;
+//@synthesize successSubmited;
 
 -(id) init{
     return [self initWithInfo:kSideBlue andBlueScore:0 andRedScore:0 andDateNow:nil];
@@ -37,13 +36,14 @@
 {
     self = [super init];
     if (self) {
+        scoreId=[UtilHelper stringWithUUID];
         self.redSideScore = _redScore;
         self.blueSideScore = _blueScore;
         self.swipeType = _swipeType;
         if(_datenow==nil){
-            self.datetime = [NSDate date];
+            self.createTime = [NSDate date];
         }else{
-            self.datetime = _datenow;
+            self.createTime = _datenow;
         }
     }
     return self;
@@ -53,8 +53,9 @@
 {
     self = [super init];
     if (self) {
+        scoreId=[UtilHelper stringWithUUID];
         NSNumber *nDate=[disc objectForKey:@"datetime"];
-        self.datetime=[NSDate dateWithTimeIntervalSince1970:[nDate doubleValue]];
+        self.createTime=[NSDate dateWithTimeIntervalSince1970:[nDate doubleValue]];
         self.swipeType=[[disc objectForKey:@"swipeType"] intValue]; 
         self.blueSideScore=[[disc objectForKey:@"blueSideScore"] intValue];
         self.redSideScore=[[disc objectForKey:@"redSideScore"] intValue];
@@ -67,7 +68,7 @@
                           [NSNumber numberWithInt:self.blueSideScore],@"blueSideScore",
                           [NSNumber numberWithInt:self.redSideScore],@"redSideScore",
                           [NSNumber numberWithInt:self.swipeType],@"swipeType",
-                          [NSNumber numberWithDouble:[self.datetime timeIntervalSince1970] ],@"datetime", nil];
+                          [NSNumber numberWithDouble:[self.createTime timeIntervalSince1970] ],@"datetime", nil];
     return result;
 }
 

@@ -16,8 +16,10 @@
 #import "UIHelper.h"
 #import "ScoreInfo.h"
 #import "TouchExt.h"
+#import "MatchInfo.h"
 #import <AudioToolbox/AudioToolbox.h>  
 #import <CoreFoundation/CoreFoundation.h> 
+#import "MatchInfo.h"
 
 #define kMinimumGestureLength    25
 #define kMaximumVariance         40
@@ -391,8 +393,8 @@ else{
         case  NETWORK_HEARTBEAT://server heartbeat
         {             
             GameStates stauts=[cmdMsg.data intValue];
-            if(chatRoom.serverInfo.gameStatus!=stauts){
-                chatRoom.serverInfo.gameStatus=stauts;
+            if(chatRoom.serverInfo.currentMatchInfo.gameStatus!=stauts){
+                chatRoom.serverInfo.currentMatchInfo.gameStatus=stauts;
                 [self processGameStatus];
             }
         }
@@ -404,8 +406,8 @@ else{
             if(stauts==kStateRunning){
                 [self reportClientHeartbeat];
             }
-            chatRoom.serverInfo.gameStatus=stauts;
-            chatRoom.serverInfo.statusRemark=cmdMsg.desc;
+            chatRoom.serverInfo.currentMatchInfo.gameStatus=stauts;
+            chatRoom.serverInfo.currentMatchInfo.statusRemark=cmdMsg.desc;
             //NSLog(@"Reiceive SeverInfo:%@",chatRoom.serverInfo);
             [self processGameStatus];            
         }
@@ -601,13 +603,13 @@ else{
     //static int reConnCounter = 0;
     counter++;
     
-    if( chatRoom.serverInfo.gameStatus==kStateGameExit||chatRoom.serverInfo.gameStatus== kStateGameEnd||chatRoom.serverInfo.gameStatus==kStatePrepareGame)
+    if( chatRoom.serverInfo.currentMatchInfo.gameStatus==kStateGameExit||chatRoom.serverInfo.currentMatchInfo.gameStatus== kStateGameEnd||chatRoom.serverInfo.currentMatchInfo.gameStatus==kStatePrepareGame)
         return;
     
     [self reportClientHeartbeat];
     
     double inv;
-    if(chatRoom.serverInfo.gameStatus==kStateRoundReset||chatRoom.serverInfo.gameStatus==kStateGamePause)
+    if(chatRoom.serverInfo.currentMatchInfo.gameStatus==kStateRoundReset||chatRoom.serverInfo.currentMatchInfo.gameStatus==kStateGamePause)
         inv=kClientTestServerHearbeatTimeWhenPause;
     else
         inv=kClientTestServerHearbeatTime;
@@ -706,7 +708,7 @@ else{
     if(isExit) return;
     isDoingReconnect=NO;
     //if(preGameStates == chatRoom.serverInfo.gameStatus) return;
-    switch (chatRoom.serverInfo.gameStatus) {
+    switch (chatRoom.serverInfo.currentMatchInfo.gameStatus) {
         case kStatePrepareGame:
             break;
         case kStateWaitJudge:
@@ -757,7 +759,7 @@ else{
         }
             break;
     }
-    preGameStates=chatRoom.serverInfo.gameStatus;
+    preGameStates=chatRoom.serverInfo.currentMatchInfo.gameStatus;
 }
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     

@@ -23,27 +23,27 @@
 @synthesize roundCount;
 @synthesize judgeCount;
 @synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudgesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
-@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType;
-
--(NSString*) primaryKey{
-    return @"settingId";
-}
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate;
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"Game Name:%@,Game Desc:%@,Pwd:%@,Round Time:%f,Rest Time:%f,Round Count:%i,Judge Count:%i, Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@,enable Point Gap:%i,pointGapAvailRound:%i",gameName,gameDesc,password,roundTime,restTime,roundCount,judgeCount, redSideName,redSideDesc,blueSideName,blueSideDesc,enableGapScore,pointGapAvailRound];
+    return [NSString stringWithFormat:@"Setting Id:%@,Game Name:%@,Game Desc:%@,Pwd:%@,Round Time:%f,Rest Time:%f,Round Count:%i,Judge Count:%i, Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@,enable Point Gap:%i,pointGapAvailRound:%i",settingId,gameName,gameDesc,password,roundTime,restTime,roundCount,judgeCount, redSideName,redSideDesc,blueSideName,blueSideDesc,enableGapScore,pointGapAvailRound];
 }
 
 -(id) initWithDefault
 {
     self=[super init];
       if (self) {   
+          settingId=[UtilHelper stringWithUUID];
           [self reset];
+          createDate=[NSDate date];
     }
     return self;
 }
 -(void) reset
 {
+    profileName=@"System Default Profile";
+    uuid=[AppConfig getInstance].uuid;
     gameDesc=@"Men 80KG Welter";
     gameName=@"Match";
     redSideDesc=@"";
@@ -68,7 +68,15 @@
     restAndReorganizationTime=60;
     serverLoopMaxDelay = 1;
     currentJudgeDevice= JudgeDeviceiPhone;
-    settingType=SettingTypeProfile;
+    settingType=SettingTypeProfile; 
+    isDefaultProfile=YES;
+}
+-(void) renewSettingForGame{
+    settingId=[UtilHelper stringWithUUID];
+    createDate=[NSDate date];
+    settingType=SettingTypeGameRelated;
+    isDefaultProfile=NO;
+    lastUsingDate=createDate;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime

@@ -7,6 +7,7 @@
 //
 
 #import "UtilHelper.h"
+#import "Reflection.h"
 
 @implementation UtilHelper
 +(NSString *)formateTime:(NSDate *)date;
@@ -113,11 +114,40 @@
 }
 
 + (NSString*) stringWithUUID {
-     CFUUIDRef    uuidObj = CFUUIDCreate(nil);//create a new UUID
-     //get the string representation of the UUID
-     NSString    *uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(nil, uuidObj);
-     CFRelease(uuidObj);
-     return uuidString;
-     }
+    CFUUIDRef    uuidObj = CFUUIDCreate(nil);//create a new UUID
+    //get the string representation of the UUID
+    NSString    *uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(nil, uuidObj);
+    CFRelease(uuidObj);
+    return uuidString;
+    //return [[uuidString stringByReplacingOccurrencesOfString:@"-" withString:@""] lowercaseString];
+}
+
++(void)copyAttributesFromObject:(id)from ToObject:(id)to
+{
+    NSDictionary *propetiesTo=[Reflection getPropertiesNameAndType:[to class]];
+    NSDictionary *propetiesFrom=[Reflection getPropertiesNameAndType:[from class]];
+    for (NSString *propertyNameTo in propetiesTo.allKeys)
+    {
+        NSString *propertyTypeTo=[propetiesTo valueForKey:propertyNameTo];
+        if([propetiesFrom containKey:propertyNameTo]&&[(NSString *)[propetiesFrom objectForKey:propertyTypeTo] isEqualToString:propertyTypeTo])
+            
+        {
+            [to setValue:[from valueForKey:propertyNameTo] forKey:propertyNameTo];
+        }
+    }
+}
+
++(NSString *)ArrayToString:(NSArray *)array
+{
+  if(array==nil)
+      return @"";
+    else{
+        NSMutableString *sb=[[NSMutableString alloc] init];
+        for (NSString *str in array) {
+            [sb appendFormat:@"%@,",str];
+        }
+        return [sb substringToIndex:sb.length-1];
+    }
+}
 
 @end

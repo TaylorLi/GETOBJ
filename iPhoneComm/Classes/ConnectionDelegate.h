@@ -27,12 +27,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class Connection;
+@class HttpConnection;
 
-@protocol ConnectionDelegate
+@protocol HttpConnectionDelegate
 
-- (void) connectionAttemptFailed:(Connection*)connection;
-- (void) connectionTerminated:(Connection*)connection;
-- (void) receivedNetworkPacket:(NSMutableDictionary*)message viaConnection:(Connection*)connection;
+- (void) connectionAttemptFailed:(HttpConnection*)connection;
+- (void) connectionTerminated:(HttpConnection*)connection;
+- (void) receivedNetworkPacket:(NSMutableDictionary*)message viaConnection:(HttpConnection*)connection;
 
 @end

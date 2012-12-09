@@ -35,6 +35,7 @@
 #import <GameKit/GameKit.h>
 #import "KeyBoradEventInfo.h"
 #import "TKDDatabase.h"
+#import "BO_GameInfo.h"
 
 static ChattyAppDelegate* _instance;
 
@@ -96,7 +97,8 @@ static ChattyAppDelegate* _instance;
     //[self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
     welcomeViewController=nil;
-    [[TKDDatabase getInstance] setupServerDatabase];
+    if([AppConfig getInstance].isIPAD)
+        [[TKDDatabase getInstance] setupServerDatabase];
 }
 
 - (void)dealloc {
@@ -139,10 +141,7 @@ static ChattyAppDelegate* _instance;
 }
 
 -(void) showGameSettingView{
-    [AppConfig getInstance].currentAppStep=AppStepServerBrowser;
-    if([AppConfig getInstance].currentGameInfo==nil){
-        [AppConfig getInstance].currentGameInfo=[[GameInfo alloc] initWithGameSetting:[[ServerSetting alloc] initWithDefault]];
-    }
+    [AppConfig getInstance].currentAppStep=AppStepServerBrowser;    
     [splitSettingViewController setWantsFullScreenLayout:YES];
     [self swithView:splitSettingViewController.view];
 }
@@ -284,6 +283,7 @@ static ChattyAppDelegate* _instance;
 {
     NSLog(@"Resign Active");
     [[AppConfig getInstance] saveGameInfoToFile];  
+    [[BO_GameInfo getInstance] updateAllGameInfo:[AppConfig getInstance].currentGameInfo];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -325,7 +325,7 @@ static ChattyAppDelegate* _instance;
             default:
                 break;
         }
-        
+        /*
         NSLog(@"BLUE Session %@ ID:%@,Available:%i,Peer ID:%@,Mode:%i",sess.displayName, sess.sessionID,sess.available,sess.peerID,sess.sessionMode);  
         NSArray *array=[sess peersWithConnectionState:GKPeerStateAvailable];
         NSLog(@"GKPeerStateAvailable Peer:%i",array.count); 
@@ -337,6 +337,7 @@ static ChattyAppDelegate* _instance;
         NSLog(@"GKPeerStateUnavailable Peer:%i",array.count); 
         array=[sess peersWithConnectionState:GKPeerStateConnecting];
         NSLog(@"GKPeerStateConnecting Peer:%i",array.count);
+        */
         if(!sess.isAvailable){
             sess.available=YES;
         }

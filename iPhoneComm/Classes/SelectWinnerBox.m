@@ -9,6 +9,7 @@
 #import "SelectWinnerBox.h"
 #import "AppConfig.h"
 #import "ShowWinnerBox.h"
+#import "MatchInfo.h"
 //#define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
 @implementation SelectWinnerBox
@@ -34,9 +35,9 @@
         //self.headerLabel.font = [UIFont boldSystemFontOfSize:20];        
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"SelectWinnerBox" owner:self options:nil] objectAtIndex:0];
         winTypes=[[NSDictionary alloc] initWithObjectsAndKeys:
-                  [NSString stringWithFormat:@"%i",kWinByPoint],[UtilHelper getWinTypeDesc:kWinByPoint],
-                  [NSString stringWithFormat:@"%i",kWinByPointGap],[UtilHelper getWinTypeDesc:kWinByPointGap],
-                  [NSString stringWithFormat:@"%i",kWinByByWarning],[UtilHelper getWinTypeDesc:kWinByByWarning],
+                  [NSNumber numberWithInt:kWinByPoint],[UtilHelper getWinTypeDesc:kWinByPoint],
+                  [NSNumber numberWithInt:kWinByPointGap],[UtilHelper getWinTypeDesc:kWinByPointGap],
+                  [NSNumber numberWithInt:kWinByByWarning],[UtilHelper getWinTypeDesc:kWinByByWarning],
                   nil];        
         //横向时，宽度与高度互换
         CGSize mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
@@ -53,19 +54,19 @@
 /*计算胜利方及获胜方式*/
 -(void)calcWinTypeByGameInfo
 {
-    if(gameInfo.blueSideWarning==gameInfo.gameSetting.maxWarningCount||gameInfo.redSideWarning==gameInfo.gameSetting.maxWarningCount)
+    if(gameInfo.currentMatchInfo.blueSideWarning==gameInfo.gameSetting.maxWarningCount||gameInfo.currentMatchInfo.redSideWarning==gameInfo.gameSetting.maxWarningCount)
     {
         currentWinType=kWinByByWarning;
-        rebPlayerWin=gameInfo.blueSideWarning==gameInfo.gameSetting.maxWarningCount;
+        rebPlayerWin=gameInfo.currentMatchInfo.blueSideWarning==gameInfo.gameSetting.maxWarningCount;
     }
-    else  if(gameInfo.pointGapReached)
+    else  if(gameInfo.currentMatchInfo.pointGapReached)
     {
         currentWinType=kWinByPointGap;
-        rebPlayerWin=gameInfo.redSideScore>gameInfo.blueSideScore;
+        rebPlayerWin=gameInfo.currentMatchInfo.redSideScore>gameInfo.currentMatchInfo.blueSideScore;
     }
     else{
         currentWinType=kWinByPoint;
-        rebPlayerWin=gameInfo.redSideScore>gameInfo.blueSideScore;
+        rebPlayerWin=gameInfo.currentMatchInfo.redSideScore>gameInfo.currentMatchInfo.blueSideScore;
     }   
 }
 -(void)bindByGameInfo
@@ -131,11 +132,14 @@
 
 -(void)showWinner:(BOOL)red
 {
+    if(selectWinTypeButton.hidden==NO)
+        currentWinType=[[winTypes objectForKey:selectWinTypeButton.value] intValue];
+    else if(selectWinTypeButtonRed.hidden==NO)
+        currentWinType=[[winTypes objectForKey:selectWinTypeButtonRed.value] intValue];
     [self hideWithOnComplete:^(BOOL finished) {
         if ([delegate respondsToSelector:@selector(selectedWinnerEnd:)]) {
-            [self removeFromSuperview];
-            
-            [delegate performSelector:@selector(selectedWinnerEnd:) withObject:[NSNumber numberWithBool:red]];
+            [self removeFromSuperview];            
+            [delegate performSelector:@selector(selectedWinnerEnd:) withObject:[[NSArray alloc] initWithObjects:[NSNumber numberWithBool:red],[NSNumber numberWithInt:currentWinType],nil]];
         }  
     }]; 
 }

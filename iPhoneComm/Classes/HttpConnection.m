@@ -25,7 +25,7 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //  OTHER DEALINGS IN THE SOFTWARE.
 
-#import "Connection.h"
+#import "HttpConnection.h"
 
 
 // Declare C callback functions
@@ -34,7 +34,7 @@ void writeStreamEventHandler(CFWriteStreamRef stream, CFStreamEventType eventTyp
 
 
 // Private properties and methods
-@interface Connection ()
+@interface HttpConnection ()
 
 // Properties
 @property(nonatomic,retain) NSString* host;
@@ -61,7 +61,7 @@ void writeStreamEventHandler(CFWriteStreamRef stream, CFStreamEventType eventTyp
 @end
 
 
-@implementation Connection
+@implementation HttpConnection
 
 @synthesize delegate;
 @synthesize host, port;
@@ -273,7 +273,7 @@ void writeStreamEventHandler(CFWriteStreamRef stream, CFStreamEventType eventTyp
 // Dispatch readStream events
 void readStreamEventHandler(CFReadStreamRef stream, CFStreamEventType eventType,
     void *info) {
-  Connection* connection = (Connection*)info;
+  HttpConnection* connection = (HttpConnection*)info;
   [connection readStreamHandleEvent:eventType];
 }
 
@@ -376,7 +376,7 @@ void readStreamEventHandler(CFReadStreamRef stream, CFStreamEventType eventType,
 
 // Dispatch writeStream event handling
 void writeStreamEventHandler(CFWriteStreamRef stream, CFStreamEventType eventType, void *info) {
-  Connection* connection = (Connection*)info;
+  HttpConnection* connection = (HttpConnection*)info;
   [connection writeStreamHandleEvent:eventType];
 }
 

@@ -16,9 +16,6 @@
 @synthesize from;
 @synthesize date,msgId,gameId;
 
--(NSString*) primaryKey{
-    return @"commandId";
-}
 -(id)initWithType:(PacketCodes)_type andFrom:(NSString *)_from andDesc:(NSString *)_desc andData:(id)_data andDate:(NSDate *)_date{
     if(!(self = [super init]))
     {

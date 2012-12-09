@@ -10,6 +10,13 @@
 #import  <Foundation/NSObjCRuntime.h>
 #import <objc/runtime.h>
 
+static NSMutableDictionary *classReflectionProperties;
+
+@interface Reflection()
+
++(NSArray *)getNameOfProperties:(Class)classType;
+
+@end
 @implementation Reflection
 
 +(NSArray *)getNameOfProperties:(Class)classType
@@ -41,6 +48,13 @@ static const char *getPropertyType(objc_property_t property) {
 
 +(NSDictionary *)getPropertiesNameAndType:(Class)classType
 {
+    if(classReflectionProperties==nil){
+        classReflectionProperties=[[NSMutableDictionary alloc] init];
+    }
+    NSString *className=NSStringFromClass(classType);
+    if([classReflectionProperties containKey:className]){
+        return [classReflectionProperties objectForKey:className];
+    }
     u_int count;
     objc_property_t* properties = class_copyPropertyList(classType, &count);
     NSMutableDictionary* propertyArray = [NSMutableDictionary dictionaryWithCapacity:count];
@@ -52,6 +66,7 @@ static const char *getPropertyType(objc_property_t property) {
         [propertyArray setValue:propertyType forKey:key];
     }
     free(properties);
+    [classReflectionProperties setObject:propertyArray forKey:className];
     return propertyArray;
 }
 

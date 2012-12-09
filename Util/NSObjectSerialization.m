@@ -10,12 +10,13 @@
 #import  <Foundation/NSObjCRuntime.h>
 #import <objc/runtime.h>
 #import "Reflection.h"
+#import "Database.h"
 
 @implementation NSObjectSerialization
 
 - (void)encodeWithCoder:(NSCoder*)coder
 {
-    for (NSString *name in [Reflection getNameOfProperties:[self class]])
+    for (NSString *name in [Reflection getPropertiesNameAndType:[self class]].allKeys)
     {@try{
         id value = [self valueForKey:name];
         [coder encodeObject:value forKey:name];
@@ -81,12 +82,17 @@
 {
     NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
     NSMutableDictionary *result=[NSMutableDictionary dictionaryWithCapacity:propeties.count];
+     NSArray *columnsOfTable=[[Database getInstance] columnsOfTableByTableName:NSStringFromClass([self class])];
     for (NSString *propertyName in propeties.allKeys) {
         @try{
             NSString *propertyType=[propeties valueForKey:propertyName];
+            if(![columnsOfTable containsObject:propertyName])//classTye
+            {
+                continue;
+            } 
             id value=[self valueForKey:propertyName];
             if([propertyType hasPrefix:@"@"])//classTye
-            {
+            {               
                 if(value==nil)
                     value=[NSNull null];                
             }
@@ -124,25 +130,57 @@
     NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
     for (NSString *propertyName in propeties.allKeys)
     {
-        NSString *propertyType=[propeties valueForKey:propertyName];
-        NSString *typeName;           
+        NSString *propertyType=[propeties valueForKey:propertyName];        
         for (NSString *key in dictionary.allKeys) {
             if([key isEqualToString:propertyName])
             {
                 id value = [dictionary valueForKey:propertyName]; 
+                
                 if([propertyType hasPrefix:@"@"])//classTye
                 {
-                    if([typeName hasPrefix:@"@\"NSDate\""])
+                    if([propertyType hasPrefix:@"@\"NSDate\""])
                     {   
                         if([value isKindOfClass:[NSNumber class]])
                             value=[NSDate dateWithTimeIntervalSince1970:[(NSNumber *)value doubleValue]];
                     }
-                } 
-                [self setValue:value forKey:propertyName];
+                }    
+                if(value==[NSNull null])
+                {
+                    value=nil;
+                }
+                if([value isKindOfClass:[NSDictionary class]]){
+                    id propValue=[self valueForKey:propertyName];
+                    if([propValue respondsToSelector:@selector(initWithDictionary:)]){
+                        propValue = [[[propValue class] alloc] initWithDictionary:value];
+                    }
+                    else
+                        [self setValue:value forKey:propertyName];
+                }
+                else
+                    [self setValue:value forKey:propertyName];
                 break;
             }
         }
     }
     return self;
+}
+-(id) copyWithZone:(NSZone *)zone
+{
+    NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
+   id copyObject = [[[self class] allocWithZone:zone] init];
+    for (NSString *propertyName in propeties.allKeys)
+    {
+        id value=[self valueForKey:propertyName]; 
+        id newValue;
+        if([value respondsToSelector:@selector(copyWithZone:)])
+            {
+                newValue=[value copyWithZone:zone];
+            }
+        else{
+            newValue=value;
+        }
+        [copyObject setValue:newValue forKey:propertyName];
+    }
+    return copyObject;
 }
 @end

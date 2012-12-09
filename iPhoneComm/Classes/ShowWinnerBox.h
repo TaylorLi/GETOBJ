@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet UIView *viewLoadedFromXib;
 @property (strong, nonatomic) IBOutlet UILabel *lblWinner;
 @property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
+@property (nonatomic) WinType winnerWinType;
 - (IBAction)btnNextRound:(id)sender;
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title;
 -(void)bindSetting;

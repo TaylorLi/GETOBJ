@@ -20,12 +20,7 @@
 + (TKDDatabase*) getInstance;
 
 -(void)setupServerDatabase;
--(int)countOfQuery:(NSString *)sql;
 -(void)dropDatabase;
 -(void)clearDatabase;
--(BOOL)saveServerSettting:(ServerSetting *)setting;
--(BOOL)saveServerSetttingBySql:(ServerSetting *)setting;
--(BOOL)saveGame:(GameInfo *)game;
-- (NSArray *)queryAllServerSetttingList;
-- (ServerSetting *)queryObject:(NSString *)key;
+
 @end

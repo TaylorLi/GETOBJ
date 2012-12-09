@@ -30,7 +30,7 @@
 
 // Private properties
 @interface RemoteRoom ()
-@property(nonatomic,strong) Connection* connection;
+@property(nonatomic,strong) HttpConnection* connection;
 @end
 
 
@@ -41,7 +41,7 @@
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
     self=[super init];
-    connection = [[Connection alloc] initWithHostAddress:host andPort:port];
+    connection = [[HttpConnection alloc] initWithHostAddress:host andPort:port];
     return self;
 }
 
@@ -49,7 +49,7 @@
 // Initialize and connect to a net service
 - (id)initWithNetService:(NSNetService*)netService {
     self=[super init];
-    connection = [[Connection alloc] initWithNetService:netService];
+    connection = [[HttpConnection alloc] initWithNetService:netService];
     return self;
 }
 -(id)initWithPeerId:(ServerRelateInfo *)server
@@ -159,17 +159,17 @@
 #pragma mark -
 #pragma mark ConnectionDelegate Method Implementations
 
-- (void)connectionAttemptFailed:(Connection*)connection {
+- (void)connectionAttemptFailed:(HttpConnection*)connection {
     //[delegate roomTerminated:self reason:@"Wasn't able to connect to server"];
 }
 
 
-- (void)connectionTerminated:(Connection*)connection {
+- (void)connectionTerminated:(HttpConnection*)connection {
     [delegate roomTerminated:self reason:@"Connection to server closed"];
 }
 
 
-- (void)receivedNetworkPacket:(NSMutableDictionary*)packet viaConnection:(Connection*)connection {
+- (void)receivedNetworkPacket:(NSMutableDictionary*)packet viaConnection:(HttpConnection*)connection {
     // Display message locally
     CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
     [delegate processCmd:cmd];

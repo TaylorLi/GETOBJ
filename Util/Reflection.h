@@ -10,7 +10,6 @@
 
 @interface Reflection : NSObject
 
-+(NSArray *)getNameOfProperties:(Class)classType;
 +(NSDictionary *)getPropertiesNameAndType:(Class)classType;
 
 @end

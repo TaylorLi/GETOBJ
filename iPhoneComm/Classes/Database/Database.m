@@ -26,6 +26,7 @@ static Database* instance;
 - (id) init {
     self=[super init];
     if(self){
+        tableColumns=[[NSMutableDictionary alloc] init];
         NSString * doc = PATH_OF_DOCUMENT;
         NSString * path = [doc stringByAppendingPathComponent:@"TKDScore.sqlite"];
         dbPath=path;
@@ -41,6 +42,24 @@ static Database* instance;
     return instance;
 }
 
+-(NSArray *)columnsOfTableByTableName:(NSString *)tableName{
+    if([tableColumns containKey:tableName]){
+        return [tableColumns objectForKey:tableName];
+    }else{
+        NSString *sql=[NSString stringWithFormat:@"pragma table_info(%@);",tableName];
+       __block NSMutableArray *columns=[[NSMutableArray alloc] init];
+        [self queryData:sql handleDataRow:^(id result) {
+            FMResultSet * rs=result;
+            [columns addObject:[rs stringForColumn:@"name"]];
+        }];
+        return columns;
+    }
+}
+
+-(NSArray *)columnsOfTableByTableType:(Class)tableClass{
+    return [self columnsOfTableByTableName:NSStringFromClass(tableClass)];
+}
+
 - (void)setupDatabase:(FuncResultBlock) func {
     debugMethod();
     NSFileManager * fileManager = [NSFileManager defaultManager];
@@ -51,10 +70,10 @@ static Database* instance;
             func(db);
             [db close];
         } else {
-            NSLog(@"error when open db");
+            NSLog(@"[sqlite] error when open db");
         }
         if([db hadError]){            
-            NSLog(@"%@",db.lastErrorMessage);
+            NSLog(@"[sqlite] setupDatabase error,%@",db.lastErrorMessage);
         }
     }
 }
@@ -66,7 +85,7 @@ static Database* instance;
         {
             func(db);
             if([db hadError]){            
-                NSLog(@"%@",db.lastErrorMessage);
+                NSLog(@"[sqlite] open session to executeFunction error,%@",db.lastErrorMessage);
             }
         }
         [db close];
@@ -79,11 +98,11 @@ static Database* instance;
         FMResultSet * rs = [db executeQuery:sql];
         while ([rs next]) {
             if(rowFunc!=nil){
-                rowFunc(rs);
-                if(db.lastError!=nil){            
-                    NSLog(@"%@",db.lastErrorMessage);
-                }
+                rowFunc(rs);                
             }
+        }
+        if([db hadError]){            
+            NSLog(@"[sqlite] query Data error:[%@],result:%@",sql,db.lastErrorMessage);
         }
         [db close];
     }
@@ -100,27 +119,32 @@ static Database* instance;
             rs= [db executeQuery:sql withParameterDictionary:param];
         }else{
             rs= [db executeQuery:sql];
-        }      
+        }   
+        
         while ([rs next]) {            
-          id obj =  [[type alloc] init];    
-          NSDictionary *dic =  [rs resultDictionary];
+            id obj =  [[type alloc] init];    
+            NSDictionary *dic =  [rs resultDictionary];
             if([obj respondsToSelector:@selector(initWithDictionary:)])
             {
                 obj=[obj bindingWithDictionary:dic];
             }
             [result addObject:obj];
         }
+        if([db hadError]){            
+            NSLog(@"[sqlite] query queryList error:[%@],error detail:%@",sql,db.lastErrorMessage);
+        }
+
         [db close];
     }
     return result;
 }
 - (NSArray *)queryAllList:(Class)type{
     NSString *tableName=NSStringFromClass(type);
-  return [self queryList:[NSString stringWithFormat:@"select * from %@",tableName] andType:type parameters:nil];
+    return [self queryList:[NSString stringWithFormat:@"select * from %@",tableName] andType:type parameters:nil];
 }
--(id)queryObject:(Class)type withPrimaryKey:(id)key{
+-(id)queryObject:(Class)type withPrimaryKeyValue:(id)value primaryKeyName:(NSString *)primaryKey{
     NSString *tableName=NSStringFromClass(type);
-    NSArray *list = [self queryList:[NSString stringWithFormat:@"select * from %@ where %@ = ?",tableName,[[type alloc] primaryKey]] andType:type parameters:[[NSArray alloc] initWithObjects:key, nil]];
+    NSArray *list = [self queryList:[NSString stringWithFormat:@"select * from %@ where %@ = ?",tableName,primaryKey] andType:type parameters:[[NSArray alloc] initWithObjects:value, nil]];
     if(list==nil||list.count==0)
         return nil;
     else
@@ -136,7 +160,7 @@ static Database* instance;
             result = [rs objectForColumnIndex:0];
         }
         if([db hadError]){            
-            NSLog(@"%@",db.lastErrorMessage);
+            NSLog(@"[sqlite] query scala error:[%@],error detail:%@",sql,db.lastErrorMessage);
         }
         [db close];
     }
@@ -157,14 +181,11 @@ static Database* instance;
         NSString * sql =[NSString stringWithFormat:@"delete from %@",tableName];
         BOOL res = [db executeUpdate:sql];
         if (!res) {
-            NSLog(@"error to delete db data");
+             NSLog(@"[sqlite] delete all table [] data error:[%@],error detail:%@",tableName,db.lastErrorMessage);
             hasError=YES;
         } else {
             NSLog(@"succ to deleta db data");
-        }
-        if([db hadError]){            
-            NSLog(@"%@",db.lastErrorMessage);
-        }
+        }       
         [db close];
         
     }
@@ -182,8 +203,13 @@ static Database* instance;
         NSString *tableName=NSStringFromClass([obj class]);
         NSMutableString *sbColumns=[[NSMutableString alloc] initWithCapacity:50];
         NSMutableString *sbValueHolder=[[NSMutableString alloc] initWithCapacity:50];
-        NSArray *columns=[Reflection getNameOfProperties:[obj class]];
-        for (NSString *col in columns) {
+        NSDictionary *columns=[Reflection getPropertiesNameAndType:[obj class]];
+        NSArray *columnsOfTable=[self columnsOfTableByTableName:tableName];
+        for (NSString *col in columns.allKeys) {
+            if(![columnsOfTable containsObject:col])//classTye
+            {
+                continue;
+            }            
             [sbColumns appendFormat:@"%@,",col];
             [sbValueHolder appendFormat:@":%@,",col];
         }
@@ -195,14 +221,11 @@ static Database* instance;
         
         BOOL res = [db executeUpdate:sql withParameterDictionary:paramDict];
         if (!res) {          
-            NSLog(@"%@",db.lastErrorMessage);
+            NSLog(@"[sqlite] insert data error:[%@],error detail:%@",sql,db.lastErrorMessage);
             hasError=YES;
         } else {
             NSLog(@"success to insert db data:%@",tableName);
-        }
-        if([db hadError]){            
-            NSLog(@"%@",db.lastErrorMessage);
-        }
+        }        
         [db close];
         
     }
@@ -212,32 +235,35 @@ static Database* instance;
     return !hasError;
 }
 
--(BOOL) updateObject:(id)obj{
+-(BOOL) updateObject:(id)obj primaryKeyName:(NSString *)primaryKey{
     FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
     BOOL hasError=NO;
     if ([db open]) {
         NSString *tableName=NSStringFromClass([obj class]);
         NSMutableString *sbColumns=[[NSMutableString alloc] initWithCapacity:50];
-        NSArray *columns=[Reflection getNameOfProperties:[obj class]];
-        for (NSString *col in columns) {
-            [sbColumns appendFormat:@"%@=:%@,",col,col];
+        NSDictionary *columns=[Reflection getPropertiesNameAndType:[obj class]];
+        NSArray *columnsOfTable=[self columnsOfTableByTableName:tableName];
+        for (NSString *col in columns.allKeys) {
+            if(![columnsOfTable containsObject:col])//classTye
+            {
+                continue;
+            }   
+            if(![col isEqualToString:primaryKey])
+                [sbColumns appendFormat:@"%@=:%@,",col,col];
         }
-        NSString * sql =[NSString stringWithFormat:@"UPDATE %@ SET %@",tableName,[sbColumns substringToIndex:[sbColumns length]-1]];
+        NSString * sql =[NSString stringWithFormat:@"UPDATE %@ SET %@ where %@=:%@",tableName,[sbColumns substringToIndex:[sbColumns length]-1],primaryKey,primaryKey];
         NSDictionary *paramDict=nil;
         if([obj respondsToSelector:(@selector(proxyForSqlite))]){
             paramDict=[obj proxyForSqlite];
         }                
         BOOL res = [db executeUpdate:sql withParameterDictionary:paramDict];
         if (!res) {          
-            NSLog(@"%@",db.lastErrorMessage);
+            NSLog(@"[sqlite] update data error:[%@],error detail:%@",sql,db.lastErrorMessage);
             hasError=YES;
         } else {
             NSLog(@"success to update db data:%@",tableName);
-        }
-        if([db hadError]){            
-            NSLog(@"%@",db.lastErrorMessage);
-        }
-        [db close];
+        }        
+        [db close];       
         
     }
     else{
@@ -246,12 +272,11 @@ static Database* instance;
     return !hasError;
 }
 
--(BOOL) saveObject:(id)obj{
+-(BOOL) saveObject:(id)obj primaryKeyName:(NSString *)primaryKey{
     FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
     BOOL hasError=NO;
     if ([db open]) {
         NSString *tableName=NSStringFromClass([obj class]);
-        NSString *primaryKey=[obj primaryKey];
         id value=[obj valueForKey:primaryKey];
         
         NSString *sql=[NSString stringWithFormat:@"select count(*) from %@ where %@=?",tableName,primaryKey];
@@ -261,14 +286,14 @@ static Database* instance;
             result = [rs objectForColumnIndex:0];
         }
         if([db hadError]){            
-            NSLog(@"%@",db.lastErrorMessage);
+            NSLog(@"[sqlite] query row if existed error:[%@],error detail:%@",sql,db.lastErrorMessage);
         }else{
             [db close];
             if([result intValue]>0){
-                [self updateObject:obj];
+                return [self updateObject:obj primaryKeyName:primaryKey];
             }
             else{
-                [self insertObject:obj];
+                return [self insertObject:obj];
             }
         }
     }

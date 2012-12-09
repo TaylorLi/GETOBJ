@@ -11,8 +11,9 @@
     #import "CommandMsg.h"
     #import "MacroUtils.h"
 #endif
-
-#define UAMODALVIEW_DEBUG 1
+/*
+#define UAMODALVIEW_DEBUG 1 //display uamodal log
+*/
 #define DEBUG 1
 
 #if NS_BLOCKS_AVAILABLE

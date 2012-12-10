@@ -28,4 +28,9 @@ static BO_ScoreInfo* instance;
     return instance;
 }
 
+-(NSArray *)queryScoreByGameId:(NSString *)gameId
+{
+   return [self queryList:@"select * from ScoreInfo where gameId=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:gameId, nil]];
+}
+
 @end

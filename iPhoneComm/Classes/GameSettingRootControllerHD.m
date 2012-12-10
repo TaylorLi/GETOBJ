@@ -36,10 +36,10 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Settings"
-													 ofType:@"plist"];
-    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:path];
-    self.menus = [settings objectForKey:@"MaingGameSetting"];    
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"Settings"													 ofType:@"plist"];
+    //NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:path];
+    //self.menus = [settings objectForKey:@"MaingGameSetting"];   
+    self.menus=[[NSArray alloc] initWithObjects:@"Game Setting",@"Round Setting",@"Court Setting",@"Match Setting",@"Profile Setting",@"System Setting", nil];
 }
 
 - (void)viewDidUnload
@@ -102,7 +102,7 @@
     }
     
     // Configure the cell.
-    cell.textLabel.text = [self.menus.allKeys objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.menus objectAtIndex:indexPath.row];
     return cell;
 }
 

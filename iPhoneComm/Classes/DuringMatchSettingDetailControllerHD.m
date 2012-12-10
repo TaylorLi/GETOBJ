@@ -15,6 +15,7 @@
 #import "GameInfo.h"
 #import "UIHelper.h"
 #import "LocalRoom.h"
+#import "ScoreInfo.h"
 #import "JudgeClientInfo.h"
 #import "MatchInfo.h"
 #import "BO_GameInfo.h"
@@ -33,6 +34,7 @@
 -(void)refreshCurrentTime;
 -(void)restartServer;
 -(void)restartServerEnd:(NSTimer *)timer;
+-(void)retreiveDetailScoreLogs;
 @end
 
 @implementation DuringMatchSettingDetailControllerHD
@@ -40,7 +42,8 @@
 @synthesize startButton;
 
 @synthesize toolbar, popoverController, detailItem;
-@synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer;
+@synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer,
+detailControllerMatchDetailReport;
 @synthesize orgGameInfo,currentRemainTime,btnRestartServer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -78,6 +81,7 @@
     [self bindSettingGroupData:1];
     [self bindSettingGroupData:2];
     [self bindSettingGroupData:3];
+    [self bindSettingGroupData:4];
     [self bindSettingGroupData:0];    
     isChangeSetting=FALSE;
 }
@@ -244,6 +248,7 @@
             if(detailControllerJudge==nil){
                 detailControllerJudge =  [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 detailControllerJudge.tableView.dataSource=self;
+                detailControllerJudge.tableView.tag=TableViewJudgeTable;
                 //[detailControllerJudge.tableView reloadData];
                 //detailControllerJudge.tableView.delegate=self;
             }
@@ -251,6 +256,21 @@
         }
             break;
         case 3:
+        {
+            if(detailControllerMatchDetailReport==nil){
+                
+                detailControllerMatchDetailReport =  [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                detailControllerMatchDetailReport.tableView.dataSource=self;
+                detailControllerMatchDetailReport.tableView.tag = TableViewDetailReport;
+                //[detailControllerJudge.tableView reloadData];
+                //detailControllerJudge.tableView.delegate=self;
+            }
+            [self retreiveDetailScoreLogs];
+            [detailControllerMatchDetailReport.tableView reloadData];
+            [self setSettingTable:detailControllerMatchDetailReport];            
+        }
+            break;
+        case 4:
         {
             if(detailControllerMainMenu==nil){
                 detailControllerMainMenu =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -298,7 +318,8 @@
 }
 -(void)setSettingTable:(UIViewController *) control
 {
-    NSArray *array=[[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu, nil];
+    NSArray *array=[[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,
+                    detailControllerMatchDetailReport,detailControllerMainMenu, nil];
     for (UIViewController *ctl in array) {
         if(control==ctl){            
             if(control.view.superview==nil){
@@ -500,76 +521,189 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    switch (tableView.tag) {
+        case TableViewJudgeTable:
+            return 2;
+        case TableViewDetailReport:
+        {
+            return detailScoreLogs.count;
+        }
+            break;
+        case TableViewSummaryReport:
+        {
+            return 0;
+        }
+        default:
+            return 0;
+    }
     // Return the number of sections.
-    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==0)
-        return 1;
-    else
-    {
-        // Return the number of rows in the section.
-        if(relateGameServer.chatRoom.gameInfo.clients==nil||[relateGameServer.chatRoom.gameInfo.clients count]==0)
-            return  0;
-        return relateGameServer.chatRoom.gameInfo.clients.count;
+    switch (tableView.tag) {
+        case TableViewJudgeTable:
+        {
+            if(section==0)
+                return 1;
+            else
+            {
+                // Return the number of rows in the section.
+                if(relateGameServer.chatRoom.gameInfo.clients==nil||[relateGameServer.chatRoom.gameInfo.clients count]==0)
+                    return  0;
+                return relateGameServer.chatRoom.gameInfo.clients.count;
+            }
+        }
+            break;
+        case TableViewDetailReport:
+        {
+            return [[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:section]] count];
+        }
+            break;
+        case TableViewSummaryReport:
+        {
+            return 0;
+        }
+        default:
+            return 0;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (tableView.tag) {
+        case TableViewJudgeTable:
+        {
+            return @"";
+        }
+        case TableViewDetailReport:
+        {
+            return [NSString stringWithFormat:@"Round %@",[detailScoreLogs.allKeys objectAtIndex:section]];
+        }
+        case TableViewSummaryReport:
+        {
+            return @"";
+
+        }
+        default:
+            return @"";
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section==0){
-        static NSString* serverOptIdentifier = @"ServerRefreshIdentifier";
-        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
-            if(relateGameServer.chatRoom.gameInfo.gameSetting.currentJudgeDevice== JudgeDeviceiPhone){
-                cell.textLabel.text=@"Refresh server";
-                if(btnRestartServer==nil){
-                    btnRestartServer = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                    [btnRestartServer setTitle:@"Refresh" forState:UIControlStateNormal];
-                    [btnRestartServer setFrame:CGRectMake(0, 0, 100, 35)];                     
-                    [btnRestartServer  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
-                    btnRestartServer.tag=1;
-                }
-                cell.accessoryView = btnRestartServer;       
+    UITableViewCell *cell=nil;
+    switch (tableView.tag) {
+        case TableViewJudgeTable:
+        {
+            if(indexPath.section==0){
+                static NSString* serverOptIdentifier = @"ServerRefreshIdentifier";
+                cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
+                if (cell == nil) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
+                    NSString *currentDeviceType;
+                    switch (relateGameServer.chatRoom.gameInfo.gameSetting.currentJudgeDevice) {
+                        case JudgeDeviceiPhone:
+                            currentDeviceType=@"iPod or iPhone";
+                            break;
+                        case JudgeDeviceKeyboard:
+                            currentDeviceType=@"Peripheral Device";
+                            break;
+                        case JudgeDeviceHeadphone:
+                            currentDeviceType=@"Headphone Device";
+                            break;
+                        default:
+                            currentDeviceType=@"";
+                            break;
+                    }
+                    cell.detailTextLabel.text=currentDeviceType;
+                    if(relateGameServer.chatRoom.gameInfo.gameSetting.currentJudgeDevice== JudgeDeviceiPhone){
+                        cell.textLabel.text=@"Refresh server";
+                        if(btnRestartServer==nil){
+                            btnRestartServer = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                            [btnRestartServer setTitle:@"Refresh" forState:UIControlStateNormal];
+                            [btnRestartServer setFrame:CGRectMake(0, 0, 100, 35)];                     
+                            [btnRestartServer  addTarget:self action:@selector(restartServer) forControlEvents:UIControlEventTouchUpInside];  
+                            btnRestartServer.tag=1;
+                        }
+                        cell.accessoryView = btnRestartServer;       
+                    }
+                    else{
+                        cell.textLabel.text=@"Referee Info";
+                    }
+                    cell.tag=kServerRefresh;
+                }        
+                return cell;
             }
             else{
-                cell.textLabel.text=@"Referee Info";
+                static NSString* serverListIdentifier = @"JudgeListIdentifier";
+                cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
+                if (cell == nil) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
+                }
+                JudgeClientInfo *cltInfo=[[relateGameServer.chatRoom.gameInfo.clients.allValues sortedArrayUsingComparator:^(id obj1, id obj2){
+                    return [((JudgeClientInfo *)obj1).displayName compare:((JudgeClientInfo *)obj2).displayName options:NSWidthInsensitiveSearch];
+                }] objectAtIndex: indexPath.row];
+                
+                UIImage *img;
+                if (cltInfo.hasConnected) {
+                    cell.textLabel.textColor=[UIColor darkTextColor];
+                    img=[UIImage imageNamed:@"circle_green.png"];
+                    cell.textLabel.text=cltInfo.displayName;
+                }
+                else{
+                    cell.textLabel.textColor=[UIColor redColor];
+                    img=[UIImage imageNamed:@"circle_red.png"];
+                    cell.textLabel.text=[NSString stringWithFormat:@"%@!%", cltInfo.displayName];
+                }
+                UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+                imgView.image=img;
+                cell.accessoryView=imgView;
+                return cell;
             }
-            cell.tag=kServerRefresh;
-        }        
-        return cell;
+            
+        }
+            break;
+        case TableViewDetailReport:
+        {
+            static NSString* serverOptIdentifier = @"ScoreLogDetailIdentifier";
+            cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
+            }
+            ScoreInfo *sc=[[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+            cell.textLabel.text=[NSString stringWithFormat:@"%@",sc.clientUuid];
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%i",sc.redSideScore];
+        }
+            break;
+        case TableViewSummaryReport:
+        {
+            
+        }
+            break;
+        default:
+            break;
     }
-    else{
-        static NSString* serverListIdentifier = @"JudgeListIdentifier";
-        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverListIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverListIdentifier];
-        }
-        JudgeClientInfo *cltInfo=[[relateGameServer.chatRoom.gameInfo.clients.allValues sortedArrayUsingComparator:^(id obj1, id obj2){
-            return [((JudgeClientInfo *)obj1).displayName compare:((JudgeClientInfo *)obj2).displayName options:NSWidthInsensitiveSearch];
-        }] objectAtIndex: indexPath.row];
-        
-        UIImage *img;
-        if (cltInfo.hasConnected) {
-            cell.textLabel.textColor=[UIColor darkTextColor];
-            img=[UIImage imageNamed:@"circle_green.png"];
-            cell.textLabel.text=cltInfo.displayName;
-        }
-        else{
-            cell.textLabel.textColor=[UIColor redColor];
-            img=[UIImage imageNamed:@"circle_red.png"];
-            cell.textLabel.text=[NSString stringWithFormat:@"%@!%", cltInfo.displayName];
-        }
-        UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        imgView.image=img;
-        cell.accessoryView=imgView;
-        return cell;
-    }
+    return cell;
 }
 
 -(void)refreshJudges{
     [detailControllerJudge.tableView reloadData];
+}
+
+-(void)retreiveDetailScoreLogs{
+    NSArray *logs=[[BO_ScoreInfo getInstance] queryScoreByGameId:relateGameServer.chatRoom.gameInfo.gameId];
+    detailScoreLogs=[[NSMutableDictionary alloc] init];
+    for (ScoreInfo *sc in logs) {
+        NSMutableArray *groupScore=nil;
+        NSString *key=[NSString stringWithFormat:@"%i",sc.roundSeq];
+        if(![detailScoreLogs containKey:key]){
+            groupScore=[[NSMutableArray alloc] init];
+            [detailScoreLogs setValue:groupScore forKey:key];
+        }
+        else{
+            groupScore = [detailScoreLogs objectForKey:key];
+        }
+        [groupScore addObject:sc];
+    }
 }
 @end

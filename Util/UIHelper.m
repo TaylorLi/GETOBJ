@@ -105,4 +105,21 @@
     return success;
 }
 
++ (UIView *)findFirstResponder:(UIView *)parentView
+{
+    if (parentView.isFirstResponder) {        
+        return parentView;     
+    }
+    
+    for (UIView *subView in parentView.subviews) {
+        UIView *firstResponder = [UIHelper findFirstResponder:subView];
+        
+        if (firstResponder != nil) {
+            return firstResponder;
+        }
+    }
+    
+    return nil;
+}
+
 @end

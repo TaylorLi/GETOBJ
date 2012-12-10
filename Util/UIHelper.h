@@ -18,4 +18,5 @@
 +(BOOL) alternateTextField:(NSArray *)views;
 +(void) resignResponser:(NSArray *)views;
 +(BOOL) validateTextFields:(NSArray *)views;
++(UIView *)findFirstResponder:(UIView *)parentView;
 @end

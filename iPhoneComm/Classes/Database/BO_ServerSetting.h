@@ -15,4 +15,5 @@
 + (BO_ServerSetting*) getInstance;
 -(ServerSetting*) getSettingLastUsedProfile;
 -(ServerSetting*) getDefaultProfile;
+-(NSArray *) getProfiles;
 @end

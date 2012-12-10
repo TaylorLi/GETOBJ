@@ -11,6 +11,9 @@
 
 @interface UtilHelper : NSObject
 +(NSString *)formateTime:(NSDate *)date;
++(NSString *)formateDate:(NSDate *)date;
++(NSString *)formateDateWithTime:(NSDate *)date;
++(NSString *)formateDate:(NSDate *)date withFormate:(NSString *)format;
 +(id)deserializeFromFile:(NSString *)fileName dataKey:(NSString *) dataKey;
 +(void)serializeObjectToFile:(NSString *)fileName withObject:(id)obj dataKey:(NSString*) dataKey;
 +(NSString *)dataFilePath:(NSString *)fileName;

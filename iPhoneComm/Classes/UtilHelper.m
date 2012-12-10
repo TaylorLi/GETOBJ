@@ -12,13 +12,25 @@
 @implementation UtilHelper
 +(NSString *)formateTime:(NSDate *)date;
 {
+    return [UtilHelper formateDate:date withFormate:@"yyyy-MM-dd HH:mm:ss.SSS"];
+}
++(NSString *)formateDate:(NSDate *)date
+{
+    return [UtilHelper formateDate:date withFormate:@"yyyy-MM-dd"];
+}
++(NSString *)formateDateWithTime:(NSDate *)date
+{
+    return [UtilHelper formateDate:date withFormate:@"yyyy-MM-dd HH:mm:ss"];
+}
++(NSString *)formateDate:(NSDate *)date withFormate:(NSString *)format
+{
     if(date==nil)
         return @"";
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     //[dateFormatter setDateFormat:@"hh:mm:ss"]
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    [dateFormatter setDateFormat:format];
     NSString *d= [dateFormatter stringFromDate:[NSDate date]];
     return d;
 }

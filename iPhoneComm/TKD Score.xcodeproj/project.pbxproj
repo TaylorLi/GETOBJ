@@ -440,6 +440,10 @@
 		DAEBBF5E15EA35AC00C0A69C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBBF5C15EA352D00C0A69C /* Default@2x.png */; };
 		DAEBBF6015EA4BAB00C0A69C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */; };
 		DAEBBF6315EA4BC200C0A69C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */; };
+		DAEC17461676240000B9A3B5 /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEC17451676240000B9A3B5 /* select.png */; };
+		DAEC17471676240000B9A3B5 /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEC17451676240000B9A3B5 /* select.png */; };
+		DAEC174A167624BE00B9A3B5 /* profile-accept.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEC1749167624BE00B9A3B5 /* profile-accept.png */; };
+		DAEC174B167624BE00B9A3B5 /* profile-accept.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEC1749167624BE00B9A3B5 /* profile-accept.png */; };
 		DAEC18EA15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEC18EB15D76A1D00C13772 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEC18EC15D76A1D00C13772 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEC18E915D76A1D00C13772 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -881,6 +885,8 @@
 		DAEBBF5C15EA352D00C0A69C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DAEBBF5F15EA4BAB00C0A69C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DAEBBF6115EA4BB900C0A69C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DAEC17451676240000B9A3B5 /* select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select.png; path = Images/select.png; sourceTree = "<group>"; };
+		DAEC1749167624BE00B9A3B5 /* profile-accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile-accept.png"; path = "Images/profile-accept.png"; sourceTree = "<group>"; };
 		DAEC18E615D76A1D00C13772 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
 		DAEC18E715D76A1D00C13772 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		DAEC18E815D76A1D00C13772 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
@@ -1224,6 +1230,8 @@
 		DADB112215A8AB3800326B24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DAEC1749167624BE00B9A3B5 /* profile-accept.png */,
+				DAEC17451676240000B9A3B5 /* select.png */,
 				DA656E221663B88400D691B0 /* enable-timer.png */,
 				DA656E231663B88400D691B0 /* end-match.png */,
 				DA656E241663B88400D691B0 /* fight.png */,
@@ -1823,6 +1831,8 @@
 				DAEF4C9315E69813006025DD /* rend.wav in Resources */,
 				DAEBBF5A15EA352000C0A69C /* Default.png in Resources */,
 				DAEBBF5E15EA35AC00C0A69C /* Default@2x.png in Resources */,
+				DAEC17461676240000B9A3B5 /* select.png in Resources */,
+				DAEC174A167624BE00B9A3B5 /* profile-accept.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1992,6 +2002,8 @@
 				DA656E271663B88400D691B0 /* end-match.png in Resources */,
 				DA656E281663B88400D691B0 /* fight.png in Resources */,
 				DA656E291663B88400D691B0 /* txn-report.png in Resources */,
+				DAEC17471676240000B9A3B5 /* select.png in Resources */,
+				DAEC174B167624BE00B9A3B5 /* profile-accept.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

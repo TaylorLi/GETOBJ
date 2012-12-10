@@ -11,11 +11,9 @@
 
 @interface GameSettingRootControllerHD : UITableViewController
 {
-    GameSettingDetailControllerHD *detailViewController;
-    NSDictionary *menus;
 }
 
 @property (nonatomic, retain) IBOutlet GameSettingDetailControllerHD *detailViewController;
-@property (nonatomic, retain) NSDictionary *menus;
+@property (nonatomic, retain) NSArray *menus;
 
 @end

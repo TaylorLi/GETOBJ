@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
 
+@class ScoreInfo;
 @interface BO_ScoreInfo : BOBase
 
 + (BO_ScoreInfo*) getInstance;
+
+-(NSArray *)queryScoreByGameId:(NSString *)gameId;
 
 @end

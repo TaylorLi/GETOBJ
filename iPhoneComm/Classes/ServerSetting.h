@@ -33,6 +33,7 @@
 #define kCurrentTime 22
 #define kServerRefresh 23
 #define kDeviceType 24
+#define kProfileName 25
 
 @interface ServerSetting : NSObjectSerialization<NSCopying,SqliteORMDelegate>
 {

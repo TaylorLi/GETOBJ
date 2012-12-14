@@ -20,6 +20,7 @@
     self=[super init];
     if(self)
     {
+        gameId=[UtilHelper stringWithUUID];
         gameSetting=setting;
         gameSetting.gameId=gameId;
         gameStart=NO;

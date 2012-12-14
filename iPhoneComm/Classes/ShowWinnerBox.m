@@ -8,6 +8,7 @@
 
 #import "ShowWinnerBox.h"
 #import "ServerSetting.h"
+#import "BO_ServerSetting.h"
 
 //#define BLACK_BAR_COMPONENTS				{ 0.22, 0.22, 0.22, 1.0, 0.07, 0.07, 0.07, 1.0 }
 
@@ -18,7 +19,9 @@
 @synthesize viewLoadedFromXib;
 @synthesize lblWinner;
 @synthesize imgBackground;
+@synthesize pkProfileName;
 @synthesize winnerWinType;
+@synthesize pkProfileNextMatch;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title
 {
@@ -49,6 +52,23 @@
     return self;
 }
 -(void)bindSetting{
+    if(availSettingProfiles==nil){
+        availSettingProfiles=[[OrderedDictionary alloc] init];
+        for (ServerSetting *st in [[BO_ServerSetting getInstance] getProfilesOrderByUsingDate]) {
+            [availSettingProfiles appendObject:st.profileName forKey:st.settingId];
+        } 
+    }    
+    
+    [pkProfileName reloadPicker:availSettingProfiles]; 
+    [pkProfileName setSelectedValue:gameInfo.gameSetting.profileId];
+    
+    availCourts=[[OrderedDictionary alloc] init];
+    for (int i=1; i<99; i++) {
+        [availCourts appendObject:[NSString stringWithFormat:@"%i",i] forKey:[NSString stringWithFormat:@"%i",i]];
+    }    
+    [pkProfileNextMatch reloadPicker:availCourts]; 
+    [pkProfileNextMatch setSelectedValue:[NSString stringWithFormat:@"%i",gameInfo.gameSetting.startScreening+gameInfo.gameSetting.skipScreening]];
+    
      self.lblWinner.text=winnerIsRedSide?gameInfo.gameSetting.redSideName:gameInfo.gameSetting.blueSideName;
     if(winnerIsRedSide){
         self.lblWinner.textColor=[UIColor colorWithRed:255 green:0 blue:0 alpha:1];
@@ -105,9 +125,9 @@
 - (IBAction)btnNextRound:(id)sender {
     [self hideWithOnComplete:^(BOOL finished) {
         if ([delegate respondsToSelector:@selector(showWinnerEndAndNextRound:)]) {
-            [self removeFromSuperview];
+            [self removeFromSuperview];            
             
-            [delegate performSelector:@selector(showWinnerEndAndNextRound:) withObject:self];
+            [delegate performSelector:@selector(showWinnerEndAndNextRound:) withObject:[[NSArray alloc] initWithObjects:pkProfileName.value,pkProfileNextMatch.value,nil]];
         }  
     }]; 
 }

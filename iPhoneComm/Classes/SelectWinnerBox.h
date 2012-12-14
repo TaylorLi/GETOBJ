@@ -13,7 +13,7 @@
 
 @interface SelectWinnerBox : UAModalPanel<PickerButtonDelegate>
 {
-    NSDictionary *winTypes;
+    OrderedDictionary *winTypes;
     BOOL rebPlayerWin;
     WinType currentWinType;
 }

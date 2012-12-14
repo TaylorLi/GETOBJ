@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderedDictionary.h"
 
 @class PickerButton;
 
@@ -21,17 +22,18 @@ andSelectedIndex:(NSInteger) index;
 	UIPopoverController *popoverController;
 	UIToolbar *inputAccessoryView;
     NSString *_value;
-   __strong NSArray *values;
+   __strong OrderedDictionary *values;
     NSInteger _selectedIndex;
 }
 
 @property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSString *text;
 @property (weak) IBOutlet id <PickerButtonDelegate> delegate;
 @property (nonatomic,assign) NSInteger selectedIndex;
 
-- (id)initWithFrame:(CGRect)frame selectValue:(NSString *) selValue dataSource:(NSArray *) source;
--(void) reloadPicker:(NSArray *)sources;   
+- (id)initWithFrame:(CGRect)frame selectValue:(NSString *) selValue dataSource:(OrderedDictionary *) source;
+-(void) reloadPicker:(OrderedDictionary *)sources;   
 - (void)setSelectedValue:(NSString *)v;
 -(void)setSelectedIndex:(NSInteger)v;
 -(void)setButtonTitle:(NSString *)t;

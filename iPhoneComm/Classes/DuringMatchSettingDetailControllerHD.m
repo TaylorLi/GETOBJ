@@ -665,14 +665,37 @@ detailControllerMatchDetailReport;
             break;
         case TableViewDetailReport:
         {
-            static NSString* serverOptIdentifier = @"ScoreLogDetailIdentifier";
-            cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
+            BOOL single=indexPath.row %2 ==1;
+            static NSString* serverOptIdentifier1 = @"ScoreLogDetailIdentifier1";
+            static NSString* serverOptIdentifier2 = @"ScoreLogDetailIdentifier2";
+            cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:single? serverOptIdentifier1:serverOptIdentifier2];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
-            }
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ScoreDetailLogTableCell"
+                                                             owner:self options:nil];
+                if ([nib count] == 0) {
+                    NSLog(@"failed to load ScoreDetailLogTableCell nib file!");
+                }
+                else{
+                    cell=[nib objectAtIndex:0];
+                    if(single){
+                        cell.backgroundColor=[UIColor colorWithRed:75 green:75 blue:155 alpha:0.2];
+                    }
+                }
+            }           
             ScoreInfo *sc=[[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-            cell.textLabel.text=[NSString stringWithFormat:@"%@",sc.clientUuid];
-            cell.detailTextLabel.text=[NSString stringWithFormat:@"%i",sc.redSideScore];
+            UILabel *judgeNameLabel = (UILabel *)[cell viewWithTag:kTagScoreJugdeName];
+            judgeNameLabel.text=sc.clientName;
+            UILabel *scoreSideLabel = (UILabel *)[cell viewWithTag:kTagScoreSide];
+            scoreSideLabel.text=sc.swipeType==kSideRed?@"Red":@"Blue";
+            UILabel *scoreNumLabel = (UILabel *)[cell viewWithTag:kTagScoreNum];
+            if(sc.swipeType==kSideRed){
+                scoreNumLabel.textColor=[UIColor redColor];
+            }else{
+                scoreNumLabel.textColor=[UIColor blueColor];
+            }
+            scoreNumLabel.text=[NSString stringWithFormat:@"%i",sc.swipeType== kSideRed?sc.redSideScore: sc.blueSideScore];
+            UILabel *scoreCreateTimeLabel = (UILabel *)[cell viewWithTag:kTagScoreCreateTime];
+            scoreCreateTimeLabel.text=[UtilHelper formateTime:sc.createTime];
         }
             break;
         case TableViewSummaryReport:
@@ -691,7 +714,7 @@ detailControllerMatchDetailReport;
 }
 
 -(void)retreiveDetailScoreLogs{
-    NSArray *logs=[[BO_ScoreInfo getInstance] queryScoreByGameId:relateGameServer.chatRoom.gameInfo.gameId];
+    NSArray *logs=[[BO_ScoreInfo getInstance] queryScoreByGameId:relateGameServer.chatRoom.gameInfo.gameId andMatchSeq:relateGameServer.chatRoom.gameInfo.currentMatch];
     detailScoreLogs=[[NSMutableDictionary alloc] init];
     for (ScoreInfo *sc in logs) {
         NSMutableArray *groupScore=nil;

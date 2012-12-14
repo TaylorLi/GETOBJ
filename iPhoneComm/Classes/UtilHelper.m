@@ -162,4 +162,9 @@
     }
 }
 
++(NSString *)stringWithInt:(int) v
+{
+    return [NSString stringWithFormat:@"%i",v];
+}
+
 @end

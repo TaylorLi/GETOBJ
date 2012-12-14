@@ -32,5 +32,9 @@ static BO_ScoreInfo* instance;
 {
    return [self queryList:@"select * from ScoreInfo where gameId=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:gameId, nil]];
 }
+-(NSArray *)queryScoreByGameId:(NSString *)gameId andMatchSeq:(NSInteger)matchSeq
+{
+    return [self queryList:@"select si.*,jc.displayName clientName from ScoreInfo si inner join JudgeClientInfo jc on si.clientId=jc.clientId  inner join MatchInfo mi on si.matchId=mi.matchId where si.gameId=? and mi.currentMatch=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:gameId,[NSNumber numberWithInt:matchSeq], nil]];
+}
 
 @end

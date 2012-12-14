@@ -106,6 +106,7 @@
 @property  GameSettingType settingType;
 @property (nonatomic,strong) NSString *userId;
 @property (nonatomic,strong) NSDate *lastUsingDate;
+@property (nonatomic,strong) NSString *profileId;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc

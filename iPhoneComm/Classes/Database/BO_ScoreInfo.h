@@ -15,5 +15,5 @@
 + (BO_ScoreInfo*) getInstance;
 
 -(NSArray *)queryScoreByGameId:(NSString *)gameId;
-
+-(NSArray *)queryScoreByGameId:(NSString *)gameId andMatchSeq:(NSInteger)matchSeq;
 @end

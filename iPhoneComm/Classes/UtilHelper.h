@@ -23,4 +23,5 @@
 + (NSString*) stringWithUUID;
 +(void)copyAttributesFromObject:(id)from ToObject:(id)to;
 +(NSString *)ArrayToString:(NSArray *)array;
++(NSString *)stringWithInt:(int) v;
 @end

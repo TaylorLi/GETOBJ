@@ -106,6 +106,8 @@
 
 // Exit back to the welcome screen
 - (IBAction)exit;
+- (void)exitWithSettingInfo:(NSArray *)nextProfileInfo;
+- (void)exitProcess;
 
 // View is active, start everything up
 - (void)activate;
@@ -115,6 +117,7 @@
 -(void)showWaitingUserBox;
 
 -(void)goToNextMatch;
+-(void)goToNextMatchWithProfileId:(NSString *)profileId startCourt:(int)courtSeq;
 
 -(void)updateForGameSetting:(BOOL)hasChange;
 -(void)duringSettingEndPress;

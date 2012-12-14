@@ -364,6 +364,9 @@
 		DAEA507C15E0900D00ACB1AD /* marks_gray_7.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507215E0900D00ACB1AD /* marks_gray_7.png */; };
 		DAEA507D15E0900D00ACB1AD /* marks_gray_8.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507315E0900D00ACB1AD /* marks_gray_8.png */; };
 		DAEA507E15E0900D00ACB1AD /* marks_gray_9.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEA507415E0900D00ACB1AD /* marks_gray_9.png */; };
+		DAEA5DDC16775FDF002128AE /* ScoreDetailLogTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAEA5DDB16775FDF002128AE /* ScoreDetailLogTableCell.xib */; };
+		DAEA5DDF1677837B002128AE /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA5DDE1677837B002128AE /* OrderedDictionary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEA5DE01677837B002128AE /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEA5DDE1677837B002128AE /* OrderedDictionary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEACD64166E41AD00F3A505 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD63166E41AD00F3A505 /* UserInfo.m */; };
 		DAEACD65166E41AD00F3A505 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD63166E41AD00F3A505 /* UserInfo.m */; };
 		DAEACD69166E41C000F3A505 /* MatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEACD68166E41C000F3A505 /* MatchInfo.m */; };
@@ -803,6 +806,9 @@
 		DAEA507215E0900D00ACB1AD /* marks_gray_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_7.png; path = "Resources-iPad/Images/marks_gray_7.png"; sourceTree = "<group>"; };
 		DAEA507315E0900D00ACB1AD /* marks_gray_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_8.png; path = "Resources-iPad/Images/marks_gray_8.png"; sourceTree = "<group>"; };
 		DAEA507415E0900D00ACB1AD /* marks_gray_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marks_gray_9.png; path = "Resources-iPad/Images/marks_gray_9.png"; sourceTree = "<group>"; };
+		DAEA5DDB16775FDF002128AE /* ScoreDetailLogTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScoreDetailLogTableCell.xib; path = "Resources-iPad/ScoreDetailLogTableCell.xib"; sourceTree = "<group>"; };
+		DAEA5DDD1677837B002128AE /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderedDictionary.h; path = ../Util/OrderedDictionary.h; sourceTree = "<group>"; };
+		DAEA5DDE1677837B002128AE /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderedDictionary.m; path = ../Util/OrderedDictionary.m; sourceTree = "<group>"; };
 		DAEACD62166E41AD00F3A505 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		DAEACD63166E41AD00F3A505 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		DAEACD67166E41C000F3A505 /* MatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchInfo.h; sourceTree = "<group>"; };
@@ -1212,6 +1218,7 @@
 				DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */,
 				DA78B48115A96F0600E186CC /* ScoreControlView.xib */,
 				DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */,
+				DAEA5DDB16775FDF002128AE /* ScoreDetailLogTableCell.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -1668,6 +1675,8 @@
 		DAF8F5B215B13C8400497FC5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DAEA5DDD1677837B002128AE /* OrderedDictionary.h */,
+				DAEA5DDE1677837B002128AE /* OrderedDictionary.m */,
 				DAEC18E515D76A1D00C13772 /* UIDeviceAddition */,
 				DAE789FE15C4D07C007A3A29 /* Reachability.h */,
 				DAE789FF15C4D07C007A3A29 /* Reachability.m */,
@@ -2004,6 +2013,7 @@
 				DA656E291663B88400D691B0 /* txn-report.png in Resources */,
 				DAEC17471676240000B9A3B5 /* select.png in Resources */,
 				DAEC174B167624BE00B9A3B5 /* profile-accept.png in Resources */,
+				DAEA5DDC16775FDF002128AE /* ScoreDetailLogTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2118,6 +2128,7 @@
 				DA8247B6167387130047B69C /* FMResultSet.m in Sources */,
 				DAE86A591674A9B1005E5A5B /* SubmitedScoreInfo.m in Sources */,
 				DAE86A5D1674AAF6005E5A5B /* BO_SubmitedScoreInfo.m in Sources */,
+				DAEA5DDF1677837B002128AE /* OrderedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2227,6 +2238,7 @@
 				DAE8C4781672E3F70075A38D /* BO_MatchInfo.m in Sources */,
 				DAE86A5A1674A9B1005E5A5B /* SubmitedScoreInfo.m in Sources */,
 				DAE86A5E1674AAF6005E5A5B /* BO_SubmitedScoreInfo.m in Sources */,
+				DAEA5DE01677837B002128AE /* OrderedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

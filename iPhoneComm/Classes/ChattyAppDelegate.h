@@ -69,7 +69,7 @@
 -(void) showScoreControlRoom:(Room *) room;
 
 -(void) showGameSettingView;
--(void) showDuringMatchSettingView;
+-(void) showDuringMatchSettingView:(NSInteger)tabIndex;
 
 -(void) swithView:(UIView *) view;
 

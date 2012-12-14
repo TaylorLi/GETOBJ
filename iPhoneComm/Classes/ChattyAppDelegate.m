@@ -145,7 +145,7 @@ static ChattyAppDelegate* _instance;
     [splitSettingViewController setWantsFullScreenLayout:YES];
     [self swithView:splitSettingViewController.view];
 }
--(void) showDuringMatchSettingView
+-(void) showDuringMatchSettingView:(NSInteger)tabIndex
 {
     [AppConfig getInstance].currentAppStep=AppStepServer;
     [duringMathSplitViewCtl setWantsFullScreenLayout:YES];

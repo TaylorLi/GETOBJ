@@ -13,6 +13,11 @@
 #import "StringInputTableViewCell.h"
 #import "ScoreBoardViewController.h"
 
+#define kTagScoreJugdeName 1
+#define kTagScoreSide 2
+#define kTagScoreNum 3
+#define kTagScoreCreateTime 4
+
 typedef enum {    
     TableViewJudgeTable=0,
     TableViewDetailReport=1,

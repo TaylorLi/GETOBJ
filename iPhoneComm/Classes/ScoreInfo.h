@@ -23,6 +23,11 @@
 @property (nonatomic,strong) NSString *matchId;
 //@property BOOL successSubmited;
 
+#pragma mark -
+#pragma  mark just use in table view
+@property (nonatomic,strong) NSString *clientName;
+#pragma mark -
+
 -(id) init;
 -(id) initWithBlueSide:(int)_blueScore andDateNow:(NSDate *)_datenow;
 -(id) initWithRedSide:(int)_redScore andDateNow:(NSDate *)_datenow;

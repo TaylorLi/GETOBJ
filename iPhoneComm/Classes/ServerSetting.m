@@ -23,7 +23,7 @@
 @synthesize roundCount;
 @synthesize judgeCount;
 @synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudgesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
-@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate;
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate,profileId;
 
 -(NSString *)description
 {
@@ -67,11 +67,12 @@
     maxWarningCount=8;
     restAndReorganizationTime=60;
     serverLoopMaxDelay = 1;
-    currentJudgeDevice= JudgeDeviceiPhone;
+    currentJudgeDevice= JudgeDeviceKeyboard;
     settingType=SettingTypeProfile; 
     isDefaultProfile=YES;
 }
 -(void) renewSettingForGame{
+    profileId=settingId;
     settingId=[UtilHelper stringWithUUID];
     createDate=[NSDate date];
     settingType=SettingTypeGameRelated;

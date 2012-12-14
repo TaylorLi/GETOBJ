@@ -34,11 +34,10 @@
         // The header label, a UILabel with the same frame as the titleBar
         //self.headerLabel.font = [UIFont boldSystemFontOfSize:20];        
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"SelectWinnerBox" owner:self options:nil] objectAtIndex:0];
-        winTypes=[[NSDictionary alloc] initWithObjectsAndKeys:
-                  [NSNumber numberWithInt:kWinByPoint],[UtilHelper getWinTypeDesc:kWinByPoint],
-                  [NSNumber numberWithInt:kWinByPointGap],[UtilHelper getWinTypeDesc:kWinByPointGap],
-                  [NSNumber numberWithInt:kWinByByWarning],[UtilHelper getWinTypeDesc:kWinByByWarning],
-                  nil];        
+        winTypes=[[OrderedDictionary alloc] initWithCapacity:3];
+        for (int i=kWinByPoint; i<=kWinByByWarning; i++) {
+            [winTypes appendObject:[UtilHelper getWinTypeDesc:i] forKey:[UtilHelper stringWithInt:i]];
+        }    
         //横向时，宽度与高度互换
         CGSize mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
         CGSize contentViewSize=viewLoadedFromXib.bounds.size;
@@ -72,15 +71,15 @@
 -(void)bindByGameInfo
 {
     [self calcWinTypeByGameInfo];    
-    if(rebPlayerWin){
-        [selectWinTypeButtonRed setSelectedValue:[UtilHelper getWinTypeDesc:currentWinType]];
-        [selectWinTypeButtonRed reloadPicker:winTypes.allKeys]; 
+    if(rebPlayerWin){        
+        [selectWinTypeButtonRed reloadPicker:winTypes];
+        [selectWinTypeButtonRed setSelectedValue:[NSString stringWithFormat:@"%i",currentWinType]];
         selectWinTypeButton.hidden=YES;
         selectWinTypeButtonRed.hidden=NO;
     }
-    else{
-        [selectWinTypeButton setSelectedValue:[UtilHelper getWinTypeDesc:currentWinType]];
-        [selectWinTypeButton reloadPicker:winTypes.allKeys];
+    else{        
+        [selectWinTypeButton reloadPicker:winTypes];
+        [selectWinTypeButton setSelectedValue:[NSString stringWithFormat:@"%i",currentWinType]];
         selectWinTypeButton.hidden=NO;
         selectWinTypeButtonRed.hidden=YES;
     }    

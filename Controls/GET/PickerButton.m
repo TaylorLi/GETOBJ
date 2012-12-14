@@ -17,9 +17,10 @@
 @synthesize delegate;
 @synthesize value=_value;
 @synthesize selectedIndex=_selectedIndex;
+@synthesize text;
 @synthesize picker;
 
-- (id)initWithFrame:(CGRect)frame selectValue:(NSString *) selValue dataSource:(NSArray *) source
+- (id)initWithFrame:(CGRect)frame selectValue:(NSString *) selValue dataSource:(OrderedDictionary *) source
 {
     self = [self initWithFrame:frame];
     if (self) {
@@ -28,7 +29,7 @@
         [self.titleLabel setFont:[UIFont fontWithName:@"System Bold" size:20]];
         // Initialization code
         values=source;
-        [self setButtonTitle:selValue]; 
+        [self setButtonTitle:[source objectForKey:selValue]]; 
         [self setValue:selValue];
     }
     return self;
@@ -58,6 +59,7 @@
 
 -(void)setButtonTitle:(NSString *)t
 {
+    text=t;
     [self setTitle:t forState:UIControlStateNormal];
     [self setTitle:t forState:UIControlStateSelected];
     [self setTitle: t forState:UIControlStateHighlighted];
@@ -181,10 +183,10 @@
 
 - (void)setSelectedValue:(NSString *)v {
     if(v==nil)
-        _value=[values objectAtIndex:0];
+        _value=[values.allKeys objectAtIndex:0];
 	else{
         BOOL find=NO;
-        for (NSString *str in values) {
+        for (NSString *str in values.allKeys) {
             if([str isEqualToString:v])
             {
                 find = YES;
@@ -197,11 +199,11 @@
             
         }
         else{
-            _value=[values objectAtIndex:0];
+            _value=[values.allKeys objectAtIndex:0];
         }
 	}
-    [self setButtonTitle:_value];
-    _selectedIndex=[values indexOfObject:_value];
+    [self setButtonTitle:[values objectForKey:_value]];
+    _selectedIndex=[values.allKeys indexOfObject:_value];
 	[self.picker selectRow:_selectedIndex inComponent:0 animated:YES];
 }
 
@@ -210,11 +212,11 @@
     if(v==-1||v>[values count]-1)
         v=0;
     _selectedIndex=v;
-    _value=[values objectAtIndex:v];
-    self.titleLabel.text = _value;
+    _value=[values.allKeys objectAtIndex:v];
+    [self setButtonTitle:[values objectForKey:_value]];
 	[self.picker selectRow:v inComponent:0 animated:YES]; 
 }
--(void) reloadPicker:(NSArray *)sources
+-(void) reloadPicker:(OrderedDictionary *)sources
 {
     values=sources;
     [self.picker reloadComponent:0];
@@ -229,14 +231,14 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	return [values count];
+	return [values.allKeys count];
 }
 
 #pragma mark -
 #pragma mark UIPickerViewDelegate
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	return [values objectAtIndex:row];
+	return [values.allValues objectAtIndex:row];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
@@ -248,8 +250,8 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	self.value = [values objectAtIndex:row];
-    [self setButtonTitle:self.value]; 
+	self.value = [values.allKeys objectAtIndex:row];
+    [self setButtonTitle:[values objectForKey:self.value]]; 
 	if (delegate && [delegate respondsToSelector:@selector(tableViewCell:didEndEditingWithValue:)]) {
 		[delegate buttonPikcerDidSelectedRow:self didEndEditingWithValue:self.value andSelectedIndex:self.selectedIndex];
 	}

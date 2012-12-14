@@ -20,6 +20,10 @@
 @synthesize scoreId,matchId,roundSeq;
 //@synthesize successSubmited;
 
+#pragma mark -
+#pragma  mark just use in table view
+@synthesize clientName;
+#pragma mark -
 -(id) init{
     return [self initWithInfo:kSideBlue andBlueScore:0 andRedScore:0 andDateNow:nil];
 }

@@ -42,4 +42,9 @@ static BO_ServerSetting* instance;
 {
     return [self queryList:@"select * from ServerSetting  where settingType=? order by createDate desc" parameters:[[NSArray alloc] initWithObjects:[NSNumber numberWithInt:SettingTypeProfile], nil]];  
 }
+
+-(NSArray *) getProfilesOrderByUsingDate
+{
+    return [self queryList:@"select * from ServerSetting  where settingType=? order by lastUsingDate desc,createDate desc" parameters:[[NSArray alloc] initWithObjects:[NSNumber numberWithInt:SettingTypeProfile], nil]];  
+}
 @end

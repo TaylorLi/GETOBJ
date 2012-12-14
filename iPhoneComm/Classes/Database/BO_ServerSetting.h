@@ -16,4 +16,5 @@
 -(ServerSetting*) getSettingLastUsedProfile;
 -(ServerSetting*) getDefaultProfile;
 -(NSArray *) getProfiles;
+-(NSArray *) getProfilesOrderByUsingDate;
 @end

@@ -17,6 +17,13 @@
     [confirmview addButtonWithTitle:NSLocalizedString(@"OK", @"") block:[block copy]];
      [confirmview show];
 }
++(void) showConfirm:(NSString*) title message:(NSString*)msg doneText:(NSString *)doneText doneFunc:(void(^)(AlertView* a, NSInteger i))doneBlock cancelText:(NSString *)cancelText cancelfunc:(void(^)(AlertView* a, NSInteger i))cancelBlock
+{
+    AlertView *confirmview = [[AlertView alloc] initWithTitle:title message:msg];
+    [confirmview addButtonWithTitle:NSLocalizedString(doneText, doneText) block:[doneBlock copy]];
+    [confirmview addButtonWithTitle:NSLocalizedString(cancelText, cancelText) block:[cancelBlock copy]];
+    [confirmview show];
+}
 
 + (void)setTextFieldErrorCss:(UITextField*)txtField isError:(BOOL)error
 {
@@ -96,6 +103,23 @@
         }
     }
     return success;
+}
+
++ (UIView *)findFirstResponder:(UIView *)parentView
+{
+    if (parentView.isFirstResponder) {        
+        return parentView;     
+    }
+    
+    for (UIView *subView in parentView.subviews) {
+        UIView *firstResponder = [UIHelper findFirstResponder:subView];
+        
+        if (firstResponder != nil) {
+            return firstResponder;
+        }
+    }
+    
+    return nil;
 }
 
 @end

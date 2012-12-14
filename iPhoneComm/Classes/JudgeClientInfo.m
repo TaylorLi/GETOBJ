@@ -16,7 +16,10 @@
 @synthesize peerId;
 @synthesize hasConnected;
 @synthesize lastHeartbeatDate;
-
+@synthesize sequence;
+@synthesize gameId;
+@synthesize clientId;
+@synthesize userId;
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId
@@ -24,6 +27,7 @@
     self=[super init];
     if(self)
     {
+        clientId=[UtilHelper stringWithUUID];
         self.sessionId=_sessionId;
         self.displayName=_displayName;
         self.uuid=_uuid;
@@ -33,7 +37,7 @@
 }
 
 -(NSDictionary*) proxyForJson {
-    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.sessionId==nil?[NSNull null]: self.sessionId,@"sessionId",self.displayName==nil?[NSNull null]:self.displayName,@"displayName",self.uuid==nil?[NSNull null]:self.uuid,@"uuid",self.peerId ==nil?[NSNull null]:self.peerId,@"peerId",[NSNumber numberWithBool: self.hasConnected],@"hasConnected",self.lastHeartbeatDate,@"lastHeartbeatDate",nil];
+    NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:self.sessionId==nil?[NSNull null]: self.sessionId,@"sessionId",self.displayName==nil?[NSNull null]:self.displayName,@"displayName",self.uuid==nil?[NSNull null]:self.uuid,@"uuid",self.peerId ==nil?[NSNull null]:self.peerId,@"peerId",[NSNumber numberWithBool: self.hasConnected],@"hasConnected",[NSNumber numberWithDouble:[self.lastHeartbeatDate timeIntervalSince1970]],@"lastHeartbeatDate",[NSNumber numberWithInt:sequence],@"sequence",nil];
     return result;
 }
 
@@ -49,12 +53,14 @@
     self.peerId=[disc objectForKey:@"peerId"];
     self.hasConnected=[[disc objectForKey:@"hasConnected"] boolValue];
     self.lastHeartbeatDate=[disc objectForKey:@"lastHeartbeatDate"];
+    NSNumber *num=[disc objectForKey:@"sequence"];
+    self.sequence=[num intValue];
     return self;
 }
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"displayName:%@,hasConnected:%i",displayName,hasConnected];
+    return [NSString stringWithFormat:@"clientId:%@,displayName:%@,hasConnected:%i,uuid:%@,peerId:%@,last heartbeate date:%@,seq:%i",clientId,displayName,hasConnected,uuid,peerId,[UtilHelper formateTime:lastHeartbeatDate],sequence];
 }
 
 @end

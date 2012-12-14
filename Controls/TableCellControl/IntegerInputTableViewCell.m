@@ -28,6 +28,7 @@
 - (void)initalizeInputView {
 	// Initialization code
 	self.keyboardType = UIKeyboardTypeNumberPad;
+    self.returnKeyType=UIReturnKeyDone;
 	self.lowerLimit = 0;
 	self.upperLimit = UINT32_MAX;
 	
@@ -137,7 +138,11 @@
 }
 
 - (void)insertText:(NSString *)theText {
-	
+	if([theText isEqualToString:@"\n"])
+    {
+        [self resignFirstResponder];
+        return;
+    }
 	// make sure we receioved an integer (on the iPad a user chan change the keybord style)
 	NSScanner *sc = [NSScanner scannerWithString:theText];
 	if ([sc scanInteger:NULL]) {

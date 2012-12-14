@@ -73,7 +73,7 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if(component==0)
-      return round((_maxTime-_minTime)/60);
+      return (_maxTime-_minTime)/60+1;
     else
       return  (60%(int)_interval==0)?60/_interval: 60/_interval+1;
 }
@@ -104,6 +104,10 @@
     else
         secs=row*_interval;    
     NSTimeInterval time=secs+mins*60;
+    if(time>_maxTime)
+        time=_maxTime;
+    if(time<_minTime)
+        time=_minTime;
     [self setValue:time];
 	if (delegate && [delegate respondsToSelector:@selector(tableViewCell:didEndEditingWithValue:)]) {
 		[delegate tableViewCell:self didEndEditingWithInterval:time];

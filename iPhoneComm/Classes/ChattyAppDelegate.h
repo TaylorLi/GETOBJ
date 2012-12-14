@@ -27,22 +27,25 @@
 
 #import <UIKit/UIKit.h>
 #import "Room.h"
-#import "BluetoothManager.h"
-#import "BluetoothDevice.h"
+//#import "BluetoothManager.h"
+//#import "BluetoothDevice.h"
 #import "Reachability.h"
 #import "LocalRoom.h"
+#import <CoreBluetooth/CBCentralManager.h>
 
 @class ChattyViewController, ChatRoomViewController, WelcomeViewController, ScoreControlViewController,ScoreBoardViewController;
 
-@interface ChattyAppDelegate : NSObject <UIApplicationDelegate> {
+
+@interface ChattyAppDelegate : NSObject <UIApplicationDelegate,CBCentralManagerDelegate> {
   UIWindow *window;
   ChattyViewController *viewController;
   WelcomeViewController *welcomeViewController;
   ScoreControlViewController *scoreControlViewController;
   ScoreBoardViewController *scoreBoardViewController;
     // bluetooth manager
-    BluetoothManager *btManager;
+    //BluetoothManager *btManager;
     Reachability* wifiReach;
+    CBCentralManager *centralManager;
 }
 @property (weak, nonatomic) IBOutlet UISplitViewController *splitSettingViewController;
 @property (weak, nonatomic) IBOutlet UISplitViewController *duringMathSplitViewCtl;
@@ -66,8 +69,9 @@
 -(void) showScoreControlRoom:(Room *) room;
 
 -(void) showGameSettingView;
--(void) showDuringMatchSettingView;
+-(void) showDuringMatchSettingView:(NSInteger)tabIndex;
 
 -(void) swithView:(UIView *) view;
+
 
 @end

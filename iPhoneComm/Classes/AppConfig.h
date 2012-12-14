@@ -43,15 +43,16 @@
 @property BOOL networkUsingWifi;
 //@property (strong) NSMutableSet *invalidServerPeerIds;
 @property (strong) NSString *uuid;
-//比赛设置
-@property (strong,nonatomic) ServerSetting *serverSettingInfo;
 //当前进行的比赛信息
-@property(weak,nonatomic) GameInfo *currentGameInfo;
+@property(strong,nonatomic) GameInfo *currentGameInfo;
 @property (nonatomic) AppStep currentAppStep;
+//@property (nonatomic) JudgeDevice currentJudgeDevice;
 @property BOOL isGameStart;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 
 +(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 + (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation;
+-(void)saveGameInfoToFile;
+-(void)restoreGameInfoFromFile;
 @end

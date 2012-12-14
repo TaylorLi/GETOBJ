@@ -39,6 +39,8 @@
 			<key>Point Gap Effect Round</key>
 			<string></string>
 		</dict>
+		<key>Profiles Setting</key>
+		<string></string>
 		<key>System Setting</key>
 		<dict>
 			<key>Server Name</key>

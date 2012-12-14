@@ -5,9 +5,16 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
+    #import "NSDictionary+Extendtion.h"
+    #import "UtilHelper.h"
+    #import "NSObjectSerialization.h"
     #import "CommandMsg.h"
-#import "UtilHelper.h"
+    #import "MacroUtils.h"
 #endif
+/*
+#define UAMODALVIEW_DEBUG 1 //display uamodal log
+*/
+#define DEBUG 1
 
 #if NS_BLOCKS_AVAILABLE
 typedef void (^FuncBlock)(void);

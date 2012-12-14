@@ -22,25 +22,30 @@
 @synthesize restTime;
 @synthesize roundCount;
 @synthesize judgeCount;
-@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
+@synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudgesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate,profileId;
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"Name:%@,Desc:%@,Pwd:%@,Time:%f,Round:%i,Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@",gameName,gameDesc,password,roundTime,roundCount, redSideName,redSideDesc,blueSideName,blueSideDesc];
+    return [NSString stringWithFormat:@"Setting Id:%@,Game Name:%@,Game Desc:%@,Pwd:%@,Round Time:%f,Rest Time:%f,Round Count:%i,Judge Count:%i, Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@,enable Point Gap:%i,pointGapAvailRound:%i",settingId,gameName,gameDesc,password,roundTime,restTime,roundCount,judgeCount, redSideName,redSideDesc,blueSideName,blueSideDesc,enableGapScore,pointGapAvailRound];
 }
 
 -(id) initWithDefault
 {
     self=[super init];
       if (self) {   
+          settingId=[UtilHelper stringWithUUID];
           [self reset];
+          createDate=[NSDate date];
     }
     return self;
 }
 -(void) reset
 {
+    profileName=@"System Default Profile";
+    uuid=[AppConfig getInstance].uuid;
     gameDesc=@"Men 80KG Welter";
-    gameName=@"China South Korea match";
+    gameName=@"Match";
     redSideDesc=@"";
     redSideName=@"PLAYER RED";
     blueSideDesc=@"";
@@ -57,11 +62,22 @@
     startScreening=1;
     pointGapAvailRound=2;
     judgeCount=4;
-    availScoreWithJudesCount=3;
+    availScoreWithJudgesCount=3;
     availTimeDuringScoreCalc=1;
     maxWarningCount=8;
     restAndReorganizationTime=60;
     serverLoopMaxDelay = 1;
+    currentJudgeDevice= JudgeDeviceKeyboard;
+    settingType=SettingTypeProfile; 
+    isDefaultProfile=YES;
+}
+-(void) renewSettingForGame{
+    profileId=settingId;
+    settingId=[UtilHelper stringWithUUID];
+    createDate=[NSDate date];
+    settingType=SettingTypeGameRelated;
+    isDefaultProfile=NO;
+    lastUsingDate=createDate;
 }
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc
         andRedSideName:(NSString *)_redSideName andRedSideDesc:(NSString *)_redSideDesc andBlueSideName:(NSString *)_blueSideName andBlueSideDesc:(NSString *)_blueSideDesc andPassword:(NSString *)_password andRoundCount:(NSInteger)_roundCount andRoundTime:(NSTimeInterval)_roundTime andRestTime:(NSTimeInterval) _restTime
@@ -103,12 +119,71 @@
     copyObj.startScreening=self.startScreening;
     copyObj.pointGapAvailRound=self.pointGapAvailRound;
     copyObj.judgeCount=self.judgeCount;
-    copyObj.availScoreWithJudesCount=self.availScoreWithJudesCount;
+    copyObj.availScoreWithJudgesCount=self.availScoreWithJudgesCount;
     copyObj.availTimeDuringScoreCalc=self.availTimeDuringScoreCalc;
     copyObj.maxWarningCount=self.maxWarningCount;
     copyObj.restAndReorganizationTime=self.restAndReorganizationTime;
+    copyObj.profileName=self.profileName;
+    copyObj.isDefaultProfile=self.isDefaultProfile;
+    copyObj.uuid=self.uuid;
     return copyObj;
 }
+/*NSCoding
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:gameDesc forKey:@"gameDesc"];  
+    [aCoder encodeObject:gameName forKey:@"gameName"];  
+    [aCoder encodeObject:redSideDesc forKey:@"redSideDesc"];  
+    [aCoder encodeObject:redSideName forKey:@"redSideName"];
+    [aCoder encodeObject:blueSideDesc forKey:@"blueSideDesc"];  
+    [aCoder encodeObject:blueSideName forKey:@"blueSideName"];  
+    [aCoder encodeObject:password forKey:@"password"];  
+    [aCoder encodeInt:roundCount forKey:@"roundCount"];
+    [aCoder encodeDouble:roundTime forKey:@"roundTime"];  
+    [aCoder encodeDouble:restTime forKey:@"restTime"];  
+    [aCoder encodeInt:pointGap forKey:@"pointGap"];  
+    [aCoder encodeObject:serverName forKey:@"serverName"];
+    [aCoder encodeObject:screeningArea forKey:@"screeningArea"];  
+    [aCoder encodeInt:skipScreening forKey:@"skipScreening"];  
+    [aCoder encodeBool:enableGapScore forKey:@"enableGapScore"];  
+    [aCoder encodeInt:startScreening forKey:@"startScreening"];
+    [aCoder encodeInt:pointGapAvailRound forKey:@"pointGapAvailRound"];  
+    [aCoder encodeInt:judgeCount forKey:@"judgeCount"];  
+    [aCoder encodeBool:enableGapScore forKey:@"enableGapScore"];  
+    [aCoder encodeInt:availScoreWithJudesCount forKey:@"availScoreWithJudesCount"];
+    [aCoder encodeDouble:availTimeDuringScoreCalc forKey:@"availTimeDuringScoreCalc"];
+    [aCoder encodeInt:maxWarningCount forKey:@"maxWarningCount"];
+    [aCoder encodeDouble:restAndReorganizationTime forKey:@"restAndReorganizationTime"];  
+}
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if(self = [super init]) {  
+        self.gameDesc=[decoder decodeObjectForKey:@"gameDesc"];
+        self.gameName=[decoder decodeObjectForKey:@"gameName"];
+        self.redSideDesc=[decoder decodeObjectForKey:@"redSideDesc"];
+        self.redSideName=[decoder decodeObjectForKey:@"redSideName"];
+        self.blueSideDesc=[decoder decodeObjectForKey:@"blueSideDesc"];
+        self.blueSideName=[decoder decodeObjectForKey:@"blueSideName"];
+        self.password=[decoder decodeObjectForKey:@"password"];
+        self.roundCount=[decoder decodeInt32ForKey:@"roundCount"];
+        self.roundTime=[decoder decodeDoubleForKey:@"roundTime"];  
+        self.restTime=[decoder decodeDoubleForKey:@"restTime"];
+        self.pointGap=[decoder decodeInt32ForKey:@"pointGap"];
+        self.serverName=[decoder decodeObjectForKey:@"serverName"];
+        self.screeningArea=[decoder decodeObjectForKey:@"screeningArea"];
+        self.skipScreening=[decoder decodeInt32ForKey:@"skipScreening"]                         ;
+        self.enableGapScore=[decoder decodeBoolForKey:@"enableGapScore"];
+        self.startScreening=[decoder decodeInt32ForKey:@"startScreening"];
+        self.pointGapAvailRound=[decoder decodeInt32ForKey:@"pointGapAvailRound"];
+        self.judgeCount=[decoder decodeInt32ForKey:@"judgeCount"];
+        self.availScoreWithJudesCount=[decoder decodeInt32ForKey:@"availScoreWithJudesCount"];
+        self.availTimeDuringScoreCalc=[decoder decodeDoubleForKey:@"availTimeDuringScoreCalc"];
+        self.maxWarningCount=[decoder decodeInt32ForKey:@"maxWarningCount"];
+        self.restAndReorganizationTime=[decoder decodeDoubleForKey:@"restAndReorganizationTime"];
+    }  
+    return self;  
+}
+*/
 -(void)dealloc
 {
 

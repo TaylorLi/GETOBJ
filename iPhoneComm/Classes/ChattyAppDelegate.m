@@ -33,13 +33,19 @@
 #import "UIHelper.h"
 #import "AppConfig.h"
 #import <GameKit/GameKit.h>
+#import "KeyBoradEventInfo.h"
+#import "TKDDatabase.h"
+#import "BO_GameInfo.h"
 
 static ChattyAppDelegate* _instance;
 
 @interface ChattyAppDelegate()
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg;
+/*
 -(void)detectBluetoothStatus;
 -(void)testNetworkStatus;
+*/
+-(void)processByAppStatus;
 @end
 
 @implementation ChattyAppDelegate
@@ -67,16 +73,36 @@ static ChattyAppDelegate* _instance;
     //[window bringSubviewToFront:welcomeViewController.view];
     
     // 监测网络情况
+    //NSLog(@"%@,%@",[AppConfig getInstance].uuid,[UtilHelper stringWithUUID]);
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
+    NSMutableArray * discoveredPeripherals = [NSMutableArray new];
+    centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    [centralManager scanForPeripheralsWithServices:discoveredPeripherals options:options];
+    /* 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name: kReachabilityChangedNotification
+                                               object: nil];
+    */
+    //蓝牙键盘监听事件
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardPress:)
+                                                 name: @"UIEventGSEventKeyUpNotification"
+                                               object: nil];
     
     wifiReach = [Reachability reachabilityForLocalWiFi];	
-    btManager = [BluetoothManager sharedInstance];
-    [self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
+    [wifiReach startNotifier];
+    //btManager = [BluetoothManager sharedInstance];
+    //[self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
     [welcomeViewController activate];
     welcomeViewController=nil;
+    if([AppConfig getInstance].isIPAD)
+        [[TKDDatabase getInstance] setupServerDatabase];
 }
 
 - (void)dealloc {
-    
+    centralManager=nil;
 }
 
 
@@ -115,15 +141,14 @@ static ChattyAppDelegate* _instance;
 }
 
 -(void) showGameSettingView{
-    [AppConfig getInstance].currentAppStep=AppStepServerBrowser;
-    if([AppConfig getInstance].serverSettingInfo==nil){
-        [AppConfig getInstance].serverSettingInfo=[[ServerSetting alloc] initWithDefault];
-    }
+    [AppConfig getInstance].currentAppStep=AppStepServerBrowser;    
+    [splitSettingViewController setWantsFullScreenLayout:YES];
     [self swithView:splitSettingViewController.view];
 }
--(void) showDuringMatchSettingView
+-(void) showDuringMatchSettingView:(NSInteger)tabIndex
 {
     [AppConfig getInstance].currentAppStep=AppStepServer;
+    [duringMathSplitViewCtl setWantsFullScreenLayout:YES];
     [self swithView:duringMathSplitViewCtl.view];
 }
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
@@ -135,6 +160,7 @@ static ChattyAppDelegate* _instance;
                                               otherButtonTitles:nil];
     [alertView show];
 }
+/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [btManager setPowered:YES];
@@ -169,37 +195,95 @@ static ChattyAppDelegate* _instance;
         return ; 
     }    
 }
+*/
 /*wifi status change*/
+/*
 - (void)reachabilityChanged:(NSNotification *)note {
     Reachability* curReach = [note object];
     NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
     NetworkStatus status = [curReach currentReachabilityStatus];
     NSLog(@"Wifi status change:curent is %i",status);
+    BluetoothManager *blManager=[BluetoothManager sharedInstance];
     if (![btManager enabled] && status != ReachableViaWiFi) {
-        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
+        [UIHelper showAlert:@"Error" message:@"Network status changed,please turn on wifi or bluetooth." func:^(AlertView *a, NSInteger i) {
+            blManager.enabled=YES;
+            [self processByAppStatus];
+        }];
+    }
+}
+*/
+-(void)keyboardPress:(NSNotification *)note {
+   NSDictionary *info= [note userInfo];
+    KeyBoradEventInfo *keyArgv=[[KeyBoradEventInfo alloc] init];
+    keyArgv.keyCode=[((NSNumber *)[info objectForKey:@"keycode"]) shortValue];
+    keyArgv.control=[((NSNumber *)[info objectForKey:@"control"]) boolValue];
+ keyArgv.command=[((NSNumber *)[info objectForKey:@"command"]) boolValue];
+     keyArgv.option=[((NSNumber *)[info objectForKey:@"option"]) boolValue];
+     keyArgv.shift=[((NSNumber *)[info objectForKey:@"shift"]) boolValue];
+    keyArgv.keyDesc=[UtilHelper getKeyCodeDesc:keyArgv.keyCode];
+    NSLog(@"%@",keyArgv);
+    AppConfig *config = [AppConfig getInstance];
+    if(config.currentAppStep==AppStepServer && scoreBoardViewController.chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceKeyboard)
+    {
+        [scoreBoardViewController bluetoothKeyboardPressed:keyArgv];
     }
 }
 
-
 /* Bluetooth notifications */
+/*
 - (void)bluetoothAvailabilityChanged:(NSNotification *)notification {
     BluetoothManager *blManager=[BluetoothManager sharedInstance];
     NSLog(@"NOTIFICATION:bluetoothAvailabilityChanged called. BT State: %d", [ blManager enabled]);     
     if (![btManager enabled] && [wifiReach currentReachabilityStatus] != ReachableViaWiFi)
-        [UIHelper showAlert:@"Error" message:@"Network status changed,please restart the app." func:nil];
+        [UIHelper showAlert:@"Error" message:@"Network status changed,continue to turn on bluetooth." func:^(AlertView *a, NSInteger i) {
+            blManager.enabled=YES;
+            [self processByAppStatus];
+        }];
 }
+*/ 
 
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
+{
+    
+}
+- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
+{
+    
+}
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    
+}
 #pragma mark -
 #pragma mark AppDelegate
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     NSLog(@"Become Active");
+    [[AppConfig getInstance] restoreGameInfoFromFile];
+    
 }
 -(void)applicationWillResignActive:(UIApplication *)application
 {
     NSLog(@"Resign Active");
-    
+    [[AppConfig getInstance] saveGameInfoToFile];  
+    [[BO_GameInfo getInstance] updateAllGameInfo:[AppConfig getInstance].currentGameInfo];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -210,8 +294,11 @@ static ChattyAppDelegate* _instance;
 -(void)applicationWillEnterForeground:(UIApplication *)application
 {
     NSLog(@"Enter Foreround");
-    BluetoothManager *blManager=[BluetoothManager sharedInstance];
-    NSLog(@"Retest BT State: %d", [ blManager enabled]);
+    [self processByAppStatus];
+    return;
+}
+-(void)processByAppStatus
+{
     if([AppConfig getInstance].currentAppStep==AppStepStart)
         return;
     else 
@@ -221,24 +308,24 @@ static ChattyAppDelegate* _instance;
             case AppStepServerBrowser:{
                 sess=viewController.peerServerBrowser.schSession;
                 [viewController.peerServerBrowser restartBrowser];
-                }
+            }
                 break;
             case AppStepServer:
-                {
+            {
                 sess=scoreBoardViewController.chatRoom.bluetoothServer.serverSession;
                 [scoreBoardViewController.chatRoom testUnavailableAndRestart];
-                }
+            }
                 break;
-                case AppStepClient:
-                {
-                    sess=scoreControlViewController.chatRoom.bluetoothClient.gameSession;
-                    [scoreControlViewController tryToReconnect];
-                }
+            case AppStepClient:
+            {
+                sess=scoreControlViewController.chatRoom.bluetoothClient.gameSession;
+                [scoreControlViewController tryToReconnect];
+            }
                 break;
             default:
                 break;
         }
-        
+        /*
         NSLog(@"BLUE Session %@ ID:%@,Available:%i,Peer ID:%@,Mode:%i",sess.displayName, sess.sessionID,sess.available,sess.peerID,sess.sessionMode);  
         NSArray *array=[sess peersWithConnectionState:GKPeerStateAvailable];
         NSLog(@"GKPeerStateAvailable Peer:%i",array.count); 
@@ -250,15 +337,21 @@ static ChattyAppDelegate* _instance;
         NSLog(@"GKPeerStateUnavailable Peer:%i",array.count); 
         array=[sess peersWithConnectionState:GKPeerStateConnecting];
         NSLog(@"GKPeerStateConnecting Peer:%i",array.count);
+        */
         if(!sess.isAvailable){
             sess.available=YES;
         }
     }
-    return;
 }
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
     NSLog(@"Receive memory warning");
+}
+
+-(void)applicationWillTerminate:(UIApplication *)application
+{
+    NSLog(@"Application Terminate");
+    [[AppConfig getInstance] saveGameInfoToFile];
 }
 
 @end

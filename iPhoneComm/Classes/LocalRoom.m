@@ -26,7 +26,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import "LocalRoom.h"
-#import "Connection.h"
+#import "HttpConnection.h"
 #import "ServerSetting.h"
 #import "AppConfig.h"
 #import "ServerSetting.h"
@@ -43,14 +43,16 @@
 
 @implementation LocalRoom
 
-@synthesize server, clients,gameInfo,bluetoothServer;
+@synthesize server, clients,gameInfo,bluetoothServer,isRestoredGame;
 
 // Initialization
 - (id)init {
+    self=[super init];
     if([AppConfig getInstance].networkUsingWifi)
     {    
         clients = [[NSMutableSet alloc] init];
     }
+    isRestoredGame = NO;
     return self;
 }
 
@@ -60,6 +62,7 @@
     if(self)
     {
         gameInfo=  info;
+        isRestoredGame = NO;
     }
     return self;
 }
@@ -87,12 +90,18 @@
         return YES;
     }else
     {
-        return [self startBluetoothServer];
+        if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)            
+            return [self startBluetoothServer];
+        else
+            return YES;
     }
 }
 
 -(BOOL) startBluetoothServer
 {
+    if(bluetoothServer!=nil){
+        [self stop];
+    }
     bluetoothServer=[[PeerServer alloc] init];        
     gameInfo.serverUuid=[AppConfig getInstance].uuid;
     bluetoothServer.delegate=self;
@@ -103,6 +112,7 @@
     }
     else{
         gameInfo.serverPeerId=bluetoothServer.serverSession.peerID;
+        gameInfo.serverFullName=bluetoothServer.serverFullName;
         return YES;
     } 
 }
@@ -113,7 +123,7 @@
        !bluetoothServer.serverSession.available){
         [bluetoothServer stop];
         bluetoothServer=nil;
-       return [self startBluetoothServer];
+        return [self startBluetoothServer];
     }
     else{
         return YES;
@@ -132,8 +142,11 @@
         [clients makeObjectsPerformSelector:@selector(close)];
     }
     else{
-        [bluetoothServer stop];
-        self.bluetoothServer=nil;
+        if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)   
+        {
+            [bluetoothServer stop];
+            self.bluetoothServer=nil;
+        }
     }
 }
 
@@ -152,16 +165,20 @@
     }
     else
     {
-        SBJsonWriter *wr=[[SBJsonWriter alloc] init];
-        NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
-        NSData *data=[wr dataWithObject:cmdMsg];
-        if(wr.error!=nil)
-        {
-            NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
-        }
-        else
-        {
-            [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
+        if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)   {
+            if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count==0)
+                return;
+            SBJsonWriter *wr=[[SBJsonWriter alloc] init];
+            NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
+            NSData *data=[wr dataWithObject:cmdMsg];
+            if(wr.error!=nil)
+            {
+                NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
+            }
+            else
+            {
+                [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:nil];
+            }
         }
     }
 }
@@ -173,24 +190,27 @@
     else{
         if([bluetoothServer.serverSession peersWithConnectionState:GKPeerStateConnected].count>0)
         {
-            SBJsonWriter *wr=[[SBJsonWriter alloc] init];
-            NSData *data=[wr dataWithObject:cmdMsg];
-            if(wr.error!=nil)
-            {
-                NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
-            }
-            else{
-                NSError *error;
-                //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
-                if (peerId!=0) {
-                    [bluetoothServer.serverSession sendData:data toPeers:
-                     [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
+            if(gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceiPhone)   {
+                SBJsonWriter *wr=[[SBJsonWriter alloc] init];
+                NSData *data=[wr dataWithObject:cmdMsg];
+                //NSLog(@"JSON Serilize:%@",[wr stringWithObject:cmdMsg]);
+                if(wr.error!=nil)
+                {
+                    NSLog(@"JSON Serialize error:obj:%@,detail:%@",wr.error,cmdMsg.description);
                 }
                 else{
-                    [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
-                } 
-                if(error!=nil)
-                    NSLog(@"Send cmd to client error:%@",error);
+                    NSError *error;
+                    //NSLog(@"Server %@ Send client Command:%@",[bluetoothServer.serverSession displayName],[wr stringWithObject:cmdMsg]);
+                    if (peerId!=nil&&![peerId isEqualToString:@""]) {
+                        [bluetoothServer.serverSession sendData:data toPeers:
+                         [NSArray arrayWithObject:peerId] withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
+                    }
+                    else{
+                        [bluetoothServer.serverSession sendDataToAllPeers:data withDataMode:reliable?GKSendDataReliable:GKSendDataUnreliable error:&error];
+                    } 
+                    if(error!=nil)
+                        NSLog(@"Send cmd to client error:%@",error);
+                }
             }
         }
     }
@@ -208,7 +228,7 @@
 
 
 // New client connected to our server. Add it.
-- (void) handleNewConnection:(Connection*)connection {
+- (void) handleNewConnection:(HttpConnection*)connection {
     // Delegate everything to us
     connection.delegate = self;
     
@@ -221,18 +241,18 @@
 #pragma mark ConnectionDelegate Method Implementations
 
 // We won't be initiating connections, so this is not important
-- (void) connectionAttemptFailed:(Connection*)connection {
+- (void) connectionAttemptFailed:(HttpConnection*)connection {
 }
 
 
 // One of the clients disconnected, remove it from our list
-- (void) connectionTerminated:(Connection*)connection {
+- (void) connectionTerminated:(HttpConnection*)connection {
     [clients removeObject:connection];
 }
 
 
 // One of connected clients sent a chat message. Propagate it further.
-- (void) receivedNetworkPacket:(NSDictionary*)packet viaConnection:(Connection*)connection {
+- (void) receivedNetworkPacket:(NSDictionary*)packet viaConnection:(HttpConnection*)connection {
     // Display message locally
     CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
     [delegate processCmd:cmd];
@@ -245,22 +265,22 @@
 #pragma mark GKSession delegate bluetooth
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID{
     NSError *parseError = nil;
-//    if([gameInfo allClientsReady]){
-//        [session disconnectPeerFromAllPeers:peerID];
-//    }else{
-        [session acceptConnectionFromPeer:peerID error:&parseError];
-        
-//    }
-//    int connectedNum=0;
-//    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
-//        if(clt.hasConnected){
-//            connectedNum++;
-//        }
-//    }
-//    if(connectedNum<gameInfo.needClientsCount){    
-//    }else{
-//        [session denyConnectionFromPeer:peerID];
-//    }
+    //    if([gameInfo allClientsReady]){
+    //        [session disconnectPeerFromAllPeers:peerID];
+    //    }else{
+    [session acceptConnectionFromPeer:peerID error:&parseError];
+    
+    //    }
+    //    int connectedNum=0;
+    //    for (JudgeClientInfo *clt in gameInfo.clients.allValues) {
+    //        if(clt.hasConnected){
+    //            connectedNum++;
+    //        }
+    //    }
+    //    if(connectedNum<gameInfo.needClientsCount){    
+    //    }else{
+    //        [session denyConnectionFromPeer:peerID];
+    //    }
     
 }
 
@@ -326,7 +346,7 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
 {
     //NSLog([NSString stringWithUTF8String:(const char*)[data bytes]]);
-    SBJsonParser *parser= [[SBJsonParser alloc] init];
+    SBJsonParser *parser= [[SBJsonParser alloc] init];    
     NSMutableDictionary* packet =[parser objectWithData:data];
     if(parser.error!=nil)
     {
@@ -337,7 +357,7 @@
         CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
         [delegate processCmd:cmd];
     }
-
+    
     
 }
 

@@ -17,7 +17,7 @@
 @synthesize svcSetting;
 @synthesize delegate;
 @synthesize gkSessionDelegate;
-@synthesize serverSession;
+@synthesize serverSession,serverFullName;
 
 #pragma mark -
 #pragma mark construction
@@ -48,7 +48,7 @@
     NSString *displayName=[NSString stringWithFormat:@"%@||%@||%@",KEY_PEER_SEVICE_TYPE_SERVER,[svcSetting.serverName stringByReplacingOccurrencesOfString:@" " withString:@"_"],svcSetting.password==nil?@"":svcSetting.password];
 	serverSession = [[GKSession alloc] initWithSessionID:KEY_PEER_SESSION_ID 
                                              displayName:displayName
-                                             sessionMode: GKSessionModePeer ];
+                                            sessionMode: GKSessionModePeer ];
 	if( !serverSession ) {
 		[delegate serverFailed:self reason:@"Failed to publish service via Bluetooth (duplicate server name?)"];
         return NO;
@@ -57,6 +57,8 @@
     serverSession.available = YES;
     [serverSession setDataReceiveHandler:gkSessionDelegate withContext:nil];
     NSLog(@"New Server Start:%@,Desc:%@",serverSession.peerID,displayName);
+    serverFullName=displayName;
+    
     return YES;
 }
 
@@ -64,6 +66,7 @@
 {
     serverSession.available = NO;
     [serverSession disconnectFromAllPeers];
+    [serverSession setDataReceiveHandler: nil withContext: nil];
     serverSession=nil;
     svcSetting=nil;
 }

@@ -24,6 +24,7 @@
 @property (nonatomic,strong) ServerSetting *svcSetting;
 @property (nonatomic,strong) id<GKSessionDelegate> gkSessionDelegate;
 @property (nonatomic,strong) GKSession *serverSession;
+@property (nonatomic,strong) NSString *serverFullName;
 - (BOOL)start:(ServerSetting *) setting;
 - (void)stop;
 

@@ -27,16 +27,16 @@
 
 #import <Foundation/Foundation.h>
 #import "Room.h"
-#import "Connection.h"
+#import "HttpConnection.h"
 #import "SBJson.h"
 #import "PeerClient.h"
 #import "JudgeClientInfo.h"
 #import "GameInfo.h"
 #import "ServerRelateInfo.h"
 
-@interface RemoteRoom : Room <ConnectionDelegate> {
+@interface RemoteRoom : Room <HttpConnectionDelegate> {
   // Our connection to the chat server
-  Connection* connection;
+  HttpConnection* connection;
   PeerClient  *bluetoothClient;
   BOOL isRunning;
     JudgeClientInfo *clientInfo;

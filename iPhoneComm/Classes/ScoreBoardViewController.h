@@ -13,10 +13,13 @@
 #import "RoundRestTimeViewController.h"
 #import "DDActionHeaderView.h"
 #import "SoundsPlayer.h"
+#import "KeyBoradEventInfo.h"
+#import "ShowWinnerBox.h"
 
 #define kWaitBoxForReset 1
 #define kWaitBoxForReOrg 2
 
+@class SelectWinnerBox;
 
 @interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
     LocalRoom* chatRoom;
@@ -28,6 +31,8 @@
     NSTimer *timer;
     UIWaitForUserViewController *waitUserPanel;
     RoundRestTimeViewController *roundResetPanel;
+    ShowWinnerBox *showWinnerBoxPanel;
+    SelectWinnerBox *selectWinnerBoxPanel;
     DDActionHeaderView *actionHeaderView;
     NSTimer *gameLoopTimer;
     BOOL clientChange;
@@ -35,7 +40,13 @@
     NSMutableArray *marksFlags;
     NSMutableArray *marksGrayFlags;
     NSMutableArray *timeFlags;
+    NSMutableArray *timeFlags2;
     NSMutableDictionary *scoreInfos;
+    NSMutableArray *scoreReportIndicatorsBlue;
+    NSMutableDictionary *scoreReportIndicatorTimersBlue;
+    NSMutableArray *scoreReportIndicatorsRed;
+    NSMutableDictionary *scoreReportIndicatorTimersRed;
+    NSDictionary *scoreReportPointColors;
 	NSTimer *calcTimer;
     //警告
     UIImage *imgWarning;
@@ -83,9 +94,20 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeMinus;
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecTen;
 @property (strong, nonatomic) IBOutlet UIImageView *imgTimeSecSin;
+@property (strong, nonatomic) IBOutlet UIButton *btnShowSelectWinner;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue1;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue2;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue3;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportBlue4;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed1;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed2;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed3;
+@property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed4;
 
 // Exit back to the welcome screen
 - (IBAction)exit;
+- (void)exitWithSettingInfo:(NSArray *)nextProfileInfo;
+- (void)exitProcess;
 
 // View is active, start everything up
 - (void)activate;
@@ -95,7 +117,12 @@
 -(void)showWaitingUserBox;
 
 -(void)goToNextMatch;
+-(void)goToNextMatchWithProfileId:(NSString *)profileId startCourt:(int)courtSeq;
 
 -(void)updateForGameSetting:(BOOL)hasChange;
 -(void)duringSettingEndPress;
+
+-(void)bluetoothKeyboardPressed:(KeyBoradEventInfo *)keyboardArgv;
+- (IBAction)btnShowSelectWinnerPressed:(id)sender;
+
 @end

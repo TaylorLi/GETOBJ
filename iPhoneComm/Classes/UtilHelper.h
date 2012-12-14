@@ -7,8 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Definition.h"
 
 @interface UtilHelper : NSObject
 +(NSString *)formateTime:(NSDate *)date;
-
++(NSString *)formateDate:(NSDate *)date;
++(NSString *)formateDateWithTime:(NSDate *)date;
++(NSString *)formateDate:(NSDate *)date withFormate:(NSString *)format;
++(id)deserializeFromFile:(NSString *)fileName dataKey:(NSString *) dataKey;
++(void)serializeObjectToFile:(NSString *)fileName withObject:(id)obj dataKey:(NSString*) dataKey;
++(NSString *)dataFilePath:(NSString *)fileName;
++(BOOL)isFileExist:(NSString *)fileName;
++(NSString *)getKeyCodeDesc:(short)keyCode;
++(NSString *)getWinTypeDesc:(WinType)type;
++ (NSString*) stringWithUUID;
++(void)copyAttributesFromObject:(id)from ToObject:(id)to;
++(NSString *)ArrayToString:(NSArray *)array;
++(NSString *)stringWithInt:(int) v;
 @end

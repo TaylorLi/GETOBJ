@@ -123,14 +123,15 @@
 - (UIButton*)closeButton {
 	if (!closeButton) {
 		self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		[self.closeButton setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-		[self.closeButton setFrame:CGRectMake(0, 0, 44, 44)];
+		[self.closeButton setImage:[UIImage imageNamed:@"game_close_btn.png"] forState:UIControlStateNormal];
+		[self.closeButton setFrame:CGRectMake(0, 0, 70, 70)];
 		self.closeButton.layer.shadowColor = [[UIColor blackColor] CGColor];
 		self.closeButton.layer.shadowOffset = CGSizeMake(0,4);
 		self.closeButton.layer.shadowOpacity = 0.3;
 		
-		[closeButton addTarget:self action:@selector(closePressed:) forControlEvents:UIControlEventTouchUpInside];		
-		[self.contentContainer insertSubview:closeButton aboveSubview:self.roundedRect];
+		[closeButton addTarget:self action:@selector(closePressed:) forControlEvents:UIControlEventTouchUpInside];
+		[self.contentContainer addSubview:closeButton];
+		//[self.contentContainer insertSubview:closeButton aboveSubview:self.roundedRect];
 	}
 	return closeButton;
 }
@@ -212,7 +213,7 @@
 	self.closeButton.frame	= [self closeButtonFrame];
 	self.actionButton.frame	= [self actionButtonFrame];
 	self.contentView.frame	= [self contentViewFrame];
-	
+	UADebugLog(@"self frame: %@", NSStringFromCGRect(self.frame));
 	UADebugLog(@"roundedRect frame: %@", NSStringFromCGRect(self.roundedRect.frame));
 	UADebugLog(@"contentView frame: %@", NSStringFromCGRect(self.contentView.frame));
 }

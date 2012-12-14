@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class ScoreInfo;
 @interface ScoreHistoryInfo : NSObject
 
 @property (nonatomic, retain) NSDate *startTime;
@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSTimer *calTimer;
 @property (nonatomic, retain) NSString *sideKey;
 @property (nonatomic, retain) NSString *scoreKey;
+//@property (nonatomic,strong) NSMutableArray *scoreInfos;
 
 -(id) initWithInfo:(NSDate *) _startTime andEndTime:(NSDate *) _endTime andSideKey:(NSString *) _sideKey andScoreKey:(NSString *) _scoreKey  andUuids:(NSMutableArray *) _uuids;
 

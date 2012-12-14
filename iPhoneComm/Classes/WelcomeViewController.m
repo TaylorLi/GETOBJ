@@ -46,6 +46,7 @@
 
 -(void)viewDidLoad
 {
+    [self setWantsFullScreenLayout:YES];
     NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
     playName.text=[nd stringForKey:@"playName"];
 }
@@ -105,5 +106,4 @@
         [[ChattyAppDelegate getInstance] showRoomSelection];
 	return YES;
 }
-
 @end

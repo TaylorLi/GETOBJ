@@ -30,7 +30,7 @@
 
 // Private properties
 @interface RemoteRoom ()
-@property(nonatomic,strong) Connection* connection;
+@property(nonatomic,strong) HttpConnection* connection;
 @end
 
 
@@ -40,14 +40,16 @@
 
 // Setup connection but don't connect yet
 - (id)initWithHost:(NSString*)host andPort:(int)port {
-    connection = [[Connection alloc] initWithHostAddress:host andPort:port];
+    self=[super init];
+    connection = [[HttpConnection alloc] initWithHostAddress:host andPort:port];
     return self;
 }
 
 
 // Initialize and connect to a net service
 - (id)initWithNetService:(NSNetService*)netService {
-    connection = [[Connection alloc] initWithNetService:netService];
+    self=[super init];
+    connection = [[HttpConnection alloc] initWithNetService:netService];
     return self;
 }
 -(id)initWithPeerId:(ServerRelateInfo *)server
@@ -81,13 +83,16 @@
             return NO;
         }
     }else{    
-        
+        if(bluetoothClient!=nil)
+            [bluetoothClient stop];
         NSString *uid = [AppConfig getInstance].uuid;
         bluetoothClient=[[PeerClient alloc] initWithPeerId:orgServerInfo.peerId]; 
         bluetoothClient.gkSessionDelegate=self;
         clientInfo =[[JudgeClientInfo alloc] initWithSessionId:nil andDisplayName:[AppConfig getInstance].name andUuid:uid andPeerId:bluetoothClient.gameSession.peerID];
-        
-       return [bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        BOOL success=[bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        if(success)
+            clientInfo.peerId=bluetoothClient.gameSession.peerID;
+       return success;
     }
 }
 -(BOOL) testUnavailableAndRestart
@@ -102,19 +107,28 @@
         bluetoothClient=nil;
         bluetoothClient=[[PeerClient alloc] initWithPeerId:orgServerInfo.peerId]; 
         bluetoothClient.gkSessionDelegate=self;
-        return [bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        BOOL success=[bluetoothClient start:clientInfo.displayName  andTimeout:[AppConfig getInstance].timeout];
+        if(success)
+            clientInfo.peerId=bluetoothClient.gameSession.peerID;
+        return success;
     }
 }
 
 // Stop everything, disconnect from server
 - (void)stop {
     isRunning=NO;
-    if ( connection == nil ) {
-        return;
+      if([AppConfig getInstance].networkUsingWifi){
+        if ( connection == nil ) {
+            return;
+        }
+        
+        [connection close];
+        self.connection = nil;
     }
-    
-    [connection close];
-    self.connection = nil;
+    else{
+        [bluetoothClient stop];  
+        bluetoothClient=nil;
+    }
 }
 
 
@@ -136,6 +150,8 @@
         [connection sendNetworkPacket:cmdMsg];
     }
     else{
+        if([bluetoothClient.gameSession peersWithConnectionState:GKPeerStateConnected].count==0)
+            return;
         [bluetoothClient sendNetworkPacket:cmdMsg];
     }
 }
@@ -143,17 +159,17 @@
 #pragma mark -
 #pragma mark ConnectionDelegate Method Implementations
 
-- (void)connectionAttemptFailed:(Connection*)connection {
+- (void)connectionAttemptFailed:(HttpConnection*)connection {
     //[delegate roomTerminated:self reason:@"Wasn't able to connect to server"];
 }
 
 
-- (void)connectionTerminated:(Connection*)connection {
+- (void)connectionTerminated:(HttpConnection*)connection {
     [delegate roomTerminated:self reason:@"Connection to server closed"];
 }
 
 
-- (void)receivedNetworkPacket:(NSMutableDictionary*)packet viaConnection:(Connection*)connection {
+- (void)receivedNetworkPacket:(NSMutableDictionary*)packet viaConnection:(HttpConnection*)connection {
     // Display message locally
     CommandMsg *cmd=[[CommandMsg alloc] initWithDictionary:packet];
     [delegate processCmd:cmd];
@@ -196,6 +212,12 @@
             {
                 [bluetoothClient.gameSession connectToPeer:bluetoothClient.serverPeerId withTimeout:[AppConfig getInstance].timeout];
             }
+            else if([[session displayNameForPeer:peerID] isEqualToString:orgServerInfo.orgSeverName])
+                {
+                    serverInfo.serverPeerId=peerID;
+                    bluetoothClient.serverPeerId=peerID;
+                    [bluetoothClient.gameSession connectToPeer:bluetoothClient.serverPeerId withTimeout:[AppConfig getInstance].timeout];
+                }
             break;
         case GKPeerStateUnavailable:
             /**

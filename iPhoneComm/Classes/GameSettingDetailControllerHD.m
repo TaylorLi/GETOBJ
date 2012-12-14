@@ -14,6 +14,12 @@
 #import "LocalRoom.h"
 #import "GameInfo.h"
 #import "UIHelper.h"
+#import "BO_GameInfo.h"
+#import "BO_JudgeClientInfo.h"
+#import "BO_MatchInfo.h"
+#import "BO_ScoreInfo.h"
+#import "BO_ServerSetting.h"
+#import "BO_UserInfo.h"
 
 @interface GameSettingDetailControllerHD ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -23,14 +29,20 @@
 -(void)refreshPointGapEffRound;
 -(void)refreshSkipRound;
 -(void)refreshStartRound;
+-(void)retreiveProfiles;
+-(void)setupNewProfile;
+-(void)selectProfile:(id)sender;
+-(void) bindProfile;
+-(void)bindSettingGroupByGameSetting;
 @end
 
 @implementation GameSettingDetailControllerHD
+@synthesize lblProfileName;
 
 @synthesize startButton;
 
 @synthesize toolbar, popoverController, detailItem;
-@synthesize detailController0,detailController1,detailController2,detailController3,detailController4;
+@synthesize detailControllerGameSetting,detailControllerRoundSetting,detailControllerMatchSetting,detailControllerCourtSetting,detailControllerSystemSetting,detailControllerProfile,selectedProfileId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,16 +69,61 @@
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated
+{   
+    
+    if([[BO_GameInfo getInstance] hasUncompletedGame]){        
+        [AppConfig getInstance].currentGameInfo = [[BO_GameInfo getInstance] getlastUncompletedGame];
+        __block GameInfo *gi; 
+        gi= [AppConfig getInstance].currentGameInfo;
+        [UIHelper showConfirm:@"Information" message:[NSString stringWithFormat:@"Game %@ %@ is not compeleted yet,continue the game?",gi.gameSetting.gameName,gi.gameSetting.gameDesc] doneText:@"OK" doneFunc:^(AlertView *a, NSInteger i) {
+            [self startGame:YES];
+        } cancelText:@"Cancel" cancelfunc:^(AlertView *a, NSInteger i) {            
+            gi.gameEnded=YES;
+            [[BO_GameInfo getInstance] updateObject:gi];
+            [self bindProfile];
+        }];   
+    }else{
+        [self bindProfile];
+    }
+    lblProfileName.text = [AppConfig getInstance].currentGameInfo.gameSetting.profileName;
+    [self retreiveProfiles];
+    [self bindSettingGroupByGameSetting];
+}
+
+-(void) bindProfile
 {
+    ServerSetting *setting = [[BO_ServerSetting getInstance] getSettingLastUsedProfile];
+    if(setting==nil){
+        ServerSetting *defaultSetting = [[BO_ServerSetting getInstance] getDefaultProfile];
+        if(defaultSetting==nil){
+            setting=[[ServerSetting alloc] initWithDefault];
+            [[BO_ServerSetting getInstance] insertObject:setting];                
+        }else{
+            setting=defaultSetting;
+        }
+    }
+    [AppConfig getInstance].currentGameInfo=[[GameInfo alloc] initWithGameSetting:setting];
+}
+
+-(void)bindSettingGroupByGameSetting
+{
+    detailControllerGameSetting=nil;
+    detailControllerRoundSetting=nil;
+    detailControllerMatchSetting=nil;
+    detailControllerCourtSetting=nil;
+    detailControllerSystemSetting=nil;
+    detailControllerProfile=nil;
     [self bindSettingGroupData:1];
     [self bindSettingGroupData:2];
     [self bindSettingGroupData:3];
     [self bindSettingGroupData:4];
+    [self bindSettingGroupData:5];
     [self bindSettingGroupData:0];
 }
 
 - (void)viewDidUnload
 {    
+    [self setLblProfileName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;    
@@ -74,11 +131,12 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    detailController0=nil;
-    detailController1=nil;
-    detailController2=nil;
-    detailController3=nil;
-    detailController4=nil;
+    detailControllerGameSetting=nil;
+    detailControllerSystemSetting=nil;
+    detailControllerCourtSetting=nil;
+    detailControllerMatchSetting=nil;
+    detailControllerRoundSetting=nil;
+    detailControllerProfile=nil;
 }
 
 #pragma mark -
@@ -116,9 +174,26 @@
 
 -(void) touchSaveButton
 {
-    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[[GameInfo alloc] initWithGameSetting:[AppConfig getInstance].serverSettingInfo]];
-    [AppConfig getInstance].currentGameInfo=room.gameInfo;
+    [self startGame:NO];
+}
+- (void)startGame:(BOOL)isCallByRestoreFromGameInfo
+{        
+    [[BO_ServerSetting getInstance] updateObject:[AppConfig getInstance].currentGameInfo.gameSetting];
+    if([AppConfig getInstance].currentGameInfo.gameSetting.startScreening==0){
+        [UIHelper showAlert:@"Error" message:@"Start court should not to be 0." func:nil];
+        return;
+    }
+    [AppConfig getInstance].currentGameInfo.gameSetting.lastUsingDate=[NSDate date];
+    [[BO_ServerSetting getInstance] updateObject:[AppConfig getInstance].currentGameInfo.gameSetting];
+    if(!isCallByRestoreFromGameInfo){
+        [[AppConfig getInstance].currentGameInfo resetGameInfoToStart];
+        [AppConfig getInstance].currentGameInfo.serverFullName=[AppConfig getInstance].currentGameInfo.gameSetting.serverName;
+        [[BO_GameInfo getInstance] AddGameInfo:[AppConfig getInstance].currentGameInfo];
+    }
+    LocalRoom* room = [[LocalRoom alloc] initWithGameInfo:[AppConfig getInstance].currentGameInfo];
+    //[UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
     [[ChattyAppDelegate getInstance].viewController stopBrowser];
+    room.isRestoredGame=isCallByRestoreFromGameInfo;
     [[ChattyAppDelegate getInstance] showScoreBoard:room];
 }
 - (IBAction)touchCancelButton:(id)sender {
@@ -129,15 +204,15 @@
 #pragma mark Bind Table Cells 
 -(void) bindSettingGroupData:(int)group
 {
-    __weak ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    __weak ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     __weak GameSettingDetailControllerHD *selfCtl=self;
     switch (group) {
         case 0:
         {
-            if(detailController0==nil)
+            if(detailControllerGameSetting==nil)
             {                    
-                detailController0 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];  
-                [detailController0 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                detailControllerGameSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];  
+                [detailControllerGameSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     StringInputTableViewCell *matchNameCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Match Name" andTitle:NSLocalizedString(@"Match Name", @"Match Name") andText:si.gameName];   
                     matchNameCell.tag=kgameName;
                     matchNameCell.delegate=selfCtl;
@@ -149,9 +224,9 @@
                     [section addCustomerCell:matchDescCell];
                 } andHeader:@"Game Info" andFooter:nil];
             }
-            [self setSettingTable:detailController0];
+            [self setSettingTable:detailControllerGameSetting];
             
-            [detailController0 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+            [detailControllerGameSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                 StringInputTableViewCell *redNameCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Red Side Name" andTitle:NSLocalizedString(@"Red Side Name", @"Red Side Name") andText:si.redSideName];   
                 redNameCell.tag=kredSideName;
                 redNameCell.delegate=selfCtl;
@@ -163,7 +238,7 @@
                 [section addCustomerCell:redDescCell];
             } andHeader:@"Red Setting" andFooter:nil];
             
-            [detailController0 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+            [detailControllerGameSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                 StringInputTableViewCell *blueNameCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Blue Side Name" andTitle:NSLocalizedString(@"Blue Side Name", @"Blue Side Name") andText:si.blueSideName];   
                 blueNameCell.tag=kblueSideName;
                 blueNameCell.delegate=selfCtl;
@@ -177,10 +252,10 @@
         }
             break;
         case 1:{
-            if(detailController1==nil){                    
-                detailController1 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
-                [detailController1 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-                    TimePickerTableViewCell *roundTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Round time" title:NSLocalizedString(@"Round Time", @"Round Time") selectValue:si.roundTime maxTime:600 minTime:0 interval:10];
+            if(detailControllerRoundSetting==nil){                    
+                detailControllerRoundSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
+                [detailControllerRoundSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                    TimePickerTableViewCell *roundTime=[[TimePickerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Round time" title:NSLocalizedString(@"Round Time", @"Round Time") selectValue:si.roundTime maxTime:600 minTime:10 interval:10];
                     roundTime.tag=kroundTime;
                     roundTime.delegate=selfCtl;
                     [section addCustomerCell:roundTime];
@@ -216,9 +291,9 @@
                     roundCountCell.delegate=selfCtl;
                     [section addCustomerCell:roundCountCell];
                 }];   
-                [detailController1 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex){
+                [detailControllerRoundSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex){
                     NSMutableArray *maxWarmning=[[NSMutableArray alloc] init];
-                    for(int i=6;i<=12;i++)
+                    for(int i=4;i<=8;i++)
                     {
                         [maxWarmning addObject:[NSString stringWithFormat:@"%i",i]];
                     }
@@ -228,14 +303,14 @@
                     [section addCustomerCell:maxWarmningCell];
                 }];
             }
-            [self setSettingTable:detailController1];
+            [self setSettingTable:detailControllerRoundSetting];
         }
             break;
         case 2:
         {
-            if(detailController2==nil){ 
-                detailController2 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                [detailController2 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+            if(detailControllerMatchSetting==nil){ 
+                detailControllerMatchSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                [detailControllerMatchSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     NSMutableArray *areas=[[NSMutableArray alloc] init];
                     for(int i=65;i<=88;i++)
                     {
@@ -253,11 +328,7 @@
                     //                    }
                     //                    SimplePickerInputTableViewCell *startSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Start Court", @"Start Court") selectValue:[NSString stringWithFormat:@"%i",si.startScreening] dataSource:startSeqs];      
                     
-                    IntegerInputTableViewCell *startSeqCell=[[IntegerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"StartCell"
-                                                                                                       title:NSLocalizedString(@"Start Court", @"Start Court") lowerLimit:1 hightLimit:999 selectedValue:si.startScreening       ];
-                    startSeqCell.lowerLimit=1;
-                    startSeqCell.upperLimit=999;
-                    startSeqCell.numberValue=si.startScreening;
+                    IntegerInputTableViewCell *startSeqCell=[[IntegerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"StartCell"                                                                                                       title:NSLocalizedString(@"Start Court", @"Start Court") lowerLimit:0 hightLimit:999 selectedValue:si.startScreening];
                     startSeqCell.tag=kstartScreening;
                     startSeqCell.delegate=selfCtl;
                     [section addCustomerCell:startSeqCell];                                        
@@ -279,15 +350,15 @@
                     [section addCustomerCell:skipSeqCell];                     
                 }];                  
             }
-            [self setSettingTable:detailController2];
+            [self setSettingTable:detailControllerMatchSetting];
             break;
         }
         case 3:
         {
-            if(detailController3==nil){                
+            if(detailControllerCourtSetting==nil){                
                 
-                detailController3 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];              
-                [detailController3 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                detailControllerCourtSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];              
+                [detailControllerCourtSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     
                     NSMutableArray *refCounts=[[NSMutableArray alloc] init];
                     for(int i=1;i<=4;i++)
@@ -304,13 +375,13 @@
                     {
                         [availRefCounts addObject:[NSString stringWithFormat:@"%i/%i",i,si.judgeCount]];
                     }
-                    SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Referee", @"Avail Score Via Referee") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudesCount,si.judgeCount] dataSource:availRefCounts];   
+                    SimplePickerInputTableViewCell *availScoreRefCountCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Avail Score Via Referee", @"Avail Score Via Referee") selectValue:[NSString stringWithFormat:@"%i/%i",si.availScoreWithJudgesCount,si.judgeCount] dataSource:availRefCounts];   
                     availScoreRefCountCell.tag=kavailScoreWithJudesCount;
                     availScoreRefCountCell.delegate=selfCtl;
                     [section addCustomerCell:availScoreRefCountCell]; 
                     
                     NSMutableArray *bufferSecCounts=[[NSMutableArray alloc] init];
-                    for(float i=0.5;i<=4;i=i+0.5)
+                    for(float i=0.5;i<=2.1;i=i+0.1)
                     {
                         [bufferSecCounts addObject:[NSString stringWithFormat:@"%.1f",i]];
                     }
@@ -344,7 +415,7 @@
                     [section addCustomerCell:pointGapCell];                 
                     
                     NSMutableArray *pointGapEffCounts=[[NSMutableArray alloc] init];
-                    for(int i=si.startScreening;i<=(si.roundCount-1)*si.skipScreening+si.startScreening;i=i+si.skipScreening)
+                    for(int i=1;i<=si.roundCount;i=i+1)
                     {
                         [pointGapEffCounts addObject:[NSString stringWithFormat:@"%i",i]];
                     }
@@ -355,14 +426,24 @@
                     
                 }]; 
             }
-            [self setSettingTable:detailController3];
+            [self setSettingTable:detailControllerCourtSetting];
             break;
         }
-        case 4:
+        case 4:{
+            if(detailControllerProfile==nil){
+                detailControllerProfile = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                detailControllerProfile.tableView.dataSource=self;
+                //[detailControllerJudge.tableView reloadData];
+                //detailControllerJudge.tableView.delegate=self;
+            }
+            [self setSettingTable:detailControllerProfile];
+            break;
+        }
+        case 5:
         {
-            if(detailController4==nil){
-                detailController4 =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                [detailController4 addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+            if(detailControllerSystemSetting==nil){
+                detailControllerSystemSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                [detailControllerSystemSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     StringInputTableViewCell *serverNameCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Server Name" andTitle:NSLocalizedString(@"Server Name", @"Server Name") andText:si.serverName];   
                     serverNameCell.tag=kserverName;
                     serverNameCell.delegate=selfCtl;
@@ -373,7 +454,29 @@
                     joinPwdCell.textField.secureTextEntry=YES;
                     joinPwdCell.delegate=selfCtl;
                     [section addCustomerCell:joinPwdCell];
-                    
+                }];
+                [detailControllerSystemSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                    NSArray *clientDeviceType=[[NSArray alloc] initWithObjects:@"iPod or iPhone",@"Peripheral Device", nil];
+                    NSString *currentDeviceType;
+                    switch (si.currentJudgeDevice) {
+                        case JudgeDeviceiPhone:
+                            currentDeviceType=@"iPod or iPhone";
+                            break;
+                        case JudgeDeviceKeyboard:
+                            currentDeviceType=@"Peripheral Device";
+                            break;
+                        case JudgeDeviceHeadphone:
+                            currentDeviceType=@"Headphone Device";
+                            break;
+                        default:
+                            break;
+                    }
+                    SimplePickerInputTableViewCell *deviceCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Referee Device Type", @"Referee Device Type") selectValue:currentDeviceType dataSource:clientDeviceType];
+                    deviceCell.tag=kDeviceType;
+                    deviceCell.delegate=selfCtl;
+                    [section addCustomerCell:deviceCell]; 
+                }];
+                [detailControllerSystemSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
                         staticContentCell.cellStyle = UITableViewCellStyleValue1;
@@ -406,7 +509,7 @@
                     
                 }];
             }
-            [self setSettingTable:detailController4];
+            [self setSettingTable:detailControllerSystemSetting];
             break;
         }
         default:
@@ -415,7 +518,7 @@
 }
 -(void)setSettingTable:(UIViewController *) control
 {
-    NSArray *array=[[NSArray alloc] initWithObjects:detailController0,detailController1,detailController2,detailController3,detailController4, nil];
+    NSArray *array=[[NSArray alloc] initWithObjects:detailControllerGameSetting,detailControllerRoundSetting,detailControllerMatchSetting,detailControllerCourtSetting,detailControllerSystemSetting,detailControllerProfile, nil];
     for (UIViewController *ctl in array) {
         if(control==ctl){            
             if(control.view.superview==nil){
@@ -434,7 +537,7 @@
 - (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)value
 {
     //NSLog(@"simple picker selected:%@",value);
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     switch (cell.tag) {   
         case kroundCount:
         {
@@ -489,15 +592,16 @@
                     for(int i=1;i<=si.judgeCount;i++)
                     {
                         [availRefCounts addObject:[NSString stringWithFormat:@"%i/%i",i,si.judgeCount]];
-                    }
+                    }                    
                     [cell reloadPicker:availRefCounts];
-                    si.availScoreWithJudesCount=[cell.value intValue];
+                    [cell setValue:[NSString stringWithFormat:@"%i/%i",si.judgeCount,si.judgeCount]];
+                    si.availScoreWithJudgesCount=[cell.value intValue];
                 }               
             }
         }
             break;
         case kavailScoreWithJudesCount:
-            si.availScoreWithJudesCount=[value intValue];
+            si.availScoreWithJudgesCount=[value intValue];
             break;
         case kavailTimeDuringScoreCalc:
             si.availTimeDuringScoreCalc=[value floatValue];
@@ -508,13 +612,21 @@
         case kpointGapAvailRound:
             si.pointGapAvailRound=[value intValue];
             break;
+        case  kDeviceType:
+            if(value==@"Peripheral Device")
+                si.currentJudgeDevice=JudgeDeviceKeyboard;
+            else if(value==@"Headphone Device")
+                si.currentJudgeDevice=JudgeDeviceHeadphone ;
+            else
+                si.currentJudgeDevice=JudgeDeviceiPhone;
+            break;
         default:
             break;
     }        
 }
 -(void)tableViewCell:(IntegerInputTableViewCell *)cell didEndEditingWithInteger:(NSUInteger)value
 {
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     si.startScreening=value;
     [self refreshSkipRound];
     [self refreshPointGapEffRound];
@@ -535,18 +647,25 @@
      */
 }
 -(void)refreshPointGapEffRound{
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     SimplePickerInputTableViewCell *cellGapEff=[self getTableCellByTag:kpointGapAvailRound];
     NSMutableArray *pointGapEffCounts=[[NSMutableArray alloc] init];
-    for(int i=si.startScreening;i<=(si.roundCount-1)*si.skipScreening+si.startScreening;i=i+si.skipScreening)
+    for(int i=1;i<=si.roundCount;i=i+1)
     {
         [pointGapEffCounts addObject:[NSString stringWithFormat:@"%i",i]];
     }
     [cellGapEff reloadPicker:pointGapEffCounts];
-    si.pointGapAvailRound=[cellGapEff.value intValue];
+    int orgGap=[cellGapEff.value intValue];
+    if(orgGap>=si.roundCount){
+        if(si.roundCount>1)
+            orgGap=2;
+        else
+            orgGap=1;
+    }
+    si.pointGapAvailRound=orgGap;
 }
 -(void)refreshSkipRound{
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     NSMutableArray *skipSeqs=[[NSMutableArray alloc] init];
     SimplePickerInputTableViewCell *cell=[self getTableCellByTag:kskipScreening];
     for(int i=1;i<=10;i++)
@@ -564,7 +683,7 @@
 - (void)tableViewCell:(TimePickerTableViewCell *)cell didEndEditingWithInterval:(NSTimeInterval)value
 {
     NSLog(@"timer picker selected:%.1f",value);
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     switch (cell.tag) {
         case kroundTime:
             si.roundTime=value;
@@ -572,11 +691,11 @@
     }
 }
 - (void)valueChanged:(UISwitch *)theSwitch {
-    [AppConfig getInstance].serverSettingInfo.enableGapScore=theSwitch.isOn;
+    [AppConfig getInstance].currentGameInfo.gameSetting.enableGapScore=theSwitch.isOn;
 }    
 
 - (void)tableViewCell:(StringInputTableViewCell *)cell didEndEditingWithString:(NSString *)value{
-    ServerSetting *si=[AppConfig getInstance].serverSettingInfo;
+    ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     switch (cell.tag) {
         case kserverName:
             si.serverName=value;
@@ -602,6 +721,11 @@
         case kpassword:
             si.password=value;
             break;
+        case kProfileName:
+            cell.textLabel.text=value;
+            si.profileName=value;
+            lblProfileName.text=value;
+            break;
         default:
             break;
     }
@@ -613,22 +737,19 @@
 
 -(void)resetSetting
 {
-    detailController0=nil;
-    detailController1=nil;
-    detailController2=nil;
-    detailController3=nil;
-    detailController4=nil;
-    [[AppConfig getInstance].serverSettingInfo reset];
-    [self bindSettingGroupData:0];
-    [self bindSettingGroupData:1];
-    [self bindSettingGroupData:2];
-    [self bindSettingGroupData:3];  
-    [self bindSettingGroupData:4]; 
-    [UIHelper showAlert:@"Information" message:@"Settings have beend reseted." func:nil];
+    detailControllerGameSetting=nil;
+    detailControllerRoundSetting=nil;
+    detailControllerMatchSetting=nil;
+    detailControllerCourtSetting=nil;
+    detailControllerSystemSetting=nil;
+    detailControllerProfile=nil;
+    [[AppConfig getInstance].currentGameInfo.gameSetting reset];
+    [self bindSettingGroupByGameSetting];
+    [UIHelper showAlert:@"Information" message:@"Settings have been reseted." func:nil];
 }
 -(id)getTableCellByTag:(NSInteger)tag
 {    
-    NSArray *ctls=[[NSArray alloc] initWithObjects:detailController0,detailController1,detailController2,detailController3,detailController4, nil];
+    NSArray *ctls=[[NSArray alloc] initWithObjects:detailControllerGameSetting,detailControllerRoundSetting,detailControllerMatchSetting,detailControllerCourtSetting,detailControllerSystemSetting, nil];
     for (JMStaticContentTableViewController * ctl in ctls) {
         for (NSInteger j = 0; j < [ctl.tableView numberOfSections]; ++j)
         {
@@ -641,5 +762,115 @@
         }
     }
     return nil;
+}
+
+
+#pragma mark - Judge Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(section==0)
+        return 1;
+    else
+        return availProfiles.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section==0){
+        static NSString* serverOptIdentifier = @"ProfileAddIdentifier";
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:serverOptIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:serverOptIdentifier];
+            cell.textLabel.text=@"Profile Manage";
+            UIButton *btnAddProfile = [UIButton buttonWithType:UIButtonTypeContactAdd];
+            //[btnAddProfile setTitle:@"Add" forState:UIControlStateNormal];
+            //[btnAddProfile setFrame:CGRectMake(0, 0, 100, 35)];                     
+            [btnAddProfile  addTarget:self action:@selector(setupNewProfile) forControlEvents:UIControlEventTouchUpInside];  
+            cell.accessoryView = btnAddProfile;       
+            cell.tag=kServerRefresh;
+        }        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    else{       
+        
+        ServerSetting *setting=[availProfiles objectAtIndex: indexPath.row];
+        if([[AppConfig getInstance].currentGameInfo.gameSetting.settingId isEqualToString:setting.settingId]){
+            static NSString* profileCurrentIdentifier = @"ProfileCurrentIdentifier";
+            StringInputTableViewCell *profileCurrentCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:profileCurrentIdentifier andTitle:setting.profileName andText:setting.profileName];   
+            profileCurrentCell.tag=kProfileName;
+            profileCurrentCell.detailTextLabel.text=[NSString stringWithFormat:@"%@", [UtilHelper formateDateWithTime:setting.createDate]];
+            profileCurrentCell.delegate=self;
+            //profileCurrentCell.detailTextLabel.textColor=[UIColor redColor];
+            return profileCurrentCell;
+        }
+        else{
+            static NSString* profileOtherIdentifier = @"ProfileOtherIdentifier";
+            UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:profileOtherIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:profileOtherIdentifier];
+            }
+            cell.textLabel.text=setting.profileName;  
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", [UtilHelper formateDateWithTime:setting.createDate]];
+            UIButton *btnUseProfile = [UIButton buttonWithType:UIButtonTypeCustom];
+            //[btnUseProfile setTitle:@"Using This Profile" forState:UIControlStateNormal];
+            UIImage *buttonImageNormal = [UIImage imageNamed:@"profile-accept.png"];
+            [btnUseProfile setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+            [btnUseProfile setFrame:CGRectMake(0, 0, 24, 24)];  
+            [btnUseProfile addTarget:self action:@selector(selectProfile:) forControlEvents:UIControlEventTouchUpInside]; 
+            btnUseProfile.tag=indexPath.row;
+            cell.accessoryView = btnUseProfile;   
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }       
+        
+    }
+}
+
+-(void)retreiveProfiles
+{
+    availProfiles=[[BO_ServerSetting getInstance] getProfiles];
+}
+-(void)setupNewProfile
+{
+    ServerSetting *setting=[AppConfig getInstance].currentGameInfo.gameSetting;
+    [[BO_ServerSetting getInstance] updateObject:setting];
+    setting=[[ServerSetting alloc] initWithDefault];
+    setting.profileName=[NSString stringWithFormat:@"User Profile %i",availProfiles.count+1];
+    if([[BO_ServerSetting getInstance] insertObject:setting])
+    {
+        [AppConfig getInstance].currentGameInfo.gameSetting=setting;     
+        lblProfileName.text = setting.profileName;
+        [self bindSettingGroupByGameSetting];
+        [self retreiveProfiles];
+        [self bindSettingGroupData:4];
+        [UIHelper showAlert:@"Information" message:[NSString stringWithFormat:@"New profile:%@ have been created.",setting.profileName] func:nil];
+    }
+    else{
+        [UIHelper showAlert:@"Error" message:@"New profile created failed,please retry later." func:nil];
+    }
+}
+-(void)selectProfile:(id)sender
+{
+    UIView *firstView=[UIHelper findFirstResponder:detailControllerProfile.view];
+    if(firstView!=nil){
+        [firstView resignFirstResponder];
+    }
+    UIButton *send=sender;
+    ServerSetting *setting=[AppConfig getInstance].currentGameInfo.gameSetting;
+    [[BO_ServerSetting getInstance] updateObject:setting];
+    setting=nil;
+    setting=[availProfiles objectAtIndex:send.tag]; 
+    [self retreiveProfiles];
+    [AppConfig getInstance].currentGameInfo.gameSetting=setting;
+    lblProfileName.text = setting.profileName;
+    [self bindSettingGroupByGameSetting];   
+    [self bindSettingGroupData:4];
 }
 @end

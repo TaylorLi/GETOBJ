@@ -81,6 +81,7 @@
     }
     //[schSession disconnectFromAllPeers];
     schSession.available = NO;
+    [schSession setDataReceiveHandler: nil withContext: nil];
     schSession = nil;
     peerIds=nil;
     servers=nil;

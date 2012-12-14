@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JudgeClientInfo : NSObject
+@interface JudgeClientInfo : NSObjectSerialization<SqliteORMDelegate>
 
 
 @property (nonatomic,copy) NSString *peerId;
@@ -17,6 +17,10 @@
 @property (nonatomic,copy) NSString *uuid;
 @property BOOL hasConnected;
 @property (nonatomic,strong) NSDate *lastHeartbeatDate;
+@property (nonatomic) int sequence;
+@property (nonatomic,copy) NSString *gameId;
+@property (nonatomic,strong) NSString *clientId;
+@property (nonatomic,strong) NSString *userId;
 
 -(id) initWithSessionId:(NSString*) _sessionId andDisplayName:(NSString *)_displayName
                 andUuid:(NSString *) _uuid andPeerId:(NSString *)_peerId;

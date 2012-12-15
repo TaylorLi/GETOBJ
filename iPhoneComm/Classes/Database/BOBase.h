@@ -25,4 +25,5 @@
 -(id)initWithModelTypeAndPrimaryKey:(Class) type primaryKey:(NSString *)key;
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param;
 - (id)queryObjectBySql:(NSString *)sql parameters:(id)param;
+-(BOOL)deleteObjectById:(NSString *)idValue;
 @end

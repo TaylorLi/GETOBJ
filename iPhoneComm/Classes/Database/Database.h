@@ -31,5 +31,5 @@
 -(BOOL) saveObject:(id)obj primaryKeyName:(NSString *)primaryKey;
 -(NSArray *)columnsOfTableByTableType:(Class)tableClass;
 -(NSArray *)columnsOfTableByTableName:(NSString *)tableName;
-
+-(BOOL)deleteObject:(Class)type withPrimaryKeyValue:(id)value primaryKeyName:(NSString *)primaryKey;
 @end

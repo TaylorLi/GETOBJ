@@ -44,7 +44,6 @@
 {
     return [[Database getInstance] insertObject:model];
 }
-
 - (NSArray *)queryAllList
 {
     return [[Database getInstance] queryAllList:modelType];
@@ -65,5 +64,8 @@
 {
     return [[Database getInstance] queryList:sql andType:modelType parameters:param];
 }
-
+-(BOOL)deleteObjectById:(NSString *)idValue
+{
+    return [[Database getInstance] deleteObject:modelType withPrimaryKeyValue:idValue primaryKeyName:primaryKey];
+}
 @end

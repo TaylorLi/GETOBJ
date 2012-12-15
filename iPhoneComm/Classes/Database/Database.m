@@ -30,6 +30,7 @@ static Database* instance;
         NSString * doc = PATH_OF_CACHE;
         NSString * path = [doc stringByAppendingPathComponent:@"TKDScore.sqlite"];
         dbPath=path;
+        NSLog(@"数据库地址是:%@",dbPath);
     }
     return self;
 }
@@ -302,5 +303,25 @@ static Database* instance;
     }
     return !hasError;
 }
-
+-(BOOL)deleteObject:(Class)type withPrimaryKeyValue:(id)value primaryKeyName:(NSString *)primaryKey
+{
+    FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
+    BOOL hasError=NO;
+    if ([db open]) {
+        NSString *tableName=NSStringFromClass(type);
+        NSString * sql =[NSString stringWithFormat:@"delete from %@ where %@ = ?",tableName,primaryKey];
+        BOOL res = [db executeUpdate:sql, value];
+        if (!res) {
+            NSLog(@"[sqlite] delete table [] data error:[%@],error detail:%@",tableName,db.lastErrorMessage);
+            hasError=YES;
+        } else {
+            NSLog(@"succ to deleta db data");
+        }       
+        [db close];
+    }
+    else{
+        hasError=YES;
+    }
+    return !hasError;
+}
 @end

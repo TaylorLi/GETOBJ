@@ -34,6 +34,7 @@
 -(void)selectProfile:(id)sender;
 -(void) bindProfile;
 -(void)bindSettingGroupByGameSetting;
+-(void)delProfile:(id)sender;
 @end
 
 @implementation GameSettingDetailControllerHD
@@ -798,14 +799,22 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else{       
-        
+    else{      
         ServerSetting *setting=[availProfiles objectAtIndex: indexPath.row];
         if([[AppConfig getInstance].currentGameInfo.gameSetting.settingId isEqualToString:setting.settingId]){
             static NSString* profileCurrentIdentifier = @"ProfileCurrentIdentifier";
             StringInputTableViewCell *profileCurrentCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:profileCurrentIdentifier andTitle:setting.profileName andText:setting.profileName];   
             profileCurrentCell.tag=kProfileName;
             profileCurrentCell.detailTextLabel.text=[NSString stringWithFormat:@"%@", [UtilHelper formateDateWithTime:setting.createDate]];
+            if(availProfiles.count > 1){
+                UIButton *btnDelProfile = [UIButton buttonWithType: UIButtonTypeCustom];
+                [btnDelProfile setBackgroundImage: [UIImage imageNamed:@"alert-close.png"] forState:UIControlStateNormal];
+                //[btnAddProfile setTitle:@"Add" forState:UIControlStateNormal];
+                [btnDelProfile setFrame:CGRectMake(0, 0, 24, 24)];                     
+                [btnDelProfile  addTarget:self action:@selector(delProfile:) forControlEvents:UIControlEventTouchUpInside];  
+                profileCurrentCell.accessoryView = btnDelProfile;
+            }
+            
             profileCurrentCell.delegate=self;
             //profileCurrentCell.detailTextLabel.textColor=[UIColor redColor];
             return profileCurrentCell;
@@ -872,5 +881,22 @@
     lblProfileName.text = setting.profileName;
     [self bindSettingGroupByGameSetting];   
     [self bindSettingGroupData:4];
+}
+-(void)delProfile:(id)sender
+{
+    ServerSetting *setting=[AppConfig getInstance].currentGameInfo.gameSetting;
+    [UIHelper showConfirm:@"Warning" message:[NSString stringWithFormat:@"Are you sure to delete the profile of %@?",setting.profileName] doneText:@"Yes" doneFunc:^(AlertView *a, NSInteger i) {
+        if([[BO_ServerSetting getInstance] deleteObjectById:setting.settingId]){
+            [self retreiveProfiles];
+            [AppConfig getInstance].currentGameInfo.gameSetting = [availProfiles objectAtIndex:0];
+            lblProfileName.text = [AppConfig getInstance].currentGameInfo.gameSetting.profileName;
+            [self bindSettingGroupByGameSetting];   
+            [self bindSettingGroupData:4];
+        }
+        else{
+            [UIHelper showAlert:@"Error" message:@"Delete profile failed,please retry later." func:nil];
+        }
+    } cancelText:@"No" cancelfunc:^(AlertView *a, NSInteger i) {
+    }];    
 }
 @end

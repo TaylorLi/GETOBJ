@@ -57,11 +57,11 @@
 //数据文件的完整路径  
 +(NSString *)dataFilePath:(NSString *)fileName {  
     //检索Documents目录路径。第二个参数表示将搜索限制在我们的应用程序沙盒中  
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  
     //每个应用程序只有一个Documents目录  
-    NSString *documentsDirectory = [paths objectAtIndex:0];  
+    //NSString *documentsDirectory = [paths objectAtIndex:0];  
     //创建文件名  
-    return [documentsDirectory stringByAppendingPathComponent:fileName];  
+    return [PATH_OF_CACHE stringByAppendingPathComponent:fileName];  
 }  
 +(BOOL)isFileExist:(NSString *)fileName
 {

@@ -27,7 +27,7 @@ static Database* instance;
     self=[super init];
     if(self){
         tableColumns=[[NSMutableDictionary alloc] init];
-        NSString * doc = PATH_OF_DOCUMENT;
+        NSString * doc = PATH_OF_CACHE;
         NSString * path = [doc stringByAppendingPathComponent:@"TKDScore.sqlite"];
         dbPath=path;
     }

@@ -34,7 +34,7 @@
 -(void)selectProfile:(id)sender;
 -(void) bindProfile;
 -(void)bindSettingGroupByGameSetting;
--(void)delProfile:(id)sender;
+-(void)delProfile:(NSIndexPath *)indexPath;
 @end
 
 @implementation GameSettingDetailControllerHD
@@ -806,14 +806,14 @@
             StringInputTableViewCell *profileCurrentCell= [[StringInputTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:profileCurrentIdentifier andTitle:setting.profileName andText:setting.profileName];   
             profileCurrentCell.tag=kProfileName;
             profileCurrentCell.detailTextLabel.text=[NSString stringWithFormat:@"%@", [UtilHelper formateDateWithTime:setting.createDate]];
-            if(availProfiles.count > 1){
-                UIButton *btnDelProfile = [UIButton buttonWithType: UIButtonTypeCustom];
-                [btnDelProfile setBackgroundImage: [UIImage imageNamed:@"alert-close.png"] forState:UIControlStateNormal];
-                //[btnAddProfile setTitle:@"Add" forState:UIControlStateNormal];
-                [btnDelProfile setFrame:CGRectMake(0, 0, 24, 24)];                     
-                [btnDelProfile  addTarget:self action:@selector(delProfile:) forControlEvents:UIControlEventTouchUpInside];  
-                profileCurrentCell.accessoryView = btnDelProfile;
-            }
+            //            if(availProfiles.count > 1){
+            //                UIButton *btnDelProfile = [UIButton buttonWithType: UIButtonTypeCustom];
+            //                [btnDelProfile setBackgroundImage: [UIImage imageNamed:@"alert-close.png"] forState:UIControlStateNormal];
+            //                //[btnAddProfile setTitle:@"Add" forState:UIControlStateNormal];
+            //                [btnDelProfile setFrame:CGRectMake(0, 0, 24, 24)];                     
+            //                [btnDelProfile  addTarget:self action:@selector(delProfile:) forControlEvents:UIControlEventTouchUpInside];  
+            //                profileCurrentCell.accessoryView = btnDelProfile;
+            //            }
             
             profileCurrentCell.delegate=self;
             //profileCurrentCell.detailTextLabel.textColor=[UIColor redColor];
@@ -841,6 +841,40 @@
         
     }
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath { 
+    if(indexPath.section==1)
+    {
+        if(availProfiles.count>1)
+            return YES;
+        else
+            return NO;
+    }
+    else        
+        return NO;
+} 
+#pragma mark -
+#pragma mark Add Delete Func for table view
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { 
+    if (editingStyle == UITableViewCellEditingStyleDelete) { 
+        [self delProfile:nil];       
+    }    
+    else if (editingStyle == UITableViewCellEditingStyleInsert) { 
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. 
+    }    
+} 
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{ 
+} 
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Delete the row from the data source. 
+    [tableView deleteRowsAtIndexPaths:[[NSArray alloc] initWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade]; 
+} 
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{ 
+    return @"Delete"; 
+} 
+#pragma mark Add Delete Func for table view end
 
 -(void)retreiveProfiles
 {
@@ -882,21 +916,19 @@
     [self bindSettingGroupByGameSetting];   
     [self bindSettingGroupData:4];
 }
--(void)delProfile:(id)sender
+-(void)delProfile:(NSIndexPath *)indexPath
 {
-    ServerSetting *setting=[AppConfig getInstance].currentGameInfo.gameSetting;
-    [UIHelper showConfirm:@"Warning" message:[NSString stringWithFormat:@"Are you sure to delete the profile of %@?",setting.profileName] doneText:@"Yes" doneFunc:^(AlertView *a, NSInteger i) {
-        if([[BO_ServerSetting getInstance] deleteObjectById:setting.settingId]){
-            [self retreiveProfiles];
-            [AppConfig getInstance].currentGameInfo.gameSetting = [availProfiles objectAtIndex:0];
-            lblProfileName.text = [AppConfig getInstance].currentGameInfo.gameSetting.profileName;
-            [self bindSettingGroupByGameSetting];   
-            [self bindSettingGroupData:4];
-        }
-        else{
-            [UIHelper showAlert:@"Error" message:@"Delete profile failed,please retry later." func:nil];
-        }
-    } cancelText:@"No" cancelfunc:^(AlertView *a, NSInteger i) {
-    }];    
+    ServerSetting *selSetting = [availProfiles objectAtIndex:indexPath.row];
+    if([[BO_ServerSetting getInstance] deleteObjectById:selSetting.settingId]){
+        [self retreiveProfiles];
+        [AppConfig getInstance].currentGameInfo.gameSetting = [availProfiles objectAtIndex:0];
+        lblProfileName.text = [AppConfig getInstance].currentGameInfo.gameSetting.profileName;
+        [self bindSettingGroupByGameSetting];   
+        [self bindSettingGroupData:4];
+    }
+    else{
+        [UIHelper showAlert:@"Error" message:@"Delete profile failed,please retry later." func:nil];
+    }
+    
 }
 @end

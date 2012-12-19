@@ -42,6 +42,7 @@
 
 #define kSoundsRoundStart @"roundstart.wav"
 #define kSoundsPointEstablished @"point_established.mp3"
+#define kSoundsPointFightTimeReached @"fight_time_reached.mp3"
 #define kSoundsRoundEnd @"rend.wav"
 #define kSoundsCongratulation @"winner.wav"
 
@@ -120,6 +121,8 @@
 -(void)effectivedSubmitScoreTip:(ScoreHistoryInfo *)score;
 -(void)effectivedSubmitScoreTipLoop:(NSTimer *)timerIns;
 -(void)showSelectWinnerButton:(BOOL)show;
+-(void) toggleFightTimeBox:(BOOL)show;
+-(void)toggleFightTimeBox;
 @end 
 
 @implementation ScoreBoardViewController
@@ -165,6 +168,7 @@
 @synthesize imgScoreReportRed2;
 @synthesize imgScoreReportRed3;
 @synthesize imgScoreReportRed4;
+@synthesize fighterPanel;
 
 
 - (void)didReceiveMemoryWarning
@@ -336,6 +340,7 @@
     [self setImgScoreReportRed2:nil];
     [self setImgScoreReportRed3:nil];
     [self setImgScoreReportRed4:nil];
+    [self setFighterPanel:nil];
     [super viewDidUnload];    
     marksFlags=nil;
     scoreReportIndicatorsBlue=nil;
@@ -746,11 +751,37 @@
         [self gamePauseAndShowReorignizeTimeBox];
     }
 }
+-(void)toggleFightTimeBox:(BOOL)show{
+    if(show){
+        [fighterPanel showWithFightTime:chatRoom.gameInfo.gameSetting.fightTimeInterval];
+    }
+    else{
+        [fighterPanel hide];
+    }
+}
+/*切换fihgt time box*/
+-(void)toggleFightTimeBox{
+    if(fighterPanel!=nil && fighterPanel.hidden==NO){
+        [self toggleFightTimeBox:NO];
+    }
+    else{
+        [self toggleFightTimeBox:YES];
+    }
+}
+
+-(void)fightimeReached:(UIFighterBox *)fighterbox
+{
+    [self warningAddToRedPlayer];
+    [self warningAddToBluePlayer];
+    //warmning competitor/instructor when point is established
+    //[player playSoundWithFullPath:kSoundsPointFightTimeReached];
+}
 
 #pragma mark -
 #pragma mark score
 -(void)submitScore:(int)score andIsRedSize:(BOOL)isRedSide;
 {    
+    [fighterPanel hide];
     if(isRedSide){
         if(chatRoom.gameInfo.currentMatchInfo.redSideScore+score<0)
             return;
@@ -1518,7 +1549,7 @@
 //prepare for game to start
 -(void)prepareForGame
 {    
-    isAtMatchSetting=NO;
+    isAtMatchSetting=NO;    
     if(timeFlags==nil)
     {
         timeFlags=[[NSMutableArray alloc] initWithCapacity:10];
@@ -1604,6 +1635,9 @@
             }           
         }
     }
+    fighterPanel.delegate=self;
+    fighterPanel.imgArray=timeFlags2;
+    [fighterPanel hide];
     [self setMenuByGameStatus:kStateWaitJudge];
     [self showWaitingUserBox];
     double inv=kServerLoopInterval;
@@ -1731,7 +1765,7 @@
     float actionWidth=(iconRect.size.width)*(menuItems.count+0.5);
     [self.actionHeaderView setFrame:CGRectMake(self.actionHeaderView.bounds.size.width - actionWidth, self.actionHeaderView.frame.origin.y, actionWidth, self.actionHeaderView.frame.size.height)];
 }
-- (void)menuItemAction:(id)sender;{
+- (void)menuItemAction:(id)sender{
     
     // Reset action picker
     int tag=[(UIButton *)sender tag];
@@ -1785,6 +1819,7 @@
             break;
         case kMenuItemFlight://显示对战框
         {
+            [self toggleFightTimeBox];
             break;
         }
         default:
@@ -2030,6 +2065,7 @@
     NSLog(@"Game Status:%i,Previous Status:%i",chatRoom.gameInfo.currentMatchInfo.gameStatus,chatRoom.gameInfo.currentMatchInfo.preGameStatus);
     [self sendServerStatusAndDesc:nil];
     [self processByGameStatus];
+    
     UIButton *continueButton=[self getMenuItem:kMenuItemContinueGame];
     UIButton *endMatchButton=[self getMenuItem:kMenuItemEndMatch];
     UIButton *enableTimerButton=[self getMenuItem:kMenuItemRestReorgernizeTimer];
@@ -2041,6 +2077,16 @@
     enableTimerButton.hidden=!(chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateRunning || chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateCalcScore);
     enableFightButton.hidden=NO;
     txnReportButton.hidden=!chatRoom.gameInfo.gameStart;
+    if(chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateRunning || chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateCalcScore)
+    {
+        enableFightButton.hidden=NO;
+    }
+    else{
+        enableFightButton.hidden=YES;
+    }
+    if(!fighterPanel.hidden&&!(chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateRunning || chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateCalcScore)){
+        [fighterPanel hide];
+    }
     
     //UIButton *redWarningButton=[self getMenuItem:kMenuItemWarningRed];
     //UIButton *blueWarningButton=[self getMenuItem:kMenuItemWarningBlue];

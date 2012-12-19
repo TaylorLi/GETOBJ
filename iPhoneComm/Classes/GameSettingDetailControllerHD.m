@@ -425,6 +425,16 @@
                     pointGapEffCell.delegate=selfCtl;
                     [section addCustomerCell:pointGapEffCell];                     
                     
+                    NSMutableArray *fightTimeInvs=[[NSMutableArray alloc] init];
+                    for(int i=10;i<=20;i=i+1)
+                    {
+                        [fightTimeInvs addObject:[NSString stringWithFormat:@"%i",i]];
+                    }
+                    SimplePickerInputTableViewCell *fightTimeCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Fight Time(Second)", @"Fight Time(Second)") selectValue:[NSString stringWithFormat:@"%i",si.fightTimeInterval] dataSource:fightTimeInvs];    
+                    fightTimeCell.tag=kFightTime;
+                    fightTimeCell.delegate=selfCtl;
+                    [section addCustomerCell:fightTimeCell];
+                    
                 }]; 
             }
             [self setSettingTable:detailControllerCourtSetting];
@@ -612,6 +622,9 @@
             break;
         case kpointGapAvailRound:
             si.pointGapAvailRound=[value intValue];
+            break;
+        case kFightTime:
+            si.fightTimeInterval=[value intValue];
             break;
         case  kDeviceType:
             if(value==@"Peripheral Device")

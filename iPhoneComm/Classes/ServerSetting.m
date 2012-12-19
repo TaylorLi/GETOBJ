@@ -23,7 +23,7 @@
 @synthesize roundCount;
 @synthesize judgeCount;
 @synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudgesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
-@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate,profileId;
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate,profileId,fightTimeInterval;
 
 -(NSString *)description
 {
@@ -68,7 +68,8 @@
     restAndReorganizationTime=60;
     serverLoopMaxDelay = 1;
     currentJudgeDevice= JudgeDeviceKeyboard;
-    settingType=SettingTypeProfile; 
+    settingType=SettingTypeProfile;
+    fightTimeInterval=10;
     isDefaultProfile=YES;
 }
 -(void) renewSettingForGame{
@@ -126,6 +127,7 @@
     copyObj.profileName=self.profileName;
     copyObj.isDefaultProfile=self.isDefaultProfile;
     copyObj.uuid=self.uuid;
+    copyObj.fightTimeInterval=self.fightTimeInterval;
     return copyObj;
 }
 /*NSCoding

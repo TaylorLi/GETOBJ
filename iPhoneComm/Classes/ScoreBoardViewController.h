@@ -15,13 +15,14 @@
 #import "SoundsPlayer.h"
 #import "KeyBoradEventInfo.h"
 #import "ShowWinnerBox.h"
+#import "UIFighterBox.h"
 
 #define kWaitBoxForReset 1
 #define kWaitBoxForReOrg 2
 
 @class SelectWinnerBox;
 
-@interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate>{
+@interface ScoreBoardViewController : UIViewController<RoomDelegate,UAModalPanelDelegate,UIFighterBoxDelegate>{
     LocalRoom* chatRoom;
     UILabel *lblGameName;
     UILabel *lblRedTotal;
@@ -103,6 +104,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed2;
 @property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed3;
 @property (strong, nonatomic) IBOutlet UIImageView *imgScoreReportRed4;
+@property (strong, nonatomic) IBOutlet UIFighterBox *fighterPanel;
 
 // Exit back to the welcome screen
 - (IBAction)exit;

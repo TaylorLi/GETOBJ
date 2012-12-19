@@ -34,6 +34,7 @@
 #define kServerRefresh 23
 #define kDeviceType 24
 #define kProfileName 25
+#define kFightTime 26
 
 @interface ServerSetting : NSObjectSerialization<NSCopying,SqliteORMDelegate>
 {
@@ -107,6 +108,7 @@
 @property (nonatomic,strong) NSString *userId;
 @property (nonatomic,strong) NSDate *lastUsingDate;
 @property (nonatomic,strong) NSString *profileId;
+@property (nonatomic) NSTimeInterval fightTimeInterval;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc

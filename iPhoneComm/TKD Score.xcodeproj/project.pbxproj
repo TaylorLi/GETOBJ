@@ -149,6 +149,7 @@
 		DAABDDE715DF4E8E00501D46 /* ShowWinnerBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DAABDDE515DF4E8E00501D46 /* ShowWinnerBox.m */; };
 		DAABDDE915DF4ECA00501D46 /* ShowWinnerBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAABDDE815DF4ECA00501D46 /* ShowWinnerBox.xib */; };
 		DAABDDEA15DF4ECA00501D46 /* ShowWinnerBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAABDDE815DF4ECA00501D46 /* ShowWinnerBox.xib */; };
+		DABFA4AC167E04D00009293D /* UIFighterBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DABFA4AA167E04D00009293D /* UIFighterBox.m */; };
 		DAD80F3D15B2A852004B76B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */; };
 		DAE4183A15B132F300C7BC8D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE73CC015AC77340083CAF1 /* GameSettingViewController.m */; };
 		DAE459F215B25E8900F9A847 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -604,6 +605,8 @@
 		DAABDDE415DF4E8E00501D46 /* ShowWinnerBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWinnerBox.h; sourceTree = "<group>"; };
 		DAABDDE515DF4E8E00501D46 /* ShowWinnerBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWinnerBox.m; sourceTree = "<group>"; };
 		DAABDDE815DF4ECA00501D46 /* ShowWinnerBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowWinnerBox.xib; path = "Resources-iPad/ShowWinnerBox.xib"; sourceTree = "<group>"; };
+		DABFA4A9167E04D00009293D /* UIFighterBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFighterBox.h; sourceTree = "<group>"; };
+		DABFA4AA167E04D00009293D /* UIFighterBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFighterBox.m; sourceTree = "<group>"; };
 		DAD80F3B15B2A773004B76B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = "Resources-iPad/WelcomeViewController.xib"; sourceTree = "<group>"; };
 		DAE45A9915B262F500F9A847 /* ScoreBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoreBoardView.xib; path = "Resources-iPad/ScoreBoardView.xib"; sourceTree = "<group>"; };
 		DAE45AAB15B2733A00F9A847 /* PickerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickerBG.png; path = Images/PickerBG.png; sourceTree = "<group>"; };
@@ -1164,6 +1167,8 @@
 				DAABDDE515DF4E8E00501D46 /* ShowWinnerBox.m */,
 				DAEB1E8315F8D22A00CE98C7 /* DefinedUIApplication.h */,
 				DAEB1E8415F8D22A00CE98C7 /* DefinedUIApplication.m */,
+				DABFA4A9167E04D00009293D /* UIFighterBox.h */,
+				DABFA4AA167E04D00009293D /* UIFighterBox.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -2239,6 +2244,7 @@
 				DAE86A5A1674A9B1005E5A5B /* SubmitedScoreInfo.m in Sources */,
 				DAE86A5E1674AAF6005E5A5B /* BO_SubmitedScoreInfo.m in Sources */,
 				DAEA5DE01677837B002128AE /* OrderedDictionary.m in Sources */,
+				DABFA4AC167E04D00009293D /* UIFighterBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

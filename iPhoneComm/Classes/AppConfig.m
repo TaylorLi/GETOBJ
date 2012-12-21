@@ -44,6 +44,7 @@ static AppConfig* instance;
 //当前比赛信息
 @synthesize currentGameInfo;
 @synthesize isGameStart;
+@synthesize profileIndex;
 //@synthesize currentJudgeDevice;
 
 // Initialization
@@ -78,6 +79,7 @@ static AppConfig* instance;
     currentAppStep=AppStepStart;
     //currentJudgeDevice=JudgeDeviceKeyboard;
     isGameStart=NO;
+    [self restoreProfileIndexFromFile];
     return self;
 }
 
@@ -124,6 +126,29 @@ static AppConfig* instance;
     if([UtilHelper isFileExist:KEY_FILE_SETTING])
     {
         currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
+        //NSLog(@"Restore Game Info from file:%@",currentGameInfo);
+    }
+}
+
+-(void)saveProfileIndexToFile
+{
+    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[NSNumber numberWithInt:profileIndex] dataKey:KEY_FILE_PROFILE_INDEX];
+    //NSLog(@"Save Game Info to file:%@",currentGameInfo);
+}
+-(void)restoreProfileIndexFromFile
+{
+    if([UtilHelper isFileExist:KEY_FILE_SETTING])
+    {
+        @try {
+            profileIndex =  [[UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_PROFILE_INDEX] intValue];
+        }
+        @catch (NSException *exception) {
+            profileIndex=1;
+        }
+        @finally {
+            if(profileIndex<1)
+                profileIndex=1;
+        }        
         //NSLog(@"Restore Game Info from file:%@",currentGameInfo);
     }
 }

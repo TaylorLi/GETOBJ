@@ -13,7 +13,7 @@
 
 @implementation GameInfo
 
-@synthesize gameSetting,serverUuid,serverPeerId,clients,serverLastHeartbeatDate,gameStart,serverFullName,gameEnded,gameEndTime,gameStartTime,gameId,serverUserId,currentMatchInfo,currentMatch, profileIndex;
+@synthesize gameSetting,serverUuid,serverPeerId,clients,serverLastHeartbeatDate,gameStart,serverFullName,gameEnded,gameEndTime,gameStartTime,gameId,serverUserId,currentMatchInfo,currentMatch;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -30,7 +30,6 @@
         clients=[[NSMutableDictionary alloc] init];
         currentMatchInfo=[[MatchInfo alloc] initWithGameSetting:setting];
         currentMatch=currentMatchInfo.currentMatch;
-        profileIndex=1;
     }
     return self;
 }

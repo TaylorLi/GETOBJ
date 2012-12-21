@@ -870,7 +870,7 @@
 #pragma mark Add Delete Func for table view
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { 
     if (editingStyle == UITableViewCellEditingStyleDelete) { 
-        [self delProfile:nil];       
+        [self delProfile:indexPath];       
     }    
     else if (editingStyle == UITableViewCellEditingStyleInsert) { 
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. 
@@ -899,7 +899,7 @@
     [[BO_ServerSetting getInstance] updateObject:setting];
     setting=[[ServerSetting alloc] initWithDefault];
 //    [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
-    setting.profileName=[NSString stringWithFormat:@"User Profile %i", [AppConfig getInstance].currentGameInfo.profileIndex];
+    setting.profileName=[NSString stringWithFormat:@"User Profile %i", [AppConfig getInstance].profileIndex];
     if([[BO_ServerSetting getInstance] insertObject:setting])
     {
         [AppConfig getInstance].currentGameInfo.gameSetting=setting;     
@@ -907,7 +907,8 @@
         [self bindSettingGroupByGameSetting];
         [self retreiveProfiles];
         [self bindSettingGroupData:4];
-        [AppConfig getInstance].currentGameInfo.profileIndex++;
+        [AppConfig getInstance].profileIndex++;
+        [[AppConfig getInstance] saveProfileIndexToFile];
 //        [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
         [UIHelper showAlert:@"Information" message:[NSString stringWithFormat:@"New profile:%@ have been created.",setting.profileName] func:nil];
     }

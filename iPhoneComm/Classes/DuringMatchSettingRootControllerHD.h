@@ -17,5 +17,6 @@
 
 @property (nonatomic, retain) IBOutlet DuringMatchSettingDetailControllerHD *detailViewController;
 @property (nonatomic, retain) NSArray *menus;
+@property (nonatomic) NSInteger showingTabIndex;
 
 @end

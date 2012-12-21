@@ -1814,7 +1814,7 @@
             break;
         case kMenuItemTxnReport://显示报表项
         {
-            [self showGameSettingDialogWithViewIndex:4];
+            [self showGameSettingDialogWithViewIndex:3];
         }
             break;
         case kMenuItemFlight://显示对战框

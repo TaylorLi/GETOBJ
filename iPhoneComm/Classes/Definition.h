@@ -91,6 +91,7 @@ typedef enum {
 
 #define KEY_FILE_SETTING @"app_info"
 #define KEY_FILE_SETTING_GAME_INFO @"game_info"
+#define KEY_FILE_PROFILE_INDEX @"profile_index"
 
 /*蓝牙键盘按键*/
 #define GSEVENTKEY_KEYCODE_ALP_A 4

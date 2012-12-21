@@ -48,6 +48,7 @@
 @property (nonatomic) AppStep currentAppStep;
 //@property (nonatomic) JudgeDevice currentJudgeDevice;
 @property BOOL isGameStart;
+@property NSInteger profileIndex;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 
@@ -55,4 +56,6 @@
 + (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation;
 -(void)saveGameInfoToFile;
 -(void)restoreGameInfoFromFile;
+-(void)saveProfileIndexToFile;
+-(void)restoreProfileIndexFromFile;
 @end

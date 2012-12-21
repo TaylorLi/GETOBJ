@@ -44,12 +44,13 @@
 @synthesize toolbar, popoverController, detailItem;
 @synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer,
 detailControllerMatchDetailReport;
-@synthesize orgGameInfo,currentRemainTime,btnRestartServer;
+@synthesize orgGameInfo,currentRemainTime,btnRestartServer,showingTabIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        showingTabIndex=0;
         // Custom initialization
     }
     return self;
@@ -82,7 +83,12 @@ detailControllerMatchDetailReport;
     [self bindSettingGroupData:2];
     [self bindSettingGroupData:3];
     [self bindSettingGroupData:4];
-    [self bindSettingGroupData:0];    
+    [self bindSettingGroupData:0]; 
+    tabControlls = [[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,
+                    detailControllerMatchDetailReport,detailControllerMainMenu, nil];
+    if(showingTabIndex<0||showingTabIndex>tabControlls.count)
+        showingTabIndex=0;
+    [self setSettingTable:[tabControlls objectAtIndex:showingTabIndex]];
     isChangeSetting=FALSE;
 }
 

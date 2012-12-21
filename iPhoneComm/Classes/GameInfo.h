@@ -31,7 +31,6 @@
 //比赛结束时间，比赛完成时的时刻，如果比赛为正常完成，改值为0
 @property (nonatomic,strong) NSDate *gameEndTime;
 @property (nonatomic,strong) MatchInfo *currentMatchInfo;
-@property NSInteger profileIndex;
 
 -(id) initWithGameSetting:(ServerSetting *)setting;
 -(NSDictionary *)gameStatusInfo;

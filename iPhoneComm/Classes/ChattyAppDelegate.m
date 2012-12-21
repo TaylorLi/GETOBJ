@@ -28,6 +28,8 @@
 #import "ChattyAppDelegate.h"
 #import "ChattyViewController.h"
 #import "WelcomeViewController.h"
+#import "DuringMatchSettingRootControllerHD.h"
+#import "DuringMatchSettingDetailControllerHD.h"
 #import "ScoreControlViewController.h"
 #import "ScoreBoardViewController.h"
 #import "UIHelper.h"
@@ -149,6 +151,11 @@ static ChattyAppDelegate* _instance;
 {
     [AppConfig getInstance].currentAppStep=AppStepServer;
     [duringMathSplitViewCtl setWantsFullScreenLayout:YES];
+    UINavigationController *navControl= [duringMathSplitViewCtl.viewControllers objectAtIndex:0];
+    DuringMatchSettingRootControllerHD *rootControl=(DuringMatchSettingRootControllerHD *)navControl.topViewController; 
+    DuringMatchSettingDetailControllerHD *detailControl = [duringMathSplitViewCtl.viewControllers objectAtIndex:1];
+    rootControl.showingTabIndex=tabIndex;
+    detailControl.showingTabIndex=tabIndex;
     [self swithView:duringMathSplitViewCtl.view];
 }
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg

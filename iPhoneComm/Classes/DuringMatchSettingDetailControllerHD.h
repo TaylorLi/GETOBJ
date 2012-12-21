@@ -33,6 +33,7 @@ typedef enum {
 	UIBarButtonItem *startButton;
     Boolean isChangeSetting;
     NSMutableDictionary *detailScoreLogs;
+    NSArray *tabControlls;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
@@ -47,6 +48,7 @@ typedef enum {
 @property (strong,nonatomic) GameInfo *orgGameInfo;
 @property (nonatomic) NSTimeInterval currentRemainTime;
 @property (strong,nonatomic) UIButton *btnRestartServer;
+@property (nonatomic) NSInteger showingTabIndex;
 
 - (IBAction)touchSaveButton;
 - (IBAction)cancelSave;

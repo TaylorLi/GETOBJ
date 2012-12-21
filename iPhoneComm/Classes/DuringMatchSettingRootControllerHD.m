@@ -10,12 +10,13 @@
 #import "AppConfig.h"
 @implementation DuringMatchSettingRootControllerHD
 
-@synthesize detailViewController,menus;
+@synthesize detailViewController,menus,showingTabIndex;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+        showingTabIndex=0;
         // Custom initialization
     }
     return self;
@@ -48,7 +49,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:showingTabIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
     [super viewWillAppear:animated];
 }
 

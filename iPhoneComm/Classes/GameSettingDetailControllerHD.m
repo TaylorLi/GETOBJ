@@ -898,7 +898,8 @@
     ServerSetting *setting=[AppConfig getInstance].currentGameInfo.gameSetting;
     [[BO_ServerSetting getInstance] updateObject:setting];
     setting=[[ServerSetting alloc] initWithDefault];
-    setting.profileName=[NSString stringWithFormat:@"User Profile %i",availProfiles.count+1];
+//    [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
+    setting.profileName=[NSString stringWithFormat:@"User Profile %i", [AppConfig getInstance].currentGameInfo.profileIndex];
     if([[BO_ServerSetting getInstance] insertObject:setting])
     {
         [AppConfig getInstance].currentGameInfo.gameSetting=setting;     
@@ -906,6 +907,8 @@
         [self bindSettingGroupByGameSetting];
         [self retreiveProfiles];
         [self bindSettingGroupData:4];
+        [AppConfig getInstance].currentGameInfo.profileIndex++;
+//        [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
         [UIHelper showAlert:@"Information" message:[NSString stringWithFormat:@"New profile:%@ have been created.",setting.profileName] func:nil];
     }
     else{

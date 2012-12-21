@@ -870,7 +870,7 @@
 #pragma mark Add Delete Func for table view
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { 
     if (editingStyle == UITableViewCellEditingStyleDelete) { 
-        [self delProfile:nil];       
+        [self delProfile:indexPath];       
     }    
     else if (editingStyle == UITableViewCellEditingStyleInsert) { 
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. 

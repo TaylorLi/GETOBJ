@@ -114,12 +114,12 @@
     detailControllerCourtSetting=nil;
     detailControllerSystemSetting=nil;
     detailControllerProfile=nil;
-    [self bindSettingGroupData:1];
-    [self bindSettingGroupData:2];
-    [self bindSettingGroupData:3];
-    [self bindSettingGroupData:4];
-    [self bindSettingGroupData:5];
-    [self bindSettingGroupData:0];
+    [self bindSettingGroupData:gsTabRoundSetting];
+    [self bindSettingGroupData:gsTabCourtSetting];
+    [self bindSettingGroupData:gsTabMatchSetting];    
+    [self bindSettingGroupData:gsTabSystemSetting];
+    [self bindSettingGroupData:gsTabGameSetting];
+    [self bindSettingGroupData:gsTabProfileSetting];
 }
 
 - (void)viewDidUnload
@@ -203,12 +203,12 @@
 
 #pragma mark -
 #pragma mark Bind Table Cells 
--(void) bindSettingGroupData:(int)group
+-(void) bindSettingGroupData:(GameSettingTabs)group
 {
     __weak ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
     __weak GameSettingDetailControllerHD *selfCtl=self;
     switch (group) {
-        case 0:
+        case gsTabGameSetting:
         {
             if(detailControllerGameSetting==nil)
             {                    
@@ -252,7 +252,7 @@
             } andHeader:@"Blue Setting" andFooter:nil];
         }
             break;
-        case 1:{
+        case gsTabRoundSetting:{
             if(detailControllerRoundSetting==nil){                    
                 detailControllerRoundSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
                 [detailControllerRoundSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
@@ -261,7 +261,7 @@
                     roundTime.delegate=selfCtl;
                     [section addCustomerCell:roundTime];
                     NSMutableArray *restTimeSource=[[NSMutableArray alloc] init];
-                    for(int i=10;i<=50;i=i+10)
+                    for(int i=10;i<=90;i=i+10)
                     {
                         [restTimeSource addObject:[NSString stringWithFormat:@"%i Seconds",i]];
                     }
@@ -307,7 +307,7 @@
             [self setSettingTable:detailControllerRoundSetting];
         }
             break;
-        case 2:
+        case gsTabCourtSetting:
         {
             if(detailControllerMatchSetting==nil){ 
                 detailControllerMatchSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -354,7 +354,7 @@
             [self setSettingTable:detailControllerMatchSetting];
             break;
         }
-        case 3:
+        case gsTabMatchSetting:
         {
             if(detailControllerCourtSetting==nil){                
                 
@@ -440,7 +440,7 @@
             [self setSettingTable:detailControllerCourtSetting];
             break;
         }
-        case 4:{
+        case gsTabProfileSetting:{
             if(detailControllerProfile==nil){
                 detailControllerProfile = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 detailControllerProfile.tableView.dataSource=self;
@@ -450,7 +450,7 @@
             [self setSettingTable:detailControllerProfile];
             break;
         }
-        case 5:
+        case gsTabSystemSetting:
         {
             if(detailControllerSystemSetting==nil){
                 detailControllerSystemSetting =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -906,7 +906,7 @@
         lblProfileName.text = setting.profileName;
         [self bindSettingGroupByGameSetting];
         [self retreiveProfiles];
-        [self bindSettingGroupData:4];
+        [self bindSettingGroupData:gsTabProfileSetting];
         [AppConfig getInstance].profileIndex++;
         [[AppConfig getInstance] saveProfileIndexToFile];
 //        [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
@@ -931,7 +931,7 @@
     [AppConfig getInstance].currentGameInfo.gameSetting=setting;
     lblProfileName.text = setting.profileName;
     [self bindSettingGroupByGameSetting];   
-    [self bindSettingGroupData:4];
+    [self bindSettingGroupData:gsTabProfileSetting];
 }
 -(void)delProfile:(NSIndexPath *)indexPath
 {
@@ -941,7 +941,7 @@
         [AppConfig getInstance].currentGameInfo.gameSetting = [availProfiles objectAtIndex:0];
         lblProfileName.text = [AppConfig getInstance].currentGameInfo.gameSetting.profileName;
         [self bindSettingGroupByGameSetting];   
-        [self bindSettingGroupData:4];
+        [self bindSettingGroupData:gsTabProfileSetting];
     }
     else{
         [UIHelper showAlert:@"Error" message:@"Delete profile failed,please retry later." func:nil];

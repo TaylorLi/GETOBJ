@@ -13,6 +13,15 @@
 #import "StringInputTableViewCell.h"
 #import "IntegerInputTableViewCell.h"
 
+typedef enum {
+	gsTabGameSetting=1,
+    gsTabRoundSetting=2,
+    gsTabCourtSetting=3,
+    gsTabMatchSetting=4,
+    gsTabProfileSetting=0,
+    gsTabSystemSetting=5,
+} GameSettingTabs;
+
 @interface GameSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate,IntegerInputTableViewCellDelegate,UITableViewDataSource> 
 {
     
@@ -36,7 +45,7 @@
 @property (strong,nonatomic) NSString *selectedProfileId;
 - (IBAction)touchSaveButton;
 - (void)startGame:(BOOL)isCallByRestoreFromGameInfo;
--(void) bindSettingGroupData:(int)group;
+-(void) bindSettingGroupData:(GameSettingTabs)group;
 -(void)resetSetting;
 
 @end

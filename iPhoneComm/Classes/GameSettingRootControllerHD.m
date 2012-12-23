@@ -39,7 +39,7 @@
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"Settings"													 ofType:@"plist"];
     //NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:path];
     //self.menus = [settings objectForKey:@"MaingGameSetting"];   
-    self.menus=[[NSArray alloc] initWithObjects:@"Game Setting",@"Round Setting",@"Court Setting",@"Match Setting",@"Profile Setting",@"System Setting", nil];
+    self.menus=[[NSArray alloc] initWithObjects:@"Profile Setting",@"Game Setting",@"Round Setting",@"Court Setting",@"Match Setting",@"System Setting", nil];
 }
 
 - (void)viewDidUnload

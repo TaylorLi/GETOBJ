@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class ServerSetting;
+@class ServerSetting,RoundInfo;
 @interface MatchInfo : NSObjectSerialization<SqliteORMDelegate>
 
 @property (nonatomic,strong) NSString *matchId;
 @property (nonatomic,strong) NSString *gameId;
 @property NSTimeInterval currentRemainTime;
 @property NSInteger currentRound;
+@property (nonatomic,strong)  RoundInfo *currentRoundInfo;
 @property NSInteger currentMatch;
 @property NSInteger redSideScore;
 @property NSInteger blueSideScore;

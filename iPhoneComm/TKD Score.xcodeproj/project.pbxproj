@@ -28,6 +28,10 @@
 		DA00F38115A9DC92005B2F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37E15A9DC92005B2F4B /* icon.png */; };
 		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
 		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
+		DA1BE1CC168F408D00E1D188 /* BO_MatchLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */; };
+		DA1BE1CD168F408D00E1D188 /* BO_MatchLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */; };
+		DA1BE1CE168F408D00E1D188 /* BO_RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1CB168F408D00E1D188 /* BO_RoundInfo.m */; };
+		DA1BE1CF168F408D00E1D188 /* BO_RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1CB168F408D00E1D188 /* BO_RoundInfo.m */; };
 		DA20D20215D16CF500FB22B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */; };
 		DA20D20415D16D0700FB22B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */; };
 		DA279BF015B16BB400C6B1DC /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA279BEF15B16BB400C6B1DC /* AFPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -135,6 +139,8 @@
 		DA4E9160168F3BC400046BD9 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E915B168F3BC400046BD9 /* Room.m */; };
 		DA4E9163168F3C6400046BD9 /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9162168F3C6400046BD9 /* LocalRoom.m */; };
 		DA4E9164168F3C6400046BD9 /* LocalRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9162168F3C6400046BD9 /* LocalRoom.m */; };
+		DA4E9167168F3ECC00046BD9 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9166168F3ECB00046BD9 /* RoundInfo.m */; };
+		DA4E9168168F3ECC00046BD9 /* RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9166168F3ECB00046BD9 /* RoundInfo.m */; };
 		DA53818D15BD887900D1413B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DA53818C15BD887900D1413B /* menu.png */; };
 		DA53818E15BD887900D1413B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DA53818C15BD887900D1413B /* menu.png */; };
 		DA53819315BD8A4200D1413B /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = DA53819015BD8A4200D1413B /* pause.png */; };
@@ -505,6 +511,10 @@
 		DA00F37D15A9DC92005B2F4B /* app2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app2.png; sourceTree = "<group>"; };
 		DA00F37E15A9DC92005B2F4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DA00F37F15A9DC92005B2F4B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DA1BE1C8168F408D00E1D188 /* BO_MatchLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BO_MatchLog.h; path = Database/BO_MatchLog.h; sourceTree = "<group>"; };
+		DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BO_MatchLog.m; path = Database/BO_MatchLog.m; sourceTree = "<group>"; };
+		DA1BE1CA168F408D00E1D188 /* BO_RoundInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BO_RoundInfo.h; path = Database/BO_RoundInfo.h; sourceTree = "<group>"; };
+		DA1BE1CB168F408D00E1D188 /* BO_RoundInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BO_RoundInfo.m; path = Database/BO_RoundInfo.m; sourceTree = "<group>"; };
 		DA20D20115D16CF500FB22B9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DA279BEE15B16BB400C6B1DC /* AFPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFPickerView.h; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.h; sourceTree = "<group>"; };
 		DA279BEF15B16BB400C6B1DC /* AFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFPickerView.m; path = ../Controls/AFKPickerView/PickerView/AFPickerView/AFPickerView.m; sourceTree = "<group>"; };
@@ -619,6 +629,8 @@
 		DA4E915C168F3BC400046BD9 /* RoomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomDelegate.h; path = "Business Logic/RoomDelegate.h"; sourceTree = "<group>"; };
 		DA4E9161168F3C6400046BD9 /* LocalRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalRoom.h; path = "Business Logic/LocalRoom.h"; sourceTree = "<group>"; };
 		DA4E9162168F3C6400046BD9 /* LocalRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalRoom.m; path = "Business Logic/LocalRoom.m"; sourceTree = "<group>"; };
+		DA4E9165168F3ECB00046BD9 /* RoundInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundInfo.h; path = Model/RoundInfo.h; sourceTree = "<group>"; };
+		DA4E9166168F3ECB00046BD9 /* RoundInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundInfo.m; path = Model/RoundInfo.m; sourceTree = "<group>"; };
 		DA53818C15BD887900D1413B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = "Resources-iPad/menu.png"; sourceTree = "<group>"; };
 		DA53819015BD8A4200D1413B /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = "Resources-iPad/pause.png"; sourceTree = "<group>"; };
 		DA53819115BD8A4200D1413B /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = continue.png; path = "Resources-iPad/continue.png"; sourceTree = "<group>"; };
@@ -1388,6 +1400,8 @@
 				DA4E90BF168F3ADD00046BD9 /* UserInfo.m */,
 				DAE86A571674A9B0005E5A5B /* SubmitedScoreInfo.h */,
 				DAE86A581674A9B0005E5A5B /* SubmitedScoreInfo.m */,
+				DA4E9165168F3ECB00046BD9 /* RoundInfo.h */,
+				DA4E9166168F3ECB00046BD9 /* RoundInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1603,6 +1617,10 @@
 		DAEB2BB7166B7F800044706E /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				DA1BE1C8168F408D00E1D188 /* BO_MatchLog.h */,
+				DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */,
+				DA1BE1CA168F408D00E1D188 /* BO_RoundInfo.h */,
+				DA1BE1CB168F408D00E1D188 /* BO_RoundInfo.m */,
 				DAEB2BB8166B7FAD0044706E /* Database.h */,
 				DAEB2BB9166B7FAD0044706E /* Database.m */,
 				DAEB2BC0166B88FA0044706E /* TKDDatabase.h */,
@@ -2152,6 +2170,9 @@
 				DA4E915D168F3BC400046BD9 /* RemoteRoom.m in Sources */,
 				DA4E915F168F3BC400046BD9 /* Room.m in Sources */,
 				DA4E9163168F3C6400046BD9 /* LocalRoom.m in Sources */,
+				DA4E9167168F3ECC00046BD9 /* RoundInfo.m in Sources */,
+				DA1BE1CC168F408D00E1D188 /* BO_MatchLog.m in Sources */,
+				DA1BE1CE168F408D00E1D188 /* BO_RoundInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2267,6 +2288,9 @@
 				DA4E915E168F3BC400046BD9 /* RemoteRoom.m in Sources */,
 				DA4E9160168F3BC400046BD9 /* Room.m in Sources */,
 				DA4E9164168F3C6400046BD9 /* LocalRoom.m in Sources */,
+				DA4E9168168F3ECC00046BD9 /* RoundInfo.m in Sources */,
+				DA1BE1CD168F408D00E1D188 /* BO_MatchLog.m in Sources */,
+				DA1BE1CF168F408D00E1D188 /* BO_RoundInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

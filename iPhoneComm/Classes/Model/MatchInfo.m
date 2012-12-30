@@ -8,10 +8,11 @@
 
 #import "MatchInfo.h"
 #import "ServerSetting.h"
+#import "RoundInfo.h"
 
 @implementation MatchInfo
 
-@synthesize currentRound,redSideScore,blueSideScore,currentRemainTime,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,winByType,gameId,isRedToBeWinner,gameStatus,currentMatch,matchId;
+@synthesize currentRound,redSideScore,blueSideScore,currentRemainTime,blueSideWarning,redSideWarning,preGameStatus,pointGapReached,warningMaxReached,statusRemark,winByType,gameId,isRedToBeWinner,gameStatus,currentMatch,matchId,currentRoundInfo;
 
 -(id) initWithGameSetting:(ServerSetting *)setting
 {
@@ -20,7 +21,8 @@
     {
         matchId = [UtilHelper stringWithUUID];
         gameStatus=kStatePrepareGame;
-        currentRound=1;        
+        currentRound=1;
+        currentRoundInfo=nil;
         currentMatch=setting.startScreening;
         blueSideScore=0;
         redSideScore=0;
@@ -35,7 +37,8 @@
 {
     matchId = [UtilHelper stringWithUUID];
     gameStatus=kStatePrepareGame;
-    currentRound=1;        
+    currentRound=1;    
+    currentRoundInfo=nil;
     currentMatch=setting.startScreening;
     blueSideScore=0;
     redSideScore=0;

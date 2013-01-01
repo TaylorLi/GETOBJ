@@ -84,7 +84,7 @@ typedef enum {
 } GameSettingType;
 
 typedef enum {
-    ScoreOperateTypeScore=0,//得分
+    ScoreOperateTypeScore=0,//得分,包括客户端加分和服务器加减分
     ScoreOperateTypeDeduction=1,//两个警告导致的对方加分
     ScoreOperateTypeWarmning=2,//警告标志，一旦添加警告就会添加一个该类型的记录
 } ScoreOperateType;

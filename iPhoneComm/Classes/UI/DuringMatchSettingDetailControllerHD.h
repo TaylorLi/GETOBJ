@@ -24,7 +24,7 @@ typedef enum {
     TableViewSummaryReport=2
 } TableViewType;
 
-@interface DuringMatchSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate,UITableViewDataSource> 
+@interface DuringMatchSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate> 
 {
     
     UIPopoverController *popoverController;
@@ -32,7 +32,7 @@ typedef enum {
     id detailItem;
 	UIBarButtonItem *startButton;
     Boolean isChangeSetting;
-    NSMutableDictionary *detailScoreLogs;
+    NSMutableDictionary *detailScoreLogs;//round,logs
     NSArray *tabControlls;
 }
 
@@ -43,6 +43,7 @@ typedef enum {
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMatch;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMisc;
 @property (strong,nonatomic) UITableViewController *detailControllerJudge;
+@property (strong,nonatomic) UINavigationController *detailControllerReportNav;
 @property (strong,nonatomic) UITableViewController *detailControllerMatchDetailReport;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMainMenu;
 @property (strong,nonatomic) GameInfo *orgGameInfo;
@@ -54,6 +55,6 @@ typedef enum {
 - (IBAction)cancelSave;
 -(void) bindSettingGroupData:(int)group;
 -(void)endMatch;
--(void)refreshJudges;
-
+-(void)refreshDatasource;
+-(void)bindAllInfo;
 @end

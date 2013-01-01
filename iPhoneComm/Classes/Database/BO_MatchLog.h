@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
 
+@class MatchLog;
 @interface BO_MatchLog : BOBase
 
 + (BO_MatchLog*) getInstance;
 
 
+-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
 @end

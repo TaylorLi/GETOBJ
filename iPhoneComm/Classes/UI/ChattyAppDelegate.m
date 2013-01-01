@@ -157,6 +157,7 @@ static ChattyAppDelegate* _instance;
     rootControl.showingTabIndex=tabIndex;
     detailControl.showingTabIndex=tabIndex;
     [self swithView:duringMathSplitViewCtl.view];
+    [detailControl refreshDatasource];
 }
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
 {
@@ -360,5 +361,32 @@ static ChattyAppDelegate* _instance;
     NSLog(@"Application Terminate");
     [[AppConfig getInstance] saveGameInfoToFile];
 }
+
+#if __IPAD_OS_VERSION_MAX_ALLOWED >= __IPAD_6_0
+
+typedef enum {
+    UIInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),
+    UIInterfaceOrientationMaskLandscapeLeft = (1 << UIInterfaceOrientationLandscapeLeft),
+    UIInterfaceOrientationMaskLandscapeRight = (1 << UIInterfaceOrientationLandscapeRight),
+    UIInterfaceOrientationMaskPortraitUpsideDown = (1 << UIInterfaceOrientationPortraitUpsideDown),
+    UIInterfaceOrientationMaskLandscape =
+    (UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight),
+    UIInterfaceOrientationMaskAll =
+    (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft |
+     UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown),
+    UIInterfaceOrientationMaskAllButUpsideDown =
+    (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft |
+     UIInterfaceOrientationMaskLandscapeRight),
+} UIInterfaceOrientationMask;
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    
+    return (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft |
+            UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown);
+    
+    
+}
+#endif
 
 @end

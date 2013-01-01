@@ -80,6 +80,7 @@
 -(void)resetTimeEnd:(id)sender;
 -(void)toggleReorignizeTimeBox;
 -(void)warningPlayer:(Boolean) isForRedSide andCount:(NSInteger) count;
+-(void)warningPlayer:(Boolean) isForRedSide andCount:(NSInteger) count byServer:(BOOL) isByServer;
 -(void)warningAddToBluePlayer;
 -(void)warningAddToRedPlayer;
 -(void)warningMinusToBluePlayer;
@@ -131,6 +132,7 @@
 -(void)addMatchLogWithEvent:(NSString *) _events andIsReportScore:(BOOL) report andEventType:(EventType) _eventType;
 -(MatchLog *)prepareMatchLogWithEvent:(NSString *) _events andIsReportScore:(BOOL) report andEventType:(EventType) _eventType;
 -(void)addMatchLogForReportScore:(NSInteger)score isForRedside:(BOOL) redside byJudgeSeq:(NSInteger) judgeSeq;
+-(void)updateRoundInfo;
 @end 
 
 @implementation ScoreBoardViewController
@@ -391,9 +393,12 @@
 
 #pragma mark -
 #pragma mark warning
+-(void)warningPlayer:(Boolean) isForRedSide andCount:(NSInteger) count{
+    [self warningPlayer:isForRedSide andCount:count byServer:YES];
+}
 //warming,when 2 warning to be a Deduction(other side score +1)
--(void)warningPlayer:(Boolean) isForRedSide andCount:(NSInteger)count{
-    [self addMatchLogWithEvent:@"WARN" andIsReportScore:YES andEventType:isForRedSide?EventRed:EventBlue];
+-(void)warningPlayer:(Boolean) isForRedSide andCount:(NSInteger) count byServer:(BOOL) isByServer{
+    [self addMatchLogWithEvent:isByServer?@"WARN*":@"WARN" andIsReportScore:YES andEventType:isForRedSide?EventRed:EventBlue];
     if(isForRedSide){
         if(chatRoom.gameInfo.currentMatchInfo.redSideWarning+count<0)
             return;
@@ -668,7 +673,7 @@
     int time2=floor(chatRoom.gameInfo.currentMatchInfo.currentRemainTime)*1000;
     
     if(time1==time2){
-        NSLog(@"%i,%i",time1,time2);
+        //NSLog(@"%i,%i",time1,time2);
         int min = chatRoom.gameInfo.currentMatchInfo.currentRemainTime/60;
         int sec=fmod(chatRoom.gameInfo.currentMatchInfo.currentRemainTime,60);
         [self drawRemainTime:chatRoom.gameInfo.currentMatchInfo.currentRemainTime];
@@ -681,9 +686,7 @@
             chatRoom.gameInfo.currentMatchInfo.currentRemainTime = 0.0f;
             [self pauseTime:YES];
             [player playSoundWithFullPath:kSoundsRoundEnd];
-            chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.endTime=[NSDate date];
-            [[BO_RoundInfo getInstance] updateObject:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo];
-            chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=nil;
+            [self updateRoundInfo];
             [self addMatchLogWithEvent:@"END" andIsReportScore:NO andEventType:EventBoth];
             //比赛结束条件1：在所有回合结束后，得分间有差距；
             //加时赛时，有选手得分
@@ -795,8 +798,8 @@
 
 -(void)fightimeReached:(UIFighterBox *)fighterbox
 {
-    [self warningAddToRedPlayer];
-    [self warningAddToBluePlayer];
+    [self warningPlayer:YES andCount:1 byServer:NO];
+    [self warningPlayer:NO andCount:1 byServer:NO];
     //warmning competitor/instructor when point is established
     //[player playSoundWithFullPath:kSoundsPointFightTimeReached];
 }
@@ -1448,8 +1451,8 @@
 - (void)exitProcess {
     [AppConfig getInstance].isGameStart=NO;
     // Close the room
-    chatRoom.gameInfo.gameEnded=YES;
-    chatRoom.gameInfo.gameEndTime=[NSDate date];
+    //chatRoom.gameInfo.gameEnded=YES;
+    //chatRoom.gameInfo.gameEndTime=[NSDate date];
     [self setMenuByGameStatus:kStateGameExit];
     [self sendServerStatusAndDesc:nil];
     //[[AppConfig getInstance].invalidServerPeerIds addObject:chatRoom.bluetoothServer.serverSession.peerID];
@@ -1890,8 +1893,11 @@
         waitUserPanel=nil;
     }    
     if(chatRoom.gameInfo.currentMatchInfo.currentRoundInfo==nil){
-        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=[[RoundInfo alloc] initWithRoundSeq:chatRoom.gameInfo.currentMatchInfo.currentRound andMatchId:chatRoom.gameInfo.currentMatchInfo.matchId andStartTime:[NSDate date]];
-        [[BO_RoundInfo getInstance] insertObject:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=[[BO_RoundInfo getInstance] retreiveRoundByMatchId:chatRoom.gameInfo.currentMatchInfo.matchId andRoundSeq:chatRoom.gameInfo.currentMatchInfo.currentRound];
+        if(chatRoom.gameInfo.currentMatchInfo.currentRoundInfo==nil){
+            chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=[[RoundInfo alloc] initWithRoundSeq:chatRoom.gameInfo.currentMatchInfo.currentRound andMatchId:chatRoom.gameInfo.currentMatchInfo.matchId andStartTime:[NSDate date]];
+            [[BO_RoundInfo getInstance] insertObject:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo];
+        }    
     }
     [self addMatchLogWithEvent:@"START" andIsReportScore:NO andEventType:EventBoth];
     [self pauseTime:NO];
@@ -2207,7 +2213,7 @@
     UISplitViewController *splitView=[ChattyAppDelegate getInstance].duringMathSplitViewCtl;
     if(splitView.view.superview!=nil){
         DuringMatchSettingDetailControllerHD *settingDetail= [splitView.viewControllers objectAtIndex:1];
-        [settingDetail refreshJudges];
+        [settingDetail refreshDatasource];
     }
 }
 
@@ -2251,18 +2257,18 @@
     if(![self.view.subviews containsObject:showWinnerBoxPanel]){
         [self.view addSubview:showWinnerBoxPanel];	
         [showWinnerBoxPanel showFromPoint:[self.view center]];
-    }    
-}
--(void)showWinnerEndAndNextRound:(id)data
-{
-    chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.endTime=[NSDate date];
-    [[BO_RoundInfo getInstance] updateObject:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo];
-    chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=nil;
+    }
     [self addMatchLogWithEvent:@"END" andIsReportScore:NO andEventType:EventBoth];
     chatRoom.gameInfo.currentMatchInfo.isRedToBeWinner=showWinnerBoxPanel.winnerIsRedSide;
     chatRoom.gameInfo.currentMatchInfo.winByType=showWinnerBoxPanel.winnerWinType;
+    [self updateRoundInfo];
     [self setMenuByGameStatus:kStateGameEnd]; 
+    chatRoom.gameInfo.gameEnded=YES;
+    chatRoom.gameInfo.gameEndTime=[NSDate date];
     [[BO_GameInfo getInstance] updateAllGameInfo:chatRoom.gameInfo];
+}
+-(void)showWinnerEndAndNextRound:(id)data
+{    
     int nextCourt=[[data objectAtIndex:1] intValue];
     NSString *profileId=[data objectAtIndex:0];
     [self goToNextMatchWithProfileId:profileId startCourt:nextCourt];
@@ -2482,7 +2488,7 @@
         blueScoreInfo=[NSString stringWithFormat:@"%02i",currentMatchInfo.blueSideScore];
         redScoreInfo=[NSString stringWithFormat:@"%02i",currentMatchInfo.redSideScore];
     }
-    MatchLog *log = [[MatchLog alloc] initWithMatchId:currentMatchInfo.matchId andRound:currentMatchInfo.currentRound andEvents:_events andBlueScore:blueScoreInfo andRedScore:redScoreInfo andIsSubmitedScore:NO andSubmitedScoreInfo:nil andRoundTime:roundTime andEventType:_eventType];
+    MatchLog *log = [[MatchLog alloc] initWithMatchId:currentMatchInfo.matchId andRound:currentMatchInfo.currentRound andEvents:_events andBlueScore:blueScoreInfo andRedScore:redScoreInfo andRoundTime:roundTime andEventType:_eventType];
     return log;
 }
 -(void)addMatchLogWithEvent:(NSString *) _events andIsReportScore:(BOOL) report andEventType:(EventType) _eventType
@@ -2532,5 +2538,19 @@
         }
     }
     [[BO_MatchLog getInstance] insertObject:log];
+}
+
+-(void)updateRoundInfo{
+    if(chatRoom.gameInfo.currentMatchInfo.currentRoundInfo!=nil){
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.endTime=[NSDate date];
+        NSDictionary * roundInfo=[[BO_SubmitedScoreInfo getInstance] querySideScoreOfRoundSeq:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.round matchId:chatRoom.gameInfo.currentMatchInfo.matchId];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.blueScore=[[roundInfo objectForKey:@"BLUE_SCORE"] intValue];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.blueWarnming=[[roundInfo objectForKey:@"BLUE_WARMNING"] intValue];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.redScore=[[roundInfo objectForKey:@"RED_SCORE"] intValue];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.redWarnming=[[roundInfo objectForKey:@"RED_WARMNING"] intValue];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.roundWinnerisBlue=chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.blueScore- chatRoom.gameInfo.currentMatchInfo.currentRoundInfo.redScore>0;
+        [[BO_RoundInfo getInstance] updateObject:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo];
+        chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=nil;
+    }
 }
 @end

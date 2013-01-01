@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
 
+@class  RoundInfo;
 @interface BO_RoundInfo : BOBase
 
 + (BO_RoundInfo*) getInstance;
 
+-(RoundInfo *)retreiveRoundByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
+
+-(NSArray *)queryListByMatchId:(NSString *)matchId;
 @end

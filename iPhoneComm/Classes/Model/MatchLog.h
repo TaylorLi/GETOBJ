@@ -28,15 +28,12 @@
 @property (nonatomic,strong) NSString *redEvents;
 @property (nonatomic,strong) NSString *blueScore;
 @property (nonatomic,strong) NSString *redScore;
-@property (nonatomic) BOOL isSubmitedScore;
-@property (nonatomic,strong) NSString *submitedScoreInfo;
 
 -(id) initWithMatchId:(NSString *)_matchId andRound:(NSInteger)_round andblueScoreByJudge1:(NSString *)_blueScoreByJudge1
    andblueScoreByJudge2:(NSString *)_blueScoreByJudge2 andblueScoreByJudge3:(NSString *)_blueScoreByJudge3 andblueScoreByJudge4:(NSString *)_blueScoreByJudge4 andredScoreByJudge1:(NSString *)_redScoreByJudge1
-  andredScoreByJudge2:(NSString *)_redScoreByJudge2 andredScoreByJudge3:(NSString *)_redScoreByJudge3 andredScoreByJudge4:(NSString *)_redScoreByJudge4 andEvents:(NSString *) _events andBlueScore:(NSString *)_blueScore andRedScore:(NSString *)_redScore andIsSubmitedScore:(BOOL)_isSubmitedScore
- andSubmitedScoreInfo:(NSString *)_submitedScoreInfo andRoundTime:(NSString *)_roundTime andEventType:(EventType)_eventType; 
+  andredScoreByJudge2:(NSString *)_redScoreByJudge2 andredScoreByJudge3:(NSString *)_redScoreByJudge3 andredScoreByJudge4:(NSString *)_redScoreByJudge4 andEvents:(NSString *) _events andBlueScore:(NSString *)_blueScore andRedScore:(NSString *)_redScore  andRoundTime:(NSString *)_roundTime andEventType:(EventType)_eventType; 
 
 
--(id) initWithMatchId:(NSString *)_matchId andRound:(NSInteger)_round andEvents:(NSString *) _events andBlueScore:(NSString *)_blueScore andRedScore:(NSString *)_redScore  andIsSubmitedScore:(BOOL)_isSubmitedScore andSubmitedScoreInfo:(NSString *)_submitedScoreInfo andRoundTime:(NSString *)_roundTime andEventType:(EventType)_eventType; 
+-(id) initWithMatchId:(NSString *)_matchId andRound:(NSInteger)_round andEvents:(NSString *) _events andBlueScore:(NSString *)_blueScore andRedScore:(NSString *)_redScore andRoundTime:(NSString *)_roundTime andEventType:(EventType)_eventType; 
 
 @end

@@ -154,6 +154,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    showingTabIndex=indexPath.row;
     [detailViewController bindSettingGroupData:[indexPath row]];
 }
 

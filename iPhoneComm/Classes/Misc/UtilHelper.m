@@ -31,7 +31,7 @@
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     //[dateFormatter setDateFormat:@"hh:mm:ss"]
     [dateFormatter setDateFormat:format];
-    NSString *d= [dateFormatter stringFromDate:[NSDate date]];
+    NSString *d= [dateFormatter stringFromDate:date];
     return d;
 }
 //从文件中反序列化反序列化

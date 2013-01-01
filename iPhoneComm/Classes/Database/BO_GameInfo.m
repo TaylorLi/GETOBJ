@@ -13,7 +13,10 @@
 #import "BO_MatchInfo.h"
 #import "JudgeClientInfo.h"
 #import "GameInfo.h"
+#import "MatchInfo.h"
 #import "ServerSetting.h"
+#import "RoundInfo.h"
+#import "BO_RoundInfo.h"
 
 static BO_GameInfo* instance;
 @implementation BO_GameInfo
@@ -78,6 +81,7 @@ static BO_GameInfo* instance;
     if(gameInfo!=nil){        
         gameInfo.gameSetting= [[BO_ServerSetting getInstance] queryObjectBySql:@"select * from ServerSetting where gameId=?" parameters:[[NSArray alloc] initWithObjects:gameInfo.gameId,nil]];
         gameInfo.currentMatchInfo=[[BO_MatchInfo getInstance] queryObjectBySql:@"select * from MatchInfo where gameId=? and currentMatch=?" parameters:[[NSArray alloc] initWithObjects:gameInfo.gameId,[NSNumber numberWithInt:gameInfo.currentMatch] , nil]];
+        gameInfo.currentMatchInfo.currentRoundInfo=[[BO_RoundInfo getInstance] retreiveRoundByMatchId:gameInfo.currentMatchInfo.matchId andRoundSeq:gameInfo.currentMatchInfo.currentRound];
         gameInfo.clients=[[NSMutableDictionary alloc] init];
         for (JudgeClientInfo *clt in [[BO_JudgeClientInfo getInstance] queryList:@"select * from JudgeClientInfo where gameId=?" parameters:[[NSArray alloc] initWithObjects:gameInfo.gameId,nil]]) {
             [gameInfo.clients setObject:clt forKey:clt.uuid];

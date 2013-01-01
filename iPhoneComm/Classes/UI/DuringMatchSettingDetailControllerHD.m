@@ -24,6 +24,8 @@
 #import "BO_ScoreInfo.h"
 #import "BO_ServerSetting.h"
 #import "BO_UserInfo.h"
+#import "DetailReportViewController.h"
+#import "SummaryReportViewController.h"
 
 @interface DuringMatchSettingDetailControllerHD ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -43,7 +45,7 @@
 
 @synthesize toolbar, popoverController, detailItem;
 @synthesize detailControllerMatch,detailControllerMisc,detailControllerJudge,detailControllerMainMenu,relateGameServer,
-detailControllerMatchDetailReport;
+detailControllerMatchDetailReport,detailControllerReportNav;
 @synthesize orgGameInfo,currentRemainTime,btnRestartServer,showingTabIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -76,8 +78,7 @@ detailControllerMatchDetailReport;
     hideSettingRecg.direction= UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:hideSettingRecg];
 }
-
--(void)viewWillAppear:(BOOL)animated{
+-(void)bindAllInfo{
     orgGameInfo=[relateGameServer.chatRoom.gameInfo copyWithZone:nil];
     [self bindSettingGroupData:1];
     [self bindSettingGroupData:2];
@@ -85,22 +86,26 @@ detailControllerMatchDetailReport;
     [self bindSettingGroupData:4];
     [self bindSettingGroupData:0]; 
     tabControlls = [[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,
-                    detailControllerMatchDetailReport,detailControllerMainMenu, nil];
+                    detailControllerReportNav,detailControllerMainMenu, nil];
     if(showingTabIndex<0||showingTabIndex>tabControlls.count)
         showingTabIndex=0;
     [self setSettingTable:[tabControlls objectAtIndex:showingTabIndex]];
     isChangeSetting=FALSE;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self bindAllInfo];
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
+}
+- (void)viewDidUnload
+{    
     detailControllerMatch=nil;
     detailControllerMisc=nil;
     detailControllerJudge=nil;
     detailControllerMainMenu=nil;
+    detailControllerMatchDetailReport=nil;
     orgGameInfo=nil;
-}
-- (void)viewDidUnload
-{    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -262,18 +267,23 @@ detailControllerMatchDetailReport;
         }
             break;
         case 3:
-        {
-            if(detailControllerMatchDetailReport==nil){
-                
-                detailControllerMatchDetailReport =  [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                detailControllerMatchDetailReport.tableView.dataSource=self;
-                detailControllerMatchDetailReport.tableView.tag = TableViewDetailReport;
-                //[detailControllerJudge.tableView reloadData];
-                //detailControllerJudge.tableView.delegate=self;
-            }
-            [self retreiveDetailScoreLogs];
+        {         
+            if(detailControllerReportNav==nil){
+                if(detailControllerMatchDetailReport==nil){
+                    
+                    detailControllerMatchDetailReport =  [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+                    detailControllerMatchDetailReport.tableView.delegate=self;
+                    detailControllerMatchDetailReport.tableView.dataSource=self;
+                    detailControllerMatchDetailReport.tableView.tag = TableViewDetailReport;
+                    //[detailControllerJudge.tableView reloadData];
+                    //detailControllerJudge.tableView.delegate=self;
+                }                
+                detailControllerReportNav=[[UINavigationController alloc] initWithRootViewController:detailControllerMatchDetailReport];
+                detailControllerReportNav.navigationBar.hidden=YES;
+            }   
             [detailControllerMatchDetailReport.tableView reloadData];
-            [self setSettingTable:detailControllerMatchDetailReport];            
+            //[self retreiveDetailScoreLogs];
+            [self setSettingTable:detailControllerReportNav];            
         }
             break;
         case 4:
@@ -325,7 +335,7 @@ detailControllerMatchDetailReport;
 -(void)setSettingTable:(UIViewController *) control
 {
     NSArray *array=[[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,
-                    detailControllerMatchDetailReport,detailControllerMainMenu, nil];
+                    detailControllerReportNav,detailControllerMainMenu, nil];
     for (UIViewController *ctl in array) {
         if(control==ctl){            
             if(control.view.superview==nil){
@@ -466,7 +476,6 @@ detailControllerMatchDetailReport;
 {
     if(relateGameServer.view!=nil)
     {
-        
         [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
         [relateGameServer updateForGameSetting:NO];
     }
@@ -532,7 +541,8 @@ detailControllerMatchDetailReport;
             return 2;
         case TableViewDetailReport:
         {
-            return detailScoreLogs.count;
+            return 1;
+            //return detailScoreLogs.count;
         }
             break;
         case TableViewSummaryReport:
@@ -563,7 +573,8 @@ detailControllerMatchDetailReport;
             break;
         case TableViewDetailReport:
         {
-            return [[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:section]] count];
+            //return [[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:section]] count];
+            return relateGameServer.chatRoom.gameInfo.currentMatchInfo.currentRound +1;
         }
             break;
         case TableViewSummaryReport:
@@ -584,12 +595,13 @@ detailControllerMatchDetailReport;
         }
         case TableViewDetailReport:
         {
-            return [NSString stringWithFormat:@"Round %@",[detailScoreLogs.allKeys objectAtIndex:section]];
+            return @"";
+            //return [NSString stringWithFormat:@"Round %@",[detailScoreLogs.allKeys objectAtIndex:section]];
         }
         case TableViewSummaryReport:
         {
             return @"";
-
+            
         }
         default:
             return @"";
@@ -671,37 +683,51 @@ detailControllerMatchDetailReport;
             break;
         case TableViewDetailReport:
         {
-            BOOL single=indexPath.row %2 ==1;
-            static NSString* serverOptIdentifier1 = @"ScoreLogDetailIdentifier1";
-            static NSString* serverOptIdentifier2 = @"ScoreLogDetailIdentifier2";
-            cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:single? serverOptIdentifier1:serverOptIdentifier2];
+            cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ScoreReportCell"];
             if (cell == nil) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ScoreDetailLogTableCell"
-                                                             owner:self options:nil];
-                if ([nib count] == 0) {
-                    NSLog(@"failed to load ScoreDetailLogTableCell nib file!");
-                }
-                else{
-                    cell=[nib objectAtIndex:0];
-                    if(single){
-                        cell.backgroundColor=[UIColor colorWithRed:75 green:75 blue:155 alpha:0.2];
-                    }
-                }
-            }           
-            ScoreInfo *sc=[[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-            UILabel *judgeNameLabel = (UILabel *)[cell viewWithTag:kTagScoreJugdeName];
-            judgeNameLabel.text=sc.clientName;
-            UILabel *scoreSideLabel = (UILabel *)[cell viewWithTag:kTagScoreSide];
-            scoreSideLabel.text=sc.swipeType==kSideRed?@"Red":@"Blue";
-            UILabel *scoreNumLabel = (UILabel *)[cell viewWithTag:kTagScoreNum];
-            if(sc.swipeType==kSideRed){
-                scoreNumLabel.textColor=[UIColor redColor];
-            }else{
-                scoreNumLabel.textColor=[UIColor blueColor];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ScoreReportCell"];
+            }                           
+            if(indexPath.row==0){
+                cell.textLabel.text=@"Summary Report";
             }
-            scoreNumLabel.text=[NSString stringWithFormat:@"%i",sc.swipeType== kSideRed?sc.redSideScore: sc.blueSideScore];
-            UILabel *scoreCreateTimeLabel = (UILabel *)[cell viewWithTag:kTagScoreCreateTime];
-            scoreCreateTimeLabel.text=[UtilHelper formateTime:sc.createTime];
+            else{
+                cell.textLabel.text=[NSString stringWithFormat: @"Round %i Detail Report",relateGameServer.chatRoom.gameInfo.currentMatchInfo.currentRound +1 -indexPath.row];
+            }
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+            return cell;
+            /*Score Log
+             BOOL single=indexPath.row %2 ==1;
+             static NSString* serverOptIdentifier1 = @"ScoreLogDetailIdentifier1";
+             static NSString* serverOptIdentifier2 = @"ScoreLogDetailIdentifier2";
+             cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:single? serverOptIdentifier1:serverOptIdentifier2];
+             if (cell == nil) {
+             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ScoreDetailLogTableCell"
+             owner:self options:nil];
+             if ([nib count] == 0) {
+             NSLog(@"failed to load ScoreDetailLogTableCell nib file!");
+             }
+             else{
+             cell=[nib objectAtIndex:0];
+             if(single){
+             cell.backgroundColor=[UIColor colorWithRed:75 green:75 blue:155 alpha:0.2];
+             }
+             }
+             }           
+             ScoreInfo *sc=[[detailScoreLogs objectForKey:[detailScoreLogs.allKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+             UILabel *judgeNameLabel = (UILabel *)[cell viewWithTag:kTagScoreJugdeName];
+             judgeNameLabel.text=sc.clientName;
+             UILabel *scoreSideLabel = (UILabel *)[cell viewWithTag:kTagScoreSide];
+             scoreSideLabel.text=sc.swipeType==kSideRed?@"Red":@"Blue";
+             UILabel *scoreNumLabel = (UILabel *)[cell viewWithTag:kTagScoreNum];
+             if(sc.swipeType==kSideRed){
+             scoreNumLabel.textColor=[UIColor redColor];
+             }else{
+             scoreNumLabel.textColor=[UIColor blueColor];
+             }
+             scoreNumLabel.text=[NSString stringWithFormat:@"%i",sc.swipeType== kSideRed?sc.redSideScore: sc.blueSideScore];
+             UILabel *scoreCreateTimeLabel = (UILabel *)[cell viewWithTag:kTagScoreCreateTime];
+             scoreCreateTimeLabel.text=[UtilHelper formateTime:sc.createTime];
+             */
         }
             break;
         case TableViewSummaryReport:
@@ -714,9 +740,39 @@ detailControllerMatchDetailReport;
     }
     return cell;
 }
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(tableView.tag==TableViewDetailReport)
+        return indexPath;
+    else
+        return nil;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {  
+    switch (tableView.tag) {
+        case TableViewDetailReport:
+        {    
+            showingTabIndex=3;
+            if(indexPath.row==0){
+                SummaryReportViewController *mySummaryCont = [[SummaryReportViewController alloc] initWithNibName:@"SummaryReportViewController" bundle:[NSBundle mainBundle]];
+                mySummaryCont.selMatch=relateGameServer.chatRoom.gameInfo.currentMatchInfo.currentMatch;
+                mySummaryCont.gameInfo=relateGameServer.chatRoom.gameInfo;
+                [detailControllerReportNav pushViewController:mySummaryCont animated:NO];
+            }
+            else{
+                //Initialize the detail view controller and display it.  
+                DetailReportViewController *myDetViewCont = [[DetailReportViewController alloc] initWithNibName:@"DetailReportViewController" bundle:[NSBundle mainBundle]];
+                myDetViewCont.selRound=relateGameServer.chatRoom.gameInfo.currentMatchInfo.currentRound+1 - indexPath.row;
+                myDetViewCont.gameInfo=relateGameServer.chatRoom.gameInfo;
+                [detailControllerReportNav pushViewController:myDetViewCont animated:NO];
+            }
+        }
+            break;
+    }
+    
+}  
 
--(void)refreshJudges{
+-(void)refreshDatasource{
     [detailControllerJudge.tableView reloadData];
+    [detailControllerMatchDetailReport.tableView reloadData];
 }
 
 -(void)retreiveDetailScoreLogs{

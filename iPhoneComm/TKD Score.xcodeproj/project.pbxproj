@@ -28,6 +28,11 @@
 		DA00F38115A9DC92005B2F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37E15A9DC92005B2F4B /* icon.png */; };
 		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
 		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
+		DA124B8E16909F020017AA3C /* DetailReport.html in Resources */ = {isa = PBXBuildFile; fileRef = DA124B8D16909F020017AA3C /* DetailReport.html */; };
+		DA1357331692D8D6003A6FB9 /* SummaryReport.html in Resources */ = {isa = PBXBuildFile; fileRef = DA1357321692D8D6003A6FB9 /* SummaryReport.html */; };
+		DA1357351692DE99003A6FB9 /* SummaryReportRow.html in Resources */ = {isa = PBXBuildFile; fileRef = DA1357341692DE98003A6FB9 /* SummaryReportRow.html */; };
+		DA1357381692E0E3003A6FB9 /* SummaryReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1357371692E0E2003A6FB9 /* SummaryReportViewController.m */; };
+		DA13573A1692E132003A6FB9 /* SummaryReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA1357391692E132003A6FB9 /* SummaryReportViewController.xib */; };
 		DA1BE1CC168F408D00E1D188 /* BO_MatchLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */; };
 		DA1BE1CD168F408D00E1D188 /* BO_MatchLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */; };
 		DA1BE1CE168F408D00E1D188 /* BO_RoundInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE1CB168F408D00E1D188 /* BO_RoundInfo.m */; };
@@ -483,8 +488,11 @@
 		DAEF4C9415E69813006025DD /* rend.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAEF4C9215E69813006025DD /* rend.wav */; };
 		DAEFCDD015E9B20600F70994 /* Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEFCDCF15E9B20600F70994 /* Reflection.m */; };
 		DAEFCDD115E9B20600F70994 /* Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEFCDCF15E9B20600F70994 /* Reflection.m */; };
+		DAF5023E1690811700391F8F /* DetailReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5023C1690811600391F8F /* DetailReportViewController.m */; };
+		DAF5023F1690811700391F8F /* DetailReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF5023D1690811700391F8F /* DetailReportViewController.xib */; };
 		DAF65A99159F29C6001BEA75 /* ScoreControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */; };
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
+		DAF709B116929D8E001EEB80 /* DetailReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5023C1690811600391F8F /* DetailReportViewController.m */; };
 		DAF8F5B615B13C9600497FC5 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B515B13C9600497FC5 /* UIHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -511,6 +519,12 @@
 		DA00F37D15A9DC92005B2F4B /* app2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app2.png; sourceTree = "<group>"; };
 		DA00F37E15A9DC92005B2F4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DA00F37F15A9DC92005B2F4B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DA124B8D16909F020017AA3C /* DetailReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = DetailReport.html; path = "Resources-iPad/html/DetailReport.html"; sourceTree = "<group>"; };
+		DA1357321692D8D6003A6FB9 /* SummaryReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = SummaryReport.html; path = "Resources-iPad/html/SummaryReport.html"; sourceTree = "<group>"; };
+		DA1357341692DE98003A6FB9 /* SummaryReportRow.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = SummaryReportRow.html; path = "Resources-iPad/html/SummaryReportRow.html"; sourceTree = "<group>"; };
+		DA1357361692E0E2003A6FB9 /* SummaryReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummaryReportViewController.h; path = UI/SummaryReportViewController.h; sourceTree = "<group>"; };
+		DA1357371692E0E2003A6FB9 /* SummaryReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummaryReportViewController.m; path = UI/SummaryReportViewController.m; sourceTree = "<group>"; };
+		DA1357391692E132003A6FB9 /* SummaryReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummaryReportViewController.xib; path = Classes/UI/SummaryReportViewController.xib; sourceTree = "<group>"; };
 		DA1BE1C8168F408D00E1D188 /* BO_MatchLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BO_MatchLog.h; path = Database/BO_MatchLog.h; sourceTree = "<group>"; };
 		DA1BE1C9168F408D00E1D188 /* BO_MatchLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BO_MatchLog.m; path = Database/BO_MatchLog.m; sourceTree = "<group>"; };
 		DA1BE1CA168F408D00E1D188 /* BO_RoundInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BO_RoundInfo.h; path = Database/BO_RoundInfo.h; sourceTree = "<group>"; };
@@ -942,6 +956,9 @@
 		DAEF4C9215E69813006025DD /* rend.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rend.wav; path = sounds/rend.wav; sourceTree = "<group>"; };
 		DAEFCDCE15E9B20600F70994 /* Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reflection.h; path = ../../Util/Reflection.h; sourceTree = "<group>"; };
 		DAEFCDCF15E9B20600F70994 /* Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reflection.m; path = ../../Util/Reflection.m; sourceTree = "<group>"; };
+		DAF5023B1690811600391F8F /* DetailReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailReportViewController.h; path = UI/DetailReportViewController.h; sourceTree = "<group>"; };
+		DAF5023C1690811600391F8F /* DetailReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailReportViewController.m; path = UI/DetailReportViewController.m; sourceTree = "<group>"; };
+		DAF5023D1690811700391F8F /* DetailReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailReportViewController.xib; path = Classes/UI/DetailReportViewController.xib; sourceTree = "<group>"; };
 		DAF65A98159F29C6001BEA75 /* ScoreControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreControlView.xib; sourceTree = "<group>"; };
 		DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreBoardView.xib; sourceTree = "<group>"; };
 		DAF8F5B415B13C9600497FC5 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIHelper.h; path = ../Util/UIHelper.h; sourceTree = "<group>"; };
@@ -1156,6 +1173,8 @@
 		D0B0372F0FA61471000EC42B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DA1357361692E0E2003A6FB9 /* SummaryReportViewController.h */,
+				DA1357371692E0E2003A6FB9 /* SummaryReportViewController.m */,
 				DA4E90F4168F3B6A00046BD9 /* ChattyAppDelegate.h */,
 				DA4E90F5168F3B6A00046BD9 /* ChattyAppDelegate.m */,
 				DA4E90F6168F3B6A00046BD9 /* ChattyViewController.h */,
@@ -1194,6 +1213,8 @@
 				DA4E9117168F3B6A00046BD9 /* UIWaitForUserViewController.m */,
 				DA4E9118168F3B6A00046BD9 /* WelcomeViewController.h */,
 				DA4E9119168F3B6A00046BD9 /* WelcomeViewController.m */,
+				DAF5023B1690811600391F8F /* DetailReportViewController.h */,
+				DAF5023C1690811600391F8F /* DetailReportViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1231,8 +1252,13 @@
 		DA78B47C15A96F0100E186CC /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
-				DAEF4C7F15E6796B006025DD /* TKD Score-iPad-Info.plist */,
+				DA1357391692E132003A6FB9 /* SummaryReportViewController.xib */,
+				DA1357341692DE98003A6FB9 /* SummaryReportRow.html */,
+				DA1357321692D8D6003A6FB9 /* SummaryReport.html */,
+				DA124B8D16909F020017AA3C /* DetailReport.html */,
 				DAE889BF15DF977100818E92 /* Images */,
+				DAF5023D1690811700391F8F /* DetailReportViewController.xib */,
+				DAEF4C7F15E6796B006025DD /* TKD Score-iPad-Info.plist */,
 				DAABDDE815DF4ECA00501D46 /* ShowWinnerBox.xib */,
 				DAEAD244162EF38200950C8F /* UIWaitForUserView.xib */,
 				DAEA364B15DD579700FCB8CA /* SelectWinnerBox.xib */,
@@ -2052,6 +2078,11 @@
 				DAEC17471676240000B9A3B5 /* select.png in Resources */,
 				DAEC174B167624BE00B9A3B5 /* profile-accept.png in Resources */,
 				DAEA5DDC16775FDF002128AE /* ScoreDetailLogTableCell.xib in Resources */,
+				DAF5023F1690811700391F8F /* DetailReportViewController.xib in Resources */,
+				DA124B8E16909F020017AA3C /* DetailReport.html in Resources */,
+				DA1357331692D8D6003A6FB9 /* SummaryReport.html in Resources */,
+				DA1357351692DE99003A6FB9 /* SummaryReportRow.html in Resources */,
+				DA13573A1692E132003A6FB9 /* SummaryReportViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2173,6 +2204,7 @@
 				DA4E9167168F3ECC00046BD9 /* RoundInfo.m in Sources */,
 				DA1BE1CC168F408D00E1D188 /* BO_MatchLog.m in Sources */,
 				DA1BE1CE168F408D00E1D188 /* BO_RoundInfo.m in Sources */,
+				DAF709B116929D8E001EEB80 /* DetailReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2291,6 +2323,8 @@
 				DA4E9168168F3ECC00046BD9 /* RoundInfo.m in Sources */,
 				DA1BE1CD168F408D00E1D188 /* BO_MatchLog.m in Sources */,
 				DA1BE1CF168F408D00E1D188 /* BO_RoundInfo.m in Sources */,
+				DAF5023E1690811700391F8F /* DetailReportViewController.m in Sources */,
+				DA1357381692E0E3003A6FB9 /* SummaryReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

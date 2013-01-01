@@ -28,4 +28,12 @@ static BO_RoundInfo* instance;
     return instance;
 }
 
+-(RoundInfo *)retreiveRoundByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq
+{
+    return [self queryObjectBySql:@"select * from RoundInfo where matchId=? and round=?" parameters:[[NSArray alloc] initWithObjects:matchId,[NSNumber numberWithInt:roundSeq], nil]];
+}
+
+-(NSArray *)queryListByMatchId:(NSString *)matchId{
+    return [self queryList:@"select * from RoundInfo where matchId=?" parameters:[[NSArray alloc] initWithObjects:matchId, nil]];
+}
 @end

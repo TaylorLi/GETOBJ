@@ -10,7 +10,7 @@
 
 @implementation RoundInfo
 
-@synthesize roundId,matchId,round,startTime,endTime,blueScore,redScore;
+@synthesize roundId,matchId,round,startTime,endTime,blueScore,redScore,redWarnming,blueWarnming,roundWinnerisBlue;
 
 
 -(id) initWithRoundSeq:(NSInteger) _round andMatchId:(NSString *) _matchId andStartTime:(NSDate *) _startTime

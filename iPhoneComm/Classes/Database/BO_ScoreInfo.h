@@ -16,4 +16,6 @@
 
 -(NSArray *)queryScoreByGameId:(NSString *)gameId;
 -(NSArray *)queryScoreByGameId:(NSString *)gameId andMatchSeq:(NSInteger)matchSeq;
+-(NSArray *)queryScoreStaticByGameId:(NSString *)gameId matchId:(NSString *)_matchId roundSeq:(NSInteger)_roundSeq;
+
 @end

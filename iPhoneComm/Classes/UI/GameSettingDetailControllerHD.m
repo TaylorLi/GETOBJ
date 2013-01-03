@@ -468,7 +468,7 @@
                 }];
                 if(si.currentJudgeDevice==JudgeDeviceKeyboard && ![AppConfig getInstance].productSNValidate){
                     si.currentJudgeDevice=JudgeDeviceiPhone;
-                    [UIHelper showAlert:@"Warmning" message:@"Product not active yet,can not use [Peripheral Device]." func:nil];
+                    [UIHelper showAlert:@"Warmning" message:@"Product not active yet,can not use [Peripheral Device] mode." func:nil];
                 }
                 [detailControllerSystemSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     NSArray *clientDeviceType=[[NSArray alloc] initWithObjects:@"iPod or iPhone",@"Peripheral Device", nil];

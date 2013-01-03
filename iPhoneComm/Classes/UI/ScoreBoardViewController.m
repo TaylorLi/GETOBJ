@@ -1643,6 +1643,10 @@
     }
     //恢复原来的圆形菜单，2012-11-24
     [self setupMenu];    
+    if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceKeyboard &&![AppConfig getInstance].productSNValidate)  
+    {
+        [UIHelper showAlert:@"Warmning" message:@"Product not active yet,can not use [Peripheral Device]  mode." func:nil];
+    }
     if(chatRoom.isRestoredGame)
     {
         if(chatRoom.gameInfo.clients!=nil)

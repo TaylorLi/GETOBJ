@@ -28,6 +28,9 @@
 #import "AppConfig.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "BO_ServerSetting.h"
+#import "SecretHelper.h"
+#import "Reachability.h"
+#import "RequestManager.h"
 
 static AppConfig* instance;
 
@@ -45,6 +48,10 @@ static AppConfig* instance;
 @synthesize currentGameInfo;
 @synthesize isGameStart;
 @synthesize profileIndex;
+@synthesize requestTimeout;
+@synthesize settngs;
+@synthesize hasValidActive;
+
 //@synthesize currentJudgeDevice;
 
 // Initialization
@@ -72,14 +79,16 @@ static AppConfig* instance;
         }
     }
     
-    
+    requestTimeout=20;
     timeout=30;
     //invalidServerPeerIds=[[NSMutableSet alloc] init];
-    uuid=[[UIDevice currentDevice] uniqueDeviceIdentifier];
+    uuid=[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     currentAppStep=AppStepStart;
     //currentJudgeDevice=JudgeDeviceKeyboard;
     isGameStart=NO;
     [self restoreProfileIndexFromFile];
+    [self restoreAppSettingFromFile];    
+    hasValidActive=[self testIfProductHasValidate];
     return self;
 }
 
@@ -119,6 +128,7 @@ static AppConfig* instance;
 -(void)saveGameInfoToFile
 {
     [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
+    [self saveAppSettingToFile];
     //NSLog(@"Save Game Info to file:%@",currentGameInfo);
 }
 -(void)restoreGameInfoFromFile
@@ -127,6 +137,74 @@ static AppConfig* instance;
     {
         currentGameInfo =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_SETTING_GAME_INFO];
         //NSLog(@"Restore Game Info from file:%@",currentGameInfo);
+    }
+    [self restoreAppSettingFromFile];
+    hasValidActive=[self testIfProductHasValidate];
+}
+
+-(void)saveAppSettingToFile
+{
+    [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:settngs dataKey:KEY_FILE_APP_SETTING];
+}
+-(void)restoreAppSettingFromFile
+{
+    if([UtilHelper isFileExist:KEY_FILE_SETTING])
+    {
+        settngs =  [UtilHelper deserializeFromFile:KEY_FILE_SETTING dataKey:KEY_FILE_APP_SETTING];
+    }
+    if(settngs==nil){
+        settngs =[[AppSetting alloc] init];
+    }
+}
+
+-(BOOL) testIfProductHasValidate{
+   return [self testIfProductHasValidateWithSN:settngs.productSN encryptSN:settngs.enctryProductSN];
+}
+
+-(BOOL)testIfProductHasValidateWithSN:(NSString *)_productSN encryptSN:(NSString *)encryptKey
+{
+    if(encryptKey==nil||[encryptKey isEqualToString:@""])
+    {
+        return NO;
+    }
+    else{
+        @try {
+            
+            NSString *descrptKey=[SecretHelper md5:[NSString stringWithFormat:@"TKD|%@|%@",_productSN,uuid]];            
+            if([descrptKey isEqualToString:encryptKey])
+            {
+                return YES;     
+            }
+            else
+                return NO;
+        }
+        @catch (NSException *exception) {
+            return NO;
+        }
+        @finally {
+            
+        }        
+    }
+}
+-(BOOL) productSNValidate
+{
+    if([self testIfProductHasValidate]){
+        NetworkStatus status = [[Reachability reachabilityForLocalWiFi] currentReachabilityStatus];
+        if(status==ReachableViaWiFi){
+            //10天联网时验证一次
+            if(fabs([settngs.lastProductSNValidateDate timeIntervalSinceNow])>3600*24*10)
+            {
+                return [RequestManager isActiveCurrentDeviceWithProductSN:settngs.productSN];  
+            }
+            else
+            {
+                return YES;
+            }
+        }
+        return YES;
+    }
+    else{
+        return NO;
     }
 }
 

@@ -26,14 +26,20 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "UAModalPanel.h"
+#import "DialogBoxContainer.h"
+
 ///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/PrivateFrameworks/BluetoothManager.framework
 //#import <BluetoothManager/BluetoothManager.h>
 
-@interface WelcomeViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate> {
+@interface WelcomeViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate,UAModalPanelDelegate,DialogBoxDelegate> {
+    DialogBoxContainer *regPannel;
 }
 @property (strong, nonatomic) IBOutlet UITextField *playName;
 // App delegate will call this whenever this view becomes active
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segNetwork;
 - (void)activate;
+-(void)showRegisterAndProductActiveBox;
+- (IBAction)showActiveForm:(id)sender;
 
 @end

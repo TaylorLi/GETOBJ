@@ -11,5 +11,6 @@
 @interface NSString(MD5Addition)
 
 - (NSString *) stringFromMD5;
+- (NSString *)stringByReplacingOccurrencesOfStringIngoreNil:(NSString *)target withString:(NSString *)replacement NS_AVAILABLE(10_5, 2_0);
 
 @end

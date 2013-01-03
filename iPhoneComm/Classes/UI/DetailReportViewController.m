@@ -17,6 +17,7 @@
 #import "BO_SubmitedScoreInfo.h"
 #import "GameInfo.h"
 #import "ServerSetting.h"
+#import "NSString+MD5Addition.h"
 
 @interface DetailReportViewController ()
 
@@ -69,9 +70,10 @@
    NSString *path = [[NSBundle mainBundle] pathForResource:@"DetailReport.html" ofType:nil];
    NSString *html= [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     RoundInfo *roundInfo=[[BO_RoundInfo getInstance] retreiveRoundByMatchId:gameInfo.currentMatchInfo.matchId andRoundSeq:selRound];
-    html=[html stringByReplacingOccurrencesOfString:@"%Court%" withString:[NSString stringWithFormat:@"%@%03i",gameInfo.gameSetting.screeningArea,gameInfo.currentMatch]];
-    html=[html stringByReplacingOccurrencesOfString:@"%Round%" withString:[NSString stringWithFormat:@"%i",roundInfo.round]];
-    html=[html stringByReplacingOccurrencesOfString:@"%StartTime%" withString:[UtilHelper formateDate:roundInfo.startTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];
+    NSLog(@"Round Info:%@",roundInfo);
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%Court%" withString:[NSString stringWithFormat:@"%@%03i",gameInfo.gameSetting.screeningArea,gameInfo.currentMatch]];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%Round%" withString:[NSString stringWithFormat:@"%i",roundInfo.round]];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%StartTime%" withString:[UtilHelper formateDate:roundInfo.startTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];
     NSString *endDate=@"";
     NSString *blueWinFlag=@"";
     NSString *redWinFlag=@"";
@@ -85,9 +87,9 @@
             redWinFlag=@"(W)";
         }
     }
-    html=[html stringByReplacingOccurrencesOfString:@"%EndTime%" withString:endDate];
-    html=[html stringByReplacingOccurrencesOfString:@"%BlueWin%" withString:blueWinFlag];
-    html=[html stringByReplacingOccurrencesOfString:@"%RedWin%" withString:redWinFlag];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%EndTime%" withString:endDate];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%BlueWin%" withString:blueWinFlag];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%RedWin%" withString:redWinFlag];
     NSString *rowFormat=@"<tr style='background-color: White;'> \
     <td> \
     %i    \
@@ -137,7 +139,7 @@
     for (MatchLog *log in matchLogs) {
         [logDetails appendFormat:rowFormat,log.round,log.roundTime,[self displayFoString:log.blueScoreByJudge1],[self displayFoString:log.blueScoreByJudge2],[self displayFoString:log.blueScoreByJudge3],[self displayFoString:log.blueScoreByJudge4],[self displayFoString:log.blueEvents],[self displayFoString:log.redScoreByJudge1],[self displayFoString:log.redScoreByJudge2],[self displayFoString:log.redScoreByJudge3],[self displayFoString:log.redScoreByJudge4],[self displayFoString:log.redEvents],[self displayFoString:log.blueScore],log.redScore!=nil?@":":@"",[self displayFoString:log.redScore]];
     }
-    html=[html stringByReplacingOccurrencesOfString:@"%LogDetailList%" withString:logDetails];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%LogDetailList%" withString:logDetails];
     return html;
 }
 

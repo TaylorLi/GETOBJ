@@ -63,7 +63,7 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
     @try {        
         
         [super sendEvent:event];
-        if(![AppConfig getInstance].isIPAD)
+        if(![AppConfig getInstance].isIPAD || ![AppConfig getInstance].hasValidActive)
             return;
         
         if ([event respondsToSelector:@selector(_gsEvent)]) {

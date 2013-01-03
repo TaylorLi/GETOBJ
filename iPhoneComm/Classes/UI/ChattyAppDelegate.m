@@ -93,7 +93,7 @@ static ChattyAppDelegate* _instance;
                                                  name: @"UIEventGSEventKeyUpNotification"
                                                object: nil];
     
-    wifiReach = [Reachability reachabilityForLocalWiFi];	
+    wifiReach = [Reachability reachabilityForLocalWiFi];
     [wifiReach startNotifier];
     //btManager = [BluetoothManager sharedInstance];
     //[self performSelector:@selector(testNetworkStatus) withObject:nil afterDelay:1];
@@ -101,6 +101,7 @@ static ChattyAppDelegate* _instance;
     welcomeViewController=nil;
     if([AppConfig getInstance].isIPAD)
         [[TKDDatabase getInstance] setupServerDatabase];
+    NSLog(@"uuid:%@",[AppConfig getInstance].uuid);
 }
 
 - (void)dealloc {

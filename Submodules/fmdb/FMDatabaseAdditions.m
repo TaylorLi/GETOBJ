@@ -119,10 +119,11 @@ return ret;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
-
+/*
 - (BOOL)columnExists:(NSString*)tableName columnName:(NSString*)columnName __attribute__ ((deprecated)) {
     return [self columnExists:columnName inTableWithName:tableName];
 }
+*/ 
 
 #pragma clang diagnostic pop
 

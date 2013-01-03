@@ -29,6 +29,7 @@
 #import "Definition.h"
 #import "ServerSetting.h"
 #import "GameInfo.h"
+#import "AppSetting.h"
 //当前处在那个环节
 
 @interface AppConfig : NSObject {
@@ -49,6 +50,9 @@
 //@property (nonatomic) JudgeDevice currentJudgeDevice;
 @property BOOL isGameStart;
 @property NSInteger profileIndex;
+@property  NSTimeInterval requestTimeout;
+@property (nonatomic,strong) AppSetting *settngs;
+@property BOOL hasValidActive;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 
@@ -58,4 +62,10 @@
 -(void)restoreGameInfoFromFile;
 -(void)saveProfileIndexToFile;
 -(void)restoreProfileIndexFromFile;
+-(void)saveAppSettingToFile;
+-(void)restoreAppSettingFromFile;
+-(BOOL)testIfProductHasValidateWithSN:(NSString *)_productSN encryptSN:(NSString *)encryptKey;
+-(BOOL) testIfProductHasValidate;
+-(BOOL) productSNValidate;
+
 @end

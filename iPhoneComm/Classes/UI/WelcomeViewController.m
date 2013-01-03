@@ -29,7 +29,7 @@
 #import "AppConfig.h"
 #import "ChattyAppDelegate.h"
 #import "UIHelper.h"
-
+#import "RegisterAndActiveViewController.h"
 
 @implementation WelcomeViewController
 @synthesize segNetwork;
@@ -49,6 +49,9 @@
     [self setWantsFullScreenLayout:YES];
     NSUserDefaults *nd= [NSUserDefaults standardUserDefaults];
     playName.text=[nd stringForKey:@"playName"];
+    if(playName.text==nil || [playName.text isEqual:@""]){
+        playName.text=[AppConfig getInstance].settngs.registerUsername;
+    }
 }
 -(void)viewDidUnload
 {
@@ -58,12 +61,19 @@
 }
 -(void)dealloc
 {
-
+    
 }
 // App delegate will call this whenever this view becomes active
 - (void)activate {
     // Display keyboard
-    [playName becomeFirstResponder];
+    if([AppConfig getInstance].isIPAD && ![[AppConfig getInstance] productSNValidate])
+    {
+        [self showRegisterAndProductActiveBox];    
+    }
+    else
+    {
+        [playName becomeFirstResponder];
+    }    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -106,4 +116,43 @@
         [[ChattyAppDelegate getInstance] showRoomSelection];
 	return YES;
 }
+
+#pragma mark -
+#pragma mark Register Box
+-(void)showRegisterAndProductActiveBox
+{
+    RegisterAndActiveViewController *regControl=  [[RegisterAndActiveViewController alloc] init];
+    regPannel=[[DialogBoxContainer alloc] initWithFrame:self.view.bounds title:nil loadViewController:regControl withClossButton:NO];
+    regPannel.delegate=self;
+    regPannel.formDelegate = self;
+    [self.view addSubview:regPannel];	
+    [regPannel showFromPoint:[self.view center]];
+}
+
+- (IBAction)showActiveForm:(id)sender {
+    [playName resignFirstResponder];
+    [self showRegisterAndProductActiveBox]; 
+}
+- (void)actionByLoadedView:(UAModalPanel *)modalPanel subController:(id)controller eventType:(NSInteger) type eventArgs:(NSDictionary *)args
+{
+    switch (type) {
+        case kFormResultTypeSuccess:
+        {
+            [regPannel hide];
+            regPannel = nil;
+            [playName becomeFirstResponder];
+            playName.text=[AppConfig getInstance].settngs.registerUsername;
+        }
+            break;
+        case kFormResultTypeCancel:
+        {
+            [regPannel hide];
+            regPannel = nil;
+            [playName becomeFirstResponder];
+        }
+        default:
+            break;
+    }
+}
+
 @end

@@ -29,9 +29,14 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    //[dateFormatter setDateFormat:@"hh:mm:ss"]
     [dateFormatter setDateFormat:format];
     NSString *d= [dateFormatter stringFromDate:date];
+    if(d==nil){
+        NSLog(@"date object type:%@",[date class]);
+        NSLog(@"   Normal Date = %@", date);
+        NSLog(@"Formatted Date = %@", d);
+        return @"";
+    }    
     return d;
 }
 //从文件中反序列化反序列化
@@ -167,4 +172,40 @@
     return [NSString stringWithFormat:@"%i",v];
 }
 
++(BOOL) isValidEmail:(NSString*)email
+{
+    NSString *emailRegEx = @"^\\w+((\\-\\w+)|(\\.\\w+))*@[A-Za-z0-9]+((\\.|\\-)[A-Za-z0-9]+)*.[A-Za-z0-9]+$";  
+    
+    NSPredicate *regExPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];  
+    
+    return [regExPredicate evaluateWithObject:email];  
+}
+
++(NSString *) toJson:(id)obj
+{
+    @try {
+        SBJsonWriter *wr=[[SBJsonWriter alloc] init];
+        return  [wr stringWithObject:obj];
+    }
+    @catch (NSException *exception) {
+        return exception.reason;
+    }
+    @finally {
+        
+    }
+    
+}
++(id)fromJson:(NSString *)jsonString
+{
+    @try {
+        SBJsonParser *parse=[[SBJsonParser alloc] init];
+       return [parse objectWithString:jsonString];
+    }
+    @catch (NSException *exception) {
+       return @"proxyForJson protocal no impleted.";
+    }
+    @finally {
+        
+    }
+}
 @end

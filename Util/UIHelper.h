@@ -10,6 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AlertView.h"
 
+@protocol FormBoxDelegate
+@optional
+- (void)actionByView:(id)controller eventType:(NSInteger) type eventArgs:(NSDictionary *)args;
+@end
+
 @interface UIHelper : NSObject
 +(void) showAlert:(NSString*) title message:(NSString*)msg func:(void(^)(AlertView* a, NSInteger i))block;
 +(void) showConfirm:(NSString*) title message:(NSString*)msg doneText:(NSString *)doneText doneFunc:(void(^)(AlertView* a, NSInteger i))doneBlock cancelText:(NSString *)cancelText cancelfunc:(void(^)(AlertView* a, NSInteger i))block;

@@ -93,6 +93,7 @@ typedef enum {
 #define KEY_FILE_SETTING @"app_info"
 #define KEY_FILE_SETTING_GAME_INFO @"game_info"
 #define KEY_FILE_PROFILE_INDEX @"profile_index"
+#define KEY_FILE_APP_SETTING @"appSetting"
 
 /*蓝牙键盘按键*/
 #define GSEVENTKEY_KEYCODE_ALP_A 4
@@ -128,6 +129,9 @@ typedef enum {
 #define GSEVENTKEY_KEYCODE_ARROW_DOWN 81
 #define GSEVENTKEY_KEYCODE_ARROW_UP 82
 
+#define KEY_DES_SCECRUTY_KEY_PRODUCT_SN @"GET4TKDS"
+
+#define SERVER_URL_ROOT @"http://10.123.76.5/TKDScore/Callback/TKD/TkdUserInfo_Callback.aspx"
 /* 
  @"-",@"45",
  @"+",@"46",

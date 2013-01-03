@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Definition.h"
+#import "SBJson.h"
 
 @interface UtilHelper : NSObject
 +(NSString *)formateTime:(NSDate *)date;
@@ -24,4 +25,7 @@
 +(void)copyAttributesFromObject:(id)from ToObject:(id)to;
 +(NSString *)ArrayToString:(NSArray *)array;
 +(NSString *)stringWithInt:(int) v;
++(BOOL) isValidEmail:(NSString*)email;
++(NSString *) toJson:(id)obj;
++(id)fromJson:(NSString *)jsonString;
 @end

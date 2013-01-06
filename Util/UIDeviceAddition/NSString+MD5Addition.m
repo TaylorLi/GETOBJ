@@ -29,7 +29,7 @@
     return [outputString autorelease];
 }
 
-- (NSString *)stringByReplacingOccurrencesOfStringIngoreNil:(NSString *)target withString:(NSString *)replacement NS_AVAILABLE(10_5, 2_0){
+- (NSString *)stringByReplacingOccurrencesOfStringIngoreNil:(NSString *)target withString:(NSString *)replacement {
     NSString *replacestr=replacement;
     if(replacestr==nil)
         replacestr=@"";

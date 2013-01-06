@@ -92,6 +92,7 @@
 
 +(ASIFormDataRequest*)postJsonInBackground:(NSString*)url parameters:(NSDictionary *)params funCompleted: (FuncJsonResultBlock) onCompleted
 {
+    NSLog(@"postJsonInBackground,url:%@,parameters:%@",url,[RequestHelper getParamsByDictionay:params]);
     NSURL *urlObj = [NSURL URLWithString:url];
     __block ASIFormDataRequest __weak *request = [ASIFormDataRequest requestWithURL:urlObj];
     for (NSString * pKey in params.allKeys) {
@@ -117,6 +118,7 @@
 
 + (ASIFormDataRequest*)postJsonSynchronous:(NSString*)url parameters:(NSDictionary *)params funCompleted: (FuncJsonResultBlock) onCompleted
 {
+    NSLog(@"postJsonSynchronous,url:%@,parameters:%@",url,[RequestHelper getParamsByDictionay:params]);
      [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSURL *urlObj = [NSURL URLWithString:url];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:urlObj];

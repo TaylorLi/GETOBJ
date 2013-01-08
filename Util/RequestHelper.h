@@ -20,10 +20,12 @@ typedef void (^FuncJsonResultBlock)(RequestResult *result);
 +(ASIHTTPRequest*)grabInBackground:(NSString*)url funCompleted: (FuncResultBlock) onCompleted;
 +(void)grabSynchronous:(NSString*)url funCompleted: (FuncResultBlock) onCompleted;
 
-+(ASIHTTPRequest*)getJsonInBackground:(NSString*)url funCompleted: (FuncJsonResultBlock) onCompleted;
-+(ASIHTTPRequest*)getJsonSynchronous:(NSString*)url funCompleted: (FuncJsonResultBlock) onCompleted;
++(ASIHTTPRequest*)getJsonInBackground:(NSString*)url parameters:(NSDictionary *)params  funCompleted: (FuncJsonResultBlock) onCompleted;
++(ASIHTTPRequest*)getJsonSynchronous:(NSString*)url parameters:(NSDictionary *)params  funCompleted: (FuncJsonResultBlock) onCompleted;
 
 +(ASIFormDataRequest*)postJsonInBackground:(NSString*)url parameters:(NSDictionary *)params funCompleted: (FuncJsonResultBlock) onCompleted;
+
++(ASIFormDataRequest*)postJsonInBackgroundOrg:(NSString*)url parameters:(NSDictionary *)params funCompleted: (FuncJsonResultBlock) onCompleted;
 
 + (ASIFormDataRequest*)postJsonSynchronous:(NSString*)url parameters:(NSDictionary *)params funCompleted: (FuncJsonResultBlock) onCompleted;
 

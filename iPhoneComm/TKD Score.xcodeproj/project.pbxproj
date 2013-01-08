@@ -495,6 +495,8 @@
 		DAEB2BBB166B7FAD0044706E /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB9166B7FAD0044706E /* Database.m */; };
 		DAEB2BC2166B88FA0044706E /* TKDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BC1166B88FA0044706E /* TKDDatabase.m */; };
 		DAEB2BC3166B88FA0044706E /* TKDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BC1166B88FA0044706E /* TKDDatabase.m */; };
+		DAEB7187169C865300039509 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB7186169C865300039509 /* NSTimer+Blocks.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DAEB7188169C865300039509 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB7186169C865300039509 /* NSTimer+Blocks.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAEBA08916324FDD001A58C7 /* game_select_winner_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBA07D16324FDD001A58C7 /* game_select_winner_bg.png */; };
 		DAEBA08A16324FDD001A58C7 /* game_select_winner_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBA07E16324FDD001A58C7 /* game_select_winner_blue.png */; };
 		DAEBA08B16324FDD001A58C7 /* game_select_winner_red.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEBA07F16324FDD001A58C7 /* game_select_winner_red.png */; };
@@ -1034,6 +1036,8 @@
 		DAEB2BB9166B7FAD0044706E /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Database.m; path = Database/Database.m; sourceTree = "<group>"; };
 		DAEB2BC0166B88FA0044706E /* TKDDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKDDatabase.h; path = Database/TKDDatabase.h; sourceTree = "<group>"; };
 		DAEB2BC1166B88FA0044706E /* TKDDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKDDatabase.m; path = Database/TKDDatabase.m; sourceTree = "<group>"; };
+		DAEB7185169C865300039509 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+Blocks.h"; path = "../Submodules/Classes/NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		DAEB7186169C865300039509 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+Blocks.m"; path = "../Submodules/Classes/NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		DAEBA07D16324FDD001A58C7 /* game_select_winner_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_select_winner_bg.png; path = "Resources-iPad/Images/game_select_winner_bg.png"; sourceTree = "<group>"; };
 		DAEBA07E16324FDD001A58C7 /* game_select_winner_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_select_winner_blue.png; path = "Resources-iPad/Images/game_select_winner_blue.png"; sourceTree = "<group>"; };
 		DAEBA07F16324FDD001A58C7 /* game_select_winner_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_select_winner_red.png; path = "Resources-iPad/Images/game_select_winner_red.png"; sourceTree = "<group>"; };
@@ -1980,6 +1984,8 @@
 		DAF8F5B215B13C8400497FC5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DAEB7185169C865300039509 /* NSTimer+Blocks.h */,
+				DAEB7186169C865300039509 /* NSTimer+Blocks.m */,
 				DA7198701693D6B400A47013 /* RequestHelper.h */,
 				DA7198711693D6B400A47013 /* RequestHelper.m */,
 				DA7198721693D6B400A47013 /* RequestResult.h */,
@@ -2483,6 +2489,7 @@
 				DAE8430116958C3200E1A2C3 /* ASIS3Request.m in Sources */,
 				DAE8430216958C3200E1A2C3 /* ASIS3ServiceRequest.m in Sources */,
 				DAE8430616958D3D00E1A2C3 /* RequestResult.m in Sources */,
+				DAEB7187169C865300039509 /* NSTimer+Blocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2632,6 +2639,7 @@
 				DA3078441694027200306665 /* AppSetting.m in Sources */,
 				DA307849169408C600306665 /* SecretHelper.m in Sources */,
 				DA30784D169418A700306665 /* DialogBoxContainer.m in Sources */,
+				DAEB7188169C865300039509 /* NSTimer+Blocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

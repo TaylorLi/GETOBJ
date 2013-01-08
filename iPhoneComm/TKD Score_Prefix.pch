@@ -10,6 +10,7 @@
     #import "NSObjectSerialization.h"
     #import "CommandMsg.h"
     #import "MacroUtils.h"
+    #import "NSTimer+Blocks.h"
 #endif
 /*
 #define UAMODALVIEW_DEBUG 1 //display uamodal log
@@ -21,3 +22,15 @@ typedef void (^FuncBlock)(void);
 typedef void (^FuncHandlerBlock)(id sender,id args);
 typedef void (^FuncResultBlock)(id result);
 #endif
+
+#define DEBUG_REQUEST_STATUS 1
+
+// When set to 1, ASIFormDataRequests will print information about the request body to the console
+#define DEBUG_FORM_DATA_REQUEST 1
+
+
+// When set to 1, ASIHTTPRequests will print information about bandwidth throttling to the console
+#define DEBUG_THROTTLING 1
+
+// When set to 1, ASIHTTPRequests will print information about persistent connections to the console
+#define DEBUG_PERSISTENT_CONNECTIONS 1

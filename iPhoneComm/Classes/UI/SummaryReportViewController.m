@@ -54,11 +54,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
+    // Do any additional setup after loading the view from its nib.    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self reloadReport];
+}
+-(void)reloadReport{
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"DetailReport.html" ofType:nil];
     //[viewReportView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]]; 
-    // 加载字符串html代码，并且显示其中的资源文件。  
+    // 加载字符串html代码，并且显示其中的资源文件。
     NSString *html = [self genReportHTML];
     NSString *path = [[NSBundle mainBundle] resourcePath];
     NSURL *base = [NSURL fileURLWithPath:path];
@@ -187,7 +193,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (IBAction)backToParentView:(id)sender {

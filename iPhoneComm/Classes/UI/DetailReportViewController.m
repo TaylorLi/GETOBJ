@@ -55,6 +55,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self reloadReport];
+}
+-(void)reloadReport
+{
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"DetailReport.html" ofType:nil];
     //[viewReportView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]]; 
     // 加载字符串html代码，并且显示其中的资源文件。  
@@ -62,15 +71,15 @@
     NSString *path = [[NSBundle mainBundle] resourcePath];
     NSURL *base = [NSURL fileURLWithPath:path];
     [viewReportView loadHTMLString:html baseURL:base]; 
+    
 }
-
 
 -(NSString *)genReportHTML
 {
    NSString *path = [[NSBundle mainBundle] pathForResource:@"DetailReport.html" ofType:nil];
    NSString *html= [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     RoundInfo *roundInfo=[[BO_RoundInfo getInstance] retreiveRoundByMatchId:gameInfo.currentMatchInfo.matchId andRoundSeq:selRound];
-    NSLog(@"Round Info:%@",roundInfo);
+    //NSLog(@"Round Info:%@",roundInfo);
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%Court%" withString:[NSString stringWithFormat:@"%@%03i",gameInfo.gameSetting.screeningArea,gameInfo.currentMatch]];
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%Round%" withString:[NSString stringWithFormat:@"%i",roundInfo.round]];
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%StartTime%" withString:[UtilHelper formateDate:roundInfo.startTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];
@@ -91,7 +100,7 @@
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%BlueWin%" withString:blueWinFlag];
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%RedWin%" withString:redWinFlag];
     NSString *rowFormat=@"<tr style='background-color: White;'> \
-    <td> \
+    <td style='text-align:right'> \
     %i    \
     </td> \
     <td>  \
@@ -154,7 +163,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (IBAction)backToParentView:(id)sender {

@@ -11,6 +11,7 @@
     #import "CommandMsg.h"
     #import "MacroUtils.h"
     #import "NSTimer+Blocks.h"
+    #import "AppConfig.h"
 #endif
 /*
 #define UAMODALVIEW_DEBUG 1 //display uamodal log

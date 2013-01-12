@@ -27,6 +27,7 @@
 #import "DetailReportViewController.h"
 #import "SummaryReportViewController.h"
 
+
 @interface DuringMatchSettingDetailControllerHD ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
 -(void)setSettingTable:(UIViewController *) control;
@@ -37,6 +38,7 @@
 -(void)restartServer;
 -(void)restartServerEnd:(NSTimer *)timer;
 -(void)retreiveDetailScoreLogs;
+-(void)refreshSkipCourt;
 @end
 
 @implementation DuringMatchSettingDetailControllerHD
@@ -80,11 +82,12 @@ detailControllerMatchDetailReport,detailControllerReportNav;
 }
 -(void)bindAllInfo{
     orgGameInfo=[relateGameServer.chatRoom.gameInfo copyWithZone:nil];
-    [self bindSettingGroupData:1];
-    [self bindSettingGroupData:2];
-    [self bindSettingGroupData:3];
-    [self bindSettingGroupData:4];
-    [self bindSettingGroupData:0]; 
+    //[self bindSettingGroupData:gsTabCourtSetting];
+    [self bindSettingGroupData:gsTabMiscSetting];
+    [self bindSettingGroupData:gsTabReferee];    
+    [self bindSettingGroupData:gsTabReport];
+    [self bindSettingGroupData:gsTabMainMenu];
+    [self bindSettingGroupData:gsTabMatchSetting]; 
     tabControlls = [[NSArray alloc] initWithObjects:detailControllerMatch,detailControllerMisc,detailControllerJudge,
                     detailControllerReportNav,detailControllerMainMenu, nil];
     if(showingTabIndex<0||showingTabIndex>tabControlls.count)
@@ -97,6 +100,13 @@ detailControllerMatchDetailReport,detailControllerReportNav;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    detailControllerMatch=nil;
+    detailControllerMisc=nil;
+    detailControllerJudge=nil;
+    detailControllerMainMenu=nil;
+    detailControllerMatchDetailReport=nil;
+    detailControllerReportNav=nil;
+    orgGameInfo=nil;
 }
 - (void)viewDidUnload
 {    
@@ -105,6 +115,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
     detailControllerJudge=nil;
     detailControllerMainMenu=nil;
     detailControllerMatchDetailReport=nil;
+    detailControllerReportNav=nil;
     orgGameInfo=nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -152,7 +163,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
     __weak ServerSetting *si=gameInfo.gameSetting;
     __weak DuringMatchSettingDetailControllerHD *selfCtl=self;
     switch (group) {
-        case 0:{
+        case gsTabMatchSetting:{
             if(detailControllerMatch==nil){                    
                 detailControllerMatch =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];                  
                 [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
@@ -174,17 +185,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
                     for(int i=30;i<=90;i=i+10)
                     {
                         [pauserestTimeSource addObject:[NSString stringWithFormat:@"%i Seconds",i]];
-                    }
-                    
-                    NSMutableArray *areas=[[NSMutableArray alloc] init];
-                    for(int i=65;i<=88;i++)
-                    {
-                        [areas addObject:[NSString stringWithFormat:@"%c",(char)i]];
-                    }
-                    SimplePickerInputTableViewCell *screenArea= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Screening Area", @"Screening Area") selectValue:si.screeningArea dataSource:areas];   
-                    screenArea.tag=kscreeningArea;
-                    screenArea.delegate=selfCtl;
-                    [section addCustomerCell:screenArea];
+                    }                   
                 }];   
                 
                 [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
@@ -195,11 +196,43 @@ detailControllerMatchDetailReport,detailControllerReportNav;
                     [section addCustomerCell:currentTime];
                 }];
                 
+                [detailControllerMatch addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+                    NSMutableArray *areas=[[NSMutableArray alloc] init];
+                    for(int i=65;i<=88;i++)
+                    {
+                        [areas addObject:[NSString stringWithFormat:@"%c",(char)i]];
+                    }
+                    SimplePickerInputTableViewCell *screenArea= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Screening Area", @"Screening Area") selectValue:si.screeningArea dataSource:areas];   
+                    screenArea.tag=kscreeningArea;
+                    screenArea.delegate=selfCtl;
+                    [section addCustomerCell:screenArea];
+                    
+                    IntegerInputTableViewCell *startSeqCell=[[IntegerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"StartCell"                                                                                                       title:NSLocalizedString(@"Start Court", @"Start Court") lowerLimit:0 hightLimit:999 selectedValue:si.startScreening];
+                    startSeqCell.tag=kstartScreening;
+                    startSeqCell.delegate=selfCtl;
+                    [section addCustomerCell:startSeqCell];                                        
+                    
+                    NSMutableArray *skipSeqs=[[NSMutableArray alloc] init];
+                    for(int i=1;i<=10;i++)
+                    {
+                        NSMutableString *disSample=[[NSMutableString alloc] initWithCapacity:6];
+                        [disSample appendFormat:@"%i(",i];
+                        for(int j=0;j<4;j++)
+                            [disSample appendFormat:@"%i,",gameInfo.currentMatch+j*i];
+                        [disSample appendString:@"...)"];
+                        [skipSeqs addObject:[NSString stringWithFormat:@"%@",disSample]];
+                    }                    
+                    SimplePickerInputTableViewCell *skipSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Skip Court", @"Skip Court") selectValue:nil dataSource:skipSeqs];    
+                    skipSeqCell.selectedIndex=si.skipScreening-1;
+                    skipSeqCell.tag=kskipScreening;
+                    skipSeqCell.delegate=selfCtl;
+                    [section addCustomerCell:skipSeqCell]; 
+                }];
             }
             [self setSettingTable:detailControllerMatch];
         }
-            break;           
-        case 1:
+            break;        
+        case gsTabMiscSetting:
         {
             if(detailControllerMisc==nil){                
                 
@@ -254,7 +287,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
             [self setSettingTable:detailControllerMisc];
             break;
         }
-        case 2:
+        case gsTabReferee:
         {
             if(detailControllerJudge==nil){
                 detailControllerJudge =  [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -266,7 +299,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
             [self setSettingTable:detailControllerJudge];
         }
             break;
-        case 3:
+        case gsTabReport:
         {         
             if(detailControllerReportNav==nil){
                 if(detailControllerMatchDetailReport==nil){
@@ -286,7 +319,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
             [self setSettingTable:detailControllerReportNav];            
         }
             break;
-        case 4:
+        case gsTabMainMenu:
         {
             if(detailControllerMainMenu==nil){
                 detailControllerMainMenu =  [[JMStaticContentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -376,6 +409,12 @@ detailControllerMatchDetailReport,detailControllerReportNav;
             si.pointGapAvailRound=[value intValue];
             isChangeSetting=YES;
             break;
+        case kskipScreening:
+        {
+            si.skipScreening=[value intValue];
+            isChangeSetting=YES;
+        }
+            break;
         default:
             break;
     }        
@@ -395,6 +434,28 @@ detailControllerMatchDetailReport,detailControllerReportNav;
             isChangeSetting=YES;
             break;  
     }
+}
+-(void)tableViewCell:(IntegerInputTableViewCell *)cell didEndEditingWithInteger:(NSUInteger)value
+{
+    ServerSetting *si=orgGameInfo.gameSetting;
+    si.startScreening=value;
+    isChangeSetting=YES;
+    [self refreshSkipCourt];
+}
+-(void)refreshSkipCourt{
+    ServerSetting *si=orgGameInfo.gameSetting;
+    NSMutableArray *skipSeqs=[[NSMutableArray alloc] init];
+    SimplePickerInputTableViewCell *cell=[self getTableCellByTag:kskipScreening];
+    for(int i=1;i<=10;i++)
+    {
+        NSMutableString *disSample=[[NSMutableString alloc] initWithCapacity:6];
+        [disSample appendFormat:@"%i(",i];
+        for(int j=0;j<4;j++)
+            [disSample appendFormat:@"%i,",si.startScreening+j*i];
+        [disSample appendString:@"...)"];
+        [skipSeqs addObject:[NSString stringWithFormat:@"%@",disSample]];
+    }  
+    [cell reloadPicker:skipSeqs];
 }
 -(void)refreshCurrentTime
 {
@@ -459,8 +520,13 @@ detailControllerMatchDetailReport,detailControllerReportNav;
         currSetting.gameSetting.pointGap=orgGameInfo.gameSetting.pointGap;
         currSetting.gameSetting.pointGapAvailRound=orgGameInfo.gameSetting.pointGapAvailRound;
         currSetting.gameSetting.screeningArea=orgGameInfo.gameSetting.screeningArea;
-        [[BO_ServerSetting getInstance] updateObject:currSetting.gameSetting];
-        [[BO_MatchInfo getInstance] updateObject:currSetting.currentMatchInfo];
+        currSetting.gameSetting.startScreening=orgGameInfo.gameSetting.startScreening;
+        currSetting.currentMatch=orgGameInfo.gameSetting.startScreening;
+        currSetting.currentMatchInfo.currentMatch=currSetting.currentMatch;
+        currSetting.gameSetting.skipScreening=orgGameInfo.gameSetting.skipScreening;
+        [[BO_GameInfo getInstance] updateAllGameInfo:currSetting];
+        //[[BO_ServerSetting getInstance] updateObject:currSetting.gameSetting];
+        //[[BO_MatchInfo getInstance] updateObject:currSetting.currentMatchInfo];
         //[UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:[AppConfig getInstance].currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];
     }
 }

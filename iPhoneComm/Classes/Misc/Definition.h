@@ -130,10 +130,12 @@ typedef enum {
 #define GSEVENTKEY_KEYCODE_ARROW_UP 82
 
 #define KEY_DES_SCECRUTY_KEY_PRODUCT_SN @"GET4TKDS"
-/*test
-#define SERVER_URL_ROOT @"http://10.123.76.5/TKDScore/Callback/TKD/TkdUserInfo_Callback.aspx"
-*/
+/*test*/
+//#define SERVER_URL_ROOT @"http://10.123.76.5/TKDScore/Callback/TKD/TkdCallback.aspx"
+
+/*online*/
 #define SERVER_URL_ROOT @"http://www.simba.hk/Callback/TKD/TkdCallback.aspx"
+
 /* 
  @"-",@"45",
  @"+",@"46",

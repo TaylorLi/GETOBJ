@@ -24,4 +24,5 @@
 +(void) resignResponser:(NSArray *)views;
 +(BOOL) validateTextFields:(NSArray *)views;
 +(UIView *)findFirstResponder:(UIView *)parentView;
++ (void) setColorOfButtons:(NSArray*)buttons red:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
 @end

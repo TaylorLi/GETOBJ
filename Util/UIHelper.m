@@ -122,4 +122,43 @@
     return nil;
 }
 
++ (void) setColorOfButtons:(NSArray*)buttons red:(float)red green:(float)green blue:(float)blue alpha:(float)alpha {
+    
+    if (buttons.count == 0) {
+        return;
+    }
+    
+    // get the first button
+    NSEnumerator* buttonEnum = [buttons objectEnumerator];
+    UIButton* button = (UIButton*)[buttonEnum nextObject];
+    
+    // set the button's highlight color
+    [button setTintColor:[UIColor colorWithRed:red/255.9999f green:green/255.9999f blue:blue/255.9999f alpha:alpha]];
+    
+    // clear any existing background image
+    [button setBackgroundImage:nil forState:UIControlStateNormal];
+    
+    // place the button into highlighted state with no title
+    BOOL wasHighlighted = button.highlighted;
+    NSString* savedTitle = [button titleForState:UIControlStateNormal];
+    [button setTitle:nil forState:UIControlStateNormal];
+    [button setHighlighted:YES];
+    
+    // render the highlighted state of the button into an image
+    UIGraphicsBeginImageContext(button.layer.frame.size);
+    CGContextRef graphicsContext = UIGraphicsGetCurrentContext();
+    [button.layer renderInContext:graphicsContext];
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage* stretchableImage = [image stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    UIGraphicsEndImageContext();
+    
+    // restore the button's state and title
+    [button setHighlighted:wasHighlighted];
+    [button setTitle:savedTitle forState:UIControlStateNormal];
+    
+    // set background image of all buttons
+    do {
+        [button setBackgroundImage:stretchableImage forState:UIControlStateNormal];
+    } while (button = (UIButton*)[buttonEnum  nextObject]);    
+}
 @end

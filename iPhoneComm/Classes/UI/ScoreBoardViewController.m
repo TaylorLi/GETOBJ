@@ -798,10 +798,15 @@
 
 -(void)fightimeReached:(UIFighterBox *)fighterbox
 {
-    [self warningPlayer:YES andCount:1 byServer:NO];
-    [self warningPlayer:NO andCount:1 byServer:NO];
+    
+}
+
+-(void)fightimeEndAndAddWarmning:(UIFighterBox *)fighterbox
+{
     //warmning competitor/instructor when point is established
     //[player playSoundWithFullPath:kSoundsPointFightTimeReached];
+    [self warningPlayer:YES andCount:1 byServer:NO];
+    [self warningPlayer:NO andCount:1 byServer:NO];
 }
 
 #pragma mark -
@@ -1892,6 +1897,10 @@
 }
 -(void)contiueGame
 {    
+    if(chatRoom.gameInfo.currentMatchInfo.pointGapReached || 
+       chatRoom.gameInfo.currentMatchInfo.warningMaxReached){
+        return;
+    }
     if(waitUserPanel!=nil&&[self.view.subviews containsObject:waitUserPanel]){
         [waitUserPanel removeFromSuperview];
         waitUserPanel=nil;
@@ -2375,6 +2384,37 @@
         return;
     }
     
+    if(chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateCalcScore || chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateRunning)
+    {
+        if((keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_ALP_A&&keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_ALP_X)|| (keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH)||(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_SEMICOLON && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_Wave))
+        {
+            short refreedNum=(keyboardArgv.keyCode-4)/8+1;//对应哪个裁判
+            short cmdNum=(keyboardArgv.keyCode-4)%8; //对应哪个命令，0-7
+            if(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS){
+                refreedNum=4;
+                if(keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH){
+                    cmdNum=(keyboardArgv.keyCode-GSEVENTKEY_KEYCODE_SNL_HYPHENS)%8;
+                }
+                else{
+                    cmdNum=(keyboardArgv.keyCode-1-GSEVENTKEY_KEYCODE_SNL_HYPHENS)%8;
+                }
+            }
+            
+            if(refreedNum>chatRoom.gameInfo.gameSetting.judgeCount)//如果大于指定裁判数量的按键，视为无效
+                return;
+            BOOL isRedSide=cmdNum<4;
+            short score=cmdNum%4+1;
+            ScoreInfo  *scoreInfo ;
+            if(isRedSide)
+                scoreInfo = [[ScoreInfo alloc] initWithRedSide:score andDateNow:nil];
+            else
+                scoreInfo=[[ScoreInfo alloc] initWithBlueSide:score andDateNow:nil];                                        
+            CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:
+                             [NSString stringWithFormat:@"%i",refreedNum] andDesc:nil andData:[scoreInfo proxyForJson] andDate:[NSDate date]];
+            [self processCmd:cmd];
+        }
+    }
+    /*取消对应的键盘事件
     switch (keyboardArgv.keyCode) {
         case GSEVENTKEY_KEYCODE_SNL_SLASH:
             if([self canSubmitControlCommand])
@@ -2440,37 +2480,7 @@
         default:
             break;
     }
-    if(chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateCalcScore || chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateRunning)
-    {
-        if((keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_ALP_A&&keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_ALP_X)|| (keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH)||(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_SEMICOLON && keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_Wave))
-        {
-            short refreedNum=(keyboardArgv.keyCode-4)/8+1;//对应哪个裁判
-            short cmdNum=(keyboardArgv.keyCode-4)%8; //对应哪个命令，0-7
-            if(keyboardArgv.keyCode>=GSEVENTKEY_KEYCODE_SNL_HYPHENS){
-                refreedNum=4;
-                if(keyboardArgv.keyCode<=GSEVENTKEY_KEYCODE_SNL_REVSLASH){
-                    cmdNum=(keyboardArgv.keyCode-GSEVENTKEY_KEYCODE_SNL_HYPHENS)%8;
-                }
-                else{
-                    cmdNum=(keyboardArgv.keyCode-1-GSEVENTKEY_KEYCODE_SNL_HYPHENS)%8;
-                }
-            }
-            
-            if(refreedNum>chatRoom.gameInfo.gameSetting.judgeCount)//如果大于指定裁判数量的按键，视为无效
-                return;
-            BOOL isRedSide=cmdNum<4;
-            short score=cmdNum%4+1;
-            ScoreInfo  *scoreInfo ;
-            if(isRedSide)
-                scoreInfo = [[ScoreInfo alloc] initWithRedSide:score andDateNow:nil];
-            else
-                scoreInfo=[[ScoreInfo alloc] initWithBlueSide:score andDateNow:nil];                                        
-            CommandMsg *cmd=[[CommandMsg alloc] initWithType:NETWORK_REPORT_SCORE andFrom:
-                             [NSString stringWithFormat:@"%i",refreedNum] andDesc:nil andData:[scoreInfo proxyForJson] andDate:[NSDate date]];
-            [self processCmd:cmd];
-        }
-    }
-    
+*/
     //[UIHelper showAlert:@"" message:keyboardArgv.description func:nil];
 }
 

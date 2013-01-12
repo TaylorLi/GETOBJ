@@ -12,6 +12,7 @@
 #import "TimePickerTableViewCell.h"
 #import "StringInputTableViewCell.h"
 #import "ScoreBoardViewController.h"
+#import "IntegerInputTableViewCell.h"
 
 #define kTagScoreJugdeName 1
 #define kTagScoreSide 2
@@ -24,7 +25,15 @@ typedef enum {
     TableViewSummaryReport=2
 } TableViewType;
 
-@interface DuringMatchSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate> 
+typedef enum {
+    gsTabMatchSetting=0,    
+    gsTabMiscSetting,
+    gsTabReferee,
+    gsTabReport,
+    gsTabMainMenu
+} DuringMatchSettingTabs;
+
+@interface DuringMatchSettingDetailControllerHD : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate,SimplePickerInputTableViewCellDelegate,TimePickerTableViewCellDelegate,StringInputTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,IntegerInputTableViewCellDelegate> 
 {
     
     UIPopoverController *popoverController;

@@ -65,7 +65,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (IBAction)doneRegister:(id)sender {   

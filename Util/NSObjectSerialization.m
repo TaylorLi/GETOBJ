@@ -133,7 +133,7 @@
 -(id)bindingWithDictionary:(NSDictionary *) dictionary
 {
     NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
-    NSLog(@"class:%@,attributes:%@",[self class],propeties);
+    //NSLog(@"class:%@,attributes:%@",[self class],propeties);
     for (NSString *propertyName in propeties.allKeys)
     {
         NSString *propertyType=[propeties valueForKey:propertyName];        

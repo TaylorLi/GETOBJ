@@ -12,8 +12,8 @@
 @interface SummaryReportViewController : UIViewController
 
 @property (nonatomic) NSInteger selMatch;
-@property (nonatomic,strong) GameInfo *gameInfo;
+@property (nonatomic,assign) GameInfo *gameInfo;
 - (IBAction)backToParentView:(id)sender;
 @property (strong, nonatomic) IBOutlet UIWebView *viewReportView;
-
+-(void)reloadReport;
 @end

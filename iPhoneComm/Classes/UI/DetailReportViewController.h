@@ -12,8 +12,9 @@
 @interface DetailReportViewController : UIViewController
 
 @property (nonatomic) NSInteger selRound;
-@property (nonatomic,strong) GameInfo *gameInfo;
+@property (nonatomic,assign) GameInfo *gameInfo;
 - (IBAction)backToParentView:(id)sender;
+-(void)reloadReport;
 @property (strong, nonatomic) IBOutlet UIWebView *viewReportView;
 
 @end

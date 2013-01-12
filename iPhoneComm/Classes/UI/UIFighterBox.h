@@ -10,8 +10,10 @@
 
 @class UIFighterBox;
 @protocol UIFighterBoxDelegate <NSObject>
-
+//时间到
 - (void)fightimeReached:(UIFighterBox *)fighterbox;
+//时间到，用户选择加警告
+- (void)fightimeEndAndAddWarmning:(UIFighterBox *)fighterbox;
 @end
 
 @interface UIFighterBox : UIView
@@ -20,6 +22,9 @@
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imgTen;
 @property (strong, nonatomic) IBOutlet UIImageView *imgSin;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnClose;
+@property (strong, nonatomic) IBOutlet UIButton *btnWarmning;
 
 @property(assign,nonatomic) NSArray *imgArray;
 @property(assign,nonatomic) NSInteger fightTime;
@@ -30,4 +35,6 @@
 - (id)initWithFightTime:(CGRect)frame time:(NSInteger) fightTimeInv andImgArray:(NSArray *)imgs;
 -(void) hide;
 -(void) showWithFightTime:(NSInteger) fightTimeInv;
+- (IBAction)closeFighterBox:(id)sender;
+- (IBAction)addWarmning:(id)sender;
 @end

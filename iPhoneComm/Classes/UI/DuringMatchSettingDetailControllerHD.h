@@ -13,6 +13,7 @@
 #import "StringInputTableViewCell.h"
 #import "ScoreBoardViewController.h"
 #import "IntegerInputTableViewCell.h"
+#import "RotateTableViewController.h"
 
 #define kTagScoreJugdeName 1
 #define kTagScoreSide 2
@@ -51,9 +52,9 @@ typedef enum {
 @property (nonatomic,assign) ScoreBoardViewController *relateGameServer;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMatch;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMisc;
-@property (strong,nonatomic) UITableViewController *detailControllerJudge;
+@property (strong,nonatomic) RotateTableViewController *detailControllerJudge;
 @property (strong,nonatomic) UINavigationController *detailControllerReportNav;
-@property (strong,nonatomic) UITableViewController *detailControllerMatchDetailReport;
+@property (strong,nonatomic) RotateTableViewController *detailControllerMatchDetailReport;
 @property (strong,nonatomic) JMStaticContentTableViewController *detailControllerMainMenu;
 @property (strong,nonatomic) GameInfo *orgGameInfo;
 @property (nonatomic) NSTimeInterval currentRemainTime;

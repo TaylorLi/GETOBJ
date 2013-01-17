@@ -290,7 +290,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
         case gsTabReferee:
         {
             if(detailControllerJudge==nil){
-                detailControllerJudge =  [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                detailControllerJudge =  [[RotateTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 detailControllerJudge.tableView.dataSource=self;
                 detailControllerJudge.tableView.tag=TableViewJudgeTable;
                 //[detailControllerJudge.tableView reloadData];
@@ -304,7 +304,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
             if(detailControllerReportNav==nil){
                 if(detailControllerMatchDetailReport==nil){
                     
-                    detailControllerMatchDetailReport =  [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+                    detailControllerMatchDetailReport =  [[RotateTableViewController alloc] initWithStyle:UITableViewStylePlain];
                     detailControllerMatchDetailReport.tableView.delegate=self;
                     detailControllerMatchDetailReport.tableView.dataSource=self;
                     detailControllerMatchDetailReport.tableView.tag = TableViewDetailReport;

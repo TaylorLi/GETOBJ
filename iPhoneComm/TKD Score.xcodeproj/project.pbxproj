@@ -220,6 +220,8 @@
 		DA93459D15E0FD3200A4B99B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */; };
 		DA9345B415E10A3100A4B99B /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA9345B315E10A3100A4B99B /* congratulation.mp3 */; };
 		DA9345B515E10A3100A4B99B /* congratulation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA9345B315E10A3100A4B99B /* congratulation.mp3 */; };
+		DAA689FC16A2F43000BDE56C /* RotateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA689FB16A2F43000BDE56C /* RotateTableViewController.m */; };
+		DAA689FD16A2F43000BDE56C /* RotateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA689FB16A2F43000BDE56C /* RotateTableViewController.m */; };
 		DAAA377015C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
 		DAAA377115C531250086F00B /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375815C531250086F00B /* NSObject+SBJson.m */; };
 		DAAA377215C531250086F00B /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAA375B15C531250086F00B /* SBJsonParser.m */; };
@@ -562,6 +564,8 @@
 		DAF65AA3159F2DE5001BEA75 /* ScoreBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */; };
 		DAF709B116929D8E001EEB80 /* DetailReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5023C1690811600391F8F /* DetailReportViewController.m */; };
 		DAF8F5B615B13C9600497FC5 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8F5B515B13C9600497FC5 /* UIHelper.m */; };
+		DAF9A37416A8599900971D5B /* fight_time_reached.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAF9A37316A8599900971D5B /* fight_time_reached.wav */; };
+		DAF9A37516A8599900971D5B /* fight_time_reached.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAF9A37316A8599900971D5B /* fight_time_reached.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -800,6 +804,8 @@
 		DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSObjectSerialization.m; path = ../../Util/NSObjectSerialization.m; sourceTree = "<group>"; };
 		DA93459A15E0FD2B00A4B99B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DA9345B315E10A3100A4B99B /* congratulation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = congratulation.mp3; path = sounds/congratulation.mp3; sourceTree = "<group>"; };
+		DAA689FA16A2F43000BDE56C /* RotateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RotateTableViewController.h; path = UI/RotateTableViewController.h; sourceTree = "<group>"; };
+		DAA689FB16A2F43000BDE56C /* RotateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RotateTableViewController.m; path = UI/RotateTableViewController.m; sourceTree = "<group>"; };
 		DAAA375715C531250086F00B /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../SBJson/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DAAA375815C531250086F00B /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "../SBJson/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DAAA375915C531250086F00B /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = ../SBJson/Classes/SBJson.h; sourceTree = "<group>"; };
@@ -1100,6 +1106,7 @@
 		DAF65AA2159F2DE5001BEA75 /* ScoreBoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreBoardView.xib; sourceTree = "<group>"; };
 		DAF8F5B415B13C9600497FC5 /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIHelper.h; path = ../Util/UIHelper.h; sourceTree = "<group>"; };
 		DAF8F5B515B13C9600497FC5 /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIHelper.m; path = ../Util/UIHelper.m; sourceTree = "<group>"; };
+		DAF9A37316A8599900971D5B /* fight_time_reached.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fight_time_reached.wav; path = sounds/fight_time_reached.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1369,6 +1376,8 @@
 				DAF5023C1690811600391F8F /* DetailReportViewController.m */,
 				DA7198791693EBF000A47013 /* RegisterAndActiveViewController.h */,
 				DA71987A1693EBF000A47013 /* RegisterAndActiveViewController.m */,
+				DAA689FA16A2F43000BDE56C /* RotateTableViewController.h */,
+				DAA689FB16A2F43000BDE56C /* RotateTableViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1526,6 +1535,7 @@
 		DA9345A715E0FDC100A4B99B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				DAF9A37316A8599900971D5B /* fight_time_reached.wav */,
 				DAE8990916611576003BFAA1 /* point_established.mp3 */,
 				DAEF4C9215E69813006025DD /* rend.wav */,
 				DAEF4C8D15E69668006025DD /* winner.wav */,
@@ -2159,6 +2169,7 @@
 				DAEBBF5E15EA35AC00C0A69C /* Default@2x.png in Resources */,
 				DAEC17461676240000B9A3B5 /* select.png in Resources */,
 				DAEC174A167624BE00B9A3B5 /* profile-accept.png in Resources */,
+				DAF9A37416A8599900971D5B /* fight_time_reached.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2337,6 +2348,7 @@
 				DA1357351692DE99003A6FB9 /* SummaryReportRow.html in Resources */,
 				DA13573A1692E132003A6FB9 /* SummaryReportViewController.xib in Resources */,
 				DA71987D1693EBF000A47013 /* RegisterAndActiveViewController.xib in Resources */,
+				DAF9A37516A8599900971D5B /* fight_time_reached.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2490,6 +2502,7 @@
 				DAE8430216958C3200E1A2C3 /* ASIS3ServiceRequest.m in Sources */,
 				DAE8430616958D3D00E1A2C3 /* RequestResult.m in Sources */,
 				DAEB7187169C865300039509 /* NSTimer+Blocks.m in Sources */,
+				DAA689FC16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2640,6 +2653,7 @@
 				DA307849169408C600306665 /* SecretHelper.m in Sources */,
 				DA30784D169418A700306665 /* DialogBoxContainer.m in Sources */,
 				DAEB7188169C865300039509 /* NSTimer+Blocks.m in Sources */,
+				DAA689FD16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2757,7 +2771,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
+				PROVISIONING_PROFILE = "D85AFC5D-7D9E-4926-86C4-1900209B5119";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -2783,7 +2797,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
+				PROVISIONING_PROFILE = "D85AFC5D-7D9E-4926-86C4-1900209B5119";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

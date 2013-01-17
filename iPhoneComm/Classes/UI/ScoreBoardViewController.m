@@ -47,7 +47,7 @@
 
 #define kSoundsRoundStart @"roundstart.wav"
 #define kSoundsPointEstablished @"point_established.mp3"
-#define kSoundsPointFightTimeReached @"fight_time_reached.mp3"
+#define kSoundsPointFightTimeReached @"fight_time_reached.wav"
 #define kSoundsRoundEnd @"rend.wav"
 #define kSoundsCongratulation @"winner.wav"
 
@@ -798,13 +798,13 @@
 
 -(void)fightimeReached:(UIFighterBox *)fighterbox
 {
-    
+    //warmning competitor/instructor when point is established
+    [player playSoundWithFullPath:kSoundsPointFightTimeReached];
 }
 
 -(void)fightimeEndAndAddWarmning:(UIFighterBox *)fighterbox
 {
-    //warmning competitor/instructor when point is established
-    //[player playSoundWithFullPath:kSoundsPointFightTimeReached];
+    
     [self warningPlayer:YES andCount:1 byServer:NO];
     [self warningPlayer:NO andCount:1 byServer:NO];
 }
@@ -1650,7 +1650,7 @@
     [self setupMenu];    
     if(chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceKeyboard &&![AppConfig getInstance].productSNValidate)  
     {
-        [UIHelper showAlert:@"Warmning" message:@"Product not active yet,can not use [Peripheral Device]  mode." func:nil];
+        [UIHelper showAlert:@"Warnning" message:@"Product not active yet,can not use [Peripheral Device]  mode." func:nil];
     }
     if(chatRoom.isRestoredGame)
     {

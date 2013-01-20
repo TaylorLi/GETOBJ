@@ -23,18 +23,19 @@
 @synthesize roundCount;
 @synthesize judgeCount;
 @synthesize pointGap,serverName,screeningArea,skipScreening,enableGapScore,startScreening,pointGapAvailRound,availScoreWithJudgesCount,availTimeDuringScoreCalc,maxWarningCount,restAndReorganizationTime,serverLoopMaxDelay;
-@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate,profileId,fightTimeInterval;
-
+@synthesize currentJudgeDevice,profileName,isDefaultProfile,createDate,uuid,settingId,gameId,settingType,userId,lastUsingDate,profileId,fightTimeInterval,isRememberClients;
+/*
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"Setting Id:%@,Game Name:%@,Game Desc:%@,Pwd:%@,Round Time:%f,Rest Time:%f,Round Count:%i,Judge Count:%i, Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@,enable Point Gap:%i,pointGapAvailRound:%i",settingId,gameName,gameDesc,password,roundTime,restTime,roundCount,judgeCount, redSideName,redSideDesc,blueSideName,blueSideDesc,enableGapScore,pointGapAvailRound];
+    return [NSString stringWithFormat:@"Setting Id:%@,Game Name:%@,Game Desc:%@,Pwd:%@,Round Time:%f,Rest Time:%f,Round Count:%i,Judge Count:%i, Red Name:%@,Red Desc:%@,Blue Name:%@,Blue Desc:%@,enable Point Gap:%i,pointGapAvailRound:%i,isRememberClients:%i",settingId,gameName,gameDesc,password,roundTime,restTime,roundCount,judgeCount, redSideName,redSideDesc,blueSideName,blueSideDesc,enableGapScore,pointGapAvailRound,isRememberClients];
 }
-
+*/
 -(id) initWithDefault
 {
     self=[super init];
       if (self) {   
           settingId=[UtilHelper stringWithUUID];
+          isRememberClients=YES;
           [self reset];
           createDate=[NSDate date];
     }
@@ -71,6 +72,7 @@
     settingType=SettingTypeProfile;
     fightTimeInterval=10;
     isDefaultProfile=YES;
+    isRememberClients=YES;
 }
 -(void) renewSettingForGame{
     profileId=settingId;
@@ -98,7 +100,7 @@
     }
     return self;
 }
-
+/*
 -(id) copyWithZone:(NSZone *)zone
 {
     ServerSetting *copyObj=[[ServerSetting allocWithZone:zone] init];
@@ -128,8 +130,10 @@
     copyObj.isDefaultProfile=self.isDefaultProfile;
     copyObj.uuid=self.uuid;
     copyObj.fightTimeInterval=self.fightTimeInterval;
+    copyObj.isRememberClients=self.isRememberClients;
     return copyObj;
 }
+*/
 /*NSCoding
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {

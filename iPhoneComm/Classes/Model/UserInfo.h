@@ -10,9 +10,9 @@
 
 @interface UserInfo : NSObjectSerialization<SqliteORMDelegate>
 
-@property (nonatomic,strong) NSString *userId;
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSString *pwd;
-@property (nonatomic,strong) NSString *email;
+@property (nonatomic,copy) NSString *userId;
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *pwd;
+@property (nonatomic,copy) NSString *email;
 @property (nonatomic,strong) NSDate *createTime;
 @end

@@ -14,13 +14,13 @@
 {
 
 }
-@property (nonatomic,strong) NSString *gameId;
+@property (nonatomic,copy) NSString *gameId;
 @property (nonatomic,strong) ServerSetting *gameSetting;
 @property NSInteger currentMatch;
-@property (nonatomic,strong)NSString *serverPeerId;
-@property (nonatomic,strong)NSString *serverUuid;
-@property (nonatomic,strong)NSString *serverFullName;
-@property (nonatomic,strong) NSString *serverUserId;
+@property (nonatomic,copy)NSString *serverPeerId;
+@property (nonatomic,copy)NSString *serverUuid;
+@property (nonatomic,copy)NSString *serverFullName;
+@property (nonatomic,copy) NSString *serverUserId;
 @property (nonatomic,strong) NSMutableDictionary *clients;
 @property (nonatomic,strong)NSDate *serverLastHeartbeatDate;
 @property BOOL gameStart;

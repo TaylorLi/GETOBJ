@@ -57,6 +57,12 @@ static Database* instance;
     }
 }
 
+-(BOOL)isColumnExistedOfTable:(NSString *)tableName column:(NSString*) columnName
+{
+   NSArray *array = [self columnsOfTableByTableName:tableName];
+    return [array containsObject:columnName];
+}
+
 -(NSArray *)columnsOfTableByTableType:(Class)tableClass{
     return [self columnsOfTableByTableName:NSStringFromClass(tableClass)];
 }

@@ -35,6 +35,7 @@
 #define kDeviceType 24
 #define kProfileName 25
 #define kFightTime 26
+#define kRememberReferee 27
 
 @interface ServerSetting : NSObjectSerialization<NSCopying,SqliteORMDelegate>
 {
@@ -101,14 +102,15 @@
 @property (nonatomic,copy) NSString *profileName;
 @property (nonatomic,strong) NSDate *createDate;
 @property BOOL isDefaultProfile;
-@property (nonatomic,strong) NSString *uuid;
-@property (nonatomic,strong) NSString *settingId;
-@property (nonatomic,strong) NSString *gameId;
+@property (nonatomic,copy) NSString *uuid;
+@property (nonatomic,copy) NSString *settingId;
+@property (nonatomic,copy) NSString *gameId;
 @property  GameSettingType settingType;
-@property (nonatomic,strong) NSString *userId;
+@property (nonatomic,copy) NSString *userId;
 @property (nonatomic,strong) NSDate *lastUsingDate;
-@property (nonatomic,strong) NSString *profileId;
+@property (nonatomic,copy) NSString *profileId;
 @property (nonatomic) NSTimeInterval fightTimeInterval;
+@property (nonatomic) BOOL isRememberClients;
 
 -(id) initWithDefault;
 -(id) initWithGameName:(NSString *)_gameName andGameDesc:(NSString *)_gameDesc

@@ -15,12 +15,12 @@
 @property int redSideScore;
 @property SwipeType swipeType;
 @property (nonatomic, retain) NSDate *createTime;
-@property (nonatomic,strong) NSString *clientUuid;
-@property (nonatomic,strong) NSString *gameId;
-@property (nonatomic,strong) NSString *clientId;
-@property (nonatomic,strong) NSString *scoreId;
+@property (nonatomic,copy) NSString *clientUuid;
+@property (nonatomic,copy) NSString *gameId;
+@property (nonatomic,copy) NSString *clientId;
+@property (nonatomic,copy) NSString *scoreId;
 @property int roundSeq;
-@property (nonatomic,strong) NSString *matchId;
+@property (nonatomic,copy) NSString *matchId;
 //@property BOOL successSubmited;
 
 #pragma mark -

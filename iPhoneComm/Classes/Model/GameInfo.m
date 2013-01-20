@@ -64,9 +64,11 @@
     currentMatchInfo=nil;
     currentMatchInfo=nextMatch;    
 }
+/*
 -(NSString *) description{
     return [NSString stringWithFormat:@"gameId:%@,server peerId:%@,server Uuid:%@,\nserverLastHeartbeatDate:%@,Game Start:%i,\ngameSetting:[%@],\nclients:[%@],\nStarted:%i,StartTime:%@,Ended:%i,EndTime:%@,Current Match Info:[%@]",gameId,self.serverPeerId,self.serverUuid,[UtilHelper formateTime: self.serverLastHeartbeatDate],gameStart,gameSetting,clients,gameStart,[UtilHelper formateTime:gameStartTime],gameEnded,[UtilHelper formateTime:gameEndTime],currentMatchInfo];
 }
+*/
 #pragma mark -
 #pragma mark NSCoding
 

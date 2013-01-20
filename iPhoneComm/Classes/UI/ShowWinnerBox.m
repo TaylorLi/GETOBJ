@@ -52,18 +52,15 @@
     return self;
 }
 -(void)bindSetting{
-    if(availSettingProfiles==nil){
         availSettingProfiles=[[OrderedDictionary alloc] init];
         for (ServerSetting *st in [[BO_ServerSetting getInstance] getProfilesOrderByUsingDate]) {
             [availSettingProfiles appendObject:st.profileName forKey:st.settingId];
-        } 
-    }    
-    
+        }     
     [pkProfileName reloadPicker:availSettingProfiles]; 
     [pkProfileName setSelectedValue:gameInfo.gameSetting.profileId];
     
     availCourts=[[OrderedDictionary alloc] init];
-    for (int i=1; i<99; i++) {
+    for (int i=1; i<999; i++) {
         [availCourts appendObject:[NSString stringWithFormat:@"%i",i] forKey:[NSString stringWithFormat:@"%i",i]];
     }    
     [pkProfileNextMatch reloadPicker:availCourts]; 

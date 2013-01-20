@@ -11,8 +11,8 @@
 @class ServerSetting,RoundInfo;
 @interface MatchInfo : NSObjectSerialization<SqliteORMDelegate>
 
-@property (nonatomic,strong) NSString *matchId;
-@property (nonatomic,strong) NSString *gameId;
+@property (nonatomic,copy) NSString *matchId;
+@property (nonatomic,copy) NSString *gameId;
 @property NSTimeInterval currentRemainTime;
 @property NSInteger currentRound;
 @property (nonatomic,strong)  RoundInfo *currentRoundInfo;
@@ -25,7 +25,7 @@
 @property (nonatomic,assign)  GameStates preGameStatus;
 @property  BOOL pointGapReached;
 @property  BOOL warningMaxReached;
-@property (nonatomic,strong)NSString *statusRemark;
+@property (nonatomic,copy)NSString *statusRemark;
 @property WinType winByType;
 @property BOOL isRedToBeWinner;
 

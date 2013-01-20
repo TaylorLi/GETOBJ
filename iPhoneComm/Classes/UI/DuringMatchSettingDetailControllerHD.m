@@ -206,11 +206,21 @@ detailControllerMatchDetailReport,detailControllerReportNav;
                     screenArea.tag=kscreeningArea;
                     screenArea.delegate=selfCtl;
                     [section addCustomerCell:screenArea];
-                    
+                    /*
                     IntegerInputTableViewCell *startSeqCell=[[IntegerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"StartCell"                                                                                                       title:NSLocalizedString(@"Start Court", @"Start Court") lowerLimit:0 hightLimit:999 selectedValue:si.startScreening];
                     startSeqCell.tag=kstartScreening;
                     startSeqCell.delegate=selfCtl;
                     [section addCustomerCell:startSeqCell];                                        
+                    */
+                    NSMutableArray *startCourts=[[NSMutableArray alloc] init];
+                    for(int i=1;i<=999;i++)
+                    {
+                        [startCourts addObject:[NSString stringWithFormat:@"%i",i]];
+                    }
+                    SimplePickerInputTableViewCell *startSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Start Court", @"Start Court") selectValue:[NSString stringWithFormat:@"%i",si.startScreening] dataSource:startCourts];   
+                    startSeqCell.tag=kstartScreening;
+                    startSeqCell.delegate=selfCtl;
+                    [section addCustomerCell:startSeqCell];
                     
                     NSMutableArray *skipSeqs=[[NSMutableArray alloc] init];
                     for(int i=1;i<=10;i++)
@@ -396,7 +406,14 @@ detailControllerMatchDetailReport,detailControllerReportNav;
         case kscreeningArea:
             si.screeningArea=value;
             isChangeSetting=YES;
-            break;       
+            break;     
+            case kstartScreening:
+            {
+                si.startScreening=[value intValue];
+                isChangeSetting=YES;
+                [self refreshSkipCourt];
+            }
+            break;
         case kavailTimeDuringScoreCalc:
             si.availTimeDuringScoreCalc=[value floatValue];
             isChangeSetting=YES;

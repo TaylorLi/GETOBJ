@@ -90,5 +90,12 @@ static BO_GameInfo* instance;
     return gameInfo;
 }
 
+-(void) updateAlluncompletedGameToEnd
+{
+    [[Database getInstance] openSession:^(id result) {
+        FMDatabase *db=(FMDatabase*)result;
+        [db executeUpdate:@"update GameInfo set gameEnded=1,gameEndTime=? where gameEnded=0 and gameStart=1",[NSDate date]];
+    }];
+}
 
 @end

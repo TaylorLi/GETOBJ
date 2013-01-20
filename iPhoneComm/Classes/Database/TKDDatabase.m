@@ -46,7 +46,7 @@ static TKDDatabase* instance;
     [[Database getInstance] openSession:^(id result) {
         FMDatabase *db=result;
         NSDictionary *array=[[NSDictionary alloc] initWithObjectsAndKeys:
-                             @"CREATE TABLE IF NOT EXISTS [ServerSetting] ([settingId] VARCHAR(36) PRIMARY KEY NOT NULL ,[gameId] VARCHAR(36), [uuid] VARCHAR(36), [gameName] VARCHAR(200) NOT NULL,[gameDesc] VARCHAR(200),[redSideName] VARCHAR(50) NOT NULL,[redSideDesc] VARCHAR(50),[blueSideName] VARCHAR(50),[blueSideDesc] VARCHAR(50),[password] VARCHAR(50),[roundCount] INTEGER,[roundTime] FLOAT,[restTime] FLOAT,[judgeCount] INTEGER,[screeningArea] VARCHAR(4),[startScreening] INTEGER,[skipScreening] INTEGER,[availScoreWithJudgesCount] INTEGER,[availTimeDuringScoreCalc] FLOAT,[serverLoopMaxDelay] FLOAT,[enableGapScore] BOOL DEFAULT(1),[pointGap] INTEGER,[pointGapAvailRound] INTEGER,[serverName] VARCHAR(50),[maxWarningCount] INTEGER,[restAndReorganizationTime] FLOAT,[currentJudgeDevice] INTEGER, [profileName] VARCHAR(20), [isDefaultProfile] BOOL,[createDate] TIMESTAMP DEFAULT (datetime('now', 'localtime')),[lastUsingDate] TIMESTAMP,[settingType] INTEGER,[userId] VARCHAR(36),[profileId] VARCHAR(36),[fightTimeInterval] FLOAT)",@"ServerSetting",     
+                             @"CREATE TABLE IF NOT EXISTS [ServerSetting] ([settingId] VARCHAR(36) PRIMARY KEY NOT NULL ,[gameId] VARCHAR(36), [uuid] VARCHAR(36), [gameName] VARCHAR(200) NOT NULL,[gameDesc] VARCHAR(200),[redSideName] VARCHAR(50) NOT NULL,[redSideDesc] VARCHAR(50),[blueSideName] VARCHAR(50),[blueSideDesc] VARCHAR(50),[password] VARCHAR(50),[roundCount] INTEGER,[roundTime] FLOAT,[restTime] FLOAT,[judgeCount] INTEGER,[screeningArea] VARCHAR(4),[startScreening] INTEGER,[skipScreening] INTEGER,[availScoreWithJudgesCount] INTEGER,[availTimeDuringScoreCalc] FLOAT,[serverLoopMaxDelay] FLOAT,[enableGapScore] BOOL DEFAULT(1),[pointGap] INTEGER,[pointGapAvailRound] INTEGER,[serverName] VARCHAR(50),[maxWarningCount] INTEGER,[restAndReorganizationTime] FLOAT,[currentJudgeDevice] INTEGER, [profileName] VARCHAR(20), [isDefaultProfile] BOOL,[createDate] TIMESTAMP DEFAULT (datetime('now', 'localtime')),[lastUsingDate] TIMESTAMP,[settingType] INTEGER,[userId] VARCHAR(36),[profileId] VARCHAR(36),[fightTimeInterval] FLOAT,isRememberClients BOOL DEFAULT(1) NOT NULL)",@"ServerSetting",     
                              @"CREATE TABLE IF NOT EXISTS [JudgeClientInfo] ([clientId] VARCHAR(36) PRIMARY KEY NOT NULL ,[gameId] VARCHAR(36) not null,[displayName] VARCHAR(50) not null,[uuid] VARCHAR(36),[peerId] VARCHAR(30),[sessionId] VARCHAR(30),[hasConnected] BOOL,[lastHeartbeatDate] TIMESTAMP,[sequence] INTEGER,[userId] VARCHAR(36))",@"ClientInfo",
                              @"CREATE TABLE IF NOT EXISTS [CommandMsg] ([msgId] VARCHAR(36) PRIMARY KEY NOT NULL ,[gameId] VARCHAR(36) not null,[type] INTEGER not null,[from] VARCHAR(36),[desc] VARCHAR(100),[date] TIMESTAMP DEFAULT (datetime('now', 'localtime')),[data] VARCHAR(100))",@"CommandMsg",
                              @"CREATE TABLE IF NOT EXISTS [ScoreInfo] ([scoreId] VARCHAR(36) PRIMARY KEY NOT NULL ,[gameId] VARCHAR(36) not null,[clientId] VARCHAR(36),[clientUuid] VARCHAR(36),[blueSideScore] INTEGER,[redSideScore] INTEGER,[swipeType] INTEGER,[createTime] TIMESTAMP DEFAULT (datetime('now', 'localtime')) NOT NULL,[matchId] VARCHAR(36),[roundSeq] INTEGER)",@"ScoreInfo",
@@ -61,10 +61,19 @@ static TKDDatabase* instance;
             NSString *sql=[array objectForKey:tableName];
             BOOL res= [db executeUpdate:sql];
             if(!res){                
-                NSLog(@"error to setup database:%@",tableName);
+                NSLog(@"error to setup database:%@,sql:%@",tableName,sql);
                 return ;
             }                
         }   
+        //1.0.8.11 add isRememberClients BOOL DEFAULT(1) NOT NULL
+        if(![[Database getInstance] isColumnExistedOfTable:@"ServerSetting" column:@"isRememberClients"]){
+            NSString *dbUpdateSql=@"alter table serversetting add isRememberClients BOOL DEFAULT(1) NOT NULL";
+            BOOL res= [db executeUpdate:dbUpdateSql];
+            if(!res){                
+                NSLog(@"error to update database:%@",dbUpdateSql);
+                return ;
+            } 
+        }    
         /*
          for (NSString *tableName in array) {
          if(![[Database getInstance] tableExisted:tableName]){

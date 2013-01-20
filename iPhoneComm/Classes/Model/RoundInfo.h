@@ -10,8 +10,8 @@
 
 @interface RoundInfo : NSObjectSerialization<SqliteORMDelegate>
 
-@property (nonatomic,strong) NSString *roundId;
-@property (nonatomic,strong) NSString *matchId;
+@property (nonatomic,copy) NSString *roundId;
+@property (nonatomic,copy) NSString *matchId;
 @property (nonatomic) NSInteger round;
 @property (nonatomic,strong) NSDate *startTime;
 @property (nonatomic,strong) NSDate *endTime;

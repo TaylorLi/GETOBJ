@@ -32,7 +32,7 @@
 -(void)retreiveProfiles;
 -(void)setupNewProfile;
 -(void)selectProfile:(id)sender;
--(void) bindProfile;
+-(void) bindProfile:(NSString *)profileId;
 -(void)bindSettingGroupByGameSetting;
 -(void)delProfile:(NSIndexPath *)indexPath;
 @end
@@ -73,28 +73,33 @@
 {   
     
     if([[BO_GameInfo getInstance] hasUncompletedGame]){        
-        [AppConfig getInstance].currentGameInfo = [[BO_GameInfo getInstance] getlastUncompletedGame];
-        __block GameInfo *gi; 
+        [AppConfig getInstance].currentGameInfo = [[BO_GameInfo getInstance] getlastUncompletedGame];        
+        __weak GameInfo *gi;         
         gi= [AppConfig getInstance].currentGameInfo;
+        [self bindProfile:gi.gameSetting.profileId];
         [UIHelper showConfirm:@"Information" message:[NSString stringWithFormat:@"Game %@ %@ is not compeleted yet,continue the game?",gi.gameSetting.gameName,gi.gameSetting.gameDesc] doneText:@"OK" doneFunc:^(AlertView *a, NSInteger i) {
             [self startGame:YES];
         } cancelText:@"Cancel" cancelfunc:^(AlertView *a, NSInteger i) {            
-            gi.gameEnded=YES;
-            [[BO_GameInfo getInstance] updateObject:gi];
-            [self bindProfile];
+            [[BO_GameInfo getInstance] updateAlluncompletedGameToEnd];
+            [self bindProfile:nil];
         }];   
     }else{
-        [self bindProfile];
+        [self bindProfile:nil];
     }
     lblProfileName.text = [AppConfig getInstance].currentGameInfo.gameSetting.profileName;
     [self retreiveProfiles];
     [self bindSettingGroupByGameSetting];
 }
 
--(void) bindProfile
+-(void) bindProfile:(NSString *)profileId
 {
-    ServerSetting *setting = [[BO_ServerSetting getInstance] getSettingLastUsedProfile];
-    if(setting==nil){
+    ServerSetting *setting;
+    if(profileId!=nil){
+        setting=[[BO_ServerSetting getInstance] queryObjectById:profileId];
+    }else{
+        setting= [[BO_ServerSetting getInstance] getSettingLastUsedProfile];
+    }
+        if(setting==nil){
         ServerSetting *defaultSetting = [[BO_ServerSetting getInstance] getDefaultProfile];
         if(defaultSetting==nil){
             setting=[[ServerSetting alloc] initWithDefault];
@@ -103,7 +108,8 @@
             setting=defaultSetting;
         }
     }
-    [AppConfig getInstance].currentGameInfo=[[GameInfo alloc] initWithGameSetting:setting];
+    if(profileId==nil)
+        [AppConfig getInstance].currentGameInfo=[[GameInfo alloc] initWithGameSetting:setting];
 }
 
 -(void)bindSettingGroupByGameSetting
@@ -205,8 +211,8 @@
 #pragma mark Bind Table Cells 
 -(void) bindSettingGroupData:(GameSettingTabs)group
 {
-    __weak ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
-    __weak GameSettingDetailControllerHD *selfCtl=self;
+    __block ServerSetting *si=[AppConfig getInstance].currentGameInfo.gameSetting;
+    __block GameSettingDetailControllerHD *selfCtl=self;
     switch (group) {
         case gsTabGameSetting:
         {
@@ -328,11 +334,21 @@
                     //                        [startSeqs addObject:[NSString stringWithFormat:@"%i",i]];
                     //                    }
                     //                    SimplePickerInputTableViewCell *startSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Start Court", @"Start Court") selectValue:[NSString stringWithFormat:@"%i",si.startScreening] dataSource:startSeqs];      
-                    
+                    /*
                     IntegerInputTableViewCell *startSeqCell=[[IntegerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"StartCell"                                                                                                       title:NSLocalizedString(@"Start Court", @"Start Court") lowerLimit:0 hightLimit:999 selectedValue:si.startScreening];
                     startSeqCell.tag=kstartScreening;
                     startSeqCell.delegate=selfCtl;
-                    [section addCustomerCell:startSeqCell];                                        
+                    [section addCustomerCell:startSeqCell];          
+                    */
+                    NSMutableArray *startCourts=[[NSMutableArray alloc] init];
+                    for(int i=1;i<=999;i++)
+                    {
+                        [startCourts addObject:[NSString stringWithFormat:@"%i",i]];
+                    }
+                    SimplePickerInputTableViewCell *startSeqCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Start Court", @"Start Court") selectValue:[NSString stringWithFormat:@"%i",si.startScreening] dataSource:startCourts];   
+                    startSeqCell.tag=kstartScreening;
+                    startSeqCell.delegate=selfCtl;
+                    [section addCustomerCell:startSeqCell];
                     
                     NSMutableArray *skipSeqs=[[NSMutableArray alloc] init];
                     for(int i=1;i<=10;i++)
@@ -490,6 +506,21 @@
                     deviceCell.tag=kDeviceType;
                     deviceCell.delegate=selfCtl;
                     [section addCustomerCell:deviceCell]; 
+                   __block ServerSetting *setting=si;
+                    [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        staticContentCell.cellStyle = UITableViewCellStyleValue1;
+                        staticContentCell.reuseIdentifier = @"Remember Clients";                        
+                        cell.textLabel.text = NSLocalizedString(@"Remember Referees", @"Remember Referees");
+                        UISwitch *rememberClients = [[UISwitch alloc] initWithFrame:CGRectZero];
+                        rememberClients.tag=kRememberReferee;
+                        [rememberClients  addTarget:selfCtl action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+                        rememberClients.on=setting.isRememberClients;
+                        cell.accessoryView = rememberClients;
+                        //cell.detailTextLabel.text = NSLocalizedString(@"On", @"On");
+                    } whenSelected:^(NSIndexPath *indexPath) {
+                        //TODO			
+                    }];
                 }];
                 [detailControllerSystemSetting addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
                     [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
@@ -583,13 +614,13 @@
         case kscreeningArea:
             si.screeningArea=value;
             break;
-            //        case kstartScreening:
-            //        {
-            //            si.startScreening=[value intValue];
-            //            [self refreshSkipRound];
-            //            [self refreshPointGapEffRound];
-            //        }
-            //            break;
+            case kstartScreening:
+            {
+                si.startScreening=[value intValue];
+                [self refreshSkipRound];
+                [self refreshPointGapEffRound];
+            }
+            break;
         case kskipScreening:
         {
             si.skipScreening=[value intValue];
@@ -709,7 +740,14 @@
     }
 }
 - (void)valueChanged:(UISwitch *)theSwitch {
-    [AppConfig getInstance].currentGameInfo.gameSetting.enableGapScore=theSwitch.isOn;
+    switch (theSwitch.tag) {
+        case kRememberReferee:
+            [AppConfig getInstance].currentGameInfo.gameSetting.isRememberClients=theSwitch.isOn;
+            break;            
+        default:
+            [AppConfig getInstance].currentGameInfo.gameSetting.enableGapScore=theSwitch.isOn;
+            break;
+    }    
 }    
 
 - (void)tableViewCell:(StringInputTableViewCell *)cell didEndEditingWithString:(NSString *)value{

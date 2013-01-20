@@ -186,8 +186,10 @@
         if([value respondsToSelector:@selector(copyWithZone:)])
         {
             newValue=[value copyWithZone:zone];
-        }
-        else{
+        }else if([value respondsToSelector:@selector(copy)])
+        {
+            newValue=[value copy];
+        }else{
             newValue=value;
         }
         [copyObject setValue:newValue forKey:propertyName];

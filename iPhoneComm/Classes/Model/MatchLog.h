@@ -11,23 +11,23 @@
 #define enu
 @interface MatchLog : NSObjectSerialization<SqliteORMDelegate>
 
-@property (nonatomic,strong) NSString *logId;
-@property (nonatomic,strong) NSString *matchId;
+@property (nonatomic,copy) NSString *logId;
+@property (nonatomic,copy) NSString *matchId;
 @property (nonatomic) NSInteger round;
 @property (nonatomic,strong) NSDate *createTime;
-@property (nonatomic,strong) NSString *roundTime;
-@property (nonatomic,strong) NSString *blueScoreByJudge1;
-@property (nonatomic,strong) NSString *blueScoreByJudge2;
-@property (nonatomic,strong) NSString *blueScoreByJudge3;
-@property (nonatomic,strong) NSString *blueScoreByJudge4;
-@property (nonatomic,strong) NSString *redScoreByJudge1;
-@property (nonatomic,strong) NSString *redScoreByJudge2;
-@property (nonatomic,strong) NSString *redScoreByJudge3;
-@property (nonatomic,strong) NSString *redScoreByJudge4;
-@property (nonatomic,strong) NSString *blueEvents;
-@property (nonatomic,strong) NSString *redEvents;
-@property (nonatomic,strong) NSString *blueScore;
-@property (nonatomic,strong) NSString *redScore;
+@property (nonatomic,copy) NSString *roundTime;
+@property (nonatomic,copy) NSString *blueScoreByJudge1;
+@property (nonatomic,copy) NSString *blueScoreByJudge2;
+@property (nonatomic,copy) NSString *blueScoreByJudge3;
+@property (nonatomic,copy) NSString *blueScoreByJudge4;
+@property (nonatomic,copy) NSString *redScoreByJudge1;
+@property (nonatomic,copy) NSString *redScoreByJudge2;
+@property (nonatomic,copy) NSString *redScoreByJudge3;
+@property (nonatomic,copy) NSString *redScoreByJudge4;
+@property (nonatomic,copy) NSString *blueEvents;
+@property (nonatomic,copy) NSString *redEvents;
+@property (nonatomic,copy) NSString *blueScore;
+@property (nonatomic,copy) NSString *redScore;
 
 -(id) initWithMatchId:(NSString *)_matchId andRound:(NSInteger)_round andblueScoreByJudge1:(NSString *)_blueScoreByJudge1
    andblueScoreByJudge2:(NSString *)_blueScoreByJudge2 andblueScoreByJudge3:(NSString *)_blueScoreByJudge3 andblueScoreByJudge4:(NSString *)_blueScoreByJudge4 andredScoreByJudge1:(NSString *)_redScoreByJudge1

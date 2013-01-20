@@ -8,6 +8,7 @@
 
 #import "BOBase.h"
 #import "TKDDatabase.h"
+#import "FMDatabase.h"
 
 @implementation BOBase
 
@@ -71,4 +72,5 @@
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock) rowFunc{
     return [[Database getInstance] queryList:sql parameters:param processFunc:rowFunc];
 }
+
 @end

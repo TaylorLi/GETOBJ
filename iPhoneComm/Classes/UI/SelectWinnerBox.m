@@ -132,9 +132,9 @@
 -(void)showWinner:(BOOL)red
 {
     if(selectWinTypeButton.hidden==NO)
-        currentWinType=[[winTypes objectForKey:selectWinTypeButton.value] intValue];
+        currentWinType=[selectWinTypeButton.value intValue];
     else if(selectWinTypeButtonRed.hidden==NO)
-        currentWinType=[[winTypes objectForKey:selectWinTypeButtonRed.value] intValue];
+        currentWinType=[selectWinTypeButtonRed.value intValue];
     [self hideWithOnComplete:^(BOOL finished) {
         if ([delegate respondsToSelector:@selector(selectedWinnerEnd:)]) {
             [self removeFromSuperview];            

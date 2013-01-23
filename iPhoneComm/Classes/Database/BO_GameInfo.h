@@ -20,5 +20,6 @@
 -(BOOL)hasUncompletedGame;
 -(GameInfo *)getlastUncompletedGame;
 -(BOOL)updateAllGameInfo:(GameInfo *)gameInfo;
+-(void) updateAlluncompletedGameToEnd;
 
 @end

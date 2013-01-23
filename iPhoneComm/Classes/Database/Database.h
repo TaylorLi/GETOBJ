@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
 
+typedef id (^FuncProcessBlock)(id sender,FMResultSet * resultSet);
+
 @interface Database : NSObject
 {
     NSMutableDictionary *tableColumns;
@@ -32,4 +34,7 @@
 -(NSArray *)columnsOfTableByTableType:(Class)tableClass;
 -(NSArray *)columnsOfTableByTableName:(NSString *)tableName;
 -(BOOL)deleteObject:(Class)type withPrimaryKeyValue:(id)value primaryKeyName:(NSString *)primaryKey;
+- (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock)func;
+-(BOOL)isColumnExistedOfTable:(NSString *)tableName column:(NSString*) columnName;
+
 @end

@@ -29,4 +29,11 @@
     return [outputString autorelease];
 }
 
+- (NSString *)stringByReplacingOccurrencesOfStringIngoreNil:(NSString *)target withString:(NSString *)replacement {
+    NSString *replacestr=replacement;
+    if(replacestr==nil)
+        replacestr=@"";
+    return [self stringByReplacingOccurrencesOfString:target withString:replacestr];
+}
+
 @end

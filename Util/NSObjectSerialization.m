@@ -133,6 +133,7 @@
 -(id)bindingWithDictionary:(NSDictionary *) dictionary
 {
     NSDictionary *propeties=[Reflection getPropertiesNameAndType:[self class]];
+    //NSLog(@"class:%@,attributes:%@",[self class],propeties);
     for (NSString *propertyName in propeties.allKeys)
     {
         NSString *propertyType=[propeties valueForKey:propertyName];        
@@ -145,13 +146,16 @@
                 {
                     value=nil;
                 }
-                else{
+                else{                   
                     if([propertyType hasPrefix:@"@"])//classTye
                     {
                         if([propertyType hasPrefix:@"@\"NSDate\""])
                         {   
-                            if([value isKindOfClass:[NSNumber class]])
-                                value=[NSDate dateWithTimeIntervalSince1970:[(NSNumber *)value doubleValue]];
+                            //NSLog(@"propertyName:%@,tpye:%@,value:%@",propertyName,propertyType,value);
+                            if([value isKindOfClass:[NSNumber class]]){
+                                NSDate *date=[NSDate dateWithTimeIntervalSince1970:[(NSNumber *)value doubleValue]];
+                                value=date;
+                            }    
                         }
                     }   
                 }
@@ -182,12 +186,19 @@
         if([value respondsToSelector:@selector(copyWithZone:)])
         {
             newValue=[value copyWithZone:zone];
-        }
-        else{
+        }else if([value respondsToSelector:@selector(copy)])
+        {
+            newValue=[value copy];
+        }else{
             newValue=value;
         }
         [copyObject setValue:newValue forKey:propertyName];
     }
     return copyObject;
+}
+
+-(NSString *)description
+{
+    return [UtilHelper toJson:self];
 }
 @end

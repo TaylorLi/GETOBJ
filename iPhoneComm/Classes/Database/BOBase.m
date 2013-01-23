@@ -7,8 +7,8 @@
 //
 
 #import "BOBase.h"
-#import "Database.h"
 #import "TKDDatabase.h"
+#import "FMDatabase.h"
 
 @implementation BOBase
 
@@ -68,4 +68,9 @@
 {
     return [[Database getInstance] deleteObject:modelType withPrimaryKeyValue:idValue primaryKeyName:primaryKey];
 }
+
+- (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock) rowFunc{
+    return [[Database getInstance] queryList:sql parameters:param processFunc:rowFunc];
+}
+
 @end

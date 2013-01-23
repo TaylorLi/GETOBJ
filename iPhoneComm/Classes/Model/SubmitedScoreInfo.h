@@ -14,11 +14,11 @@
 @property BOOL isForRedSide;
 @property (nonatomic, retain) NSDate *createTime;
 //array of submit clients,comma seperate
-@property (nonatomic,strong) NSString *clientUuids;
-@property (nonatomic,strong) NSString *gameId;
-@property (nonatomic,strong) NSString *submitedScoreId;
+@property (nonatomic,copy) NSString *clientUuids;
+@property (nonatomic,copy) NSString *gameId;
+@property (nonatomic,copy) NSString *submitedScoreId;
 @property int roundSeq;
-@property (nonatomic,strong) NSString *matchId;
+@property (nonatomic,copy) NSString *matchId;
 @property (nonatomic) BOOL isSubmitByClient;
 @property (nonatomic) ScoreOperateType optType;
 

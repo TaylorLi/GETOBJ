@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Database.h"
 
 @interface BOBase : NSObject
 {
@@ -26,4 +27,5 @@
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param;
 - (id)queryObjectBySql:(NSString *)sql parameters:(id)param;
 -(BOOL)deleteObjectById:(NSString *)idValue;
+- (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock) rowFunc;
 @end

@@ -35,6 +35,8 @@ static NSMutableDictionary *classReflectionProperties;
 
 static const char *getPropertyType(objc_property_t property) {
     const char *attributes = property_getAttributes(property);
+    //NSLog(@"original property type:%@",[NSString stringWithUTF8String:attributes]);
+    /*
     char buffer[1 + strlen(attributes)];
     strcpy(buffer, attributes);
     char *state = buffer, *attribute;
@@ -43,7 +45,10 @@ static const char *getPropertyType(objc_property_t property) {
             return (const char *)[[NSData dataWithBytes:(attribute + 1) length:strlen(attribute) - 1] bytes];
         }
     }
+     
     return "@";
+    */
+    return attributes;
 }
 
 +(NSDictionary *)getPropertiesNameAndType:(Class)classType
@@ -62,7 +67,20 @@ static const char *getPropertyType(objc_property_t property) {
     {
         const char* propertyName = property_getName(properties[i]);
         NSString *key=[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding];
-        NSString *propertyType=[NSString  stringWithCString:getPropertyType(properties[i]) encoding:NSUTF8StringEncoding];
+        /* original property type:T@"NSString",&,N,VmatchId
+           original property type:Ti,VcurrentRound
+         */
+        NSString *orgPropertyType=[NSString  stringWithCString:getPropertyType(properties[i]) encoding:NSUTF8StringEncoding];
+        NSString *propertyType=@"@";
+        if(orgPropertyType!=nil&&[orgPropertyType characterAtIndex:0]=='T'){
+            NSRange range = [orgPropertyType rangeOfString:@","];
+            if(range.location>0){
+                propertyType=[orgPropertyType substringWithRange:NSMakeRange(1, range.location-1)];
+            }else{
+                propertyType=[orgPropertyType substringFromIndex:1];
+            }
+        }    
+        //NSLog(@"slice property name:%@ type:%@",key,propertyType);
         [propertyArray setValue:propertyType forKey:key];
     }
     free(properties);

@@ -57,6 +57,12 @@ static Database* instance;
     }
 }
 
+-(BOOL)isColumnExistedOfTable:(NSString *)tableName column:(NSString*) columnName
+{
+   NSArray *array = [self columnsOfTableByTableName:tableName];
+    return [array containsObject:columnName];
+}
+
 -(NSArray *)columnsOfTableByTableType:(Class)tableClass{
     return [self columnsOfTableByTableName:NSStringFromClass(tableClass)];
 }
@@ -139,6 +145,34 @@ static Database* instance;
     }
     return result;
 }
+
+- (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock)func {
+    NSMutableArray *result=[[NSMutableArray alloc] init];
+    FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
+    if ([db open]) {
+        FMResultSet * rs;        
+        if([param isKindOfClass:[NSArray class]]){
+            rs= [db executeQuery:sql withArgumentsInArray:param];
+        }
+        else if([param isKindOfClass:[NSDictionary class]]){
+            rs= [db executeQuery:sql withParameterDictionary:param];
+        }else{
+            rs= [db executeQuery:sql];
+        }   
+        
+        while ([rs next]) {   
+            id obj=func(self,rs);
+            [result addObject:obj];
+        }
+        if([db hadError]){            
+            NSLog(@"[sqlite] query queryList error:[%@],error detail:%@",sql,db.lastErrorMessage);
+        }
+        
+        [db close];
+    }
+    return result;
+}
+
 - (NSArray *)queryAllList:(Class)type{
     NSString *tableName=NSStringFromClass(type);
     return [self queryList:[NSString stringWithFormat:@"select * from %@",tableName] andType:type parameters:nil];

@@ -13,4 +13,5 @@
 
 + (BO_SubmitedScoreInfo*) getInstance;
 
+-(NSDictionary *)querySideScoreOfRoundSeq:(NSInteger) roundSeq matchId:(NSString *) _matchId;
 @end

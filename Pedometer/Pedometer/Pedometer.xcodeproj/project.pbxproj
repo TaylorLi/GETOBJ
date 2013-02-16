@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA6E9C1D16CFB2F900F2453F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C1C16CFB2F900F2453F /* UIKit.framework */; };
+		DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C1E16CFB2F900F2453F /* Foundation.framework */; };
+		DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */; };
+		DA6E9EBF16CFB4F400F2453F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9C4C16CFB4F300F2453F /* InfoPlist.strings */; };
+		DA6E9EC016CFB4F400F2453F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9C4E16CFB4F300F2453F /* MainStoryboard.storyboard */; };
+		DA6E9EC116CFB4F400F2453F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9C5316CFB4F300F2453F /* main.m */; };
+		DA6E9EC216CFB4F400F2453F /* Pedometer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9C5416CFB4F300F2453F /* Pedometer-Info.plist */; };
+		DA6E9F7F16CFB4F400F2453F /* PEDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9EBA16CFB4F400F2453F /* PEDAppDelegate.m */; };
+		DA6E9F8116CFB4F400F2453F /* PEDGraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9EBE16CFB4F400F2453F /* PEDGraphsViewController.m */; };
+		DA6E9F8816CFB50800F2453F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F8416CFB50800F2453F /* first.png */; };
+		DA6E9F8916CFB50800F2453F /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F8516CFB50800F2453F /* first@2x.png */; };
+		DA6E9F8A16CFB50800F2453F /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F8616CFB50800F2453F /* second.png */; };
+		DA6E9F8B16CFB50800F2453F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F8716CFB50800F2453F /* second@2x.png */; };
+		DA6E9F9616CFB64500F2453F /* barchart.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F8F16CFB64500F2453F /* barchart.bmp */; };
+		DA6E9F9716CFB64500F2453F /* data.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F9016CFB64500F2453F /* data.bmp */; };
+		DA6E9F9816CFB64500F2453F /* graphs.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F9116CFB64500F2453F /* graphs.bmp */; };
+		DA6E9F9916CFB64500F2453F /* main.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F9216CFB64500F2453F /* main.bmp */; };
+		DA6E9F9A16CFB64500F2453F /* pedo.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F9316CFB64500F2453F /* pedo.bmp */; };
+		DA6E9F9B16CFB64500F2453F /* target.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F9416CFB64500F2453F /* target.bmp */; };
+		DA6E9F9C16CFB64500F2453F /* user.bmp in Resources */ = {isa = PBXBuildFile; fileRef = DA6E9F9516CFB64500F2453F /* user.bmp */; };
+		DA6E9FAB16CFBB1500F2453F /* PEDBacktoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9F9D16CFBB1500F2453F /* PEDBacktoMainViewController.m */; };
+		DA6E9FAC16CFBB1500F2453F /* PEDBarchartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9FA016CFBB1500F2453F /* PEDBarchartViewController.m */; };
+		DA6E9FAD16CFBB1500F2453F /* PEDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9FA216CFBB1500F2453F /* PEDMainViewController.m */; };
+		DA6E9FAE16CFBB1500F2453F /* PEDPedoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9FA416CFBB1500F2453F /* PEDPedoDataViewController.m */; };
+		DA6E9FAF16CFBB1500F2453F /* PEDPedoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9FA616CFBB1500F2453F /* PEDPedoViewController.m */; };
+		DA6E9FB016CFBB1500F2453F /* PEDTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9FA816CFBB1500F2453F /* PEDTargetViewController.m */; };
+		DA6E9FB116CFBB1500F2453F /* PEDUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E9FAA16CFBB1500F2453F /* PEDUserViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DA6E9C1816CFB2F900F2453F /* Pedometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pedometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA6E9C1C16CFB2F900F2453F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA6E9C1E16CFB2F900F2453F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA6E9C4D16CFB4F300F2453F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		DA6E9C4F16CFB4F300F2453F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		DA6E9C5316CFB4F300F2453F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DA6E9C5416CFB4F300F2453F /* Pedometer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pedometer-Info.plist"; sourceTree = "<group>"; };
+		DA6E9C5516CFB4F300F2453F /* Pedometer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pedometer-Prefix.pch"; sourceTree = "<group>"; };
+		DA6E9EB916CFB4F400F2453F /* PEDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDAppDelegate.h; sourceTree = "<group>"; };
+		DA6E9EBA16CFB4F400F2453F /* PEDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDAppDelegate.m; sourceTree = "<group>"; };
+		DA6E9EBD16CFB4F400F2453F /* PEDGraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDGraphsViewController.h; sourceTree = "<group>"; };
+		DA6E9EBE16CFB4F400F2453F /* PEDGraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDGraphsViewController.m; sourceTree = "<group>"; };
+		DA6E9F8416CFB50800F2453F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		DA6E9F8516CFB50800F2453F /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		DA6E9F8616CFB50800F2453F /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		DA6E9F8716CFB50800F2453F /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		DA6E9F8F16CFB64500F2453F /* barchart.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = barchart.bmp; sourceTree = "<group>"; };
+		DA6E9F9016CFB64500F2453F /* data.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = data.bmp; sourceTree = "<group>"; };
+		DA6E9F9116CFB64500F2453F /* graphs.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = graphs.bmp; sourceTree = "<group>"; };
+		DA6E9F9216CFB64500F2453F /* main.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = main.bmp; sourceTree = "<group>"; };
+		DA6E9F9316CFB64500F2453F /* pedo.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = pedo.bmp; sourceTree = "<group>"; };
+		DA6E9F9416CFB64500F2453F /* target.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = target.bmp; sourceTree = "<group>"; };
+		DA6E9F9516CFB64500F2453F /* user.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = user.bmp; sourceTree = "<group>"; };
+		DA6E9F9D16CFBB1500F2453F /* PEDBacktoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDBacktoMainViewController.m; sourceTree = "<group>"; };
+		DA6E9F9E16CFBB1500F2453F /* PEDBacktoMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDBacktoMainViewController.h; sourceTree = "<group>"; };
+		DA6E9F9F16CFBB1500F2453F /* PEDBarchartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDBarchartViewController.h; sourceTree = "<group>"; };
+		DA6E9FA016CFBB1500F2453F /* PEDBarchartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDBarchartViewController.m; sourceTree = "<group>"; };
+		DA6E9FA116CFBB1500F2453F /* PEDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDMainViewController.h; sourceTree = "<group>"; };
+		DA6E9FA216CFBB1500F2453F /* PEDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDMainViewController.m; sourceTree = "<group>"; };
+		DA6E9FA316CFBB1500F2453F /* PEDPedoDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDPedoDataViewController.h; sourceTree = "<group>"; };
+		DA6E9FA416CFBB1500F2453F /* PEDPedoDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDPedoDataViewController.m; sourceTree = "<group>"; };
+		DA6E9FA516CFBB1500F2453F /* PEDPedoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDPedoViewController.h; sourceTree = "<group>"; };
+		DA6E9FA616CFBB1500F2453F /* PEDPedoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDPedoViewController.m; sourceTree = "<group>"; };
+		DA6E9FA716CFBB1500F2453F /* PEDTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDTargetViewController.h; sourceTree = "<group>"; };
+		DA6E9FA816CFBB1500F2453F /* PEDTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDTargetViewController.m; sourceTree = "<group>"; };
+		DA6E9FA916CFBB1500F2453F /* PEDUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDUserViewController.h; sourceTree = "<group>"; };
+		DA6E9FAA16CFBB1500F2453F /* PEDUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDUserViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA6E9C1516CFB2F900F2453F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6E9C1D16CFB2F900F2453F /* UIKit.framework in Frameworks */,
+				DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */,
+				DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA6E9C0D16CFB2F900F2453F = {
+			isa = PBXGroup;
+			children = (
+				DA6E9F8216CFB50800F2453F /* Resources */,
+				DA6E9C2216CFB2F900F2453F /* Pedometer */,
+				DA6E9C1B16CFB2F900F2453F /* Frameworks */,
+				DA6E9C1916CFB2F900F2453F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA6E9C1916CFB2F900F2453F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9C1816CFB2F900F2453F /* Pedometer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA6E9C1B16CFB2F900F2453F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9C1C16CFB2F900F2453F /* UIKit.framework */,
+				DA6E9C1E16CFB2F900F2453F /* Foundation.framework */,
+				DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA6E9C2216CFB2F900F2453F /* Pedometer */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9C4B16CFB4F300F2453F /* en.lproj */,
+				DA6E9C5016CFB4F300F2453F /* Misc */,
+				DA6E9C5116CFB4F300F2453F /* Model */,
+				DA6E9C5216CFB4F300F2453F /* Other Sources */,
+				DA6E9EB816CFB4F400F2453F /* UI */,
+				DA6E9C4A16CFB4EA00F2453F /* Database */,
+				DA6E9C2316CFB2F900F2453F /* Supporting Files */,
+			);
+			path = Pedometer;
+			sourceTree = "<group>";
+		};
+		DA6E9C2316CFB2F900F2453F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA6E9C4A16CFB4EA00F2453F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		DA6E9C4B16CFB4F300F2453F /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9C4C16CFB4F300F2453F /* InfoPlist.strings */,
+				DA6E9C4E16CFB4F300F2453F /* MainStoryboard.storyboard */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		DA6E9C5016CFB4F300F2453F /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		DA6E9C5116CFB4F300F2453F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DA6E9C5216CFB4F300F2453F /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9C5316CFB4F300F2453F /* main.m */,
+				DA6E9C5416CFB4F300F2453F /* Pedometer-Info.plist */,
+				DA6E9C5516CFB4F300F2453F /* Pedometer-Prefix.pch */,
+			);
+			path = "Other Sources";
+			sourceTree = "<group>";
+		};
+		DA6E9EB816CFB4F400F2453F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9F9D16CFBB1500F2453F /* PEDBacktoMainViewController.m */,
+				DA6E9F9E16CFBB1500F2453F /* PEDBacktoMainViewController.h */,
+				DA6E9F9F16CFBB1500F2453F /* PEDBarchartViewController.h */,
+				DA6E9FA016CFBB1500F2453F /* PEDBarchartViewController.m */,
+				DA6E9FA116CFBB1500F2453F /* PEDMainViewController.h */,
+				DA6E9FA216CFBB1500F2453F /* PEDMainViewController.m */,
+				DA6E9FA316CFBB1500F2453F /* PEDPedoDataViewController.h */,
+				DA6E9FA416CFBB1500F2453F /* PEDPedoDataViewController.m */,
+				DA6E9FA516CFBB1500F2453F /* PEDPedoViewController.h */,
+				DA6E9FA616CFBB1500F2453F /* PEDPedoViewController.m */,
+				DA6E9FA716CFBB1500F2453F /* PEDTargetViewController.h */,
+				DA6E9FA816CFBB1500F2453F /* PEDTargetViewController.m */,
+				DA6E9FA916CFBB1500F2453F /* PEDUserViewController.h */,
+				DA6E9FAA16CFBB1500F2453F /* PEDUserViewController.m */,
+				DA6E9EB916CFB4F400F2453F /* PEDAppDelegate.h */,
+				DA6E9EBA16CFB4F400F2453F /* PEDAppDelegate.m */,
+				DA6E9EBD16CFB4F400F2453F /* PEDGraphsViewController.h */,
+				DA6E9EBE16CFB4F400F2453F /* PEDGraphsViewController.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DA6E9F8216CFB50800F2453F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9F8316CFB50800F2453F /* Image */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DA6E9F8316CFB50800F2453F /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9F8E16CFB64500F2453F /* Origin */,
+				DA6E9F8416CFB50800F2453F /* first.png */,
+				DA6E9F8516CFB50800F2453F /* first@2x.png */,
+				DA6E9F8616CFB50800F2453F /* second.png */,
+				DA6E9F8716CFB50800F2453F /* second@2x.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		DA6E9F8E16CFB64500F2453F /* Origin */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9F8F16CFB64500F2453F /* barchart.bmp */,
+				DA6E9F9016CFB64500F2453F /* data.bmp */,
+				DA6E9F9116CFB64500F2453F /* graphs.bmp */,
+				DA6E9F9216CFB64500F2453F /* main.bmp */,
+				DA6E9F9316CFB64500F2453F /* pedo.bmp */,
+				DA6E9F9416CFB64500F2453F /* target.bmp */,
+				DA6E9F9516CFB64500F2453F /* user.bmp */,
+			);
+			path = Origin;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA6E9C1716CFB2F900F2453F /* Pedometer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA6E9C4116CFB2F900F2453F /* Build configuration list for PBXNativeTarget "Pedometer" */;
+			buildPhases = (
+				DA6E9C1416CFB2F900F2453F /* Sources */,
+				DA6E9C1516CFB2F900F2453F /* Frameworks */,
+				DA6E9C1616CFB2F900F2453F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pedometer;
+			productName = Pedometer;
+			productReference = DA6E9C1816CFB2F900F2453F /* Pedometer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA6E9C0F16CFB2F900F2453F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = DA6E9C1216CFB2F900F2453F /* Build configuration list for PBXProject "Pedometer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA6E9C0D16CFB2F900F2453F;
+			productRefGroup = DA6E9C1916CFB2F900F2453F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA6E9C1716CFB2F900F2453F /* Pedometer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA6E9C1616CFB2F900F2453F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6E9EBF16CFB4F400F2453F /* InfoPlist.strings in Resources */,
+				DA6E9EC016CFB4F400F2453F /* MainStoryboard.storyboard in Resources */,
+				DA6E9EC216CFB4F400F2453F /* Pedometer-Info.plist in Resources */,
+				DA6E9F8816CFB50800F2453F /* first.png in Resources */,
+				DA6E9F8916CFB50800F2453F /* first@2x.png in Resources */,
+				DA6E9F8A16CFB50800F2453F /* second.png in Resources */,
+				DA6E9F8B16CFB50800F2453F /* second@2x.png in Resources */,
+				DA6E9F9616CFB64500F2453F /* barchart.bmp in Resources */,
+				DA6E9F9716CFB64500F2453F /* data.bmp in Resources */,
+				DA6E9F9816CFB64500F2453F /* graphs.bmp in Resources */,
+				DA6E9F9916CFB64500F2453F /* main.bmp in Resources */,
+				DA6E9F9A16CFB64500F2453F /* pedo.bmp in Resources */,
+				DA6E9F9B16CFB64500F2453F /* target.bmp in Resources */,
+				DA6E9F9C16CFB64500F2453F /* user.bmp in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA6E9C1416CFB2F900F2453F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6E9EC116CFB4F400F2453F /* main.m in Sources */,
+				DA6E9F7F16CFB4F400F2453F /* PEDAppDelegate.m in Sources */,
+				DA6E9F8116CFB4F400F2453F /* PEDGraphsViewController.m in Sources */,
+				DA6E9FAB16CFBB1500F2453F /* PEDBacktoMainViewController.m in Sources */,
+				DA6E9FAC16CFBB1500F2453F /* PEDBarchartViewController.m in Sources */,
+				DA6E9FAD16CFBB1500F2453F /* PEDMainViewController.m in Sources */,
+				DA6E9FAE16CFBB1500F2453F /* PEDPedoDataViewController.m in Sources */,
+				DA6E9FAF16CFBB1500F2453F /* PEDPedoViewController.m in Sources */,
+				DA6E9FB016CFBB1500F2453F /* PEDTargetViewController.m in Sources */,
+				DA6E9FB116CFBB1500F2453F /* PEDUserViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DA6E9C4C16CFB4F300F2453F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA6E9C4D16CFB4F300F2453F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DA6E9C4E16CFB4F300F2453F /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA6E9C4F16CFB4F300F2453F /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA6E9C3F16CFB2F900F2453F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DA6E9C4016CFB2F900F2453F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA6E9C4216CFB2F900F2453F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pedometer/Other Sources/Pedometer-Prefix.pch";
+				INFOPLIST_FILE = "Pedometer/Other Sources/Pedometer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DA6E9C4316CFB2F900F2453F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pedometer/Other Sources/Pedometer-Prefix.pch";
+				INFOPLIST_FILE = "Pedometer/Other Sources/Pedometer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA6E9C1216CFB2F900F2453F /* Build configuration list for PBXProject "Pedometer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA6E9C3F16CFB2F900F2453F /* Debug */,
+				DA6E9C4016CFB2F900F2453F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA6E9C4116CFB2F900F2453F /* Build configuration list for PBXNativeTarget "Pedometer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA6E9C4216CFB2F900F2453F /* Debug */,
+				DA6E9C4316CFB2F900F2453F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA6E9C0F16CFB2F900F2453F /* Project object */;
+}

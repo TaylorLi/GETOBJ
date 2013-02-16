@@ -1920,7 +1920,7 @@
             break;
     }
     //self.actionHeaderView.hidden=YES;
-    [self.actionHeaderView shrinkActionPicker];
+    //[self.actionHeaderView shrinkActionPicker];
 }
 
 //start round
@@ -2187,7 +2187,7 @@
     NSLog(@"Game Status:%i,Previous Status:%i",chatRoom.gameInfo.currentMatchInfo.gameStatus,chatRoom.gameInfo.currentMatchInfo.preGameStatus);
     [self sendServerStatusAndDesc:nil];
     [self processByGameStatus];
-    /*no need to hide the shortcut icon
+    /*no need to hide the shortcut icon auto*/
     UIButton *continueButton=[self getMenuItem:kMenuItemContinueGame];
     UIButton *endMatchButton=[self getMenuItem:kMenuItemEndMatch];
     UIButton *enableTimerButton=[self getMenuItem:kMenuItemRestReorgernizeTimer];
@@ -2206,7 +2206,6 @@
     else{
         enableFightButton.hidden=YES;
     }
-    */ 
      
     if(!fighterPanel.hidden&&!(chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateRunning || chatRoom.gameInfo.currentMatchInfo.gameStatus==kStateCalcScore)){
         [fighterPanel hide];

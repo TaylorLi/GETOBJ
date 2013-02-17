@@ -36,7 +36,7 @@
         viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:@"SelectWinnerBox" owner:self options:nil] objectAtIndex:0];
         winTypes=[[OrderedDictionary alloc] initWithCapacity:3];
         for (int i=kWinByPoint; i<=kWinByByWarning; i++) {
-            [winTypes appendObject:[UtilHelper getWinTypeDesc:i] forKey:[UtilHelper stringWithInt:i]];
+            [winTypes appendObject:[Definition getWinTypeDesc:i] forKey:[UtilHelper stringWithInt:i]];
         }    
         //横向时，宽度与高度互换
         CGSize mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);

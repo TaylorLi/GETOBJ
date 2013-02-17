@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define DATABASE_NAME @"TKDScore"
 #define KEY_PEER_SESSION_ID @"TKD Score"
 #define KEY_PEER_SEVICE_TYPE_CLIENT @"C"
 #define KEY_PEER_SEVICE_TYPE_SEARCH @"B"
@@ -174,5 +175,8 @@ typedef enum {
 } EventType;
 
 @interface Definition : NSObject
+
++(NSString *)getWinTypeDesc:(WinType)type;
++(NSString *)getKeyCodeDesc:(short)keyCode;
 
 @end

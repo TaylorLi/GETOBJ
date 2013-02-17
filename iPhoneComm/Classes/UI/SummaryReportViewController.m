@@ -77,21 +77,21 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"SummaryReport.html" ofType:nil];
     NSString *html= [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     html=[html stringByReplacingOccurrencesOfString:@"%Court%" withString:[NSString stringWithFormat:@"%@%03i",gameInfo.gameSetting.screeningArea,gameInfo.currentMatch]];
-    html=[html stringByReplacingOccurrencesOfString:@"%StartTime%" withString:[UtilHelper formateDate:gameInfo.gameStartTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];
+    html=[html stringByReplacingOccurrencesOfString:@"%StartTime%" withString:[UtilHelper formateDate:gameInfo.gameStartTime withFormat:@"dd MMM,yyyy(HH:mm:ss)"]];
     NSString *endDate=@"";
     NSString *blueWinFlag=@"";
     NSString *redWinFlag=@"";
     NSNumberFormatter* nf = [[NSNumberFormatter alloc] init];
     nf.positiveFormat = @"0.#";
     if(gameInfo.gameEnded && gameInfo.gameEndTime!=nil){
-        endDate =[NSString stringWithFormat:@"End Time: %@", [UtilHelper formateDate:gameInfo.gameEndTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];
+        endDate =[NSString stringWithFormat:@"End Time: %@", [UtilHelper formateDate:gameInfo.gameEndTime withFormat:@"dd MMM,yyyy(HH:mm:ss)"]];
         if(gameInfo.currentMatchInfo.isRedToBeWinner){
             redWinFlag=@"(Winner)";
         }
         else{
             blueWinFlag =@"(Winner)";
         }
-        html=[html stringByReplacingOccurrencesOfString:@"%WinType%" withString:[NSString stringWithFormat:@"Win By:<span style='font-weight:bold'>%@</span>",[[UtilHelper getWinTypeDesc:gameInfo.currentMatchInfo.winByType] stringByReplacingOccurrencesOfString:@"Win By " withString:@""]]];
+        html=[html stringByReplacingOccurrencesOfString:@"%WinType%" withString:[NSString stringWithFormat:@"Win By:<span style='font-weight:bold'>%@</span>",[[Definition getWinTypeDesc:gameInfo.currentMatchInfo.winByType] stringByReplacingOccurrencesOfString:@"Win By " withString:@""]]];
     }
     else{
         html=[html stringByReplacingOccurrencesOfString:@"%WinType%" withString:@""];

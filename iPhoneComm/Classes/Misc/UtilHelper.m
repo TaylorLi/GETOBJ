@@ -12,17 +12,17 @@
 @implementation UtilHelper
 +(NSString *)formateTime:(NSDate *)date;
 {
-    return [UtilHelper formateDate:date withFormate:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    return [UtilHelper formateDate:date withFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
 }
 +(NSString *)formateDate:(NSDate *)date
 {
-    return [UtilHelper formateDate:date withFormate:@"yyyy-MM-dd"];
+    return [UtilHelper formateDate:date withFormat:@"yyyy-MM-dd"];
 }
 +(NSString *)formateDateWithTime:(NSDate *)date
 {
-    return [UtilHelper formateDate:date withFormate:@"yyyy-MM-dd HH:mm:ss"];
+    return [UtilHelper formateDate:date withFormat:@"yyyy-MM-dd HH:mm:ss"];
 }
-+(NSString *)formateDate:(NSDate *)date withFormate:(NSString *)format
++(NSString *)formateDate:(NSDate *)date withFormat:(NSString *)format
 {
     if(date==nil)
         return @"";
@@ -37,6 +37,29 @@
         NSLog(@"Formatted Date = %@", d);
         return @"";
     }    
+    return d;
+}
+
++(NSDate *) convertDate:(NSString *)dateString
+{
+    return [UtilHelper convertDate:dateString withFormat:@"yyyy-MM-dd"];
+}
++(NSDate *) convertDate:(NSString *)dateString withFormat:(NSString *)format
+{
+    if(dateString==nil||[dateString isEqualToString:@""])
+        return nil;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:format];
+    NSDate *d= [dateFormatter dateFromString:dateString];
+if(d==nil)
+{
+    NSLog(@"date object type:%@",[dateString class]);
+    NSLog(@"   Normal Date = %@", dateString);
+    NSLog(@"   Date Format= %@", format);
+    NSLog(@"Formatted Date = %@", d);
+}
     return d;
 }
 //从文件中反序列化反序列化
@@ -71,63 +94,6 @@
 +(BOOL)isFileExist:(NSString *)fileName
 {
     return [[NSFileManager defaultManager] fileExistsAtPath:[UtilHelper dataFilePath:fileName]];
-}
-+(NSString *)getKeyCodeDesc:(short)keyCode
-{
-    if(keyCode>=GSEVENTKEY_KEYCODE_ALP_A&&keyCode<=GSEVENTKEY_KEYCODE_ALP_Z)
-    {
-        short c=(short)'A';
-        c=keyCode-GSEVENTKEY_KEYCODE_ALP_A+c;
-        return [NSString stringWithFormat:@"Alpha %c",(char)c];
-    }
-    else if(keyCode==GSEVENTKEY_KEYCODE_NUM_0)
-    {
-        return @"Num 0";
-    }
-    else if(keyCode>=GSEVENTKEY_KEYCODE_NUM_1&&keyCode<=GSEVENTKEY_KEYCODE_NUM_9)
-    {
-        short c=(short)'1';
-        c=keyCode-GSEVENTKEY_KEYCODE_NUM_1+c;
-        return [NSString stringWithFormat:@"Num %c",(char)c];
-    }
-    else
-    {
-        NSDictionary *codeDesc=[[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"~",@"53",
-                                @"-",@"45",
-                                @"+",@"46",
-                                @"\\",@"49",
-                                @"[",@"47",
-                                @"]",@"48",
-                                @";",@"51",
-                                @"'",@"52",
-                                @",",@"54",
-                                @".",@"55",
-                                @"/",@"56",
-                                @"ARROW RIGHT",@"79",
-                                @"ARROW LEFT",@"80",
-                                @"ARROW DOWN",@"81",
-                                @"ARROW UP",@"82",
-                                nil];
-        if([codeDesc containKey:[NSString stringWithFormat:@"%i",keyCode]])
-        {
-            return [codeDesc objectForKey:[NSString stringWithFormat:@"Char %i",keyCode]];
-        }
-        else
-            return [NSString stringWithFormat:@"Unmatch code %i",keyCode];
-    }
-}
-+(NSString *)getWinTypeDesc:(WinType)type{
-    switch (type) {
-        case kWinByPoint:            
-            return @"Win By Point";
-        case kWinByPointGap:
-            return @"Win By Point Gap";
-        case  kWinByByWarning:
-            return @"Win By Warning";
-        default:
-            return @"";
-    }
 }
 
 + (NSString*) stringWithUUID {
@@ -207,5 +173,9 @@
     @finally {
         
     }
+}
++(NSString *)deviceName
+{
+    return [[UIDevice currentDevice] name];
 }
 @end

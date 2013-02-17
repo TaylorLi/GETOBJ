@@ -82,13 +82,13 @@
     //NSLog(@"Round Info:%@",roundInfo);
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%Court%" withString:[NSString stringWithFormat:@"%@%03i",gameInfo.gameSetting.screeningArea,gameInfo.currentMatch]];
     html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%Round%" withString:[NSString stringWithFormat:@"%i",roundInfo.round]];
-    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%StartTime%" withString:[UtilHelper formateDate:roundInfo.startTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];
+    html=[html stringByReplacingOccurrencesOfStringIngoreNil:@"%StartTime%" withString:[UtilHelper formateDate:roundInfo.startTime withFormat:@"dd MMM,yyyy(HH:mm:ss)"]];
     NSString *endDate=@"";
     NSString *blueWinFlag=@"";
     NSString *redWinFlag=@"";
 
     if(roundInfo.endTime!=nil){
-        endDate =[NSString stringWithFormat:@"End Time: %@", [UtilHelper formateDate:roundInfo.endTime withFormate:@"dd MMM,yyyy(HH:mm:ss)"]];     
+        endDate =[NSString stringWithFormat:@"End Time: %@", [UtilHelper formateDate:roundInfo.endTime withFormat:@"dd MMM,yyyy(HH:mm:ss)"]];     
         if(roundInfo.roundWinnerisBlue){
             blueWinFlag =@"(W)";
         }

@@ -18,12 +18,6 @@
 */
 #define DEBUG 1
 
-#if NS_BLOCKS_AVAILABLE
-typedef void (^FuncBlock)(void);
-typedef void (^FuncHandlerBlock)(id sender,id args);
-typedef void (^FuncResultBlock)(id result);
-#endif
-
 #define DEBUG_REQUEST_STATUS 1
 
 // When set to 1, ASIFormDataRequests will print information about the request body to the console

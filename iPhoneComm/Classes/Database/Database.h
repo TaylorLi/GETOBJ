@@ -16,9 +16,8 @@ typedef id (^FuncProcessBlock)(id sender,FMResultSet * resultSet);
     NSMutableDictionary *tableColumns;
 }
 
-- (id) init;
+- (id) initWithDatebaseName:(NSString *)databaseName ;
 + (Database*) getInstance;
-
 - (void)setupDatabase:(FuncResultBlock) func;
 -(void)openSession:(FuncResultBlock) func;
 -(void)queryData:(NSString *)sql handleDataRow:(FuncResultBlock) rowFunc;

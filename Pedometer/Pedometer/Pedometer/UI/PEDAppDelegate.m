@@ -7,6 +7,11 @@
 //
 
 #import "PEDAppDelegate.h"
+#import "PEDDatabase.h"
+#import "PEDUserInfo.h"
+#import "BO_PEDUserInfo.h"
+#import "PEDPedoDateLog.h"
+#import "BO_PEDPedoDateLog.h"
 
 @implementation PEDAppDelegate
 
@@ -14,6 +19,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[PEDDatabase getInstance] setupServerDatabase];
+    //PEDUserInfo *user=[[PEDUserInfo alloc] init];
+    //[[BO_PEDUserInfo getInstance] saveObject:user];
+    /*
+    PEDPedoDateLog *log=[[PEDPedoDateLog alloc] init];
+    log.logDate=[UtilHelper convertDate:@"2013-02-10"];
+    log.step=1000;
+    log.distance=10000;
+    log.activeTime=10*60;
+    log.caloriesBurned=1500;
+    log.avgPace=100;
+    log.avgSpeed=500;
+    [[BO_PEDPedoDateLog getInstance] saveObject:log];
+     */
     // Override point for customization after application launch.
     return YES;
 }

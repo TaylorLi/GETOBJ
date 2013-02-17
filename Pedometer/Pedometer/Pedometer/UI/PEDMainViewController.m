@@ -7,8 +7,24 @@
 //
 
 #import "PEDMainViewController.h"
+#import "PEDAppDelegate.h"
 
 @implementation PEDMainViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+        bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
+        [self.view addSubview:bgImage]; 
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(35, 286, 254, 28)];
+        button.backgroundColor = [UIColor clearColor];
+        [button addTarget:self action:@selector(fitPlusClick) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:button];
+    }
+    return self;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -21,6 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    //[self setWantsFullScreenLayout:YES];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -56,5 +74,10 @@
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+- (void) fitPlusClick{
+    [[PEDAppDelegate getInstance] showUserView];
+}
+
 
 @end

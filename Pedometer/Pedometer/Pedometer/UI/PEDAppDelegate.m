@@ -7,13 +7,88 @@
 //
 
 #import "PEDAppDelegate.h"
+#import "PEDMainViewController.h"
+#import "PEDUserViewController.h"
+#import "PEDPedoViewController.h"
+#import "PEDPedoDataViewController.h"
+#import "PEDBarchartViewController.h"
+#import "PEDBacktoMainViewController.h"
+#import "PEDTargetViewController.h"
+#import "PEDGraphsViewController.h"
 
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
+@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserViewController,pedTargetViewController,pedPedoDataViewController;
+@synthesize tabBarController;
+
+static PEDAppDelegate* _instance;
+
++ (PEDAppDelegate*)getInstance {
+    return _instance;
+}
+
+-(void) swithView:(UIView *) view{
+    for (UIView *subView in self.window.subviews) {
+        if(subView.superview!=nil){
+            [subView removeFromSuperview];
+        }
+    }
+    [self.window insertSubview:view atIndex:0];
+}
+
+-(void) showUserView{
+    if(!pedUserViewController){
+        pedUserViewController = [[PEDUserViewController alloc]init];
+    }
+    [self swithView : pedUserViewController.view];
+}
+
+-(void) showMainView{
+    if(!pedMainViewController){
+        pedMainViewController = [[PEDMainViewController alloc]init];
+    }
+    [self swithView : pedMainViewController.view];
+}
+
+-(void) showTabView{
+    if(!tabBarController){
+        tabBarController = [[UITabBarController alloc]init];
+        pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
+        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+        pedTargetViewController = [[PEDTargetViewController alloc]init];
+        pedGraphsViewController = [[PEDGraphsViewController alloc]init];
+        pedBarchartViewController = [[PEDBarchartViewController alloc]init];
+        UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:pedPedoDataViewController];
+        
+        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
+        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
+    }
+    tabBarController.selectedIndex = 1;
+    [self swithView : tabBarController.view];
+}
+
+//-(void) applicationDidFinishLaunching:(UIApplication *)application{
+//
+//    _instance = self;
+//    
+//    // Override point for customization after app launch
+//    [self.window addSubview:pedMainViewController.view];   
+//    [self.window makeKeyAndVisible];
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+//    v.backgroundColor = [UIColor whiteColor];
+//    [self.window addSubview:v];
+    
+    _instance = self;
+    pedMainViewController = [[PEDMainViewController alloc]init];
+    [self.window addSubview:pedMainViewController.view];   
+    [self.window makeKeyAndVisible];
+    
     // Override point for customization after application launch.
     return YES;
 }

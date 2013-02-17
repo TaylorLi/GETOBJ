@@ -444,6 +444,7 @@
 				DA6E9C4316CFB2F900F2453F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

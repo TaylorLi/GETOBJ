@@ -10,6 +10,17 @@
 
 @implementation PEDBacktoMainViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UIImage *tabbarImage = [UIImage imageNamed:@"first.png"] ;
+        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:0];
+        self.tabBarItem = barItem;
+    }
+    return self;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -22,6 +33,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
+    bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
+    [self.view addSubview:bgImage];
 }
 
 - (void)viewDidUnload

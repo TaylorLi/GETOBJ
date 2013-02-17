@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface PEDMainViewController : UIViewController
 
 @end

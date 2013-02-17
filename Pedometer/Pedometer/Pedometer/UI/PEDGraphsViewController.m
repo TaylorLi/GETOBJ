@@ -16,6 +16,21 @@
 {
     return YES;
 }
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
+        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:3];
+        self.tabBarItem = barItem;
+    }
+    return self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    
+}
 
 #pragma mark -
 #pragma mark Initialization and teardown
@@ -139,6 +154,11 @@
 #ifdef PERFORMANCE_TEST
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(changePlotRange) userInfo:nil repeats:YES];
 #endif
+	// Do any additional setup after loading the view, typically from a nib.
+    
+    //UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
+    //bgImage.image = [UIImage imageNamed:@"graphs.bmp"] ;
+    //[self.view addSubview:bgImage];
 }
 
 -(void)changePlotRange

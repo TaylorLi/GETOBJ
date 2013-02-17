@@ -63,6 +63,8 @@
 		DA6EA02516CFE58600F2453F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02416CFE58600F2453F /* libxml2.dylib */; };
 		DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02616CFE5AF00F2453F /* libz.dylib */; };
 		DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */; };
+		DA903D0416D135B300DACDBB /* PEDBarchartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA903D0316D135B300DACDBB /* PEDBarchartViewController.xib */; };
+		DA903D0816D1360700DACDBB /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA903D0716D1360700DACDBB /* PEDGraphsViewController.xib */; };
 		DAF7165416D0841F0081D5C8 /* Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF7165316D0841F0081D5C8 /* Definition.m */; };
 		DAF7165916D085560081D5C8 /* BO_PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF7165616D085560081D5C8 /* BO_PEDUserInfo.m */; };
 		DAF7165D16D085B00081D5C8 /* BOBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF7165C16D085B00081D5C8 /* BOBase.m */; };
@@ -170,6 +172,8 @@
 		DA6EA02416CFE58600F2453F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		DA6EA02616CFE5AF00F2453F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
+		DA903D0316D135B300DACDBB /* PEDBarchartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDBarchartViewController.xib; path = XIB/PEDBarchartViewController.xib; sourceTree = "<group>"; };
+		DA903D0716D1360700DACDBB /* PEDGraphsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDGraphsViewController.xib; path = XIB/PEDGraphsViewController.xib; sourceTree = "<group>"; };
 		DAF7165116D070650081D5C8 /* Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definition.h; sourceTree = "<group>"; };
 		DAF7165316D0841F0081D5C8 /* Definition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Definition.m; sourceTree = "<group>"; };
 		DAF7165516D085560081D5C8 /* BO_PEDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BO_PEDUserInfo.h; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 		DA6E9C2216CFB2F900F2453F /* Pedometer */ = {
 			isa = PBXGroup;
 			children = (
+				DA903D0116D1354700DACDBB /* XIB */,
 				DA6E9FB616CFD9B600F2453F /* Model */,
 				DA6E9C4B16CFB4F300F2453F /* en.lproj */,
 				DA6E9C5016CFB4F300F2453F /* Misc */,
@@ -549,6 +554,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		DA903D0116D1354700DACDBB /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				DA903D0716D1360700DACDBB /* PEDGraphsViewController.xib */,
+				DA903D0316D135B300DACDBB /* PEDBarchartViewController.xib */,
+			);
+			name = XIB;
+			sourceTree = "<group>";
+		};
 		DAF7167B16D0BFA50081D5C8 /* CorePlot */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +735,8 @@
 				DA6E9F9A16CFB64500F2453F /* pedo.bmp in Resources */,
 				DA6E9F9B16CFB64500F2453F /* target.bmp in Resources */,
 				DA6E9F9C16CFB64500F2453F /* user.bmp in Resources */,
+				DA903D0416D135B300DACDBB /* PEDBarchartViewController.xib in Resources */,
+				DA903D0816D1360700DACDBB /* PEDGraphsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

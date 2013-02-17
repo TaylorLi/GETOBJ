@@ -7,8 +7,20 @@
 //
 
 #import "PEDPedoDataViewController.h"
+#import "PEDPedoViewController.h"
 
 @implementation PEDPedoDataViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
+        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
+        self.tabBarItem = barItem;
+    }
+    return self;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -22,6 +34,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
+    bgImage.image = [UIImage imageNamed:@"data.bmp"] ;
+    [self.view addSubview:bgImage]; 
+    
+    UIButton *btnMonthStatistics = [[UIButton alloc] initWithFrame:CGRectMake(268, 257, 19, 20)];
+    btnMonthStatistics.backgroundColor = [UIColor clearColor];
+    [btnMonthStatistics addTarget:self action:@selector(monthStatisticsClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:btnMonthStatistics];
 }
 
 - (void)viewDidUnload
@@ -34,6 +56,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(!self.navigationController.navigationBarHidden){
+        self.navigationController.navigationBar.hidden = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,6 +80,14 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+-(void) monthStatisticsClick{
+    PEDPedoViewController *pedPedoViewController = [[PEDPedoViewController alloc]init];
+    [self.navigationController pushViewController:pedPedoViewController animated:YES];
+    //[self.view insertSubview:pedPedoViewController.view atIndex:0];
+//    [self.navigationController presentModalViewController:pedPedoViewController animated:YES];
+ //   [self presentModalViewController:pedPedoViewController animated:NO]; 
 }
 
 @end

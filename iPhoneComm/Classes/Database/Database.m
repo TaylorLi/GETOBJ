@@ -23,12 +23,13 @@ static Database* instance;
 
 @synthesize dbPath;
 
-- (id) init {
+- (id) initWithDatebaseName:(NSString *)databaseName {
     self=[super init];
     if(self){
         tableColumns=[[NSMutableDictionary alloc] init];
         NSString * doc = PATH_OF_CACHE;
-        NSString * path = [doc stringByAppendingPathComponent:@"TKDScore.sqlite"];
+        NSString * path = [doc stringByAppendingPathComponent:[NSString stringWithFormat:
+                                                               @"%@.sqlite",databaseName]];
         dbPath=path;
         NSLog(@"数据库地址是:%@",dbPath);
     }
@@ -37,7 +38,7 @@ static Database* instance;
 + (Database*) getInstance {
     @synchronized([Database class]) {
         if ( instance == nil ) {
-            instance = [[Database alloc] init];
+            instance = [[Database alloc] initWithDatebaseName:DATABASE_NAME];
         }
     }
     return instance;

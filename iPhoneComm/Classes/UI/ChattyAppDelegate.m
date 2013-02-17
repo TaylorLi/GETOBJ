@@ -229,7 +229,7 @@ static ChattyAppDelegate* _instance;
  keyArgv.command=[((NSNumber *)[info objectForKey:@"command"]) boolValue];
      keyArgv.option=[((NSNumber *)[info objectForKey:@"option"]) boolValue];
      keyArgv.shift=[((NSNumber *)[info objectForKey:@"shift"]) boolValue];
-    keyArgv.keyDesc=[UtilHelper getKeyCodeDesc:keyArgv.keyCode];
+    keyArgv.keyDesc=[Definition getKeyCodeDesc:keyArgv.keyCode];
     NSLog(@"%@",keyArgv);
     AppConfig *config = [AppConfig getInstance];
     if(config.currentAppStep==AppStepServer && scoreBoardViewController.chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceKeyboard)

@@ -7,6 +7,11 @@
 //
 
 #import "PEDAppDelegate.h"
+#import "PEDDatabase.h"
+#import "PEDUserInfo.h"
+#import "BO_PEDUserInfo.h"
+#import "PEDPedoDateLog.h"
+#import "BO_PEDPedoDateLog.h"
 #import "PEDMainViewController.h"
 #import "PEDUserViewController.h"
 #import "PEDPedoViewController.h"
@@ -79,6 +84,20 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[PEDDatabase getInstance] setupServerDatabase];
+    //PEDUserInfo *user=[[PEDUserInfo alloc] init];
+    //[[BO_PEDUserInfo getInstance] saveObject:user];
+    /*
+    PEDPedoDateLog *log=[[PEDPedoDateLog alloc] init];
+    log.logDate=[UtilHelper convertDate:@"2013-02-10"];
+    log.step=1000;
+    log.distance=10000;
+    log.activeTime=10*60;
+    log.caloriesBurned=1500;
+    log.avgPace=100;
+    log.avgSpeed=500;
+    [[BO_PEDPedoDateLog getInstance] saveObject:log];
+     */
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
 //    v.backgroundColor = [UIColor whiteColor];
@@ -88,7 +107,6 @@ static PEDAppDelegate* _instance;
     pedMainViewController = [[PEDMainViewController alloc]init];
     [self.window addSubview:pedMainViewController.view];   
     [self.window makeKeyAndVisible];
-    
     // Override point for customization after application launch.
     return YES;
 }

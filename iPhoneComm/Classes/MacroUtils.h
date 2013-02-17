@@ -26,3 +26,9 @@
 #define PATH_OF_DOCUMENT    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #define PATH_OF_CACHE    [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #endif
+
+#if NS_BLOCKS_AVAILABLE
+typedef void (^FuncBlock)(void);
+typedef void (^FuncHandlerBlock)(id sender,id args);
+typedef void (^FuncResultBlock)(id result);
+#endif

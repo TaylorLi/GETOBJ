@@ -142,8 +142,6 @@
 		DA4E9153168F3B7900046BD9 /* StaticTableGroupData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */; };
 		DA4E9154168F3B7900046BD9 /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9149168F3B7900046BD9 /* UITextView+Utils.m */; };
 		DA4E9155168F3B7900046BD9 /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9149168F3B7900046BD9 /* UITextView+Utils.m */; };
-		DA4E9156168F3B7900046BD9 /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E914B168F3B7900046BD9 /* UtilHelper.m */; };
-		DA4E9157168F3B7900046BD9 /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E914B168F3B7900046BD9 /* UtilHelper.m */; };
 		DA4E915D168F3BC400046BD9 /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9159168F3BC400046BD9 /* RemoteRoom.m */; };
 		DA4E915E168F3BC400046BD9 /* RemoteRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9159168F3BC400046BD9 /* RemoteRoom.m */; };
 		DA4E915F168F3BC400046BD9 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E915B168F3BC400046BD9 /* Room.m */; };
@@ -172,6 +170,9 @@
 		DA656E271663B88400D691B0 /* end-match.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E231663B88400D691B0 /* end-match.png */; };
 		DA656E281663B88400D691B0 /* fight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E241663B88400D691B0 /* fight.png */; };
 		DA656E291663B88400D691B0 /* txn-report.png in Resources */ = {isa = PBXBuildFile; fileRef = DA656E251663B88400D691B0 /* txn-report.png */; };
+		DA667A9516D26A9A00ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667A9416D26A9A00ED3A49 /* NSDictionary+Extendtion.m */; };
+		DA667B9516D270F500ED3A49 /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B9416D270F500ED3A49 /* UtilHelper.m */; };
+		DA667B9A16D2721A00ED3A49 /* UtilHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B9416D270F500ED3A49 /* UtilHelper.m */; };
 		DA7198501693CFCF00A47013 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71981D1693CFCF00A47013 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA7198511693CFCF00A47013 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7198201693CFCF00A47013 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA7198521693CFCF00A47013 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7198221693CFCF00A47013 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -489,8 +490,6 @@
 		DAEAEA741663A72700FDC47A /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA6D1663A72700FDC47A /* FMDatabaseQueue.m */; };
 		DAEAEA761663A72700FDC47A /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEAEA701663A72700FDC47A /* FMResultSet.m */; };
 		DAEAEA7C1663A7A900FDC47A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEAEA7B1663A7A900FDC47A /* libsqlite3.dylib */; };
-		DAEB1E8E15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */; };
-		DAEB1E8F15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */; };
 		DAEB2BB5166B47A60044706E /* PickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB4166B47A60044706E /* PickerButton.m */; };
 		DAEB2BB6166B47A60044706E /* PickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB4166B47A60044706E /* PickerButton.m */; };
 		DAEB2BBA166B7FAD0044706E /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB2BB9166B7FAD0044706E /* Database.m */; };
@@ -712,8 +711,6 @@
 		DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticTableGroupData.m; path = Misc/StaticTableGroupData.m; sourceTree = "<group>"; };
 		DA4E9148168F3B7900046BD9 /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+Utils.h"; path = "Misc/UITextView+Utils.h"; sourceTree = "<group>"; };
 		DA4E9149168F3B7900046BD9 /* UITextView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+Utils.m"; path = "Misc/UITextView+Utils.m"; sourceTree = "<group>"; };
-		DA4E914A168F3B7900046BD9 /* UtilHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilHelper.h; path = Misc/UtilHelper.h; sourceTree = "<group>"; };
-		DA4E914B168F3B7900046BD9 /* UtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilHelper.m; path = Misc/UtilHelper.m; sourceTree = "<group>"; };
 		DA4E9158168F3BC400046BD9 /* RemoteRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteRoom.h; path = "Business Logic/RemoteRoom.h"; sourceTree = "<group>"; };
 		DA4E9159168F3BC400046BD9 /* RemoteRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteRoom.m; path = "Business Logic/RemoteRoom.m"; sourceTree = "<group>"; };
 		DA4E915A168F3BC400046BD9 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Room.h; path = "Business Logic/Room.h"; sourceTree = "<group>"; };
@@ -736,6 +733,11 @@
 		DA656E231663B88400D691B0 /* end-match.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "end-match.png"; path = "Resources-iPad/end-match.png"; sourceTree = "<group>"; };
 		DA656E241663B88400D691B0 /* fight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fight.png; path = "Resources-iPad/fight.png"; sourceTree = "<group>"; };
 		DA656E251663B88400D691B0 /* txn-report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "txn-report.png"; path = "Resources-iPad/txn-report.png"; sourceTree = "<group>"; };
+		DA667A9316D26A9A00ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
+		DA667A9416D26A9A00ED3A49 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Extendtion.m"; path = "../../Util/NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
+		DA667A9616D26AC400ED3A49 /* MacroUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacroUtils.h; path = ../Util/MacroUtils.h; sourceTree = "<group>"; };
+		DA667B9316D270F500ED3A49 /* UtilHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilHelper.h; path = ../../Util/UtilHelper.h; sourceTree = "<group>"; };
+		DA667B9416D270F500ED3A49 /* UtilHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilHelper.m; path = ../../Util/UtilHelper.m; sourceTree = "<group>"; };
 		DA71981C1693CFCF00A47013 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		DA71981D1693CFCF00A47013 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		DA71981E1693CFCF00A47013 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -1033,9 +1035,6 @@
 		DAEAEA6F1663A72700FDC47A /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = ../Submodules/fmdb/FMResultSet.h; sourceTree = "<group>"; };
 		DAEAEA701663A72700FDC47A /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = ../Submodules/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		DAEAEA7B1663A7A900FDC47A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		DAEAEA811663AE7D00FDC47A /* MacroUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacroUtils.h; path = Classes/MacroUtils.h; sourceTree = "<group>"; };
-		DAEB1E8C15F904E100CE98C7 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
-		DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
 		DAEB2BB3166B47A60044706E /* PickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerButton.h; path = ../../Controls/GET/PickerButton.h; sourceTree = "<group>"; };
 		DAEB2BB4166B47A60044706E /* PickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerButton.m; path = ../../Controls/GET/PickerButton.m; sourceTree = "<group>"; };
 		DAEB2BB8166B7FAD0044706E /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Database.h; path = Database/Database.h; sourceTree = "<group>"; };
@@ -1206,10 +1205,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DA667A9616D26AC400ED3A49 /* MacroUtils.h */,
 				DAE977A815D61DC100A5AF7E /* Settings.plist */,
 				32CA4F630368D1EE00C91783 /* TKD Score_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				DAEAEA811663AE7D00FDC47A /* MacroUtils.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1301,6 +1300,10 @@
 		D0510A710F9E14F200B735FA /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				DA667B9316D270F500ED3A49 /* UtilHelper.h */,
+				DA667B9416D270F500ED3A49 /* UtilHelper.m */,
+				DA667A9316D26A9A00ED3A49 /* NSDictionary+Extendtion.h */,
+				DA667A9416D26A9A00ED3A49 /* NSDictionary+Extendtion.m */,
 				DA7198761693D6ED00A47013 /* RequestManager.h */,
 				DA7198771693D6ED00A47013 /* RequestManager.m */,
 				DA4E9140168F3B7900046BD9 /* AppConfig.h */,
@@ -1313,14 +1316,10 @@
 				DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */,
 				DA4E9148168F3B7900046BD9 /* UITextView+Utils.h */,
 				DA4E9149168F3B7900046BD9 /* UITextView+Utils.m */,
-				DA4E914A168F3B7900046BD9 /* UtilHelper.h */,
-				DA4E914B168F3B7900046BD9 /* UtilHelper.m */,
 				DA8C937A15E9074B007F5D0B /* NSObjectSerialization.h */,
 				DA8C937B15E9074B007F5D0B /* NSObjectSerialization.m */,
 				DAEFCDCE15E9B20600F70994 /* Reflection.h */,
 				DAEFCDCF15E9B20600F70994 /* Reflection.m */,
-				DAEB1E8C15F904E100CE98C7 /* NSDictionary+Extendtion.h */,
-				DAEB1E8D15F904E100CE98C7 /* NSDictionary+Extendtion.m */,
 				DA3078411694027200306665 /* AppSetting.h */,
 				DA3078421694027200306665 /* AppSetting.m */,
 			);
@@ -2402,7 +2401,6 @@
 				DAEF4C8A15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
 				DA8C937C15E9074C007F5D0B /* NSObjectSerialization.m in Sources */,
 				DAEFCDD015E9B20600F70994 /* Reflection.m in Sources */,
-				DAEB1E8E15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */,
 				DAEBA0B4163260A1001A58C7 /* UIGifView.m in Sources */,
 				DAEB2BB5166B47A60044706E /* PickerButton.m in Sources */,
 				DAEB2BBA166B7FAD0044706E /* Database.m in Sources */,
@@ -2463,7 +2461,6 @@
 				DA4E9150168F3B7900046BD9 /* SoundsPlayer.m in Sources */,
 				DA4E9152168F3B7900046BD9 /* StaticTableGroupData.m in Sources */,
 				DA4E9154168F3B7900046BD9 /* UITextView+Utils.m in Sources */,
-				DA4E9156168F3B7900046BD9 /* UtilHelper.m in Sources */,
 				DA4E915D168F3BC400046BD9 /* RemoteRoom.m in Sources */,
 				DA4E915F168F3BC400046BD9 /* Room.m in Sources */,
 				DA4E9163168F3C6400046BD9 /* LocalRoom.m in Sources */,
@@ -2503,6 +2500,8 @@
 				DAE8430616958D3D00E1A2C3 /* RequestResult.m in Sources */,
 				DAEB7187169C865300039509 /* NSTimer+Blocks.m in Sources */,
 				DAA689FC16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
+				DA667A9516D26A9A00ED3A49 /* NSDictionary+Extendtion.m in Sources */,
+				DA667B9516D270F500ED3A49 /* UtilHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2553,7 +2552,6 @@
 				DAEF4C8B15E68729006025DD /* IntegerInputTableViewCell.m in Sources */,
 				DA8C937D15E9074C007F5D0B /* NSObjectSerialization.m in Sources */,
 				DAEFCDD115E9B20600F70994 /* Reflection.m in Sources */,
-				DAEB1E8F15F904E100CE98C7 /* NSDictionary+Extendtion.m in Sources */,
 				DAEBA0B5163260A1001A58C7 /* UIGifView.m in Sources */,
 				DAEAEA711663A72700FDC47A /* FMDatabase.m in Sources */,
 				DAEAEA721663A72700FDC47A /* FMDatabaseAdditions.m in Sources */,
@@ -2614,7 +2612,6 @@
 				DA4E9151168F3B7900046BD9 /* SoundsPlayer.m in Sources */,
 				DA4E9153168F3B7900046BD9 /* StaticTableGroupData.m in Sources */,
 				DA4E9155168F3B7900046BD9 /* UITextView+Utils.m in Sources */,
-				DA4E9157168F3B7900046BD9 /* UtilHelper.m in Sources */,
 				DA4E915E168F3BC400046BD9 /* RemoteRoom.m in Sources */,
 				DA4E9160168F3BC400046BD9 /* Room.m in Sources */,
 				DA4E9164168F3C6400046BD9 /* LocalRoom.m in Sources */,
@@ -2654,6 +2651,7 @@
 				DA30784D169418A700306665 /* DialogBoxContainer.m in Sources */,
 				DAEB7188169C865300039509 /* NSTimer+Blocks.m in Sources */,
 				DAA689FD16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
+				DA667B9A16D2721A00ED3A49 /* UtilHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

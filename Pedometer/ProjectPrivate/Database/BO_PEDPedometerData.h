@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
 
-@interface BO_PEDPedoDateLog : BOBase
+@interface BO_PEDPedometerData : BOBase
 
-+ (BO_PEDPedoDateLog*) getInstance;
++ (BO_PEDPedometerData*) getInstance;
 
 
 //-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;

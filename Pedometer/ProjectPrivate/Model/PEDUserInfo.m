@@ -10,7 +10,7 @@
 
 @implementation PEDUserInfo
 
-@synthesize userId,userName,age,unit,gender,height,stride,weight,isCurrentSetting,createDate;
+@synthesize userId,userName,age,measureFormat,gender,height,stride,weight,updateDate;
 
 -(id) init
 {
@@ -20,13 +20,12 @@
         userId = [UtilHelper stringWithUUID];   
         userName=[UtilHelper deviceName];
         age=26;
-        unit=UNIT_METRIC;
-        gender=@"M";
-        height=183.0;//cm
+        measureFormat=UNIT_METRIC;
+        gender=FALSE;
+        height=1.83;//cm
         weight=90;//kg
         stride=70;//cm
-        isCurrentSetting=YES;
-        createDate=[NSDate date];
+        updateDate=[NSDate date];
     }
     return self;
 }

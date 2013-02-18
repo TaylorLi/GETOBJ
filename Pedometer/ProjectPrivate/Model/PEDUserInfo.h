@@ -10,13 +10,12 @@
 
 @interface PEDUserInfo : NSObjectSerialization<SqliteORMDelegate>
 @property (nonatomic,strong) NSString *userId;
-@property (nonatomic) BOOL isCurrentSetting;
 @property (nonatomic,copy) NSString *userName;
-@property (nonatomic) DistanceUnit unit;
+@property (nonatomic) MeasureUnit measureFormat;
 @property (nonatomic) NSTimeInterval stride;
 @property (nonatomic)  NSTimeInterval height;
 @property (nonatomic) NSTimeInterval weight;
-@property (nonatomic,copy) NSString *gender;
+@property (nonatomic) BOOL gender;//0=Male, 1=Female
 @property (nonatomic) NSInteger age;
-@property (nonatomic,strong) NSDate *createDate;
+@property (nonatomic,strong) NSDate *updateDate;
 @end

@@ -11,8 +11,9 @@
 #define DATABASE_NAME @"Pedometer"
 
 typedef enum {
-	UNIT_METRIC= 0					// no packet
-} DistanceUnit;
+	UNIT_METRIC = 0,					// no packet
+    UNIT_ENGLISH = 1
+} MeasureUnit;
 
 
 @interface Definition : NSObject

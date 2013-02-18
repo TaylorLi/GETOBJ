@@ -23,7 +23,7 @@
 		DA667B0416D26D7D00ED3A49 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF616D26D7D00ED3A49 /* SBJsonTokeniser.m */; };
 		DA667B0516D26D7D00ED3A49 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF816D26D7D00ED3A49 /* SBJsonUTF8Stream.m */; };
 		DA667B0616D26D7D00ED3A49 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AFA16D26D7D00ED3A49 /* SBJsonWriter.m */; };
-		DA667B7616D26DC600ED3A49 /* BO_PEDPedoDateLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B7116D26DC600ED3A49 /* BO_PEDPedoDateLog.m */; };
+		DA667B7616D26DC600ED3A49 /* BO_PEDPedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B7116D26DC600ED3A49 /* BO_PEDPedometerData.m */; };
 		DA667B7716D26DC600ED3A49 /* BO_PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B7316D26DC600ED3A49 /* BO_PEDUserInfo.m */; };
 		DA667B7816D26DC600ED3A49 /* PEDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B7516D26DC600ED3A49 /* PEDDatabase.m */; };
 		DA667B7D16D26DD200ED3A49 /* BOBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B7A16D26DD200ED3A49 /* BOBase.m */; };
@@ -35,6 +35,11 @@
 		DA667B8E16D2702900ED3A49 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B8916D2702900ED3A49 /* FMResultSet.m */; };
 		DA667BEA16D272D700ED3A49 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA667BE916D272D700ED3A49 /* libCorePlot-CocoaTouch.a */; };
 		DA667BED16D2730800ED3A49 /* Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667BEC16D2730800ED3A49 /* Reflection.m */; };
+		DA667BF016D27FEB00ED3A49 /* PEDPedometerData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667BEF16D27FEB00ED3A49 /* PEDPedometerData.m */; };
+		DA667BF316D2800A00ED3A49 /* PEDSleepData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667BF216D2800900ED3A49 /* PEDSleepData.m */; };
+		DA667BF616D2802800ED3A49 /* PEDTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667BF516D2802800ED3A49 /* PEDTarget.m */; };
+		DA667BF916D286E600ED3A49 /* BO_PEDSleepData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667BF816D286E600ED3A49 /* BO_PEDSleepData.m */; };
+		DA667BFC16D28D8200ED3A49 /* BO_PEDTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667BFB16D28D8100ED3A49 /* BO_PEDTarget.m */; };
 		DA6E9C1D16CFB2F900F2453F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C1C16CFB2F900F2453F /* UIKit.framework */; };
 		DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C1E16CFB2F900F2453F /* Foundation.framework */; };
 		DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */; };
@@ -57,7 +62,6 @@
 		DACC06D716D2632A0062E2A8 /* PEDBarchartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D516D2632A0062E2A8 /* PEDBarchartViewController.xib */; };
 		DACC06D816D2632A0062E2A8 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D616D2632A0062E2A8 /* PEDGraphsViewController.xib */; };
 		DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D916D2633F0062E2A8 /* InfoPlist.strings */; };
-		DACC06E016D2634F0062E2A8 /* PEDPedoDateLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06DD16D2634F0062E2A8 /* PEDPedoDateLog.m */; };
 		DACC06E116D2634F0062E2A8 /* PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */; };
 		DACC06E416D2635C0062E2A8 /* Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06E316D2635C0062E2A8 /* Definition.m */; };
 		DACC06EA16D263970062E2A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06E716D263970062E2A8 /* main.m */; };
@@ -108,8 +112,8 @@
 		DA667AF816D26D7D00ED3A49 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		DA667AF916D26D7D00ED3A49 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		DA667AFA16D26D7D00ED3A49 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		DA667B7016D26DC600ED3A49 /* BO_PEDPedoDateLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BO_PEDPedoDateLog.h; sourceTree = "<group>"; };
-		DA667B7116D26DC600ED3A49 /* BO_PEDPedoDateLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BO_PEDPedoDateLog.m; sourceTree = "<group>"; };
+		DA667B7016D26DC600ED3A49 /* BO_PEDPedometerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BO_PEDPedometerData.h; sourceTree = "<group>"; };
+		DA667B7116D26DC600ED3A49 /* BO_PEDPedometerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BO_PEDPedometerData.m; sourceTree = "<group>"; };
 		DA667B7216D26DC600ED3A49 /* BO_PEDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BO_PEDUserInfo.h; sourceTree = "<group>"; };
 		DA667B7316D26DC600ED3A49 /* BO_PEDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BO_PEDUserInfo.m; sourceTree = "<group>"; };
 		DA667B7416D26DC600ED3A49 /* PEDDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDDatabase.h; sourceTree = "<group>"; };
@@ -205,6 +209,16 @@
 		DA667BE916D272D700ED3A49 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		DA667BEB16D2730800ED3A49 /* Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reflection.h; path = ../Util/Reflection.h; sourceTree = "<group>"; };
 		DA667BEC16D2730800ED3A49 /* Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reflection.m; path = ../Util/Reflection.m; sourceTree = "<group>"; };
+		DA667BEE16D27FEB00ED3A49 /* PEDPedometerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerData.h; path = ProjectPrivate/Model/PEDPedometerData.h; sourceTree = SOURCE_ROOT; };
+		DA667BEF16D27FEB00ED3A49 /* PEDPedometerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerData.m; path = ProjectPrivate/Model/PEDPedometerData.m; sourceTree = SOURCE_ROOT; };
+		DA667BF116D2800900ED3A49 /* PEDSleepData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDSleepData.h; path = ProjectPrivate/Model/PEDSleepData.h; sourceTree = SOURCE_ROOT; };
+		DA667BF216D2800900ED3A49 /* PEDSleepData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDSleepData.m; path = ProjectPrivate/Model/PEDSleepData.m; sourceTree = SOURCE_ROOT; };
+		DA667BF416D2802800ED3A49 /* PEDTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDTarget.h; path = ProjectPrivate/Model/PEDTarget.h; sourceTree = SOURCE_ROOT; };
+		DA667BF516D2802800ED3A49 /* PEDTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDTarget.m; path = ProjectPrivate/Model/PEDTarget.m; sourceTree = SOURCE_ROOT; };
+		DA667BF716D286E600ED3A49 /* BO_PEDSleepData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BO_PEDSleepData.h; sourceTree = "<group>"; };
+		DA667BF816D286E600ED3A49 /* BO_PEDSleepData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BO_PEDSleepData.m; sourceTree = "<group>"; };
+		DA667BFA16D28D8100ED3A49 /* BO_PEDTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BO_PEDTarget.h; sourceTree = "<group>"; };
+		DA667BFB16D28D8100ED3A49 /* BO_PEDTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BO_PEDTarget.m; sourceTree = "<group>"; };
 		DA6E9C1816CFB2F900F2453F /* Pedometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pedometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6E9C1C16CFB2F900F2453F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA6E9C1E16CFB2F900F2453F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -229,8 +243,6 @@
 		DACC06D516D2632A0062E2A8 /* PEDBarchartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDBarchartViewController.xib; path = ProjectPrivate/XIB/PEDBarchartViewController.xib; sourceTree = SOURCE_ROOT; };
 		DACC06D616D2632A0062E2A8 /* PEDGraphsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDGraphsViewController.xib; path = ProjectPrivate/XIB/PEDGraphsViewController.xib; sourceTree = SOURCE_ROOT; };
 		DACC06DA16D2633F0062E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ProjectPrivate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		DACC06DC16D2634F0062E2A8 /* PEDPedoDateLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedoDateLog.h; path = ProjectPrivate/Model/PEDPedoDateLog.h; sourceTree = SOURCE_ROOT; };
-		DACC06DD16D2634F0062E2A8 /* PEDPedoDateLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedoDateLog.m; path = ProjectPrivate/Model/PEDPedoDateLog.m; sourceTree = SOURCE_ROOT; };
 		DACC06DE16D2634F0062E2A8 /* PEDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUserInfo.h; path = ProjectPrivate/Model/PEDUserInfo.h; sourceTree = SOURCE_ROOT; };
 		DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUserInfo.m; path = ProjectPrivate/Model/PEDUserInfo.m; sourceTree = SOURCE_ROOT; };
 		DACC06E216D2635C0062E2A8 /* Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Definition.h; path = ProjectPrivate/Misc/Definition.h; sourceTree = SOURCE_ROOT; };
@@ -341,12 +353,16 @@
 		DA667B6F16D26DC600ED3A49 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				DA667BFA16D28D8100ED3A49 /* BO_PEDTarget.h */,
+				DA667BFB16D28D8100ED3A49 /* BO_PEDTarget.m */,
+				DA667BF716D286E600ED3A49 /* BO_PEDSleepData.h */,
+				DA667BF816D286E600ED3A49 /* BO_PEDSleepData.m */,
 				DA667B7916D26DD200ED3A49 /* BOBase.h */,
 				DA667B7A16D26DD200ED3A49 /* BOBase.m */,
 				DA667B7B16D26DD200ED3A49 /* Database.h */,
 				DA667B7C16D26DD200ED3A49 /* Database.m */,
-				DA667B7016D26DC600ED3A49 /* BO_PEDPedoDateLog.h */,
-				DA667B7116D26DC600ED3A49 /* BO_PEDPedoDateLog.m */,
+				DA667B7016D26DC600ED3A49 /* BO_PEDPedometerData.h */,
+				DA667B7116D26DC600ED3A49 /* BO_PEDPedometerData.m */,
 				DA667B7216D26DC600ED3A49 /* BO_PEDUserInfo.h */,
 				DA667B7316D26DC600ED3A49 /* BO_PEDUserInfo.m */,
 				DA667B7416D26DC600ED3A49 /* PEDDatabase.h */,
@@ -619,10 +635,14 @@
 		DA6E9FB616CFD9B600F2453F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DACC06DC16D2634F0062E2A8 /* PEDPedoDateLog.h */,
-				DACC06DD16D2634F0062E2A8 /* PEDPedoDateLog.m */,
 				DACC06DE16D2634F0062E2A8 /* PEDUserInfo.h */,
 				DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */,
+				DA667BEE16D27FEB00ED3A49 /* PEDPedometerData.h */,
+				DA667BEF16D27FEB00ED3A49 /* PEDPedometerData.m */,
+				DA667BF116D2800900ED3A49 /* PEDSleepData.h */,
+				DA667BF216D2800900ED3A49 /* PEDSleepData.m */,
+				DA667BF416D2802800ED3A49 /* PEDTarget.h */,
+				DA667BF516D2802800ED3A49 /* PEDTarget.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -741,7 +761,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DACC06C516D262FF0062E2A8 /* AlertView.m in Sources */,
-				DACC06E016D2634F0062E2A8 /* PEDPedoDateLog.m in Sources */,
 				DACC06E116D2634F0062E2A8 /* PEDUserInfo.m in Sources */,
 				DACC06E416D2635C0062E2A8 /* Definition.m in Sources */,
 				DACC06EA16D263970062E2A8 /* main.m in Sources */,
@@ -770,7 +789,7 @@
 				DA667B0416D26D7D00ED3A49 /* SBJsonTokeniser.m in Sources */,
 				DA667B0516D26D7D00ED3A49 /* SBJsonUTF8Stream.m in Sources */,
 				DA667B0616D26D7D00ED3A49 /* SBJsonWriter.m in Sources */,
-				DA667B7616D26DC600ED3A49 /* BO_PEDPedoDateLog.m in Sources */,
+				DA667B7616D26DC600ED3A49 /* BO_PEDPedometerData.m in Sources */,
 				DA667B7716D26DC600ED3A49 /* BO_PEDUserInfo.m in Sources */,
 				DA667B7816D26DC600ED3A49 /* PEDDatabase.m in Sources */,
 				DA667B7D16D26DD200ED3A49 /* BOBase.m in Sources */,
@@ -781,6 +800,11 @@
 				DA667B8D16D2702900ED3A49 /* FMDatabaseQueue.m in Sources */,
 				DA667B8E16D2702900ED3A49 /* FMResultSet.m in Sources */,
 				DA667BED16D2730800ED3A49 /* Reflection.m in Sources */,
+				DA667BF016D27FEB00ED3A49 /* PEDPedometerData.m in Sources */,
+				DA667BF316D2800A00ED3A49 /* PEDSleepData.m in Sources */,
+				DA667BF616D2802800ED3A49 /* PEDTarget.m in Sources */,
+				DA667BF916D286E600ED3A49 /* BO_PEDSleepData.m in Sources */,
+				DA667BFC16D28D8200ED3A49 /* BO_PEDTarget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

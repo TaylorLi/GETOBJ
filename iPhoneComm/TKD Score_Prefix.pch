@@ -6,12 +6,12 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import "NSDictionary+Extendtion.h"
-    #import "UtilHelper.h"
     #import "NSObjectSerialization.h"
     #import "CommandMsg.h"
     #import "MacroUtils.h"
     #import "NSTimer+Blocks.h"
     #import "AppConfig.h"
+    #import "UtilHelper.h"
 #endif
 /*
 #define UAMODALVIEW_DEBUG 1 //display uamodal log

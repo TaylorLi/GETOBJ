@@ -13,6 +13,7 @@
 		DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
+		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA667AAD16D26C9100ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA667AB116D26CD500ED3A49 /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB016D26CD500ED3A49 /* NSObjectSerialization.m */; };
 		DA667AB616D26D3500ED3A49 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB516D26D3500ED3A49 /* UIHelper.m */; };
@@ -97,6 +98,9 @@
 		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
 		DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerCalcHelper.h; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.h; sourceTree = SOURCE_ROOT; };
 		DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerCalcHelper.m; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.m; sourceTree = SOURCE_ROOT; };
+		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
+		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
+		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
 		DA667AAB16D26C9100ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
 		DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Extendtion.m"; path = "../Util/NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
 		DA667AAF16D26CD500ED3A49 /* NSObjectSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectSerialization.h; path = ../Util/NSObjectSerialization.h; sourceTree = "<group>"; };
@@ -320,6 +324,16 @@
 			name = BLE;
 			path = ProjectPrivate/BLE;
 			sourceTree = SOURCE_ROOT;
+		};
+		DA0C559716D4FAD900940654 /* V8HorizontalPickerView Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */,
+				DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */,
+				DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */,
+			);
+			name = "V8HorizontalPickerView Classes";
+			sourceTree = "<group>";
 		};
 		DA667AAE16D26CBB00ED3A49 /* Util */ = {
 			isa = PBXGroup;
@@ -703,6 +717,7 @@
 		DA6E9FF416CFE41600F2453F /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DA0C559716D4FAD900940654 /* V8HorizontalPickerView Classes */,
 				DACC06C316D262FF0062E2A8 /* AlertView.h */,
 				DACC06C416D262FF0062E2A8 /* AlertView.m */,
 			);
@@ -843,6 +858,7 @@
 				DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */,
 				DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */,
 				DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */,
+				DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,7 +897,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
 				SDKROOT = iphoneos5.1;
 			};
@@ -901,7 +917,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
 				SDKROOT = iphoneos5.1;

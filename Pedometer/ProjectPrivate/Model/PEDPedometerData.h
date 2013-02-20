@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PEDPedometerData : NSObject
+@interface PEDPedometerData : NSObjectSerialization<SqliteORMDelegate>
 
 @property (nonatomic,strong) NSString *dataId;
-@property (nonatomic,strong) NSDate *optDate;
+@property (nonatomic,strong) NSDate *optDate;//记录日期
 @property (nonatomic) NSInteger step;
-@property (nonatomic,strong) NSDate *activeTime;//second
+@property (nonatomic) NSTimeInterval activeTime;//second
 @property (nonatomic) NSTimeInterval distance;//km
 @property (nonatomic) NSTimeInterval calorie;//cal
-@property (nonatomic,strong) NSDate *updateDate;
+@property (nonatomic,strong) NSDate *updateDate;//创建日期
 @property (nonatomic,strong) NSString *targetId;
 
 @end

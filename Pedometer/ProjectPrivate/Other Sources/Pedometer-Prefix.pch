@@ -16,5 +16,8 @@
     #import "MacroUtils.h"
     #import "UtilHelper.h"
 #import "Definition.h"
+#import "AppConfig.h"
+#import "PEDPedometerCalcHelper.h"
+
 #endif
 

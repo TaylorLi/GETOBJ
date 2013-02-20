@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA029A5F16D34E0A004E7764 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A5E16D34E0A004E7764 /* AppConfig.m */; };
+		DA029A6316D34E7C004E7764 /* AppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6216D34E7C004E7764 /* AppSetting.m */; };
+		DA029A6816D3C346004E7764 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6516D3C346004E7764 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
+		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
 		DA667AAD16D26C9100ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA667AB116D26CD500ED3A49 /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB016D26CD500ED3A49 /* NSObjectSerialization.m */; };
 		DA667AB616D26D3500ED3A49 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB516D26D3500ED3A49 /* UIHelper.m */; };
@@ -78,6 +84,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA029A5D16D34E0A004E7764 /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ProjectPrivate/Misc/AppConfig.h; sourceTree = SOURCE_ROOT; };
+		DA029A5E16D34E0A004E7764 /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppConfig.m; path = ProjectPrivate/Misc/AppConfig.m; sourceTree = SOURCE_ROOT; };
+		DA029A6116D34E7C004E7764 /* AppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSetting.h; path = ProjectPrivate/Misc/AppSetting.h; sourceTree = SOURCE_ROOT; };
+		DA029A6216D34E7C004E7764 /* AppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSetting.m; path = ProjectPrivate/Misc/AppSetting.m; sourceTree = SOURCE_ROOT; };
+		DA029A6416D3C346004E7764 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5Addition.h"; path = "../Util/UIDeviceAddition/NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		DA029A6516D3C346004E7764 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5Addition.m"; path = "../Util/UIDeviceAddition/NSString+MD5Addition.m"; sourceTree = "<group>"; };
+		DA029A6616D3C346004E7764 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+IdentifierAddition.h"; path = "../Util/UIDeviceAddition/UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+IdentifierAddition.m"; path = "../Util/UIDeviceAddition/UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		DA029A7316D3C62C004E7764 /* BleDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleDefinition.h; sourceTree = "<group>"; };
+		DA029A7416D3C62C004E7764 /* SerialGATT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialGATT.h; sourceTree = "<group>"; };
+		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
+		DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerCalcHelper.h; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.h; sourceTree = SOURCE_ROOT; };
+		DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerCalcHelper.m; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.m; sourceTree = SOURCE_ROOT; };
 		DA667AAB16D26C9100ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
 		DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Extendtion.m"; path = "../Util/NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
 		DA667AAF16D26CD500ED3A49 /* NSObjectSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectSerialization.h; path = ../Util/NSObjectSerialization.h; sourceTree = "<group>"; };
@@ -291,9 +310,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA029A7216D3C62C004E7764 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				DA029A7316D3C62C004E7764 /* BleDefinition.h */,
+				DA029A7416D3C62C004E7764 /* SerialGATT.h */,
+				DA029A7516D3C62C004E7764 /* SerialGATT.m */,
+			);
+			name = BLE;
+			path = ProjectPrivate/BLE;
+			sourceTree = SOURCE_ROOT;
+		};
 		DA667AAE16D26CBB00ED3A49 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DA029A6416D3C346004E7764 /* NSString+MD5Addition.h */,
+				DA029A6516D3C346004E7764 /* NSString+MD5Addition.m */,
+				DA029A6616D3C346004E7764 /* UIDevice+IdentifierAddition.h */,
+				DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */,
 				DA667BEB16D2730800ED3A49 /* Reflection.h */,
 				DA667BEC16D2730800ED3A49 /* Reflection.m */,
 				DA667AB716D26D4800ED3A49 /* UtilHelper.h */,
@@ -526,6 +560,7 @@
 		DA6E9C2216CFB2F900F2453F /* ProjectPrivate */ = {
 			isa = PBXGroup;
 			children = (
+				DA029A7216D3C62C004E7764 /* BLE */,
 				DA667B6F16D26DC600ED3A49 /* Database */,
 				DA903D0116D1354700DACDBB /* XIB */,
 				DA6E9FB616CFD9B600F2453F /* Model */,
@@ -557,8 +592,14 @@
 		DA6E9C5016CFB4F300F2453F /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				DA029A6116D34E7C004E7764 /* AppSetting.h */,
+				DA029A6216D34E7C004E7764 /* AppSetting.m */,
+				DA029A5D16D34E0A004E7764 /* AppConfig.h */,
+				DA029A5E16D34E0A004E7764 /* AppConfig.m */,
 				DACC06E216D2635C0062E2A8 /* Definition.h */,
 				DACC06E316D2635C0062E2A8 /* Definition.m */,
+				DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */,
+				DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -654,7 +695,6 @@
 				DA667B7F16D2702900ED3A49 /* fmdb */,
 				DA667AE016D26D7D00ED3A49 /* SBJson */,
 				DA667AAE16D26CBB00ED3A49 /* Util */,
-				DAF717FD16D103A40081D5C8 /* BLE */,
 				DA6E9FF416CFE41600F2453F /* Controls */,
 			);
 			name = dependencies;
@@ -676,14 +716,6 @@
 				DACC06D616D2632A0062E2A8 /* PEDGraphsViewController.xib */,
 			);
 			name = XIB;
-			sourceTree = "<group>";
-		};
-		DAF717FD16D103A40081D5C8 /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = BLE;
-			path = ../../Submodules/BLE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -805,6 +837,12 @@
 				DA667BF616D2802800ED3A49 /* PEDTarget.m in Sources */,
 				DA667BF916D286E600ED3A49 /* BO_PEDSleepData.m in Sources */,
 				DA667BFC16D28D8200ED3A49 /* BO_PEDTarget.m in Sources */,
+				DA029A5F16D34E0A004E7764 /* AppConfig.m in Sources */,
+				DA029A6316D34E7C004E7764 /* AppSetting.m in Sources */,
+				DA029A6816D3C346004E7764 /* NSString+MD5Addition.m in Sources */,
+				DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */,
+				DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */,
+				DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,10 +27,9 @@ static BO_PEDTarget* instance;
     }
     return instance;
 }
-/*
--(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq
+
+-(PEDTarget *)queryTargetByUserId:(NSString *)userId
 {
-    return [self queryList:@"select * from MatchLog where matchId=? and round=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:matchId,[NSNumber numberWithInt:roundSeq], nil]];
+    return [self queryObjectBySql:@"select * from PEDTarget where userId=?" parameters:[[NSArray alloc] initWithObjects:userId, nil]];
 }
- */
 @end

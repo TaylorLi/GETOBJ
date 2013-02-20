@@ -27,6 +27,16 @@ static BO_PEDUserInfo* instance;
     }
     return instance;
 }
+
+-(PEDUserInfo *) retreiveCurrentUser
+{
+   PEDUserInfo *obj = [self queryObjectBySql:@"select * from PEDUserInfo where isCurrentUser=1" parameters:nil];
+    if(obj){
+        [obj convertUnit:UNIT_METRIC];
+    }
+    return obj;
+}
+
 /*
 -(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq
 {

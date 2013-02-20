@@ -6,24 +6,24 @@
 //  Copyright (c) 2012年 GET. All rights reserved.
 //
 
-#import "BO_PEDPedoDateLog.h"
-#import "PEDPedoDateLog.h"
+#import "BO_PEDPedometerData.h"
+#import "PEDPedometerData.h"
 
-static BO_PEDPedoDateLog* instance;
+static BO_PEDPedometerData* instance;
 
-@implementation BO_PEDPedoDateLog
+@implementation BO_PEDPedometerData
 
 -(id)init{
-    self=[super initWithModelTypeAndPrimaryKey:[PEDPedoDateLog class] primaryKey:@"logId"];
+    self=[super initWithModelTypeAndPrimaryKey:[PEDPedometerData class] primaryKey:@"dataId"];
     if(self){
         
     }
     return self;
 }
 
-+ (BO_PEDPedoDateLog*) getInstance {
++ (BO_PEDPedometerData*) getInstance {
     if ( instance == nil ) {
-        instance = [[BO_PEDPedoDateLog alloc] init];
+        instance = [[BO_PEDPedometerData alloc] init];
     }
     return instance;
 }

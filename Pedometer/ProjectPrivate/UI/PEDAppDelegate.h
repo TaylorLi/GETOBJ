@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class PEDMainViewController,PEDBarchartViewController,PEDBacktoMainViewController,PEDPedoDataViewController,PEDPedoViewController,PEDTargetViewController,PEDUserViewController,PEDGraphsViewController;
+@class PEDMainViewController,PEDBarchartViewController,PEDBacktoMainViewController,PEDPedoDataViewController,PEDPedoViewController,PEDTargetViewController,PEDUserSettingViewController,PEDGraphsViewController;
 
 @interface PEDAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,11 +19,11 @@
 @property (strong, nonatomic) PEDPedoDataViewController *pedPedoDataViewController;
 @property (strong, nonatomic) PEDPedoViewController *pedPedoViewController;
 @property (strong, nonatomic) PEDTargetViewController *pedTargetViewController;
-@property (strong, nonatomic) PEDUserViewController *pedUserViewController;
+@property (strong, nonatomic) PEDUserSettingViewController *pedUserSettingViewController;
 @property (strong, nonatomic) PEDGraphsViewController *pedGraphsViewController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 + (PEDAppDelegate*)getInstance;
--(void) showUserView;
+-(void) showUserSettingView;
 -(void) showMainView;
 -(void) showTabView;
 @end

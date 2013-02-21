@@ -7,19 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface PEDMainViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *btnFitPlus;
-@property (weak, nonatomic) IBOutlet UIButton *btnHealthPlus;
-@property (weak, nonatomic) IBOutlet UIButton *btnSportPlus;
+
+@interface PEDUserSettingViewController : UIViewController<UITextFieldDelegate>{
+    UITextField *txtUserName;
+    UITextField *txtStride;
+    UITextField *txtHeight;
+    UITextField *txtWeight;
+    UITextField *txtAge;
+    UISegmentedControl* segUnit;
+    UISegmentedControl* segGender;
+}
+
 @property (weak, nonatomic) IBOutlet UIButton *btnSetting;
 @property (weak, nonatomic) IBOutlet UIButton *btnContactUs;
 @property (weak, nonatomic) IBOutlet UIButton *btnHomePage;
+@property (weak, nonatomic) IBOutlet UIButton *btnConfirm;
 
-
-- (IBAction)fitPlusClick:(id)sender;
-- (IBAction)healthPlusClick:(id)sender;
-- (IBAction)sportPlusClick:(id)sender;
 - (IBAction)settingClick:(id)sender;
 - (IBAction)contactUsClick:(id)sender;
 - (IBAction)homePageClick:(id)sender;
+- (IBAction)confirmClick:(id)sender;
+
 @end

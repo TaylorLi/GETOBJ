@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PEDTarget : NSObject
+@interface PEDTarget : NSObjectSerialization<SqliteORMDelegate>
 
 @property (nonatomic,strong) NSString *targetId;
 @property (nonatomic) NSInteger targetStep;

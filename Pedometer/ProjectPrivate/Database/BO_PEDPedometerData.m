@@ -27,10 +27,59 @@ static BO_PEDPedometerData* instance;
     }
     return instance;
 }
-/*
--(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq
+//获取一段时间内的所有数据
+-(NSArray *)queryListFromDate:(NSDate *)dateFrom toDate:(NSDate *) dateTo
 {
-    return [self queryList:@"select * from MatchLog where matchId=? and round=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:matchId,[NSNumber numberWithInt:roundSeq], nil]];
+    return [self queryList:@"select * from PEDPedometerData where optDate between ? and ? order by optDate" parameters:[[NSArray alloc] initWithObjects:dateFrom,dateTo, nil]];
 }
-*/
+//获取一段时间内的所有数据，如果是空数据的话取空值
+-(NSArray *)queryListFromDateNeedEmptySorted:(NSDate *)dateFrom toDate:(NSDate *) dateTo
+{
+  NSArray *array =  [self queryListFromDate:dateFrom toDate:dateTo];
+  NSMutableArray *sortArray=[[NSMutableArray alloc] init];  
+    NSTimeInterval totalDays =  [dateTo timeIntervalSinceDate:dateFrom]/24/3600;
+    for (NSTimeInterval i=0; i<=totalDays; i++) {
+        NSDate *date=[dateFrom dateByAddingTimeInterval:i*3600*24];
+        BOOL find=NO;
+        for (PEDPedometerData *data in array) {
+           if([data.optDate timeIntervalSinceDate:date]==0)
+               {
+                   find=YES;
+                   [sortArray addObject:data];
+                   break;
+               }
+        }
+        if(!find){
+            [sortArray addObject:nil]; 
+        }
+    }
+  return sortArray;  
+}
+
+-(NSArray *)queryListToDate:(NSDate *) dateTo withDateRange:(NSInteger) range
+{
+    NSDate *dateFrom=[dateTo dateByAddingTimeInterval:range*-1*24*3600];
+    return [self queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo];
+}
+
+-(NSArray *)queryListToDateByDefaultRange:(NSDate *) dateTo
+{
+   return [self queryListToDate:dateTo withDateRange:[AppConfig getInstance].settngs.showDateCount];
+}
+
+
+-(PEDPedometerData *)getLastUploadData
+{
+    return [self queryObjectBySql:@"select * from PEDPedometerData order by optDate desc LIMIT 1" parameters:nil];
+}
+
+-(NSDate *)getLastUploadDate
+{
+    PEDPedometerData *data=[self getLastUploadData];
+    if(data)
+        return  data.optDate;
+    else
+        return nil;
+}
+
 @end

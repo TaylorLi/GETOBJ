@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PEDSleepData : NSObject
+@interface PEDSleepData : NSObjectSerialization<SqliteORMDelegate>
 
 @property (nonatomic,strong) NSString *dataId;
 @property (nonatomic,strong) NSDate *optDate;

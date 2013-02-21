@@ -18,4 +18,19 @@
 @property (nonatomic) BOOL gender;//0=Male, 1=Female
 @property (nonatomic) NSInteger age;
 @property (nonatomic,strong) NSDate *updateDate;
+@property (nonatomic) BOOL isCurrentUser;
+
+#pragma mark -
+#pragma mark 无需保存到数据库的属性
+
+
+@property (nonatomic,strong) NSString *strideUnit;
+@property (nonatomic,strong) NSString *heightUnit;
+@property (nonatomic,strong) NSString *weightUnit;
+@property (nonatomic,strong) NSString *distanceUnit;
+
+-(id)initWithDefault;
+
+-(void)convertUnit:(MeasureUnit) dstUnit;
+
 @end

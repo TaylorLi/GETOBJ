@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
 
+@class  PEDTarget;
+
 @interface BO_PEDTarget: BOBase
 
 + (BO_PEDTarget*) getInstance;
 
 
-//-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
+-(PEDTarget *)queryTargetByUserId:(NSString *)userId;
+
 @end

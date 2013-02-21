@@ -15,4 +15,5 @@
 
 
 //-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
+
 @end

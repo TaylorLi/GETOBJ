@@ -43,7 +43,7 @@ static PEDDatabase* instance;
     [[Database getInstance] openSession:^(id result) {
         FMDatabase *db=result;
         NSDictionary *array=[[NSDictionary alloc] initWithObjectsAndKeys:                                  
-                             @"CREATE TABLE IF NOT EXISTS [PEDUserInfo] ([userId] VARCHAR(36) PRIMARY KEY NOT NULL ,[userName] VARCHAR(50) not null,[age] INTEGER,[measureFormat] INTEGER,[stride] FLOAT,[height] FLOAT,[weight] float,[gender] BOOL,[updateDate] TIMESTAMP)",@"PEDUserInfo",
+                             @"CREATE TABLE IF NOT EXISTS [PEDUserInfo] ([userId] VARCHAR(36) PRIMARY KEY NOT NULL ,[userName] VARCHAR(50) not null,[age] INTEGER,[measureFormat] INTEGER,[stride] FLOAT,[height] FLOAT,[weight] float,[gender] INTEGER,[updateDate] TIMESTAMP,[isCurrentUser] BOOL)",@"PEDUserInfo",
                              @"CREATE TABLE IF NOT EXISTS [PEDPedometerData] ([dataId] VARCHAR(36) PRIMARY KEY NOT NULL ,[optDate] TIMESTAMP,[activeTime] float,[step] INTEGER,[distance] float,[calorie] FLOAT,[updateDate] TIMESTAMP,[targetId] VARCHAR(36))",@"PEDPedometerData",      
                               @"CREATE TABLE IF NOT EXISTS [PEDSleepData] ([dataId] VARCHAR(36) PRIMARY KEY NOT NULL ,[optDate] TIMESTAMP,[timeToBed] float,[timeToWakeup] float,[timeToFallSleep] float,[awakenTime] FLOAT,[inBedTime] FLOAT,[actualSleepTime] FLOAT,[updateDate] TIMESTAMP,[targetId] VARCHAR(36))",@"PEDSleepData", 
                              @"CREATE TABLE IF NOT EXISTS [PEDTarget] ([targetId] VARCHAR(36) PRIMARY KEY NOT NULL ,[targetStep] VARCHAR(50) not null,[remainStep] INTEGER,[targetDistance] FLOAT,[remainDistance] FLOAT,[targetCalorie] FLOAT,[remainCalorie] float,[updateDate] TIMESTAMP,[userId] VARCHAR(36))",@"PEDTarget",

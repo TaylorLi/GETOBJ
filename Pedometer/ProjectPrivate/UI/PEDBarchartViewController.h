@@ -8,14 +8,19 @@
 
 #import "CorePlot-CocoaTouch.h"
 #import <UIKit/UIKit.h>
+#import "V8HorizontalPickerView.h"
+#import "V8HorizontalPickerViewProtocol.h"
 
-@interface PEDBarchartViewController : UIViewController<CPTPlotDataSource>
+@interface PEDBarchartViewController : UIViewController<CPTPlotDataSource,V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>
 {
 @private
     CPTXYGraph *barChart;
     NSTimer *timer;
+    NSMutableArray *monthArray;
 }
 
+@property (strong, nonatomic) IBOutlet CPTGraphHostingView *graphicHostView;
+@property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 @property (readwrite, retain, nonatomic) NSTimer *timer;
 
 -(void)timerFired;

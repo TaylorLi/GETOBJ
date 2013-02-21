@@ -15,7 +15,12 @@ typedef enum {
     UNIT_ENGLISH = 1
 } MeasureUnit;
 
+typedef enum{
+   GENDER_MALE=0,
+    GENDER_FEMALE
+}GenderType;
 
 @interface Definition : NSObject
+
 
 @end

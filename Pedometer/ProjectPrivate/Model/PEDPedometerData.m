@@ -19,7 +19,7 @@
     if(self)
     {
         dataId = [UtilHelper stringWithUUID];   
-        activeTime=[NSDate date];
+        updateDate=[NSDate date];
     }
     return self;
 }

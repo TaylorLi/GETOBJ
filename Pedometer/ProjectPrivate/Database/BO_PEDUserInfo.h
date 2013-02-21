@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
+@class PEDUserInfo;
 
 @interface BO_PEDUserInfo : BOBase
 
 + (BO_PEDUserInfo*) getInstance;
 
+-(PEDUserInfo *) retreiveCurrentUser;
 
 //-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
 @end

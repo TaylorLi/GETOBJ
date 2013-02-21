@@ -85,19 +85,15 @@ static PEDAppDelegate* _instance;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[PEDDatabase getInstance] setupServerDatabase];
-    //PEDUserInfo *user=[[PEDUserInfo alloc] init];
-    //[[BO_PEDUserInfo getInstance] saveObject:user];
-    /*
-    PEDPedoDateLog *log=[[PEDPedoDateLog alloc] init];
-    log.logDate=[UtilHelper convertDate:@"2013-02-10"];
-    log.step=1000;
-    log.distance=10000;
-    log.activeTime=10*60;
-    log.caloriesBurned=1500;
-    log.avgPace=100;
-    log.avgSpeed=500;
-    [[BO_PEDPedoDateLog getInstance] saveObject:log];
-     */
+    [AppConfig getInstance];
+    PEDPedometerData *data=[[PEDPedometerData alloc] init];
+    data.distance=3.6;
+    data.activeTime=1800;
+    data.step=6000;
+    data.calorie=2000;
+    data.optDate=[[NSDate date] dateByAddingTimeInterval:-3600*11];
+    data.targetId=@"1abcee-xxxx-xx";
+    [[BO_PEDPedometerData getInstance] insertObject:data];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
 //    v.backgroundColor = [UIColor whiteColor];

@@ -7,6 +7,7 @@
 //
 
 #import "PEDBacktoMainViewController.h"
+#import "PEDAppDelegate.h"
 
 @implementation PEDBacktoMainViewController
 
@@ -34,9 +35,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
-    bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
-    [self.view addSubview:bgImage];
+//    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
+//    bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
+//    [self.view addSubview:bgImage];
 }
 
 - (void)viewDidUnload
@@ -49,6 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[PEDAppDelegate getInstance] showMainView];
 }
 
 - (void)viewDidAppear:(BOOL)animated

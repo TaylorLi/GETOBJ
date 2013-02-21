@@ -13,7 +13,7 @@
 #import "PEDPedometerData.h"
 #import "BO_PEDPedometerData.h"
 #import "PEDMainViewController.h"
-#import "PEDUserViewController.h"
+#import "PEDUserSettingViewController.h"
 #import "PEDPedoViewController.h"
 #import "PEDPedoDataViewController.h"
 #import "PEDBarchartViewController.h"
@@ -24,7 +24,7 @@
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
-@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserViewController,pedTargetViewController,pedPedoDataViewController;
+@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController;
 @synthesize tabBarController;
 
 static PEDAppDelegate* _instance;
@@ -42,11 +42,11 @@ static PEDAppDelegate* _instance;
     [self.window insertSubview:view atIndex:0];
 }
 
--(void) showUserView{
-    if(!pedUserViewController){
-        pedUserViewController = [[PEDUserViewController alloc]init];
+-(void) showUserSettingView{
+    if(!pedUserSettingViewController){
+        pedUserSettingViewController = [[PEDUserSettingViewController alloc]init];
     }
-    [self swithView : pedUserViewController.view];
+    [self swithView : pedUserSettingViewController.view];
 }
 
 -(void) showMainView{

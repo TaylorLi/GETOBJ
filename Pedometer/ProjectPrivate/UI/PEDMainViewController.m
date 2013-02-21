@@ -10,18 +10,24 @@
 #import "PEDAppDelegate.h"
 
 @implementation PEDMainViewController
+@synthesize btnFitPlus;
+@synthesize btnHealthPlus;
+@synthesize btnSportPlus;
+@synthesize btnSetting;
+@synthesize btnContactUs;
+@synthesize btnHomePage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
-        bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
-        [self.view addSubview:bgImage]; 
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(35, 286, 254, 28)];
-        button.backgroundColor = [UIColor clearColor];
-        [button addTarget:self action:@selector(fitPlusClick) forControlEvents:UIControlEventTouchDown];
-        [self.view addSubview:button];
+//        UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+//        bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
+//        [self.view addSubview:bgImage]; 
+//        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(35, 286, 254, 28)];
+//        button.backgroundColor = [UIColor clearColor];
+//        [button addTarget:self action:@selector(fitPlusClick) forControlEvents:UIControlEventTouchDown];
+//        [self.view addSubview:button];
     }
     return self;
 }
@@ -44,6 +50,12 @@
 
 - (void)viewDidUnload
 {
+    [self setBtnFitPlus:nil];
+    [self setBtnHealthPlus:nil];
+    [self setBtnSportPlus:nil];
+    [self setBtnSetting:nil];
+    [self setBtnContactUs:nil];
+    [self setBtnHomePage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -75,9 +87,24 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void) fitPlusClick{
-    [[PEDAppDelegate getInstance] showUserView];
+
+- (IBAction)contactUsClick:(id)sender {
 }
 
+- (IBAction)homePageClick:(id)sender {
+}
 
+- (IBAction)fitPlusClick:(id)sender {
+    [[PEDAppDelegate getInstance] showUserSettingView];
+}
+
+- (IBAction)healthPlusClick:(id)sender {
+}
+
+- (IBAction)sportPlusClick:(id)sender {
+}
+
+- (IBAction)settingClick:(id)sender {
+    [[PEDAppDelegate getInstance] showUserSettingView];
+}
 @end

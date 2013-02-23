@@ -15,9 +15,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
-        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
-        self.tabBarItem = barItem;
+//        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
+//        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
+//        self.tabBarItem = barItem;
     }
     return self;
 }
@@ -83,11 +83,7 @@
 }
 
 -(void) monthStatisticsClick{
-    PEDPedoViewController *pedPedoViewController = [[PEDPedoViewController alloc]init];
-    [self.navigationController pushViewController:pedPedoViewController animated:YES];
-    //[self.view insertSubview:pedPedoViewController.view atIndex:0];
-//    [self.navigationController presentModalViewController:pedPedoViewController animated:YES];
- //   [self presentModalViewController:pedPedoViewController animated:NO]; 
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

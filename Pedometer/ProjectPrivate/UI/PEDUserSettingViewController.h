@@ -16,6 +16,8 @@
     UITextField *txtAge;
     UISegmentedControl* segUnit;
     UISegmentedControl* segGender;
+    UILabel *unitSegTitleLeft;
+    UILabel *unitSegTitleRight;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSetting;

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "V8HorizontalPickerView.h"
+#import "V8HorizontalPickerViewProtocol.h"
 
-@interface PEDPedoViewController : UIViewController
-
+@interface PEDPedoViewController : UIViewController<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
+    NSMutableArray *monthArray;
+}
+@property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 @end

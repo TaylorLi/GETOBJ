@@ -20,12 +20,13 @@
 #import "PEDBacktoMainViewController.h"
 #import "PEDTargetViewController.h"
 #import "PEDGraphsViewController.h"
+#import "CustomerTabBarController.h"
 
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
 @synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController;
-@synthesize tabBarController;
+@synthesize customerTabBarController;
 
 static PEDAppDelegate* _instance;
 
@@ -57,20 +58,61 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) showTabView{
-    if(!tabBarController){
-        tabBarController = [[UITabBarController alloc]init];
+    if(!customerTabBarController){
+        NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
+        [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
+        [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic2 setObject:[UIImage imageNamed:@"pedo_normal.png"] forKey:@"Default"];
+        [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Highlighted"];
+        [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic3 setObject:[UIImage imageNamed:@"target_normal.png"] forKey:@"Default"];
+        [imgDic3 setObject:[UIImage imageNamed:@"target_highlight.png"] forKey:@"Highlighted"];
+        [imgDic3 setObject:[UIImage imageNamed:@"target_highlight.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic4 setObject:[UIImage imageNamed:@"bar_normal.png"] forKey:@"Default"];
+        [imgDic4 setObject:[UIImage imageNamed:@"bar_highlight.png"] forKey:@"Highlighted"];
+        [imgDic4 setObject:[UIImage imageNamed:@"bar_highlight.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic5 setObject:[UIImage imageNamed:@"graphic_normal.png"] forKey:@"Default"];
+        [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Highlighted"];
+        [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Seleted"];
+        
+        NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
+        
+                
+//        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
+//        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
+//        tabBarController = [[UITabBarController alloc]init];
+//        [tabBarController.view insertSubview:tabBarBg atIndex:0];
+//        tabBarController.tabBar.frame = CGRectMake(0, self.window.frame.size.height-36, 320, 36);
+//        // [tabBarController.tabBar setBounds:CGRectMake(0, self.window.frame.size.height-36, 320, 36)];
+//        tabBarController.tabBar.backgroundColor = [UIColor clearColor];
+//        tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"footer.png"];
         pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
-        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+        pedPedoViewController = [[PEDPedoViewController alloc]init];
         pedTargetViewController = [[PEDTargetViewController alloc]init];
         pedGraphsViewController = [[PEDGraphsViewController alloc]init];
         pedBarchartViewController = [[PEDBarchartViewController alloc]init];
-        UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:pedPedoDataViewController];
+        UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:pedPedoViewController];
         
-        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
-        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
+//        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
+//        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
+        customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
+        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
+        tabBarBg.backgroundColor = [UIColor clearColor];
+        [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
+        [customerTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"footer.png"]];
+        //[customerTabBarController setTabBarTransparent:YES];
+            
+
     }
-    tabBarController.selectedIndex = 1;
-    [self swithView : tabBarController.view];
+//    tabBarController.selectedIndex = 1;
+    customerTabBarController.selectedIndex = 1;
+    [self swithView : customerTabBarController.view];
 }
 
 //-(void) applicationDidFinishLaunching:(UIApplication *)application{
@@ -105,6 +147,23 @@ static PEDAppDelegate* _instance;
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    //	if ([viewController isKindOfClass:[SecondViewController class]])
+    //	{
+    //        [CustomerTabBarController hidesTabBar:NO animated:YES]; 
+    //	}
+    
+    if (viewController.hidesBottomBarWhenPushed)
+    {
+        [customerTabBarController hidesTabBar:YES animated:YES]; 
+    }
+    else
+    {
+        [customerTabBarController hidesTabBar:NO animated:YES]; 
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

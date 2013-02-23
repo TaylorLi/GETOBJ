@@ -23,6 +23,26 @@
 
 #pragma mark - View lifecycle
 
+-(void)segUnitChange:(id)sender{  
+    UISegmentedControl* segControl = (UISegmentedControl*)sender;  
+    switch (segControl.selectedSegmentIndex) {  
+        case 0:  
+            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
+            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
+            unitSegTitleLeft.hidden = NO;
+            unitSegTitleRight.hidden = YES;
+            break;  
+        case 1:  
+            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
+            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
+            unitSegTitleLeft.hidden = YES;
+            unitSegTitleRight.hidden = NO;
+            break;  
+        default:  
+            break;  
+    }  
+} 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,27 +102,47 @@
     txtAge.delegate =self;
     [self.view addSubview:txtAge];
     
-  //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
-    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(186, 146, 100, 18)];
+    //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
+    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 146, 76, 18)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
- //   segUnit.tintColor = myTint; 
-    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:YES]; 
-    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:YES]; 
-    [segUnit setTitle:@"Metric" forSegmentAtIndex:0];
-    [segUnit setTitle:@"English" forSegmentAtIndex:1];
-    [segUnit setWidth:50 forSegmentAtIndex:0];
-    segUnit.momentary = YES; 
+    //   segUnit.tintColor = myTint; 
+    [segUnit insertSegmentWithTitle:@"Metric" atIndex:0 animated:YES]; 
+    [segUnit insertSegmentWithTitle:@"English" atIndex:1 animated:YES]; 
+    [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
+    [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];
+    [segUnit setWidth:38 forSegmentAtIndex:0];
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:8],UITextAttributeFont ,nil];      
+//    [segGender setTitleTextAttributes:dic forState:UIControlStateNormal];
+    // segUnit.momentary = YES; 
+    segUnit.selectedSegmentIndex = 0;
+    [segUnit addTarget:self action:@selector(segUnitChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segUnit];
+    
+    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(215, 146, 33, 18)];
+    unitSegTitleLeft.text = @"Metric";
+    unitSegTitleLeft.textColor = [UIColor whiteColor];
+    unitSegTitleLeft.backgroundColor = [UIColor clearColor];
+    unitSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
+    [self.view addSubview:unitSegTitleLeft];
+    
+    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(251, 146, 35, 18)];
+    unitSegTitleRight.text = @"English";
+    unitSegTitleRight.textColor = [UIColor whiteColor];
+    unitSegTitleRight.backgroundColor = [UIColor clearColor];
+    unitSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
+    unitSegTitleRight.hidden = YES;
+    [self.view addSubview:unitSegTitleRight];
     
     segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 290, 76, 18)];
     segGender.segmentedControlStyle = UISegmentedControlStyleBar;
- //   segGender.tintColor = myTint; 
+    //   segGender.tintColor = myTint; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:YES]; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:YES]; 
     [segGender setTitle:@"F" forSegmentAtIndex:0];
     [segGender setTitle:@"M" forSegmentAtIndex:1];
     [segGender setWidth:38 forSegmentAtIndex:0];
-    segGender.momentary = YES; 
+
+    // segGender.momentary = YES; 
     [self.view addSubview:segGender];
     
 //    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];

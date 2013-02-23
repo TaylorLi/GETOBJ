@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class PEDMainViewController,PEDBarchartViewController,PEDBacktoMainViewController,PEDPedoDataViewController,PEDPedoViewController,PEDTargetViewController,PEDUserSettingViewController,PEDGraphsViewController;
+@class PEDMainViewController,PEDBarchartViewController,PEDBacktoMainViewController,PEDPedoDataViewController,PEDPedoViewController,PEDTargetViewController,PEDUserSettingViewController,PEDGraphsViewController, CustomerTabBarController;
 
-@interface PEDAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PEDAppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) PEDMainViewController *pedMainViewController;
@@ -21,7 +21,7 @@
 @property (strong, nonatomic) PEDTargetViewController *pedTargetViewController;
 @property (strong, nonatomic) PEDUserSettingViewController *pedUserSettingViewController;
 @property (strong, nonatomic) PEDGraphsViewController *pedGraphsViewController;
-@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) CustomerTabBarController *customerTabBarController;
 + (PEDAppDelegate*)getInstance;
 -(void) showUserSettingView;
 -(void) showMainView;

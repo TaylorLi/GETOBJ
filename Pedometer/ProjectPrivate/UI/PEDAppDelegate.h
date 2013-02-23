@@ -26,4 +26,5 @@
 -(void) showUserSettingView;
 -(void) showMainView;
 -(void) showTabView;
+-(void) setCustomerTabBarControllerBackground: (UIImage *) bgImage;
 @end

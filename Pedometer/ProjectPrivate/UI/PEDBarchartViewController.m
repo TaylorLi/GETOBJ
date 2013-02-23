@@ -22,9 +22,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
-        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:4];
-        self.tabBarItem = barItem;
+//        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
+//        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:4];
+//        self.tabBarItem = barItem;
         monthArray = [NSMutableArray arrayWithObjects:@"All", @"Today", @"Thursday",
                        @"Wednesday", @"Tuesday", @"Monday", nil];
     }
@@ -46,7 +46,7 @@
 	CGRect tmpFrame = CGRectMake(x, y, width, pickerHeight);
     
 	monthSelectView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
-    monthSelectView.backgroundColor   = [UIColor darkGrayColor];
+    monthSelectView.backgroundColor   = [UIColor clearColor];
 	monthSelectView.selectedTextColor = [UIColor whiteColor];
 	monthSelectView.textColor   = [UIColor grayColor];
 	monthSelectView.delegate    = self;

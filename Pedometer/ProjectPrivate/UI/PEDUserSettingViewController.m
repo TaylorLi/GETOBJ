@@ -14,6 +14,7 @@
 @synthesize btnContactUs;
 @synthesize btnHomePage;
 @synthesize btnConfirm;
+@synthesize heightUnit;
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,12 +32,34 @@
             [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = NO;
             unitSegTitleRight.hidden = YES;
+            heightUnit.text = @"cm";
             break;  
         case 1:  
             [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
             [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = YES;
             unitSegTitleRight.hidden = NO;
+            heightUnit.text = @"inch";
+            break;  
+        default:  
+            break;  
+    }  
+} 
+
+-(void)segGenderChange:(id)sender{  
+    UISegmentedControl* segControl = (UISegmentedControl*)sender;  
+    switch (segControl.selectedSegmentIndex) {  
+        case 0:  
+            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
+            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
+            genderSegTitleLeft.hidden = NO;
+            genderSegTitleRight.hidden = YES;
+            break;  
+        case 1:  
+            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
+            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
+            genderSegTitleLeft.hidden = YES;
+            genderSegTitleRight.hidden = NO;
             break;  
         default:  
             break;  
@@ -106,10 +129,8 @@
     segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 146, 76, 18)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segUnit.tintColor = myTint; 
-    [segUnit insertSegmentWithTitle:@"Metric" atIndex:0 animated:YES]; 
-    [segUnit insertSegmentWithTitle:@"English" atIndex:1 animated:YES]; 
-    [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
-    [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];
+    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left"] atIndex:0 animated:YES]; 
+    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_normal"] atIndex:1 animated:YES]; 
     [segUnit setWidth:38 forSegmentAtIndex:0];
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:8],UITextAttributeFont ,nil];      
 //    [segGender setTitleTextAttributes:dic forState:UIControlStateNormal];
@@ -138,12 +159,25 @@
     //   segGender.tintColor = myTint; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:YES]; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:YES]; 
-    [segGender setTitle:@"F" forSegmentAtIndex:0];
-    [segGender setTitle:@"M" forSegmentAtIndex:1];
     [segGender setWidth:38 forSegmentAtIndex:0];
-
+    [segGender addTarget:self action:@selector(segGenderChange:) forControlEvents:UIControlEventValueChanged];
     // segGender.momentary = YES; 
     [self.view addSubview:segGender];
+    
+    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(225, 290, 23, 18)];
+    genderSegTitleLeft.text = @"F";
+    genderSegTitleLeft.textColor = [UIColor whiteColor];
+    genderSegTitleLeft.backgroundColor = [UIColor clearColor];
+    genderSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
+    [self.view addSubview:genderSegTitleLeft];
+    
+    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(261, 290, 25, 18)];
+    genderSegTitleRight.text = @"M";
+    genderSegTitleRight.textColor = [UIColor whiteColor];
+    genderSegTitleRight.backgroundColor = [UIColor clearColor];
+    genderSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
+    genderSegTitleRight.hidden = YES;
+    [self.view addSubview:genderSegTitleRight];
     
 //    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
 //    bgImage.image = [UIImage imageNamed:@"user.bmp"] ;
@@ -182,6 +216,7 @@
     [self setBtnContactUs:nil];
     [self setBtnHomePage:nil];
     [self setBtnConfirm:nil];
+    [self setHeightUnit:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

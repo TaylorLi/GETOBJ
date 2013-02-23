@@ -17,5 +17,6 @@
 }
 
 @property (readwrite, retain, nonatomic) NSMutableArray *dataForPlot;
+@property (weak, nonatomic) IBOutlet CPTGraphHostingView *cptGraphHostingView;
 
 @end

@@ -11,6 +11,7 @@
 @implementation PEDGraphsViewController
 
 @synthesize dataForPlot;
+@synthesize cptGraphHostingView;
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -20,9 +21,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
-        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:3];
-        self.tabBarItem = barItem;
+//        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
+//        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:3];
+//        self.tabBarItem = barItem;
     }
     return self;
 }
@@ -44,7 +45,7 @@
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
     [graph applyTheme:theme];
-    CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
+    CPTGraphHostingView *hostingView = (CPTGraphHostingView *)cptGraphHostingView;
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
     hostingView.hostedGraph     = graph;
     
@@ -330,4 +331,8 @@
     return NO;
 }
 
+- (void)viewDidUnload {
+    [self setCptGraphHostingView:nil];
+    [super viewDidUnload];
+}
 @end

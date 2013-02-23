@@ -34,6 +34,13 @@ static PEDAppDelegate* _instance;
     return _instance;
 }
 
+-(void) setCustomerTabBarControllerBackground: (UIImage *) bgImage{
+    if(customerTabBarController){
+        UIImageView *tabBarBgView = (UIImageView*)[customerTabBarController.view.subviews objectAtIndex:0];
+        tabBarBgView.image = bgImage;
+    }
+}
+
 -(void) swithView:(UIView *) view{
     for (UIView *subView in self.window.subviews) {
         if(subView.superview!=nil){
@@ -101,7 +108,7 @@ static PEDAppDelegate* _instance;
 //        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
 //        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
         customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
-        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
         tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
         tabBarBg.backgroundColor = [UIColor clearColor];
         [customerTabBarController.view insertSubview:tabBarBg atIndex:0];

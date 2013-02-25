@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PEDUIBaseViewController.h"
 
-@interface PEDTargetViewController : UIViewController
+@interface PEDTargetViewController : PEDUIBaseViewController
+
+
 
 @end

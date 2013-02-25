@@ -9,6 +9,8 @@
 #import "PEDPedoDataViewController.h"
 #import "PEDPedoViewController.h"
 #import "PEDAppDelegate.h"
+#import "PEDAvailPerialViewController.h"
+#import "DialogBoxContainer.h"
 
 @implementation PEDPedoDataViewController
 //@synthesize monthSelectView;
@@ -101,6 +103,15 @@
 
 - (IBAction)showMonthView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)connectToDevice:(id)sender {
+    PEDAvailPerialViewController *regControl=  [[PEDAvailPerialViewController alloc] init];
+    regPannel=[[DialogBoxContainer alloc] initWithFrame:self.view.bounds title:nil loadViewController:regControl withClossButton:YES];
+    regPannel.delegate=self;
+    regPannel.formDelegate = self;
+    [self.view addSubview:regPannel];	
+    [regPannel showFromPoint:[self.view center]];
 }
 
 //- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {

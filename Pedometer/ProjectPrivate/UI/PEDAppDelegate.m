@@ -21,11 +21,13 @@
 #import "PEDTargetViewController.h"
 #import "PEDGraphsViewController.h"
 #import "CustomerTabBarController.h"
+#import "PEDImportDataViewController.h"
+#import "PEDAvailPerialViewController.h"
 
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
-@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController;
+@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController,pedImportDataViewController,pedAvailPerialViewController;
 @synthesize customerTabBarController;
 
 static PEDAppDelegate* _instance;
@@ -62,6 +64,23 @@ static PEDAppDelegate* _instance;
         pedMainViewController = [[PEDMainViewController alloc]init];
     }
     [self swithView : pedMainViewController.view];
+}
+
+-(void)showImportDataView{
+    
+    if(!pedImportDataViewController){
+        pedImportDataViewController =[[PEDImportDataViewController alloc] init];
+    }
+    [self swithView:pedImportDataViewController.view];
+    
+    //pedAvailPerialViewController = [[PEDAvailPerialViewController alloc] init];
+    //[self swithView:pedAvailPerialViewController.view];
+}
+
+-(void)hideImportDataViewAndShowTabView
+{
+    pedImportDataViewController = nil;
+    [[PEDAppDelegate getInstance] showTabView];
 }
 
 -(void) showTabView{
@@ -149,7 +168,7 @@ static PEDAppDelegate* _instance;
 //    [self.window addSubview:v];
     
     _instance = self;
-    pedMainViewController = [[PEDMainViewController alloc]init];
+    pedMainViewController = [[PEDMainViewController alloc] init];
     [self.window addSubview:pedMainViewController.view];   
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.

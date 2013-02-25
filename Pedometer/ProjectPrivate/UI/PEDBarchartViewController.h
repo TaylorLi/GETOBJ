@@ -10,8 +10,9 @@
 #import <UIKit/UIKit.h>
 #import "V8HorizontalPickerView.h"
 #import "V8HorizontalPickerViewProtocol.h"
+#import "PEDUIBaseViewController.h"
 
-@interface PEDBarchartViewController : UIViewController<CPTPlotDataSource,V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>
+@interface PEDBarchartViewController : PEDUIBaseViewController<CPTPlotDataSource,V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>
 {
 @private
     CPTXYGraph *barChart;
@@ -24,5 +25,6 @@
 @property (readwrite, retain, nonatomic) NSTimer *timer;
 
 -(void)timerFired;
+
 
 @end

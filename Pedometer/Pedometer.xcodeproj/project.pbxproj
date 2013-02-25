@@ -147,6 +147,9 @@
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
+		DA118A2616DA6ED200BEF516 /* PEDImportDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA118A2416DA6ED200BEF516 /* PEDImportDataViewController.xib */; };
+		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
 		DA667AAD16D26C9100ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA667AB116D26CD500ED3A49 /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB016D26CD500ED3A49 /* NSObjectSerialization.m */; };
 		DA667AB616D26D3500ED3A49 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB516D26D3500ED3A49 /* UIHelper.m */; };
@@ -212,6 +215,23 @@
 		DACC070416D263AD0062E2A8 /* PEDPedoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06F916D263AD0062E2A8 /* PEDPedoViewController.m */; };
 		DACC070516D263AD0062E2A8 /* PEDTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06FB16D263AD0062E2A8 /* PEDTargetViewController.m */; };
 		DACC070616D263AD0062E2A8 /* PEDUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06FD16D263AD0062E2A8 /* PEDUserSettingViewController.m */; };
+		DACC76DC16D9180B008FCDA7 /* PEDAvailPerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76DA16D9180B008FCDA7 /* PEDAvailPerialViewController.m */; };
+		DACC76E016D91831008FCDA7 /* PEDAvailPerialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACC76DF16D91831008FCDA7 /* PEDAvailPerialViewController.xib */; };
+		DACC76F916D91997008FCDA7 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76E516D91997008FCDA7 /* UIView+JMNoise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DACC76FA16D91997008FCDA7 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E716D91997008FCDA7 /* close.png */; };
+		DACC76FB16D91997008FCDA7 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E816D91997008FCDA7 /* close@2x.png */; };
+		DACC76FC16D91997008FCDA7 /* modalButton-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E916D91997008FCDA7 /* modalButton-selected.png */; };
+		DACC76FD16D91997008FCDA7 /* modalButton-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76EA16D91997008FCDA7 /* modalButton-selected@2x.png */; };
+		DACC76FE16D91997008FCDA7 /* modalButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76EB16D91997008FCDA7 /* modalButton.png */; };
+		DACC76FF16D91997008FCDA7 /* modalButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76EC16D91997008FCDA7 /* modalButton@2x.png */; };
+		DACC770016D91997008FCDA7 /* UAModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76EF16D91997008FCDA7 /* UAModalPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DACC770116D91997008FCDA7 /* UATitledModalPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76F116D91997008FCDA7 /* UATitledModalPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DACC770216D91997008FCDA7 /* UAGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76F416D91997008FCDA7 /* UAGradientBackground.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DACC770316D91997008FCDA7 /* UANoisyGradientBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76F616D91997008FCDA7 /* UANoisyGradientBackground.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DACC770416D91997008FCDA7 /* UARoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76F816D91997008FCDA7 /* UARoundedRectView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DACC770716D91B85008FCDA7 /* DialogBoxContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC770616D91B85008FCDA7 /* DialogBoxContainer.m */; };
+		DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC770C16D92ED1008FCDA7 /* game_close_btn.png */; };
+		DACC771116D9356A008FCDA7 /* UILoadingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC771016D9356A008FCDA7 /* UILoadingBox.m */; };
 		DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -367,6 +387,11 @@
 		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
 		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
 		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
+		DA118A2216DA6ED200BEF516 /* PEDImportDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDImportDataViewController.h; path = ProjectPrivate/UI/PEDImportDataViewController.h; sourceTree = SOURCE_ROOT; };
+		DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataViewController.m; path = ProjectPrivate/UI/PEDImportDataViewController.m; sourceTree = SOURCE_ROOT; };
+		DA118A2416DA6ED200BEF516 /* PEDImportDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataViewController.xib; path = ProjectPrivate/UI/PEDImportDataViewController.xib; sourceTree = SOURCE_ROOT; };
+		DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUIBaseViewController.h; path = ProjectPrivate/UI/PEDUIBaseViewController.h; sourceTree = SOURCE_ROOT; };
+		DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUIBaseViewController.m; path = ProjectPrivate/UI/PEDUIBaseViewController.m; sourceTree = SOURCE_ROOT; };
 		DA667AAB16D26C9100ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
 		DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Extendtion.m"; path = "../Util/NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
 		DA667AAF16D26CD500ED3A49 /* NSObjectSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectSerialization.h; path = ../Util/NSObjectSerialization.h; sourceTree = "<group>"; };
@@ -555,6 +580,32 @@
 		DACC06FB16D263AD0062E2A8 /* PEDTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDTargetViewController.m; path = ProjectPrivate/UI/PEDTargetViewController.m; sourceTree = SOURCE_ROOT; };
 		DACC06FC16D263AD0062E2A8 /* PEDUserSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUserSettingViewController.h; path = ProjectPrivate/UI/PEDUserSettingViewController.h; sourceTree = SOURCE_ROOT; };
 		DACC06FD16D263AD0062E2A8 /* PEDUserSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUserSettingViewController.m; path = ProjectPrivate/UI/PEDUserSettingViewController.m; sourceTree = SOURCE_ROOT; };
+		DACC76D916D9180B008FCDA7 /* PEDAvailPerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDAvailPerialViewController.h; path = ProjectPrivate/UI/PEDAvailPerialViewController.h; sourceTree = SOURCE_ROOT; };
+		DACC76DA16D9180B008FCDA7 /* PEDAvailPerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDAvailPerialViewController.m; path = ProjectPrivate/UI/PEDAvailPerialViewController.m; sourceTree = SOURCE_ROOT; };
+		DACC76DF16D91831008FCDA7 /* PEDAvailPerialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDAvailPerialViewController.xib; path = ProjectPrivate/XIB/PEDAvailPerialViewController.xib; sourceTree = SOURCE_ROOT; };
+		DACC76E416D91997008FCDA7 /* UIView+JMNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMNoise.h"; sourceTree = "<group>"; };
+		DACC76E516D91997008FCDA7 /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
+		DACC76E716D91997008FCDA7 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		DACC76E816D91997008FCDA7 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
+		DACC76E916D91997008FCDA7 /* modalButton-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalButton-selected.png"; sourceTree = "<group>"; };
+		DACC76EA16D91997008FCDA7 /* modalButton-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalButton-selected@2x.png"; sourceTree = "<group>"; };
+		DACC76EB16D91997008FCDA7 /* modalButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modalButton.png; sourceTree = "<group>"; };
+		DACC76EC16D91997008FCDA7 /* modalButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalButton@2x.png"; sourceTree = "<group>"; };
+		DACC76EE16D91997008FCDA7 /* UAModalPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAModalPanel.h; sourceTree = "<group>"; };
+		DACC76EF16D91997008FCDA7 /* UAModalPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAModalPanel.m; sourceTree = "<group>"; };
+		DACC76F016D91997008FCDA7 /* UATitledModalPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UATitledModalPanel.h; sourceTree = "<group>"; };
+		DACC76F116D91997008FCDA7 /* UATitledModalPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UATitledModalPanel.m; sourceTree = "<group>"; };
+		DACC76F316D91997008FCDA7 /* UAGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGradientBackground.h; sourceTree = "<group>"; };
+		DACC76F416D91997008FCDA7 /* UAGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGradientBackground.m; sourceTree = "<group>"; };
+		DACC76F516D91997008FCDA7 /* UANoisyGradientBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UANoisyGradientBackground.h; sourceTree = "<group>"; };
+		DACC76F616D91997008FCDA7 /* UANoisyGradientBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UANoisyGradientBackground.m; sourceTree = "<group>"; };
+		DACC76F716D91997008FCDA7 /* UARoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UARoundedRectView.h; sourceTree = "<group>"; };
+		DACC76F816D91997008FCDA7 /* UARoundedRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UARoundedRectView.m; sourceTree = "<group>"; };
+		DACC770516D91B85008FCDA7 /* DialogBoxContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogBoxContainer.h; path = ../iPhoneComm/Classes/UI/DialogBoxContainer.h; sourceTree = "<group>"; };
+		DACC770616D91B85008FCDA7 /* DialogBoxContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DialogBoxContainer.m; path = ../iPhoneComm/Classes/UI/DialogBoxContainer.m; sourceTree = "<group>"; };
+		DACC770C16D92ED1008FCDA7 /* game_close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_close_btn.png; sourceTree = "<group>"; };
+		DACC770F16D9356A008FCDA7 /* UILoadingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILoadingBox.h; path = ../Controls/GET/UILoadingBox.h; sourceTree = "<group>"; };
+		DACC771016D9356A008FCDA7 /* UILoadingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILoadingBox.m; path = ../Controls/GET/UILoadingBox.m; sourceTree = "<group>"; };
 		DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -1003,6 +1054,13 @@
 				DACC06FB16D263AD0062E2A8 /* PEDTargetViewController.m */,
 				DACC06FC16D263AD0062E2A8 /* PEDUserSettingViewController.h */,
 				DACC06FD16D263AD0062E2A8 /* PEDUserSettingViewController.m */,
+				DACC76D916D9180B008FCDA7 /* PEDAvailPerialViewController.h */,
+				DACC76DA16D9180B008FCDA7 /* PEDAvailPerialViewController.m */,
+				DA118A2216DA6ED200BEF516 /* PEDImportDataViewController.h */,
+				DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */,
+				DA118A2416DA6ED200BEF516 /* PEDImportDataViewController.xib */,
+				DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */,
+				DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1018,6 +1076,7 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				DACC770C16D92ED1008FCDA7 /* game_close_btn.png */,
 				6B0047D216D92D1F00B87CA8 /* activity_time_small.png */,
 				6B0047D316D92D1F00B87CA8 /* activity_time_small@2x.png */,
 				6B0047D416D92D1F00B87CA8 /* calories_small.png */,
@@ -1137,6 +1196,10 @@
 		DA6E9FF416CFE41600F2453F /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				DACC770E16D9354F008FCDA7 /* Loading */,
+				DACC770516D91B85008FCDA7 /* DialogBoxContainer.h */,
+				DACC770616D91B85008FCDA7 /* DialogBoxContainer.m */,
+				DACC76E116D91997008FCDA7 /* UAModalPanel */,
 				6B94DB3916D8533C00EF70C1 /* CustomerTabBar.h */,
 				6B94DB3A16D8533C00EF70C1 /* CustomerTabBar.m */,
 				6B94DB3B16D8533C00EF70C1 /* CustomerTabBarController.h */,
@@ -1151,6 +1214,7 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DACC76DF16D91831008FCDA7 /* PEDAvailPerialViewController.xib */,
 				6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */,
 				6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */,
 				6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */,
@@ -1160,6 +1224,81 @@
 				6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */,
 			);
 			name = XIB;
+			sourceTree = "<group>";
+		};
+		DACC76E116D91997008FCDA7 /* UAModalPanel */ = {
+			isa = PBXGroup;
+			children = (
+				DACC76E216D91997008FCDA7 /* Panel */,
+			);
+			name = UAModalPanel;
+			path = ../Submodules/UAModalPanel/UAModalPanel;
+			sourceTree = "<group>";
+		};
+		DACC76E216D91997008FCDA7 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				DACC76E316D91997008FCDA7 /* Categories */,
+				DACC76E616D91997008FCDA7 /* Images */,
+				DACC76ED16D91997008FCDA7 /* Panels */,
+				DACC76F216D91997008FCDA7 /* Views */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
+		DACC76E316D91997008FCDA7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DACC76E416D91997008FCDA7 /* UIView+JMNoise.h */,
+				DACC76E516D91997008FCDA7 /* UIView+JMNoise.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DACC76E616D91997008FCDA7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DACC76E716D91997008FCDA7 /* close.png */,
+				DACC76E816D91997008FCDA7 /* close@2x.png */,
+				DACC76E916D91997008FCDA7 /* modalButton-selected.png */,
+				DACC76EA16D91997008FCDA7 /* modalButton-selected@2x.png */,
+				DACC76EB16D91997008FCDA7 /* modalButton.png */,
+				DACC76EC16D91997008FCDA7 /* modalButton@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DACC76ED16D91997008FCDA7 /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				DACC76EE16D91997008FCDA7 /* UAModalPanel.h */,
+				DACC76EF16D91997008FCDA7 /* UAModalPanel.m */,
+				DACC76F016D91997008FCDA7 /* UATitledModalPanel.h */,
+				DACC76F116D91997008FCDA7 /* UATitledModalPanel.m */,
+			);
+			path = Panels;
+			sourceTree = "<group>";
+		};
+		DACC76F216D91997008FCDA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DACC76F316D91997008FCDA7 /* UAGradientBackground.h */,
+				DACC76F416D91997008FCDA7 /* UAGradientBackground.m */,
+				DACC76F516D91997008FCDA7 /* UANoisyGradientBackground.h */,
+				DACC76F616D91997008FCDA7 /* UANoisyGradientBackground.m */,
+				DACC76F716D91997008FCDA7 /* UARoundedRectView.h */,
+				DACC76F816D91997008FCDA7 /* UARoundedRectView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DACC770E16D9354F008FCDA7 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				DACC770F16D9356A008FCDA7 /* UILoadingBox.h */,
+				DACC771016D9356A008FCDA7 /* UILoadingBox.m */,
+			);
+			name = Loading;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1355,6 +1494,15 @@
 				6B00480916D943B900B87CA8 /* PEDTargetViewController.xib in Resources */,
 				6B00480B16D95C1100B87CA8 /* PEDBarchartViewController.xib in Resources */,
 				6B00480D16D9644500B87CA8 /* PEDGraphsViewController.xib in Resources */,
+				DACC76E016D91831008FCDA7 /* PEDAvailPerialViewController.xib in Resources */,
+				DACC76FA16D91997008FCDA7 /* close.png in Resources */,
+				DACC76FB16D91997008FCDA7 /* close@2x.png in Resources */,
+				DACC76FC16D91997008FCDA7 /* modalButton-selected.png in Resources */,
+				DACC76FD16D91997008FCDA7 /* modalButton-selected@2x.png in Resources */,
+				DACC76FE16D91997008FCDA7 /* modalButton.png in Resources */,
+				DACC76FF16D91997008FCDA7 /* modalButton@2x.png in Resources */,
+				DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */,
+				DA118A2616DA6ED200BEF516 /* PEDImportDataViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1419,6 +1567,17 @@
 				DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */,
 				6B94DB3D16D8533C00EF70C1 /* CustomerTabBar.m in Sources */,
 				6B94DB3E16D8533C00EF70C1 /* CustomerTabBarController.m in Sources */,
+				DACC76DC16D9180B008FCDA7 /* PEDAvailPerialViewController.m in Sources */,
+				DACC76F916D91997008FCDA7 /* UIView+JMNoise.m in Sources */,
+				DACC770016D91997008FCDA7 /* UAModalPanel.m in Sources */,
+				DACC770116D91997008FCDA7 /* UATitledModalPanel.m in Sources */,
+				DACC770216D91997008FCDA7 /* UAGradientBackground.m in Sources */,
+				DACC770316D91997008FCDA7 /* UANoisyGradientBackground.m in Sources */,
+				DACC770416D91997008FCDA7 /* UARoundedRectView.m in Sources */,
+				DACC770716D91B85008FCDA7 /* DialogBoxContainer.m in Sources */,
+				DACC771116D9356A008FCDA7 /* UILoadingBox.m in Sources */,
+				DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */,
+				DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,10 +1616,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 			};
 			name = Debug;
 		};
@@ -1478,11 +1637,11 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1492,20 +1651,24 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Analayze/FootRecorder/nRF_Utility/nRF_Utility/dependencies\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C0E63D54-203B-4AA4-9FDF-289DD8234751";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1516,20 +1679,24 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Analayze/FootRecorder/nRF_Utility/nRF_Utility/dependencies\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C0E63D54-203B-4AA4-9FDF-289DD8234751";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
 			};

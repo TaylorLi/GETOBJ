@@ -14,32 +14,47 @@
 
 #define BLE_OPERATE_TIMEOUT 30
 #define BLE_CONNECTION_TIMEOUT 30
-//Device Information
-#define SERIAL_PERIPHERAL_SERVICE_UUID @"5830180a-a6cf-46bc-812f-dfc71d70109b"
 
-//Pipe (1)
+#pragma mark -
+#pragma mark Service 1:Generic Access(0x1800)
+#define SERIAL_PERIPHERAL_GENERIC_ACCESS_SERVICE_UUID @"1800"
+
+//Characteristic 1 :DeviceName Read
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_DEVICENAME @"2A00"
+//Characteristic 2 :Apperance Read
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_APPERANCE @"2A01"
+//Characteristic 3 :SlavePreferredConnectionParameters Read
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_SLAVE_CONNECTION_PARAMETER @"2A04"
+
+#pragma mark -
+#pragma mark Service 2:Device Information
+#define SERIAL_PERIPHERAL_DEVICE_SERVICE_UUID @"180A"
+//CHARACTERISTIC Pipe (1) Read
 //Serial Number String
 #define SERIAL_PERIPHERAL_CHARACTERISTIC_SN_STRING_UUID @"58302a25-a6cf-46bc-812f-dfc71d70109b"
 
-//Pipe (2)
+//CHARACTERISTIC Pipe (2) Read
 //Manufacturer Name String
 #define SERIAL_PERIPHERAL_CHARACTERISTIC_MANUFACTURER_NAME_STRING_UUID @"58302a29-a6cf-46bc-812f-dfc71d70109b"
 
-//Pipe (3)
+//CHARACTERISTIC Pipe (3) Read
 //System ID
 #define SERIAL_PERIPHERAL_CHARACTERISTIC_SYSTEM_ID_STRING_UUID @"58302a23-a6cf-46bc-812f-dfc71d70109b"
 
-//Pipe (4)
+//CHARACTERISTIC Pipe (4) Read
 //Firmware Revision String
 #define SERIAL_PERIPHERAL_CHARACTERISTIC_FIRMWARE_REVISION_STRING_UUID @"58302a26-a6cf-46bc-812f-dfc71d70109b"
-//Pedometer
-//#define SERIAL_PERIPHERAL_CHARACTERISTIC_SN_STRING_UUID @"5830 180d -a6cf-46bc-812f-dfc71d70109b"
+
+#pragma mark -
+#pragma mark Service 3:Heart Rate
+
+#define SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID @"180D"
 
 //Pipe (5)
-//SLEEP DATA Receive
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_DATA_UUID @"58302a37-a6cf-46bc-812f-dfc71d70109b"
+//SLEEP DATA OR PEDOMETER DATA Receive NOTIFY
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID @"58302a37-a6cf-46bc-812f-dfc71d70109b"
 //Pipe (6)
-//Pedometer Data Receive
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_DATA_UUID @"58302a4a-a6cf-46bc-812f-dfc71d70109b"
+//Pedometer Setting Parameter Send To Device  WriteWithoutResponse
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID @"2a4a"
 
 #endif

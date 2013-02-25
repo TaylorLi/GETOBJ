@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 BTSmartShield.com. All rights reserved.
 //
 
+#import "BleDefinition.h"
 #import "SerialGATT.h"
 
 @implementation SerialGATT
@@ -15,15 +16,14 @@
 @synthesize manager;
 @synthesize activePeripheral;
 
-@synthesize serialGATTService;
-@synthesize dataRecvrCharacteristic;
-
-@synthesize serialGATTNotifyService;
+@synthesize serialHeartRateService;
+@synthesize dataSettingWriteCharacteristic;
 @synthesize dataNotifyCharacteristic;
 
 
-@synthesize serviceWriteUUID;
-@synthesize serviceNotifyUUID;
+@synthesize characteristicWriteUUID;
+@synthesize characteristicNotifyUUID,serviceHeartRateDataUUID;
+
 
 /*
  * (void) setup
@@ -34,10 +34,10 @@
 -(void) setup
 {
     manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    
     // initialize the Service UUID interested
-    serviceWriteUUID = [CBUUID UUIDWithString:SERIAL_PERIPHERAL_SERVICE_UUID];
-    serviceNotifyUUID = [CBUUID UUIDWithString:SERIAL_PERIPHERAL_NOTIFY_SERVICE_UUID];
+    serviceHeartRateDataUUID=[CBUUID UUIDWithString:SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID];
+    characteristicWriteUUID = [CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID];
+    characteristicNotifyUUID = [CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID];
 }
 
 /*
@@ -54,9 +54,12 @@
     }
     
     [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:nil repeats:NO];
-    
-    //[manager scanForPeripheralsWithServices:[NSArray arrayWithObject:serviceUUID] options:0]; // start Scanning
-    [manager scanForPeripheralsWithServices:nil options:0];
+    // start Scanning
+    [manager scanForPeripheralsWithServices:[NSArray arrayWithObject:serviceHeartRateDataUUID] options:nil];
+
+    NSLog(@"scanForPeripheralsWithServices begin,with UUID:%@",serviceHeartRateDataUUID);
+    //[manager scanForPeripheralsWithServices:nil options:nil];
+    //[manager scanForPeripheralsWithServices:nil options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
     return 0;
 }
 
@@ -68,6 +71,7 @@
 -(void) scanTimer:(NSTimer *)timer
 {
     [manager stopScan];
+    [delegate searchPeripheralTimeout];
 }
 
 /*
@@ -95,25 +99,25 @@
 #pragma mark - basic operations for SerialGATT service
 -(void) write:(CBPeripheral *)peripheral data:(NSData *)data
 {
-    if (!serialGATTService || !dataRecvrCharacteristic) {
+    if (!serialHeartRateService || !dataSettingWriteCharacteristic) {
         return;
     }
     
-    [peripheral writeValue:data forCharacteristic:dataRecvrCharacteristic type:CBCharacteristicWriteWithoutResponse];
+    [peripheral writeValue:data forCharacteristic:dataSettingWriteCharacteristic type:CBCharacteristicWriteWithoutResponse];
 }
 
 -(void) read:(CBPeripheral *)peripheral
 {
-    if (!serialGATTService || !dataRecvrCharacteristic) {
+    if (!serialHeartRateService || !dataSettingWriteCharacteristic) {
         return;
     }
     
-    [peripheral readValueForCharacteristic:dataRecvrCharacteristic];
+    [peripheral readValueForCharacteristic:dataSettingWriteCharacteristic];
 }
 
 -(void) notify: (CBPeripheral *)peripheral on:(BOOL)on
 {
-    if (!serialGATTService || !dataNotifyCharacteristic) {
+    if (!serialHeartRateService || !dataNotifyCharacteristic) {
         return;
     }
     [peripheral setNotifyValue:on forCharacteristic:dataNotifyCharacteristic];
@@ -149,11 +153,43 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    switch (central.state) {
+        case CBCentralManagerStatePoweredOff:
+            NSLog(@"CoreBluetooth BLE hardware is powered off");
+            break;
+        case CBCentralManagerStatePoweredOn:
+            NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+            break;
+        case CBCentralManagerStateResetting:
+            NSLog(@"CoreBluetooth BLE hardware is resetting");
+            break;
+        case CBCentralManagerStateUnauthorized:
+            NSLog(@"CoreBluetooth BLE state is unauthorized");
+            break;
+        case CBCentralManagerStateUnknown:
+            NSLog(@"CoreBluetooth BLE state is unknown");
+            break;
+        case CBCentralManagerStateUnsupported:
+            NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+            break;
+        default:
+            break;
+    }
+    
     //TODO: to handle the state updates
+    if (central.state != CBCentralManagerStatePoweredOn) {
+        // In a real app, you'd deal with all the states correctly
+        return;
+    }
+    
+    // The state must be CBCentralManagerStatePoweredOn...
+    
+    // ... so start scanning
+    [self.delegate sensorReady];
 }
-
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
+    NSLog(@"didDiscoverPeripheral:%@",peripheral);
     if (!peripherals) {
         peripherals = [[NSMutableArray alloc] initWithObjects:peripheral, nil];
     } else {
@@ -209,17 +245,14 @@
     }
 
     // Compare the characteristic with SERIAL_PERIPHERAL_CHAR_RECV_UUID and SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID
-    CBUUID *charRecvUUID = [CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHAR_RECV_UUID];
-    CBUUID *charNotifyUUID = [CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID];
-
-    if ([[characteristic.UUID data] isEqualToData:[charRecvUUID data]]) {
-        // TODO: read the data from SERIAL_PERIPHERAL_CHAR_RECV_UUID, which can be used to write and read data
-        [delegate serialGATTCharValueUpdated:SERIAL_PERIPHERAL_CHAR_RECV_UUID value:characteristic.value];
-    } else  if ([[characteristic.UUID data] isEqualToData:[charNotifyUUID data]]) {
+    if ([[characteristic.UUID data] isEqualToData:[characteristicNotifyUUID data]]) {
         // TODO: read the data from SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID
-        [delegate serialGATTCharValueUpdated:SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID value:characteristic.value];
+        [delegate serialGATTCharValueUpdated:SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID value:characteristic.value];
     }
-
+    else if ([[characteristic.UUID data] isEqualToData:[characteristicWriteUUID data]]) {
+        // TODO: read the data from SERIAL_PERIPHERAL_CHAR_RECV_UUID, which can be used to write and read data
+        [delegate serialGATTCharValueUpdated:SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID value:characteristic.value];
+    }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -241,21 +274,14 @@
 {
     if (!error) {
         printf("The services are found\n");
-        serialGATTService = [self findServiceFromUUID:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_SERVICE_UUID] p:peripheral];
-        if (!serialGATTService) {
+        serialHeartRateService = [self findServiceFromUUID:serviceHeartRateDataUUID p:peripheral];
+        if (!serialHeartRateService) {
             printf("The desired service is not found!\n");
             return;
         } else {
-            [peripheral discoverCharacteristics:nil forService:serialGATTService];
-        }
+            [peripheral discoverCharacteristics:nil forService:serialHeartRateService];
+        }        
         
-        serialGATTNotifyService = [self findServiceFromUUID:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_NOTIFY_SERVICE_UUID] p:peripheral];
-        if (!serialGATTNotifyService) {
-            printf("The desired service is not found\n");
-            return;
-        } else {
-            [peripheral discoverCharacteristics:nil forService:serialGATTNotifyService];
-        }
     }
     else {
         printf("discoverservices is uncesessful!\n");
@@ -266,9 +292,9 @@
 {
     if (!error) {
         printf("The characteristics are found for the service!\n");
-        dataRecvrCharacteristic = [self findCharacteristicFromUUID:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHAR_RECV_UUID] p:peripheral service:serialGATTService];
-        dataNotifyCharacteristic = [self findCharacteristicFromUUID:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID] p:peripheral service:serialGATTNotifyService];
-        if (!dataNotifyCharacteristic || !dataRecvrCharacteristic) {
+        dataSettingWriteCharacteristic = [self findCharacteristicFromUUID:characteristicWriteUUID p:peripheral service:serialHeartRateService];
+        dataNotifyCharacteristic = [self findCharacteristicFromUUID:characteristicNotifyUUID p:peripheral service:serialHeartRateService];
+        if (!dataNotifyCharacteristic || !dataSettingWriteCharacteristic) {
             printf("The desired characteristics can't be found!\n");
             return;
         } else {

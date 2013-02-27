@@ -22,7 +22,7 @@
 #import "PEDGraphsViewController.h"
 #import "CustomerTabBarController.h"
 #import "PEDImportDataViewController.h"
-#import "PEDAvailPerialViewController.h"
+
 
 @implementation PEDAppDelegate
 

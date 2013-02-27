@@ -8,13 +8,13 @@
 
 #import "PEDAvailPerialViewController.h"
 #import "BleDefinition.h"
-#import "UILoadingBox.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @implementation PEDAvailPerialViewController
 
 @synthesize schActivator;
-@synthesize delegate;
+@synthesize txtServiceUUID;
+@synthesize txtServiceName;
 @synthesize sensor;
 @synthesize peripheralArray;
 @synthesize btSmartShieldsTableView;
@@ -44,7 +44,7 @@
 
 - (void)viewDidLoad
 {
-   peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];    
+   peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil]; 
     // Do any additional setup after loading the view from its nib.
     /*
     sensor = [[SerialGATT alloc] init];
@@ -60,6 +60,8 @@
 
 - (void)viewDidUnload
 {
+    [self setTxtServiceName:nil];
+    [self setTxtServiceUUID:nil];
     [self setSchActivator:nil];
 
 }
@@ -86,7 +88,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+	return YES;
+    //return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 #pragma mark -
@@ -114,8 +117,10 @@
 
 -(void)beginReadDataFromPeripheral:(CBPeripheral *)peripheral
 {
+    /*
   UILoadingBox *loadingBox =  [[UILoadingBox alloc] init];
   [loadingBox showLoading];
+     */
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,28 +167,32 @@
     if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
         return;
     }
-    
     // We're in CBPeripheralManagerStatePoweredOn state...
     NSLog(@"self.peripheralManager powered on.");
     
     // ... so build our service.
-    
+
     // Start with the CBMutableCharacteristic
-    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:@"E20A39F4-73F5-4BC4-A12F-17D1AD07A961"]
+   CBMutableCharacteristic *wrieCharacters = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID]
+                                       properties:CBCharacteristicPropertyWriteWithoutResponse
+                                            value:nil
+                                      permissions:CBAttributePermissionsWriteable];
+    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID]
                                                                      properties:CBCharacteristicPropertyNotify
                                                                           value:nil
                                                                     permissions:CBAttributePermissionsReadable];
     
     // Then the service
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:@"08590F7E-DB05-467E-8757-72F6FAEB13D4"]
+    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID]
                                                                        primary:YES];
-    
     // Add the characteristic to the service
-    transferService.characteristics =[[NSArray alloc] initWithObjects:self.transferCharacteristic,nil];
+    transferService.characteristics =[[NSArray alloc] initWithObjects:wrieCharacters,self.transferCharacteristic,nil];
     
     // And add it to the peripheral manager
     [self.peripheralManager addService:transferService];
-    [peripheralManager startAdvertising:[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:[CBUUID UUIDWithString: @"E20A39F4-73F5-4BC4-A12F-17D1AD07A961"], nil], CBAdvertisementDataServiceUUIDsKey,nil]];
+    [peripheralManager startAdvertising:[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID],nil], CBAdvertisementDataServiceUUIDsKey,@"Simulate BLE Peripherial Device",CBAdvertisementDataLocalNameKey,nil]];
+    txtServiceName.text=@"Simulate BLE Peripherial Device";
+    txtServiceUUID.text=SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID;
     [super viewDidLoad];
 }
 

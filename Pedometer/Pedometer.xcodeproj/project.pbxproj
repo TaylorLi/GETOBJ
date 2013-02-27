@@ -148,7 +148,6 @@
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
-		DA118A2616DA6ED200BEF516 /* PEDImportDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA118A2416DA6ED200BEF516 /* PEDImportDataViewController.xib */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
 		DA667AAD16D26C9100ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA667AB116D26CD500ED3A49 /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB016D26CD500ED3A49 /* NSObjectSerialization.m */; };
@@ -201,6 +200,8 @@
 		DA6EA02516CFE58600F2453F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02416CFE58600F2453F /* libxml2.dylib */; };
 		DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02616CFE5AF00F2453F /* libz.dylib */; };
 		DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */; };
+		DA747E1616DDB1610007E0A7 /* PEDImportDataDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = DA747E1416DDB1610007E0A7 /* PEDImportDataDetail.m */; };
+		DA747E1716DDB1610007E0A7 /* PEDImportDataDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA747E1516DDB1610007E0A7 /* PEDImportDataDetail.xib */; };
 		DACC06C516D262FF0062E2A8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06C416D262FF0062E2A8 /* AlertView.m */; };
 		DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D916D2633F0062E2A8 /* InfoPlist.strings */; };
 		DACC06E116D2634F0062E2A8 /* PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */; };
@@ -215,8 +216,6 @@
 		DACC070416D263AD0062E2A8 /* PEDPedoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06F916D263AD0062E2A8 /* PEDPedoViewController.m */; };
 		DACC070516D263AD0062E2A8 /* PEDTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06FB16D263AD0062E2A8 /* PEDTargetViewController.m */; };
 		DACC070616D263AD0062E2A8 /* PEDUserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06FD16D263AD0062E2A8 /* PEDUserSettingViewController.m */; };
-		DACC76DC16D9180B008FCDA7 /* PEDAvailPerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76DA16D9180B008FCDA7 /* PEDAvailPerialViewController.m */; };
-		DACC76E016D91831008FCDA7 /* PEDAvailPerialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACC76DF16D91831008FCDA7 /* PEDAvailPerialViewController.xib */; };
 		DACC76F916D91997008FCDA7 /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC76E516D91997008FCDA7 /* UIView+JMNoise.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DACC76FA16D91997008FCDA7 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E716D91997008FCDA7 /* close.png */; };
 		DACC76FB16D91997008FCDA7 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E816D91997008FCDA7 /* close@2x.png */; };
@@ -232,6 +231,7 @@
 		DACC770716D91B85008FCDA7 /* DialogBoxContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC770616D91B85008FCDA7 /* DialogBoxContainer.m */; };
 		DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC770C16D92ED1008FCDA7 /* game_close_btn.png */; };
 		DACC771116D9356A008FCDA7 /* UILoadingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC771016D9356A008FCDA7 /* UILoadingBox.m */; };
+		DAE5306716DCCD4D003BB097 /* PEDImportDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */; };
 		DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -389,7 +389,6 @@
 		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
 		DA118A2216DA6ED200BEF516 /* PEDImportDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDImportDataViewController.h; path = ProjectPrivate/UI/PEDImportDataViewController.h; sourceTree = SOURCE_ROOT; };
 		DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataViewController.m; path = ProjectPrivate/UI/PEDImportDataViewController.m; sourceTree = SOURCE_ROOT; };
-		DA118A2416DA6ED200BEF516 /* PEDImportDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataViewController.xib; path = ProjectPrivate/UI/PEDImportDataViewController.xib; sourceTree = SOURCE_ROOT; };
 		DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUIBaseViewController.h; path = ProjectPrivate/UI/PEDUIBaseViewController.h; sourceTree = SOURCE_ROOT; };
 		DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUIBaseViewController.m; path = ProjectPrivate/UI/PEDUIBaseViewController.m; sourceTree = SOURCE_ROOT; };
 		DA667AAB16D26C9100ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
@@ -552,6 +551,9 @@
 		DA6EA02416CFE58600F2453F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		DA6EA02616CFE5AF00F2453F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
+		DA747E1316DDB1610007E0A7 /* PEDImportDataDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDImportDataDetail.h; path = ProjectPrivate/UI/PEDImportDataDetail.h; sourceTree = SOURCE_ROOT; };
+		DA747E1416DDB1610007E0A7 /* PEDImportDataDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataDetail.m; path = ProjectPrivate/UI/PEDImportDataDetail.m; sourceTree = SOURCE_ROOT; };
+		DA747E1516DDB1610007E0A7 /* PEDImportDataDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetail.xib; path = ProjectPrivate/UI/PEDImportDataDetail.xib; sourceTree = SOURCE_ROOT; };
 		DACC06C316D262FF0062E2A8 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../Controls/GET/AlertView.h; sourceTree = "<group>"; };
 		DACC06C416D262FF0062E2A8 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertView.m; path = ../Controls/GET/AlertView.m; sourceTree = "<group>"; };
 		DACC06DA16D2633F0062E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ProjectPrivate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -580,9 +582,6 @@
 		DACC06FB16D263AD0062E2A8 /* PEDTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDTargetViewController.m; path = ProjectPrivate/UI/PEDTargetViewController.m; sourceTree = SOURCE_ROOT; };
 		DACC06FC16D263AD0062E2A8 /* PEDUserSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUserSettingViewController.h; path = ProjectPrivate/UI/PEDUserSettingViewController.h; sourceTree = SOURCE_ROOT; };
 		DACC06FD16D263AD0062E2A8 /* PEDUserSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUserSettingViewController.m; path = ProjectPrivate/UI/PEDUserSettingViewController.m; sourceTree = SOURCE_ROOT; };
-		DACC76D916D9180B008FCDA7 /* PEDAvailPerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDAvailPerialViewController.h; path = ProjectPrivate/UI/PEDAvailPerialViewController.h; sourceTree = SOURCE_ROOT; };
-		DACC76DA16D9180B008FCDA7 /* PEDAvailPerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDAvailPerialViewController.m; path = ProjectPrivate/UI/PEDAvailPerialViewController.m; sourceTree = SOURCE_ROOT; };
-		DACC76DF16D91831008FCDA7 /* PEDAvailPerialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDAvailPerialViewController.xib; path = ProjectPrivate/XIB/PEDAvailPerialViewController.xib; sourceTree = SOURCE_ROOT; };
 		DACC76E416D91997008FCDA7 /* UIView+JMNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMNoise.h"; sourceTree = "<group>"; };
 		DACC76E516D91997008FCDA7 /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
 		DACC76E716D91997008FCDA7 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
@@ -606,6 +605,7 @@
 		DACC770C16D92ED1008FCDA7 /* game_close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_close_btn.png; sourceTree = "<group>"; };
 		DACC770F16D9356A008FCDA7 /* UILoadingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILoadingBox.h; path = ../Controls/GET/UILoadingBox.h; sourceTree = "<group>"; };
 		DACC771016D9356A008FCDA7 /* UILoadingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILoadingBox.m; path = ../Controls/GET/UILoadingBox.m; sourceTree = "<group>"; };
+		DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataViewController.xib; path = ProjectPrivate/XIB/PEDImportDataViewController.xib; sourceTree = SOURCE_ROOT; };
 		DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -1054,13 +1054,13 @@
 				DACC06FB16D263AD0062E2A8 /* PEDTargetViewController.m */,
 				DACC06FC16D263AD0062E2A8 /* PEDUserSettingViewController.h */,
 				DACC06FD16D263AD0062E2A8 /* PEDUserSettingViewController.m */,
-				DACC76D916D9180B008FCDA7 /* PEDAvailPerialViewController.h */,
-				DACC76DA16D9180B008FCDA7 /* PEDAvailPerialViewController.m */,
 				DA118A2216DA6ED200BEF516 /* PEDImportDataViewController.h */,
 				DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */,
-				DA118A2416DA6ED200BEF516 /* PEDImportDataViewController.xib */,
 				DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */,
 				DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */,
+				DA747E1316DDB1610007E0A7 /* PEDImportDataDetail.h */,
+				DA747E1416DDB1610007E0A7 /* PEDImportDataDetail.m */,
+				DA747E1516DDB1610007E0A7 /* PEDImportDataDetail.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1214,7 +1214,7 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				DACC76DF16D91831008FCDA7 /* PEDAvailPerialViewController.xib */,
+				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
 				6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */,
 				6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */,
 				6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */,
@@ -1494,7 +1494,6 @@
 				6B00480916D943B900B87CA8 /* PEDTargetViewController.xib in Resources */,
 				6B00480B16D95C1100B87CA8 /* PEDBarchartViewController.xib in Resources */,
 				6B00480D16D9644500B87CA8 /* PEDGraphsViewController.xib in Resources */,
-				DACC76E016D91831008FCDA7 /* PEDAvailPerialViewController.xib in Resources */,
 				DACC76FA16D91997008FCDA7 /* close.png in Resources */,
 				DACC76FB16D91997008FCDA7 /* close@2x.png in Resources */,
 				DACC76FC16D91997008FCDA7 /* modalButton-selected.png in Resources */,
@@ -1502,7 +1501,8 @@
 				DACC76FE16D91997008FCDA7 /* modalButton.png in Resources */,
 				DACC76FF16D91997008FCDA7 /* modalButton@2x.png in Resources */,
 				DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */,
-				DA118A2616DA6ED200BEF516 /* PEDImportDataViewController.xib in Resources */,
+				DAE5306716DCCD4D003BB097 /* PEDImportDataViewController.xib in Resources */,
+				DA747E1716DDB1610007E0A7 /* PEDImportDataDetail.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1567,7 +1567,6 @@
 				DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */,
 				6B94DB3D16D8533C00EF70C1 /* CustomerTabBar.m in Sources */,
 				6B94DB3E16D8533C00EF70C1 /* CustomerTabBarController.m in Sources */,
-				DACC76DC16D9180B008FCDA7 /* PEDAvailPerialViewController.m in Sources */,
 				DACC76F916D91997008FCDA7 /* UIView+JMNoise.m in Sources */,
 				DACC770016D91997008FCDA7 /* UAModalPanel.m in Sources */,
 				DACC770116D91997008FCDA7 /* UATitledModalPanel.m in Sources */,
@@ -1578,6 +1577,7 @@
 				DACC771116D9356A008FCDA7 /* UILoadingBox.m in Sources */,
 				DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */,
 				DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */,
+				DA747E1616DDB1610007E0A7 /* PEDImportDataDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1619,7 +1619,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
-				SDKROOT = iphoneos6.0;
+				SDKROOT = iphoneos5.1;
 			};
 			name = Debug;
 		};
@@ -1641,7 +1641,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
-				SDKROOT = iphoneos6.0;
+				SDKROOT = iphoneos5.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1659,16 +1659,16 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C0E63D54-203B-4AA4-9FDF-289DD8234751";
+				PROVISIONING_PROFILE = "09F44588-8D7E-44B9-A122-B5FFC8FCB86B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos6.0;
+				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1687,16 +1687,16 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C0E63D54-203B-4AA4-9FDF-289DD8234751";
+				PROVISIONING_PROFILE = "09F44588-8D7E-44B9-A122-B5FFC8FCB86B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos6.0;
+				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
 			};

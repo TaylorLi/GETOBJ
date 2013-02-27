@@ -1,0 +1,709 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
+		DA07898F16DE515B00EF5220 /* PedometerPheripheral-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA07898D16DE515B00EF5220 /* PedometerPheripheral-Info.plist */; };
+		DA667AFB16D26D7D00ED3A49 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AE316D26D7D00ED3A49 /* NSObject+SBJson.m */; };
+		DA667AFC16D26D7D00ED3A49 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AE616D26D7D00ED3A49 /* SBJsonParser.m */; };
+		DA667AFD16D26D7D00ED3A49 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AE816D26D7D00ED3A49 /* SBJsonStreamParser.m */; };
+		DA667AFE16D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AEA16D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.m */; };
+		DA667AFF16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AEC16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.m */; };
+		DA667B0016D26D7D00ED3A49 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AEE16D26D7D00ED3A49 /* SBJsonStreamParserState.m */; };
+		DA667B0116D26D7D00ED3A49 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF016D26D7D00ED3A49 /* SBJsonStreamWriter.m */; };
+		DA667B0216D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF216D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.m */; };
+		DA667B0316D26D7D00ED3A49 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF416D26D7D00ED3A49 /* SBJsonStreamWriterState.m */; };
+		DA667B0416D26D7D00ED3A49 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF616D26D7D00ED3A49 /* SBJsonTokeniser.m */; };
+		DA667B0516D26D7D00ED3A49 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AF816D26D7D00ED3A49 /* SBJsonUTF8Stream.m */; };
+		DA667B0616D26D7D00ED3A49 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AFA16D26D7D00ED3A49 /* SBJsonWriter.m */; };
+		DA667B8A16D2702900ED3A49 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B8116D2702900ED3A49 /* FMDatabase.m */; };
+		DA667B8B16D2702900ED3A49 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B8316D2702900ED3A49 /* FMDatabaseAdditions.m */; };
+		DA667B8C16D2702900ED3A49 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B8516D2702900ED3A49 /* FMDatabasePool.m */; };
+		DA667B8D16D2702900ED3A49 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B8716D2702900ED3A49 /* FMDatabaseQueue.m */; };
+		DA667B8E16D2702900ED3A49 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667B8916D2702900ED3A49 /* FMResultSet.m */; };
+		DA667BEA16D272D700ED3A49 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA667BE916D272D700ED3A49 /* libCorePlot-CocoaTouch.a */; };
+		DA6E9C1D16CFB2F900F2453F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C1C16CFB2F900F2453F /* UIKit.framework */; };
+		DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C1E16CFB2F900F2453F /* Foundation.framework */; };
+		DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */; };
+		DA6EA02316CFE56000F2453F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02216CFE56000F2453F /* CoreBluetooth.framework */; };
+		DA6EA02516CFE58600F2453F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02416CFE58600F2453F /* libxml2.dylib */; };
+		DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02616CFE5AF00F2453F /* libz.dylib */; };
+		DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */; };
+		DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D916D2633F0062E2A8 /* InfoPlist.strings */; };
+		DACC06EA16D263970062E2A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06E716D263970062E2A8 /* main.m */; };
+		DACC06FE16D263AD0062E2A8 /* PEDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06ED16D263AD0062E2A8 /* PEDAppDelegate.m */; };
+		DAE5306D16DCCF51003BB097 /* PEDAvailPerialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE5306C16DCCF51003BB097 /* PEDAvailPerialViewController.xib */; };
+		DAE5307416DCDD30003BB097 /* PEDAvailPerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE5307316DCDD30003BB097 /* PEDAvailPerialViewController.m */; };
+		DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DA029A7316D3C62C004E7764 /* BleDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleDefinition.h; sourceTree = "<group>"; };
+		DA029A7416D3C62C004E7764 /* SerialGATT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialGATT.h; sourceTree = "<group>"; };
+		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
+		DA07898D16DE515B00EF5220 /* PedometerPheripheral-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PedometerPheripheral-Info.plist"; path = "ProjectPrivate/Other Sources/PedometerPheripheral-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DA07898E16DE515B00EF5220 /* PedometerPheripheral-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PedometerPheripheral-Prefix.pch"; path = "ProjectPrivate/Other Sources/PedometerPheripheral-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DA667AE216D26D7D00ED3A49 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		DA667AE316D26D7D00ED3A49 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
+		DA667AE416D26D7D00ED3A49 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		DA667AE516D26D7D00ED3A49 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		DA667AE616D26D7D00ED3A49 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		DA667AE716D26D7D00ED3A49 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		DA667AE816D26D7D00ED3A49 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		DA667AE916D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		DA667AEA16D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		DA667AEB16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		DA667AEC16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		DA667AED16D26D7D00ED3A49 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		DA667AEE16D26D7D00ED3A49 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		DA667AEF16D26D7D00ED3A49 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		DA667AF016D26D7D00ED3A49 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		DA667AF116D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		DA667AF216D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		DA667AF316D26D7D00ED3A49 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		DA667AF416D26D7D00ED3A49 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		DA667AF516D26D7D00ED3A49 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		DA667AF616D26D7D00ED3A49 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		DA667AF716D26D7D00ED3A49 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		DA667AF816D26D7D00ED3A49 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		DA667AF916D26D7D00ED3A49 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		DA667AFA16D26D7D00ED3A49 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		DA667B8016D2702900ED3A49 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		DA667B8116D2702900ED3A49 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		DA667B8216D2702900ED3A49 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		DA667B8316D2702900ED3A49 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		DA667B8416D2702900ED3A49 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		DA667B8516D2702900ED3A49 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		DA667B8616D2702900ED3A49 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		DA667B8716D2702900ED3A49 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		DA667B8816D2702900ED3A49 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		DA667B8916D2702900ED3A49 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		DA667B9F16D272D700ED3A49 /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
+		DA667BA016D272D700ED3A49 /* CPTAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotation.h; sourceTree = "<group>"; };
+		DA667BA116D272D700ED3A49 /* CPTAnnotationHostLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnnotationHostLayer.h; sourceTree = "<group>"; };
+		DA667BA216D272D700ED3A49 /* CPTAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAxis.h; sourceTree = "<group>"; };
+		DA667BA316D272D700ED3A49 /* CPTAxisLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAxisLabel.h; sourceTree = "<group>"; };
+		DA667BA416D272D700ED3A49 /* CPTAxisLabelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAxisLabelGroup.h; sourceTree = "<group>"; };
+		DA667BA516D272D700ED3A49 /* CPTAxisSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAxisSet.h; sourceTree = "<group>"; };
+		DA667BA616D272D700ED3A49 /* CPTAxisTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAxisTitle.h; sourceTree = "<group>"; };
+		DA667BA716D272D700ED3A49 /* CPTBarPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTBarPlot.h; sourceTree = "<group>"; };
+		DA667BA816D272D700ED3A49 /* CPTBorderedLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTBorderedLayer.h; sourceTree = "<group>"; };
+		DA667BA916D272D700ED3A49 /* CPTCalendarFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTCalendarFormatter.h; sourceTree = "<group>"; };
+		DA667BAA16D272D700ED3A49 /* CPTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTColor.h; sourceTree = "<group>"; };
+		DA667BAB16D272D700ED3A49 /* CPTColorSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTColorSpace.h; sourceTree = "<group>"; };
+		DA667BAC16D272D700ED3A49 /* CPTConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTConstraints.h; sourceTree = "<group>"; };
+		DA667BAD16D272D700ED3A49 /* CPTDataSourceTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTDataSourceTestCase.h; sourceTree = "<group>"; };
+		DA667BAE16D272D700ED3A49 /* CPTDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTDefinitions.h; sourceTree = "<group>"; };
+		DA667BAF16D272D700ED3A49 /* CPTDerivedXYGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTDerivedXYGraph.h; sourceTree = "<group>"; };
+		DA667BB016D272D700ED3A49 /* CPTExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTExceptions.h; sourceTree = "<group>"; };
+		DA667BB116D272D700ED3A49 /* CPTFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTFill.h; sourceTree = "<group>"; };
+		DA667BB216D272D700ED3A49 /* CPTGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTGradient.h; sourceTree = "<group>"; };
+		DA667BB316D272D700ED3A49 /* CPTGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTGraph.h; sourceTree = "<group>"; };
+		DA667BB416D272D700ED3A49 /* CPTGraphHostingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTGraphHostingView.h; sourceTree = "<group>"; };
+		DA667BB516D272D700ED3A49 /* CPTGridLineGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTGridLineGroup.h; sourceTree = "<group>"; };
+		DA667BB616D272D700ED3A49 /* CPTGridLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTGridLines.h; sourceTree = "<group>"; };
+		DA667BB716D272D700ED3A49 /* CPTImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTImage.h; sourceTree = "<group>"; };
+		DA667BB816D272D700ED3A49 /* CPTLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLayer.h; sourceTree = "<group>"; };
+		DA667BB916D272D700ED3A49 /* CPTLayerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLayerAnnotation.h; sourceTree = "<group>"; };
+		DA667BBA16D272D700ED3A49 /* CPTLegend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLegend.h; sourceTree = "<group>"; };
+		DA667BBB16D272D700ED3A49 /* CPTLegendEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLegendEntry.h; sourceTree = "<group>"; };
+		DA667BBC16D272D700ED3A49 /* CPTLimitBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLimitBand.h; sourceTree = "<group>"; };
+		DA667BBD16D272D700ED3A49 /* CPTLineCap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLineCap.h; sourceTree = "<group>"; };
+		DA667BBE16D272D700ED3A49 /* CPTLineStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTLineStyle.h; sourceTree = "<group>"; };
+		DA667BBF16D272D700ED3A49 /* CPTMutableLineStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTMutableLineStyle.h; sourceTree = "<group>"; };
+		DA667BC016D272D700ED3A49 /* CPTMutableNumericData+TypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPTMutableNumericData+TypeConversion.h"; sourceTree = "<group>"; };
+		DA667BC116D272D700ED3A49 /* CPTMutableNumericData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTMutableNumericData.h; sourceTree = "<group>"; };
+		DA667BC216D272D700ED3A49 /* CPTMutablePlotRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTMutablePlotRange.h; sourceTree = "<group>"; };
+		DA667BC316D272D700ED3A49 /* CPTMutableShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTMutableShadow.h; sourceTree = "<group>"; };
+		DA667BC416D272D700ED3A49 /* CPTMutableTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTMutableTextStyle.h; sourceTree = "<group>"; };
+		DA667BC516D272D700ED3A49 /* CPTNumericData+TypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPTNumericData+TypeConversion.h"; sourceTree = "<group>"; };
+		DA667BC616D272D700ED3A49 /* CPTNumericData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTNumericData.h; sourceTree = "<group>"; };
+		DA667BC716D272D700ED3A49 /* CPTNumericDataType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTNumericDataType.h; sourceTree = "<group>"; };
+		DA667BC816D272D700ED3A49 /* CPTPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPathExtensions.h; sourceTree = "<group>"; };
+		DA667BC916D272D700ED3A49 /* CPTPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPieChart.h; sourceTree = "<group>"; };
+		DA667BCA16D272D700ED3A49 /* CPTPlatformSpecificCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlatformSpecificCategories.h; sourceTree = "<group>"; };
+		DA667BCB16D272D700ED3A49 /* CPTPlatformSpecificDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlatformSpecificDefines.h; sourceTree = "<group>"; };
+		DA667BCC16D272D700ED3A49 /* CPTPlatformSpecificFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlatformSpecificFunctions.h; sourceTree = "<group>"; };
+		DA667BCD16D272D700ED3A49 /* CPTPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlot.h; sourceTree = "<group>"; };
+		DA667BCE16D272D700ED3A49 /* CPTPlotArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotArea.h; sourceTree = "<group>"; };
+		DA667BCF16D272D700ED3A49 /* CPTPlotAreaFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotAreaFrame.h; sourceTree = "<group>"; };
+		DA667BD016D272D700ED3A49 /* CPTPlotGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotGroup.h; sourceTree = "<group>"; };
+		DA667BD116D272D700ED3A49 /* CPTPlotRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotRange.h; sourceTree = "<group>"; };
+		DA667BD216D272D700ED3A49 /* CPTPlotSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotSpace.h; sourceTree = "<group>"; };
+		DA667BD316D272D700ED3A49 /* CPTPlotSpaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotSpaceAnnotation.h; sourceTree = "<group>"; };
+		DA667BD416D272D700ED3A49 /* CPTPlotSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTPlotSymbol.h; sourceTree = "<group>"; };
+		DA667BD516D272D700ED3A49 /* CPTRangePlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTRangePlot.h; sourceTree = "<group>"; };
+		DA667BD616D272D700ED3A49 /* CPTResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTResponder.h; sourceTree = "<group>"; };
+		DA667BD716D272D700ED3A49 /* CPTScatterPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTScatterPlot.h; sourceTree = "<group>"; };
+		DA667BD816D272D700ED3A49 /* CPTShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTShadow.h; sourceTree = "<group>"; };
+		DA667BD916D272D700ED3A49 /* CPTTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTestCase.h; sourceTree = "<group>"; };
+		DA667BDA16D272D700ED3A49 /* CPTTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTextLayer.h; sourceTree = "<group>"; };
+		DA667BDB16D272D700ED3A49 /* CPTTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTextStyle.h; sourceTree = "<group>"; };
+		DA667BDC16D272D700ED3A49 /* CPTTextStylePlatformSpecific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTextStylePlatformSpecific.h; sourceTree = "<group>"; };
+		DA667BDD16D272D700ED3A49 /* CPTTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTheme.h; sourceTree = "<group>"; };
+		DA667BDE16D272D700ED3A49 /* CPTTimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTimeFormatter.h; sourceTree = "<group>"; };
+		DA667BDF16D272D700ED3A49 /* CPTTradingRangePlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTTradingRangePlot.h; sourceTree = "<group>"; };
+		DA667BE016D272D700ED3A49 /* CPTUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTUtilities.h; sourceTree = "<group>"; };
+		DA667BE116D272D700ED3A49 /* CPTXYAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTXYAxis.h; sourceTree = "<group>"; };
+		DA667BE216D272D700ED3A49 /* CPTXYAxisSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTXYAxisSet.h; sourceTree = "<group>"; };
+		DA667BE316D272D700ED3A49 /* CPTXYGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTXYGraph.h; sourceTree = "<group>"; };
+		DA667BE416D272D700ED3A49 /* CPTXYPlotSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTXYPlotSpace.h; sourceTree = "<group>"; };
+		DA667BE516D272D700ED3A49 /* mainpage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainpage.h; sourceTree = "<group>"; };
+		DA667BE616D272D700ED3A49 /* NSCoderExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCoderExtensions.h; sourceTree = "<group>"; };
+		DA667BE716D272D700ED3A49 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
+		DA667BE816D272D700ED3A49 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
+		DA667BE916D272D700ED3A49 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		DA6E9C1816CFB2F900F2453F /* PedometerPheripheral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PedometerPheripheral.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA6E9C1C16CFB2F900F2453F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA6E9C1E16CFB2F900F2453F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA6EA02216CFE56000F2453F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		DA6EA02416CFE58600F2453F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
+		DA6EA02616CFE5AF00F2453F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
+		DACC06DA16D2633F0062E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ProjectPrivate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		DACC06E716D263970062E2A8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "ProjectPrivate/Other Sources/main.m"; sourceTree = SOURCE_ROOT; };
+		DACC06EC16D263AD0062E2A8 /* PEDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDAppDelegate.h; path = ProjectPrivate/UI/PEDAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		DACC06ED16D263AD0062E2A8 /* PEDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDAppDelegate.m; path = ProjectPrivate/UI/PEDAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		DAE5306C16DCCF51003BB097 /* PEDAvailPerialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDAvailPerialViewController.xib; path = ProjectPrivate/XIB/PEDAvailPerialViewController.xib; sourceTree = SOURCE_ROOT; };
+		DAE5307216DCDD30003BB097 /* PEDAvailPerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDAvailPerialViewController.h; path = ProjectPrivate/UI/PEDAvailPerialViewController.h; sourceTree = SOURCE_ROOT; };
+		DAE5307316DCDD30003BB097 /* PEDAvailPerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDAvailPerialViewController.m; path = ProjectPrivate/UI/PEDAvailPerialViewController.m; sourceTree = SOURCE_ROOT; };
+		DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA6E9C1516CFB2F900F2453F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */,
+				DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */,
+				DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */,
+				DA6EA02516CFE58600F2453F /* libxml2.dylib in Frameworks */,
+				DA6EA02316CFE56000F2453F /* CoreBluetooth.framework in Frameworks */,
+				DA6E9C1D16CFB2F900F2453F /* UIKit.framework in Frameworks */,
+				DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */,
+				DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */,
+				DA667BEA16D272D700ED3A49 /* libCorePlot-CocoaTouch.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA029A7216D3C62C004E7764 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				DA029A7316D3C62C004E7764 /* BleDefinition.h */,
+				DA029A7416D3C62C004E7764 /* SerialGATT.h */,
+				DA029A7516D3C62C004E7764 /* SerialGATT.m */,
+			);
+			name = BLE;
+			path = ProjectPrivate/BLE;
+			sourceTree = SOURCE_ROOT;
+		};
+		DA667AE016D26D7D00ED3A49 /* SBJson */ = {
+			isa = PBXGroup;
+			children = (
+				DA667AE116D26D7D00ED3A49 /* Classes */,
+			);
+			name = SBJson;
+			path = ../SBJson;
+			sourceTree = "<group>";
+		};
+		DA667AE116D26D7D00ED3A49 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DA667AE216D26D7D00ED3A49 /* NSObject+SBJson.h */,
+				DA667AE316D26D7D00ED3A49 /* NSObject+SBJson.m */,
+				DA667AE416D26D7D00ED3A49 /* SBJson.h */,
+				DA667AE516D26D7D00ED3A49 /* SBJsonParser.h */,
+				DA667AE616D26D7D00ED3A49 /* SBJsonParser.m */,
+				DA667AE716D26D7D00ED3A49 /* SBJsonStreamParser.h */,
+				DA667AE816D26D7D00ED3A49 /* SBJsonStreamParser.m */,
+				DA667AE916D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.h */,
+				DA667AEA16D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.m */,
+				DA667AEB16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.h */,
+				DA667AEC16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.m */,
+				DA667AED16D26D7D00ED3A49 /* SBJsonStreamParserState.h */,
+				DA667AEE16D26D7D00ED3A49 /* SBJsonStreamParserState.m */,
+				DA667AEF16D26D7D00ED3A49 /* SBJsonStreamWriter.h */,
+				DA667AF016D26D7D00ED3A49 /* SBJsonStreamWriter.m */,
+				DA667AF116D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.h */,
+				DA667AF216D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.m */,
+				DA667AF316D26D7D00ED3A49 /* SBJsonStreamWriterState.h */,
+				DA667AF416D26D7D00ED3A49 /* SBJsonStreamWriterState.m */,
+				DA667AF516D26D7D00ED3A49 /* SBJsonTokeniser.h */,
+				DA667AF616D26D7D00ED3A49 /* SBJsonTokeniser.m */,
+				DA667AF716D26D7D00ED3A49 /* SBJsonUTF8Stream.h */,
+				DA667AF816D26D7D00ED3A49 /* SBJsonUTF8Stream.m */,
+				DA667AF916D26D7D00ED3A49 /* SBJsonWriter.h */,
+				DA667AFA16D26D7D00ED3A49 /* SBJsonWriter.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DA667B7F16D2702900ED3A49 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				DA667B8016D2702900ED3A49 /* FMDatabase.h */,
+				DA667B8116D2702900ED3A49 /* FMDatabase.m */,
+				DA667B8216D2702900ED3A49 /* FMDatabaseAdditions.h */,
+				DA667B8316D2702900ED3A49 /* FMDatabaseAdditions.m */,
+				DA667B8416D2702900ED3A49 /* FMDatabasePool.h */,
+				DA667B8516D2702900ED3A49 /* FMDatabasePool.m */,
+				DA667B8616D2702900ED3A49 /* FMDatabaseQueue.h */,
+				DA667B8716D2702900ED3A49 /* FMDatabaseQueue.m */,
+				DA667B8816D2702900ED3A49 /* FMResultSet.h */,
+				DA667B8916D2702900ED3A49 /* FMResultSet.m */,
+			);
+			name = fmdb;
+			path = ../Submodules/fmdb;
+			sourceTree = "<group>";
+		};
+		DA667B9C16D272D700ED3A49 /* CorePlot */ = {
+			isa = PBXGroup;
+			children = (
+				DA667B9D16D272D700ED3A49 /* iOS */,
+			);
+			name = CorePlot;
+			path = ../dependencies/CorePlot;
+			sourceTree = "<group>";
+		};
+		DA667B9D16D272D700ED3A49 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DA667B9E16D272D700ED3A49 /* CorePlotHeaders */,
+				DA667BE916D272D700ED3A49 /* libCorePlot-CocoaTouch.a */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		DA667B9E16D272D700ED3A49 /* CorePlotHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				DA667B9F16D272D700ED3A49 /* CorePlot-CocoaTouch.h */,
+				DA667BA016D272D700ED3A49 /* CPTAnnotation.h */,
+				DA667BA116D272D700ED3A49 /* CPTAnnotationHostLayer.h */,
+				DA667BA216D272D700ED3A49 /* CPTAxis.h */,
+				DA667BA316D272D700ED3A49 /* CPTAxisLabel.h */,
+				DA667BA416D272D700ED3A49 /* CPTAxisLabelGroup.h */,
+				DA667BA516D272D700ED3A49 /* CPTAxisSet.h */,
+				DA667BA616D272D700ED3A49 /* CPTAxisTitle.h */,
+				DA667BA716D272D700ED3A49 /* CPTBarPlot.h */,
+				DA667BA816D272D700ED3A49 /* CPTBorderedLayer.h */,
+				DA667BA916D272D700ED3A49 /* CPTCalendarFormatter.h */,
+				DA667BAA16D272D700ED3A49 /* CPTColor.h */,
+				DA667BAB16D272D700ED3A49 /* CPTColorSpace.h */,
+				DA667BAC16D272D700ED3A49 /* CPTConstraints.h */,
+				DA667BAD16D272D700ED3A49 /* CPTDataSourceTestCase.h */,
+				DA667BAE16D272D700ED3A49 /* CPTDefinitions.h */,
+				DA667BAF16D272D700ED3A49 /* CPTDerivedXYGraph.h */,
+				DA667BB016D272D700ED3A49 /* CPTExceptions.h */,
+				DA667BB116D272D700ED3A49 /* CPTFill.h */,
+				DA667BB216D272D700ED3A49 /* CPTGradient.h */,
+				DA667BB316D272D700ED3A49 /* CPTGraph.h */,
+				DA667BB416D272D700ED3A49 /* CPTGraphHostingView.h */,
+				DA667BB516D272D700ED3A49 /* CPTGridLineGroup.h */,
+				DA667BB616D272D700ED3A49 /* CPTGridLines.h */,
+				DA667BB716D272D700ED3A49 /* CPTImage.h */,
+				DA667BB816D272D700ED3A49 /* CPTLayer.h */,
+				DA667BB916D272D700ED3A49 /* CPTLayerAnnotation.h */,
+				DA667BBA16D272D700ED3A49 /* CPTLegend.h */,
+				DA667BBB16D272D700ED3A49 /* CPTLegendEntry.h */,
+				DA667BBC16D272D700ED3A49 /* CPTLimitBand.h */,
+				DA667BBD16D272D700ED3A49 /* CPTLineCap.h */,
+				DA667BBE16D272D700ED3A49 /* CPTLineStyle.h */,
+				DA667BBF16D272D700ED3A49 /* CPTMutableLineStyle.h */,
+				DA667BC016D272D700ED3A49 /* CPTMutableNumericData+TypeConversion.h */,
+				DA667BC116D272D700ED3A49 /* CPTMutableNumericData.h */,
+				DA667BC216D272D700ED3A49 /* CPTMutablePlotRange.h */,
+				DA667BC316D272D700ED3A49 /* CPTMutableShadow.h */,
+				DA667BC416D272D700ED3A49 /* CPTMutableTextStyle.h */,
+				DA667BC516D272D700ED3A49 /* CPTNumericData+TypeConversion.h */,
+				DA667BC616D272D700ED3A49 /* CPTNumericData.h */,
+				DA667BC716D272D700ED3A49 /* CPTNumericDataType.h */,
+				DA667BC816D272D700ED3A49 /* CPTPathExtensions.h */,
+				DA667BC916D272D700ED3A49 /* CPTPieChart.h */,
+				DA667BCA16D272D700ED3A49 /* CPTPlatformSpecificCategories.h */,
+				DA667BCB16D272D700ED3A49 /* CPTPlatformSpecificDefines.h */,
+				DA667BCC16D272D700ED3A49 /* CPTPlatformSpecificFunctions.h */,
+				DA667BCD16D272D700ED3A49 /* CPTPlot.h */,
+				DA667BCE16D272D700ED3A49 /* CPTPlotArea.h */,
+				DA667BCF16D272D700ED3A49 /* CPTPlotAreaFrame.h */,
+				DA667BD016D272D700ED3A49 /* CPTPlotGroup.h */,
+				DA667BD116D272D700ED3A49 /* CPTPlotRange.h */,
+				DA667BD216D272D700ED3A49 /* CPTPlotSpace.h */,
+				DA667BD316D272D700ED3A49 /* CPTPlotSpaceAnnotation.h */,
+				DA667BD416D272D700ED3A49 /* CPTPlotSymbol.h */,
+				DA667BD516D272D700ED3A49 /* CPTRangePlot.h */,
+				DA667BD616D272D700ED3A49 /* CPTResponder.h */,
+				DA667BD716D272D700ED3A49 /* CPTScatterPlot.h */,
+				DA667BD816D272D700ED3A49 /* CPTShadow.h */,
+				DA667BD916D272D700ED3A49 /* CPTTestCase.h */,
+				DA667BDA16D272D700ED3A49 /* CPTTextLayer.h */,
+				DA667BDB16D272D700ED3A49 /* CPTTextStyle.h */,
+				DA667BDC16D272D700ED3A49 /* CPTTextStylePlatformSpecific.h */,
+				DA667BDD16D272D700ED3A49 /* CPTTheme.h */,
+				DA667BDE16D272D700ED3A49 /* CPTTimeFormatter.h */,
+				DA667BDF16D272D700ED3A49 /* CPTTradingRangePlot.h */,
+				DA667BE016D272D700ED3A49 /* CPTUtilities.h */,
+				DA667BE116D272D700ED3A49 /* CPTXYAxis.h */,
+				DA667BE216D272D700ED3A49 /* CPTXYAxisSet.h */,
+				DA667BE316D272D700ED3A49 /* CPTXYGraph.h */,
+				DA667BE416D272D700ED3A49 /* CPTXYPlotSpace.h */,
+				DA667BE516D272D700ED3A49 /* mainpage.h */,
+				DA667BE616D272D700ED3A49 /* NSCoderExtensions.h */,
+				DA667BE716D272D700ED3A49 /* NSDecimalNumberExtensions.h */,
+				DA667BE816D272D700ED3A49 /* NSNumberExtensions.h */,
+			);
+			path = CorePlotHeaders;
+			sourceTree = "<group>";
+		};
+		DA6E9C0D16CFB2F900F2453F = {
+			isa = PBXGroup;
+			children = (
+				DA6E9FDA16CFE15B00F2453F /* dependencies */,
+				DA6E9C2216CFB2F900F2453F /* ProjectPrivate */,
+				DA6E9C1B16CFB2F900F2453F /* Frameworks */,
+				DA6E9C1916CFB2F900F2453F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA6E9C1916CFB2F900F2453F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E9C1816CFB2F900F2453F /* PedometerPheripheral.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA6E9C1B16CFB2F900F2453F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */,
+				DA6EA02616CFE5AF00F2453F /* libz.dylib */,
+				DA6EA02416CFE58600F2453F /* libxml2.dylib */,
+				DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */,
+				DA6EA02216CFE56000F2453F /* CoreBluetooth.framework */,
+				DA6E9C1C16CFB2F900F2453F /* UIKit.framework */,
+				DA6E9C1E16CFB2F900F2453F /* Foundation.framework */,
+				DA6E9C2016CFB2F900F2453F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA6E9C2216CFB2F900F2453F /* ProjectPrivate */ = {
+			isa = PBXGroup;
+			children = (
+				DA029A7216D3C62C004E7764 /* BLE */,
+				DA903D0116D1354700DACDBB /* XIB */,
+				DA6E9C4B16CFB4F300F2453F /* en.lproj */,
+				DA6E9C5016CFB4F300F2453F /* Misc */,
+				DA6E9C5216CFB4F300F2453F /* Other Sources */,
+				DA6E9EB816CFB4F400F2453F /* UI */,
+				DA6E9C2316CFB2F900F2453F /* Supporting Files */,
+			);
+			name = ProjectPrivate;
+			path = Pedometer;
+			sourceTree = "<group>";
+		};
+		DA6E9C2316CFB2F900F2453F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA6E9C4B16CFB4F300F2453F /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				DACC06D916D2633F0062E2A8 /* InfoPlist.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		DA6E9C5016CFB4F300F2453F /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		DA6E9C5216CFB4F300F2453F /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DA07898D16DE515B00EF5220 /* PedometerPheripheral-Info.plist */,
+				DA07898E16DE515B00EF5220 /* PedometerPheripheral-Prefix.pch */,
+				DACC06E716D263970062E2A8 /* main.m */,
+			);
+			path = "Other Sources";
+			sourceTree = "<group>";
+		};
+		DA6E9EB816CFB4F400F2453F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DAE5307216DCDD30003BB097 /* PEDAvailPerialViewController.h */,
+				DAE5307316DCDD30003BB097 /* PEDAvailPerialViewController.m */,
+				DACC06EC16D263AD0062E2A8 /* PEDAppDelegate.h */,
+				DACC06ED16D263AD0062E2A8 /* PEDAppDelegate.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DA6E9FDA16CFE15B00F2453F /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				DA667B9C16D272D700ED3A49 /* CorePlot */,
+				DA667B7F16D2702900ED3A49 /* fmdb */,
+				DA667AE016D26D7D00ED3A49 /* SBJson */,
+			);
+			name = dependencies;
+			sourceTree = "<group>";
+		};
+		DA903D0116D1354700DACDBB /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				DAE5306C16DCCF51003BB097 /* PEDAvailPerialViewController.xib */,
+			);
+			name = XIB;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA6E9C1716CFB2F900F2453F /* PedometerPheripheral */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA6E9C4116CFB2F900F2453F /* Build configuration list for PBXNativeTarget "PedometerPheripheral" */;
+			buildPhases = (
+				DA6E9C1416CFB2F900F2453F /* Sources */,
+				DA6E9C1516CFB2F900F2453F /* Frameworks */,
+				DA6E9C1616CFB2F900F2453F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PedometerPheripheral;
+			productName = Pedometer;
+			productReference = DA6E9C1816CFB2F900F2453F /* PedometerPheripheral.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA6E9C0F16CFB2F900F2453F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = DA6E9C1216CFB2F900F2453F /* Build configuration list for PBXProject "PedometerPheripheral" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA6E9C0D16CFB2F900F2453F;
+			productRefGroup = DA6E9C1916CFB2F900F2453F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA6E9C1716CFB2F900F2453F /* PedometerPheripheral */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA6E9C1616CFB2F900F2453F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */,
+				DAE5306D16DCCF51003BB097 /* PEDAvailPerialViewController.xib in Resources */,
+				DA07898F16DE515B00EF5220 /* PedometerPheripheral-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA6E9C1416CFB2F900F2453F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACC06EA16D263970062E2A8 /* main.m in Sources */,
+				DACC06FE16D263AD0062E2A8 /* PEDAppDelegate.m in Sources */,
+				DA667AFB16D26D7D00ED3A49 /* NSObject+SBJson.m in Sources */,
+				DA667AFC16D26D7D00ED3A49 /* SBJsonParser.m in Sources */,
+				DA667AFD16D26D7D00ED3A49 /* SBJsonStreamParser.m in Sources */,
+				DA667AFE16D26D7D00ED3A49 /* SBJsonStreamParserAccumulator.m in Sources */,
+				DA667AFF16D26D7D00ED3A49 /* SBJsonStreamParserAdapter.m in Sources */,
+				DA667B0016D26D7D00ED3A49 /* SBJsonStreamParserState.m in Sources */,
+				DA667B0116D26D7D00ED3A49 /* SBJsonStreamWriter.m in Sources */,
+				DA667B0216D26D7D00ED3A49 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				DA667B0316D26D7D00ED3A49 /* SBJsonStreamWriterState.m in Sources */,
+				DA667B0416D26D7D00ED3A49 /* SBJsonTokeniser.m in Sources */,
+				DA667B0516D26D7D00ED3A49 /* SBJsonUTF8Stream.m in Sources */,
+				DA667B0616D26D7D00ED3A49 /* SBJsonWriter.m in Sources */,
+				DA667B8A16D2702900ED3A49 /* FMDatabase.m in Sources */,
+				DA667B8B16D2702900ED3A49 /* FMDatabaseAdditions.m in Sources */,
+				DA667B8C16D2702900ED3A49 /* FMDatabasePool.m in Sources */,
+				DA667B8D16D2702900ED3A49 /* FMDatabaseQueue.m in Sources */,
+				DA667B8E16D2702900ED3A49 /* FMResultSet.m in Sources */,
+				DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */,
+				DAE5307416DCDD30003BB097 /* PEDAvailPerialViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DACC06D916D2633F0062E2A8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DACC06DA16D2633F0062E2A8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA6E9C3F16CFB2F900F2453F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
+				SDKROOT = iphoneos6.0;
+			};
+			name = Debug;
+		};
+		DA6E9C4016CFB2F900F2453F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
+				SDKROOT = iphoneos6.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA6E9C4216CFB2F900F2453F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Analayze/FootRecorder/nRF_Utility/nRF_Utility/dependencies\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/PedometerPheripheral-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "ProjectPrivate/Other Sources/PedometerPheripheral-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
+					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = PedometerPheripheral;
+				PROVISIONING_PROFILE = "C0E63D54-203B-4AA4-9FDF-289DD8234751";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos6.0;
+				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DA6E9C4316CFB2F900F2453F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Analayze/FootRecorder/nRF_Utility/nRF_Utility/dependencies\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/PedometerPheripheral-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "ProjectPrivate/Other Sources/PedometerPheripheral-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
+					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = PedometerPheripheral;
+				PROVISIONING_PROFILE = "C0E63D54-203B-4AA4-9FDF-289DD8234751";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos6.0;
+				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA6E9C1216CFB2F900F2453F /* Build configuration list for PBXProject "PedometerPheripheral" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA6E9C3F16CFB2F900F2453F /* Debug */,
+				DA6E9C4016CFB2F900F2453F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA6E9C4116CFB2F900F2453F /* Build configuration list for PBXNativeTarget "PedometerPheripheral" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA6E9C4216CFB2F900F2453F /* Debug */,
+				DA6E9C4316CFB2F900F2453F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA6E9C0F16CFB2F900F2453F /* Project object */;
+}

@@ -70,7 +70,8 @@
 -(void) scanTimer:(NSTimer *)timer
 {
     [manager stopScan];
-    [delegate searchPeripheralTimeout];
+    if(delegate)
+        [delegate searchPeripheralTimeout];
 }
 
 /*

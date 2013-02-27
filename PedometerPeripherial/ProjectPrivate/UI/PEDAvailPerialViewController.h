@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UAModalPanel.h"
-#import "DialogBoxContainer.h"
 #import "SerialGATT.h"
 
 @interface PEDAvailPerialViewController : UIViewController<BTSmartSensorDelegate,UITableViewDataSource,CBPeripheralManagerDelegate,CBCentralManagerDelegate, CBPeripheralDelegate>
@@ -16,7 +14,8 @@
     
 }
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *schActivator;
-@property (nonatomic,unsafe_unretained) NSObject<FormBoxDelegate> *delegate;
+@property (strong, nonatomic) IBOutlet UILabel *txtServiceUUID;
+@property (strong, nonatomic) IBOutlet UILabel *txtServiceName;
 
 @property(strong,nonatomic) CBPeripheralManager *peripheralManager;
 @property (strong, nonatomic) CBCentralManager      *centralManager;

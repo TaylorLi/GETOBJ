@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tbViewPeripheralList;
 @property (strong, nonatomic) SerialGATT *sensor;
 @property (nonatomic, retain) NSMutableArray *peripheralArray;
-@property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
+@property (strong, nonatomic) CBCharacteristic   *transferCharacteristic;
 @property (strong, nonatomic) CBPeripheral          *discoveredPeripheral;
 @property (strong, nonatomic) IBOutlet UIButton *btnSchPeripheral;
 
@@ -25,4 +25,5 @@
 -(void)beginReadDataFromPeripheral:(CBPeripheral *)peripheral;
 - (IBAction)backToPreviousTabView:(id)sender;
 - (IBAction)clickToReloadPeripheral:(id)sender;
+-(void)searchPeripheralTimeout;
 @end

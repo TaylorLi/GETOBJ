@@ -37,9 +37,9 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="503595763">
+					<object class="IBUIImageView" id="756369804">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{4, 7}, {316, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -523,7 +523,7 @@
 						<string key="NSFrame">{{168, 273}, {125, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="564530070"/>
+						<reference key="NSNextKeyView" ref="972456215"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<reference key="IBUIBackgroundColor" ref="138300002"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -536,7 +536,7 @@
 						<string key="NSFrame">{{248, 293}, {43, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="972456215"/>
+						<reference key="NSNextKeyView" ref="669364868"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -562,7 +562,7 @@
 						<string key="NSFrame">{{197, 290}, {51, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="669364868"/>
+						<reference key="NSNextKeyView" ref="564530070"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -688,7 +688,7 @@
 						<string key="NSFrame">{{15, 10}, {109, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="758785045"/>
+						<reference key="NSNextKeyView" ref="236537023"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -707,7 +707,7 @@
 						<string key="NSFrame">{{26, 35}, {99, 12}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="236537023"/>
+						<reference key="NSNextKeyView" ref="20055473"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -781,7 +781,7 @@
 						<string key="NSFrame">{{133, 10}, {175, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="20055473"/>
+						<reference key="NSNextKeyView" ref="758785045"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -853,7 +853,7 @@
 					<object class="IBUILabel" id="587948236">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{74, 226}, {51, 21}}</string>
+						<string key="NSFrame">{{74, 226}, {77, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="174071985"/>
@@ -880,7 +880,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="503595763"/>
+				<reference key="NSNextKeyView" ref="756369804"/>
 				<reference key="IBUIBackgroundColor" ref="138300002"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -896,6 +896,102 @@
 					</object>
 					<int key="connectionID">7</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblUserName</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="758785045"/>
+					</object>
+					<int key="connectionID">52</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblLastUpdate</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="612183915"/>
+					</object>
+					<int key="connectionID">53</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblCurrDay</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="622066310"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblStepAmount</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="902363542"/>
+					</object>
+					<int key="connectionID">56</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblDistanceAmount</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="840281408"/>
+					</object>
+					<int key="connectionID">57</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblDistanceUnit</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1997159"/>
+					</object>
+					<int key="connectionID">58</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblCaloriesAmount</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="587948236"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblActivityTime</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="343760689"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblSpeedUnit</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="630235558"/>
+					</object>
+					<int key="connectionID">62</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblSpeedAmount</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="418606836"/>
+					</object>
+					<int key="connectionID">64</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblPaceAmount</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="428261613"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblPaceUnit</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="564530070"/>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -909,7 +1005,6 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="503595763"/>
 							<reference ref="622066310"/>
 							<reference ref="1033185005"/>
 							<reference ref="583124876"/>
@@ -945,6 +1040,7 @@
 							<reference ref="564530070"/>
 							<reference ref="20055473"/>
 							<reference ref="612183915"/>
+							<reference ref="756369804"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -958,11 +1054,6 @@
 						<int key="objectID">-2</int>
 						<reference key="object" ref="975951072"/>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="503595763"/>
-						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
@@ -1139,6 +1230,11 @@
 						<reference key="object" ref="564530070"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">51</int>
+						<reference key="object" ref="756369804"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1181,23 +1277,100 @@
 				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="49.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">50</int>
+			<int key="maxID">66</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">PEDPedoViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="lblActivityTime">UILabel</string>
+						<string key="lblCaloriesAmount">UILabel</string>
+						<string key="lblCurrDay">UILabel</string>
+						<string key="lblDistanceAmount">UILabel</string>
+						<string key="lblDistanceUnit">UILabel</string>
+						<string key="lblLastUpdate">UILabel</string>
+						<string key="lblPaceAmount">UILabel</string>
+						<string key="lblPaceUnit">UILabel</string>
+						<string key="lblSpeedAmount">UILabel</string>
+						<string key="lblSpeedUnit">UILabel</string>
+						<string key="lblStepAmount">UILabel</string>
+						<string key="lblUserName">UILabel</string>
+						<string key="monthSelectView">V8HorizontalPickerView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="lblActivityTime">
+							<string key="name">lblActivityTime</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblCaloriesAmount">
+							<string key="name">lblCaloriesAmount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblCurrDay">
+							<string key="name">lblCurrDay</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblDistanceAmount">
+							<string key="name">lblDistanceAmount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblDistanceUnit">
+							<string key="name">lblDistanceUnit</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblLastUpdate">
+							<string key="name">lblLastUpdate</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblPaceAmount">
+							<string key="name">lblPaceAmount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblPaceUnit">
+							<string key="name">lblPaceUnit</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblSpeedAmount">
+							<string key="name">lblSpeedAmount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblSpeedUnit">
+							<string key="name">lblSpeedUnit</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblStepAmount">
+							<string key="name">lblStepAmount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblUserName">
+							<string key="name">lblUserName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="monthSelectView">
+							<string key="name">monthSelectView</string>
+							<string key="candidateClassName">V8HorizontalPickerView</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PEDPedoViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">V8HorizontalPickerView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/V8HorizontalPickerView.h</string>
 					</object>
 				</object>
 			</array>

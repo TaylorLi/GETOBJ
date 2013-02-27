@@ -133,16 +133,15 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[PEDDatabase getInstance] setupServerDatabase];
-    [AppConfig getInstance];
-    PEDPedometerData *data=[[PEDPedometerData alloc] init];
-    data.distance=3.6;
-    data.activeTime=1800;
-    data.step=6000;
-    data.calorie=2000;
-    data.optDate=[[NSDate date] dateByAddingTimeInterval:-3600*11];
-    data.targetId=@"1abcee-xxxx-xx";
-    [[BO_PEDPedometerData getInstance] insertObject:data];
+//    [[PEDDatabase getInstance] setupServerDatabase];
+//    PEDPedometerData *data=[[PEDPedometerData alloc] init];
+//    data.distance=3.6;
+//    data.activeTime=1800;
+//    data.step=6000;
+//    data.calorie=2000;
+//    data.optDate=[[NSDate date] dateByAddingTimeInterval:-3600*11];
+//    data.targetId=@"1abcee-xxxx-xx";
+//    [[BO_PEDPedometerData getInstance] insertObject:data];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
 //    v.backgroundColor = [UIColor whiteColor];
@@ -150,7 +149,8 @@ static PEDAppDelegate* _instance;
     
     _instance = self;
     pedMainViewController = [[PEDMainViewController alloc]init];
-    [self.window addSubview:pedMainViewController.view];   
+    //[self.window addSubview:pedMainViewController.view];
+    self.window.rootViewController = pedMainViewController;
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;

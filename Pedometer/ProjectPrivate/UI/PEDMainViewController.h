@@ -11,9 +11,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFitPlus;
 @property (weak, nonatomic) IBOutlet UIButton *btnHealthPlus;
 @property (weak, nonatomic) IBOutlet UIButton *btnSportPlus;
-@property (weak, nonatomic) IBOutlet UIButton *btnSetting;
-@property (weak, nonatomic) IBOutlet UIButton *btnContactUs;
-@property (weak, nonatomic) IBOutlet UIButton *btnHomePage;
 
 
 - (IBAction)fitPlusClick:(id)sender;

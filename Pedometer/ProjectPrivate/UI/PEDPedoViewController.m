@@ -8,9 +8,24 @@
 
 #import "PEDPedoViewController.h"
 #import "PEDPedoDataViewController.h"
+#import "PEDPedometerData.h"
+#import "BO_PEDPedometerData.h"
+#import "UtilHelper.h"
 
 @implementation PEDPedoViewController
 @synthesize monthSelectView;
+@synthesize lblUserName;
+@synthesize lblLastUpdate;
+@synthesize lblCurrDay;
+@synthesize lblStepAmount;
+@synthesize lblDistanceAmount;
+@synthesize lblDistanceUnit;
+@synthesize lblCaloriesAmount;
+@synthesize lblActivityTime;
+@synthesize lblSpeedAmount;
+@synthesize lblSpeedUnit;
+@synthesize lblPaceAmount;
+@synthesize lblPaceUnit;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,16 +48,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-//    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
-//    bgImage.image = [UIImage imageNamed:@"pedo.bmp"] ;
-//    [self.view addSubview:bgImage]; 
-//    
-//    UIButton *btnDayStatistics = [[UIButton alloc] initWithFrame:CGRectMake(131, 302, 58, 29)];
-//    btnDayStatistics.backgroundColor = [UIColor clearColor];
-//    [btnDayStatistics addTarget:self action:@selector(dayStatisticsClick) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.view addSubview:btnDayStatistics];
+    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData];
+    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate] withFormat:@"dd/MM/yy"];
+    lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
+    lblCurrDay.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate] withFormat:@"dd/MM/yy"];
+    lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
+    int h, m, s;
+    h = (int)currPedometerData.activeTime / 3600;
+    m = (int)currPedometerData.activeTime % 3600 / 60;
+    s = (int)currPedometerData.activeTime % 3600 % 60;
+    lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
+    lblCaloriesAmount.text = [NSString stringWithFormat:@"%01.0f", currPedometerData.calorie];
+    lblDistanceAmount.text = [NSString stringWithFormat:@"%01.1f", currPedometerData.distance];
+    lblSpeedAmount.text = [NSString stringWithFormat:@"%01.1f", currPedometerData.distance * 3600 / currPedometerData.activeTime];
+    lblPaceAmount.text = [NSString stringWithFormat:@"%01.1f", currPedometerData.activeTime / 60 / currPedometerData.distance];
     
     CGFloat pickerHeight = 40.0f;
     CGFloat width=[UIScreen mainScreen].bounds.size.width;
@@ -64,6 +83,18 @@
 
 - (void)viewDidUnload
 {
+    [self setLblUserName:nil];
+    [self setLblLastUpdate:nil];
+    [self setLblCurrDay:nil];
+    [self setLblStepAmount:nil];
+    [self setLblDistanceAmount:nil];
+    [self setLblDistanceUnit:nil];
+    [self setLblCaloriesAmount:nil];
+    [self setLblActivityTime:nil];
+    [self setLblSpeedAmount:nil];
+    [self setLblSpeedUnit:nil];
+    [self setLblPaceAmount:nil];
+    [self setLblPaceUnit:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

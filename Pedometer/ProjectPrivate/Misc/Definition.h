@@ -20,6 +20,13 @@ typedef enum{
     GENDER_FEMALE
 }GenderType;
 
+typedef enum{
+    PLUS_NONE = -1,
+    PLUS_FIT = 0,
+    PLUS_HEALTH,
+    PLUS_SPORT
+}PlusType;
+
 @interface Definition : NSObject
 
 

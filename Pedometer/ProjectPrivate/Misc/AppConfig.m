@@ -26,6 +26,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import "AppConfig.h"
+#import "BO_PEDUserInfo.h"
 #import "UIDevice+IdentifierAddition.h"
 
 
@@ -35,7 +36,7 @@ static AppConfig* instance;
 
 @synthesize uuid;
 @synthesize isIPAD;
-@synthesize settngs;
+@synthesize settings;
 
 
 //@synthesize currentJudgeDevice;
@@ -52,7 +53,7 @@ static AppConfig* instance;
         isIPAD=YES;
     }    
     uuid=[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-    [self restoreAppSetting];    
+    [self restoreAppSetting];   
     return self;
 }
 
@@ -76,14 +77,25 @@ static AppConfig* instance;
         return interfaceOrientation== UIInterfaceOrientationLandscapeRight||interfaceOrientation== UIInterfaceOrientationLandscapeLeft;
 }
 
--(void)saveAppSetting
+-(void)saveAppSetting:(PEDUserInfo*) newUserInfo
 {
-    
+    if(![AppConfig getInstance].settings.userInfo){
+        if([[BO_PEDUserInfo getInstance] insertObject: newUserInfo]){
+            [AppConfig getInstance].settings.userInfo = newUserInfo;
+        }
+    }else{
+        [AppConfig getInstance].settings.userInfo.isCurrentUser = false;
+        if([[BO_PEDUserInfo getInstance] updateObject:[AppConfig getInstance].settings.userInfo]){
+            if([[BO_PEDUserInfo getInstance] insertObject: newUserInfo]){
+                [AppConfig getInstance].settings.userInfo = newUserInfo;
+            }
+        } 
+    }
 }
 -(void)restoreAppSetting
 {
-    if(settngs==nil){
-        settngs =[[AppSetting alloc] init];
+    if(settings==nil){
+        settings =[[AppSetting alloc] init];
     }
 }
 

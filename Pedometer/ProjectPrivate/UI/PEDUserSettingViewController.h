@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface PEDUserSettingViewController : UIViewController<UITextFieldDelegate>{
-    UITextField *txtUserName;
-    UITextField *txtStride;
-    UITextField *txtHeight;
-    UITextField *txtWeight;
-    UITextField *txtAge;
+@interface PEDUserSettingViewController : UIViewController<UITextFieldDelegate, MFMailComposeViewControllerDelegate>{
     UISegmentedControl* segUnit;
     UISegmentedControl* segGender;
     UILabel *unitSegTitleLeft;
@@ -27,10 +23,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnHomePage;
 @property (weak, nonatomic) IBOutlet UIButton *btnConfirm;
 @property (weak, nonatomic) IBOutlet UILabel *heightUnit;
+@property (weak, nonatomic) IBOutlet UITextField *txbUserName;
+@property (weak, nonatomic) IBOutlet UITextField *txbStride;
+@property (weak, nonatomic) IBOutlet UITextField *txbHeight;
+@property (weak, nonatomic) IBOutlet UITextField *txbWeight;
+@property (weak, nonatomic) IBOutlet UITextField *txbAge;
 
 - (IBAction)settingClick:(id)sender;
 - (IBAction)contactUsClick:(id)sender;
 - (IBAction)homePageClick:(id)sender;
 - (IBAction)confirmClick:(id)sender;
-
 @end

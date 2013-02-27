@@ -178,4 +178,12 @@ if(d==nil)
 {
     return [[UIDevice currentDevice] name];
 }
++(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body{
+    
+    NSString *email = [NSString stringWithFormat:@"mailto://%@&subject=%@&body=%@", to, subject, body];
+    
+    email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:email]];
+}
 @end

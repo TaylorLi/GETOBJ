@@ -37,12 +37,12 @@
 
 @property BOOL isIPAD;
 @property (strong) NSString *uuid;
-@property (nonatomic,strong) AppSetting *settngs;
+@property (nonatomic,strong) AppSetting *settings;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
 
 +(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
--(void)saveAppSetting;
+-(void)saveAppSetting:(PEDUserInfo*) newUserInfo;
 -(void)restoreAppSetting;
 
 @end

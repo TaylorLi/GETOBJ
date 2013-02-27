@@ -13,7 +13,7 @@
 //卡路里公式=1.036 × 行走距离(km) × 体重(kg)
 +(NSTimeInterval) calCalorieByStep:(NSInteger)step
 {
-    return 1.036*step*[AppConfig getInstance].settngs.userInfo.stride/100*[AppConfig getInstance].settngs.userInfo.weight;
+    return 1.036*step*[AppConfig getInstance].settings.userInfo.stride/100*[AppConfig getInstance].settings.userInfo.weight;
 }
 //km/h
 +(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond

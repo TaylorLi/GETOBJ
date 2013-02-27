@@ -10,6 +10,7 @@
 #import "BO_PEDUserInfo.h"
 #import "PEDUserInfo.h"
 #import "BleDefinition.h"
+#import "BO_PEDTarget.h"
 
 @implementation AppSetting
 
@@ -17,6 +18,8 @@
 @synthesize bleOperateTimeout;
 @synthesize bleConnectionTimeout;
 @synthesize userInfo,showDateCount;
+@synthesize target;
+@synthesize plusType;
 
 
 - (id) init {
@@ -27,6 +30,8 @@
         requestTimeout=30;
         showDateCount=7;
         userInfo=[[BO_PEDUserInfo getInstance] retreiveCurrentUser];
+        target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
+        plusType = PLUS_NONE;
         /*
         if(userInfo==nil){
             userInfo=[[PEDUserInfo alloc] initWithDefault];

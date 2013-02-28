@@ -23,6 +23,7 @@
 
 @synthesize characteristicWriteUUID;
 @synthesize characteristicNotifyUUID,serviceHeartRateDataUUID;
+@synthesize scanTimer;
 
 
 /*
@@ -52,7 +53,7 @@
         printf("CoreBluetooth is not correctly initialized !\n");
         return -1;
     }
-    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:nil repeats:NO];
+    scanTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:nil repeats:NO];
     // start Scanning
     [manager scanForPeripheralsWithServices:nil options:nil];
 
@@ -312,6 +313,13 @@
         printf("setting notification\n");
     } else {
         printf("failed\n");
+    }
+}
+
+-(void) cancelTimer
+{
+    if(scanTimer){
+        [scanTimer invalidate];
     }
 }
 

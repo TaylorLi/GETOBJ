@@ -238,6 +238,7 @@
 						<reference key="NSNextKeyView" ref="146625"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<reference key="IBUIBackgroundColor" ref="138300002"/>
+						<float key="IBUIAlpha">0.5</float>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -327,6 +328,7 @@
 						<reference key="NSNextKeyView" ref="856511520"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<reference key="IBUIBackgroundColor" ref="138300002"/>
+						<float key="IBUIAlpha">0.5</float>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -441,6 +443,7 @@
 						<reference key="NSNextKeyView" ref="997846468"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<reference key="IBUIBackgroundColor" ref="138300002"/>
+						<float key="IBUIAlpha">0.5</float>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -1141,7 +1144,7 @@
 			<string key="pedo_button.png">{295, 36}</string>
 			<string key="pedo_tab.png">{316, 50}</string>
 			<string key="target_calories_bar.png">{158, 15}</string>
-			<string key="target_calories_panel.png">{433, 115}</string>
+			<string key="target_calories_panel.png">{277, 74}</string>
 			<string key="target_distance_bar.png">{158, 15}</string>
 			<string key="target_distance_panel.png">{277, 74}</string>
 			<string key="target_panel_head.png">{278, 12}</string>

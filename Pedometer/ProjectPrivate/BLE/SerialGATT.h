@@ -35,6 +35,8 @@
 @property (strong, nonatomic) CBUUID *characteristicWriteUUID;
 @property (strong, nonatomic) CBUUID *characteristicNotifyUUID;
 @property (strong,nonatomic) CBUUID *serviceHeartRateDataUUID;
+@property (strong,nonatomic) NSTimer *scanTimer;
+
 
 #pragma mark - Methods for controlling the Bluetooth Smart Sensor
 -(void) setup; //controller setup
@@ -51,6 +53,8 @@
 
 -(CBService *) findServiceFromUUID: (CBUUID *)UUID p:(CBPeripheral *)peripheral;
 -(CBCharacteristic *) findCharacteristicFromUUID: (CBUUID *)UUID p:(CBPeripheral *)peripheral service: (CBService *)service;
+
+-(void) cancelTimer;
 
 
 

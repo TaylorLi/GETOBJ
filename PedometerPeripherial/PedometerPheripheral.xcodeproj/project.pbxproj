@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA07898F16DE515B00EF5220 /* PedometerPheripheral-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA07898D16DE515B00EF5220 /* PedometerPheripheral-Info.plist */; };
+		DA0789A516DE7A8F00EF5220 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0789A416DE7A8F00EF5220 /* MainWindow.xib */; };
 		DA667AFB16D26D7D00ED3A49 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AE316D26D7D00ED3A49 /* NSObject+SBJson.m */; };
 		DA667AFC16D26D7D00ED3A49 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AE616D26D7D00ED3A49 /* SBJsonParser.m */; };
 		DA667AFD16D26D7D00ED3A49 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AE816D26D7D00ED3A49 /* SBJsonStreamParser.m */; };
@@ -48,6 +49,7 @@
 		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
 		DA07898D16DE515B00EF5220 /* PedometerPheripheral-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PedometerPheripheral-Info.plist"; path = "ProjectPrivate/Other Sources/PedometerPheripheral-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DA07898E16DE515B00EF5220 /* PedometerPheripheral-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PedometerPheripheral-Prefix.pch"; path = "ProjectPrivate/Other Sources/PedometerPheripheral-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DA0789A416DE7A8F00EF5220 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		DA667AE216D26D7D00ED3A49 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		DA667AE316D26D7D00ED3A49 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		DA667AE416D26D7D00ED3A49 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DA0789A416DE7A8F00EF5220 /* MainWindow.xib */,
 				DAE5306C16DCCF51003BB097 /* PEDAvailPerialViewController.xib */,
 			);
 			name = XIB;
@@ -527,6 +530,7 @@
 				DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */,
 				DAE5306D16DCCF51003BB097 /* PEDAvailPerialViewController.xib in Resources */,
 				DA07898F16DE515B00EF5220 /* PedometerPheripheral-Info.plist in Resources */,
+				DA0789A516DE7A8F00EF5220 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

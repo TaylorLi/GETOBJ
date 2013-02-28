@@ -11,7 +11,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @implementation PEDAvailPerialViewController
-
 @synthesize schActivator;
 @synthesize txtServiceUUID;
 @synthesize txtServiceName;
@@ -44,7 +43,9 @@
 
 - (void)viewDidLoad
 {
-   peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil]; 
+    [super viewDidLoad];
+    [NSTimer scheduledTimerWithTimeInterval:(float)2 target:self selector:@selector(startPeripheralService:) userInfo:nil repeats:NO];
+   //peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil]; 
     // Do any additional setup after loading the view from its nib.
     /*
     sensor = [[SerialGATT alloc] init];
@@ -52,6 +53,7 @@
     sensor.delegate = self;  
     */
      //centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+
 }
 - (void)setup
 {
@@ -190,12 +192,22 @@
     
     // And add it to the peripheral manager
     [self.peripheralManager addService:transferService];
-    [peripheralManager startAdvertising:[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID],nil], CBAdvertisementDataServiceUUIDsKey,@"Simulate BLE Peripherial Device",CBAdvertisementDataLocalNameKey,nil]];
+    [peripheralManager startAdvertising:[[NSDictionary alloc] initWithObjectsAndKeys:[[NSArray alloc] initWithObjects:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID],nil], CBAdvertisementDataServiceUUIDsKey,@"Simulate BLE",CBAdvertisementDataLocalNameKey,nil]];
     txtServiceName.text=@"Simulate BLE Peripherial Device";
     txtServiceUUID.text=SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID;
-    [super viewDidLoad];
+    NSLog(@"Service Start");
 }
-
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error
+{
+    if(error){
+       UIAlertView *v =[[UIAlertView alloc] initWithTitle:@"Fail" message:@"Can not Advertising" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [self.view addSubview:v];
+    }
+    else{
+        NSLog(@"Service Advertising");
+        [self.schActivator stopAnimating];
+    }
+}
 
 /** Catch when someone subscribes to our characteristic, then start sending them data
  */
@@ -460,6 +472,15 @@
     
     // If we've got this far, we're connected, but we're not subscribed, so we just disconnect
     [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
+}
+
+- (IBAction)startPeripheralService:(id)sender {
+    [schActivator startAnimating];
+    if(peripheralManager){
+        [peripheralManager stopAdvertising];
+        peripheralManager= nil;
+    }
+    peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
 }
 
 @end

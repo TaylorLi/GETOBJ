@@ -11,9 +11,14 @@
 @implementation PEDPedometerCalcHelper
 
 //卡路里公式=1.036 × 行走距离(km) × 体重(kg)
-+(NSTimeInterval) calCalorieByStep:(NSInteger)step
++(NSTimeInterval) calCalorieByStep:(NSInteger)step stride:(NSTimeInterval)stride weight:(NSTimeInterval)weight
 {
-    return 1.036*step*[AppConfig getInstance].settngs.userInfo.stride/100*[AppConfig getInstance].settngs.userInfo.weight;
+    return 1.036*step*stride/100/1000*weight;
+}
+
++(NSTimeInterval) calDistanceByStep:(NSInteger)step stride:(NSTimeInterval)stride 
+{
+    return 1.036*step*stride/100/1000;
 }
 //km/h
 +(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond

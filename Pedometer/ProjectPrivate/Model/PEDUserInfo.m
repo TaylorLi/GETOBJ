@@ -20,14 +20,14 @@
         userId = [UtilHelper stringWithUUID];   
         userName=[UtilHelper deviceName];
         age=26;
-        measureFormat=UNIT_METRIC;
+        measureFormat=MEASURE_UNIT_METRIC;
         gender=GENDER_MALE;
         height=1.6;//m
         weight=60;//kg
         stride=60;//cm
         updateDate=[NSDate date];
         isCurrentUser=YES;
-        [self convertUnit:UNIT_METRIC];
+        [self convertUnit:measureFormat];
     }
     return self;
 }
@@ -41,12 +41,12 @@
  */
 -(void)convertUnit:(MeasureUnit) dstUnit;
 {
-    if(dstUnit==UNIT_METRIC){
+    if(dstUnit==MEASURE_UNIT_METRIC){
         heightUnit=@"m";
         strideUnit=@"cm";
         weightUnit=@"kg";
         distanceUnit=@"km";
-        if (measureFormat==UNIT_ENGLISH) {
+        if (measureFormat==MEASURE_UNIT_ENGLISH) {
            
         }
     }
@@ -55,7 +55,7 @@
         strideUnit=@"inch";
         weightUnit=@"Lbs";
         distanceUnit=@"mile";
-        if(measureFormat==UNIT_METRIC){
+        if(measureFormat==MEASURE_UNIT_METRIC){
             height=[PEDPedometerCalcHelper convertInchToFeet:[PEDPedometerCalcHelper convertCmToInch:height*100]];
             stride=[PEDPedometerCalcHelper convertCmToInch:stride];
             weight=[PEDPedometerCalcHelper convertKgToLbs:weight];

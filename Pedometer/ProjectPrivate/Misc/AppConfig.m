@@ -26,6 +26,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 
 #import "AppConfig.h"
+#import "BO_PEDUserInfo.h"
 #import "UIDevice+IdentifierAddition.h"
 
 
@@ -35,7 +36,7 @@ static AppConfig* instance;
 
 @synthesize uuid;
 @synthesize isIPAD;
-@synthesize settngs;
+@synthesize settings;
 
 
 //@synthesize currentJudgeDevice;
@@ -52,7 +53,7 @@ static AppConfig* instance;
         isIPAD=YES;
     }    
     uuid=[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-    [self restoreAppSetting];    
+    [self restoreAppSetting];   
     return self;
 }
 
@@ -78,14 +79,40 @@ static AppConfig* instance;
 
 -(void)saveAppSetting
 {
-    
+    [settings saveSetting];
 }
 -(void)restoreAppSetting
 {
-    if(settngs==nil){
-        settngs =[[AppSetting alloc] init];
+    if(settings==nil){
+        settings =[[AppSetting alloc] init];
     }
 }
+
+-(void)saveAppConfig
+{
+    [self saveAppSetting];
+}
+
+-(void)restoreAppConfig
+{
+    [self restoreAppSetting];
+}
+
+-(void)saveUserInfo:(PEDUserInfo *)user
+{
+    if([AppConfig getInstance].settings.userInfo==nil)
+    {
+        
+    }
+    else{
+        if(![[AppConfig getInstance].settings.userInfo.userName isEqualToString:user.userName]){
+           PEDUserInfo *preUser = [[BO_PEDUserInfo getInstance] retreiveUserByName:user.userName];
+        }
+    }
+    [[BO_PEDUserInfo getInstance] updateUserProfileNotToBeCurrent];
+    [[BO_PEDUserInfo getInstance] saveObject:user];
+    [AppConfig getInstance].settings.userInfo=user;
+    [[AppConfig getInstance].settings initTargetData];}
 
 -(void)dealloc
 {

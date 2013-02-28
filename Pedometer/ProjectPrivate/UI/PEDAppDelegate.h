@@ -12,8 +12,8 @@
 
 @interface PEDAppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) PEDMainViewController *pedMainViewController;
+@property (strong, nonatomic) IBOutlet UIWindow *window;
+@property (strong, nonatomic) IBOutlet PEDMainViewController *pedMainViewController;
 @property (strong, nonatomic) PEDBarchartViewController *pedBarchartViewController;
 @property (strong, nonatomic) PEDBacktoMainViewController *pedBacktoMainViewController;
 @property (strong, nonatomic) PEDPedoDataViewController *pedPedoDataViewController;

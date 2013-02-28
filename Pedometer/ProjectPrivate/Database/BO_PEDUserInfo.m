@@ -32,7 +32,7 @@ static BO_PEDUserInfo* instance;
 {
    PEDUserInfo *obj = [self queryObjectBySql:@"select * from PEDUserInfo where isCurrentUser=1" parameters:nil];
     if(obj){
-        [obj convertUnit:UNIT_METRIC];
+        //[obj convertUnit:MEASURE_UNIT_METRIC];
     }
     return obj;
 }
@@ -43,4 +43,19 @@ static BO_PEDUserInfo* instance;
     return [self queryList:@"select * from MatchLog where matchId=? and round=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:matchId,[NSNumber numberWithInt:roundSeq], nil]];
 }
  */
+-(PEDUserInfo *) retreiveUserByName:(NSString *)name
+{
+    PEDUserInfo *obj = [self queryObjectBySql:@"select * from PEDUserInfo where Username=?" parameters:[[NSArray alloc]  initWithObjects:name, nil]];                                                                                                   
+    if(obj){
+        //[obj convertUnit:MEASURE_UNIT_METRIC];
+    }
+    return obj;
+}
+
+-(BOOL) updateUserProfileNotToBeCurrent
+{
+    return [self executeNoQuery:@"update PEDUserInfo set isCurrentUser=0 where isCurrentUser=1" parameters:nil];
+             
+}
+
 @end

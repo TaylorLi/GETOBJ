@@ -10,11 +10,12 @@
 
 @interface PEDPedometerCalcHelper : NSObject
 //计算卡路里
-+(NSTimeInterval) calCalorieByStep:(NSInteger)step;
++(NSTimeInterval) calCalorieByStep:(NSInteger)step stride:(NSTimeInterval)stride weight:(NSTimeInterval)weight; 
 //min/km
-+(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond; 
-+(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond; 
-
++(NSTimeInterval) calDistanceByStep:(NSInteger)step stride:(NSTimeInterval)stride;
++(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond;
++(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond;
+//km
 
 +(NSTimeInterval) convertCmToInch:(NSTimeInterval) cm;
 +(NSTimeInterval) convertKgToLbs:(NSTimeInterval) kg;

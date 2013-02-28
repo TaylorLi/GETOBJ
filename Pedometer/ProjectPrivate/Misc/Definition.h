@@ -11,14 +11,21 @@
 #define DATABASE_NAME @"Pedometer"
 
 typedef enum {
-	UNIT_METRIC = 0,					// no packet
-    UNIT_ENGLISH = 1
+	MEASURE_UNIT_METRIC = 0,					// no packet
+    MEASURE_UNIT_ENGLISH = 1
 } MeasureUnit;
 
 typedef enum{
    GENDER_MALE=0,
     GENDER_FEMALE
 }GenderType;
+
+typedef enum{
+    PLUS_NONE = -1,
+    PLUS_FIT = 0,
+    PLUS_HEALTH,
+    PLUS_SPORT
+}PlusType;
 
 @interface Definition : NSObject
 

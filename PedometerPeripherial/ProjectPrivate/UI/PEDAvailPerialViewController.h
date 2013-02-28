@@ -31,6 +31,7 @@
 -(void)beginReadDataFromPeripheral:(CBPeripheral *)peripheral;
 - (void)scan;
 - (void)cleanup;
+- (IBAction)startPeripheralService:(id)sender;
 
 @end
 

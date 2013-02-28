@@ -10,6 +10,8 @@
 #import "BO_PEDUserInfo.h"
 #import "PEDUserInfo.h"
 #import "BleDefinition.h"
+#import "BO_PEDTarget.h"
+#import "PEDTarget.h"
 
 @implementation AppSetting
 
@@ -17,6 +19,8 @@
 @synthesize bleOperateTimeout;
 @synthesize bleConnectionTimeout;
 @synthesize userInfo,showDateCount;
+@synthesize target;
+@synthesize plusType;
 
 
 - (id) init {
@@ -27,15 +31,38 @@
         requestTimeout=30;
         showDateCount=7;
         userInfo=[[BO_PEDUserInfo getInstance] retreiveCurrentUser];
+        [self initTargetData];
         /*
         if(userInfo==nil){
             userInfo=[[PEDUserInfo alloc] initWithDefault];
             [[BO_PEDUserInfo getInstance] insertObject:userInfo];
         }
-        */ 
+        target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
+        if(target==nil){
+           target= [[PEDTarget alloc] initWithUserInfo:userInfo];
+           [[BO_PEDTarget getInstance] insertObject:target];
+        }
+         */
+        plusType = PLUS_NONE;
     }
     return self;
 }
 
+-(void) initTargetData{
+    target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
+    if(target==nil){
+        target= [[PEDTarget alloc] initWithUserInfo:userInfo];
+        [[BO_PEDTarget getInstance] insertObject:target];
+    }
+}
+
+
+-(void) saveSetting
+{
+    if(userInfo)
+        [[BO_PEDUserInfo getInstance] updateObject:userInfo];
+    if(target)
+        [[BO_PEDTarget getInstance] saveObject:target];
+}
 
 @end

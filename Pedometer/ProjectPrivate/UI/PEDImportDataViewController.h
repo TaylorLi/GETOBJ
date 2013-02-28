@@ -26,4 +26,7 @@
 - (IBAction)backToPreviousTabView:(id)sender;
 - (IBAction)clickToReloadPeripheral:(id)sender;
 -(void)searchPeripheralTimeout;
+
+- (void)cleanup;
+
 @end

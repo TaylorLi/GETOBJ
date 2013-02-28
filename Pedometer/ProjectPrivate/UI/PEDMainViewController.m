@@ -8,26 +8,18 @@
 
 #import "PEDMainViewController.h"
 #import "PEDAppDelegate.h"
+#import "AppConfig.h"
 
 @implementation PEDMainViewController
 @synthesize btnFitPlus;
 @synthesize btnHealthPlus;
 @synthesize btnSportPlus;
-@synthesize btnSetting;
-@synthesize btnContactUs;
-@synthesize btnHomePage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
-//        bgImage.image = [UIImage imageNamed:@"main.bmp"] ;
-//        [self.view addSubview:bgImage]; 
-//        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(35, 286, 254, 28)];
-//        button.backgroundColor = [UIColor clearColor];
-//        [button addTarget:self action:@selector(fitPlusClick) forControlEvents:UIControlEventTouchDown];
-//        [self.view addSubview:button];
+
     }
     return self;
 }
@@ -53,9 +45,6 @@
     [self setBtnFitPlus:nil];
     [self setBtnHealthPlus:nil];
     [self setBtnSportPlus:nil];
-    [self setBtnSetting:nil];
-    [self setBtnContactUs:nil];
-    [self setBtnHomePage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -64,6 +53,24 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if([AppConfig getInstance].settings.plusType != PLUS_NONE){
+        [btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+        [btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+        [btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+        switch ([AppConfig getInstance].settings.plusType) {
+            case PLUS_FIT:
+                [btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                break;
+            case PLUS_HEALTH:
+                [btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                break;
+            case PLUS_SPORT:
+                [btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                break; 
+            default:
+                break;
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -89,19 +96,28 @@
 
 
 - (IBAction)contactUsClick:(id)sender {
+    [UtilHelper sendEmail:@"114600001@qq.com" andSubject:nil andBody:nil];
 }
 
 - (IBAction)homePageClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.kingtech-hk.com"]];
 }
 
 - (IBAction)fitPlusClick:(id)sender {
-    [[PEDAppDelegate getInstance] showUserSettingView];
+    [AppConfig getInstance].settings.plusType = PLUS_FIT;
+    if([AppConfig getInstance].settings.userInfo){
+        [[PEDAppDelegate getInstance] showTabView];
+    }else{
+        [[PEDAppDelegate getInstance] showUserSettingView];
+    }
 }
 
 - (IBAction)healthPlusClick:(id)sender {
+    [AppConfig getInstance].settings.plusType = PLUS_HEALTH;
 }
 
 - (IBAction)sportPlusClick:(id)sender {
+    [AppConfig getInstance].settings.plusType = PLUS_SPORT;
 }
 
 - (IBAction)settingClick:(id)sender {

@@ -17,4 +17,6 @@
 -(PEDUserInfo *) retreiveCurrentUser;
 
 //-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
+-(PEDUserInfo *) retreiveUserByName:(NSString *)name;
+-(BOOL) updateUserProfileNotToBeCurrent;
 @end

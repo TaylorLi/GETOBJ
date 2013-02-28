@@ -8,6 +8,11 @@
 
 #import "PEDUserSettingViewController.h"
 #import "PEDAppDelegate.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import "UIHelper.h"
+#import "PEDUserInfo.h"
+#import "AppConfig.h"
+#import "BO_PEDUserInfo.h"
 
 @implementation PEDUserSettingViewController
 @synthesize btnSetting;
@@ -15,6 +20,22 @@
 @synthesize btnHomePage;
 @synthesize btnConfirm;
 @synthesize heightUnit;
+@synthesize txbUserName;
+@synthesize txbStride;
+@synthesize txbHeight;
+@synthesize txbWeight;
+@synthesize txbAge;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        if(!self.navigationController.navigationBarHidden){
+            self.navigationController.navigationBar.hidden = YES;
+        } 
+    }
+    return self;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -68,85 +89,30 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    txtUserName = [[UITextField alloc]initWithFrame:CGRectMake(170, 93, 116, 18)];
-    txtUserName.backgroundColor = [UIColor clearColor];
-    txtUserName.borderStyle = UITextBorderStyleNone;
-    txtUserName.background = [UIImage imageNamed:@"setting_tb.png"];
-    txtUserName.font = [UIFont fontWithName:@"Arial" size:13.0f];
-    txtUserName.textColor = [UIColor whiteColor];
-   // txtUserName.clearButtonMode = UITextFieldViewModeWhileEditing;
-    txtUserName.textAlignment = UITextAlignmentCenter;
-    txtUserName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    txtUserName.delegate =self;
-    [self.view addSubview:txtUserName];
-    
-    txtStride = [[UITextField alloc]initWithFrame:CGRectMake(248, 178, 38, 18)];
-    txtStride.backgroundColor = [UIColor clearColor];
-    txtStride.borderStyle = UITextBorderStyleNone;
-    txtStride.background = [UIImage imageNamed:@"setting_textbox.png"];
-    txtStride.font = [UIFont fontWithName:@"Arial" size:13.0f];
-    txtStride.textColor = [UIColor whiteColor];
-    txtStride.textAlignment = UITextAlignmentCenter;
-    txtStride.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    txtStride.delegate =self;
-    [self.view addSubview:txtStride];
-    
-    txtHeight = [[UITextField alloc]initWithFrame:CGRectMake(248, 212, 38, 18)];
-    txtHeight.backgroundColor = [UIColor clearColor];
-    txtHeight.borderStyle = UITextBorderStyleNone;
-    txtHeight.background = [UIImage imageNamed:@"setting_textbox.png"];
-    txtHeight.font = [UIFont fontWithName:@"Arial" size:13.0f];
-    txtHeight.textColor = [UIColor whiteColor];
-    txtHeight.textAlignment = UITextAlignmentCenter;
-    txtHeight.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    txtHeight.delegate =self;
-    [self.view addSubview:txtHeight];
-    
-    txtWeight = [[UITextField alloc]initWithFrame:CGRectMake(248, 245, 38, 18)];
-    txtWeight.backgroundColor = [UIColor clearColor];
-    txtWeight.borderStyle = UITextBorderStyleNone;
-    txtWeight.background = [UIImage imageNamed:@"setting_textbox.png"];
-    txtWeight.font = [UIFont fontWithName:@"Arial" size:13.0f];
-    txtWeight.textColor = [UIColor whiteColor];
-    txtWeight.textAlignment = UITextAlignmentCenter;
-    txtWeight.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    txtWeight.delegate =self;
-    [self.view addSubview:txtWeight];
-    
-    txtAge = [[UITextField alloc]initWithFrame:CGRectMake(248, 340, 38, 18)];
-    txtAge.backgroundColor = [UIColor clearColor];
-    txtAge.borderStyle = UITextBorderStyleNone;
-    txtAge.background = [UIImage imageNamed:@"setting_textbox.png"];
-    txtAge.font = [UIFont fontWithName:@"Arial" size:13.0f];
-    txtAge.textColor = [UIColor whiteColor];
-    txtAge.textAlignment = UITextAlignmentCenter;
-    txtAge.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    txtAge.delegate =self;
-    [self.view addSubview:txtAge];
-    
+    [super viewDidLoad];    
+    self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
-    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 146, 76, 18)];
+    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 126, 76, 18)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segUnit.tintColor = myTint; 
-    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left"] atIndex:0 animated:YES]; 
-    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_normal"] atIndex:1 animated:YES]; 
+    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left"] atIndex:0 animated:NO]; 
+    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_normal"] atIndex:1 animated:NO]; 
     [segUnit setWidth:38 forSegmentAtIndex:0];
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:8],UITextAttributeFont ,nil];      
 //    [segGender setTitleTextAttributes:dic forState:UIControlStateNormal];
     // segUnit.momentary = YES; 
-    segUnit.selectedSegmentIndex = 0;
+    segUnit.selectedSegmentIndex =0;
     [segUnit addTarget:self action:@selector(segUnitChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segUnit];
     
-    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(215, 146, 33, 18)];
+    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(215, 126, 33, 18)];
     unitSegTitleLeft.text = @"Metric";
     unitSegTitleLeft.textColor = [UIColor whiteColor];
     unitSegTitleLeft.backgroundColor = [UIColor clearColor];
     unitSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
     [self.view addSubview:unitSegTitleLeft];
     
-    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(251, 146, 35, 18)];
+    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(251, 126, 35, 18)];
     unitSegTitleRight.text = @"English";
     unitSegTitleRight.textColor = [UIColor whiteColor];
     unitSegTitleRight.backgroundColor = [UIColor clearColor];
@@ -154,61 +120,42 @@
     unitSegTitleRight.hidden = YES;
     [self.view addSubview:unitSegTitleRight];
     
-    segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 290, 76, 18)];
+    segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 270, 76, 18)];
     segGender.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segGender.tintColor = myTint; 
-    [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:YES]; 
-    [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:YES]; 
+    [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:NO]; 
+    [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:NO]; 
     [segGender setWidth:38 forSegmentAtIndex:0];
+    segGender.selectedSegmentIndex =0;
     [segGender addTarget:self action:@selector(segGenderChange:) forControlEvents:UIControlEventValueChanged];
     // segGender.momentary = YES; 
     [self.view addSubview:segGender];
     
-    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(225, 290, 23, 18)];
-    genderSegTitleLeft.text = @"F";
+    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(225, 270, 23, 18)];
+    genderSegTitleLeft.text = @"M";
     genderSegTitleLeft.textColor = [UIColor whiteColor];
     genderSegTitleLeft.backgroundColor = [UIColor clearColor];
     genderSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
     [self.view addSubview:genderSegTitleLeft];
     
-    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(261, 290, 25, 18)];
-    genderSegTitleRight.text = @"M";
+    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(261, 270, 25, 18)];
+    genderSegTitleRight.text = @"F";
     genderSegTitleRight.textColor = [UIColor whiteColor];
     genderSegTitleRight.backgroundColor = [UIColor clearColor];
     genderSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
     genderSegTitleRight.hidden = YES;
     [self.view addSubview:genderSegTitleRight];
-    
-//    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
-//    bgImage.image = [UIImage imageNamed:@"user.bmp"] ;
-//    [self.view addSubview:bgImage]; 
-//    
-//    UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    btnBack.frame = CGRectMake(30, 380, 80, 25);
-//    btnBack.backgroundColor = [UIColor clearColor];
-//    [btnBack setTitle:@"Back" forState:UIControlStateNormal];
-//    [btnBack setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [btnBack addTarget:self action:@selector(backToMainView) forControlEvents:UIControlEventTouchDown];
-//    [self.view addSubview:btnBack];
-//    
-//    
-//    UIButton *btnConfirm = [[UIButton alloc] initWithFrame:CGRectMake(190, 381, 94, 25)];
-//    btnConfirm.backgroundColor = [UIColor clearColor];
-//    [btnConfirm addTarget:self action:@selector(confirmClick) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.view addSubview:btnConfirm];
-    
-    
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    if(userInfo){
+        txbAge.text=[NSString stringWithFormat:@"%i%", userInfo.age];
+        txbHeight.text=[NSString stringWithFormat:@"%i%", userInfo.height];
+        txbWeight.text=[NSString stringWithFormat:@"%i%", userInfo.weight];
+        txbStride.text=[NSString stringWithFormat:@"%i%", userInfo.stride];
+        segGender.selectedSegmentIndex =userInfo.gender? 0:1;
+        segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
+    }
 	// Do any additional setup after loading the view, typically from a nib.
 }
-
-//-(void) backToMainView{
-//    [[PEDAppDelegate getInstance]showMainView];
-//}
-//
-//-(void) confirmClick{
-//    [[PEDAppDelegate getInstance]showTabView];
-//}
 
 - (void)viewDidUnload
 {
@@ -217,6 +164,11 @@
     [self setBtnHomePage:nil];
     [self setBtnConfirm:nil];
     [self setHeightUnit:nil];
+    [self setTxbUserName:nil];
+    [self setTxbStride:nil];
+    [self setTxbHeight:nil];
+    [self setTxbWeight:nil];
+    [self setTxbAge:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -225,6 +177,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(!self.navigationController.navigationBarHidden){
+        self.navigationController.navigationBar.hidden = YES;
+    } 
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -249,16 +204,36 @@
 }
 
 - (IBAction)contactUsClick:(id)sender {
+    [UtilHelper sendEmail:@"114600001@qq.com" andSubject:nil andBody:nil];
+ //   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto://114600001@qq.com"]];
 }
 
 - (IBAction)homePageClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.kingtech-hk.com"]];
 }
 
 - (IBAction)settingClick:(id)sender {
     [[PEDAppDelegate getInstance] showMainView];
 }
 - (IBAction)confirmClick:(id)sender {
-    [[PEDAppDelegate getInstance]showTabView];
+    if([UIHelper validateTextFields: [[NSArray alloc] initWithObjects:txbUserName, txbStride, txbHeight, txbWeight, txbAge, nil]]){
+        PEDUserInfo *curr=[AppConfig getInstance].settings.userInfo;
+        if(!curr){
+            curr = [[PEDUserInfo alloc]init];
+            curr.userId = [UtilHelper stringWithUUID];
+        }
+        curr.userName = self.txbUserName.text;
+        curr.age = [self.txbAge.text intValue];
+        curr.measureFormat = segUnit.selectedSegmentIndex;
+        curr.gender = segGender.selectedSegmentIndex;
+        curr.height = [self.txbHeight.text floatValue];//m
+        curr.weight = [self.txbWeight.text floatValue];//kg
+        curr.stride = [self.txbWeight.text floatValue];//cm
+        curr.updateDate=[NSDate date];
+        curr.isCurrentUser=YES;
+        [[AppConfig getInstance] saveUserInfo:curr];        
+        [[PEDAppDelegate getInstance] showTabView];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField 
@@ -291,4 +266,5 @@
     }        
     [UIView commitAnimations];                
 }
+
 @end

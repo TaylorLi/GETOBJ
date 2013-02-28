@@ -28,4 +28,5 @@
 +(NSString *) toJson:(id)obj;
 +(id)fromJson:(NSString *)jsonString;
 +(NSString *)deviceName;
++(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body;
 @end

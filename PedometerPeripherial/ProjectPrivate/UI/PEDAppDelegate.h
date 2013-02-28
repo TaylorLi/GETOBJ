@@ -14,7 +14,7 @@
 
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong,nonatomic) PEDAvailPerialViewController *pedAvailPerialViewController;
+@property (strong,nonatomic) IBOutlet PEDAvailPerialViewController *pedAvailPerialViewController;
 
 + (PEDAppDelegate*)getInstance;
 @end

@@ -55,6 +55,7 @@
 		6B00480916D943B900B87CA8 /* PEDTargetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */; };
 		6B00480B16D95C1100B87CA8 /* PEDBarchartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */; };
 		6B00480D16D9644500B87CA8 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */; };
+		6B4ABEFE16DBFE71000A73EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */; };
 		6B8899F516D8E2F700478F97 /* PEDPedoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */; };
 		6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DADC16D8445600EF70C1 /* back_normal.png */; };
 		6B94DB0716D8445600EF70C1 /* back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DADD16D8445600EF70C1 /* back_normal@2x.png */; };
@@ -100,6 +101,12 @@
 		6B94DB2F16D8445600EF70C1 /* target_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DB0516D8445600EF70C1 /* target_normal@2x.png */; };
 		6B94DB3D16D8533C00EF70C1 /* CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B94DB3A16D8533C00EF70C1 /* CustomerTabBar.m */; };
 		6B94DB3E16D8533C00EF70C1 /* CustomerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B94DB3C16D8533C00EF70C1 /* CustomerTabBarController.m */; };
+		6BD317BC16DEB70200966E52 /* activity_time_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B616DEB70100966E52 /* activity_time_button.png */; };
+		6BD317BD16DEB70200966E52 /* activity_time_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B716DEB70100966E52 /* activity_time_button@2x.png */; };
+		6BD317BE16DEB70200966E52 /* calories_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B816DEB70100966E52 /* calories_button.png */; };
+		6BD317BF16DEB70200966E52 /* calories_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B916DEB70100966E52 /* calories_button@2x.png */; };
+		6BD317C016DEB70200966E52 /* step_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317BA16DEB70200966E52 /* step_button.png */; };
+		6BD317C116DEB70200966E52 /* step_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317BB16DEB70200966E52 /* step_button@2x.png */; };
 		6BFF4A1716D56E6E00317887 /* bottom_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFF4A0516D56E6E00317887 /* bottom_line.png */; };
 		6BFF4A1816D56E6E00317887 /* bottom_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFF4A0616D56E6E00317887 /* bottom_line@2x.png */; };
 		6BFF4A1916D56E6E00317887 /* footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFF4A0716D56E6E00317887 /* footer.png */; };
@@ -146,6 +153,7 @@
 		DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
+		DA07899E16DE598D00EF5220 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA07899D16DE598D00EF5220 /* MainWindow.xib */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
@@ -284,6 +292,7 @@
 		6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDTargetViewController.xib; path = ProjectPrivate/XIB/PEDTargetViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDBarchartViewController.xib; path = ProjectPrivate/XIB/PEDBarchartViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDGraphsViewController.xib; path = ProjectPrivate/XIB/PEDGraphsViewController.xib; sourceTree = SOURCE_ROOT; };
+		6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPedoViewController.xib; path = ProjectPrivate/XIB/PEDPedoViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B94DADC16D8445600EF70C1 /* back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_normal.png; sourceTree = "<group>"; };
 		6B94DADD16D8445600EF70C1 /* back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_normal@2x.png"; sourceTree = "<group>"; };
@@ -331,6 +340,12 @@
 		6B94DB3A16D8533C00EF70C1 /* CustomerTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTabBar.m; sourceTree = "<group>"; };
 		6B94DB3B16D8533C00EF70C1 /* CustomerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTabBarController.h; sourceTree = "<group>"; };
 		6B94DB3C16D8533C00EF70C1 /* CustomerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTabBarController.m; sourceTree = "<group>"; };
+		6BD317B616DEB70100966E52 /* activity_time_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_time_button.png; sourceTree = "<group>"; };
+		6BD317B716DEB70100966E52 /* activity_time_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_time_button@2x.png"; sourceTree = "<group>"; };
+		6BD317B816DEB70100966E52 /* calories_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calories_button.png; sourceTree = "<group>"; };
+		6BD317B916DEB70100966E52 /* calories_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calories_button@2x.png"; sourceTree = "<group>"; };
+		6BD317BA16DEB70200966E52 /* step_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step_button.png; sourceTree = "<group>"; };
+		6BD317BB16DEB70200966E52 /* step_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "step_button@2x.png"; sourceTree = "<group>"; };
 		6BFF4A0516D56E6E00317887 /* bottom_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_line.png; sourceTree = "<group>"; };
 		6BFF4A0616D56E6E00317887 /* bottom_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_line@2x.png"; sourceTree = "<group>"; };
 		6BFF4A0716D56E6E00317887 /* footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = footer.png; sourceTree = "<group>"; };
@@ -384,6 +399,7 @@
 		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
 		DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerCalcHelper.h; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.h; sourceTree = SOURCE_ROOT; };
 		DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerCalcHelper.m; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.m; sourceTree = SOURCE_ROOT; };
+		DA07899D16DE598D00EF5220 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
 		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
 		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
@@ -614,6 +630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4ABEFE16DBFE71000A73EB /* MessageUI.framework in Frameworks */,
 				DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */,
 				DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */,
 				DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */,
@@ -967,6 +984,7 @@
 				DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */,
 				DA6EA02616CFE5AF00F2453F /* libz.dylib */,
 				DA6EA02416CFE58600F2453F /* libxml2.dylib */,
+				6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */,
 				DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */,
 				DA6EA02216CFE56000F2453F /* CoreBluetooth.framework */,
 				DA6E9C1C16CFB2F900F2453F /* UIKit.framework */,
@@ -1077,6 +1095,12 @@
 			isa = PBXGroup;
 			children = (
 				DACC770C16D92ED1008FCDA7 /* game_close_btn.png */,
+				6BD317B616DEB70100966E52 /* activity_time_button.png */,
+				6BD317B716DEB70100966E52 /* activity_time_button@2x.png */,
+				6BD317B816DEB70100966E52 /* calories_button.png */,
+				6BD317B916DEB70100966E52 /* calories_button@2x.png */,
+				6BD317BA16DEB70200966E52 /* step_button.png */,
+				6BD317BB16DEB70200966E52 /* step_button@2x.png */,
 				6B0047D216D92D1F00B87CA8 /* activity_time_small.png */,
 				6B0047D316D92D1F00B87CA8 /* activity_time_small@2x.png */,
 				6B0047D416D92D1F00B87CA8 /* calories_small.png */,
@@ -1222,6 +1246,7 @@
 				6BFF4A6516D5947900317887 /* PEDMainViewController.xib */,
 				6BFF4A6616D5947900317887 /* PEDUserSettingViewController.xib */,
 				6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */,
+				DA07899D16DE598D00EF5220 /* MainWindow.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -1503,6 +1528,13 @@
 				DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */,
 				DAE5306716DCCD4D003BB097 /* PEDImportDataViewController.xib in Resources */,
 				DA747E1716DDB1610007E0A7 /* PEDImportDataDetail.xib in Resources */,
+				6BD317BC16DEB70200966E52 /* activity_time_button.png in Resources */,
+				6BD317BD16DEB70200966E52 /* activity_time_button@2x.png in Resources */,
+				6BD317BE16DEB70200966E52 /* calories_button.png in Resources */,
+				6BD317BF16DEB70200966E52 /* calories_button@2x.png in Resources */,
+				6BD317C016DEB70200966E52 /* step_button.png in Resources */,
+				6BD317C116DEB70200966E52 /* step_button@2x.png in Resources */,
+				DA07899E16DE598D00EF5220 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

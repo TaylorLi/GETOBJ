@@ -72,4 +72,9 @@
     return [[Database getInstance] queryList:sql parameters:param processFunc:rowFunc];
 }
 
+- (BOOL)executeNoQuery:(NSString *)sql parameters:(id)param
+{
+    return [[Database getInstance] executeNoQuery:sql parameters:param];
+}
+
 @end

@@ -42,7 +42,7 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
 //    v.backgroundColor = [UIColor whiteColor];
 //    [self.window addSubview:v];

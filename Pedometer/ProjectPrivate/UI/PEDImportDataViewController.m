@@ -75,6 +75,7 @@
 
 - (IBAction)clickToReloadPeripheral:(id)sender
 {
+    [sensor cancelTimer];
     [self scanBTSmartShields];
 }
 - (void)scanBTSmartShields {
@@ -127,8 +128,40 @@
 }
 
 - (IBAction)backToPreviousTabView:(id)sender {
+    [self cleanup];
+    sensor=nil;
     [[PEDAppDelegate getInstance] hideImportDataViewAndShowTabView];
 }
+
+- (void)cleanup
+{
+    // Don't do anything if we're not connected
+    if (!self.discoveredPeripheral || !self.discoveredPeripheral.isConnected) {
+        return;
+    }    
+    // See if we are subscribed to a characteristic on the peripheral
+    if (self.discoveredPeripheral.services != nil) {
+        for (CBService *service in self.discoveredPeripheral.services) {
+            if (service.characteristics != nil) {
+                for (CBCharacteristic *characteristic in service.characteristics) {
+                    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID]]) {
+                        if (characteristic.isNotifying) {
+                            // It is notifying, so unsubscribe
+                            [self.discoveredPeripheral setNotifyValue:NO forCharacteristic:characteristic];
+                            
+                            // And we're done.
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // If we've got this far, we're connected, but we're not subscribed, so we just disconnect
+    [sensor.manager cancelPeripheralConnection:self.discoveredPeripheral];
+}
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

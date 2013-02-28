@@ -64,7 +64,7 @@ static BO_PEDPedometerData* instance;
 
 -(NSArray *)queryListToDateByDefaultRange:(NSDate *) dateTo
 {
-   return [self queryListToDate:dateTo withDateRange:[AppConfig getInstance].settngs.showDateCount];
+   return [self queryListToDate:dateTo withDateRange:[AppConfig getInstance].settings.showDateCount];
 }
 
 

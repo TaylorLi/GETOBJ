@@ -129,6 +129,7 @@
 
 - (IBAction)backToPreviousTabView:(id)sender {
     [self cleanup];
+    [sensor cancelTimer];
     sensor=nil;
     [[PEDAppDelegate getInstance] hideImportDataViewAndShowTabView];
 }

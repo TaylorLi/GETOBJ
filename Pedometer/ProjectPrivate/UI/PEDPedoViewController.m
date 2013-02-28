@@ -11,6 +11,7 @@
 #import "PEDPedometerData.h"
 #import "BO_PEDPedometerData.h"
 #import "UtilHelper.h"
+#import "PEDPedometerCalcHelper.h"
 
 @implementation PEDPedoViewController
 @synthesize monthSelectView;
@@ -48,10 +49,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData];
-    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate] withFormat:@"dd/MM/yy"];
+    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData:[AppConfig getInstance].settings.target.targetId];
+    lblLastUpdate.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
     lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
-    lblCurrDay.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate] withFormat:@"dd/MM/yy"];
+    lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
     lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
     int h, m, s;
     h = (int)currPedometerData.activeTime / 3600;
@@ -60,8 +61,8 @@
     lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
     lblCaloriesAmount.text = [NSString stringWithFormat:@"%01.0f", currPedometerData.calorie];
     lblDistanceAmount.text = [NSString stringWithFormat:@"%01.1f", currPedometerData.distance];
-    lblSpeedAmount.text = [NSString stringWithFormat:@"%01.1f", currPedometerData.distance * 3600 / currPedometerData.activeTime];
-    lblPaceAmount.text = [NSString stringWithFormat:@"%01.1f", currPedometerData.activeTime / 60 / currPedometerData.distance];
+    lblSpeedAmount.text = [NSString stringWithFormat:@"%01.1f", [PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime]];
+    lblPaceAmount.text = [NSString stringWithFormat:@"%01.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime]];
     
     CGFloat pickerHeight = 40.0f;
     CGFloat width=[UIScreen mainScreen].bounds.size.width;

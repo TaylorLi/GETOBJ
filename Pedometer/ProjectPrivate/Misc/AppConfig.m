@@ -107,6 +107,9 @@ static AppConfig* instance;
     else{
         if(![[AppConfig getInstance].settings.userInfo.userName isEqualToString:user.userName]){
            PEDUserInfo *preUser = [[BO_PEDUserInfo getInstance] retreiveUserByName:user.userName];
+            if(preUser!=nil){
+                user.userId=preUser.userId;
+            }
         }
     }
     [[BO_PEDUserInfo getInstance] updateUserProfileNotToBeCurrent];

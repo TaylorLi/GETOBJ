@@ -7,8 +7,24 @@
 //
 
 #import "PEDTargetViewController.h"
+#import "BO_PEDPedometerData.h"
 
 @implementation PEDTargetViewController
+@synthesize lblUserName;
+@synthesize lblLastUpdate;
+@synthesize lblStepTarget;
+@synthesize lblStepAmount;
+@synthesize lblStepRemain;
+@synthesize imgVStep;
+@synthesize lblDistanceTarget;
+@synthesize lblDistanceAmount;
+@synthesize lblDistanceRemain;
+@synthesize imgVDistance;
+@synthesize lblCaloriesTarget;
+@synthesize lblCaloriesAmount;
+@synthesize lblCaloriesRemain;
+@synthesize imgVCalories;
+@synthesize lblMessage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +48,58 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    PEDTarget *target = [AppConfig getInstance].settings.target;
+    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate:target.targetId] withFormat:@"dd/MM/yy"];
+    lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
+    lblStepTarget.text = [NSString stringWithFormat:@"%i", target.targetStep];
+    lblStepRemain.text = [NSString stringWithFormat:@"%i", target.remainStep];
+    lblStepAmount.text = [NSString stringWithFormat:@"%i", target.targetStep - target.remainStep];
+    lblDistanceTarget.text = [NSString stringWithFormat:@"%0.1fKM", target.targetDistance];
+    lblDistanceRemain.text = [NSString stringWithFormat:@"%0.1f", target.remainDistance];
+    lblDistanceAmount.text = [NSString stringWithFormat:@"%0.1fKM", target.targetDistance - target.remainDistance];
+    lblCaloriesTarget.text = [NSString stringWithFormat:@"%0.1f", target.targetCalorie];
+    lblCaloriesRemain.text = [NSString stringWithFormat:@"%0.1f", target.remainCalorie];
+    lblCaloriesAmount.text = [NSString stringWithFormat:@"%0.1f", target.targetCalorie - target.remainCalorie];
+    UIImage *stepImage = [[UIImage imageNamed:@"target_step_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,45,0,45)];
+    UIImage *caloriesImage = [[UIImage imageNamed:@"target_calories_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,70,0,70)];
+    UIImage *distanceImage = [[UIImage imageNamed:@"target_distance_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,70,0,70)];
+    imgVStep.frame = CGRectMake(69, 119, [self percentOfTarget:target.targetStep withRemain:target.remainStep], 15);
+    imgVStep.image = stepImage;
+    imgVCalories.frame = CGRectMake(69, 300, [self percentOfTarget:target.targetCalorie withRemain:target.remainCalorie], 15);
+    imgVCalories.image = caloriesImage;
+    imgVDistance.frame = CGRectMake(69, 210, [self percentOfTarget:target.targetDistance withRemain:target.remainDistance], 15);
+    imgVDistance.image = distanceImage;
+    int lblStepRemainX = imgVStep.frame.size.width - lblStepRemain.frame.size.width;
+    int lblCaloriesRemainX = imgVCalories.frame.size.width - lblCaloriesRemain.frame.size.width;
+    int lblDistanceRemainX = imgVDistance.frame.size.width - lblDistanceRemain.frame.size.width;
+    lblStepRemain.frame = CGRectMake( imgVStep.frame.origin.x + (lblStepRemainX <= 10 ? 0 : lblStepRemainX - 10), 116, 42, 21) ; 
+    lblCaloriesRemain.frame = CGRectMake(imgVCalories.frame.origin.x + (lblCaloriesRemainX <= 10 ? 0 : lblCaloriesRemainX - 10), 297, 42, 21) ; 
+    lblDistanceRemain.frame = CGRectMake(imgVDistance.frame.origin.x + (lblDistanceRemainX <= 10 ? 0 : lblDistanceRemainX - 10), 207, 37, 21) ; 
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (CGFloat)percentOfTarget:(CGFloat) target withRemain:(CGFloat) remain{
+    if(target == remain) return 219;
+    return (target - remain) * 219 / target;
 }
 
 - (void)viewDidUnload
 {
+    [self setLblUserName:nil];
+    [self setLblLastUpdate:nil];
+    [self setLblStepTarget:nil];
+    [self setLblStepAmount:nil];
+    [self setLblStepRemain:nil];
+    [self setImgVStep:nil];
+    [self setLblDistanceTarget:nil];
+    [self setLblDistanceAmount:nil];
+    [self setLblDistanceRemain:nil];
+    [self setImgVDistance:nil];
+    [self setLblCaloriesTarget:nil];
+    [self setLblCaloriesAmount:nil];
+    [self setLblCaloriesRemain:nil];
+    [self setImgVCalories:nil];
+    [self setLblMessage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -63,6 +63,24 @@ static PEDAppDelegate* _instance;
     if(!pedMainViewController){
         pedMainViewController = [[PEDMainViewController alloc]init];
     }
+    if([AppConfig getInstance].settings.plusType != PLUS_NONE){
+        [pedMainViewController.btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+        [pedMainViewController.btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+        [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+        switch ([AppConfig getInstance].settings.plusType) {
+            case PLUS_FIT:
+                [pedMainViewController.btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                break;
+            case PLUS_HEALTH:
+                [pedMainViewController.btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                break;
+            case PLUS_SPORT:
+                [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                break; 
+            default:
+                break;
+        }
+    }
     [self swithView : pedMainViewController.view];
 }
 

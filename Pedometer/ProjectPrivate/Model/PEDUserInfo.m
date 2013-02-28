@@ -22,7 +22,7 @@
         age=26;
         measureFormat=MEASURE_UNIT_METRIC;
         gender=GENDER_MALE;
-        height=1.6;//m
+        height=170;//m
         weight=60;//kg
         stride=60;//cm
         updateDate=[NSDate date];
@@ -42,13 +42,17 @@
 -(void)convertUnit:(MeasureUnit) dstUnit;
 {
     if(dstUnit==MEASURE_UNIT_METRIC){
-        heightUnit=@"m";
+        heightUnit=@"cm";
         strideUnit=@"cm";
         weightUnit=@"kg";
         distanceUnit=@"km";
+        
         if (measureFormat==MEASURE_UNIT_ENGLISH) {
-           
+            height=[PEDPedometerCalcHelper convertInchToCm:[PEDPedometerCalcHelper convertFeetToInch:height]];
+            stride=[PEDPedometerCalcHelper convertInchToCm:stride];
+            weight=[PEDPedometerCalcHelper convertLbsToKg:weight];
         }
+        measureFormat=dstUnit;
     }
     else{
         heightUnit=@"feet-inch";
@@ -56,10 +60,11 @@
         weightUnit=@"Lbs";
         distanceUnit=@"mile";
         if(measureFormat==MEASURE_UNIT_METRIC){
-            height=[PEDPedometerCalcHelper convertInchToFeet:[PEDPedometerCalcHelper convertCmToInch:height*100]];
+            height=[PEDPedometerCalcHelper convertInchToFeet:[PEDPedometerCalcHelper convertCmToInch:height]];
             stride=[PEDPedometerCalcHelper convertCmToInch:stride];
             weight=[PEDPedometerCalcHelper convertKgToLbs:weight];
         }
+        measureFormat=dstUnit;
     }
 }
 

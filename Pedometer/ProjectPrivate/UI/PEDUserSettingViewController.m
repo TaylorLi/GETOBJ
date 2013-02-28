@@ -14,12 +14,15 @@
 #import "AppConfig.h"
 #import "BO_PEDUserInfo.h"
 
+@interface PEDUserSettingViewController ()
+-(void)bindUserInfo:(PEDUserInfo *)userInfo;
+-(void)segUnitChangeToUnit:(MeasureUnit)unit;
+@end
+
 @implementation PEDUserSettingViewController
-@synthesize btnSetting;
-@synthesize btnContactUs;
-@synthesize btnHomePage;
-@synthesize btnConfirm;
-@synthesize heightUnit;
+@synthesize lblStrideUnit;
+@synthesize lblWeightUnit;
+@synthesize lblHeightUnit;
 @synthesize txbUserName;
 @synthesize txbStride;
 @synthesize txbHeight;
@@ -44,27 +47,45 @@
 }
 
 #pragma mark - View lifecycle
-
--(void)segUnitChange:(id)sender{  
-    UISegmentedControl* segControl = (UISegmentedControl*)sender;  
-    switch (segControl.selectedSegmentIndex) {  
-        case 0:  
-            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
-            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
+-(void)segUnitChangeToUnit:(MeasureUnit)unit
+{
+    switch (unit) {  
+        case MEASURE_UNIT_METRIC:  
+            [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
+            [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = NO;
             unitSegTitleRight.hidden = YES;
-            heightUnit.text = @"cm";
+            lblHeightUnit.text = @"cm";
+            lblStrideUnit.text = @"Stride(cm)";
+            lblWeightUnit.text = @"kg";
             break;  
-        case 1:  
-            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
-            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
+        case MEASURE_UNIT_ENGLISH:  
+            [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
+            [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = YES;
             unitSegTitleRight.hidden = NO;
-            heightUnit.text = @"inch";
+            lblHeightUnit.text = @"feet-inch";
+            lblStrideUnit.text = @"Stride(inch)";
+            lblWeightUnit.text = @"lbs";
             break;  
         default:  
             break;  
     }  
+
+}
+-(void)segUnitChange:(id)sender{ 
+    UISegmentedControl* segControl = (UISegmentedControl*)sender;
+    MeasureUnit unit=segControl.selectedSegmentIndex==0?MEASURE_UNIT_METRIC:MEASURE_UNIT_ENGLISH;
+    [self segUnitChangeToUnit:unit];
+    
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    userInfo.height = [self.txbHeight.text floatValue];//m
+    userInfo.weight = [self.txbWeight.text floatValue];//kg
+    userInfo.stride = [self.txbStride.text floatValue];//cm
+    if(userInfo){
+        [userInfo convertUnit:unit];
+        [self bindUserInfo:userInfo];
+    }        
 } 
 
 -(void)segGenderChange:(id)sender{  
@@ -90,7 +111,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    self.view.frame = CGRectMake(0, 20, 320, 460);
+    ((UIScrollView *)self.view).delegate=self;
+    //self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
     segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 126, 76, 18)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -147,28 +169,37 @@
     [self.view addSubview:genderSegTitleRight];
     PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
     if(userInfo){
-        txbAge.text=[NSString stringWithFormat:@"%i%", userInfo.age];
-        txbHeight.text=[NSString stringWithFormat:@"%i%", userInfo.height];
-        txbWeight.text=[NSString stringWithFormat:@"%i%", userInfo.weight];
-        txbStride.text=[NSString stringWithFormat:@"%i%", userInfo.stride];
+        [self bindUserInfo:userInfo];
+    }
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)bindUserInfo:(PEDUserInfo *)userInfo
+{
+    if(userInfo){
+        [userInfo convertUnit:userInfo.measureFormat];
+        txbUserName.text=userInfo.userName;
+        txbAge.text=[NSString stringWithFormat:@"%i", userInfo.age];
+        txbHeight.text=[NSString stringWithFormat:@"%.2f", userInfo.height];
+        txbWeight.text=[NSString stringWithFormat:@"%.2f", userInfo.weight];
+        txbStride.text=[NSString stringWithFormat:@"%.2f", userInfo.stride];
         segGender.selectedSegmentIndex =userInfo.gender? 0:1;
         segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
-    }
-	// Do any additional setup after loading the view, typically from a nib.
+        [self segUnitChangeToUnit:userInfo.measureFormat];
+        [self segGenderChange:nil];
+    }    
 }
 
 - (void)viewDidUnload
 {
-    [self setBtnSetting:nil];
-    [self setBtnContactUs:nil];
-    [self setBtnHomePage:nil];
-    [self setBtnConfirm:nil];
-    [self setHeightUnit:nil];
+    [self setLblHeightUnit:nil];
     [self setTxbUserName:nil];
     [self setTxbStride:nil];
     [self setTxbHeight:nil];
     [self setTxbWeight:nil];
     [self setTxbAge:nil];
+    [self setLblStrideUnit:nil];
+    [self setLblWeightUnit:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -228,43 +259,12 @@
         curr.gender = segGender.selectedSegmentIndex;
         curr.height = [self.txbHeight.text floatValue];//m
         curr.weight = [self.txbWeight.text floatValue];//kg
-        curr.stride = [self.txbWeight.text floatValue];//cm
+        curr.stride = [self.txbStride.text floatValue];//cm
         curr.updateDate=[NSDate date];
         curr.isCurrentUser=YES;
+        [curr convertUnit:MEASURE_UNIT_METRIC];
         [[AppConfig getInstance] saveUserInfo:curr];        
         [[PEDAppDelegate getInstance] showTabView];
     }
 }
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField 
-{        
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.        
-    NSTimeInterval animationDuration = 0.30f;        
-    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];        
-    [UIView setAnimationDuration:animationDuration];        
-    CGRect rect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);        
-    self.view.frame = rect;        
-    [UIView commitAnimations];        
-    [textField resignFirstResponder];
-    return YES;        
-}
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{        
-    CGRect frame = textField.frame;
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
-    NSTimeInterval animationDuration = 0.30f;                
-    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];                
-    [UIView setAnimationDuration:animationDuration];
-    float width = self.view.frame.size.width;                
-    float height = self.view.frame.size.height;        
-    if(offset > 0)
-    {
-        CGRect rect = CGRectMake(0.0f, -offset,width,height);                
-        self.view.frame = rect;        
-    }        
-    [UIView commitAnimations];                
-}
-
 @end

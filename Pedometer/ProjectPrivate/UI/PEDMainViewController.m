@@ -53,24 +53,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if([AppConfig getInstance].settings.plusType != PLUS_NONE){
-        [btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
-        [btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
-        [btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
-        switch ([AppConfig getInstance].settings.plusType) {
-            case PLUS_FIT:
-                [btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                break;
-            case PLUS_HEALTH:
-                [btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                break;
-            case PLUS_SPORT:
-                [btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                break; 
-            default:
-                break;
-        }
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

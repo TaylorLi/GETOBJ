@@ -49,11 +49,13 @@
 }
 
 -(void) initTargetData{
-    target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
-    if(target==nil){
-        target= [[PEDTarget alloc] initWithUserInfo:userInfo];
-        [[BO_PEDTarget getInstance] insertObject:target];
-    }
+    if(userInfo!=nil){
+        target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
+        if(target==nil){
+            target= [[PEDTarget alloc] initWithUserInfo:userInfo];
+            [[BO_PEDTarget getInstance] insertObject:target];
+        }
+    }    
 }
 
 

@@ -27,4 +27,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPaceAmount;
 @property (weak, nonatomic) IBOutlet UILabel *lblPaceUnit;
 
+- (void) initData;
 @end

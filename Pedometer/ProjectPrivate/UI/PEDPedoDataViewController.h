@@ -15,4 +15,6 @@
 //}
 //@property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 - (IBAction)showMonthView:(id)sender;
+
+- (void) initData;
 @end

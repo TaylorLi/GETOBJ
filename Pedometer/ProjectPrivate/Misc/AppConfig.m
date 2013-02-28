@@ -27,6 +27,7 @@
 
 #import "AppConfig.h"
 #import "BO_PEDUserInfo.h"
+#import "BO_PEDTarget.h"
 #import "UIDevice+IdentifierAddition.h"
 
 
@@ -79,15 +80,17 @@ static AppConfig* instance;
 
 -(void)saveAppSetting:(PEDUserInfo*) newUserInfo
 {
-    if(![AppConfig getInstance].settings.userInfo){
+    if(!settings.userInfo){
         if([[BO_PEDUserInfo getInstance] insertObject: newUserInfo]){
             [AppConfig getInstance].settings.userInfo = newUserInfo;
+            settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
         }
     }else{
-        [AppConfig getInstance].settings.userInfo.isCurrentUser = false;
-        if([[BO_PEDUserInfo getInstance] updateObject:[AppConfig getInstance].settings.userInfo]){
+        settings.userInfo.isCurrentUser = false;
+        if([[BO_PEDUserInfo getInstance] updateObject: settings.userInfo]){
             if([[BO_PEDUserInfo getInstance] insertObject: newUserInfo]){
                 [AppConfig getInstance].settings.userInfo = newUserInfo;
+                settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
             }
         } 
     }
@@ -96,6 +99,9 @@ static AppConfig* instance;
 {
     if(settings==nil){
         settings =[[AppSetting alloc] init];
+    }else{
+        settings.userInfo = [[BO_PEDUserInfo getInstance] retreiveCurrentUser];
+        settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
     }
 }
 

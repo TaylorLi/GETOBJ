@@ -28,4 +28,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblMessage;
 
 - (CGFloat)percentOfTarget:(CGFloat) target withRemain:(CGFloat) remain;
+- (void) initData;
 @end

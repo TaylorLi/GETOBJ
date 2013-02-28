@@ -99,10 +99,10 @@
     barChart.paddingTop    = 0.0f;
     barChart.paddingBottom = 0.0f;
     
-    barChart.plotAreaFrame.paddingLeft   = 50.0f;
+    barChart.plotAreaFrame.paddingLeft   = 35.0f;
     barChart.plotAreaFrame.paddingTop    = 20.0f;
     barChart.plotAreaFrame.paddingRight  = 20.0f;
-    barChart.plotAreaFrame.paddingBottom = 40.0f;
+    barChart.plotAreaFrame.paddingBottom = 30.0f;
     
     // Graph title
     /*
@@ -118,13 +118,13 @@
     // Add plot space for horizontal bar charts
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)barChart.defaultPlotSpace;
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromFloat(15.0f)];
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromFloat(8.0f)];
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromFloat(7.0f)];
     
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)barChart.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
     CPTMutableLineStyle *lineStyle= [CPTMutableLineStyle lineStyle];
     lineStyle.miterLimit        = 1.0f;
-    lineStyle.lineWidth         = 4.0f;
+    lineStyle.lineWidth         = 5.0f;
     lineStyle.lineColor         = [CPTColor darkGrayColor];    
     x.axisLineStyle               = lineStyle;
     lineStyle= [CPTMutableLineStyle lineStyle];

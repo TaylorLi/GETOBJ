@@ -129,4 +129,8 @@
 //
 //- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
 //}
+
+- (void) initData{
+
+}
 @end

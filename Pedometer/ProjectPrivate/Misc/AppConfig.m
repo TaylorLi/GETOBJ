@@ -27,6 +27,7 @@
 
 #import "AppConfig.h"
 #import "BO_PEDUserInfo.h"
+#import "BO_PEDTarget.h"
 #import "UIDevice+IdentifierAddition.h"
 
 
@@ -85,6 +86,9 @@ static AppConfig* instance;
 {
     if(settings==nil){
         settings =[[AppSetting alloc] init];
+    }else{
+        settings.userInfo = [[BO_PEDUserInfo getInstance] retreiveCurrentUser];
+        settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
     }
 }
 

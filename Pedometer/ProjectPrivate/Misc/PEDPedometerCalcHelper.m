@@ -31,6 +31,97 @@
     return km*3600/sencond;
 }
 
++(NSString*) getStrideUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
+    NSString *strideUnit = nil;
+    switch (measureUnit) {
+        case MEASURE_UNIT_METRIC:
+            if (isUpper) {
+                strideUnit = @"CM";
+            }else{
+                strideUnit = @"cm";
+            }
+            break;
+        case MEASURE_UNIT_ENGLISH:
+            if (isUpper) {
+                strideUnit = @"Inch";
+            }else{
+                strideUnit = @"inch";
+            }
+            break;
+        default:
+            break;
+    }
+    return strideUnit;
+}
+
++(NSString*) getHeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
+    NSString *heightUnit = nil;
+    switch (measureUnit) {
+        case MEASURE_UNIT_METRIC:
+            if (isUpper) {
+                heightUnit = @"M";
+            }else{
+                heightUnit = @"m";
+            }
+            break;
+        case MEASURE_UNIT_ENGLISH:
+            if (isUpper) {
+                heightUnit = @"Feet-Inch";
+            }else{
+                heightUnit = @"feet-inch";
+            }
+            break;
+        default:
+            break;
+    }
+    return heightUnit;
+}
+
++(NSString*) getWeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
+    NSString *weightUnit = nil;
+    switch (measureUnit) {
+        case MEASURE_UNIT_METRIC:
+            if (isUpper) {
+                weightUnit = @"KG";
+            }else{
+                weightUnit = @"kg";
+            }
+            break;
+        case MEASURE_UNIT_ENGLISH:
+            if (isUpper) {
+                weightUnit = @"Lbs";
+            }else{
+                weightUnit = @"lbs";
+            }
+            break;
+        default:
+            break;
+    }
+    return weightUnit;
+}
+
++(NSString*) getDistanceUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
+    NSString *distanceUnit = nil;
+    switch (measureUnit) {
+        case MEASURE_UNIT_METRIC:
+            if (isUpper) {
+                distanceUnit = @"KM";
+            }else{
+                distanceUnit = @"km";
+            }
+            break;
+        case MEASURE_UNIT_ENGLISH:
+            if (isUpper) {
+                distanceUnit = @"Mile";
+            }else{
+                distanceUnit = @"mile";
+            }
+            break;
+        default:
+            break;
+    }
+    return distanceUnit;
+}
 
 /*
  

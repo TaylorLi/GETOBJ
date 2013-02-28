@@ -27,4 +27,9 @@
 +(NSTimeInterval) convertMileToKm:(NSTimeInterval) mile;
 +(NSTimeInterval) convertFeetToInch:(NSTimeInterval) feet;
 
++(NSString*) getStrideUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
++(NSString*) getHeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
++(NSString*) getWeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
++(NSString*) getDistanceUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
+
 @end

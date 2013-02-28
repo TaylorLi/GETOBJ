@@ -64,9 +64,6 @@
             [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = YES;
             unitSegTitleRight.hidden = NO;
-            lblHeightUnit.text = @"feet-inch";
-            lblStrideUnit.text = @"Stride(inch)";
-            lblWeightUnit.text = @"lbs";
             break;  
         default:  
             break;  
@@ -86,6 +83,9 @@
         [userInfo convertUnit:unit];
         [self bindUserInfo:userInfo];
     }        
+    lblHeightUnit.text = [PEDPedometerCalcHelper getHeightUnit:segControl.selectedSegmentIndex withWordFormat:false];
+    lblWeightUnit.text = [PEDPedometerCalcHelper getWeightUnit:segControl.selectedSegmentIndex withWordFormat:false];
+    lblStrideUnit.text = [NSString stringWithFormat:@"Stride(%@)", [PEDPedometerCalcHelper getStrideUnit:segControl.selectedSegmentIndex withWordFormat:false]];
 } 
 
 -(void)segGenderChange:(id)sender{  

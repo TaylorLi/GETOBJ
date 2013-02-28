@@ -17,13 +17,13 @@
 
 //-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
 
--(NSArray *)queryListFromDateNeedEmptySorted:(NSDate *)dateFrom toDate:(NSDate *) dateTo;
+-(NSArray *)queryListFromDateNeedEmptySorted:(NSDate *)dateFrom toDate:(NSDate *) dateTo withTargetId:(NSString*) targetId;
 
--(NSArray *)queryListToDate:(NSDate *) dateTo withDateRange:(NSInteger) range;
--(NSArray *)queryListToDateByDefaultRange:(NSDate *) dateTo;
+-(NSArray *)queryListToDate:(NSDate *) dateTo withDateRange:(NSInteger) range withTargetId:(NSString*) targetId;
+-(NSArray *)queryListToDateByDefaultRange:(NSDate *) dateTo withTargetId:(NSString*) targetId;
 
--(PEDPedometerData *)getLastUploadData;
+-(PEDPedometerData *)getLastUploadData :(NSString*) targetId;
 
--(NSDate *)getLastUploadDate;
+-(NSDate *)getLastUploadDate :(NSString*) targetId;
 
 @end

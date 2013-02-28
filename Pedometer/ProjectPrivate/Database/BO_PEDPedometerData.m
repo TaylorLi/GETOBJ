@@ -28,14 +28,14 @@ static BO_PEDPedometerData* instance;
     return instance;
 }
 //获取一段时间内的所有数据
--(NSArray *)queryListFromDate:(NSDate *)dateFrom toDate:(NSDate *) dateTo
+-(NSArray *)queryListFromDate:(NSDate *)dateFrom toDate:(NSDate *) dateTo withTargetId:(NSString*) targetId
 {
-    return [self queryList:@"select * from PEDPedometerData where optDate between ? and ? order by optDate" parameters:[[NSArray alloc] initWithObjects:dateFrom,dateTo, nil]];
+    return [self queryList:@"select * from PEDPedometerData where targetId=? and optDate between ? and ? order by optDate" parameters:[[NSArray alloc] initWithObjects:targetId,dateFrom,dateTo, nil]];
 }
 //获取一段时间内的所有数据，如果是空数据的话取空值
--(NSArray *)queryListFromDateNeedEmptySorted:(NSDate *)dateFrom toDate:(NSDate *) dateTo
+-(NSArray *)queryListFromDateNeedEmptySorted:(NSDate *)dateFrom toDate:(NSDate *) dateTo withTargetId:(NSString*) targetId
 {
-  NSArray *array =  [self queryListFromDate:dateFrom toDate:dateTo];
+    NSArray *array =  [self queryListFromDate:dateFrom toDate:dateTo withTargetId: targetId];
   NSMutableArray *sortArray=[[NSMutableArray alloc] init];  
     NSTimeInterval totalDays =  [dateTo timeIntervalSinceDate:dateFrom]/24/3600;
     for (NSTimeInterval i=0; i<=totalDays; i++) {
@@ -56,26 +56,26 @@ static BO_PEDPedometerData* instance;
   return sortArray;  
 }
 
--(NSArray *)queryListToDate:(NSDate *) dateTo withDateRange:(NSInteger) range
+-(NSArray *)queryListToDate:(NSDate *) dateTo withDateRange:(NSInteger) range withTargetId:(NSString*) targetId
 {
     NSDate *dateFrom=[dateTo dateByAddingTimeInterval:range*-1*24*3600];
-    return [self queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo];
+    return [self queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId: targetId];
 }
 
--(NSArray *)queryListToDateByDefaultRange:(NSDate *) dateTo
+-(NSArray *)queryListToDateByDefaultRange:(NSDate *) dateTo withTargetId:(NSString*) targetId
 {
-   return [self queryListToDate:dateTo withDateRange:[AppConfig getInstance].settings.showDateCount];
+    return [self queryListToDate:dateTo withDateRange:[AppConfig getInstance].settings.showDateCount withTargetId: targetId];
 }
 
 
--(PEDPedometerData *)getLastUploadData
+-(PEDPedometerData *)getLastUploadData :(NSString*) targetId
 {
-    return [self queryObjectBySql:@"select * from PEDPedometerData order by optDate desc LIMIT 1" parameters:nil];
+    return [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? order by optDate desc LIMIT 1" parameters:[[NSArray alloc] initWithObjects:targetId, nil]];
 }
 
--(NSDate *)getLastUploadDate
+-(NSDate *)getLastUploadDate :(NSString*) targetId
 {
-    PEDPedometerData *data=[self getLastUploadData];
+    PEDPedometerData *data=[self getLastUploadData :targetId];
     if(data)
         return  data.optDate;
     else

@@ -14,11 +14,9 @@
 #import "AppConfig.h"
 
 @implementation PEDUserSettingViewController
-@synthesize btnSetting;
-@synthesize btnContactUs;
-@synthesize btnHomePage;
-@synthesize btnConfirm;
-@synthesize heightUnit;
+@synthesize lblStrideUnit;
+@synthesize lblWeightUnit;
+@synthesize lblHeightUnit;
 @synthesize txbUserName;
 @synthesize txbStride;
 @synthesize txbHeight;
@@ -52,14 +50,18 @@
             [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = NO;
             unitSegTitleRight.hidden = YES;
-            heightUnit.text = @"cm";
+            lblHeightUnit.text = @"m";
+            lblStrideUnit.text = @"Stride(cm)";
+            lblWeightUnit.text = @"kg";
             break;  
         case 1:  
             [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
             [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = YES;
             unitSegTitleRight.hidden = NO;
-            heightUnit.text = @"inch";
+            lblHeightUnit.text = @"feet-inch";
+            lblStrideUnit.text = @"Stride(inch)";
+            lblWeightUnit.text = @"lbs";
             break;  
         default:  
             break;  
@@ -150,16 +152,14 @@
 
 - (void)viewDidUnload
 {
-    [self setBtnSetting:nil];
-    [self setBtnContactUs:nil];
-    [self setBtnHomePage:nil];
-    [self setBtnConfirm:nil];
-    [self setHeightUnit:nil];
+    [self setLblHeightUnit:nil];
     [self setTxbUserName:nil];
     [self setTxbStride:nil];
     [self setTxbHeight:nil];
     [self setTxbWeight:nil];
     [self setTxbAge:nil];
+    [self setLblStrideUnit:nil];
+    [self setLblWeightUnit:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -230,7 +230,7 @@
     NSTimeInterval animationDuration = 0.30f;        
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];        
     [UIView setAnimationDuration:animationDuration];        
-    CGRect rect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);        
+    CGRect rect = CGRectMake(0.0f, 20.0f, self.view.frame.size.width, self.view.frame.size.height);        
     self.view.frame = rect;        
     [UIView commitAnimations];        
     [textField resignFirstResponder];

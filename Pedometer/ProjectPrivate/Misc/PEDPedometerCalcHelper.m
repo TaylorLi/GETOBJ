@@ -18,12 +18,12 @@
 //km/h
 +(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond
 {
-    return km/sencond/3600/3600;
+    return sencond/60/km;
 }
 //min/km
 +(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond
 {
-    return sencond/60/km;
+    return km*3600/sencond;
 }
 
 

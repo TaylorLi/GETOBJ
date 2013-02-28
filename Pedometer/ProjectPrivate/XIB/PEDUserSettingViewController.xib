@@ -79,6 +79,7 @@
 						<string key="NSFrame">{{277, 434}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
@@ -376,7 +377,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">KG</string>
+						<string key="IBUIText">kg</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -388,13 +389,13 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">6</float>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="529633974">
 							<int key="type">1</int>
-							<double key="pointSize">7</double>
+							<double key="pointSize">8</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="849550533">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">7</double>
+							<double key="NSSize">8</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -651,7 +652,7 @@
 					<object class="IBUILabel" id="996404318">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{252, 179}, {34, 14}}</string>
+						<string key="NSFrame">{{252, 178}, {34, 14}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="999416610"/>
@@ -661,7 +662,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">cm</string>
+						<string key="IBUIText">m</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -671,15 +672,8 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">6</float>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">1</int>
-							<double key="pointSize">9</double>
-						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">9</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFontDescription" ref="529633974"/>
+						<reference key="IBUIFont" ref="849550533"/>
 					</object>
 					<object class="IBUITextField" id="896287830">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -784,46 +778,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnHomePage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="775670362"/>
-					</object>
-					<int key="connectionID">59</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnContactUs</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="52705217"/>
-					</object>
-					<int key="connectionID">60</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnSetting</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="525363097"/>
-					</object>
-					<int key="connectionID">61</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnConfirm</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="869458882"/>
-					</object>
-					<int key="connectionID">62</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">heightUnit</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="996404318"/>
-					</object>
-					<int key="connectionID">71</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">txbStride</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="786034558"/>
@@ -861,6 +815,30 @@
 						<reference key="destination" ref="335021462"/>
 					</object>
 					<int key="connectionID">89</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblStrideUnit</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="617001463"/>
+					</object>
+					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblWeightUnit</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="99496354"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblHeightUnit</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="996404318"/>
+					</object>
+					<int key="connectionID">92</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1195,7 +1173,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">89</int>
+			<int key="maxID">92</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1227,11 +1205,9 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnConfirm">UIButton</string>
-						<string key="btnContactUs">UIButton</string>
-						<string key="btnHomePage">UIButton</string>
-						<string key="btnSetting">UIButton</string>
-						<string key="heightUnit">UILabel</string>
+						<string key="lblHeightUnit">UILabel</string>
+						<string key="lblStrideUnit">UILabel</string>
+						<string key="lblWeightUnit">UILabel</string>
 						<string key="txbAge">UITextField</string>
 						<string key="txbHeight">UITextField</string>
 						<string key="txbStride">UITextField</string>
@@ -1239,24 +1215,16 @@
 						<string key="txbWeight">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnConfirm">
-							<string key="name">btnConfirm</string>
-							<string key="candidateClassName">UIButton</string>
+						<object class="IBToOneOutletInfo" key="lblHeightUnit">
+							<string key="name">lblHeightUnit</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="btnContactUs">
-							<string key="name">btnContactUs</string>
-							<string key="candidateClassName">UIButton</string>
+						<object class="IBToOneOutletInfo" key="lblStrideUnit">
+							<string key="name">lblStrideUnit</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="btnHomePage">
-							<string key="name">btnHomePage</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnSetting">
-							<string key="name">btnSetting</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="heightUnit">
-							<string key="name">heightUnit</string>
+						<object class="IBToOneOutletInfo" key="lblWeightUnit">
+							<string key="name">lblWeightUnit</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="txbAge">

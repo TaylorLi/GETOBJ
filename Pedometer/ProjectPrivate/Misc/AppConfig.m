@@ -78,22 +78,9 @@ static AppConfig* instance;
         return interfaceOrientation== UIInterfaceOrientationLandscapeRight||interfaceOrientation== UIInterfaceOrientationLandscapeLeft;
 }
 
--(void)saveAppSetting:(PEDUserInfo*) newUserInfo
+-(void)saveAppSetting
 {
-    if(!settings.userInfo){
-        if([[BO_PEDUserInfo getInstance] insertObject: newUserInfo]){
-            [AppConfig getInstance].settings.userInfo = newUserInfo;
-            settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
-        }
-    }else{
-        settings.userInfo.isCurrentUser = false;
-        if([[BO_PEDUserInfo getInstance] updateObject: settings.userInfo]){
-            if([[BO_PEDUserInfo getInstance] insertObject: newUserInfo]){
-                [AppConfig getInstance].settings.userInfo = newUserInfo;
-                settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
-            }
-        } 
-    }
+    [settings saveSetting];
 }
 -(void)restoreAppSetting
 {
@@ -104,6 +91,35 @@ static AppConfig* instance;
         settings.target = [[BO_PEDTarget getInstance] queryTargetByUserId: settings.userInfo.userId];
     }
 }
+
+-(void)saveAppConfig
+{
+    [self saveAppSetting];
+}
+
+-(void)restoreAppConfig
+{
+    [self restoreAppSetting];
+}
+
+-(void)saveUserInfo:(PEDUserInfo *)user
+{
+    if([AppConfig getInstance].settings.userInfo==nil)
+    {
+        
+    }
+    else{
+        if(![[AppConfig getInstance].settings.userInfo.userName isEqualToString:user.userName]){
+           PEDUserInfo *preUser = [[BO_PEDUserInfo getInstance] retreiveUserByName:user.userName];
+            if(preUser!=nil){
+                user.userId=preUser.userId;
+            }
+        }
+    }
+    [[BO_PEDUserInfo getInstance] updateUserProfileNotToBeCurrent];
+    [[BO_PEDUserInfo getInstance] saveObject:user];
+    [AppConfig getInstance].settings.userInfo=user;
+    [[AppConfig getInstance].settings initTargetData];}
 
 -(void)dealloc
 {

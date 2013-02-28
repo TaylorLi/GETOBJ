@@ -12,9 +12,9 @@
 @property (nonatomic,strong) NSString *userId;
 @property (nonatomic,copy) NSString *userName;
 @property (nonatomic) MeasureUnit measureFormat;
-@property (nonatomic) NSTimeInterval stride;
-@property (nonatomic)  NSTimeInterval height;
-@property (nonatomic) NSTimeInterval weight;
+@property (nonatomic) NSTimeInterval stride;//cm
+@property (nonatomic)  NSTimeInterval height;//cm
+@property (nonatomic) NSTimeInterval weight;//kg
 @property (nonatomic) BOOL gender;//0=Male, 1=Female
 @property (nonatomic) NSInteger age;
 @property (nonatomic,strong) NSDate *updateDate;

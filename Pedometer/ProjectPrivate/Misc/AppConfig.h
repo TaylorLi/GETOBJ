@@ -42,7 +42,11 @@
 + (AppConfig*)getInstance;
 
 +(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
--(void)saveAppSetting:(PEDUserInfo*) newUserInfo;
+-(void)saveAppSetting;
 -(void)restoreAppSetting;
+
+-(void)saveAppConfig;
+-(void)restoreAppConfig;
+-(void)saveUserInfo:(PEDUserInfo *)user;
 
 @end

@@ -301,26 +301,18 @@
 						<reference key="IBUITextColor" ref="720321412"/>
 						<int key="IBUITextAlignment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-						<float key="IBUIMinimumFontSize">13</float>
+						<float key="IBUIMinimumFontSize">11</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-							<int key="IBUIReturnKeyType">9</int>
+							<int key="IBUIKeyboardType">2</int>
+							<int key="IBUIReturnKeyType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<object class="NSCustomResource" key="IBUIBackground" id="1058324281">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">setting_textbox.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="593548276">
-							<string key="name">ArialMT</string>
-							<string key="family">Arial</string>
-							<int key="traits">0</int>
-							<double key="pointSize">13</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="151314960">
-							<string key="NSName">ArialMT</string>
-							<double key="NSSize">13</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFontDescription" ref="1067611536"/>
+						<reference key="IBUIFont" ref="676533429"/>
 					</object>
 					<object class="IBUIImageView" id="771239372">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -355,13 +347,24 @@
 						<reference key="IBUITextColor" ref="720321412"/>
 						<int key="IBUITextAlignment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-						<float key="IBUIMinimumFontSize">13</float>
+						<float key="IBUIMinimumFontSize">11</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIKeyboardType">2</int>
+							<int key="IBUIReturnKeyType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIBackground" ref="1058324281"/>
-						<reference key="IBUIFontDescription" ref="593548276"/>
-						<reference key="IBUIFont" ref="151314960"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="972281848">
+							<string key="name">ArialMT</string>
+							<string key="family">Arial</string>
+							<int key="traits">0</int>
+							<double key="pointSize">12</double>
+						</object>
+						<object class="NSFont" key="IBUIFont" id="858181580">
+							<string key="NSName">ArialMT</string>
+							<double key="NSSize">12</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUILabel" id="99496354">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -461,8 +464,17 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">setting_button.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="593548276"/>
-						<reference key="IBUIFont" ref="151314960"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<string key="name">ArialMT</string>
+							<string key="family">Arial</string>
+							<int key="traits">0</int>
+							<double key="pointSize">13</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">ArialMT</string>
+							<double key="NSSize">13</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUILabel" id="168183543">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -661,7 +673,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">m</string>
+						<string key="IBUIText">cm</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -692,16 +704,19 @@
 						<reference key="IBUITextColor" ref="720321412"/>
 						<int key="IBUITextAlignment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-						<float key="IBUIMinimumFontSize">13</float>
+						<float key="IBUIMinimumFontSize">11</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIAutocapitalizationType">1</int>
+							<int key="IBUIAutocorrectionType">1</int>
+							<int key="IBUIKeyboardType">6</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<object class="NSCustomResource" key="IBUIBackground">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">setting_tb.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="593548276"/>
-						<reference key="IBUIFont" ref="151314960"/>
+						<reference key="IBUIFontDescription" ref="972281848"/>
+						<reference key="IBUIFont" ref="858181580"/>
 					</object>
 					<object class="IBUITextField" id="786034558">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -721,13 +736,15 @@
 						<reference key="IBUITextColor" ref="720321412"/>
 						<int key="IBUITextAlignment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-						<float key="IBUIMinimumFontSize">13</float>
+						<float key="IBUIMinimumFontSize">11</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIKeyboardType">2</int>
+							<int key="IBUIReturnKeyType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIBackground" ref="1058324281"/>
-						<reference key="IBUIFontDescription" ref="593548276"/>
-						<reference key="IBUIFont" ref="151314960"/>
+						<reference key="IBUIFontDescription" ref="972281848"/>
+						<reference key="IBUIFont" ref="858181580"/>
 					</object>
 					<object class="IBUITextField" id="279822441">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -747,20 +764,25 @@
 						<reference key="IBUITextColor" ref="720321412"/>
 						<int key="IBUITextAlignment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
-						<float key="IBUIMinimumFontSize">13</float>
+						<float key="IBUIMinimumFontSize">11</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIKeyboardType">2</int>
+							<int key="IBUIReturnKeyType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIBackground" ref="1058324281"/>
-						<reference key="IBUIFontDescription" ref="593548276"/>
-						<reference key="IBUIFont" ref="151314960"/>
+						<reference key="IBUIFontDescription" ref="972281848"/>
+						<reference key="IBUIFont" ref="858181580"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="40226843"/>
-				<reference key="IBUIBackgroundColor" ref="315726114"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MAA</bytes>
+				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -1135,6 +1157,7 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="1.CustomClassName">UIScrollView</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1177,8 +1200,16 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">PEDUserSettingViewController</string>
+					<string key="className">GETUIScrollInputView</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GETUIScrollInputView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PEDUserSettingViewController</string>
+					<string key="superclassName">GETUIScrollInputView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="confirmClick:">id</string>
 						<string key="contactUsClick:">id</string>

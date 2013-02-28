@@ -20,4 +20,6 @@
 @property (nonatomic,strong) PEDTarget *target;
 @property PlusType plusType;
 
+-(void) initTargetData;
+-(void) saveSetting;
 @end

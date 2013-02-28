@@ -12,6 +12,12 @@
 #import "UIHelper.h"
 #import "PEDUserInfo.h"
 #import "AppConfig.h"
+#import "BO_PEDUserInfo.h"
+
+@interface PEDUserSettingViewController ()
+-(void)bindUserInfo:(PEDUserInfo *)userInfo;
+-(void)segUnitChangeToUnit:(MeasureUnit)unit;
+@end
 
 @implementation PEDUserSettingViewController
 @synthesize lblStrideUnit;
@@ -41,29 +47,45 @@
 }
 
 #pragma mark - View lifecycle
-
--(void)segUnitChange:(id)sender{  
-    UISegmentedControl* segControl = (UISegmentedControl*)sender;  
-    switch (segControl.selectedSegmentIndex) {  
-        case 0:  
-            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
-            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
+-(void)segUnitChangeToUnit:(MeasureUnit)unit
+{
+    switch (unit) {  
+        case MEASURE_UNIT_METRIC:  
+            [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
+            [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = NO;
             unitSegTitleRight.hidden = YES;
+            lblHeightUnit.text = @"cm";
+            lblStrideUnit.text = @"Stride(cm)";
+            lblWeightUnit.text = @"kg";
             break;  
-        case 1:  
-            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
-            [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
+        case MEASURE_UNIT_ENGLISH:  
+            [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
+            [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = YES;
             unitSegTitleRight.hidden = NO;
             break;  
         default:  
             break;  
-    }
+    }  
+
+}
+-(void)segUnitChange:(id)sender{ 
+    UISegmentedControl* segControl = (UISegmentedControl*)sender;
+    MeasureUnit unit=segControl.selectedSegmentIndex==0?MEASURE_UNIT_METRIC:MEASURE_UNIT_ENGLISH;
+    [self segUnitChangeToUnit:unit];
+    
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    userInfo.height = [self.txbHeight.text floatValue];//m
+    userInfo.weight = [self.txbWeight.text floatValue];//kg
+    userInfo.stride = [self.txbStride.text floatValue];//cm
+    if(userInfo){
+        [userInfo convertUnit:unit];
+        [self bindUserInfo:userInfo];
+    }        
     lblHeightUnit.text = [PEDPedometerCalcHelper getHeightUnit:segControl.selectedSegmentIndex withWordFormat:false];
     lblWeightUnit.text = [PEDPedometerCalcHelper getWeightUnit:segControl.selectedSegmentIndex withWordFormat:false];
     lblStrideUnit.text = [NSString stringWithFormat:@"Stride(%@)", [PEDPedometerCalcHelper getStrideUnit:segControl.selectedSegmentIndex withWordFormat:false]];
-
 } 
 
 -(void)segGenderChange:(id)sender{  
@@ -88,8 +110,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.view.frame = CGRectMake(0, 20, 320, 460);
+    [super viewDidLoad];    
+    ((UIScrollView *)self.view).delegate=self;
+    //self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
     segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 126, 76, 18)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -100,7 +123,7 @@
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:8],UITextAttributeFont ,nil];      
 //    [segGender setTitleTextAttributes:dic forState:UIControlStateNormal];
     // segUnit.momentary = YES; 
-    segUnit.selectedSegmentIndex = 0;
+    segUnit.selectedSegmentIndex =0;
     [segUnit addTarget:self action:@selector(segUnitChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segUnit];
     
@@ -125,7 +148,7 @@
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:NO]; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:NO]; 
     [segGender setWidth:38 forSegmentAtIndex:0];
-    segGender.selectedSegmentIndex = 0;
+    segGender.selectedSegmentIndex =0;
     [segGender addTarget:self action:@selector(segGenderChange:) forControlEvents:UIControlEventValueChanged];
     // segGender.momentary = YES; 
     [self.view addSubview:segGender];
@@ -144,8 +167,27 @@
     genderSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
     genderSegTitleRight.hidden = YES;
     [self.view addSubview:genderSegTitleRight];
-    
-	// Do any additional setup after loading the view, typically from a nib.
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    if(userInfo){
+        [self bindUserInfo:userInfo];
+    }
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)bindUserInfo:(PEDUserInfo *)userInfo
+{
+    if(userInfo){
+        [userInfo convertUnit:userInfo.measureFormat];
+        txbUserName.text=userInfo.userName;
+        txbAge.text=[NSString stringWithFormat:@"%i", userInfo.age];
+        txbHeight.text=[NSString stringWithFormat:@"%.2f", userInfo.height];
+        txbWeight.text=[NSString stringWithFormat:@"%.2f", userInfo.weight];
+        txbStride.text=[NSString stringWithFormat:@"%.2f", userInfo.stride];
+        segGender.selectedSegmentIndex =userInfo.gender? 0:1;
+        segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
+        [self segUnitChangeToUnit:userInfo.measureFormat];
+        [self segGenderChange:nil];
+    }    
 }
 
 - (void)viewDidUnload
@@ -206,51 +248,23 @@
 }
 - (IBAction)confirmClick:(id)sender {
     if([UIHelper validateTextFields: [[NSArray alloc] initWithObjects:txbUserName, txbStride, txbHeight, txbWeight, txbAge, nil]]){
-        PEDUserInfo *curr = [[PEDUserInfo alloc]init];
-        curr.userId = [UtilHelper stringWithUUID];
+        PEDUserInfo *curr=[AppConfig getInstance].settings.userInfo;
+        if(!curr){
+            curr = [[PEDUserInfo alloc]init];
+            curr.userId = [UtilHelper stringWithUUID];
+        }
         curr.userName = self.txbUserName.text;
         curr.age = [self.txbAge.text intValue];
         curr.measureFormat = segUnit.selectedSegmentIndex;
         curr.gender = segGender.selectedSegmentIndex;
         curr.height = [self.txbHeight.text floatValue];//m
         curr.weight = [self.txbWeight.text floatValue];//kg
-        curr.stride = [self.txbWeight.text floatValue];//cm
+        curr.stride = [self.txbStride.text floatValue];//cm
         curr.updateDate=[NSDate date];
         curr.isCurrentUser=YES;
-        [[AppConfig getInstance] saveAppSetting: curr];
-        [[PEDAppDelegate getInstance]showTabView];
+        [curr convertUnit:MEASURE_UNIT_METRIC];
+        [[AppConfig getInstance] saveUserInfo:curr];        
+        [[PEDAppDelegate getInstance] showTabView];
     }
 }
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField 
-{        
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.        
-    NSTimeInterval animationDuration = 0.30f;        
-    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];        
-    [UIView setAnimationDuration:animationDuration];        
-    CGRect rect = CGRectMake(0.0f, 20.0f, self.view.frame.size.width, self.view.frame.size.height);        
-    self.view.frame = rect;        
-    [UIView commitAnimations];        
-    [textField resignFirstResponder];
-    return YES;        
-}
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{        
-    CGRect frame = textField.frame;
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
-    NSTimeInterval animationDuration = 0.30f;                
-    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];                
-    [UIView setAnimationDuration:animationDuration];
-    float width = self.view.frame.size.width;                
-    float height = self.view.frame.size.height;        
-    if(offset > 0)
-    {
-        CGRect rect = CGRectMake(0.0f, -offset,width,height);                
-        self.view.frame = rect;        
-    }        
-    [UIView commitAnimations];                
-}
-
 @end

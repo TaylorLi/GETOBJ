@@ -35,5 +35,5 @@ typedef id (^FuncProcessBlock)(id sender,FMResultSet * resultSet);
 -(BOOL)deleteObject:(Class)type withPrimaryKeyValue:(id)value primaryKeyName:(NSString *)primaryKey;
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock)func;
 -(BOOL)isColumnExistedOfTable:(NSString *)tableName column:(NSString*) columnName;
-
+- (BOOL)executeNoQuery:(NSString *)sql parameters:(id)param;
 @end

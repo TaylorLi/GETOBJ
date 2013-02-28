@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PEDUIBaseViewController.h"
 
-@interface PEDTargetViewController : UIViewController
+@interface PEDTargetViewController : PEDUIBaseViewController
+
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLastUpdate;
 @property (weak, nonatomic) IBOutlet UILabel *lblStepTarget;

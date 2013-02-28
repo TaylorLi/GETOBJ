@@ -21,11 +21,13 @@
 #import "PEDTargetViewController.h"
 #import "PEDGraphsViewController.h"
 #import "CustomerTabBarController.h"
+#import "PEDImportDataViewController.h"
+
 
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
-@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController;
+@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController,pedImportDataViewController,pedAvailPerialViewController;
 @synthesize customerTabBarController;
 
 static PEDAppDelegate* _instance;
@@ -80,6 +82,23 @@ static PEDAppDelegate* _instance;
         }
     }
     [self swithView : pedMainViewController.view];
+}
+
+-(void)showImportDataView{
+    
+    if(!pedImportDataViewController){
+        pedImportDataViewController =[[PEDImportDataViewController alloc] init];
+    }
+    [self swithView:pedImportDataViewController.view];
+    
+    //pedAvailPerialViewController = [[PEDAvailPerialViewController alloc] init];
+    //[self swithView:pedAvailPerialViewController.view];
+}
+
+-(void)hideImportDataViewAndShowTabView
+{
+    pedImportDataViewController = nil;
+    [[PEDAppDelegate getInstance] showTabView];
 }
 
 -(void) showTabView{
@@ -151,24 +170,12 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [[PEDDatabase getInstance] setupServerDatabase];
-//    PEDPedometerData *data=[[PEDPedometerData alloc] init];
-//    data.distance=3.6;
-//    data.activeTime=1800;
-//    data.step=6000;
-//    data.calorie=2000;
-//    data.optDate=[[NSDate date] dateByAddingTimeInterval:-3600*11];
-//    data.targetId=@"1abcee-xxxx-xx";
-//    [[BO_PEDPedometerData getInstance] insertObject:data];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
-//    v.backgroundColor = [UIColor whiteColor];
-//    [self.window addSubview:v];
-    
+    [[PEDDatabase getInstance] setupServerDatabase];
+    [AppConfig getInstance];    
     _instance = self;
-    pedMainViewController = [[PEDMainViewController alloc]init];
-    //[self.window addSubview:pedMainViewController.view];
-    self.window.rootViewController = pedMainViewController;
+    pedMainViewController = [[PEDMainViewController alloc] init];
+    [self.window addSubview:pedMainViewController.view];
+    //self.window.rootViewController = pedMainViewController;
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
@@ -197,6 +204,7 @@ static PEDAppDelegate* _instance;
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    [[AppConfig getInstance] saveAppConfig];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -219,6 +227,8 @@ static PEDAppDelegate* _instance;
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    [[AppConfig getInstance] restoreAppConfig];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

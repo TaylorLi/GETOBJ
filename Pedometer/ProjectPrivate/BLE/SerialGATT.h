@@ -9,17 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-#define SERIAL_PERIPHERAL_SERVICE_UUID      @"FFF0"
-#define SERIAL_PERIPHERAL_CHAR_RECV_UUID    @"FFF1"
-
-#define SERIAL_PERIPHERAL_NOTIFY_SERVICE_UUID @"FFE0"
-#define SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID  @"FFE1"
 
 @protocol BTSmartSensorDelegate
 
 @optional
-- (void) peripheralFound:(CBPeripheral *)peripheral;
-- (void) serialGATTCharValueUpdated: (NSString *)UUID value: (NSData *)data;
+-(void) peripheralFound:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)data;
+-(void) serialGATTCharValueUpdated: (NSString *)UUID value: (NSData *)data;
+-(void) sensorPowerReady;
+-(void) searchPeripheralTimeout;
+-(void) sensorReadyToExchangeData;
 @end
 
 @interface SerialGATT : NSObject<CBCentralManagerDelegate, CBPeripheralDelegate> {
@@ -30,14 +28,15 @@
 @property (strong, nonatomic) NSMutableArray *peripherals;
 @property (strong, nonatomic) CBCentralManager *manager;
 @property (strong, nonatomic) CBPeripheral *activePeripheral;
-@property (strong, nonatomic) CBService *serialGATTService; // for SERIAL_PERIPHERAL_SERVICE_UUID
-@property (strong, nonatomic) CBCharacteristic *dataRecvrCharacteristic; // for SERIAL_PERIPHERAL_CHAR_RECV_UUID
+@property (strong, nonatomic) CBService *serialHeartRateService; // for SERIAL_PERIPHERAL_HEART_RATE_SERVICE_UUID
+@property (strong, nonatomic) CBCharacteristic *dataSettingWriteCharacteristic; // for SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID
+@property (strong, nonatomic) CBCharacteristic *dataNotifyCharacteristic; // for SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID
 
-@property (strong, nonatomic) CBService *serialGATTNotifyService; // for SERIAL_PERIPHERAL_NOTIFY_SERVICE_UUID
-@property (strong, nonatomic) CBCharacteristic *dataNotifyCharacteristic; // for SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID
+@property (strong, nonatomic) CBUUID *characteristicWriteUUID;
+@property (strong, nonatomic) CBUUID *characteristicNotifyUUID;
+@property (strong,nonatomic) CBUUID *serviceHeartRateDataUUID;
+@property (strong,nonatomic) NSTimer *scanTimer;
 
-@property (strong, nonatomic) CBUUID *serviceWriteUUID;
-@property (strong, nonatomic) CBUUID *serviceNotifyUUID;
 
 #pragma mark - Methods for controlling the Bluetooth Smart Sensor
 -(void) setup; //controller setup
@@ -54,6 +53,8 @@
 
 -(CBService *) findServiceFromUUID: (CBUUID *)UUID p:(CBPeripheral *)peripheral;
 -(CBCharacteristic *) findCharacteristicFromUUID: (CBUUID *)UUID p:(CBPeripheral *)peripheral service: (CBService *)service;
+
+-(void) cancelTimer;
 
 
 

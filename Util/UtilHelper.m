@@ -178,6 +178,21 @@ if(d==nil)
 {
     return [[UIDevice currentDevice] name];
 }
++(NSString *)hexDescriptionForNSData:(NSData *)data
+{
+    Byte *bytes = (Byte *)[data bytes];    
+    NSString *hexStr=@"";    
+    for(int i=0;i<[data length];i++)        
+    {        
+        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+        if([newHexStr length]==1)
+            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+        else 
+            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+    }
+    
+    return [NSString stringWithFormat:@"16 Hex Of bytes is %@",hexStr];
+}    
 +(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body{
     
     NSString *email = [NSString stringWithFormat:@"mailto://%@&subject=%@&body=%@", to, subject, body];

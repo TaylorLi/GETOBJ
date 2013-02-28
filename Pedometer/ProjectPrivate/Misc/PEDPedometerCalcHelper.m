@@ -11,9 +11,14 @@
 @implementation PEDPedometerCalcHelper
 
 //卡路里公式=1.036 × 行走距离(km) × 体重(kg)
-+(NSTimeInterval) calCalorieByStep:(NSInteger)step
++(NSTimeInterval) calCalorieByStep:(NSInteger)step stride:(NSTimeInterval)stride weight:(NSTimeInterval)weight
 {
-    return 1.036*step*[AppConfig getInstance].settings.userInfo.stride/100*[AppConfig getInstance].settings.userInfo.weight;
+    return 1.036*step*stride/100/1000*weight;
+}
+
++(NSTimeInterval) calDistanceByStep:(NSInteger)step stride:(NSTimeInterval)stride 
+{
+    return 1.036*step*stride/100/1000;
 }
 //km/h
 +(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond
@@ -29,14 +34,14 @@
 +(NSString*) getStrideUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
     NSString *strideUnit = nil;
     switch (measureUnit) {
-        case UNIT_METRIC:
+        case MEASURE_UNIT_METRIC:
             if (isUpper) {
                 strideUnit = @"CM";
             }else{
                 strideUnit = @"cm";
             }
             break;
-        case UNIT_ENGLISH:
+        case MEASURE_UNIT_ENGLISH:
             if (isUpper) {
                 strideUnit = @"Inch";
             }else{
@@ -52,14 +57,14 @@
 +(NSString*) getHeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
     NSString *heightUnit = nil;
     switch (measureUnit) {
-        case UNIT_METRIC:
+        case MEASURE_UNIT_METRIC:
             if (isUpper) {
                 heightUnit = @"M";
             }else{
                 heightUnit = @"m";
             }
             break;
-        case UNIT_ENGLISH:
+        case MEASURE_UNIT_ENGLISH:
             if (isUpper) {
                 heightUnit = @"Feet-Inch";
             }else{
@@ -75,14 +80,14 @@
 +(NSString*) getWeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
     NSString *weightUnit = nil;
     switch (measureUnit) {
-        case UNIT_METRIC:
+        case MEASURE_UNIT_METRIC:
             if (isUpper) {
                 weightUnit = @"KG";
             }else{
                 weightUnit = @"kg";
             }
             break;
-        case UNIT_ENGLISH:
+        case MEASURE_UNIT_ENGLISH:
             if (isUpper) {
                 weightUnit = @"Lbs";
             }else{
@@ -98,14 +103,14 @@
 +(NSString*) getDistanceUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
     NSString *distanceUnit = nil;
     switch (measureUnit) {
-        case UNIT_METRIC:
+        case MEASURE_UNIT_METRIC:
             if (isUpper) {
                 distanceUnit = @"KM";
             }else{
                 distanceUnit = @"km";
             }
             break;
-        case UNIT_ENGLISH:
+        case MEASURE_UNIT_ENGLISH:
             if (isUpper) {
                 distanceUnit = @"Mile";
             }else{

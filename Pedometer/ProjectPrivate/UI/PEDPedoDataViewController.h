@@ -9,12 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "V8HorizontalPickerView.h"
 #import "V8HorizontalPickerViewProtocol.h"
+#import "UAModalPanel.h"
+#import "DialogBoxContainer.h"
+#import "PEDUIBaseViewController.h"
 
-@interface PEDPedoDataViewController : UIViewController//<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
+@class  DialogBoxContainer;
+
+@interface PEDPedoDataViewController : PEDUIBaseViewController<UAModalPanelDelegate,DialogBoxDelegate>
+{
+    DialogBoxContainer *regPannel;
+}
+
+
+
+//<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
 //    NSMutableArray *monthArray;
 //}
 //@property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 - (IBAction)showMonthView:(id)sender;
 
+
 - (void) initData;
+
 @end

@@ -115,8 +115,8 @@
     lblStepRemain.text = [NSString stringWithFormat:@"%i", target.remainStep];
     lblStepAmount.text = [NSString stringWithFormat:@"%i", target.targetStep - target.remainStep];
     NSString *distanceUnit = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
-    NSTimeInterval targetDistance = userInfo.measureFormat == UNIT_METRIC ? target.targetDistance : [PEDPedometerCalcHelper convertKmToMile:target.targetDistance];
-    NSTimeInterval remainDistance = userInfo.measureFormat == UNIT_METRIC ? target.remainDistance : [PEDPedometerCalcHelper convertKmToMile:target.remainDistance];
+    NSTimeInterval targetDistance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? target.targetDistance : [PEDPedometerCalcHelper convertKmToMile:target.targetDistance];
+    NSTimeInterval remainDistance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? target.remainDistance : [PEDPedometerCalcHelper convertKmToMile:target.remainDistance];
     lblDistanceTarget.text = [NSString stringWithFormat:@"%.1f%@", targetDistance, distanceUnit];
     lblDistanceRemain.text = [NSString stringWithFormat:@"%.1f", remainDistance];
     lblDistanceAmount.text = [NSString stringWithFormat:@"%.1f%@", targetDistance - remainDistance, distanceUnit];

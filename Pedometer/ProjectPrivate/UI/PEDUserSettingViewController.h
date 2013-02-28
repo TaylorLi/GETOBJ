@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "GETUIScrollInputView.h"
 
-@interface PEDUserSettingViewController : UIViewController<UITextFieldDelegate, MFMailComposeViewControllerDelegate>{
+@interface PEDUserSettingViewController : GETUIScrollInputView< MFMailComposeViewControllerDelegate>{
     UISegmentedControl* segUnit;
     UISegmentedControl* segGender;
     UILabel *unitSegTitleLeft;

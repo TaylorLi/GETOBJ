@@ -9,6 +9,7 @@
 #import "PEDPedoDataViewController.h"
 #import "PEDPedoViewController.h"
 #import "PEDAppDelegate.h"
+#import "DialogBoxContainer.h"
 
 @implementation PEDPedoDataViewController
 //@synthesize monthSelectView;
@@ -101,6 +102,10 @@
 
 - (IBAction)showMonthView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)connectToDevice:(id)sender {
+    
 }
 
 //- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {

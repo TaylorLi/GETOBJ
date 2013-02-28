@@ -147,6 +147,27 @@ static Database* instance;
     return result;
 }
 
+- (BOOL)executeNoQuery:(NSString *)sql parameters:(id)param {
+    FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
+    BOOL rs=NO;
+    if ([db open]) {       
+        if([param isKindOfClass:[NSArray class]]){
+            rs= [db executeUpdate:sql withArgumentsInArray:param];
+        }
+        else if([param isKindOfClass:[NSDictionary class]]){
+            rs= [db executeUpdate:sql withParameterDictionary:param];
+        }else{
+            rs= [db executeUpdate:sql];
+        }   
+        
+        if([db hadError]){            
+            NSLog(@"[sqlite] query queryList error:[%@],error detail:%@",sql,db.lastErrorMessage);
+        }
+        
+        [db close];
+    }
+    return rs;
+}
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock)func {
     NSMutableArray *result=[[NSMutableArray alloc] init];
     FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];

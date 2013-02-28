@@ -11,8 +11,8 @@
 #define DATABASE_NAME @"Pedometer"
 
 typedef enum {
-	UNIT_METRIC = 0,					// no packet
-    UNIT_ENGLISH = 1
+	MEASURE_UNIT_METRIC = 0,					// no packet
+    MEASURE_UNIT_ENGLISH = 1
 } MeasureUnit;
 
 typedef enum{

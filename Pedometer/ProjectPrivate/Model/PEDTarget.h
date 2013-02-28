@@ -17,7 +17,9 @@
 @property (nonatomic) NSTimeInterval remainDistance;
 @property (nonatomic) NSTimeInterval targetCalorie;
 @property (nonatomic) NSTimeInterval remainCalorie;
-@property (nonatomic,strong) NSDate *udpateDate;
+@property (nonatomic,strong) NSDate *updateDate;
 @property (nonatomic,strong) NSString *userId;
+
+-(id) initWithUserInfo:(PEDUserInfo*)user;
 
 @end

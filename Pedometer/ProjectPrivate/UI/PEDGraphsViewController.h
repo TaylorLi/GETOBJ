@@ -8,8 +8,9 @@
 
 #import "CorePlot-CocoaTouch.h"
 #import <UIKit/UIKit.h>
+#import "PEDUIBaseViewController.h"
 
-@interface PEDGraphsViewController : UIViewController<CPTPlotDataSource, CPTAxisDelegate>
+@interface PEDGraphsViewController : PEDUIBaseViewController<CPTPlotDataSource, CPTAxisDelegate>
 {
     CPTXYGraph *graph;
     

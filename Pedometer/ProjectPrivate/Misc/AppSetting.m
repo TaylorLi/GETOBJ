@@ -11,6 +11,7 @@
 #import "PEDUserInfo.h"
 #import "BleDefinition.h"
 #import "BO_PEDTarget.h"
+#import "PEDTarget.h"
 
 @implementation AppSetting
 
@@ -30,17 +31,40 @@
         requestTimeout=30;
         showDateCount=7;
         userInfo=[[BO_PEDUserInfo getInstance] retreiveCurrentUser];
-        target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
-        plusType = PLUS_NONE;
+        [self initTargetData];
         /*
         if(userInfo==nil){
             userInfo=[[PEDUserInfo alloc] initWithDefault];
             [[BO_PEDUserInfo getInstance] insertObject:userInfo];
         }
-        */ 
+        target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
+        if(target==nil){
+           target= [[PEDTarget alloc] initWithUserInfo:userInfo];
+           [[BO_PEDTarget getInstance] insertObject:target];
+        }
+         */
+        plusType = PLUS_NONE;
     }
     return self;
 }
 
+-(void) initTargetData{
+    if(userInfo!=nil){
+        target = [[BO_PEDTarget getInstance] queryTargetByUserId: userInfo.userId];
+        if(target==nil){
+            target= [[PEDTarget alloc] initWithUserInfo:userInfo];
+            [[BO_PEDTarget getInstance] insertObject:target];
+        }
+    }    
+}
+
+
+-(void) saveSetting
+{
+    if(userInfo)
+        [[BO_PEDUserInfo getInstance] updateObject:userInfo];
+    if(target)
+        [[BO_PEDTarget getInstance] saveObject:target];
+}
 
 @end

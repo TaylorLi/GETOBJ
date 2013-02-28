@@ -143,7 +143,7 @@
     h = (int)currPedometerData.activeTime / 3600;
     m = (int)currPedometerData.activeTime % 3600 / 60;
     s = (int)currPedometerData.activeTime % 3600 % 60;
-    NSTimeInterval distance = userInfo.measureFormat == UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
+    NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
     lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
     lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
     lblDistanceAmount.text = [NSString stringWithFormat:@"%.1f", distance];

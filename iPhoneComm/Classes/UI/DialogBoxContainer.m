@@ -36,10 +36,27 @@
         viewLoadedFromXib=viewConroller.view;
         //viewLoadedFromXib= [[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil] objectAtIndex:0];
         //横向时，宽度与高度互换
-        CGSize mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-        CGSize contentViewSize=viewLoadedFromXib.bounds.size;
-        //以屏幕宽度作为大小时自适应处理
-        self.margin = UIEdgeInsetsMake((mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2,(mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2);
+        CGSize mainScreenSize;
+         CGSize contentViewSize=viewLoadedFromXib.bounds.size;
+        UIDevice *device = [UIDevice currentDevice];        
+        if (device.orientation == UIInterfaceOrientationPortrait || device.orientation == UIInterfaceOrientationPortraitUpsideDown) 
+            
+        {//正
+           //self.margin = UIEdgeInsetsMake((mainScreenSize.width-contentViewSize.width)/2,(mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2,(mainScreenSize.height-contentViewSize.height)/2);
+        }
+        else             
+        {//反
+            
+            mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+            //以屏幕宽度作为大小时自适应处理
+            
+             self.margin = UIEdgeInsetsMake((mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2,(mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2);
+            /*
+            mainScreenSize =CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width); 
+             //以屏幕宽度作为大小时自适应处理
+             self.margin = UIEdgeInsetsMake((mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2,(mainScreenSize.height-contentViewSize.height)/2,(mainScreenSize.width-contentViewSize.width)/2);
+             */
+        }           
         [self setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.1]];
         [self.contentView addSubview:viewLoadedFromXib];  
         if(!showClose){
@@ -54,10 +71,10 @@
     //NSLog(@"%@",NSStringFromCGRect(self.contentView.bounds));
     //[viewLoadedFromXib setFrame:self.contentView.bounds];
     /*
-    self.closeButton.imageView.autoresizingMask=YES;
-    [self.closeButton setFrame:CGRectMake(self.closeButton.frame.origin.x, self.closeButton.frame.origin.y, 70.0f, 70.0f)];     
-    self.closeButton.imageView.image=[UIImage imageNamed:@"game_close_btn.png"];
-    NSLog(@"%@",NSStringFromCGRect(self.closeButton.frame));   
+     self.closeButton.imageView.autoresizingMask=YES;
+     [self.closeButton setFrame:CGRectMake(self.closeButton.frame.origin.x, self.closeButton.frame.origin.y, 70.0f, 70.0f)];     
+     self.closeButton.imageView.image=[UIImage imageNamed:@"game_close_btn.png"];
+     NSLog(@"%@",NSStringFromCGRect(self.closeButton.frame));   
      */
     CGRect f = [self roundedRectFrame];
     

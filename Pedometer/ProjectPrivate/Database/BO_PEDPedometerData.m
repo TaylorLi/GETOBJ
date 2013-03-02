@@ -8,6 +8,7 @@
 
 #import "BO_PEDPedometerData.h"
 #import "PEDPedometerData.h"
+#import "UtilHelper.h"
 
 static BO_PEDPedometerData* instance;
 
@@ -42,15 +43,20 @@ static BO_PEDPedometerData* instance;
         NSDate *date=[dateFrom dateByAddingTimeInterval:i*3600*24];
         BOOL find=NO;
         for (PEDPedometerData *data in array) {
-           if([data.optDate timeIntervalSinceDate:date]==0)
-               {
-                   find=YES;
-                   [sortArray addObject:data];
-                   break;
-               }
+            if([UtilHelper isSameDate:data.optDate withAnotherDate:date]){
+                find=YES;
+                [sortArray addObject:data];
+                break;
+            }
+//           if([data.optDate timeIntervalSinceDate:date]==0)
+//           {
+//               find=YES;
+//               [sortArray addObject:data];
+//               break;
+//           }
         }
         if(!find){
-            [sortArray addObject:nil]; 
+            [sortArray addObject:[[PEDPedometerData alloc] init]]; 
         }
     }
   return sortArray;  

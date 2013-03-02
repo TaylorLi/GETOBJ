@@ -145,7 +145,7 @@ static PEDAppDelegate* _instance;
 //        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
 //        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
         customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
-        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
+        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
         tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
         tabBarBg.backgroundColor = [UIColor clearColor];
         [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
@@ -168,8 +168,21 @@ static PEDAppDelegate* _instance;
 //    [self.window makeKeyAndVisible];
 //}
 
+-(void)restoreControllerData{
+    if(pedPedoViewController){
+        [pedPedoViewController initData];
+    }
+    if(pedTargetViewController){
+        [pedTargetViewController initData];
+    }
+    if(pedBarchartViewController){
+        [pedTargetViewController initData];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    self.window.frame = CGRectMake(0, 20, 320, 460);
     [[PEDDatabase getInstance] setupServerDatabase];
     [AppConfig getInstance];    
     _instance = self;

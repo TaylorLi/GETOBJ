@@ -27,6 +27,15 @@ typedef enum{
     PLUS_SPORT
 }PlusType;
 
+typedef enum{
+    STATISTICS_STEP = 0,
+    STATISTICS_ACTIVITY_TIME, 
+    STATISTICS_CALORIES, 
+    STATISTICS_DISTANCE, 
+    STATISTICS_AVG_SPEED, 
+    STATISTICS_AVG_PACE
+}StatisticsType;
+
 @interface Definition : NSObject
 
 

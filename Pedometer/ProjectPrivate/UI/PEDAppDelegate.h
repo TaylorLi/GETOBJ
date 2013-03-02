@@ -32,4 +32,5 @@
 -(void) setCustomerTabBarControllerBackground: (UIImage *) bgImage;
 -(void)showImportDataView;
 -(void)hideImportDataViewAndShowTabView;
+-(void)restoreControllerData;
 @end

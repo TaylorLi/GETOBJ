@@ -106,7 +106,7 @@
 
 -(void) setCenterPoint:(CGFloat) y
 {
-    y=y==0?self.view.frame.size.height/2:y;
+    y=y==0?(self.view.frame.size.height + 40)/2:y;
     NSTimeInterval animationDuration=0.40f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
     [UIView setAnimationDuration:animationDuration];

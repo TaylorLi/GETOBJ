@@ -30,4 +30,5 @@
 +(NSString *)deviceName;
 +(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body;
 + (NSString*) stringByUUID:(CFUUIDRef)uuidObj;
++(BOOL) isSameDate:(NSDate*) oneDate withAnotherDate:(NSDate*) anotherDate;
 @end

@@ -55,9 +55,9 @@
             [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
             unitSegTitleLeft.hidden = NO;
             unitSegTitleRight.hidden = YES;
-            lblHeightUnit.text = @"cm";
-            lblStrideUnit.text = @"Stride(cm)";
-            lblWeightUnit.text = @"kg";
+//            lblHeightUnit.text = @"cm";
+//            lblStrideUnit.text = @"Stride(cm)";
+//            lblWeightUnit.text = @"kg";
             break;  
         case MEASURE_UNIT_ENGLISH:  
             [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
@@ -68,7 +68,9 @@
         default:  
             break;  
     }  
-
+    lblHeightUnit.text = [PEDPedometerCalcHelper getHeightUnit:unit withWordFormat:false];
+    lblWeightUnit.text = [PEDPedometerCalcHelper getWeightUnit:unit withWordFormat:false];
+    lblStrideUnit.text = [NSString stringWithFormat:@"Stride(%@)", [PEDPedometerCalcHelper getStrideUnit:unit withWordFormat:false]];
 }
 -(void)segUnitChange:(id)sender{ 
     UISegmentedControl* segControl = (UISegmentedControl*)sender;
@@ -83,9 +85,7 @@
         [userInfo convertUnit:unit];
         [self bindUserInfo:userInfo];
     }        
-    lblHeightUnit.text = [PEDPedometerCalcHelper getHeightUnit:segControl.selectedSegmentIndex withWordFormat:false];
-    lblWeightUnit.text = [PEDPedometerCalcHelper getWeightUnit:segControl.selectedSegmentIndex withWordFormat:false];
-    lblStrideUnit.text = [NSString stringWithFormat:@"Stride(%@)", [PEDPedometerCalcHelper getStrideUnit:segControl.selectedSegmentIndex withWordFormat:false]];
+
 } 
 
 -(void)segGenderChange:(id)sender{  
@@ -255,15 +255,16 @@
         }
         curr.userName = self.txbUserName.text;
         curr.age = [self.txbAge.text intValue];
-        curr.measureFormat = segUnit.selectedSegmentIndex;
-        curr.gender = segGender.selectedSegmentIndex;
         curr.height = [self.txbHeight.text floatValue];//m
         curr.weight = [self.txbWeight.text floatValue];//kg
         curr.stride = [self.txbStride.text floatValue];//cm
         curr.updateDate=[NSDate date];
         curr.isCurrentUser=YES;
         [curr convertUnit:MEASURE_UNIT_METRIC];
-        [[AppConfig getInstance] saveUserInfo:curr];        
+        curr.measureFormat = segUnit.selectedSegmentIndex;
+        curr.gender = segGender.selectedSegmentIndex;
+        [[AppConfig getInstance] saveUserInfo:curr];    
+        [[PEDAppDelegate getInstance] restoreControllerData];
         [[PEDAppDelegate getInstance] showTabView];
     }
 }

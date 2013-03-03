@@ -56,6 +56,7 @@
 		6B00480B16D95C1100B87CA8 /* PEDBarchartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */; };
 		6B00480D16D9644500B87CA8 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */; };
 		6B4ABEFE16DBFE71000A73EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */; };
+		6B8208BD16E24EAB00D61166 /* PEDPedometerDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8208BC16E24EAB00D61166 /* PEDPedometerDataHelper.m */; };
 		6B8899F516D8E2F700478F97 /* PEDPedoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */; };
 		6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DADC16D8445600EF70C1 /* back_normal.png */; };
 		6B94DB0716D8445600EF70C1 /* back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DADD16D8445600EF70C1 /* back_normal@2x.png */; };
@@ -298,6 +299,8 @@
 		6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDBarchartViewController.xib; path = ProjectPrivate/XIB/PEDBarchartViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDGraphsViewController.xib; path = ProjectPrivate/XIB/PEDGraphsViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		6B8208BB16E24EAB00D61166 /* PEDPedometerDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerDataHelper.h; path = ProjectPrivate/Misc/PEDPedometerDataHelper.h; sourceTree = SOURCE_ROOT; };
+		6B8208BC16E24EAB00D61166 /* PEDPedometerDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerDataHelper.m; path = ProjectPrivate/Misc/PEDPedometerDataHelper.m; sourceTree = SOURCE_ROOT; };
 		6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPedoViewController.xib; path = ProjectPrivate/XIB/PEDPedoViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B94DADC16D8445600EF70C1 /* back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_normal.png; sourceTree = "<group>"; };
 		6B94DADD16D8445600EF70C1 /* back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_normal@2x.png"; sourceTree = "<group>"; };
@@ -1055,6 +1058,8 @@
 				DACC06E316D2635C0062E2A8 /* Definition.m */,
 				DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */,
 				DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */,
+				6B8208BB16E24EAB00D61166 /* PEDPedometerDataHelper.h */,
+				6B8208BC16E24EAB00D61166 /* PEDPedometerDataHelper.m */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -1638,6 +1643,7 @@
 				DAF9018E16DF9103002BD1EB /* GETUIScrollView.m in Sources */,
 				DAFBB96616E1C0B000441CE5 /* BleServiceInfo.m in Sources */,
 				DAFB277B16E388E500181051 /* BleExchangeDataContainer.m in Sources */,
+				6B8208BD16E24EAB00D61166 /* PEDPedometerDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1676,7 +1682,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
 				SDKROOT = iphoneos5.1;
@@ -1697,7 +1703,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";

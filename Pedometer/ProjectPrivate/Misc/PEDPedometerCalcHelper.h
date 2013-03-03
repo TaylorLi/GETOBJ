@@ -13,8 +13,8 @@
 +(NSTimeInterval) calCalorieByStep:(NSInteger)step stride:(NSTimeInterval)stride weight:(NSTimeInterval)weight; 
 //min/km
 +(NSTimeInterval) calDistanceByStep:(NSInteger)step stride:(NSTimeInterval)stride;
-+(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond;
-+(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond;
++(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit;
++(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit;
 //km
 
 +(NSTimeInterval) convertCmToInch:(NSTimeInterval) cm;

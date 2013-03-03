@@ -21,14 +21,14 @@
     return 1.036*step*stride/100/1000;
 }
 //km/h
-+(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond
++(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit
 {
-    return sencond/60/km;
+    return sencond/60/(measureUnit==MEASURE_UNIT_METRIC ? km : [self convertKmToMile:km]);
 }
 //min/km
-+(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond
++(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit
 {
-    return km*3600/sencond;
+    return (measureUnit==MEASURE_UNIT_METRIC ? km : [self convertKmToMile:km])*3600/sencond;
 }
 
 +(NSString*) getStrideUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{
@@ -59,9 +59,9 @@
     switch (measureUnit) {
         case MEASURE_UNIT_METRIC:
             if (isUpper) {
-                heightUnit = @"M";
+                heightUnit = @"CM";
             }else{
-                heightUnit = @"m";
+                heightUnit = @"cm";
             }
             break;
         case MEASURE_UNIT_ENGLISH:

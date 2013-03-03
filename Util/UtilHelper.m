@@ -208,4 +208,7 @@ if(d==nil)
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:email]];
 }
++(BOOL) isSameDate:(NSDate*) oneDate withAnotherDate:(NSDate*) anotherDate{
+    return [[self formateDate:oneDate withFormat:@"yyyyMMdd"] isEqualToString:[self formateDate:anotherDate withFormat:@"yyyyMMdd"]];
+}
 @end

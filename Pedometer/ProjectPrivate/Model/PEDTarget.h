@@ -19,6 +19,8 @@
 @property (nonatomic) NSTimeInterval remainCalorie;
 @property (nonatomic,strong) NSDate *updateDate;
 @property (nonatomic,strong) NSString *userId;
+@property NSInteger sleepDataCount;
+@property NSInteger pedoDataCount;
 
 -(id) initWithUserInfo:(PEDUserInfo*)user;
 

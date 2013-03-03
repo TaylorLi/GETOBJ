@@ -29,4 +29,5 @@
 +(id)fromJson:(NSString *)jsonString;
 +(NSString *)deviceName;
 +(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body;
++ (NSString*) stringByUUID:(CFUUIDRef)uuidObj;
 @end

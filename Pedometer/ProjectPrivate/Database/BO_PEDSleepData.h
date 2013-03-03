@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "BOBase.h"
 
+@class PEDSleepData;
+
 @interface BO_PEDSleepData : BOBase
 
 + (BO_PEDSleepData*) getInstance;
 
 
 //-(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq;
+-(PEDSleepData *)getWithTarget :(NSString*) targetId withDate:(NSDate *)date;
 
 @end

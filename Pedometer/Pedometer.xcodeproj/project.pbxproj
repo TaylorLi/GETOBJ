@@ -157,6 +157,7 @@
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
+		DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */; };
 		DA667AAD16D26C9100ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA667AB116D26CD500ED3A49 /* NSObjectSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB016D26CD500ED3A49 /* NSObjectSerialization.m */; };
 		DA667AB616D26D3500ED3A49 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AB516D26D3500ED3A49 /* UIHelper.m */; };
@@ -208,8 +209,7 @@
 		DA6EA02516CFE58600F2453F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02416CFE58600F2453F /* libxml2.dylib */; };
 		DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02616CFE5AF00F2453F /* libz.dylib */; };
 		DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */; };
-		DA747E1616DDB1610007E0A7 /* PEDImportDataDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = DA747E1416DDB1610007E0A7 /* PEDImportDataDetail.m */; };
-		DA747E1716DDB1610007E0A7 /* PEDImportDataDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA747E1516DDB1610007E0A7 /* PEDImportDataDetail.xib */; };
+		DA747E1616DDB1610007E0A7 /* PEDImportDataDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA747E1416DDB1610007E0A7 /* PEDImportDataDetailController.m */; };
 		DACC06C516D262FF0062E2A8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06C416D262FF0062E2A8 /* AlertView.m */; };
 		DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D916D2633F0062E2A8 /* InfoPlist.strings */; };
 		DACC06E116D2634F0062E2A8 /* PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */; };
@@ -243,6 +243,9 @@
 		DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF716CA16D0BFFC0081D5C8 /* QuartzCore.framework */; };
 		DAF9018A16DF8D91002BD1EB /* GETUIScrollInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF9018916DF8D91002BD1EB /* GETUIScrollInputView.m */; };
 		DAF9018E16DF9103002BD1EB /* GETUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF9018D16DF9103002BD1EB /* GETUIScrollView.m */; };
+		DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF9019B16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib */; };
+		DAFB277B16E388E500181051 /* BleExchangeDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */; };
+		DAFBB96616E1C0B000441CE5 /* BleServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -409,6 +412,7 @@
 		DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataViewController.m; path = ProjectPrivate/UI/PEDImportDataViewController.m; sourceTree = SOURCE_ROOT; };
 		DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUIBaseViewController.h; path = ProjectPrivate/UI/PEDUIBaseViewController.h; sourceTree = SOURCE_ROOT; };
 		DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUIBaseViewController.m; path = ProjectPrivate/UI/PEDUIBaseViewController.m; sourceTree = SOURCE_ROOT; };
+		DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetailController.xib; path = ProjectPrivate/XIB/PEDImportDataDetailController.xib; sourceTree = SOURCE_ROOT; };
 		DA667AAB16D26C9100ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
 		DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Extendtion.m"; path = "../Util/NSDictionary+Extendtion.m"; sourceTree = "<group>"; };
 		DA667AAF16D26CD500ED3A49 /* NSObjectSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectSerialization.h; path = ../Util/NSObjectSerialization.h; sourceTree = "<group>"; };
@@ -569,9 +573,8 @@
 		DA6EA02416CFE58600F2453F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		DA6EA02616CFE5AF00F2453F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
-		DA747E1316DDB1610007E0A7 /* PEDImportDataDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDImportDataDetail.h; path = ProjectPrivate/UI/PEDImportDataDetail.h; sourceTree = SOURCE_ROOT; };
-		DA747E1416DDB1610007E0A7 /* PEDImportDataDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataDetail.m; path = ProjectPrivate/UI/PEDImportDataDetail.m; sourceTree = SOURCE_ROOT; };
-		DA747E1516DDB1610007E0A7 /* PEDImportDataDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetail.xib; path = ProjectPrivate/UI/PEDImportDataDetail.xib; sourceTree = SOURCE_ROOT; };
+		DA747E1316DDB1610007E0A7 /* PEDImportDataDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDImportDataDetailController.h; path = ProjectPrivate/UI/PEDImportDataDetailController.h; sourceTree = SOURCE_ROOT; };
+		DA747E1416DDB1610007E0A7 /* PEDImportDataDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataDetailController.m; path = ProjectPrivate/UI/PEDImportDataDetailController.m; sourceTree = SOURCE_ROOT; };
 		DACC06C316D262FF0062E2A8 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../Controls/GET/AlertView.h; sourceTree = "<group>"; };
 		DACC06C416D262FF0062E2A8 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertView.m; path = ../Controls/GET/AlertView.m; sourceTree = "<group>"; };
 		DACC06DA16D2633F0062E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ProjectPrivate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -629,6 +632,11 @@
 		DAF9018916DF8D91002BD1EB /* GETUIScrollInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GETUIScrollInputView.m; path = ../Controls/GET/GETUIScrollInputView.m; sourceTree = "<group>"; };
 		DAF9018C16DF9103002BD1EB /* GETUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GETUIScrollView.h; path = ../Controls/GET/GETUIScrollView.h; sourceTree = "<group>"; };
 		DAF9018D16DF9103002BD1EB /* GETUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GETUIScrollView.m; path = ../Controls/GET/GETUIScrollView.m; sourceTree = "<group>"; };
+		DAF9019B16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPeripheralInfoRow.xib; path = ProjectPrivate/XIB/PEDPeripheralInfoRow.xib; sourceTree = SOURCE_ROOT; };
+		DAFB277916E388E500181051 /* BleExchangeDataContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleExchangeDataContainer.h; sourceTree = "<group>"; };
+		DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleExchangeDataContainer.m; sourceTree = "<group>"; };
+		DAFBB96416E1C0B000441CE5 /* BleServiceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleServiceInfo.h; sourceTree = "<group>"; };
+		DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleServiceInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -748,6 +756,10 @@
 				DA029A7316D3C62C004E7764 /* BleDefinition.h */,
 				DA029A7416D3C62C004E7764 /* SerialGATT.h */,
 				DA029A7516D3C62C004E7764 /* SerialGATT.m */,
+				DAFBB96416E1C0B000441CE5 /* BleServiceInfo.h */,
+				DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */,
+				DAFB277916E388E500181051 /* BleExchangeDataContainer.h */,
+				DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */,
 			);
 			name = BLE;
 			path = ProjectPrivate/BLE;
@@ -1082,9 +1094,8 @@
 				DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */,
 				DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */,
 				DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */,
-				DA747E1316DDB1610007E0A7 /* PEDImportDataDetail.h */,
-				DA747E1416DDB1610007E0A7 /* PEDImportDataDetail.m */,
-				DA747E1516DDB1610007E0A7 /* PEDImportDataDetail.xib */,
+				DA747E1316DDB1610007E0A7 /* PEDImportDataDetailController.h */,
+				DA747E1416DDB1610007E0A7 /* PEDImportDataDetailController.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1248,6 +1259,7 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */,
 				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
 				6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */,
 				6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */,
@@ -1257,6 +1269,7 @@
 				6BFF4A6616D5947900317887 /* PEDUserSettingViewController.xib */,
 				6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */,
 				DA07899D16DE598D00EF5220 /* MainWindow.xib */,
+				DAF9019B16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -1537,7 +1550,6 @@
 				DACC76FF16D91997008FCDA7 /* modalButton@2x.png in Resources */,
 				DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */,
 				DAE5306716DCCD4D003BB097 /* PEDImportDataViewController.xib in Resources */,
-				DA747E1716DDB1610007E0A7 /* PEDImportDataDetail.xib in Resources */,
 				6BD317BC16DEB70200966E52 /* activity_time_button.png in Resources */,
 				6BD317BD16DEB70200966E52 /* activity_time_button@2x.png in Resources */,
 				6BD317BE16DEB70200966E52 /* calories_button.png in Resources */,
@@ -1545,6 +1557,8 @@
 				6BD317C016DEB70200966E52 /* step_button.png in Resources */,
 				6BD317C116DEB70200966E52 /* step_button@2x.png in Resources */,
 				DA07899E16DE598D00EF5220 /* MainWindow.xib in Resources */,
+				DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */,
+				DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1619,9 +1633,11 @@
 				DACC771116D9356A008FCDA7 /* UILoadingBox.m in Sources */,
 				DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */,
 				DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */,
-				DA747E1616DDB1610007E0A7 /* PEDImportDataDetail.m in Sources */,
+				DA747E1616DDB1610007E0A7 /* PEDImportDataDetailController.m in Sources */,
 				DAF9018A16DF8D91002BD1EB /* GETUIScrollInputView.m in Sources */,
 				DAF9018E16DF9103002BD1EB /* GETUIScrollView.m in Sources */,
+				DAFBB96616E1C0B000441CE5 /* BleServiceInfo.m in Sources */,
+				DAFB277B16E388E500181051 /* BleExchangeDataContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

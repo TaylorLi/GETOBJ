@@ -27,7 +27,7 @@
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
-@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController,pedImportDataViewController,pedAvailPerialViewController;
+@synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController,pedImportDataViewController,pedAvailPerialViewController,importDataViewController;
 @synthesize customerTabBarController;
 
 static PEDAppDelegate* _instance;
@@ -86,10 +86,12 @@ static PEDAppDelegate* _instance;
 
 -(void)showImportDataView{
     
-    if(!pedImportDataViewController){
-        pedImportDataViewController =[[PEDImportDataViewController alloc] init];
+    if(pedImportDataViewController){
+        [pedImportDataViewController cleanup];
     }
-    [self swithView:pedImportDataViewController.view];
+    pedImportDataViewController =[[PEDImportDataViewController alloc] init];
+    importDataViewController=[[UINavigationController alloc] initWithRootViewController:pedImportDataViewController];
+    [self swithView:importDataViewController.view];
     
     //pedAvailPerialViewController = [[PEDAvailPerialViewController alloc] init];
     //[self swithView:pedAvailPerialViewController.view];
@@ -97,6 +99,7 @@ static PEDAppDelegate* _instance;
 
 -(void)hideImportDataViewAndShowTabView
 {
+    importDataViewController = nil;
     pedImportDataViewController = nil;
     [[PEDAppDelegate getInstance] showTabView];
 }
@@ -169,7 +172,7 @@ static PEDAppDelegate* _instance;
 //}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+{    
     [[PEDDatabase getInstance] setupServerDatabase];
     [AppConfig getInstance];    
     _instance = self;

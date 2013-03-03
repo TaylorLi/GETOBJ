@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-
+@class BleServiceInfo;
 
 @protocol BTSmartSensorDelegate
 
@@ -18,6 +18,8 @@
 -(void) sensorPowerReady;
 -(void) searchPeripheralTimeout;
 -(void) sensorReadyToExchangeData;
+-(void) failToExchangeData:(NSString *)reason;
+-(void) sensorStatusChange:(NSString *)description;
 @end
 
 @interface SerialGATT : NSObject<CBCentralManagerDelegate, CBPeripheralDelegate> {
@@ -36,6 +38,8 @@
 @property (strong, nonatomic) CBUUID *characteristicNotifyUUID;
 @property (strong,nonatomic) CBUUID *serviceHeartRateDataUUID;
 @property (strong,nonatomic) NSTimer *scanTimer;
+@property (strong,nonatomic) NSTimer *connectingTimer;
+
 
 
 #pragma mark - Methods for controlling the Bluetooth Smart Sensor
@@ -55,7 +59,8 @@
 -(CBCharacteristic *) findCharacteristicFromUUID: (CBUUID *)UUID p:(CBPeripheral *)peripheral service: (CBService *)service;
 
 -(void) cancelTimer;
-
-
+-(BleServiceInfo *)getActivePeripheralInfo;
+-(CBService *) findServiceFromUUIDString:(NSString *)UUID p:(CBPeripheral *)peripheral;
+-(CBCharacteristic *) findCharacteristicFromUUIDString:(NSString *)UUID p:(CBPeripheral *)peripheral service:(CBService *)service;
 
 @end

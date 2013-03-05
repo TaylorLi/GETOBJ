@@ -16,4 +16,6 @@
 +(NSString*) getBarRemarkTextWithStatisticsType:(NSString*) statisticsTypeString withMeasureUnit:(MeasureUnit) measureUnit;
 +(UIColor*) getColorWithStatisticsType:(NSString*) statisticsTypeString;
 +(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString;
++(NSString*) getTargetRemark :(NSTimeInterval) stepPercent withDistancePercent:(NSTimeInterval) distancePercent withCaloriesPercent:(NSTimeInterval) caloriesPercent;
++(NSString*) integerToTimeString:(NSInteger) intValue;
 @end

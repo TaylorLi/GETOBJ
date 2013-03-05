@@ -97,7 +97,7 @@
     
     UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];  
     doubleRecognizer.numberOfTapsRequired = 2; // 双击  
-    //关键语句，给self.view添加一个手势监测；  
+ 
     [self.cptGraphHostingView addGestureRecognizer:doubleRecognizer];  
     
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight:)];   
@@ -107,7 +107,6 @@
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
     [self.cptGraphHostingView addGestureRecognizer:leftRecognizer];
-    [self timerFired];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -190,6 +189,11 @@
     }
     
     return num;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self timerFired];
 }
 
 #pragma mark -
@@ -295,7 +299,6 @@
 
 -(void)timerFired
 {
-    
     // Create graph from theme
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     //    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];

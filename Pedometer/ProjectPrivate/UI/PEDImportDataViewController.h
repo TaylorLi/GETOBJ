@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SerialGATT.h"
 
+@class PEDImportDataDetailController;
+
 @interface PEDImportDataViewController : UIViewController<BTSmartSensorDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIButton *imgCustomer;
@@ -22,11 +24,11 @@
 
 
 - (void)scanBTSmartShields;
--(void)beginReadDataFromPeripheral:(CBPeripheral *)peripheral;
 - (IBAction)backToPreviousTabView:(id)sender;
 - (IBAction)clickToReloadPeripheral:(id)sender;
 -(void)searchPeripheralTimeout;
 
 - (void)cleanup;
+-(void)restoreFromImportDetailView:(PEDImportDataDetailController *)detailController;
 
 @end

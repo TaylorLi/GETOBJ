@@ -24,6 +24,7 @@
 @property (strong, nonatomic) CustomerTabBarController *customerTabBarController;
 @property (strong,nonatomic) PEDImportDataViewController *pedImportDataViewController;
 @property (strong,nonatomic) PEDAvailPerialViewController *pedAvailPerialViewController;
+@property (strong,nonatomic) UINavigationController *importDataViewController;
 
 + (PEDAppDelegate*)getInstance;
 -(void) showUserSettingView;

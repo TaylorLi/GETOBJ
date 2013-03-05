@@ -27,10 +27,10 @@ static BO_PEDSleepData* instance;
     }
     return instance;
 }
-/*
--(NSArray *)queryLogByMatchId:(NSString *)matchId andRoundSeq:(NSInteger) roundSeq
+
+-(PEDSleepData *)getWithTarget :(NSString*) targetId withDate:(NSDate *)date
 {
-    return [self queryList:@"select * from MatchLog where matchId=? and round=? order by createTime desc" parameters:[[NSArray alloc] initWithObjects:matchId,[NSNumber numberWithInt:roundSeq], nil]];
+    return [self queryObjectBySql:@"select * from PEDSleepData where targetId = ? and optDate=?" parameters:[[NSArray alloc] initWithObjects:targetId,date, nil]];
 }
-*/
+
 @end

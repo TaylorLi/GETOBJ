@@ -22,7 +22,7 @@
         age=26;
         measureFormat=MEASURE_UNIT_METRIC;
         gender=GENDER_MALE;
-        height=170;//m
+        height=170;//cm
         weight=60;//kg
         stride=60;//cm
         updateDate=[NSDate date];

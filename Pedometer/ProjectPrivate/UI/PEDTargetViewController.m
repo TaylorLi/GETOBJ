@@ -9,6 +9,7 @@
 #import "PEDTargetViewController.h"
 #import "BO_PEDPedometerData.h"
 #import "PEDPedometerCalcHelper.h"
+#import "PEDPedometerDataHelper.h"
 
 @implementation PEDTargetViewController
 @synthesize lblUserName;
@@ -124,8 +125,8 @@
     lblCaloriesRemain.text = [NSString stringWithFormat:@"%.1f", target.remainCalorie];
     lblCaloriesAmount.text = [NSString stringWithFormat:@"%.1f", target.targetCalorie - target.remainCalorie];
     UIImage *stepImage = [[UIImage imageNamed:@"target_step_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,45,0,45)];
-    UIImage *caloriesImage = [[UIImage imageNamed:@"target_calories_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,70,0,70)];
-    UIImage *distanceImage = [[UIImage imageNamed:@"target_distance_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,70,0,70)];
+    UIImage *caloriesImage = [[UIImage imageNamed:@"target_calories_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,58,0,58)];
+    UIImage *distanceImage = [[UIImage imageNamed:@"target_distance_bar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,58,0,58)];
     imgVStep.frame = CGRectMake(69, 119, [self percentOfTarget:target.targetStep withRemain:target.remainStep], 15);
     imgVStep.image = stepImage;
     imgVCalories.frame = CGRectMake(69, 300, [self percentOfTarget:target.targetCalorie withRemain:target.remainCalorie], 15);
@@ -138,6 +139,8 @@
     lblStepRemain.frame = CGRectMake( imgVStep.frame.origin.x + (lblStepRemainX <= 10 ? 0 : lblStepRemainX - 10), 116, 42, 21) ; 
     lblCaloriesRemain.frame = CGRectMake(imgVCalories.frame.origin.x + (lblCaloriesRemainX <= 10 ? 0 : lblCaloriesRemainX - 10), 297, 42, 21) ; 
     lblDistanceRemain.frame = CGRectMake(imgVDistance.frame.origin.x + (lblDistanceRemainX <= 10 ? 0 : lblDistanceRemainX - 10), 207, 37, 21) ; 
+    
+    lblMessage.text = [PEDPedometerDataHelper getTargetRemark:(target.targetStep - target.remainStep)*1.0/target.targetStep withDistancePercent:(target.targetDistance - target.remainDistance)/target.targetDistance withCaloriesPercent:(target.targetCalorie - target.remainCalorie)/target.targetCalorie];
 }
 
 @end

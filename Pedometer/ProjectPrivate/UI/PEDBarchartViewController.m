@@ -119,8 +119,7 @@
     [self initBarRemark];
     
     UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];  
-    doubleRecognizer.numberOfTapsRequired = 2; // 双击  
-    //关键语句，给self.view添加一个手势监测；  
+    doubleRecognizer.numberOfTapsRequired = 2; // 双击    
     [self.graphicHostView addGestureRecognizer:doubleRecognizer];  
     
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight:)];   

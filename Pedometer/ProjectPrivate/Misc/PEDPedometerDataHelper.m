@@ -12,6 +12,14 @@
 #import "CorePlot-CocoaTouch.h"
 @implementation PEDPedometerDataHelper
 
++(NSString*) integerToTimeString:(NSInteger) intValue{
+    int h, m, s;
+    h = intValue / 3600;
+    m = intValue % 3600 / 60;
+    s = intValue % 3600 % 60;
+    return [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
+}
+
 +(NSString*) integerToString: (NSInteger) intValue{
     return [NSString stringWithFormat:@"%d", intValue];
 }
@@ -166,5 +174,20 @@
     return btnBGImage; 
 }
 
-
++(NSString*) getTargetRemark :(NSTimeInterval) stepPercent withDistancePercent:(NSTimeInterval) distancePercent withCaloriesPercent:(NSTimeInterval) caloriesPercent{
+    NSString *remark = nil;
+    int avgPercent = (int)(stepPercent + distancePercent + caloriesPercent) * 100 / 3;
+    if(avgPercent <= 5){
+        remark = @"Activity Started !";
+    }
+    else if(avgPercent <= 59){
+        remark = @"More To Go !";
+    }
+    else if(avgPercent <= 99){
+        remark = @"Work hard ! Keep going !";
+    }else{
+        remark = @"Congratulations !";
+    }
+    return remark;
+}
 @end

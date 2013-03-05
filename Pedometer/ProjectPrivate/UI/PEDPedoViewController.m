@@ -12,8 +12,10 @@
 #import "BO_PEDPedometerData.h"
 #import "UtilHelper.h"
 #import "PEDPedometerCalcHelper.h"
+#import "PEDPedometerDataHelper.h"
 
 @implementation PEDPedoViewController
+@synthesize pedPedoDataViewController;
 @synthesize monthSelectView;
 @synthesize lblUserName;
 @synthesize lblLastUpdate;
@@ -128,7 +130,9 @@
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-    PEDPedoDataViewController *pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+    if(!pedPedoDataViewController){
+        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+    }
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 
@@ -139,12 +143,9 @@
     lblUserName.text = userInfo.userName;
     lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
     lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
-    int h, m, s;
-    h = (int)currPedometerData.activeTime / 3600;
-    m = (int)currPedometerData.activeTime % 3600 / 60;
-    s = (int)currPedometerData.activeTime % 3600 % 60;
+
     NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
-    lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
+    lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)currPedometerData.activeTime];
     lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
     lblDistanceAmount.text = [NSString stringWithFormat:@"%.1f", distance];
     lblSpeedAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];

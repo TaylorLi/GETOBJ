@@ -15,7 +15,7 @@
 {
     return 1.036*step*stride/100/1000*weight;
 }
-
+//km
 +(NSTimeInterval) calDistanceByStep:(NSInteger)step stride:(NSTimeInterval)stride 
 {
     return 1.036*step*stride/100/1000;

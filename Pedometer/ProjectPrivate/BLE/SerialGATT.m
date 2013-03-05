@@ -8,7 +8,13 @@
 
 #import "BleDefinition.h"
 #import "SerialGATT.h"
+#import "BleServiceInfo.h"
 
+@interface SerialGATT () 
+    
+ -(void)connectionTimeout:(NSTimer *)timer;
+
+@end
 @implementation SerialGATT
 
 @synthesize delegate;
@@ -24,6 +30,7 @@
 @synthesize characteristicWriteUUID;
 @synthesize characteristicNotifyUUID,serviceHeartRateDataUUID;
 @synthesize scanTimer;
+@synthesize connectingTimer;
 
 
 /*
@@ -53,13 +60,13 @@
         printf("CoreBluetooth is not correctly initialized !\n");
         return -1;
     }
-    scanTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:nil repeats:NO];
+    scanTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:delegate repeats:NO];
     // start Scanning
-    [manager scanForPeripheralsWithServices:nil options:nil];
-
+    //[manager scanForPeripheralsWithServices:[[NSArray alloc] initWithObjects:[CBUUID UUIDWithString:@"deadf154-0000-0000-0000-0000deadf154"],nil] options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
+    [manager scanForPeripheralsWithServices:nil options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
     NSLog(@"scanForPeripheralsWithServices begin,with UUID:%@",serviceHeartRateDataUUID);
     //[manager scanForPeripheralsWithServices:nil options:nil];
-    //[manager scanForPeripheralsWithServices:nil options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
+    
     return 0;
 }
 
@@ -70,8 +77,11 @@
  */
 -(void) scanTimer:(NSTimer *)timer
 {
+    id<BTSmartSensorDelegate> dlg= [timer userInfo];
     [manager stopScan];
-    [delegate searchPeripheralTimeout];
+    if(dlg){
+        [dlg searchPeripheralTimeout];
+    }
 }
 
 /*
@@ -83,7 +93,13 @@
 {
     if (![peripheral isConnected]) {
         [manager connectPeripheral:peripheral options:nil];
+        connectingTimer = [NSTimer scheduledTimerWithTimeInterval:(float)BLE_CONNECTION_TIMEOUT target:self selector:@selector(connectionTimeout:) userInfo:delegate repeats:NO];
     }
+}
+
+-(void)connectionTimeout:(NSTimer *)timer
+{
+    [delegate failToExchangeData:@"Fail to connect this server."];
 }
 
 /*
@@ -124,6 +140,10 @@
 }
 
 #pragma mark - Finding CBServices and CBCharacteristics
+-(CBService *) findServiceFromUUIDString:(NSString *)UUID p:(CBPeripheral *)peripheral
+{
+    return [self findServiceFromUUID:[CBUUID UUIDWithString:UUID] p:peripheral];
+}
 
 -(CBService *) findServiceFromUUID:(CBUUID *)UUID p:(CBPeripheral *)peripheral
 {
@@ -135,6 +155,11 @@
         }
     }
     return  nil;
+}
+
+-(CBCharacteristic *) findCharacteristicFromUUIDString:(NSString *)UUID p:(CBPeripheral *)peripheral service:(CBService *)service
+{
+    return [self findCharacteristicFromUUID:[CBUUID UUIDWithString:UUID] p:peripheral service:service];
 }
 
 -(CBCharacteristic *) findCharacteristicFromUUID:(CBUUID *)UUID p:(CBPeripheral *)peripheral service:(CBService *)service
@@ -198,14 +223,17 @@
         // Add the new peripheral to the peripherals array
         for (int i = 0; i < [peripherals count]; i++) {
             CBPeripheral *p = [peripherals objectAtIndex:i];
-            CFUUIDBytes b1 = CFUUIDGetUUIDBytes(p.UUID);
-            CFUUIDBytes b2 = CFUUIDGetUUIDBytes(peripheral.UUID);
-            if (memcmp(&b1, &b2, 16) == 0) {
-                // these are the same, and replace the old peripheral information
-                [peripherals replaceObjectAtIndex:i withObject:peripheral];
-                printf("Duplicated peripheral is found...\n");
-                [delegate peripheralFound: peripheral advertisementData:advertisementData];
-                return;
+            if(p.UUID!=nil&&peripheral.UUID!=nil)
+            {
+                CFUUIDBytes b1 = CFUUIDGetUUIDBytes(p.UUID);
+                CFUUIDBytes b2 = CFUUIDGetUUIDBytes(peripheral.UUID);
+                if (memcmp(&b1, &b2, 16) == 0) {
+                    // these are the same, and replace the old peripheral information
+                    [peripherals replaceObjectAtIndex:i withObject:peripheral];
+                    printf("Duplicated peripheral is found...\n");
+                    [delegate peripheralFound: peripheral advertisementData:advertisementData];
+                    return;
+                }
             }
         }
         printf("New peripheral is found...\n");
@@ -218,6 +246,7 @@
 
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    [connectingTimer invalidate];
     activePeripheral = peripheral;
     activePeripheral.delegate = self;
     
@@ -234,7 +263,43 @@
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"failed to connect to peripheral %@: %@\n", [peripheral name], [error localizedDescription]);
+    NSString *logDetail=[NSString stringWithFormat:@"failed to connect to peripheral %@: %@", [peripheral name], [error localizedDescription]];
+    NSLog(@"%@",logDetail);
+    [delegate failToExchangeData:logDetail];
+}
+-(BleServiceInfo *)getActivePeripheralInfo
+{
+    BleServiceInfo *deviceInfo=[[BleServiceInfo alloc] init];
+  CBService *serialService = [self findServiceFromUUIDString:SERIAL_PERIPHERAL_GENERIC_ACCESS_SERVICE_UUID p:activePeripheral];
+    if(serialService){
+   CBCharacteristic * dataCharacteristic = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_DEVICENAME p:activePeripheral service:serialService];
+   NSString *characterValue = [[NSString alloc] initWithData:dataCharacteristic.value encoding:NSUTF8StringEncoding];
+    deviceInfo.deviceName=characterValue;
+    
+    CBCharacteristic * dataCharacteristic2 = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_APPERANCE p:activePeripheral service:serialService];
+     NSString *characterValue2 = [[NSString alloc] initWithData:dataCharacteristic2.value encoding:NSUTF8StringEncoding];    
+    deviceInfo.appearance=characterValue2;
+    }
+    
+    CBService *serialService2 = [self findServiceFromUUIDString:SERIAL_PERIPHERAL_DEVICE_SERVICE_UUID p:activePeripheral];
+    if(serialService){
+        CBCharacteristic * dataCharacteristic = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_SN_STRING_UUID p:activePeripheral service:serialService2];
+        NSString *characterValue = [[NSString alloc] initWithData:dataCharacteristic.value encoding:NSUTF8StringEncoding];
+        deviceInfo.serialNumber=characterValue;
+        
+        CBCharacteristic * dataCharacteristic2 = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_MANUFACTURER_NAME_STRING_UUID p:activePeripheral service:serialService2];
+        NSString *characterValue2 = [[NSString alloc] initWithData:dataCharacteristic2.value encoding:NSUTF8StringEncoding];    
+        deviceInfo.manufacture=characterValue2;
+        
+        CBCharacteristic * dataCharacteristic3 = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_SYSTEM_ID_STRING_UUID p:activePeripheral service:serialService2];
+        NSString *characterValue3 = [[NSString alloc] initWithData:dataCharacteristic3.value encoding:NSUTF8StringEncoding];
+        deviceInfo.systemID=characterValue3;
+        
+        CBCharacteristic * dataCharacteristic4 = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_FIRMWARE_REVISION_STRING_UUID p:activePeripheral service:serialService2];
+        NSString *characterValue4 = [[NSString alloc] initWithData:dataCharacteristic4.value encoding:NSUTF8StringEncoding];    
+        deviceInfo.firewareRevision=characterValue4;
+    }
+    return deviceInfo;
 }
 
 #pragma mark - CBPeripheral delegates
@@ -245,7 +310,7 @@
         printf("updateValueForCharacteristic failed\n");
         return;
     }
-
+    
     // Compare the characteristic with SERIAL_PERIPHERAL_CHAR_RECV_UUID and SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID
     if ([[characteristic.UUID data] isEqualToData:[characteristicNotifyUUID data]]) {
         // TODO: read the data from SERIAL_PERIPHERAL_CHAR_NOTIFY_UUID
@@ -279,28 +344,36 @@
         serialHeartRateService = [self findServiceFromUUID:serviceHeartRateDataUUID p:peripheral];
         if (!serialHeartRateService) {
             printf("The desired service is not found!\n");
+            [delegate failToExchangeData:@"The desired service is not found!"];
             return;
         } else {
-            [peripheral discoverCharacteristics:nil forService:serialHeartRateService];
+            for (CBService *svc in peripheral.services) {
+                if(svc!=serialHeartRateService)
+                    [peripheral discoverCharacteristics:nil forService:svc];
+            }
+            [peripheral discoverCharacteristics:nil forService:serialHeartRateService]; 
+            [self notify:peripheral on:YES]; 
         }        
-        
     }
     else {
         printf("discoverservices is uncesessful!\n");
+        [delegate failToExchangeData:@"Discover services is uncesessful!"];
     }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-    if (!error) {
+    if (!error) {        
         printf("The characteristics are found for the service!\n");
+        if(service==serialHeartRateService){
         dataSettingWriteCharacteristic = [self findCharacteristicFromUUID:characteristicWriteUUID p:peripheral service:serialHeartRateService];
-        dataNotifyCharacteristic = [self findCharacteristicFromUUID:characteristicNotifyUUID p:peripheral service:serialHeartRateService];
+        dataNotifyCharacteristic = [self findCharacteristicFromUUID:characteristicNotifyUUID p:peripheral service:serialHeartRateService];        
         if (!dataNotifyCharacteristic || !dataSettingWriteCharacteristic) {
             printf("The desired characteristics can't be found!\n");
+            [delegate failToExchangeData:@"The desired characteristics can't be found!"];
             return;
-        } else {
-            [self notify:peripheral on:YES];
+        }    
+        } else {            
             //all require service ready
             [delegate sensorReadyToExchangeData];
         }
@@ -320,6 +393,9 @@
 {
     if(scanTimer){
         [scanTimer invalidate];
+    }
+    if(connectingTimer){
+        [connectingTimer invalidate];
     }
 }
 

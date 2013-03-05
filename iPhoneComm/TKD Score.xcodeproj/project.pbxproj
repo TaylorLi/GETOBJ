@@ -28,6 +28,7 @@
 		DA00F38115A9DC92005B2F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37E15A9DC92005B2F4B /* icon.png */; };
 		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
 		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
+		DA08D5AD16DFCAE300CDF7A4 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667A9416D26A9A00ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA124B8E16909F020017AA3C /* DetailReport.html in Resources */ = {isa = PBXBuildFile; fileRef = DA124B8D16909F020017AA3C /* DetailReport.html */; };
 		DA1357331692D8D6003A6FB9 /* SummaryReport.html in Resources */ = {isa = PBXBuildFile; fileRef = DA1357321692D8D6003A6FB9 /* SummaryReport.html */; };
 		DA1357351692DE99003A6FB9 /* SummaryReportRow.html in Resources */ = {isa = PBXBuildFile; fileRef = DA1357341692DE98003A6FB9 /* SummaryReportRow.html */; };
@@ -2652,6 +2653,7 @@
 				DAEB7188169C865300039509 /* NSTimer+Blocks.m in Sources */,
 				DAA689FD16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
 				DA667B9A16D2721A00ED3A49 /* UtilHelper.m in Sources */,
+				DA08D5AD16DFCAE300CDF7A4 /* NSDictionary+Extendtion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2682,7 +2684,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				PROVISIONING_PROFILE = "0A1177D2-850D-4895-872C-96907FFAF445";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2710,7 +2712,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				PROVISIONING_PROFILE = "0A1177D2-850D-4895-872C-96907FFAF445";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2769,7 +2771,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				PROVISIONING_PROFILE = "0A1177D2-850D-4895-872C-96907FFAF445";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -2795,7 +2797,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "F7B7CB31-68F9-4E74-A306-0060CE1D787E";
+				PROVISIONING_PROFILE = "0A1177D2-850D-4895-872C-96907FFAF445";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

@@ -13,7 +13,9 @@
 #pragma mark service uuid
 
 #define BLE_OPERATE_TIMEOUT 30
-#define BLE_CONNECTION_TIMEOUT 30
+#define BLE_DISCOVER_TIMEOUT 30
+#define BLE_CONNECTION_TIMEOUT 5
+#define BLE_DATA_TRANSFER_TIMEOUT 1
 
 #pragma mark -
 #pragma mark Service 1:Generic Access(0x1800)
@@ -31,19 +33,19 @@
 #define SERIAL_PERIPHERAL_DEVICE_SERVICE_UUID @"180A"
 //CHARACTERISTIC Pipe (1) Read
 //Serial Number String
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_SN_STRING_UUID @"58302a25-a6cf-46bc-812f-dfc71d70109b"
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_SN_STRING_UUID @"58302A25-A6CF-46BC-812F-DFC71D70109B"
 
 //CHARACTERISTIC Pipe (2) Read
 //Manufacturer Name String
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_MANUFACTURER_NAME_STRING_UUID @"58302a29-a6cf-46bc-812f-dfc71d70109b"
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_MANUFACTURER_NAME_STRING_UUID @"58302A29-A6CF-46BC-812F-DFC71D70109B"
 
 //CHARACTERISTIC Pipe (3) Read
 //System ID
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_SYSTEM_ID_STRING_UUID @"58302a23-a6cf-46bc-812f-dfc71d70109b"
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_SYSTEM_ID_STRING_UUID @"58302A23-A6CF-46BC-812F-DFC71D70109B"
 
 //CHARACTERISTIC Pipe (4) Read
 //Firmware Revision String
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_FIRMWARE_REVISION_STRING_UUID @"58302a26-a6cf-46bc-812f-dfc71d70109b"
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_FIRMWARE_REVISION_STRING_UUID @"58302A26-A6CF-46BC-812F-DFC71D70109B"
 
 #pragma mark -
 #pragma mark Service 3:Heart Rate
@@ -52,15 +54,96 @@
 
 //Pipe (5)
 //SLEEP DATA OR PEDOMETER DATA Receive NOTIFY
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID @"58302a37-a6cf-46bc-812f-dfc71d70109b"
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_SLEEP_PEDO_DATA_UUID @"58302A37-A6CF-46BC-812F-DFC71D70109B"
 //Pipe (6)
 //Pedometer Setting Parameter Send To Device  WriteWithoutResponse
-#define SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID @"2a4a"
+#define SERIAL_PERIPHERAL_CHARACTERISTIC_PEDOMETER_SETTING_UUID @"2A4A"
 
 
-#define DATA_HEADER_PEDO_SETTING_RQ  0x01
-#define DATA_HEADER_TEDO_SETTING_RS  0x02
-#define DATA_HEADER_TARGER_DATA_RQ  0x82
-#define DATA_HEADER_TARGER_DATA_RS 0x03
-#define DATA_HEADER_PEDO_DATA_1 0x83
+typedef enum {
+    DATA_HEADER_PEDO_SETTING_RQ=  0x01,
+    DATA_HEADER_PEDO_SETTING_TARGET_RS = 0x02,
+    DATA_HEADER_PEDO_DATA_1_RQ  =0x82,
+    DATA_HEADER_PEDO_DATA_1_RS =0x03,
+    DATA_HEADER_PEDO_DATA_2_RQ= 0x83,
+    DATA_HEADER_PEDO_DATA_2_RS =0x04,
+    DATA_HEADER_PEDO_DATA_3_RQ= 0x84,
+    DATA_HEADER_PEDO_DATA_3_RS =0x05,
+    DATA_HEADER_PEDO_DATA_4_RQ= 0x85,
+    DATA_HEADER_PEDO_DATA_4_RS =0x06,
+    DATA_HEADER_PEDO_DATA_5_RQ= 0x86,
+    DATA_HEADER_PEDO_DATA_5_RS =0x07,
+    DATA_HEADER_PEDO_DATA_6_RQ= 0x87,
+    DATA_HEADER_PEDO_DATA_6_RS =0x08,
+    DATA_HEADER_PEDO_DATA_7_RQ= 0x88,
+    DATA_HEADER_PEDO_DATA_7_RS =0x09,
+    DATA_HEADER_SLEEP_DATA_1_RQ= 0x89,
+    DATA_HEADER_SLEEP_DATA_1_RS= 0x0A,
+    DATA_HEADER_SLEEP_DATA_7_RQ= 0x8F,
+    DATA_HEADER_SLEEP_DATA_7_RS =0x10,
+    DATA_HEADER_END_CONNECT_RQ= 0x8B,
+} DataHeaderType;
+
+typedef struct {
+    u_char header;
+    u_char stride;
+	u_char height;
+	u_char weight;
+	u_char gender;	
+	u_char age;
+	u_char format;
+} packetPedoSetting;
+
+typedef struct {
+    u_char header;  //1 byte
+    //targetStep 3 byte,10000 Step = 002710 (Hex), 1st byte = 0x10, 2nd byte = 0x27, 3rd byte = 0x00
+    u_char targetStep[3];
+    //remainStep 3 byte
+    u_char remainStep[3]; 
+    //remainDistance 3 byte
+	u_char remainDistance[3]; 
+    //remainCalorie 3 bytes
+	u_char remainCalorie[3];
+	u_char pedoMemoryNo; //1 byte
+	u_char pedoSleepMemNo; //1 byte
+} packetTargetData;
+
+typedef struct {
+    u_char header;  //1 byte
+    //targetStep 3 byte,10000 Step = 002710 (Hex), 1st byte = 0x10, 2nd byte = 0x27, 3rd byte = 0x00
+    u_char day;
+    u_char month;
+    u_char year;
+    //Step1 3 byte
+    u_char step[3]; 
+    //Distance1 3 byte
+	u_char distance[3]; //km
+    //remainCalorie 3 bytes
+	u_char calorie[3];
+	u_char activityTimeMin; //min
+	u_char activityTimeHour; //Hour
+} packetPedoData;
+
+typedef struct {
+    u_char header;  //1 byte
+    //targetStep 3 byte,10000 Step = 002710 (Hex), 1st byte = 0x10, 2nd byte = 0x27, 3rd byte = 0x00
+    u_char day;
+    u_char month;
+    u_char year;
+    //Step1 2 byte
+    u_char timeToBedMin;
+    u_char timeToBedHour;
+	u_char timeToWakeupMin; 
+    u_char timeToWakeupHour; 
+    //Distance1 3 byte
+	u_char timeToFallSleepMin; //km
+    u_char timeToFallSleepHour; 
+    u_char awakenTime; 
+    //remainCalorie 3 bytes
+    u_char inBedTimeMin;
+	u_char inBedTimeHour;
+    u_char actualSleepTimeMin;
+    u_char actualSleepTimeHour;
+} packetSleepData;
+
 #endif

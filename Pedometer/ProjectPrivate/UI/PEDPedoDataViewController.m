@@ -67,6 +67,31 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void) initLable{
+    self.lblDate.text = @"";
+    self.lblStep.text = @"";
+    self.lblDistance.text = @"";
+    self.lblCalories.text = @"";
+    self.lblActivityTime.text = @"";
+    self.lblLastUpdate.text = @"";
+    self.lblUserName.text = @"";
+    self.lblNextDate.text = @"";
+    self.lblNextStep.text = @"";
+    self.lblNextDistance.text = @"";
+    self.lblNextCalories.text = @"";
+    self.lblNextActTime.text = @"";
+    self.lblCurrDate.text = @"";
+    self.lblCurrStep.text = @"";
+    self.lblCurrDistance.text = @"";
+    self.lblCurrCalories.text = @"";
+    self.lblCurrActTime.text = @"";
+    self.lblPrevDate.text = @"";
+    self.lblPrevStep.text = @"";
+    self.lblPrevDistance.text = @"";
+    self.lblPrevCalories.text = @"";
+    self.lblPrevActTime.text = @"";
+}
+
 -(void)doubleTap:(UITapGestureRecognizer*)recognizer  
 {  
     [self.navigationController popViewControllerAnimated:YES];     
@@ -97,11 +122,18 @@
     self.lblPrevCalories.frame = CGRectMake(180, 303, 33, 21);
     self.lblPrevActTime.frame = CGRectMake(240, 303, 33, 21);
     
+    self.lblCurrStep.alpha = 0.5f;
+    self.lblCurrDistance.alpha = 0.5f;
+    self.lblCurrDate.alpha = 0.5f;
+    self.lblCurrCalories.alpha = 0.5f;
+    self.lblCurrActTime.alpha = 0.5f;
+    
     [UIView commitAnimations];    
 } 
 
 -(void)handleSwipeDown:(UITapGestureRecognizer*)recognizer  
 {  
+    if(dayRemark==0) return;
     [UIView beginAnimations:nil context:nil];
     
     [UIView setAnimationDelegate:self];
@@ -124,6 +156,12 @@
     self.lblNextDistance.frame = CGRectMake(131, 306, 33, 21);
     self.lblNextCalories.frame = CGRectMake(180, 306, 33, 21);
     self.lblNextActTime.frame = CGRectMake(240, 306, 33, 21);
+    
+    self.lblCurrStep.alpha = 0.5f;
+    self.lblCurrDistance.alpha = 0.5f;
+    self.lblCurrDate.alpha = 0.5f;
+    self.lblCurrCalories.alpha = 0.5f;
+    self.lblCurrActTime.alpha = 0.5f;
     
     [UIView commitAnimations];      
 } 
@@ -150,6 +188,13 @@
     self.lblPrevDistance.frame = CGRectMake(131, 348, 33, 21);
     self.lblPrevCalories.frame = CGRectMake(180, 348, 33, 21);
     self.lblPrevActTime.frame = CGRectMake(240, 348, 33, 21);
+    
+    self.lblCurrStep.alpha = 1.0f;
+    self.lblCurrDistance.alpha = 1.0f;
+    self.lblCurrDate.alpha = 1.0f;
+    self.lblCurrCalories.alpha = 1.0f;
+    self.lblCurrActTime.alpha = 1.0f;
+    
     dayRemark -= 1;
     [self initData];
 }
@@ -176,6 +221,13 @@
     self.lblNextDistance.frame = CGRectMake(131, 261, 33, 21);
     self.lblNextCalories.frame = CGRectMake(180, 261, 33, 21);
     self.lblNextActTime.frame = CGRectMake(240, 261, 33, 21);
+    
+    self.lblCurrStep.alpha = 1.0f;
+    self.lblCurrDistance.alpha = 1.0f;
+    self.lblCurrDate.alpha = 1.0f;
+    self.lblCurrCalories.alpha = 1.0f;
+    self.lblCurrActTime.alpha = 1.0f;
+    
     if(dayRemark < 0){
         dayRemark += 1;
         [self initData];
@@ -340,8 +392,11 @@
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;
     self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate:targetId] withFormat:@"dd/MM/yy"];
+    pedoMeterDataArray = nil;
+    [self initLable];
     pedoMeterDataArray = [self getPedoDataResources:dayRemark withTargetId:targetId];
     if(pedoMeterDataArray != nil){
+        NSLog(@"%d", pedoMeterDataArray.count);
         PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
         if(pedoMeterData.optDate != nil){
             lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];

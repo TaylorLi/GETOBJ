@@ -18,7 +18,7 @@
     if(self)
     {
         dataId = [UtilHelper stringWithUUID];   
-        optDate=[NSDate date];
+        updateDate=[NSDate date];
     }
     return self;
 }

@@ -84,7 +84,7 @@ static AppConfig* instance;
 }
 -(void)restoreAppSetting
 {
-    if(settings==nil){
+    if(settings==nil || settings.userInfo==nil){
         settings =[[AppSetting alloc] init];
     }else{
         settings.userInfo = [[BO_PEDUserInfo getInstance] retreiveCurrentUser];

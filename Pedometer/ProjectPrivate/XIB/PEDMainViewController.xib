@@ -206,7 +206,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<reference key="IBUIHighlightedTitleColor" ref="720321412"/>
 							<reference key="IBUINormalTitleColor" ref="91516582"/>
 							<reference key="IBUINormalTitleShadowColor" ref="315726114"/>
-							<reference key="IBUINormalBackgroundImage" ref="130044493"/>
+							<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">front_button_highlight.png</string>
+							</object>
 							<reference key="IBUIFontDescription" ref="575086559"/>
 							<reference key="IBUIFont" ref="233725332"/>
 						</object>
@@ -231,7 +234,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<string key="NSFrame">{{277, 434}, {16, 16}}</string>
 							<reference key="NSSuperview" ref="191373211"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:225</string>
 							<bool key="IBUIOpaque">NO</bool>
 							<int key="IBUITag">1</int>
@@ -723,6 +725,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<string key="bottom_line.png">{306, 10}</string>
 			<string key="footer.png">{320, 36}</string>
 			<string key="front_bg.png">{320, 460}</string>
+			<string key="front_button_highlight.png">{269, 44}</string>
 			<string key="front_button_normal.png">{269, 44}</string>
 			<string key="front_logo.png">{192, 162}</string>
 			<string key="setting.png">{16, 16}</string>

@@ -11,8 +11,8 @@
 #import "BleServiceInfo.h"
 
 @interface SerialGATT () 
-    
- -(void)connectionTimeout:(NSTimer *)timer;
+
+-(void)connectionTimeout:(NSTimer *)timer;
 
 @end
 @implementation SerialGATT
@@ -270,15 +270,15 @@
 -(BleServiceInfo *)getActivePeripheralInfo
 {
     BleServiceInfo *deviceInfo=[[BleServiceInfo alloc] init];
-  CBService *serialService = [self findServiceFromUUIDString:SERIAL_PERIPHERAL_GENERIC_ACCESS_SERVICE_UUID p:activePeripheral];
+    CBService *serialService = [self findServiceFromUUIDString:SERIAL_PERIPHERAL_GENERIC_ACCESS_SERVICE_UUID p:activePeripheral];
     if(serialService){
-   CBCharacteristic * dataCharacteristic = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_DEVICENAME p:activePeripheral service:serialService];
-   NSString *characterValue = [[NSString alloc] initWithData:dataCharacteristic.value encoding:NSUTF8StringEncoding];
-    deviceInfo.deviceName=characterValue;
-    
-    CBCharacteristic * dataCharacteristic2 = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_APPERANCE p:activePeripheral service:serialService];
-     NSString *characterValue2 = [[NSString alloc] initWithData:dataCharacteristic2.value encoding:NSUTF8StringEncoding];    
-    deviceInfo.appearance=characterValue2;
+        CBCharacteristic * dataCharacteristic = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_DEVICENAME p:activePeripheral service:serialService];
+        NSString *characterValue = [[NSString alloc] initWithData:dataCharacteristic.value encoding:NSUTF8StringEncoding];
+        deviceInfo.deviceName=characterValue;
+        
+        CBCharacteristic * dataCharacteristic2 = [self findCharacteristicFromUUIDString:SERIAL_PERIPHERAL_CHARACTERISTIC_APPERANCE p:activePeripheral service:serialService];
+        NSString *characterValue2 = [[NSString alloc] initWithData:dataCharacteristic2.value encoding:NSUTF8StringEncoding];    
+        deviceInfo.appearance=characterValue2;
     }
     
     CBService *serialService2 = [self findServiceFromUUIDString:SERIAL_PERIPHERAL_DEVICE_SERVICE_UUID p:activePeripheral];
@@ -351,8 +351,7 @@
                 if(svc!=serialHeartRateService)
                     [peripheral discoverCharacteristics:nil forService:svc];
             }
-            [peripheral discoverCharacteristics:nil forService:serialHeartRateService]; 
-            [self notify:peripheral on:YES]; 
+            [peripheral discoverCharacteristics:nil forService:serialHeartRateService];              
         }        
     }
     else {
@@ -366,17 +365,20 @@
     if (!error) {        
         printf("The characteristics are found for the service!\n");
         if(service==serialHeartRateService){
-        dataSettingWriteCharacteristic = [self findCharacteristicFromUUID:characteristicWriteUUID p:peripheral service:serialHeartRateService];
-        dataNotifyCharacteristic = [self findCharacteristicFromUUID:characteristicNotifyUUID p:peripheral service:serialHeartRateService];        
-        if (!dataNotifyCharacteristic || !dataSettingWriteCharacteristic) {
-            printf("The desired characteristics can't be found!\n");
-            [delegate failToExchangeData:@"The desired characteristics can't be found!"];
-            return;
-        }    
-        } else {            
-            //all require service ready
-            [delegate sensorReadyToExchangeData];
-        }
+            dataSettingWriteCharacteristic = [self findCharacteristicFromUUID:characteristicWriteUUID p:peripheral service:serialHeartRateService];
+            dataNotifyCharacteristic = [self findCharacteristicFromUUID:characteristicNotifyUUID p:peripheral service:serialHeartRateService];        
+            if (!dataNotifyCharacteristic || !dataSettingWriteCharacteristic) {
+                printf("The desired characteristics can't be found!\n");
+                [delegate failToExchangeData:@"The desired characteristics can't be found!"];
+                return;
+            }    
+            else {            
+                [self notify:peripheral on:YES];
+                //all require service ready
+                [delegate sensorReadyToExchangeData];
+                
+            }
+        } 
     }
 }
 

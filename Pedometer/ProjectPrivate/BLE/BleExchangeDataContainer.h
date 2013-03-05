@@ -13,7 +13,7 @@ typedef enum {
     ExchangeTypePedoData=1,
     ExchangeTypeSleepData=2,
 }ExchangeDataType;
-@interface BleExchangeDataContainer : NSObject
+@interface BleExchangeDataContainer : NSObjectSerialization
 
 
 @property BOOL isConnectingStart;

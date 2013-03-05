@@ -19,6 +19,8 @@
 -(void) searchPeripheralTimeout;
 -(void) sensorReadyToExchangeData;
 -(void) failToExchangeData:(NSString *)reason;
+-(void) successToExchangeData:(NSString *)tip;
+-(void) finishConnection;
 -(void) sensorStatusChange:(NSString *)description;
 @end
 

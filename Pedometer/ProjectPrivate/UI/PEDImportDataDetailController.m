@@ -97,8 +97,8 @@
 }
 -(void)sensorReadyToExchangeData
 {
-    [indActive stopAnimating];
-    indActive.hidden=YES;
+    //[indActive stopAnimating];
+    //indActive.hidden=YES;
     txtActInfo.text=@"Ready to import data.";   
     [self beginExchangeDataWithDevice];
     //BleServiceInfo *svcInfo = [sensor getActivePeripheralInfo];
@@ -112,7 +112,7 @@
     memcpy( &networkPacket[0], data, length ); 
     NSData *packet = [NSData dataWithBytes: networkPacket length:length];
     [sensor write:sensor.activePeripheral data:packet];
-    NSLog(@"Send Data:%@",packet);
+    NSLog(@"Send Data:%@",[packet hexRepresentationWithSpaces_AS:YES]);
 }
 
 -(void)sendSettingDataWithType:(DataHeaderType)headerType
@@ -128,9 +128,9 @@
     setting.age=(unsigned char)userInfo.age;
     setting.format=userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
     setting.gender=userInfo.gender?0:1;
-    setting.height=userInfo.height;
-    setting.stride=userInfo.stride;
-    setting.weight=userInfo.weight;
+    setting.height=(unsigned short)userInfo.height;
+    setting.stride=(unsigned short)userInfo.stride;
+    setting.weight=(unsigned short)userInfo.weight;
     setting.header=headerType;
     [self sendDataToPeriperial:&setting ofLength:sizeof(packetPedoSetting)];
      exchangeTimer = [NSTimer scheduledTimerWithTimeInterval:BLE_DATA_TRANSFER_TIMEOUT target:self selector:@selector(exchangeTimeout:) userInfo:nil repeats:NO];
@@ -151,12 +151,13 @@
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
     packetTargetData *packet = (packetTargetData *)&incomingPacket[0];	
     PEDTarget *target=[[PEDTarget alloc] init];
-    target.targetStep=packet->targetStep[0]+packet->targetStep[0]*16*16+packet->targetStep[0]*16*16*16*16;
-    target.remainStep=packet->remainStep[0]+packet->remainStep[0]*16*16+packet->remainStep[0]*16*16*16*16;
-    target.remainDistance=(packet->remainDistance[0]+packet->remainDistance[0]*16*16+packet->remainDistance[0]*16*16*16*16)/100;
-    target.remainCalorie=packet->remainCalorie[0]+packet->remainCalorie[0]*16*16+packet->remainCalorie[0]*16*16*16*16;
+    target.targetStep=packet->targetStep[0]+packet->targetStep[1]*16*16+packet->targetStep[2]*16*16*16*16;
+    target.remainStep=packet->remainStep[0]+packet->remainStep[1]*16*16+packet->remainStep[2]*16*16*16*16;
+    target.remainDistance=(NSTimeInterval)((packet->remainDistance[0]+packet->remainDistance[1]*16*16+packet->remainDistance[2]*16*16*16*16))/100;
+    target.remainCalorie=packet->remainCalorie[0]+packet->remainCalorie[1]*16*16+packet->remainCalorie[2]*16*16*16*16;
     target.pedoDataCount = packet->pedoMemoryNo;
     target.sleepDataCount=packet->pedoSleepMemNo;
+    target.updateDate=[NSDate date];
     //checking
     return target;
 }
@@ -166,11 +167,11 @@
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
     packetPedoData *packet = (packetPedoData *)&incomingPacket[0];	
     PEDPedometerData *pedoData=[[PEDPedometerData alloc] init];
-    pedoData.activeTime=packet->activityTimeHour*3600+packet->activityTimeMin*60;
-    pedoData.calorie=packet->calorie[0]+packet->calorie[0]*16*16+packet->calorie[0]*16*16*16*16;
-    pedoData.distance=(packet->distance[0]+packet->distance[0]*16*16+packet->distance[0]*16*16*16*16/100);
-    pedoData.step=packet->step[0]+packet->step[0]*16*16+packet->step[0]*16*16*16*16;
-    pedoData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2i-%2i-%2i",packet->year,packet->month,packet->day]];
+    pedoData.activeTime=[[NSString stringWithFormat:@"%2x",packet->activityTimeHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->activityTimeMin] intValue]*60;
+    pedoData.calorie=packet->calorie[0]+packet->calorie[1]*16*16+packet->calorie[2]*16*16*16*16;
+    pedoData.distance=(NSTimeInterval)(packet->distance[0]+packet->distance[1]*16*16+packet->distance[2]*16*16*16*16)/100;
+    pedoData.step=packet->step[0]+packet->step[1]*16*16+packet->step[2]*16*16*16*16;
+  pedoData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2x-%2x-%2x",packet->year,packet->month,packet->day]];
     return pedoData;
 }
 -(PEDSleepData *)convertDataToSleepData:(NSData *)data
@@ -178,12 +179,12 @@
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
     packetSleepData *packet = (packetSleepData *)&incomingPacket[0];	
     PEDSleepData *sleepData=[[PEDSleepData alloc] init];
-    sleepData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2i-%2i-%2i",packet->year,packet->month,packet->day]];
-    sleepData.timeToBed=packet->timeToBedHour*3600+packet->timeToBedMin*60;
-    sleepData.timeToFallSleep=packet->timeToFallSleepHour*3600+packet->timeToFallSleepMin*60;
-    sleepData.timeToWakeup=packet->timeToWakeupHour*3600+packet->timeToWakeupMin*60;
-    sleepData.inBedTime=packet->inBedTimeHour*3600+packet->inBedTimeMin*60;
-    sleepData.actualSleepTime=packet->actualSleepTimeHour*3600+packet->actualSleepTimeMin*60;
+    sleepData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2x-%2x-%2x",packet->year,packet->month,packet->day]];
+    sleepData.timeToBed=[[NSString stringWithFormat:@"%2x",packet->timeToBedHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToBedMin] intValue]*60;
+    sleepData.timeToFallSleep=[[NSString stringWithFormat:@"%2x",packet->timeToFallSleepHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToFallSleepMin] intValue]*60;
+    sleepData.timeToWakeup=[[NSString stringWithFormat:@"%2x",packet->timeToWakeupHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToWakeupMin] intValue]*60;
+    sleepData.inBedTime=[[NSString stringWithFormat:@"%2x",packet->inBedTimeHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->inBedTimeMin] intValue]*60;
+    sleepData.actualSleepTime=[[NSString stringWithFormat:@"%2x",packet->actualSleepTimeHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->actualSleepTimeMin] intValue]*60;
     sleepData.awakenTime=packet->awakenTime;
     return sleepData;
 }
@@ -191,73 +192,86 @@
 -(void) serialGATTCharValueUpdated:(NSString *)UUID value:(NSData *)data
 {
     //NSString *value = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"Receive Notify:UUID:%@,data:%@",UUID,data);
+    NSLog(@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]);
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
    DataHeaderType header = (DataHeaderType)incomingPacket[0];
     if (header == DATA_HEADER_PEDO_SETTING_TARGET_RS) {
         [self cancelExchangeTimer];
            PEDTarget *target= [self convertDataToTarget:data];
            if(target){
+               txtActInfo.text=@"Received target data."; 
+               //NSLog(@"Receive Notify:UUID:%@,Target data:%@",UUID,target);
                exchangeContainer.target=target;
                if(target.pedoDataCount>0){
                exchangeContainer.exchageType=ExchangeTypePedoData;
                     exchangeContainer.pedoDataIndex++;
+                   txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
                    [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
                }    
                else if(target.sleepDataCount>0){
                    exchangeContainer.exchageType=ExchangeTypeSleepData;
                     exchangeContainer.sleepDataIndex++;
+                   txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
                    [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
                }
                else{
                    exchangeContainer.isConnectingEnd=YES;
-               }
+               }               
            }
                 else{
-                    [self failToExchangeData:@"Invalid Data Format,connection will be terminated."];
+                    [self failToExchangeData:@"Invalid data format,connection will be terminated."];
                 }        
     }
     else if(header>=DATA_HEADER_PEDO_DATA_1_RS&&header<=DATA_HEADER_PEDO_DATA_7_RS){
         [self cancelExchangeTimer];
         PEDPedometerData *pedoData=[self convertDataToPedoData:data];
         if(pedoData){
+            txtActInfo.text=[NSString stringWithFormat: @"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1];
+           NSLog(@"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
+            //NSLog(@"Receive Notify:UUID:%@,Pedometer data:%@",UUID,pedoData);
             [exchangeContainer.pedoData addObject:pedoData];
             exchangeContainer.pedoDataIndex++;
-            if(header==DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.target.pedoDataCount-1)
+            if(exchangeContainer.pedoDataIndex==exchangeContainer.target.pedoDataCount)
             {
                 if(exchangeContainer.target.sleepDataCount>0){
                     exchangeContainer.sleepDataIndex++;
+                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data data:%i.",exchangeContainer.sleepDataIndex+1];
                     [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
                 }
                 else{
                     exchangeContainer.isConnectingEnd=YES;
                 }
             }
-            else{
+            else{                
+                NSLog(@"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
+                txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex]; 
                 [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
             }
         }
         else{
-            [self failToExchangeData:@"Invalid Data Format,connection will be terminated."];
+            [self failToExchangeData:@"Invalid data format,connection will be terminated."];
         }
     }
     else if(header>=DATA_HEADER_SLEEP_DATA_1_RS&&header<=DATA_HEADER_SLEEP_DATA_7_RS)
     {        
         [self cancelExchangeTimer];
         PEDSleepData *sleepData=[self convertDataToSleepData:data];
+        //NSLog(@"Receive Notify:UUID:%@,Sleep data:%@",UUID,sleepData);
         if(sleepData){
+            txtActInfo.text=[NSString stringWithFormat: @"Received sleep data:%i.",exchangeContainer.sleepDataIndex+1];
             [exchangeContainer.sleepData addObject:sleepData];
             exchangeContainer.sleepDataIndex++;
-            if(header==DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.target.sleepDataCount-1)
+            if(exchangeContainer.sleepDataIndex==exchangeContainer.target.sleepDataCount)
             {
                 exchangeContainer.isConnectingEnd=YES;
             }
-            else{
+            else{                
+                txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
                 [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
             }
         }
         else{
-            [self failToExchangeData:@"Invalid Data Format,connection will be terminated."];
+            [self failToExchangeData:@"Invalid data format,connection will be terminated."];
         }
     }
     [self testExchangeDataEnd];
@@ -268,6 +282,7 @@
     if(exchangeContainer.isConnectingEnd){
         [self sendSettingDataWithType:DATA_HEADER_END_CONNECT_RQ];
         //test data
+        [self finishConnection];
         [self saveExchangeDataToDatabase];
     }
 }
@@ -275,6 +290,7 @@
 -(void)saveExchangeDataToDatabase
 {
     BOOL success=YES;
+    txtActInfo.text=@"Save data to local...";
     PEDUserInfo *user =[AppConfig getInstance].settings.userInfo;
     if(exchangeContainer.target){
       PEDTarget *target =  [[BO_PEDTarget getInstance] queryTargetByUserId:user.userId];
@@ -307,7 +323,7 @@
         else{
             data.targetId=exchangeContainer.target.targetId;
             pedoData=data;            
-        }
+        }        
         [[BO_PEDPedometerData getInstance] saveObject:pedoData];
     }
     for(PEDSleepData *data in exchangeContainer.sleepData){
@@ -322,12 +338,18 @@
             sleepData.updateDate=data.updateDate;
         }
         else{
-            data.targetId=sleepData.targetId;
+            data.targetId=exchangeContainer.target.targetId;
             sleepData=data;
-        }
+        }        
+        [[BO_PEDSleepData getInstance] saveObject:sleepData];
     }
+    if(success)
+        txtActInfo.text=@"Success to import data.";
+    else
+        txtActInfo.text=@"Fail save data to local.";
     if(success){
-        [self failToExchangeData:@"Success to import data."];
+        
+        [self successToExchangeData:@"Success to import data."];
     }
     else{
         [self failToExchangeData:@"Fail to import data to database."];
@@ -336,18 +358,39 @@
 
 -(void)backToPeriperialList
 {
-    [sensor cancelTimer];
-    [sensor disconnect:sensor.activePeripheral];
-    sensor.activePeripheral=nil;
-    sensor.delegate=parentController;
+    [self finishConnection];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+-(void) finishConnection
+{
+    @try {
+    [indActive stopAnimating];
+        indActive.hidden=YES;
+    [sensor cancelTimer];
+    [self cancelExchangeTimer];
+    [sensor disconnect:sensor.activePeripheral];
+    sensor.activePeripheral=nil;
+    sensor.delegate=parentController;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception %@",exception);
+    }
+    @finally {
+        
+    }
+}
 -(void) failToExchangeData:(NSString *)reason
 {
-    [indActive stopAnimating];
+    [self finishConnection];
     [UIHelper showAlert:@"Information" message:reason func:^(AlertView *a, NSInteger i) {
-        [self backToPeriperialList];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+}
+-(void) successToExchangeData:(NSString *)tip
+{
+    [UIHelper showAlert:@"Information" message:tip func:^(AlertView *a, NSInteger i) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }];
 }
 -(void) sensorStatusChange:(NSString *)description

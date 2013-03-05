@@ -12,7 +12,10 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "NSDictionary+Extendtion.h"
+    #import "NSDate+AddAddition.h"
+#import "NSData+ToHexAddition.h"
     #import "NSObjectSerialization.h"
+
     #import "MacroUtils.h"
     #import "UtilHelper.h"
 #import "Definition.h"

@@ -12,6 +12,10 @@
 #import "PEDPedometerCalcHelper.h"
 #import "PEDPedometerDataHelper.h"
 
+@interface PEDBarchartViewController ()
+-(void) reloadPickerToMidOfDate:(NSDate *)date;
+@end
+
 @implementation PEDBarchartViewController
 
 @synthesize graphicHostView;
@@ -110,7 +114,8 @@
 
 -(void) initData{
     lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
-    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+    NSDate *lastOptDate=[[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    lblLastUpdate.text = [UtilHelper formateDate:lastOptDate withFormat:@"dd/MM/yy"];
     isLargeView = false;
     dayRemark =0;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM"];
@@ -130,14 +135,15 @@
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
     [self.graphicHostView addGestureRecognizer:leftRecognizer];
+    
+    [self reloadPickerToMidOfDate:lastOptDate];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initData];
-	// Do any additional setup after loading the view, typically from a nib.
-	CGFloat pickerHeight = 40.0f;
+    
+    CGFloat pickerHeight = 40.0f;
     CGFloat width=[UIScreen mainScreen].bounds.size.width;
 	CGFloat x = 0;
 	CGFloat y = 331.0f;
@@ -153,6 +159,10 @@
     monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:14.0f];
 	monthSelectView.selectionPoint = CGPointMake(tmpFrame.size.width/2, 0);
     [self.view addSubview:monthSelectView];
+    
+    [self initData];
+	// Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 
@@ -433,12 +443,12 @@
     return label;
 }
 
-#pragma mark - HorizontalPickerView DataSource Methods
+#pragma mark - HorizontalPickerView Delegate Methods
+
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
 	return [monthArray count];
 }
 
-#pragma mark - HorizontalPickerView Delegate Methods
 - (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index {
 	return [monthArray objectAtIndex:index];
 }
@@ -454,9 +464,30 @@
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-	
+    if(index!=3){
+        NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+        [self reloadPickerToMidOfDate:date];
+    }   
 }
 
+-(void) reloadPickerToMidOfDate:(NSDate *)date
+{
+    monthArray=[[NSMutableArray alloc] initWithCapacity:7];
+    NSDate *selectedData=date;
+    if(date){
+        selectedData=date;
+    }
+    else{
+        selectedData=[NSDate date];
+    }
+    NSDate *fromDate=[selectedData addMonths:-3];
+    for (int i=0; i<7; i++) {
+        [monthArray addObject:[UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"]];
+        
+    }    
+    [monthSelectView reloadData];
+    [monthSelectView scrollToElement:3 animated:NO]; 
+}
 
 - (void)viewDidUnload {
     [self setGraphicHostView:nil];

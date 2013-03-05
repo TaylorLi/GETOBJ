@@ -23,12 +23,18 @@
 //km/h
 +(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit
 {
+    if (km==0) {
+        return 0;
+    }
     return sencond/60/(measureUnit==MEASURE_UNIT_METRIC ? km : [self convertKmToMile:km]);
 }
 //min/km
 +(NSTimeInterval) calAvgSpeedByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit
 {
-    return (measureUnit==MEASURE_UNIT_METRIC ? km : [self convertKmToMile:km])*3600/sencond;
+    if(sencond==0)
+        return 0;
+    else
+        return (measureUnit==MEASURE_UNIT_METRIC ? km : [self convertKmToMile:km])*3600/sencond;
 }
 
 +(NSString*) getStrideUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper{

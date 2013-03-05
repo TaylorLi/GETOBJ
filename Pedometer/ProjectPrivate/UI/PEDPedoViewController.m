@@ -184,7 +184,7 @@
         NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
         [self reloadPickerToMidOfDate:date];
     }
-    PEDPedoDataViewController *pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+    pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 
@@ -205,46 +205,6 @@
     }    
     [monthSelectView reloadData];
     [monthSelectView scrollToElement:3 animated:NO]; 
-    if(!pedPedoDataViewController){
-        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
-    }
-    [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
-}
-
-- (void) initData{
-    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData:[AppConfig getInstance].settings.target.targetId];
-    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
-    lblLastUpdate.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
-    lblUserName.text = userInfo.userName;
-    lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
-    lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
-
-    NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
-    lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)currPedometerData.activeTime];
-    lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
-    lblDistanceAmount.text = [NSString stringWithFormat:@"%.1f", distance];
-    lblSpeedAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
-    lblPaceAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
-    lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
-    lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-    lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-    
-    CGFloat pickerHeight = 40.0f;
-    CGFloat width=[UIScreen mainScreen].bounds.size.width;
-	CGFloat x = 0;
-	CGFloat y = 331.0f;
-	CGRect tmpFrame = CGRectMake(x, y, width, pickerHeight);
-    
-	monthSelectView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
-    monthSelectView.backgroundColor   = [UIColor clearColor];
-	monthSelectView.selectedTextColor = [UIColor whiteColor];
-	monthSelectView.textColor   = [UIColor grayColor];
-	monthSelectView.delegate    = self;
-	monthSelectView.dataSource  = self;
-	monthSelectView.elementFont = [UIFont boldSystemFontOfSize:11.0f];
-    monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:14.0f];
-	monthSelectView.selectionPoint = CGPointMake(tmpFrame.size.width/2, 0);
-    [self.view addSubview:monthSelectView];
 }
 
 @end

@@ -16,10 +16,10 @@
 {
 @private
     CPTXYGraph *barChart;
-    NSTimer *timer;
-    NSMutableArray *monthArray;
+    NSTimer *timer;    
     NSMutableArray *dayArray;
     NSInteger dayRemark;
+    NSDate *referenceDate;
     NSMutableDictionary *statisticsData;
     NSMutableArray *barIdArray;
     BOOL isLargeView;

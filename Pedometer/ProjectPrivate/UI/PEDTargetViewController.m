@@ -55,7 +55,7 @@
 }
 
 - (CGFloat)percentOfTarget:(CGFloat) target withRemain:(CGFloat) remain{
-    if(target == remain) return 219;
+    if(target == remain) return 0;
     return (target - remain) * 219 / target;
 }
 
@@ -110,7 +110,7 @@
 - (void) initData{
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     PEDTarget *target = [AppConfig getInstance].settings.target;
-    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate:target.targetId] withFormat:@"dd/MM/yy"];
+    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:target.targetId] withFormat:@"dd/MM/yy"];
     lblUserName.text = userInfo.userName;
     lblStepTarget.text = [NSString stringWithFormat:@"%i", target.targetStep];
     lblStepRemain.text = [NSString stringWithFormat:@"%i", target.remainStep];

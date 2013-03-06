@@ -17,7 +17,9 @@
 @class PEDImportDataViewController,PEDUserInfo,PEDTarget,BleExchangeDataContainer;
 
 @interface PEDImportDataDetailController : UIViewController<BTSmartSensorDelegate>
-
+{
+    NSMutableString *exchangeDebuglog;
+}
 
 @property (strong, nonatomic) CBPeripheral *peripheral;
 @property (strong, nonatomic) SerialGATT *sensor;
@@ -28,6 +30,7 @@
 @property (strong,nonatomic) PEDImportDataViewController *parentController;
 @property (strong,nonatomic) BleExchangeDataContainer *exchangeContainer;
 @property (strong,nonatomic) NSTimer *exchangeTimer;
+@property (strong, nonatomic) IBOutlet UITextView *txtExchangeLog;
 
 
 

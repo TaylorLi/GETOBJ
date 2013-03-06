@@ -17,6 +17,22 @@ typedef enum {
 
 
 @interface V8HorizontalPickerView : UIView <UIScrollViewDelegate> {
+#pragma mark - iVars
+    UIScrollView *_scrollView;
+    
+    // collection of widths of each element.
+    NSMutableArray *elementWidths;
+    
+    NSInteger elementPadding;
+    
+    // state keepers
+    BOOL dataHasBeenLoaded;
+    BOOL scrollSizeHasBeenSet;
+    BOOL scrollingBasedOnUserInteraction;
+    
+    // keep track of which elements are visible for tiling
+    int firstVisibleElement;
+    int lastVisibleElement;
 }
 
 // delegate and datasources to feed scroll view. this view only maintains

@@ -53,23 +53,6 @@
 @synthesize leftEdgeView, rightEdgeView;
 @synthesize leftScrollEdgeView, rightScrollEdgeView, scrollEdgeViewPadding;
 
-#pragma mark - iVars
-UIScrollView *_scrollView;
-
-// collection of widths of each element.
-NSMutableArray *elementWidths;
-
-NSInteger elementPadding;
-
-// state keepers
-BOOL dataHasBeenLoaded;
-BOOL scrollSizeHasBeenSet;
-BOOL scrollingBasedOnUserInteraction;
-
-// keep track of which elements are visible for tiling
-int firstVisibleElement;
-int lastVisibleElement;
-
 
 #pragma mark - Init/Dealloc
 - (id)initWithFrame:(CGRect)frame {
@@ -215,7 +198,6 @@ int lastVisibleElement;
 			[_scrollView addSubview:rightScrollEdgeView];
 		}
 	}
-
 	// save off what's visible now
 	firstVisibleElement = firstNeededElement;
 	lastVisibleElement  = lastNeededElement;
@@ -748,7 +730,10 @@ int lastVisibleElement;
 
 - (void)scrollViewDoubleTap:(UITapGestureRecognizer *)recognizer {
 	if (recognizer.state == UIGestureRecognizerStateRecognized) {
-        [self.delegate horizontalPickerView:self didDoubleClickElementAtIndex:currentSelectedIndex];
+        SEL setSelectedSelector     = @selector(horizontalPickerView:didDoubleClickElementAtIndex:);
+        if (self.delegate && [self.delegate respondsToSelector:setSelectedSelector]) {
+            [self.delegate horizontalPickerView:self didDoubleClickElementAtIndex:currentSelectedIndex];
+        }
 	}
 }
 

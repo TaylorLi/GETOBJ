@@ -43,4 +43,5 @@
 - (IBAction)btnAvgPaceClick:(id)sender;
 
 -(void)timerFired;
+-(void) initData;
 @end

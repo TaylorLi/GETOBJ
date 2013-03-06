@@ -123,11 +123,15 @@
 - (void) initData{
     PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData:[AppConfig getInstance].settings.target.targetId];
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+    if(currPedometerData){
     referenceDate = currPedometerData.optDate;
     lblLastUpdate.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
     lblUserName.text = userInfo.userName;
     lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
+    if(referenceDate==nil)
+        referenceDate=[NSDate date];
     lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
+    
     int h, m, s;
     h = (int)currPedometerData.activeTime / 3600;
     m = (int)currPedometerData.activeTime % 3600 / 60;
@@ -141,7 +145,7 @@
     lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
     lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
     lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
-    
+    }
     [self reloadPickerToMidOfDate:referenceDate];
 }
 

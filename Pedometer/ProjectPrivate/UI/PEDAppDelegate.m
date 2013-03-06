@@ -101,7 +101,8 @@ static PEDAppDelegate* _instance;
 {
     importDataViewController = nil;
     pedImportDataViewController = nil;
-    [[PEDAppDelegate getInstance] showTabView];
+    [self restoreControllerData];
+    [self swithView : customerTabBarController.view];
 }
 
 -(void) showTabView{
@@ -179,7 +180,13 @@ static PEDAppDelegate* _instance;
         [pedTargetViewController initData];
     }
     if(pedBarchartViewController){
-        [pedTargetViewController initData];
+        [pedBarchartViewController initData];
+    }
+    if(pedGraphsViewController){
+        [pedGraphsViewController initData];
+    }
+    if(pedPedoDataViewController){
+        [pedPedoDataViewController initData];
     }
 }
 

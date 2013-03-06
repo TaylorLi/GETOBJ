@@ -47,6 +47,6 @@
 
 
 -(void)timerFired;
-
+-(void) initData;
 
 @end

@@ -101,7 +101,7 @@
 }
 
 -(void) addExchangeLog:(NSString *) logDetail{
-    [exchangeDebuglog appendFormat:@"%@\n",logDetail];
+    [exchangeDebuglog appendFormat:@"%@ %@\n",[UtilHelper formateTime:[NSDate date]],logDetail];
     txtExchangeLog.text=exchangeDebuglog;
 }
 -(void)sensorReadyToExchangeData

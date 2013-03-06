@@ -391,8 +391,10 @@
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;
+
     referenceDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:targetId];
     self.lblLastUpdate.text = [UtilHelper formateDate:referenceDate withFormat:@"dd/MM/yy"];
+
     pedoMeterDataArray = nil;
     [self initLable];
     pedoMeterDataArray = [self getPedoDataResources: dayRemark withTargetId:targetId referedDate:referenceDate];

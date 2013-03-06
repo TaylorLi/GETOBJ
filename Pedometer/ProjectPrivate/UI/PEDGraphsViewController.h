@@ -17,11 +17,11 @@
     NSMutableArray *dataForPlot;
     NSMutableArray *dayArray;
     NSInteger dayRemark;
+    NSDate *referenceDate;
     NSMutableDictionary *statisticsData;
     NSMutableArray *barIdArray;
     BOOL isLargeView;
     NSMutableArray *tempControlPool;
-    NSDate *referenceDate;
 }
 
 @property (readwrite, retain, nonatomic) NSMutableArray *dataForPlot;

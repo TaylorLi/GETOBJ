@@ -23,11 +23,14 @@
 +(NSString*) integerToString: (NSInteger) intValue{
     return [NSString stringWithFormat:@"%d", intValue];
 }
+
 +(NSMutableArray*) getDaysQueue :(NSInteger) dayCount withDaySpacing: (NSInteger) daySpacing withDateFormat: (NSString*) dateFormat referedDate:(NSDate *) referDate{
     NSMutableArray *daysArray = [[NSMutableArray alloc]initWithCapacity:dayCount];
     
     for (int i=dayCount - daySpacing - 1; i>=-daySpacing; i--) {
+
         NSDate *date = [referDate addDays:-i];
+
         [daysArray addObject:[UtilHelper formateDate:date withFormat:dateFormat]];
     }
     return daysArray;
@@ -41,10 +44,12 @@
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_DISTANCE]];
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_AVG_SPEED]];
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_AVG_PACE]];
+
     NSDate *dateFrom = [referDate addDays: - (dayCount - daySpacing - 1)];
     dateFrom = [UtilHelper convertDate: [UtilHelper formateDate:dateFrom]];
     NSDate *dateTo = [referDate addDays: - (- daySpacing - 1)];
     dateTo = [UtilHelper convertDate: [UtilHelper formateDate:dateTo]];
+
     NSArray *meterDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     for (PEDPedometerData *meterData in meterDataArray) {
         if(meterData == nil){

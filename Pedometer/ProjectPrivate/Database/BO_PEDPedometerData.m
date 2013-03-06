@@ -92,5 +92,12 @@ static BO_PEDPedometerData* instance;
     else
         return nil;
 }
-
+-(NSDate *)getLastUpdateDate :(NSString*) targetId
+{
+    PEDPedometerData *data = [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? order by updateDate desc LIMIT 1" parameters:[[NSArray alloc] initWithObjects:targetId, nil]];
+    if(data)
+        return  data.updateDate;
+    else
+        return nil;
+}
 @end

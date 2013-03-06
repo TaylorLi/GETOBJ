@@ -20,7 +20,7 @@
 #import "BO_PEDTarget.h"
 
 @interface PEDImportDataDetailController ()
-
+-(void) addExchangeLog:(NSString *) logDetail;
 -(void)sendSettingDataWithType:(DataHeaderType)headerType;
 - (void)sendDataToPeriperial:(void *)data ofLength:(int)length;
 -(PEDTarget *)convertDataToTarget:(NSData *)data;
@@ -34,6 +34,7 @@
 @end
 
 @implementation PEDImportDataDetailController
+@synthesize txtExchangeLog;
 @synthesize txtActInfo;
 
 @synthesize rssi_container;
@@ -76,6 +77,7 @@
 - (void)viewDidUnload
 {
     [self setTxtActInfo:nil];
+    [self setTxtExchangeLog:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -92,8 +94,15 @@
 
 -(void)beginExchangeDataWithDevice
 {
+    exchangeDebuglog=[[NSMutableString alloc] init];
+    txtExchangeLog.text=exchangeDebuglog;
     self.exchangeContainer=[[BleExchangeDataContainer alloc] init];
     [self sendSettingDataWithType:DATA_HEADER_PEDO_SETTING_RQ];
+}
+
+-(void) addExchangeLog:(NSString *) logDetail{
+    [exchangeDebuglog appendFormat:@"%@\n",logDetail];
+    txtExchangeLog.text=exchangeDebuglog;
 }
 -(void)sensorReadyToExchangeData
 {
@@ -113,6 +122,7 @@
     NSData *packet = [NSData dataWithBytes: networkPacket length:length];
     [sensor write:sensor.activePeripheral data:packet];
     NSLog(@"Send Data:%@",[packet hexRepresentationWithSpaces_AS:YES]);
+    [self addExchangeLog:[NSString stringWithFormat:@"Send Data:%@",[packet hexRepresentationWithSpaces_AS:YES]]];
 }
 
 -(void)sendSettingDataWithType:(DataHeaderType)headerType
@@ -148,10 +158,13 @@
 }
 -(PEDTarget *)convertDataToTarget:(NSData *)data
 {
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
     packetTargetData *packet = (packetTargetData *)&incomingPacket[0];	
     PEDTarget *target=[[PEDTarget alloc] init];
     target.targetStep=packet->targetStep[0]+packet->targetStep[1]*16*16+packet->targetStep[2]*16*16*16*16;
+    target.targetDistance=[PEDPedometerCalcHelper calDistanceByStep:target.targetStep stride:userInfo.stride];
+    target.targetCalorie=[PEDPedometerCalcHelper calCalorieByStep:target.targetStep stride:userInfo.stride weight:userInfo.weight];
     target.remainStep=packet->remainStep[0]+packet->remainStep[1]*16*16+packet->remainStep[2]*16*16*16*16;
     target.remainDistance=(NSTimeInterval)((packet->remainDistance[0]+packet->remainDistance[1]*16*16+packet->remainDistance[2]*16*16*16*16))/100;
     target.remainCalorie=packet->remainCalorie[0]+packet->remainCalorie[1]*16*16+packet->remainCalorie[2]*16*16*16*16;
@@ -193,6 +206,7 @@
 {
     //NSString *value = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSLog(@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]);
+    [self addExchangeLog:[NSString stringWithFormat:@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]]];
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
    DataHeaderType header = (DataHeaderType)incomingPacket[0];
     if (header == DATA_HEADER_PEDO_SETTING_TARGET_RS) {
@@ -206,12 +220,14 @@
                exchangeContainer.exchageType=ExchangeTypePedoData;
                     exchangeContainer.pedoDataIndex++;
                    txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
+                   [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
                    [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
                }    
                else if(target.sleepDataCount>0){
                    exchangeContainer.exchageType=ExchangeTypeSleepData;
                     exchangeContainer.sleepDataIndex++;
                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
+                   [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
                    [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
                }
                else{
@@ -227,14 +243,18 @@
         PEDPedometerData *pedoData=[self convertDataToPedoData:data];
         if(pedoData){
             txtActInfo.text=[NSString stringWithFormat: @"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1];
-           NSLog(@"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
+            [self addExchangeLog:[NSString stringWithFormat: @"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
+            NSLog(@"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
+            
             //NSLog(@"Receive Notify:UUID:%@,Pedometer data:%@",UUID,pedoData);
             [exchangeContainer.pedoData addObject:pedoData];
             exchangeContainer.pedoDataIndex++;
-            if(exchangeContainer.pedoDataIndex==exchangeContainer.target.pedoDataCount)
+            if(exchangeContainer.pedoDataIndex>=exchangeContainer.target.pedoDataCount)
             {
                 if(exchangeContainer.target.sleepDataCount>0){
                     exchangeContainer.sleepDataIndex++;
+                    [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
+                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
                     txtActInfo.text=[NSString stringWithFormat: @"Request sleep data data:%i.",exchangeContainer.sleepDataIndex+1];
                     [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
                 }
@@ -244,7 +264,8 @@
             }
             else{                
                 NSLog(@"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
-                txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex]; 
+                [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
+                txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
                 [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
             }
         }
@@ -258,14 +279,16 @@
         PEDSleepData *sleepData=[self convertDataToSleepData:data];
         //NSLog(@"Receive Notify:UUID:%@,Sleep data:%@",UUID,sleepData);
         if(sleepData){
+            [self addExchangeLog:[NSString stringWithFormat: @"Received sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
             txtActInfo.text=[NSString stringWithFormat: @"Received sleep data:%i.",exchangeContainer.sleepDataIndex+1];
             [exchangeContainer.sleepData addObject:sleepData];
             exchangeContainer.sleepDataIndex++;
-            if(exchangeContainer.sleepDataIndex==exchangeContainer.target.sleepDataCount)
+            if(exchangeContainer.sleepDataIndex>=exchangeContainer.target.sleepDataCount)
             {
                 exchangeContainer.isConnectingEnd=YES;
             }
             else{                
+                [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
                 txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
                 [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
             }
@@ -384,13 +407,13 @@
 {
     [self finishConnection];
     [UIHelper showAlert:@"Information" message:reason func:^(AlertView *a, NSInteger i) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        //[self.navigationController popToRootViewControllerAnimated:YES];
     }];
 }
 -(void) successToExchangeData:(NSString *)tip
 {
     [UIHelper showAlert:@"Information" message:tip func:^(AlertView *a, NSInteger i) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        //[self.navigationController popToRootViewControllerAnimated:YES];
     }];
 }
 -(void) sensorStatusChange:(NSString *)description

@@ -20,11 +20,11 @@
     NSMutableArray *monthArray;
     NSMutableArray *dayArray;
     NSInteger dayRemark;
+    NSDate *referenceDate;
     NSMutableDictionary *statisticsData;
     NSMutableArray *barIdArray;
     BOOL isLargeView;
     NSMutableArray *tempControlPool;
-    NSDate *referenceDate;
 }
 
 @property (strong, nonatomic) IBOutlet CPTGraphHostingView *graphicHostView;

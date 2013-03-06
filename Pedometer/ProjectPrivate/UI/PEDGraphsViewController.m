@@ -9,6 +9,8 @@
 #import "PEDGraphsViewController.h"
 #import "PEDPedometerDataHelper.h"
 #import "BO_PEDPedometerData.h"
+#import "PEDPedometerData.h"
+
 @implementation PEDGraphsViewController
 
 @synthesize dataForPlot;
@@ -87,6 +89,7 @@
     lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
     referenceDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     lblLastUpdate.text = [UtilHelper formateDate:referenceDate withFormat:@"dd/MM/yy"];
+
     isLargeView = false;
     dayRemark =0;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];

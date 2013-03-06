@@ -55,7 +55,7 @@
 //        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
 //        self.tabBarItem = barItem;
       //  monthArray = [NSMutableArray arrayWithObjects:@"JUN,12", @"JUL,12", @"AUG,12", @"SEP,12", @"OCT,12", @"NOV,12", @"DEC,12", nil];
-        dayRemark = 0;
+        dayRemark = -1;
 
     }
     return self;
@@ -73,8 +73,6 @@
     self.lblDistance.text = @"";
     self.lblCalories.text = @"";
     self.lblActivityTime.text = @"";
-    self.lblLastUpdate.text = @"";
-    self.lblUserName.text = @"";
     self.lblNextDate.text = @"";
     self.lblNextStep.text = @"";
     self.lblNextDistance.text = @"";
@@ -380,9 +378,11 @@
     [self handleSwipeDown:nil];
 }
 
--(NSArray *) getPedoDataResources : (NSInteger) daySpacing withTargetId:(NSString*) targetId{
-    NSDate *dateFrom = [NSDate dateWithTimeIntervalSinceNow: (dayRemark - 1) * (24 * 60 * 60)];
-    NSDate *dateTo = [NSDate dateWithTimeIntervalSinceNow: (dayRemark == 0 ? 0 : 1 + dayRemark) * (24 * 60 * 60)];
+-(NSArray *) getPedoDataResources :(NSInteger) daySpacing withTargetId:(NSString*) targetId referedDate:(NSDate *) referDate{
+    NSDate *dateFrom = [referDate dateByAddingTimeInterval: (daySpacing - 1) * (24 * 60 * 60)];
+    dateFrom = [UtilHelper convertDate: [UtilHelper formateDate:dateFrom]];
+    NSDate *dateTo = [referDate dateByAddingTimeInterval: (daySpacing == 0 ? 1 : 2 + daySpacing) * (24 * 60 * 60)];
+    dateTo = [UtilHelper convertDate: [UtilHelper formateDate:dateTo]];
     NSArray *pedoDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     return pedoDataArray;
 }
@@ -391,10 +391,11 @@
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;
-    self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUploadDate:targetId] withFormat:@"dd/MM/yy"];
+    referenceDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:targetId];
+    self.lblLastUpdate.text = [UtilHelper formateDate:referenceDate withFormat:@"dd/MM/yy"];
     pedoMeterDataArray = nil;
     [self initLable];
-    pedoMeterDataArray = [self getPedoDataResources:dayRemark withTargetId:targetId];
+    pedoMeterDataArray = [self getPedoDataResources: dayRemark withTargetId:targetId referedDate:referenceDate];
     if(pedoMeterDataArray != nil){
         NSLog(@"%d", pedoMeterDataArray.count);
         PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:0];

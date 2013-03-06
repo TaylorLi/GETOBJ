@@ -23,18 +23,17 @@
 +(NSString*) integerToString: (NSInteger) intValue{
     return [NSString stringWithFormat:@"%d", intValue];
 }
-
-+(NSMutableArray*) getDaysQueue :(NSInteger) dayCount withDaySpacing: (NSInteger) daySpacing withDateFormat: (NSString*) dateFormat{
++(NSMutableArray*) getDaysQueue :(NSInteger) dayCount withDaySpacing: (NSInteger) daySpacing withDateFormat: (NSString*) dateFormat referedDate:(NSDate *) referDate{
     NSMutableArray *daysArray = [[NSMutableArray alloc]initWithCapacity:dayCount];
     
     for (int i=dayCount - daySpacing - 1; i>=-daySpacing; i--) {
-        NSDate *date = [NSDate dateWithTimeIntervalSinceNow: - i * (24 * 60 * 60)];
+        NSDate *date = [referDate addDays:-i];
         [daysArray addObject:[UtilHelper formateDate:date withFormat:dateFormat]];
     }
     return daysArray;
 }
 
-+(NSMutableDictionary*) getStatisticsData :(NSInteger) dayCount withDaySpacing: (NSInteger) daySpacing withTagetId: (NSString*) targetId withMeasureUnit:(MeasureUnit) measureUnit{
++(NSMutableDictionary*) getStatisticsData :(NSInteger) dayCount withDaySpacing: (NSInteger) daySpacing withTagetId: (NSString*) targetId withMeasureUnit:(MeasureUnit) measureUnit referedDate:(NSDate *) referDate{
     NSMutableDictionary * statisticsDatas = [[NSMutableDictionary alloc]init];
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_STEP]];
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_ACTIVITY_TIME]];
@@ -42,8 +41,10 @@
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_DISTANCE]];
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_AVG_SPEED]];
     [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_AVG_PACE]];
-    NSDate *dateFrom = [NSDate dateWithTimeIntervalSinceNow: - (dayCount - daySpacing) * (24 * 60 * 60)];
-    NSDate *dateTo = [NSDate dateWithTimeIntervalSinceNow: - (- daySpacing) * (24 * 60 * 60)];
+    NSDate *dateFrom = [referDate addDays: - (dayCount - daySpacing - 1)];
+    dateFrom = [UtilHelper convertDate: [UtilHelper formateDate:dateFrom]];
+    NSDate *dateTo = [referDate addDays: - (- daySpacing - 1)];
+    dateTo = [UtilHelper convertDate: [UtilHelper formateDate:dateTo]];
     NSArray *meterDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     for (PEDPedometerData *meterData in meterDataArray) {
         if(meterData == nil){

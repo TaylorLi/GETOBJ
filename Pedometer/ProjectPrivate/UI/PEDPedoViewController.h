@@ -13,6 +13,7 @@
 #import "PEDPedoDataViewController.h"
 @interface PEDPedoViewController : PEDUIBaseViewController<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
     NSMutableArray *monthArray;
+        NSDate* referenceDate;
 }
 @property (strong, nonatomic) PEDPedoDataViewController *pedPedoDataViewController;
 @property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;

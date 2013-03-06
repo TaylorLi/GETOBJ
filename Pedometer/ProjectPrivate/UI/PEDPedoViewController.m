@@ -138,6 +138,7 @@
 - (void) initData{
     PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData:[AppConfig getInstance].settings.target.targetId];
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+    referenceDate = currPedometerData.optDate;
     lblLastUpdate.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
     lblUserName.text = userInfo.userName;
     lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
@@ -156,7 +157,7 @@
     lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
     lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
     
-    [self reloadPickerToMidOfDate:currPedometerData.optDate];
+    [self reloadPickerToMidOfDate:referenceDate];
 }
 
 #pragma mark - HorizontalPickerView Delegate Methods
@@ -184,7 +185,15 @@
         NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
         [self reloadPickerToMidOfDate:date];
     }
-    pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+}
+
+-(void)horizontalPickerView:(V8HorizontalPickerView *)picker didDoubleClickElementAtIndex:(NSInteger)index {
+    NSLog(@"----%d", index);
+    if(pedPedoDataViewController == nil){
+        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+    }
+   // pedPedoDataViewController.dayRemark = index;
+    [pedPedoDataViewController initData];
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 

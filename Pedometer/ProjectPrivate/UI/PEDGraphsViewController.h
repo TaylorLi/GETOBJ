@@ -21,6 +21,7 @@
     NSMutableArray *barIdArray;
     BOOL isLargeView;
     NSMutableArray *tempControlPool;
+    NSDate *referenceDate;
 }
 
 @property (readwrite, retain, nonatomic) NSMutableArray *dataForPlot;

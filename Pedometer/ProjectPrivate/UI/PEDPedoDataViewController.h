@@ -19,6 +19,7 @@
 {
     DialogBoxContainer *regPannel;
     NSArray* pedoMeterDataArray;
+    NSDate* referenceDate;
 }
 
 @property (nonatomic) NSInteger dayRemark;

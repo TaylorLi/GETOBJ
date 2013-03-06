@@ -24,6 +24,7 @@
     NSMutableArray *barIdArray;
     BOOL isLargeView;
     NSMutableArray *tempControlPool;
+    NSDate *referenceDate;
 }
 
 @property (strong, nonatomic) IBOutlet CPTGraphHostingView *graphicHostView;

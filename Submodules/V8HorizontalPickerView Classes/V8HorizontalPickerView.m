@@ -452,7 +452,12 @@ int lastVisibleElement;
 		UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTapped:)];
 		[_scrollView addGestureRecognizer:tapRecognizer];
 		[tapRecognizer release];
-		
+        
+        UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTap:)];  
+        doubleRecognizer.numberOfTapsRequired = 2; // 双击    
+        [_scrollView addGestureRecognizer:doubleRecognizer];  
+		[doubleRecognizer release];
+        
 		[self addSubview:_scrollView];
 	}
 }
@@ -738,6 +743,12 @@ int lastVisibleElement;
 		if (elementIndex != -1) { // point not in element
 			[self scrollToElement:elementIndex animated:YES];
 		}
+	}
+}
+
+- (void)scrollViewDoubleTap:(UITapGestureRecognizer *)recognizer {
+	if (recognizer.state == UIGestureRecognizerStateRecognized) {
+        [self.delegate horizontalPickerView:self didDoubleClickElementAtIndex:currentSelectedIndex];
 	}
 }
 

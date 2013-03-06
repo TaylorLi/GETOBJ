@@ -20,6 +20,7 @@
     NSMutableArray *monthArray;
     NSMutableArray *dayArray;
     NSInteger dayRemark;
+    NSDate *referenceDate;
     NSMutableDictionary *statisticsData;
     NSMutableArray *barIdArray;
     BOOL isLargeView;

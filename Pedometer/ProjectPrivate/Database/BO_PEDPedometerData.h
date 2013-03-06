@@ -27,5 +27,5 @@
 -(NSDate *)getLastUploadDate :(NSString*) targetId;
 
 -(PEDPedometerData *)getWithTarget :(NSString*) targetId withDate:(NSDate *)date;
-
+-(NSDate *)getLastUpdateDate :(NSString*) targetId;
 @end

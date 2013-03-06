@@ -111,6 +111,7 @@
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
     [self.cptGraphHostingView addGestureRecognizer:leftRecognizer];
+    [self reloadPickerToMidOfDate:lastUploadData.optDate];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -140,6 +141,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initMonthSelectorWithX:0 Height:331.f];
     [self initData];
 }
 

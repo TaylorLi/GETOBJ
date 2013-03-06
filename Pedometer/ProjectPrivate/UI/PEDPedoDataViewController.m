@@ -253,6 +253,8 @@
     [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
     [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
 
+    [self initMonthSelectorWithX:0 Height:188.f];
+    
     [self initData];
 	// Do any additional setup after loading the view, typically from a nib.
     
@@ -260,23 +262,6 @@
 //    bgImage.image = [UIImage imageNamed:@"data.bmp"] ;
 //    [self.view addSubview:bgImage]; 
 //    
-    
-//    CGFloat pickerHeight = 40.0f;
-//    CGFloat width=[UIScreen mainScreen].bounds.size.width;
-//	CGFloat x = 0;
-//	CGFloat y = 331.0f;
-//	CGRect tmpFrame = CGRectMake(x, y, width, pickerHeight);
-//    
-//	monthSelectView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
-//    monthSelectView.backgroundColor   = [UIColor clearColor];
-//	monthSelectView.selectedTextColor = [UIColor whiteColor];
-//	monthSelectView.textColor   = [UIColor grayColor];
-//	monthSelectView.delegate    = self;
-//	monthSelectView.dataSource  = self;
-//	monthSelectView.elementFont = [UIFont boldSystemFontOfSize:11.0f];
-//    monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:14.0f];
-//	monthSelectView.selectionPoint = CGPointMake(tmpFrame.size.width/2, 0);
-//    [self.view addSubview:monthSelectView];
 }
 
 - (void)viewDidUnload
@@ -391,7 +376,8 @@
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;
-    self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:targetId] withFormat:@"dd/MM/yy"];
+    PEDPedometerData *lastUploadData = [[BO_PEDPedometerData getInstance] getLastUploadData:[AppConfig getInstance].settings.target.targetId];
+    self.lblLastUpdate.text = [UtilHelper formateDate:lastUploadData.updateDate withFormat:@"dd/MM/yy"];
     pedoMeterDataArray = nil;
     [self initLable];
     pedoMeterDataArray = [self getPedoDataResources:dayRemark withTargetId:targetId];
@@ -430,5 +416,6 @@
             
         }
     }
+    [self reloadPickerToMidOfDate:lastUploadData.optDate];
 }
 @end

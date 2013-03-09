@@ -30,5 +30,6 @@
 -(NSDate *)getLastUpdateDate :(NSString*) targetId;
 -(NSDate *)getPreviosOptDate :(NSDate*) date withTarget:(NSString *)target;
 -(NSDate *)getNextOptDate :(NSDate*) date withTarget:(NSString *)target;
+-(NSDate *)getLastDateWithTarget:(NSString *)target between:(NSDate *)datefrom to:(NSDate *)dateTo;
 
 @end

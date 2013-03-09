@@ -56,7 +56,9 @@ static BO_PEDPedometerData* instance;
 //           }
         }
         if(!find){
-            [sortArray addObject:[[PEDPedometerData alloc] init]]; 
+          PEDPedometerData *emptyData =  [[PEDPedometerData alloc] init];
+            emptyData.optDate=date;
+            [sortArray addObject:emptyData]; 
         }
     }
   return sortArray;  
@@ -107,6 +109,12 @@ static BO_PEDPedometerData* instance;
 -(NSDate *)getNextOptDate :(NSDate*) date withTarget:(NSString *)target
 {
     PEDPedometerData* data = [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? and optDate > ? order by updateDate LIMIT 1" parameters:[[NSArray alloc] initWithObjects:target,date, nil]];
+    return data?data.optDate:nil;
+}
+
+-(NSDate *)getLastDateWithTarget:(NSString *)target between:(NSDate *)datefrom to:(NSDate *)dateTo
+{
+    PEDPedometerData* data = [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? and optDate < ? and optDate >= ? order by updateDate desc LIMIT 1" parameters:[[NSArray alloc] initWithObjects:target,dateTo,datefrom, nil]];
     return data?data.optDate:nil;
 }
 

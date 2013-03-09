@@ -15,6 +15,12 @@
 #import "PEDPedometerData.h"
 #import "PEDPedometerDataHelper.h"
 
+@interface PEDPedoDataViewController  ()
+
+    -(NSArray *) getPedoDataResourcesWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate;
+
+@end
+
 @implementation PEDPedoDataViewController
 
 @synthesize imgVDataTop;
@@ -45,8 +51,6 @@
 @synthesize lblNextCalories;
 @synthesize lblNextActTime;
 //@synthesize monthSelectView;
-@synthesize dayRemark;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -55,7 +59,6 @@
 //        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
 //        self.tabBarItem = barItem;
       //  monthArray = [NSMutableArray arrayWithObjects:@"JUN,12", @"JUL,12", @"AUG,12", @"SEP,12", @"OCT,12", @"NOV,12", @"DEC,12", nil];
-        dayRemark = -1;
 
     }
     return self;
@@ -107,7 +110,7 @@
     
     [UIView setAnimationDelay:0.0f];
     
-    [UIView setAnimationDuration:2.0f];
+    [UIView setAnimationDuration:0.5f];
     
     self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel_full.png"];
     self.imgVDataBottom.frame = CGRectMake(0, 285, 320, 45);
@@ -131,7 +134,6 @@
 
 -(void)handleSwipeDown:(UITapGestureRecognizer*)recognizer  
 {  
-    if(dayRemark==0) return;
     [UIView beginAnimations:nil context:nil];
     
     [UIView setAnimationDelegate:self];
@@ -142,7 +144,7 @@
     
     [UIView setAnimationDelay:0.0f];
     
-    [UIView setAnimationDuration:2.0f];
+    [UIView setAnimationDuration:0.5f];
     
     self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel_full.png"];
     self.imgVDataTop.frame = CGRectMake(0, 283, 320, 45);
@@ -193,8 +195,8 @@
     self.lblCurrCalories.alpha = 1.0f;
     self.lblCurrActTime.alpha = 1.0f;
     
-    dayRemark -= 1;
-    [self initData];
+    referenceDate = [referenceDate addDays:-1];
+    [self initDataByDate:referenceDate];
 }
 
 -(void)handleSwipeDownStart:(CAAnimation *)anim
@@ -226,10 +228,8 @@
     self.lblCurrCalories.alpha = 1.0f;
     self.lblCurrActTime.alpha = 1.0f;
     
-    if(dayRemark < 0){
-        dayRemark += 1;
-        [self initData];
-    }
+    referenceDate = [referenceDate addDays:1];
+    [self initDataByDate:referenceDate];
 }
 
 #pragma mark - View lifecycle
@@ -363,27 +363,32 @@
     [self handleSwipeDown:nil];
 }
 
--(NSArray *) getPedoDataResources :(NSInteger) daySpacing withTargetId:(NSString*) targetId referedDate:(NSDate *) referDate{
-    NSDate *dateFrom = [referDate dateByAddingTimeInterval: (daySpacing - 1) * (24 * 60 * 60)];
-    dateFrom = [UtilHelper convertDate: [UtilHelper formateDate:dateFrom]];
-    NSDate *dateTo = [referDate dateByAddingTimeInterval: (daySpacing == 0 ? 1 : 2 + daySpacing) * (24 * 60 * 60)];
-    dateTo = [UtilHelper convertDate: [UtilHelper formateDate:dateTo]];
+-(NSArray *) getPedoDataResourcesWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate{
+    NSDate *dateFrom = [referDate addDays:-1];
+    NSDate *dateTo = [referDate addDays:1];
     NSArray *pedoDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     return pedoDataArray;
 }
 
-- (void) initData{
+- (void) initData
+{
+    NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    [self initDataByDate:lastUploadDate];
+}
+- (void) initDataByDate:(NSDate *) date{
+    if(date){
+        referenceDate=date;
+    }
+    else{
+        referenceDate=[NSDate date];
+    }
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;
-
-    referenceDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:targetId];
     self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
-    if(referenceDate==nil)
-        referenceDate=[NSDate date];
     pedoMeterDataArray = nil;
     [self initLable];
-    pedoMeterDataArray = [self getPedoDataResources: dayRemark withTargetId:targetId referedDate:referenceDate];
+    pedoMeterDataArray = [self getPedoDataResourcesWithTargetId:targetId referedDate:referenceDate];
     if(pedoMeterDataArray != nil){
         NSLog(@"%d", pedoMeterDataArray.count);
         PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
@@ -420,5 +425,24 @@
         }
     }
     [self reloadPickerToMidOfDate:referenceDate];
+}
+
+- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
+    NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+    if(index!=3){        
+        [self reloadPickerToMidOfDate:date];
+    }
+    NSDate *dateTo=[date addMonths:1];
+    if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:date]>=0){
+    }
+    else{
+        //判断是否属于同一个月，不是的话跳到指定月份
+        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+        if(selectDate)
+            [self initDataByDate:selectDate];
+        else{
+            [self initDataByDate:date];
+        }
+    }
 }
 @end

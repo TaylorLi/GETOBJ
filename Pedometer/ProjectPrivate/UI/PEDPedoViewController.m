@@ -169,9 +169,18 @@
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-    if(index!=3){
-        NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+    NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+    if(index!=3){        
         [self reloadPickerToMidOfDate:date];
+    }
+    NSDate *dateTo=[date addMonths:1];
+    if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:date]>=0){
+    }
+    else{
+        //判断是否属于同一个月，不是的话跳到指定月份
+        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+        if(selectDate)
+            [self initDataByDate:selectDate];
     }
 }
 
@@ -181,7 +190,26 @@
         pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
     }
     // pedPedoDataViewController.dayRemark = index;
-    [pedPedoDataViewController initData];
+    NSDate *dateFrom =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+    NSDate *dateTo=[dateFrom addMonths:1];
+    NSDate *selectedDate;
+    if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:dateFrom]>=0){
+        //
+        selectedDate=referenceDate;
+    }
+    else{
+        //不属于同一个月，不是的话跳到指定月份
+        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:dateFrom to:dateTo];
+        if(selectDate)
+            selectedDate=selectDate;
+        else{
+            NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+            
+            selectedDate=lastUploadDate?lastUploadDate:[NSDate date];
+        }
+    }
+    
+    [pedPedoDataViewController initDataByDate:selectedDate];
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 
@@ -190,7 +218,7 @@
 {
     NSDate* nextDate =  [[BO_PEDPedometerData getInstance] getNextOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
     if(nextDate==nil)
-        return;    
+        return;
     [self initDataByDate:nextDate];
 }
 -(void) showPedoDetailOfPrevDate:(UITapGestureRecognizer*)recognizer 

@@ -22,8 +22,6 @@
     NSDate* referenceDate;
 }
 
-@property (nonatomic) NSInteger dayRemark;
-
 @property (weak, nonatomic) IBOutlet UIImageView *imgVDataTop;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVDataMiddle;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVDataBottom;
@@ -64,5 +62,6 @@
 - (IBAction)btnNextDataClick:(id)sender;
 
 - (void) initData;
+- (void) initDataByDate:(NSDate *) date;
 
 @end

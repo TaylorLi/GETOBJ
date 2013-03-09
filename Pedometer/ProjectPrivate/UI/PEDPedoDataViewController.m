@@ -378,7 +378,7 @@
     self.lblUserName.text = userInfo.userName;
 
     referenceDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:targetId];
-    self.lblLastUpdate.text = [UtilHelper formateDate:referenceDate withFormat:@"dd/MM/yy"];
+    self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
     if(referenceDate==nil)
         referenceDate=[NSDate date];
     pedoMeterDataArray = nil;

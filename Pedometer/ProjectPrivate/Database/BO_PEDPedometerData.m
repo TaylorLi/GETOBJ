@@ -95,9 +95,19 @@ static BO_PEDPedometerData* instance;
 -(NSDate *)getLastUpdateDate :(NSString*) targetId
 {
     PEDPedometerData *data = [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? order by updateDate desc LIMIT 1" parameters:[[NSArray alloc] initWithObjects:targetId, nil]];
-    if(data)
-        return  data.updateDate;
-    else
-        return nil;
+    return data?data.optDate:nil;
 }
+
+-(NSDate *)getPreviosOptDate :(NSDate*) date withTarget:(NSString *)target
+{
+    PEDPedometerData* data = [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? and optDate < ? order by updateDate desc LIMIT 1" parameters:[[NSArray alloc] initWithObjects:target,date, nil]];
+    return data?data.optDate:nil;
+}
+
+-(NSDate *)getNextOptDate :(NSDate*) date withTarget:(NSString *)target
+{
+    PEDPedometerData* data = [self queryObjectBySql:@"select * from PEDPedometerData where targetId = ? and optDate > ? order by updateDate LIMIT 1" parameters:[[NSArray alloc] initWithObjects:target,date, nil]];
+    return data?data.optDate:nil;
+}
+
 @end

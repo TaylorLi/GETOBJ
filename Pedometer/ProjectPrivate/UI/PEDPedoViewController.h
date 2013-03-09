@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSpeedUnit;
 @property (weak, nonatomic) IBOutlet UILabel *lblPaceAmount;
 @property (weak, nonatomic) IBOutlet UILabel *lblPaceUnit;
+@property (strong, nonatomic) IBOutlet UIView *viewPedoContainView;
 
 - (void) initData;
 @end

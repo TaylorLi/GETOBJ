@@ -28,4 +28,7 @@
 
 -(PEDPedometerData *)getWithTarget :(NSString*) targetId withDate:(NSDate *)date;
 -(NSDate *)getLastUpdateDate :(NSString*) targetId;
+-(NSDate *)getPreviosOptDate :(NSDate*) date withTarget:(NSString *)target;
+-(NSDate *)getNextOptDate :(NSDate*) date withTarget:(NSString *)target;
+
 @end

@@ -16,8 +16,9 @@
 
 @interface PEDPedoViewController ()
 
-
-
+-(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer ;
+-(void) showPedoDetailOfPrevDate:(UITapGestureRecognizer*)recognizer;
+- (void) initDataByDate:(NSDate *) date;
 @end
 
 @implementation PEDPedoViewController
@@ -35,6 +36,7 @@
 @synthesize lblSpeedUnit;
 @synthesize lblPaceAmount;
 @synthesize lblPaceUnit;
+@synthesize viewPedoContainView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +62,15 @@
 	[self initMonthSelectorWithX:0 Height:331.f];
     
     [self initData];
+    
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfNextDate:)];   
+    [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   
+    [self.viewPedoContainView addGestureRecognizer:rightRecognizer];
+    
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfPrevDate:)];   
+    [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
+    [self.viewPedoContainView addGestureRecognizer:leftRecognizer];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -77,6 +88,7 @@
     [self setLblSpeedUnit:nil];
     [self setLblPaceAmount:nil];
     [self setLblPaceUnit:nil];
+    [self setViewPedoContainView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -119,17 +131,25 @@
 //    //   [self presentModalViewController:pedPedoDataViewController animated:NO]; 
 //}
 
+- (void) initData
+{
+    NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    [self initDataByDate:lastUploadDate];
+}
 
-- (void) initData{
-    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getLastUploadData:[AppConfig getInstance].settings.target.targetId];
-    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
-    if(currPedometerData){
-    referenceDate = currPedometerData.optDate;
-    lblLastUpdate.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
-    lblUserName.text = userInfo.userName;
-    lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];
+- (void) initDataByDate:(NSDate *) date{
+    referenceDate=date;
     if(referenceDate==nil)
         referenceDate=[NSDate date];
+    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
+    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+    if(!currPedometerData){
+        currPedometerData=[[PEDPedometerData alloc] init];
+        currPedometerData.optDate=referenceDate;
+    }
+    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+    lblUserName.text = userInfo.userName;
+    lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];        
     lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
     
     int h, m, s;
@@ -145,8 +165,7 @@
     lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
     lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
     lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
-    }
-    [self reloadPickerToMidOfDate:referenceDate];
+    [self reloadPickerToMidOfDate:referenceDate];    
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
@@ -161,9 +180,24 @@
     if(pedPedoDataViewController == nil){
         pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
     }
-   // pedPedoDataViewController.dayRemark = index;
+    // pedPedoDataViewController.dayRemark = index;
     [pedPedoDataViewController initData];
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 
+
+-(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer 
+{
+    NSDate* nextDate =  [[BO_PEDPedometerData getInstance] getNextOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
+    if(nextDate==nil)
+        return;    
+    [self initDataByDate:nextDate];
+}
+-(void) showPedoDetailOfPrevDate:(UITapGestureRecognizer*)recognizer 
+{
+    NSDate *previosDate =   [[BO_PEDPedometerData getInstance] getPreviosOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
+    if(previosDate==nil)
+        return;
+    [self initDataByDate:previosDate];
+}
 @end

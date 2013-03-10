@@ -229,7 +229,7 @@
 						<string key="NSFrame">{{3, 185}, {320, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="18690502"/>
+						<reference key="NSNextKeyView" ref="423372301"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<reference key="IBUIBackgroundColor" ref="138300002"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -1038,6 +1038,17 @@
 						<reference key="IBUIBackgroundColor" ref="138300002"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
+					<object class="IBUIView" id="423372301">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{0, 238}, {320, 137}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="18690502"/>
+						<string key="NSReuseIdentifierKey">_NS:196</string>
+						<reference key="IBUIBackgroundColor" ref="138300002"/>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
@@ -1275,6 +1286,14 @@
 					<int key="connectionID">135</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dayPickerView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="423372301"/>
+					</object>
+					<int key="connectionID">137</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickToConnectDevice:</string>
 						<reference key="source" ref="571724818"/>
@@ -1359,6 +1378,7 @@
 							<reference ref="442949695"/>
 							<reference ref="820213903"/>
 							<reference ref="359370270"/>
+							<reference ref="423372301"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1598,6 +1618,11 @@
 						<reference key="object" ref="359370270"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">136</int>
+						<reference key="object" ref="423372301"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1613,6 +1638,7 @@
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="131.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="132.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="136.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1656,10 +1682,18 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">135</int>
+			<int key="maxID">137</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">AFPickerView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AFPickerView.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">PEDPedoDataViewController</string>
 					<string key="superclassName">PEDUIBaseViewController</string>
@@ -1678,6 +1712,7 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="dayPickerView">AFPickerView</string>
 						<string key="imgVBehindBottom">UIImageView</string>
 						<string key="imgVBehindTop">UIImageView</string>
 						<string key="imgVDataBottom">UIImageView</string>
@@ -1707,6 +1742,10 @@
 						<string key="lblUserName">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="dayPickerView">
+							<string key="name">dayPickerView</string>
+							<string key="candidateClassName">AFPickerView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="imgVBehindBottom">
 							<string key="name">imgVBehindBottom</string>
 							<string key="candidateClassName">UIImageView</string>
@@ -1835,9 +1874,28 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">monthSelectView</string>
+						<string key="NS.object.0">V8HorizontalPickerView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">monthSelectView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">monthSelectView</string>
+							<string key="candidateClassName">V8HorizontalPickerView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PEDUIBaseViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">V8HorizontalPickerView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/V8HorizontalPickerView.h</string>
 					</object>
 				</object>
 			</array>

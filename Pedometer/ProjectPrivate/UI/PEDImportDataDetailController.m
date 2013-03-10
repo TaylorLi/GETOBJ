@@ -101,7 +101,7 @@
 }
 
 -(void) addExchangeLog:(NSString *) logDetail{
-    [exchangeDebuglog appendFormat:@"%@\n",logDetail];
+    [exchangeDebuglog appendFormat:@"%@ %@\n",[UtilHelper formateTime:[NSDate date]],logDetail];
     txtExchangeLog.text=exchangeDebuglog;
 }
 -(void)sensorReadyToExchangeData
@@ -332,6 +332,7 @@
             target=exchangeContainer.target;
         }
         [[BO_PEDTarget getInstance] saveObject:target];
+        [AppConfig getInstance].settings.target=target;
     }
     for (PEDPedometerData *data in exchangeContainer.pedoData) {
         PEDPedometerData *pedoData=[[BO_PEDPedometerData getInstance] getWithTarget:exchangeContainer.target.targetId withDate:data.optDate];
@@ -371,7 +372,6 @@
     else
         txtActInfo.text=@"Fail save data to local.";
     if(success){
-        
         [self successToExchangeData:@"Success to import data."];
     }
     else{

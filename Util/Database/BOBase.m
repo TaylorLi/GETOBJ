@@ -77,4 +77,9 @@
     return [[Database getInstance] executeNoQuery:sql parameters:param];
 }
 
+- (id)queryScala:(NSString *)sql parameters:(id)param
+{
+    return [[Database getInstance] queryScala:sql andType:modelType parameters:param];
+}
+
 @end

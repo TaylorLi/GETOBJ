@@ -36,4 +36,5 @@ typedef id (^FuncProcessBlock)(id sender,FMResultSet * resultSet);
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock)func;
 -(BOOL)isColumnExistedOfTable:(NSString *)tableName column:(NSString*) columnName;
 - (BOOL)executeNoQuery:(NSString *)sql parameters:(id)param;
+- (id)queryScala:(NSString *)sql andType:(Class)type parameters:(id)param;
 @end

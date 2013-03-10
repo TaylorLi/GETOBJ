@@ -26,4 +26,14 @@ typedef enum {
 -(NSDate *) addMinutes:(NSInteger)num;
 -(NSDate *) addSeconds:(NSInteger)num;
 -(NSDate *)addByFormat:(DateInteval) format withInteval:(NSInteger)num; 
+-(NSDate *) firstMonthDate;
+-(NSDate *) lastMonthDate;
+-(BOOL) inSameMonth:(NSDate *)date;
+-(NSDateComponents *) components;
+-(NSInteger) year;
+-(NSInteger) month;
+-(NSInteger) day;
+-(NSInteger) hour;
+-(NSInteger) minute;
+-(NSInteger) second;
 @end

@@ -40,6 +40,18 @@
     return newDate;
 }
 
+-(NSDate *) firstMonthDate
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit;
+    NSDateComponents *components=[calendar components:unitFlags fromDate:self];
+    [components setDay:1];
+    return [calendar dateFromComponents:components];
+}
+-(NSDate *) lastMonthDate
+{
+   return [[[self firstMonthDate] addMonths:1] addSeconds:-1];
+}
 -(NSDate *) addDays:(NSInteger)num
 {
    return [self addByFormat:DateIntevalDay withInteval:num];
@@ -69,5 +81,50 @@
 {
     return [self addByFormat:DateIntevalSecond withInteval:num];
 }
+-(BOOL) inSameMonth:(NSDate *)date
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit;
+    NSDateComponents *componentsSelf=[calendar components:unitFlags fromDate:self];
+    NSDateComponents *componentsTo=[calendar components:unitFlags fromDate:date];
+    return componentsSelf.year==componentsTo.year && componentsSelf.month == componentsTo.month;
+}
 
+-(NSDateComponents *) components
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |NSDayCalendarUnit |NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
+    NSDateComponents *componentsSelf=[calendar components:unitFlags fromDate:self];
+    return componentsSelf;
+}
+
+-(NSInteger) year
+{
+    return [self components].year;
+}
+
+-(NSInteger) month
+{
+   return [self components].month; 
+}
+
+-(NSInteger) day
+{
+    return [self components].day;
+}
+
+-(NSInteger) hour
+{
+    return [self components].hour;
+}
+
+-(NSInteger) minute
+{
+    return [self components].minute;
+}
+
+-(NSInteger) second
+{
+    return [self components].second;
+}
 @end

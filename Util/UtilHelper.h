@@ -14,8 +14,10 @@
 +(NSString *)formateDate:(NSDate *)date;
 +(NSString *)formateDateWithTime:(NSDate *)date;
 +(NSString *)formateDate:(NSDate *)date withFormat:(NSString *)format;
++(NSString *)formateDate:(NSDate *)date withFormat:(NSString *)format multiLanuage:(NSString*) lang;
 +(NSDate *) convertDate:(NSString *)dateString;
 +(NSDate *) convertDate:(NSString *)dateString withFormat:(NSString *)format;
++(NSDate *) convertDate:(NSString *)dateString withFormat:(NSString *)format multiLanuage:(NSString *) lang;
 +(id)deserializeFromFile:(NSString *)fileName dataKey:(NSString *) dataKey;
 +(void)serializeObjectToFile:(NSString *)fileName withObject:(id)obj dataKey:(NSString*) dataKey;
 +(NSString *)dataFilePath:(NSString *)fileName;

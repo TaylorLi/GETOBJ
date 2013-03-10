@@ -24,13 +24,19 @@
 }
 +(NSString *)formateDate:(NSDate *)date withFormat:(NSString *)format
 {
+    return [self formateDate:date withFormat:format multiLanuage:@"en_US"];
+}
++(NSString *)formateDate:(NSDate *)date withFormat:(NSString *)format multiLanuage:(NSString *) lang
+{
     if(date==nil)
         return @"";
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [dateFormatter setDateFormat:format];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    if (lang) {
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:lang]];
+    }    
     NSString *d= [dateFormatter stringFromDate:date];
     if(d==nil){
         NSLog(@"date object type:%@",[date class]);
@@ -47,13 +53,19 @@
 }
 +(NSDate *) convertDate:(NSString *)dateString withFormat:(NSString *)format
 {
+    return [self convertDate:dateString withFormat:format multiLanuage:@"en_US"];
+}
++(NSDate *) convertDate:(NSString *)dateString withFormat:(NSString *)format multiLanuage:(NSString *) lang
+{
     if(dateString==nil||[dateString isEqualToString:@""])
         return nil;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [dateFormatter setDateFormat:format];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    if(lang){
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:lang]];
+    }
     NSDate *d= [dateFormatter dateFromString:dateString];
 if(d==nil)
 {

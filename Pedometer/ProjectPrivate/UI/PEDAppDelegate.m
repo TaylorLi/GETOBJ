@@ -101,7 +101,8 @@ static PEDAppDelegate* _instance;
 {
     importDataViewController = nil;
     pedImportDataViewController = nil;
-    [[PEDAppDelegate getInstance] showTabView];
+    [self restoreControllerData];
+    [self swithView : customerTabBarController.view];
 }
 
 -(void) showTabView{
@@ -179,7 +180,13 @@ static PEDAppDelegate* _instance;
         [pedTargetViewController initData];
     }
     if(pedBarchartViewController){
-        [pedTargetViewController initData];
+        [pedBarchartViewController initData];
+    }
+    if(pedGraphsViewController){
+        [pedGraphsViewController initData];
+    }
+    if(pedPedoDataViewController){
+        [pedPedoDataViewController initData];
     }
 }
 
@@ -189,9 +196,9 @@ static PEDAppDelegate* _instance;
     [[PEDDatabase getInstance] setupServerDatabase];
     [AppConfig getInstance];    
     _instance = self;
-    pedMainViewController = [[PEDMainViewController alloc] init];
-    [self.window addSubview:pedMainViewController.view];
-    //self.window.rootViewController = pedMainViewController;
+    pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
+    //[self.window addSubview:pedMainViewController.view];
+    self.window.rootViewController = pedMainViewController;
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;

@@ -215,10 +215,37 @@ static Database* instance;
         FMResultSet * rs = [db executeQuery:sql];
         while ([rs next]) {
             result = [rs objectForColumnIndex:0];
+            break;
         }
         if([db hadError]){            
             NSLog(@"[sqlite] query scala error:[%@],error detail:%@",sql,db.lastErrorMessage);
         }
+        [db close];
+    }
+    return result;
+}
+- (id)queryScala:(NSString *)sql andType:(Class)type parameters:(id)param {
+    NSMutableArray *result=[[NSMutableArray alloc] init];
+    FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
+    if ([db open]) {
+        FMResultSet * rs;        
+        if([param isKindOfClass:[NSArray class]]){
+            rs= [db executeQuery:sql withArgumentsInArray:param];
+        }
+        else if([param isKindOfClass:[NSDictionary class]]){
+            rs= [db executeQuery:sql withParameterDictionary:param];
+        }else{
+            rs= [db executeQuery:sql];
+        }   
+        
+        while ([rs next]) {
+            result = [rs objectForColumnIndex:0];
+            break;
+        }
+        if([db hadError]){            
+            NSLog(@"[sqlite] query queryList error:[%@],error detail:%@",sql,db.lastErrorMessage);
+        }
+        
         [db close];
     }
     return result;

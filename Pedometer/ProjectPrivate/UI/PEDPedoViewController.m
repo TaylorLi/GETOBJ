@@ -209,7 +209,7 @@
         }
     }
     
-    [pedPedoDataViewController initDataByDate:selectedDate];
+    pedPedoDataViewController.referenceDate = selectedDate;
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 

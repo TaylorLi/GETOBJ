@@ -12,14 +12,14 @@
 #import "UAModalPanel.h"
 #import "DialogBoxContainer.h"
 #import "PEDUIBaseViewController.h"
+#import "AFPickerView.h"
 
 @class  DialogBoxContainer;
 
-@interface PEDPedoDataViewController : PEDUIBaseViewController<UAModalPanelDelegate,DialogBoxDelegate>
+@interface PEDPedoDataViewController : PEDUIBaseViewController<UAModalPanelDelegate,DialogBoxDelegate,AFPickerViewDataSource, AFPickerViewDelegate>
 {
-    DialogBoxContainer *regPannel;
-    NSArray* pedoMeterDataArray;
-    NSDate* referenceDate;
+    DialogBoxContainer *regPannel;    
+    NSArray *daysData;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgVDataTop;
@@ -52,6 +52,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPrevDistance;
 @property (weak, nonatomic) IBOutlet UILabel *lblPrevCalories;
 @property (weak, nonatomic) IBOutlet UILabel *lblPrevActTime;
+@property (nonatomic,strong) NSDate *referenceDate;
+@property (strong, nonatomic) IBOutlet AFPickerView *dayPickerView;
 
 
 //<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{

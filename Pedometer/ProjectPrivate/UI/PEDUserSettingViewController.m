@@ -112,7 +112,7 @@
 {
     [super viewDidLoad];    
     ((UIScrollView *)self.view).delegate=self;
-    //self.view.frame = CGRectMake(0, 20, 320, 460);
+    self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
     segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 126, 76, 18)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;

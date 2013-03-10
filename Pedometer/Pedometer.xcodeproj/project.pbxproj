@@ -164,7 +164,6 @@
 		DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
-		DA07899E16DE598D00EF5220 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA07899D16DE598D00EF5220 /* MainWindow.xib */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
@@ -256,6 +255,15 @@
 		DAF9018A16DF8D91002BD1EB /* GETUIScrollInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF9018916DF8D91002BD1EB /* GETUIScrollInputView.m */; };
 		DAF9018E16DF9103002BD1EB /* GETUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF9018D16DF9103002BD1EB /* GETUIScrollView.m */; };
 		DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF9019B16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib */; };
+		DAFB233916EB798800E3E98C /* pickerBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFB233216EB798800E3E98C /* pickerBackground.png */; };
+		DAFB233A16EB798800E3E98C /* pickerBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFB233316EB798800E3E98C /* pickerBackground@2x.png */; };
+		DAFB233B16EB798800E3E98C /* pickerGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFB233416EB798800E3E98C /* pickerGlass.png */; };
+		DAFB233C16EB798800E3E98C /* pickerGlass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFB233516EB798800E3E98C /* pickerGlass@2x.png */; };
+		DAFB233D16EB798800E3E98C /* pickerShadows.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFB233616EB798800E3E98C /* pickerShadows.png */; };
+		DAFB233E16EB798800E3E98C /* pickerShadows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFB233716EB798800E3E98C /* pickerShadows@2x.png */; };
+		DAFB234F16EB826F00E3E98C /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB234E16EB826F00E3E98C /* AFPickerView.m */; };
+		DAFB235116EB92C600E3E98C /* PEDPedoDataRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */; };
+		DAFB235416EB95F000E3E98C /* PEDPedoDataRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB235316EB95EF00E3E98C /* PEDPedoDataRowView.m */; };
 		DAFB277B16E388E500181051 /* BleExchangeDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */; };
 		DAFBB96616E1C0B000441CE5 /* BleServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */; };
 		DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */; };
@@ -429,7 +437,6 @@
 		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
 		DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerCalcHelper.h; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.h; sourceTree = SOURCE_ROOT; };
 		DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerCalcHelper.m; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.m; sourceTree = SOURCE_ROOT; };
-		DA07899D16DE598D00EF5220 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
 		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
 		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
@@ -660,6 +667,17 @@
 		DAF9018C16DF9103002BD1EB /* GETUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GETUIScrollView.h; path = ../Controls/GET/GETUIScrollView.h; sourceTree = "<group>"; };
 		DAF9018D16DF9103002BD1EB /* GETUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GETUIScrollView.m; path = ../Controls/GET/GETUIScrollView.m; sourceTree = "<group>"; };
 		DAF9019B16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPeripheralInfoRow.xib; path = ProjectPrivate/XIB/PEDPeripheralInfoRow.xib; sourceTree = SOURCE_ROOT; };
+		DAFB233216EB798800E3E98C /* pickerBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickerBackground.png; sourceTree = "<group>"; };
+		DAFB233316EB798800E3E98C /* pickerBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerBackground@2x.png"; sourceTree = "<group>"; };
+		DAFB233416EB798800E3E98C /* pickerGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickerGlass.png; sourceTree = "<group>"; };
+		DAFB233516EB798800E3E98C /* pickerGlass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerGlass@2x.png"; sourceTree = "<group>"; };
+		DAFB233616EB798800E3E98C /* pickerShadows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickerShadows.png; sourceTree = "<group>"; };
+		DAFB233716EB798800E3E98C /* pickerShadows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerShadows@2x.png"; sourceTree = "<group>"; };
+		DAFB234D16EB826F00E3E98C /* AFPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPickerView.h; sourceTree = "<group>"; };
+		DAFB234E16EB826F00E3E98C /* AFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPickerView.m; sourceTree = "<group>"; };
+		DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPedoDataRowView.xib; path = ProjectPrivate/XIB/PEDPedoDataRowView.xib; sourceTree = SOURCE_ROOT; };
+		DAFB235216EB95EF00E3E98C /* PEDPedoDataRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedoDataRowView.h; path = ProjectPrivate/UI/PEDPedoDataRowView.h; sourceTree = SOURCE_ROOT; };
+		DAFB235316EB95EF00E3E98C /* PEDPedoDataRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedoDataRowView.m; path = ProjectPrivate/UI/PEDPedoDataRowView.m; sourceTree = SOURCE_ROOT; };
 		DAFB277916E388E500181051 /* BleExchangeDataContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleExchangeDataContainer.h; sourceTree = "<group>"; };
 		DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleExchangeDataContainer.m; sourceTree = "<group>"; };
 		DAFBB96416E1C0B000441CE5 /* BleServiceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleServiceInfo.h; sourceTree = "<group>"; };
@@ -1117,6 +1135,7 @@
 		DA6E9EB816CFB4F400F2453F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DAFB232D16EB792200E3E98C /* Controls */,
 				DACC06EC16D263AD0062E2A8 /* PEDAppDelegate.h */,
 				DACC06ED16D263AD0062E2A8 /* PEDAppDelegate.m */,
 				DACC06EE16D263AD0062E2A8 /* PEDBacktoMainViewController.h */,
@@ -1141,6 +1160,8 @@
 				DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */,
 				DA747E1316DDB1610007E0A7 /* PEDImportDataDetailController.h */,
 				DA747E1416DDB1610007E0A7 /* PEDImportDataDetailController.m */,
+				DAFB235216EB95EF00E3E98C /* PEDPedoDataRowView.h */,
+				DAFB235316EB95EF00E3E98C /* PEDPedoDataRowView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1304,16 +1325,16 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */,
 				DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */,
 				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
 				6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */,
 				6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */,
 				6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */,
-				6B00480616D92DA500B87CA8 /* PEDPedoDataViewController.xib */,
 				6BFF4A6516D5947900317887 /* PEDMainViewController.xib */,
 				6BFF4A6616D5947900317887 /* PEDUserSettingViewController.xib */,
+				6B00480616D92DA500B87CA8 /* PEDPedoDataViewController.xib */,
 				6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */,
-				DA07899D16DE598D00EF5220 /* MainWindow.xib */,
 				DAF9019B16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib */,
 			);
 			name = XIB;
@@ -1393,6 +1414,30 @@
 			);
 			name = Loading;
 			sourceTree = "<group>";
+		};
+		DAFB232D16EB792200E3E98C /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				DAFB232F16EB798800E3E98C /* AFPickerView */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		DAFB232F16EB798800E3E98C /* AFPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				DAFB234D16EB826F00E3E98C /* AFPickerView.h */,
+				DAFB234E16EB826F00E3E98C /* AFPickerView.m */,
+				DAFB233216EB798800E3E98C /* pickerBackground.png */,
+				DAFB233316EB798800E3E98C /* pickerBackground@2x.png */,
+				DAFB233416EB798800E3E98C /* pickerGlass.png */,
+				DAFB233516EB798800E3E98C /* pickerGlass@2x.png */,
+				DAFB233616EB798800E3E98C /* pickerShadows.png */,
+				DAFB233716EB798800E3E98C /* pickerShadows@2x.png */,
+			);
+			name = AFPickerView;
+			path = ProjectPrivate/UI/Controls/AFPickerView;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -1601,7 +1646,6 @@
 				6BD317BF16DEB70200966E52 /* calories_button@2x.png in Resources */,
 				6BD317C016DEB70200966E52 /* step_button.png in Resources */,
 				6BD317C116DEB70200966E52 /* step_button@2x.png in Resources */,
-				DA07899E16DE598D00EF5220 /* MainWindow.xib in Resources */,
 				6BF080E016E3696B007E606D /* data_bottom_panel_full.png in Resources */,
 				6BF080E116E3696B007E606D /* data_bottom_panel_full@2x.png in Resources */,
 				6BF080E216E3696B007E606D /* data_bottom_panel.png in Resources */,
@@ -1614,6 +1658,13 @@
 				6BF080E916E3696B007E606D /* data_top_panel@2x.png in Resources */,
 				DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */,
 				DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */,
+				DAFB233916EB798800E3E98C /* pickerBackground.png in Resources */,
+				DAFB233A16EB798800E3E98C /* pickerBackground@2x.png in Resources */,
+				DAFB233B16EB798800E3E98C /* pickerGlass.png in Resources */,
+				DAFB233C16EB798800E3E98C /* pickerGlass@2x.png in Resources */,
+				DAFB233D16EB798800E3E98C /* pickerShadows.png in Resources */,
+				DAFB233E16EB798800E3E98C /* pickerShadows@2x.png in Resources */,
+				DAFB235116EB92C600E3E98C /* PEDPedoDataRowView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,6 +1747,8 @@
 				6B8208BD16E24EAB00D61166 /* PEDPedometerDataHelper.m in Sources */,
 				DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */,
 				DAF844B516E6113D0085A81C /* NSData+ToHexAddition.m in Sources */,
+				DAFB234F16EB826F00E3E98C /* AFPickerView.m in Sources */,
+				DAFB235416EB95F000E3E98C /* PEDPedoDataRowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

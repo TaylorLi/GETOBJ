@@ -14,11 +14,17 @@
 #import "BO_PEDPedometerData.h"
 #import "PEDPedometerData.h"
 #import "PEDPedometerDataHelper.h"
+#import "PEDPedoDataRowView.h"
 
 @interface PEDPedoDataViewController  ()
+{
+    
+}
 
-    -(NSArray *) getPedoDataResourcesWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate;
+-(NSArray *) getPedoDataResourcesWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate;
 
+-(void)displayPedometerDetailByDate:(NSDate *)date;
+-(void)setDatePickerLabelHidden:(BOOL)yes;
 @end
 
 @implementation PEDPedoDataViewController
@@ -50,16 +56,19 @@
 @synthesize lblNextDistance;
 @synthesize lblNextCalories;
 @synthesize lblNextActTime;
+
+@synthesize referenceDate;
+@synthesize dayPickerView;
 //@synthesize monthSelectView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
-//        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
-//        self.tabBarItem = barItem;
-      //  monthArray = [NSMutableArray arrayWithObjects:@"JUN,12", @"JUL,12", @"AUG,12", @"SEP,12", @"OCT,12", @"NOV,12", @"DEC,12", nil];
-
+        //        UIImage *tabbarImage = [UIImage imageNamed:@"second.png"] ;
+        //        UITabBarItem *barItem = [[UITabBarItem alloc]initWithTitle:@"" image:tabbarImage tag:1];
+        //        self.tabBarItem = barItem;
+        //  monthArray = [NSMutableArray arrayWithObjects:@"JUN,12", @"JUL,12", @"AUG,12", @"SEP,12", @"OCT,12", @"NOV,12", @"DEC,12", nil];
+        
     }
     return self;
 }
@@ -177,6 +186,8 @@
 
 -(void)handleSwipeUpStop:(CAAnimation *)anim finished:(BOOL)flag
 {
+    if(![[referenceDate addDays:-1] inSameMonth:referenceDate])
+        return;
     self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel.png"];
     self.imgVDataBottom.frame = CGRectMake(0, 330, 320, 45);
     self.imgVDataBottom.alpha = 1.0f;        
@@ -196,20 +207,21 @@
     self.lblCurrActTime.alpha = 1.0f;
     
     referenceDate = [referenceDate addDays:-1];
-    [self initDataByDate:referenceDate];
+    dayPickerView.selectedRow=referenceDate.day-1;
+    [self displayPedometerDetailByDate:referenceDate];
 }
 
 -(void)handleSwipeDownStart:(CAAnimation *)anim
 
 {
-    
     NSLog(@"animation is start ...");
-    
 }
 
 
 -(void)handleSwipeDownStop:(CAAnimation *)anim finished:(BOOL)flag
 {
+    if(![[referenceDate addDays:1] inSameMonth:referenceDate])
+        return;
     self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel.png"];
     self.imgVDataTop.frame = CGRectMake(0, 238, 320, 45);
     self.imgVDataTop.alpha = 1.0f;        
@@ -229,7 +241,8 @@
     self.lblCurrActTime.alpha = 1.0f;
     
     referenceDate = [referenceDate addDays:1];
-    [self initDataByDate:referenceDate];
+    dayPickerView.selectedRow=referenceDate.day-1;
+    [self displayPedometerDetailByDate:referenceDate];
 }
 
 #pragma mark - View lifecycle
@@ -237,12 +250,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self initLable];
+    
+    //daysData = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
+    
+    dayPickerView = [[AFPickerView alloc] initWithFrame:CGRectMake(0.0, 238.0, 320.0, 140)];
+    dayPickerView.dataSource = self;
+    dayPickerView.delegate = self;
+    //[dayPickerView reloadData];
+    [self.view addSubview:dayPickerView];
+    
+    
+    /*
     UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];  
     doubleRecognizer.numberOfTapsRequired = 2; // 双击  
     
     [self.imgVDataMiddle addGestureRecognizer:doubleRecognizer];  
-    
+    */
+     /*
     UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];   
     [upRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];   
     [self.imgVDataMiddle addGestureRecognizer:upRecognizer];
@@ -250,16 +275,17 @@
     UISwipeGestureRecognizer *downRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];   
     [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
     [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
-
+    */
     [self initMonthSelectorWithX:0 Height:188.f];
     
-    [self initData];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self initDataByDate:referenceDate];
+	
+    // Do any additional setup after loading the view, typically from a nib.
     
-//    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
-//    bgImage.image = [UIImage imageNamed:@"data.bmp"] ;
-//    [self.view addSubview:bgImage]; 
-//    
+    //    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
+    //    bgImage.image = [UIImage imageNamed:@"data.bmp"] ;
+    //    [self.view addSubview:bgImage]; 
+    //    
 }
 
 - (void)viewDidUnload
@@ -292,6 +318,7 @@
     [self setLblPrevActTime:nil];
     [self setImgVBehindTop:nil];
     [self setImgVBehindBottom:nil];
+    [self setDayPickerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -329,7 +356,7 @@
 }
 
 - (IBAction)connectToDevice:(id)sender {
-   
+    
 }
 
 //- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
@@ -370,12 +397,20 @@
     return pedoDataArray;
 }
 
+-(NSArray *) getPedoDataResourcesByMonthWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate{
+    NSDate *dateFrom =  [referDate firstMonthDate];
+    NSDate *dateTo=[[dateFrom addMonths:1] addDays:-1];
+    NSArray *pedoDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
+    return pedoDataArray;
+}
+
 - (void) initData
 {
     NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     [self initDataByDate:lastUploadDate];
 }
 - (void) initDataByDate:(NSDate *) date{
+    NSDate *orginDate=[referenceDate copy];
     if(date){
         referenceDate=date;
     }
@@ -385,22 +420,55 @@
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;
-    self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
-    pedoMeterDataArray = nil;
-    [self initLable];
-    pedoMeterDataArray = [self getPedoDataResourcesWithTargetId:targetId referedDate:referenceDate];
+    self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];    
+    if(daysData==nil || ![date inSameMonth:orginDate]){
+        daysData=[self getPedoDataResourcesByMonthWithTargetId:targetId referedDate:date];
+        [dayPickerView reloadData];
+    }
+    [self reloadPickerToMidOfDate:referenceDate];
+    dayPickerView.selectedRow=referenceDate.day-1;
+    for (UIView *view in [dayPickerView visibleViews]) {
+        view.hidden=YES;
+    }
+    [self displayPedometerDetailByDate:referenceDate];
+}
+-(void)displayPedometerDetailByDate:(NSDate *)date
+{
+    NSMutableArray *pedoMeterDataArray=[[NSMutableArray alloc] initWithCapacity:3];
+    
+    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+    if(daysData!=nil){
+        NSInteger currentRow=[date day]-1;
+        PEDPedometerData *pedoData;
+        for (int i = currentRow-1; i<=currentRow+1; i++) {
+            if(daysData.count>i){
+                pedoData = [daysData objectAtIndex:i];
+            }
+            else{
+                pedoData=[[PEDPedometerData alloc] init];            
+            }
+            [pedoMeterDataArray addObject: pedoData];
+        }        
+    }
     if(pedoMeterDataArray != nil){
         NSLog(@"%d", pedoMeterDataArray.count);
-        PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
-        if(pedoMeterData.optDate != nil){
+        PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
+        if(pedoMeterData && pedoMeterData.optDate != nil){
             lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
             lblPrevDistance.text = [NSString stringWithFormat:@"%.1f%@", pedoMeterData.distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
             lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
+        else{           
+            self.lblPrevDate.text = @"";
+            self.lblPrevStep.text = @"";
+            self.lblPrevDistance.text = @"";
+            self.lblPrevCalories.text = @"";
+            self.lblPrevActTime.text = @"";
+        }
         pedoMeterData = [pedoMeterDataArray objectAtIndex:1];
-        if(pedoMeterData.optDate != nil){
+        if(pedoMeterData && pedoMeterData.optDate != nil){
             lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblCurrStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
             lblCurrDistance.text = [NSString stringWithFormat:@"%.1f%@", pedoMeterData.distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
@@ -412,19 +480,30 @@
             lblCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
-        if(pedoMeterDataArray.count > 2){
-            pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
-            if(pedoMeterData.optDate != nil){
-                lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-                lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-                lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", pedoMeterData.distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-                lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-                lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-            }
-            
+        else{
+            self.lblCurrDate.text = @"";
+            self.lblCurrStep.text = @"";
+            self.lblCurrDistance.text = @"";
+            self.lblCurrCalories.text = @"";
+            self.lblCurrActTime.text = @"";
         }
+        pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
+        if(pedoMeterData && pedoMeterData.optDate != nil){
+            lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+            lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+            lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", pedoMeterData.distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+            lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+        }
+        else{
+            self.lblNextDate.text = @"";
+            self.lblNextStep.text = @"";
+            self.lblNextDistance.text = @"";
+            self.lblNextCalories.text = @"";
+            self.lblNextActTime.text = @"";
+        }            
     }
-    [self reloadPickerToMidOfDate:referenceDate];
+    [self setDatePickerLabelHidden:NO];
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
@@ -445,4 +524,62 @@
         }
     }
 }
+
+#pragma mark - AFPickerViewDataSource
+
+- (NSInteger)numberOfRowsInPickerView:(AFPickerView *)pickerView
+{        
+    return [daysData count];
+}
+
+
+- (void)pickerView:(AFPickerView *)pickerView prepareForCell:(UIView *) cellView rowAtIndex:(NSInteger)rowIndex
+{
+    PEDPedometerData *data = [daysData objectAtIndex:rowIndex];
+    PEDPedoDataRowView *view=(PEDPedoDataRowView *)cellView;
+    [view bindByPedometerData:data];
+}
+
+#pragma mark - AFPickerViewDelegate
+
+- (void)pickerView:(AFPickerView *)pickerView didSelectRow:(NSInteger)row
+{
+    PEDPedometerData *data= (PEDPedometerData *)[daysData objectAtIndex:row];
+    [self displayPedometerDetailByDate:data.optDate];
+    for (UIView *view in [pickerView visibleViews]) {
+        view.hidden=YES;
+    }
+}
+
+- (CGFloat)pickerView:(AFPickerView *)pickerView heightForRowAtIndexPath:(NSInteger)rowIndex
+{
+    return 45.0;
+}
+
+-(UIView *)pickerView:(AFPickerView *)pickerView cellForRowAtIndexPath:(NSInteger)rowIndex
+{
+    return [PEDPedoDataRowView instanceView:(PEDPedometerData *)[daysData objectAtIndex:rowIndex]];
+}
+
+- (void)pickerViewDidStartScroll:(AFPickerView *)pickerView
+{
+    for (UIView *view in [pickerView visibleViews]) {
+        view.hidden=NO;
+    }
+    [self setDatePickerLabelHidden:YES];
+}
+
+-(void)setDatePickerLabelHidden:(BOOL)yes
+{
+    NSArray *array = [[NSArray alloc] initWithObjects:lblNextDate,lblNextStep,lblNextDistance,lblNextCalories,lblNextCalories,lblNextActTime,lblCurrDate,lblCurrStep,lblCurrDistance,lblCurrCalories,lblCurrActTime,lblPrevDate,lblPrevStep,lblPrevDistance,lblPrevCalories,lblPrevActTime,nil];
+    for (UIView *view in array) {
+        view.hidden=yes;
+    }
+}
+
+-(void)pickerView:(AFPickerView *)pickerView didTapCenter:(UITapGestureRecognizer *)recognizer
+{
+    [self doubleTap:recognizer];
+}
+
 @end

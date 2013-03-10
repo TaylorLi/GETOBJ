@@ -60,10 +60,11 @@
         //self.graphicHostView.backgroundColor = [UIColor whiteColor];
         isLargeView = true;
     }else{
-        self.cptGraphHostingView.frame = CGRectMake(26, 113, 271, 132);
+        self.cptGraphHostingView.frame = CGRectMake(26, 104, 271, 153);
         //self.graphicHostView.backgroundColor = [UIColor clearColor];
         isLargeView = false;
     }
+    [self genCurvechart];
     [self.view bringSubviewToFront:self.cptGraphHostingView];
 } 
 
@@ -72,7 +73,7 @@
     dayRemark--;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
     statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
-    [self timerFired];
+    [self genCurvechart];
 } 
 
 -(void)handleSwipeLeft:(UITapGestureRecognizer*)recognizer  
@@ -81,7 +82,7 @@
         dayRemark++;
         dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
         statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
-        [self timerFired];
+        [self genCurvechart];
     }
 } 
 
@@ -93,6 +94,7 @@
         referenceDate=[NSDate date];
     isLargeView = false;
     dayRemark =0;
+    isFirstLoad = YES;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
     statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
@@ -198,9 +200,20 @@
     return num;
 }
 
+-(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index{
+    if([(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] intValue] == 0){
+        return nil;
+    }
+    CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
+    textLineStyle.fontSize=8.0f;
+    textLineStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+    CPTTextLayer *label=[[CPTTextLayer alloc] initWithText: [NSString stringWithFormat:@"%.1f",[(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] floatValue]] style:textLineStyle];
+    return label;
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self timerFired];
+    [self genCurvechart];
 }
 
 #pragma mark -
@@ -275,7 +288,7 @@
         }
         if(isChange){
             [self initBarRemark];
-            [self timerFired];
+            [self genCurvechart];
         }
     }
 }
@@ -304,15 +317,44 @@
     [self btnClick:sender withStatisticsType:STATISTICS_AVG_PACE];
 }
 
--(void)timerFired
+-(void)genCurvechart
 {
+    float yRangeLength = 15.0f;
+    float ymajorIntervalLength = 3.0f;
+    
+    if(barIdArray !=nil && barIdArray.count>0){
+        float maxValue = 0.0f;
+        for (int i=0; i<barIdArray.count; i++) {
+            NSArray *daysData = [statisticsData objectForKey:[barIdArray objectAtIndex:i]];
+            for (int j=0; j<daysData.count; j++) {
+                float tempFloat = [(NSNumber *)[daysData objectAtIndex:j] floatValue];
+                if(maxValue < tempFloat){
+                    maxValue = tempFloat;
+                }
+            }
+        }
+        if(maxValue > 0.000001f){
+            int maxIntValue = (int)maxValue;
+            yRangeLength = maxValue;
+            ymajorIntervalLength = ceil(maxIntValue * 1.0 / [AppConfig getInstance].settings.chartIntervalLength);
+            if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > 0.00001f){
+                yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength;
+            }
+        }
+    }
+    
+    graph = nil;
     // Create graph from theme
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     //    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
     //    [graph applyTheme:theme];
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)cptGraphHostingView;
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
-    hostingView.backgroundColor = [UIColor whiteColor];
+    hostingView.backgroundColor = isLargeView ? [UIColor whiteColor] : [UIColor clearColor];
+    if(isLargeView){
+        CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
+        [graph applyTheme:theme];
+    }
     hostingView.hostedGraph     = graph;
     
     // Border
@@ -326,7 +368,7 @@
     graph.paddingBottom = 0.0f;
     
     graph.plotAreaFrame.paddingLeft   = 30.0f;
-    graph.plotAreaFrame.paddingTop    = 20.0f;
+    graph.plotAreaFrame.paddingTop    = 10.0f;
     graph.plotAreaFrame.paddingRight  = 20.0f;
     graph.plotAreaFrame.paddingBottom = 25.0f;
     
@@ -343,7 +385,7 @@
      */
     // Add plot space for horizontal bar charts
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromFloat(15.0f)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromFloat(yRangeLength)];
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromFloat(8.0f)];
     
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
@@ -362,7 +404,7 @@
     lineStyle= [CPTMutableLineStyle lineStyle];
     lineStyle.miterLimit        = 1.0f;
     lineStyle.lineWidth         = 1.0f;
-    lineStyle.lineColor         = [CPTColor colorWithComponentRed:0 green:0 blue:0 alpha:1]; 
+    lineStyle.lineColor         = [CPTColor grayColor]; 
     x.minorTickLineStyle          = lineStyle;
     NSArray *customMajorTickLocations = [NSArray arrayWithObjects:[NSDecimalNumber numberWithFloat:8.0f], nil];
     x.majorTickLocations=[NSSet setWithArray:customMajorTickLocations];
@@ -388,6 +430,7 @@
     NSMutableArray *customLabels = [NSMutableArray arrayWithCapacity:[xAxisLabels count]];
     for ( NSNumber *tickLocation in customTickLocations ) {
         CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
+        textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
         textStyle.fontSize=9.0f;
         CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[xAxisLabels objectAtIndex:labelLocation++] textStyle:textStyle];
         newLabel.tickLocation = [tickLocation decimalValue];
@@ -409,10 +452,11 @@
     y.axisLineStyle               = lineStyle;
     y.majorTickLineStyle          = nil;
     y.minorTickLineStyle          = nil;
-    y.majorIntervalLength         = CPTDecimalFromString(@"3");
+    y.majorIntervalLength         = CPTDecimalFromFloat(ymajorIntervalLength);
     y.majorGridLineStyle=lineStyle;
     y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
     CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
+    textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
     textStyle.fontSize = 9.0f;
     y.labelTextStyle  = textStyle;
     /*
@@ -515,6 +559,26 @@
     //UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
     //bgImage.image = [UIImage imageNamed:@"graphs.bmp"] ;
     //[self.view addSubview:bgImage];
+}
+
+- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
+    if(!isFirstLoad){
+        NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+        if(index!=3){        
+            [self reloadPickerToMidOfDate:date];
+        }
+        //NSDate *dateTo=[date addMonths:1];
+        if([referenceDate timeIntervalSinceDate:date]<0){
+            dayRemark = 0;
+        }
+        else{
+            dayRemark = - [referenceDate timeIntervalSinceDate:date]/60/60/24 + [AppConfig getInstance].settings.showDateCount - 1; 
+        }
+        dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
+        statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
+        [self genCurvechart];
+    }
+    isFirstLoad = NO;
 }
 
 - (void)viewDidUnload {

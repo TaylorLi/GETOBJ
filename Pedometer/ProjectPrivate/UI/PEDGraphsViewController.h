@@ -22,6 +22,7 @@
     NSMutableArray *barIdArray;
     BOOL isLargeView;
     NSMutableArray *tempControlPool;
+    BOOL isFirstLoad;
 }
 
 @property (readwrite, retain, nonatomic) NSMutableArray *dataForPlot;
@@ -42,6 +43,6 @@
 - (IBAction)btnAvgSpeedClick:(id)sender;
 - (IBAction)btnAvgPaceClick:(id)sender;
 
--(void)timerFired;
+-(void) genCurvechart;
 -(void) initData;
 @end

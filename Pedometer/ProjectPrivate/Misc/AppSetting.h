@@ -19,6 +19,7 @@
 @property (nonatomic) NSInteger showDateCount;
 @property (nonatomic,strong) PEDTarget *target;
 @property PlusType plusType;
+@property NSInteger chartIntervalLength;
 
 -(void) initTargetData;
 -(void) saveSetting;

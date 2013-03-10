@@ -24,6 +24,7 @@
     NSMutableArray *barIdArray;
     BOOL isLargeView;
     NSMutableArray *tempControlPool;
+    BOOL isFirstLoad;
 }
 
 @property (strong, nonatomic) IBOutlet CPTGraphHostingView *graphicHostView;
@@ -46,7 +47,7 @@
 
 
 
--(void)timerFired;
+-(void) genBarchart;
 -(void) initData;
 
 @end

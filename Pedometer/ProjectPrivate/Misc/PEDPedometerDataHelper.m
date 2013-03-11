@@ -130,22 +130,22 @@
     UIColor *uiColor = nil;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
-            uiColor = [UIColor colorWithRed:31/255.0f green:133/255.0f blue:130/255.0f alpha:1];
+            uiColor = [UIColor colorWithRed:78/255.0f green:142/255.0f blue:173/255.0f alpha:1];
             break;
         case STATISTICS_ACTIVITY_TIME:
-            uiColor = [UIColor colorWithRed:154/255.0f green:156/255.0f blue:11/255.0f alpha:1];
+            uiColor = [UIColor colorWithRed:151/255.0f green:127/255.0f blue:29/255.0f alpha:1];
             break;
         case STATISTICS_CALORIES:
-            uiColor = [UIColor colorWithRed:177/255.0f green:11/255.0f blue:70/255.0f alpha:1];
+            uiColor = [UIColor colorWithRed:124/255.0f green:29/255.0f blue:67/255.0f alpha:1];
             break;
         case STATISTICS_DISTANCE:
-            uiColor = [UIColor colorWithRed:164/255.0f green:81/255.0f blue:52/255.0f alpha:1];
+            uiColor = [UIColor colorWithRed:117/255.0f green:60/255.0f blue:47/255.0f alpha:1];
             break;
         case STATISTICS_AVG_SPEED:
-            uiColor = [UIColor colorWithRed:92/255.0f green:69/255.0f blue:140/255.0f alpha:1];
+            uiColor = [UIColor colorWithRed:74/255.0f green:63/255.0f blue:93/255.0f alpha:1];
             break;
         case STATISTICS_AVG_PACE:
-            uiColor = [UIColor colorWithRed:101/255.0f green:156/255.0f blue:60/255.0f alpha:1];
+            uiColor = [UIColor colorWithRed:77/255.0f green:115/255.0f blue:62/255.0f alpha:1];
             break;
         default:
             break;

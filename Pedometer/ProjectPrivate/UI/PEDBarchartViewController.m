@@ -105,12 +105,10 @@
 
 -(void)handleSwipeLeft:(UITapGestureRecognizer*)recognizer  
 {  
-    if(dayRemark < 0){
-        dayRemark++;
-        dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
-        statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
-        [self genBarchart];
-    }
+    dayRemark++;
+    dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
+    statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
+    [self genBarchart];
 } 
 
 -(void) initData{
@@ -235,7 +233,7 @@
         if(maxValue > 0.000001f){
             int maxIntValue = (int)maxValue;
             yRangeLength = maxValue;
-            ymajorIntervalLength = ceil(maxIntValue * 1.0 / [AppConfig getInstance].settings.chartIntervalLength);
+            ymajorIntervalLength = ceil(maxValue / [AppConfig getInstance].settings.chartIntervalLength);
             if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > 0.00001f){
                 yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength;
             }
@@ -461,12 +459,18 @@
         if(index!=3){        
             [self reloadPickerToMidOfDate:date];
         }
-        //NSDate *dateTo=[date addMonths:1];
-        if([referenceDate timeIntervalSinceDate:date]<0){
-            dayRemark = 0;
-        }
-        else{
-            dayRemark = - [referenceDate timeIntervalSinceDate:date]/60/60/24 + [AppConfig getInstance].settings.showDateCount - 1; 
+        NSDate *dateTo=[date addMonths:1];
+        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+        //selectDate = !selectDate ? date : selectDate;
+        if(selectDate){
+                dayRemark = - [referenceDate timeIntervalSinceDate:selectDate]/60/60/24; 
+        }else{
+            if([referenceDate timeIntervalSinceDate:date]<0){
+                dayRemark = - [referenceDate timeIntervalSinceDate:date]/60/60/24 + [AppConfig getInstance].settings.showDateCount; 
+            }
+            else{
+                dayRemark = - [referenceDate timeIntervalSinceDate:date]/60/60/24 + [AppConfig getInstance].settings.showDateCount - 1; 
+            }
         }
         dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
         statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];

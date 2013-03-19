@@ -269,6 +269,7 @@
 		DAFB277B16E388E500181051 /* BleExchangeDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */; };
 		DAFBB96616E1C0B000441CE5 /* BleServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */; };
 		DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */; };
+		DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -688,6 +689,7 @@
 		DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleServiceInfo.m; sourceTree = "<group>"; };
 		DAFBB9E516E4FA5700C2221C /* NSDate+AddAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+AddAddition.h"; path = "../Util/NSDate+AddAddition.h"; sourceTree = "<group>"; };
 		DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+AddAddition.m"; path = "../Util/NSDate+AddAddition.m"; sourceTree = "<group>"; };
+		DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1331,6 +1333,7 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */,
 				DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */,
 				DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */,
 				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
@@ -1673,6 +1676,7 @@
 				DAFB235116EB92C600E3E98C /* PEDPedoDataRowView.xib in Resources */,
 				6BD4A59C16ED54370023AA16 /* data_top_panel_trp.png in Resources */,
 				6BD4A59D16ED54370023AA16 /* data_top_panel_trp@2x.png in Resources */,
+				DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

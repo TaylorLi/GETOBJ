@@ -21,6 +21,7 @@
 
 @interface PEDImportDataDetailController ()
 -(void) addExchangeLog:(NSString *) logDetail;
+-(void)sendBeginExchangeData;
 -(void)sendSettingDataWithType:(DataHeaderType)headerType;
 - (void)sendDataToPeriperial:(void *)data ofLength:(int)length;
 -(PEDTarget *)convertDataToTarget:(NSData *)data;
@@ -97,7 +98,8 @@
     exchangeDebuglog=[[NSMutableString alloc] init];
     txtExchangeLog.text=exchangeDebuglog;
     self.exchangeContainer=[[BleExchangeDataContainer alloc] init];
-    [self sendSettingDataWithType:DATA_HEADER_PEDO_SETTING_RQ];
+    [self sendBeginExchangeData];
+    //[self sendSettingDataWithType:DATA_HEADER_PEDO_SETTING_RQ];
 }
 
 -(void) addExchangeLog:(NSString *) logDetail{
@@ -124,8 +126,7 @@
     NSLog(@"Send Data:%@",[packet hexRepresentationWithSpaces_AS:YES]);
     [self addExchangeLog:[NSString stringWithFormat:@"Send Data:%@",[packet hexRepresentationWithSpaces_AS:YES]]];
 }
-
--(void)sendSettingDataWithType:(DataHeaderType)headerType
+-(void)sendBeginExchangeData
 {
     if(exchangeTimer){
         [exchangeTimer invalidate];
@@ -141,9 +142,19 @@
     setting.height=(unsigned short)userInfo.height;
     setting.stride=(unsigned short)userInfo.stride;
     setting.weight=(unsigned short)userInfo.weight;
-    setting.header=headerType;
+    setting.header=DATA_HEADER_PEDO_SETTING_RQ;
     [self sendDataToPeriperial:&setting ofLength:sizeof(packetPedoSetting)];
-     exchangeTimer = [NSTimer scheduledTimerWithTimeInterval:BLE_DATA_TRANSFER_TIMEOUT target:self selector:@selector(exchangeTimeout:) userInfo:nil repeats:NO];
+    exchangeTimer = [NSTimer scheduledTimerWithTimeInterval:BLE_DATA_TRANSFER_TIMEOUT target:self selector:@selector(exchangeTimeout:) userInfo:nil repeats:NO];
+}
+-(void)sendSettingDataWithType:(DataHeaderType)headerType
+{
+    if(exchangeTimer){
+        [exchangeTimer invalidate];
+    }
+    packetPedoHeader header;    
+    header.header = headerType;
+    [self sendDataToPeriperial:&header ofLength:sizeof(packetPedoHeader)];
+    exchangeTimer = [NSTimer scheduledTimerWithTimeInterval:BLE_DATA_TRANSFER_TIMEOUT target:self selector:@selector(exchangeTimeout:) userInfo:nil repeats:NO];
 }
 
 -(void)cancelExchangeTimer
@@ -203,12 +214,13 @@
 }
 
 -(void) serialGATTCharValueUpdated:(NSString *)UUID value:(NSData *)data
-{
-    //NSString *value = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]);
-    [self addExchangeLog:[NSString stringWithFormat:@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]]];
+{    
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
    DataHeaderType header = (DataHeaderType)incomingPacket[0];
+    //NSString *value = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    
+    NSLog(@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]);
+    [self addExchangeLog:[NSString stringWithFormat:@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]]];
     if (header == DATA_HEADER_PEDO_SETTING_TARGET_RS) {
         [self cancelExchangeTimer];
            PEDTarget *target= [self convertDataToTarget:data];
@@ -217,15 +229,15 @@
                //NSLog(@"Receive Notify:UUID:%@,Target data:%@",UUID,target);
                exchangeContainer.target=target;
                if(target.pedoDataCount>0){
-               exchangeContainer.exchageType=ExchangeTypePedoData;
-                    exchangeContainer.pedoDataIndex++;
+                   exchangeContainer.exchageType=ExchangeTypePedoData;
+                   exchangeContainer.pedoDataIndex++;
                    txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
                    [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
                    [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
                }    
                else if(target.sleepDataCount>0){
                    exchangeContainer.exchageType=ExchangeTypeSleepData;
-                    exchangeContainer.sleepDataIndex++;
+                   exchangeContainer.sleepDataIndex++;
                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
                    [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
                    [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
@@ -263,7 +275,7 @@
                 }
             }
             else{                
-                NSLog(@"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
+                NSLog(@"Request pedometer data:%i,Header:%2x.",exchangeContainer.pedoDataIndex+1,DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex);
                 [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
                 txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
                 [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];

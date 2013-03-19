@@ -164,9 +164,9 @@
 
 -(CBCharacteristic *) findCharacteristicFromUUID:(CBUUID *)UUID p:(CBPeripheral *)peripheral service:(CBService *)service
 {
-    for (CBCharacteristic *c in service.characteristics) {
-        printf("characteristic <%s> is found!\n", [[UUID.data description] cStringUsingEncoding:NSStringEncodingConversionAllowLossy]);
+    for (CBCharacteristic *c in service.characteristics) {        
         if ([[c.UUID data] isEqualToData:[UUID data]]) {
+            printf("characteristic <%s> is found!\n", [[UUID.data description] cStringUsingEncoding:NSStringEncodingConversionAllowLossy]);
             return c;
         }
     }

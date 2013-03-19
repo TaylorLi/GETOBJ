@@ -67,11 +67,11 @@ typedef enum {
     DATA_HEADER_PEDO_DATA_1_RS =0x03,
     DATA_HEADER_PEDO_DATA_7_RQ= 0x88,
     DATA_HEADER_PEDO_DATA_7_RS =0x09,
-    DATA_HEADER_SLEEP_DATA_1_RQ= 0x8A,
+    DATA_HEADER_SLEEP_DATA_1_RQ= 0x89,
     DATA_HEADER_SLEEP_DATA_1_RS= 0x0A,
-    DATA_HEADER_SLEEP_DATA_7_RQ= 0x90,
+    DATA_HEADER_SLEEP_DATA_7_RQ= 0x8F,
     DATA_HEADER_SLEEP_DATA_7_RS =0x10,
-    DATA_HEADER_END_CONNECT_RQ= 0x8B,
+    DATA_HEADER_END_CONNECT_RQ= 0x90,
 } DataHeaderType;
 
 typedef struct {
@@ -83,6 +83,10 @@ typedef struct {
 	u_char age;
 	u_char format;
 } packetPedoSetting;
+
+typedef struct {
+    u_char header;
+} packetPedoHeader;    
 
 typedef struct {
     u_char header;  //1 byte

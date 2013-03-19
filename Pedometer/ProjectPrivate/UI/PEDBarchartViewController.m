@@ -112,6 +112,9 @@
 } 
 
 -(void) initData{
+    if(isLargeView){
+        [self DoubleTap:nil];
+    }
     lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
     referenceDate=[[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];

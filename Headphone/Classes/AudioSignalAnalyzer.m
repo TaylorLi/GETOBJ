@@ -8,10 +8,12 @@
 
 #import "AudioSignalAnalyzer.h"
 
-
 #define SIGNAL_RATE  15000
 
-#define SAMPLE_RATE  SIGNAL_RATE * 10
+#define SAMPLE_RATE  150000
+
+#define PER_BUFFER_BYTE_SIZE SAMPLE_RATE*1.4
+#define BUFFER_COUNT 10
 
 #define SAMPLE  SInt16
 #define NUM_FRAMES_PER_PACKET 1 
@@ -29,11 +31,6 @@
 //报文头电平数
 #define HEADER_HIGHT_COUNT_MIN 21
 #define HEADER_HIGHT_COUNT_MAX 25
-
-#define SIGN_HEADER_CONTINUE_TIME_NS 1600
-#define SIGN_ZERO_CONTINUE_TIME 210
-#define SIGN_ONE_CONTINUE_TIME 530
-#define SIGN_END_CONTINUE_TIME 4200
 //0:连续电平数
 #define HEADER_ZERO_FLAG_COUNT_MIN 2
 #define HEADER_ZERO_FLAG_COUNT_MAX 4
@@ -43,16 +40,19 @@
 //以连续0电平结束报文个数
 #define END_FREQ_COUNT 24*5
 
+//波形相关定义
+#define WAVE_LogicH1 (int)(pow(2,sizeof(SAMPLE)*8-1)) //高电平
+#define  WAVE_LogicL 0//低电平
+#define  WAVE_WaveActiveDelta (WAVE_LogicH1/(FLAG_SINAL_COUNT/2 -1 ))            //有效的波形波动幅度
+#define  WAVE_WaveInactiveNum  (FLAG_SINAL_COUNT/2)            //连续多个低电平判定停下的个数
+#define WAVE_HEADER_COUNT (23 * (FLAG_SINAL_COUNT-2*2))//一般情况下有两个取点电平波动不到幅度
+#define WAVE_ONE_FLAG_COUNT (6 * (FLAG_SINAL_COUNT))//表示1
+#define WAVE_ZERO_FLAG_COUNT (4* (FLAG_SINAL_COUNT))//表示0
+
 #define SAMPLES_TO_NS(__samples__) (((UInt64)(__samples__) * 1000000000) / SAMPLE_RATE)
 #define NS_TO_SAMPLES(__nanosec__)  (unsigned)(((UInt64)(__nanosec__)  * SAMPLE_RATE) / 1000000000)
 #define US_TO_SAMPLES(__microsec__) (unsigned)(((UInt64)(__microsec__) * SAMPLE_RATE) / 1000000)
 #define MS_TO_SAMPLES(__millisec__) (unsigned)(((UInt64)(__millisec__) * SAMPLE_RATE) / 1000)
-#define EDGE_VALID_HIGHT_LEVEL_HOLD		15000
-#define EDGE_ZERO_THRESHOLD		3000
-#define EDGE_SLOPE_THRESHOLD	256
-#define EDGE_MAX_WIDTH			256
-#define IDLE_CHECK_PERIOD		MS_TO_SAMPLES(33)
-
 
 BOOL ApproximatelyEqual2(unsigned v1, unsigned v2)
 {
@@ -70,144 +70,122 @@ BOOL ApproximatelyEqual2(unsigned v1, unsigned v2)
 
 //static long HIGHT_EDGE_STATIC_COUNT=0;
 
+static WaveDecodeResult waveDecode(analyzerData *soundStream,AudioSignalAnalyzer* analyzer)
+{
+    soundStream->codeContent = 0;                         
+    WaveDecodeResult decodeResult=WaveDecodeSuccess;
+    //同步头判断
+    int cntJudge[2]={0,0};//序cntJudge[1]:超过波动值的个数
+    unsigned long positionNote=0;   
+    int temp16=0;
+    int structSize=pow(2, sizeof(int)*8);
+    unsigned long i=0;
+    bool findHeader=false;
+    for (i=0; i<soundStream->waveContent-1; i++) 
+    {       
+        temp16=(int)soundStream->waveBuff[i+1]-(int)soundStream->waveBuff[i];
+        if(abs(temp16)>WAVE_WaveActiveDelta)
+        {
+            //Print #1, 200
+            if(cntJudge[1]<structSize){
+                if(cntJudge[1] == 0)
+                {
+                    positionNote = i;
+                }
+                cntJudge[1]=cntJudge[1]+1;
+            }
+            cntJudge[0] = 0;
+        }
+        else{
+            if(cntJudge[0]<structSize)
+                cntJudge[0]=cntJudge[0]+1;
+            if(cntJudge[0]>=WAVE_WaveInactiveNum &&cntJudge[1]>WAVE_HEADER_COUNT)
+            {
+                findHeader=true;
+                break;
+            }
+            if(cntJudge[0]>=WAVE_WaveInactiveNum){
+                 //NSLog(@"%i",cntJudge[1]); NSLog(@"%i",cntJudge[1]);
+                cntJudge[1]=0;
+            }
+        }
+    }
+    if(!findHeader || i-positionNote<WAVE_HEADER_COUNT){
+        decodeResult=WaveDecodeNoHeader;
+        return decodeResult;
+    }
+    else{
+        NSLog(@"=======Header completed.=======,%ld",i-positionNote-cntJudge[0]);
+        [analyzer signalStart];
+        //正文接收
+        
+        positionNote = i;
+        cntJudge[0] = 0;
+        Byte cntBit=0;//正文以0开始以有载波没有载波形式01010101
+        int cntByte=0;
+        int codeValue=0;
+        for(i=positionNote;i<soundStream->waveContent;i++)
+        {
+            temp16 = (int)soundStream->waveBuff[i + 1] - (int)soundStream->waveBuff[i];
+            //Print #1, (cntBit And 1) * 200
+            //cntJudge[0]用来记录没有变化数
+            if(cntBit % 2 == 1 ){//cntBit为单数1时，检测的波形为1，只需检测连续未达到波动的个数，超过指定个数则判断其值
+                if(abs(temp16)<WAVE_WaveActiveDelta){
+                    cntJudge[0]=cntJudge[0]+1;
+                }
+                else{
+                    cntJudge[0]=0;
+                }
+            }
+            else{
+                //cntBit为偶数0时，检测的波形为0，只需检测达到波动的个数，超过指定个数则判断其值
+                if(abs(temp16)>WAVE_WaveActiveDelta){
+                    cntJudge[0]=cntJudge[0]+1;
+                }
+                else{
+                    //cntJudge[0]=0;  
+                }
+            }                
+            if(cntJudge[0]>=WAVE_WaveInactiveNum){
+                codeValue=codeValue*2;
+                temp16=i-positionNote;
+                
+                if(temp16>=WAVE_ONE_FLAG_COUNT){
+                    codeValue=codeValue+1;
+                    NSLog(@"Rate Continue:%i,%i,%i,FLAG:%i",temp16,temp16-cntJudge[0],(temp16-cntJudge[0])/FLAG_SINAL_COUNT,1);
+                }
+                else{
+                    NSLog(@"Rate Continue:%i,%i,%i,FLAG:%i",temp16,temp16-cntJudge[0],(temp16-cntJudge[0])/FLAG_SINAL_COUNT,0);
+                }
+                cntBit=cntBit+1;
+                if(cntBit>=8){
+                    soundStream->codeBuff[cntByte]=codeValue;
+                    cntByte++;                   
+                    NSLog(@"Receive Seq %i Char:0x%2x",cntByte,codeValue);
+                    [analyzer signalReceiveByte:codeValue];
+                    codeValue=0;
+                    cntBit=0;
+                }
+                positionNote=i;
+                cntJudge[0]=0;
+            }               
+        }        
+    }
+    
+    return decodeResult;
+}
+
+
 static int analyze( SAMPLE *inputBuffer,
                    unsigned long framesPerBuffer,
                    AudioSignalAnalyzer* analyzer)
 {
-	analyzerData *data = analyzer.pulseData;
-	SAMPLE *pSample = inputBuffer;
-	int lastFrame = data->lastFrame;
-    
-	//unsigned idleInterval = data->plateauWidth + data->lastEdgeWidth + data->edgeWidth;
-	for (long i=0; i < framesPerBuffer; i++, pSample++)
-	{
-		int thisFrame = *pSample;
-        
-        //data->currentSampleLocation++;
-        int diff = thisFrame - lastFrame;
-        
-        int sign = 0;
-        if (diff > EDGE_SLOPE_THRESHOLD)
-        {
-            // Signal is rising
-            sign = 1;
-            //NSLog(@"1, (%i,%i,diff:%i)\n",thisFrame,lastFrame,diff);
-        }
-        else if(-diff > EDGE_SLOPE_THRESHOLD)
-        {
-            // Signal is falling
-            sign = -1;
-            //NSLog(@"-1, (%i,%i,diff:%i)\n",thisFrame,lastFrame,diff);
-        }
-        
-#pragma mark -
-#pragma mark 使用对应的取样频率进行计算，实验过发现此方法不可行
-        data->frameSampleCount++;
-        if(thisFrame>EDGE_ZERO_THRESHOLD){
-            data->aboveZeroLevel=true;
-        }
-        else{
-            data->belowZeroLevel=true;
-        }
-        if(sign==1){
-            data->raiseUp=true;
-        }
-        else if(sign==-1){
-            data->raiseDown=true;
-        }
-        if(thisFrame>EDGE_VALID_HIGHT_LEVEL_HOLD){
-            data->hightLevelCount++;
-            
-        }
-        //if(thisFrame>10000)
-          //  NSLog(@"%i",thisFrame);
-        if(data->frameSampleCount==FLAG_SINAL_COUNT){//一个采样周期
-            //判断上个波形有载波还是没有载波
-            int levelType=0;
-            //if(data->hightLevelCount>1 && data->belowZeroLevel && data->aboveZeroLevel
-            //   &&data->raiseUp &&data->raiseDown){
-            if(data->hightLevelCount>0&&data->raiseUp &&data->raiseDown){
-                //属于高波
-                levelType=1;
-                
-            }
-            else{
-                levelType=0;
-            } 
-            if(levelType==data->continueSampleType){
-                data->continueSampleCount++;
-                if(data->headerCompleted){
-                    if(data->continueSampleType==0 &&data->continueSampleCount > END_FREQ_COUNT)
-                    {
-                        [analyzer resetPulseData];
-                        NSLog(@"=======Communicate completed.=======");
-                        [analyzer signalEnd];
-                        
-                    }      
-                }
-            }
-            else{
-                //连续相同时进行判断
-                if(!data->headerCompleted)
-                {
-                    if(data->continueSampleType==1 &&data->continueSampleCount>=HEADER_HIGHT_COUNT_MIN
-                       &&data->continueSampleCount<=HEADER_HIGHT_COUNT_MAX)
-                    {
-                        data->headerCompleted=true;
-                        NSLog(@"=======Header completed.=======,%i",data->continueSampleCount);
-                        [analyzer signalStart];
-                    }
-                }   
-                //已经header结束，在变化前判断波形数
-                else{
-                    if(data->continueSampleCount>=HEADER_ONE_FLAG_COUNT_MIN&&data->continueSampleType<=HEADER_ONE_FLAG_COUNT_MAX){
-                        NSLog(@"Data Signal:1,count:%i,type:%i",data->continueSampleCount,data->continueSampleType);
-                        data->availSample[data->availSampleCount++]=1;
-                    }
-                    else if(data->continueSampleCount>=HEADER_ZERO_FLAG_COUNT_MIN&&data->continueSampleType<=HEADER_ZERO_FLAG_COUNT_MAX){
-                        NSLog(@"Data Signal:0,count:%i,type:%i",data->continueSampleCount,data->continueSampleType);                        data->availSample[data->availSampleCount++]=0;
-                    }
-                    else{
-                        if(data->continueSampleCount<HEADER_ONE_FLAG_COUNT_MIN){
-                            //实际未发生变化
-                            data->continueSampleCount++;
-                        }
-                        else{
-                            NSLog(@"Unrecognize Sample Continue Count:%i",data->continueSampleCount);
-                            data->headerCompleted=false;
-                            [analyzer resetPulseData];
-                            NSLog(@"=======Header test restart.=======");
-                            [analyzer signalInvalidAndRestart];
-                        }
-                    }
-                    if(data->availSampleCount==8){
-                        unsigned v=0;
-                        NSMutableString *mulStr=[[NSMutableString alloc] initWithCapacity:8];
-                        for (int i=0; i<8; i++) {
-                            [mulStr appendFormat:@"%i",(unsigned)data->availSample[i]];
-                            v+=data->availSample[i]<<8-1-i;
-                        }
-                        NSLog(@"Receive Char:%i,Hex:%2x,All String:%@",v,v,mulStr);
-                        data->availSampleCount=0;
-                        memset(&data->availSample,0,sizeof(char)*8);
-                        [analyzer signalReceiveByte:v];
-                    }
-                }                
-                data->continueSampleCount=1;
-                data->continueSampleType=levelType;
-            }
-            data->belowZeroLevel=false;
-            data->aboveZeroLevel=false;
-            data->raiseUp=false;
-            data->raiseDown=false;
-            data->frameSampleCount=0;
-            data->hightLevelCount=0;
-        }
-        data->lastFrame=thisFrame;
-#pragma mark -       
-    }
-	
-	return 0;
+	analyzerData *soundStream = analyzer.pulseData;    
+    //RESET
+    soundStream->waveBuff=inputBuffer;
+    soundStream->waveContent=framesPerBuffer;
+    waveDecode(soundStream,analyzer);
+    return 0;
 }
 
 
@@ -272,10 +250,6 @@ static void recordingCallback (
         audioFormat.mBytesPerFrame		= BYTES_PER_FRAME;
 		audioFormat.mBytesPerPacket		= audioFormat.mBytesPerFrame * audioFormat.mFramesPerPacket;		
         
-		self.pulseData->lastLowSignalLevelCount=0;
-		self.pulseData->lastHighSignalLevelCount=0;
-        self.pulseData->lastSignalLevelType=0;
-        
 		AudioQueueNewInput (
 							&audioFormat,
 							recordingCallback,
@@ -322,10 +296,10 @@ static void recordingCallback (
 - (void) setupRecording
 {
 	// allocate and enqueue buffers
-	int bufferByteSize = 4096    *4;		// this is the maximum buffer size used by the player class
+	int bufferByteSize = PER_BUFFER_BYTE_SIZE;		// this is the maximum buffer size used by the player class
 	int bufferIndex;
 	
-	for (bufferIndex = 0; bufferIndex < 20; ++bufferIndex) {
+	for (bufferIndex = 0; bufferIndex < BUFFER_COUNT; ++bufferIndex) {
 		
 		AudioQueueBufferRef bufferRef;
 		

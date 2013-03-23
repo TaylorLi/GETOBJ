@@ -10,9 +10,9 @@
 
 #define SIGNAL_RATE  15000
 
-#define SAMPLE_RATE  150000
+#define SAMPLE_RATE  SIGNAL_RATE * 14
 
-#define PER_BUFFER_BYTE_SIZE SAMPLE_RATE*1.4
+#define PER_BUFFER_BYTE_SIZE SAMPLE_RATE*2
 #define BUFFER_COUNT 10
 
 #define SAMPLE  SInt16
@@ -46,7 +46,7 @@
 #define  WAVE_WaveActiveDelta (WAVE_LogicH1/(FLAG_SINAL_COUNT/2-1))            //有效的波形波动幅度
 #define  WAVE_HeadWaveInactiveNum  (FLAG_SINAL_COUNT/2)            //连续多个低电平判定停下的个数，用户同步头信号检测
 #define  WAVE_BodyWaveInactiveNum  (FLAG_SINAL_COUNT)            //连续多个低电平判定停下的个数,用于信号检测
-#define WAVE_HEADER_REACHED_EDAGE_COUNT (23 * (FLAG_SINAL_COUNT-2*2))//一般情况下有两个取点电平波动不到幅度
+#define WAVE_HEADER_REACHED_EDAGE_COUNT (23 * FLAG_SINAL_COUNT * 5/8)//一般情况下两个取点电平波动不到幅度，但是有至少一半可以达到
 #define WAVE_HEADER_COUNT (23 * (FLAG_SINAL_COUNT))//一般情况下有两个取点电平波动不到幅度
 #define WAVE_ONE_FLAG_COUNT (6.6 * (FLAG_SINAL_COUNT))//表示1
 #define WAVE_ZERO_FLAG_COUNT (4* (FLAG_SINAL_COUNT))//表示0
@@ -118,7 +118,7 @@ static WaveDecodeResult waveDecode(analyzerData *soundStream,AudioSignalAnalyzer
         return decodeResult;
     }
     else{
-        NSLog(@"=======Header completed.=======,%ld",i-positionNote-cntJudge[0]);
+        NSLog(@"=======Header completed.=======,%ld,Sample count:%d,Wave count:%i",i-positionNote,FLAG_SINAL_COUNT,(int)((i-positionNote)/FLAG_SINAL_COUNT));
         [analyzer signalStart];
         //正文接收
         
@@ -174,7 +174,15 @@ static WaveDecodeResult waveDecode(analyzerData *soundStream,AudioSignalAnalyzer
             }               
         }  
         //校验
-        
+        /*
+         协议定义:
+         在时序上按下列顺序排列
+         1. 开始信号;
+         2. 1byte,命令;
+         3. 1byte,命令的反码(保证命令的可靠);
+         4. 0~N bytes,数据部分,具体长度由命令事先约定;
+         5. 1byte,前面所有数据的和校验(包括命令);
+         */
         //校验结束
         if(findHeader)
         {

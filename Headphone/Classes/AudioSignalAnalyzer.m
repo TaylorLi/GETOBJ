@@ -43,10 +43,12 @@
 //波形相关定义
 #define WAVE_LogicH1 (int)(pow(2,sizeof(SAMPLE)*8-1)) //高电平
 #define  WAVE_LogicL 0//低电平
-#define  WAVE_WaveActiveDelta (WAVE_LogicH1/(FLAG_SINAL_COUNT/2 -1 ))            //有效的波形波动幅度
-#define  WAVE_WaveInactiveNum  (FLAG_SINAL_COUNT/2)            //连续多个低电平判定停下的个数
-#define WAVE_HEADER_COUNT (23 * (FLAG_SINAL_COUNT-2*2))//一般情况下有两个取点电平波动不到幅度
-#define WAVE_ONE_FLAG_COUNT (6 * (FLAG_SINAL_COUNT))//表示1
+#define  WAVE_WaveActiveDelta (WAVE_LogicH1/(FLAG_SINAL_COUNT/2-1))            //有效的波形波动幅度
+#define  WAVE_HeadWaveInactiveNum  (FLAG_SINAL_COUNT/2)            //连续多个低电平判定停下的个数，用户同步头信号检测
+#define  WAVE_BodyWaveInactiveNum  (FLAG_SINAL_COUNT)            //连续多个低电平判定停下的个数,用于信号检测
+#define WAVE_HEADER_REACHED_EDAGE_COUNT (23 * (FLAG_SINAL_COUNT-2*2))//一般情况下有两个取点电平波动不到幅度
+#define WAVE_HEADER_COUNT (23 * (FLAG_SINAL_COUNT))//一般情况下有两个取点电平波动不到幅度
+#define WAVE_ONE_FLAG_COUNT (6.6 * (FLAG_SINAL_COUNT))//表示1
 #define WAVE_ZERO_FLAG_COUNT (4* (FLAG_SINAL_COUNT))//表示0
 
 #define SAMPLES_TO_NS(__samples__) (((UInt64)(__samples__) * 1000000000) / SAMPLE_RATE)
@@ -99,18 +101,19 @@ static WaveDecodeResult waveDecode(analyzerData *soundStream,AudioSignalAnalyzer
         else{
             if(cntJudge[0]<structSize)
                 cntJudge[0]=cntJudge[0]+1;
-            if(cntJudge[0]>=WAVE_WaveInactiveNum &&cntJudge[1]>WAVE_HEADER_COUNT)
+            if(cntJudge[0]>=WAVE_HeadWaveInactiveNum &&cntJudge[1]>WAVE_HEADER_REACHED_EDAGE_COUNT
+               &&i-positionNote>=WAVE_HEADER_COUNT)
             {
                 findHeader=true;
                 break;
             }
-            if(cntJudge[0]>=WAVE_WaveInactiveNum){
+            if(cntJudge[0]>=WAVE_HeadWaveInactiveNum){
                  //NSLog(@"%i",cntJudge[1]); NSLog(@"%i",cntJudge[1]);
                 cntJudge[1]=0;
             }
         }
     }
-    if(!findHeader || i-positionNote<WAVE_HEADER_COUNT){
+    if(!findHeader){
         decodeResult=WaveDecodeNoHeader;
         return decodeResult;
     }
@@ -146,16 +149,16 @@ static WaveDecodeResult waveDecode(analyzerData *soundStream,AudioSignalAnalyzer
                     //cntJudge[0]=0;  
                 }
             }                
-            if(cntJudge[0]>=WAVE_WaveInactiveNum){
+            if(cntJudge[0]>=WAVE_BodyWaveInactiveNum){
                 codeValue=codeValue*2;
                 temp16=i-positionNote;
                 
                 if(temp16>=WAVE_ONE_FLAG_COUNT){
                     codeValue=codeValue+1;
-                    NSLog(@"Rate Continue:%i,%i,%i,FLAG:%i",temp16,temp16-cntJudge[0],(temp16-cntJudge[0])/FLAG_SINAL_COUNT,1);
+                    NSLog(@"Rate Continue:%i,%i,FLAG:%i",temp16,temp16/FLAG_SINAL_COUNT,1);
                 }
                 else{
-                    NSLog(@"Rate Continue:%i,%i,%i,FLAG:%i",temp16,temp16-cntJudge[0],(temp16-cntJudge[0])/FLAG_SINAL_COUNT,0);
+                    NSLog(@"Rate Continue:%i,%i,FLAG:%i",temp16,temp16/FLAG_SINAL_COUNT,0);
                 }
                 cntBit=cntBit+1;
                 if(cntBit>=8){
@@ -169,10 +172,20 @@ static WaveDecodeResult waveDecode(analyzerData *soundStream,AudioSignalAnalyzer
                 positionNote=i;
                 cntJudge[0]=0;
             }               
-        }        
+        }  
+        //校验
+        
+        //校验结束
+        if(findHeader)
+        {
+            NSLog(@"=======Communicate completed.=======");
+            [analyzer resetPulseData];
+            [analyzer signalEnd];            
+        }
+        return decodeResult;
     }
     
-    return decodeResult;
+    
 }
 
 

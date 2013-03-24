@@ -8,7 +8,7 @@
 
 #import "LogViewController.h"
 #import "iNfraredAppDelegate.h"
-
+#define kSoundsRoundEnd @"CMD2.wav"
 
 @implementation LogViewController
 
@@ -22,6 +22,8 @@
         // Custom initialization
 		self.historyLimit = 50000;
 		history = [[NSMutableArray alloc] init];
+        if(player==nil)
+            player= [[SoundsPlayer alloc] init] ; 
     }
     return self;
 }
@@ -95,9 +97,12 @@
     for (NSString *str in charArray) {
         cmd[i++]=[str intValue];
     } 
-    cmd[i]='\0';
     [[iNfraredAppDelegate getInstance].player playWithCommandByte:cmd withLength:charArray.count];
-    [[iNfraredAppDelegate getInstance].player  startQueue];
+    [[iNfraredAppDelegate getInstance].player startQueue];
 }
 
+-(IBAction) sendCommandByFile:(UIButton *)sender
+{
+    [player playSoundWithFullPath:kSoundsRoundEnd];
+}
 @end

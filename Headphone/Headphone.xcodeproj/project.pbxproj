@@ -36,6 +36,9 @@
 		DAA38E4916F595FD0065E1E3 /* AppleRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4516F595FD0065E1E3 /* AppleRemoteViewController.m */; };
 		DAA38E4A16F595FD0065E1E3 /* RemoteEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4716F595FD0065E1E3 /* RemoteEventsManager.m */; };
 		DAEB1E7A15F8C90800CE98C7 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAEB1E7915F8C90800CE98C7 /* MainWindow-iPad.xib */; };
+		DAF8AC7816FF5937003DE5B7 /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8AC7716FF5937003DE5B7 /* SoundsPlayer.m */; };
+		DAF8AC7A16FF5965003DE5B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF8AC7916FF5965003DE5B7 /* AVFoundation.framework */; };
+		DAF8AC7D16FF5A58003DE5B7 /* CMD2.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAF8AC7C16FF5A58003DE5B7 /* CMD2.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +89,10 @@
 		DAA38E4616F595FD0065E1E3 /* RemoteEventsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteEventsManager.h; sourceTree = "<group>"; };
 		DAA38E4716F595FD0065E1E3 /* RemoteEventsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteEventsManager.m; sourceTree = "<group>"; };
 		DAEB1E7915F8C90800CE98C7 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		DAF8AC7616FF5937003DE5B7 /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = ../../iPhoneComm/Classes/Misc/SoundsPlayer.h; sourceTree = "<group>"; };
+		DAF8AC7716FF5937003DE5B7 /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../../iPhoneComm/Classes/Misc/SoundsPlayer.m; sourceTree = "<group>"; };
+		DAF8AC7916FF5965003DE5B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		DAF8AC7C16FF5A58003DE5B7 /* CMD2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = CMD2.wav; path = Resources/Sounds/CMD2.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF8AC7A16FF5965003DE5B7 /* AVFoundation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -107,6 +115,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DAF8AC7516FF58D9003DE5B7 /* dependency */,
 				DA3EC94D16FE0F8100C361EA /* NSQueue.h */,
 				DA3EC94E16FE0F8100C361EA /* NSQueue.m */,
 				DA3EC95016FE114500C361EA /* PlayWaveDefintion.h */,
@@ -150,6 +159,7 @@
 		29B97314FDCFA39411CA2CEA /* iNfrared */ = {
 			isa = PBXGroup;
 			children = (
+				DAF8AC7916FF5965003DE5B7 /* AVFoundation.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -173,6 +183,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DAF8AC7B16FF5992003DE5B7 /* Sounds */,
 				5EDFA4960F1AB2300010E8F5 /* MacRemote */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -212,6 +223,23 @@
 				DAEB1E7915F8C90800CE98C7 /* MainWindow-iPad.xib */,
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		DAF8AC7516FF58D9003DE5B7 /* dependency */ = {
+			isa = PBXGroup;
+			children = (
+				DAF8AC7616FF5937003DE5B7 /* SoundsPlayer.h */,
+				DAF8AC7716FF5937003DE5B7 /* SoundsPlayer.m */,
+			);
+			name = dependency;
+			sourceTree = "<group>";
+		};
+		DAF8AC7B16FF5992003DE5B7 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				DAF8AC7C16FF5A58003DE5B7 /* CMD2.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +301,7 @@
 				5EDFA4A30F1AB2300010E8F5 /* HighlightUp.png in Resources */,
 				5EDFA4A40F1AB2300010E8F5 /* RemoteBase.png in Resources */,
 				DAEB1E7A15F8C90800CE98C7 /* MainWindow-iPad.xib in Resources */,
+				DAF8AC7D16FF5A58003DE5B7 /* CMD2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +326,7 @@
 				DA3EC94816FDED6400C361EA /* AudioSignalCoder.m in Sources */,
 				DA3EC94F16FE0F8100C361EA /* NSQueue.m in Sources */,
 				DA3EC95316FE11AE00C361EA /* WaveGenerator.m in Sources */,
+				DAF8AC7816FF5937003DE5B7 /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

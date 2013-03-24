@@ -138,35 +138,41 @@
  */
 +(NSTimeInterval) convertCmToInch:(NSTimeInterval) cm
 {
-    return cm/2.54;
+    return ceil(cm/2.54);
 }
 +(NSTimeInterval) convertKgToLbs:(NSTimeInterval) kg
 {
-    return 2.2*kg;
+    return ceil(2.2*kg);
 }
 +(NSTimeInterval) convertKmToMile:(NSTimeInterval) km
 {
-    return km*0.62;
+    return ceil(km*0.62);
 }
 +(NSTimeInterval) convertInchToFeet:(NSTimeInterval) inch
 {
-    return inch/12;
+    return floor(inch/12);
+}
+
++(NSString*) getFeetInfo:(NSTimeInterval) inch{
+    float feet = inch/12;
+    float feetRemain = (feet - (int)feet) * 12;
+    return [NSString stringWithFormat:@"%.0f'%.0f\"", floor(feet), ceil(feetRemain)];
 }
 
 +(NSTimeInterval) convertInchToCm:(NSTimeInterval) inch
 {
-    return inch*2.54;
+    return ceil(inch*2.54);
 }
 +(NSTimeInterval) convertLbsToKg:(NSTimeInterval) lbs
 {
-    return lbs/2.2;
+    return ceil(lbs/2.2);
 }
 +(NSTimeInterval) convertMileToKm:(NSTimeInterval) mile
 {
-    return mile/0.62;
+    return ceil(mile/0.62);
 }
 +(NSTimeInterval) convertFeetToInch:(NSTimeInterval) feet
 {
-    return feet*12;
+    return floor(feet*12);
 }
 @end

@@ -13,10 +13,14 @@
 #import "PEDUserInfo.h"
 #import "AppConfig.h"
 #import "BO_PEDUserInfo.h"
+#import "PEDPedometerCalcHelper.h"
+#import "UtilHelper.h"
+#import "UIHelper.h"
 
 @interface PEDUserSettingViewController ()
 -(void)bindUserInfo:(PEDUserInfo *)userInfo;
 -(void)segUnitChangeToUnit:(MeasureUnit)unit;
+-(void)dataConversion:(MeasureUnit)unit;
 @end
 
 @implementation PEDUserSettingViewController
@@ -72,21 +76,154 @@
     lblWeightUnit.text = [PEDPedometerCalcHelper getWeightUnit:unit withWordFormat:false];
     lblStrideUnit.text = [NSString stringWithFormat:@"Stride(%@)", [PEDPedometerCalcHelper getStrideUnit:unit withWordFormat:false]];
 }
+
+-(void) limitTextField :(UITextField*) textField withKey:(NSString*)key withMinValue:(NSInteger) minValue withMaxValue:(NSInteger) maxValue{
+    int value = [textField.text intValue];
+    if(value < minValue || value > maxValue){
+        if(value < minValue){
+            textField.text = [NSString stringWithFormat:@"%d", minValue];
+        }else{
+            textField.text = [NSString stringWithFormat:@"%d", maxValue];
+        }
+        [UIHelper showAlert:@"Warning" message:[NSString stringWithFormat:@"The range of %@ is %d to %d",key, minValue, maxValue] func:^(AlertView *a, NSInteger i) {
+
+        }];
+    }
+}
+
 -(void)segUnitChange:(id)sender{ 
     UISegmentedControl* segControl = (UISegmentedControl*)sender;
     MeasureUnit unit=segControl.selectedSegmentIndex==0?MEASURE_UNIT_METRIC:MEASURE_UNIT_ENGLISH;
     [self segUnitChangeToUnit:unit];
     
-    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
-    userInfo.height = [self.txbHeight.text floatValue];//m
-    userInfo.weight = [self.txbWeight.text floatValue];//kg
-    userInfo.stride = [self.txbStride.text floatValue];//cm
-    if(userInfo){
-        [userInfo convertUnit:unit];
-        [self bindUserInfo:userInfo];
-    }        
+//    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    [self dataConversion:unit];
+    //[userInfo convertUnit:unit];
+    if(unit == MEASURE_UNIT_METRIC){
+        [self bindUserInfo:cacheUserInfo4Metric];
+    }else{
+        [self bindUserInfo:cacheUserInfo4English];
+    }
 
 } 
+
+-(void)dataConversion:(MeasureUnit)unit{
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    if (!userInfo) {
+        userInfo = [[PEDUserInfo alloc]init];
+    }
+    switch (unit) {
+        case MEASURE_UNIT_ENGLISH:
+            if(cacheUserInfo4Metric){
+                if([self.txbHeight.text intValue] != (int)cacheUserInfo4Metric.height){
+                    cacheUserInfo4Metric.height = [self.txbHeight.text floatValue];
+                    cacheUserInfo4English.height = [PEDPedometerCalcHelper convertCmToInch:cacheUserInfo4Metric.height];
+                }
+                if([self.txbWeight.text intValue] != (int)cacheUserInfo4Metric.weight){
+                    cacheUserInfo4Metric.weight = [self.txbWeight.text floatValue];
+                    cacheUserInfo4English.weight = [PEDPedometerCalcHelper convertKgToLbs:cacheUserInfo4Metric.weight];
+                }
+                if([self.txbStride.text intValue] != (int)cacheUserInfo4Metric.stride){
+                    cacheUserInfo4Metric.stride = [self.txbStride.text floatValue];
+                    cacheUserInfo4English.stride = [PEDPedometerCalcHelper convertCmToInch:cacheUserInfo4Metric.stride];
+                }
+                cacheUserInfo4English.age = [self.txbAge.text intValue];
+                cacheUserInfo4Metric.age = [self.txbAge.text intValue];
+                
+                //userInfo = [cacheUserInfo4English copy];
+                
+            }else{
+                cacheUserInfo4Metric = [[PEDUserInfo alloc] init];
+                cacheUserInfo4Metric.userId = [UtilHelper stringWithUUID];
+                cacheUserInfo4Metric.measureFormat = MEASURE_UNIT_METRIC;
+                cacheUserInfo4Metric.height = [self.txbHeight.text floatValue];//m
+                cacheUserInfo4Metric.weight = [self.txbWeight.text floatValue];//kg
+                cacheUserInfo4Metric.stride = [self.txbStride.text floatValue];//cm
+                cacheUserInfo4Metric.age = [self.txbAge.text intValue];
+                userInfo = [cacheUserInfo4Metric copy];
+                
+                [userInfo convertUnit:MEASURE_UNIT_ENGLISH];
+
+                cacheUserInfo4English = [userInfo copy];
+                
+            }
+            break;
+        case MEASURE_UNIT_METRIC:
+            if(cacheUserInfo4English){
+                if((int)cacheHeight != (int)cacheUserInfo4English.height){
+                    cacheUserInfo4English.height = [self.txbHeight.text floatValue];
+                    cacheUserInfo4Metric.height = [PEDPedometerCalcHelper convertInchToCm:cacheUserInfo4English.height];
+                }
+                if([self.txbWeight.text intValue] != (int)cacheUserInfo4English.weight){
+                    cacheUserInfo4English.weight = [self.txbWeight.text floatValue];
+                    cacheUserInfo4Metric.weight = [PEDPedometerCalcHelper convertLbsToKg:cacheUserInfo4English.weight];
+                }
+                if([self.txbStride.text intValue] != (int)cacheUserInfo4English.stride){
+                    cacheUserInfo4English.stride = [self.txbStride.text floatValue];
+                    cacheUserInfo4Metric.stride = [PEDPedometerCalcHelper convertInchToCm:cacheUserInfo4English.stride];
+                }
+                cacheUserInfo4English.age = [self.txbAge.text intValue];
+                cacheUserInfo4Metric.age = [self.txbAge.text intValue];
+                //userInfo = [cacheUserInfo4Metric copy];
+            }else{
+                cacheUserInfo4English = [[PEDUserInfo alloc] init];
+                cacheUserInfo4English.userId = [UtilHelper stringWithUUID];
+                cacheUserInfo4English.measureFormat = MEASURE_UNIT_ENGLISH;
+                cacheUserInfo4English.height = [self.txbHeight.text floatValue];//m
+                cacheUserInfo4English.weight = [self.txbWeight.text floatValue];//kg
+                cacheUserInfo4English.stride = [self.txbStride.text floatValue];//cm
+                cacheUserInfo4English.age = [self.txbAge.text intValue];
+                
+                userInfo = [cacheUserInfo4English copy];
+                
+                [userInfo convertUnit:MEASURE_UNIT_METRIC];
+
+                cacheUserInfo4Metric = [userInfo copy];
+            }
+            break;
+        default:
+            break;
+    }
+//    if(cacheUserInfo4Meter){
+//        //        [userInfo convertUnit:unit];
+//        switch (unit) {
+//            case MEASURE_UNIT_ENGLISH:
+//                if([self.txbHeight.text intValue] != (int)cacheUserInfo4Meter.height){
+//                    cacheUserInfo4Meter.height = [self.txbHeight.text floatValue];
+//                }
+//                if([self.txbWeight.text intValue] != (int)cacheUserInfo4Metric.weight){
+//                    cacheUserInfo4Metric.weight = [self.txbWeight.text floatValue];
+//                }
+//                if([self.txbStride.text intValue] != (int)cacheUserInfo4Metric.stride){
+//                    cacheUserInfo4Metric.stride = [self.txbStride.text floatValue];
+//                }
+//                break;
+//            case MEASURE_UNIT_METRIC:
+//                if([self.txbHeight.text intValue] != (int)[PEDPedometerCalcHelper convertInchToFeet:[PEDPedometerCalcHelper convertCmToInch:cacheUserInfo4Metric.height]]){
+//                    cacheUserInfo4Metric.height = [PEDPedometerCalcHelper convertInchToCm:[PEDPedometerCalcHelper convertFeetToInch:[self.txbHeight.text floatValue]]];
+//                }
+//                if([self.txbWeight.text intValue] != (int)[PEDPedometerCalcHelper convertKgToLbs:cacheUserInfo4Metric.weight]){
+//                    cacheUserInfo4Metric.weight = [PEDPedometerCalcHelper convertLbsToKg:[self.txbWeight.text floatValue]];
+//                }
+//                if([self.txbStride.text intValue] != (int)[PEDPedometerCalcHelper convertCmToInch:cacheUserInfo4Metric.stride]){
+//                    cacheUserInfo4Metric.stride = [PEDPedometerCalcHelper convertInchToCm:[self.txbStride.text floatValue]];
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+//        //        cacheUserInfo.measureFormat = unit;
+//        
+//    }else{
+//        cacheUserInfo4Meter = [[PEDUserInfo alloc] init];
+//        cacheUserInfo4Meter.userId = [UtilHelper stringWithUUID];
+//        cacheUserInfo4Meter.measureFormat = MEASURE_UNIT_METRIC;
+//        cacheUserInfo4Meter.height = [self.txbHeight.text floatValue];//m
+//        cacheUserInfo4Meter.weight = [self.txbWeight.text floatValue];//kg
+//        cacheUserInfo4Meter.stride = [self.txbStride.text floatValue];//cm
+//    } 
+//    userInfo = [cacheUserInfo4Meter copy];
+}
 
 -(void)segGenderChange:(id)sender{  
     UISegmentedControl* segControl = (UISegmentedControl*)sender;  
@@ -105,8 +242,54 @@
             break;  
         default:  
             break;  
-    }  
+    }
+    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    if(userInfo){
+        userInfo.gender = segControl.selectedSegmentIndex;
+    }
+    if(cacheUserInfo4Metric){
+        cacheUserInfo4Metric.gender = segControl.selectedSegmentIndex;
+    }
+    if(cacheUserInfo4English){
+        cacheUserInfo4English.gender = segControl.selectedSegmentIndex;
+    }
 } 
+
+-(void) txbHeightEditBegin{
+    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+        txbHeight.text = [NSString stringWithFormat:@"%.0f", cacheHeight];
+    }    
+}
+
+-(void) txbHeightEditEnd:(id) sender{
+    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:32 withMaxValue:98];
+        cacheHeight = [txbHeight.text floatValue];
+        txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:cacheHeight];
+    }else{
+        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:80 withMaxValue:250];
+    }
+}
+
+-(void) txbWeightEditEnd:(id) sender{
+    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+        [self limitTextField:(UITextField *)sender withKey:@"weight" withMinValue:33 withMaxValue:286];
+    }else{
+        [self limitTextField:(UITextField *)sender withKey:@"weight" withMinValue:15 withMaxValue:130];
+    }
+}
+
+-(void) txbStrideEditEnd:(id) sender{
+    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:12 withMaxValue:59];
+    }else{
+        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:30 withMaxValue:150];
+    }
+}
+
+-(void) txbAgeEditEnd:(id) sender{
+    [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:5 withMaxValue:99];
+}
 
 - (void)viewDidLoad
 {
@@ -167,26 +350,82 @@
     genderSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
     genderSegTitleRight.hidden = YES;
     [self.view addSubview:genderSegTitleRight];
+    
+    [self.txbHeight addTarget:self action:@selector(txbHeightEditBegin) forControlEvents:UIControlEventEditingDidBegin];
+    
+    [self.txbHeight addTarget:self action:@selector(txbHeightEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
+    
+    [self.txbWeight addTarget:self action:@selector(txbWeightEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
+    
+    [self.txbStride addTarget:self action:@selector(txbStrideEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
+    
+    [self.txbAge addTarget:self action:@selector(txbAgeEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
+    
     PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
     if(userInfo){
-        [self bindUserInfo:userInfo];
+        switch (userInfo.measureFormat) {
+            case MEASURE_UNIT_METRIC:
+                if(!cacheUserInfo4Metric){
+                    cacheUserInfo4Metric = [userInfo copy];
+                }
+                [cacheUserInfo4Metric convertUnit:MEASURE_UNIT_ENGLISH];
+                if(!cacheUserInfo4English){
+                    cacheUserInfo4English = [cacheUserInfo4Metric copy];
+                }
+                cacheUserInfo4Metric = [userInfo copy];
+                [self bindUserInfo:cacheUserInfo4Metric];
+                break;
+            case MEASURE_UNIT_ENGLISH:
+                userInfo.measureFormat = MEASURE_UNIT_METRIC;
+                if(!cacheUserInfo4Metric){
+                    cacheUserInfo4Metric = [userInfo copy];
+                }
+                [cacheUserInfo4Metric convertUnit:MEASURE_UNIT_ENGLISH];
+                if(!cacheUserInfo4English){
+                    cacheUserInfo4English = [cacheUserInfo4Metric copy];
+                }
+                cacheUserInfo4Metric = [userInfo copy];
+                userInfo.measureFormat = MEASURE_UNIT_ENGLISH;
+                [self bindUserInfo:cacheUserInfo4English];
+                //userInfo = [cacheUserInfo4English copy];
+                break;
+            default:
+                break;
+        }
+        cacheHeight = cacheUserInfo4English.height;
+//        MeasureUnit originUnit = userInfo.measureFormat;
+//        if(originUnit == MEASURE_UNIT_ENGLISH){
+//            [userInfo convertUnit:MEASURE_UNIT_METRIC];
+//        }
+//        if(!cacheUserInfo4Meter){
+//            cacheUserInfo4Meter = [userInfo copy];
+//        }
+//        if(originUnit == MEASURE_UNIT_ENGLISH){
+//            [userInfo convertUnit:MEASURE_UNIT_ENGLISH];
+//        }
+       // [self bindUserInfo:userInfo];
     }
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)bindUserInfo:(PEDUserInfo *)userInfo
 {
     if(userInfo){
-        [userInfo convertUnit:userInfo.measureFormat];
+        //[userInfo convertUnit:userInfo.measureFormat];
         txbUserName.text=userInfo.userName;
         txbAge.text=[NSString stringWithFormat:@"%i", userInfo.age];
-        txbHeight.text=[NSString stringWithFormat:@"%.2f", userInfo.height];
-        txbWeight.text=[NSString stringWithFormat:@"%.2f", userInfo.weight];
-        txbStride.text=[NSString stringWithFormat:@"%.2f", userInfo.stride];
-        segGender.selectedSegmentIndex =userInfo.gender? 0:1;
+        if(userInfo.measureFormat == MEASURE_UNIT_METRIC){
+            txbHeight.text=[NSString stringWithFormat:@"%.0f", userInfo.height];
+        }else{
+            txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:userInfo.height];
+        }
+        txbWeight.text=[NSString stringWithFormat:@"%.0f", userInfo.weight];
+        txbStride.text=[NSString stringWithFormat:@"%.0f", userInfo.stride];
+        segGender.selectedSegmentIndex =userInfo.gender? 1:0;
         segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
         [self segUnitChangeToUnit:userInfo.measureFormat];
-        [self segGenderChange:nil];
+        [self segGenderChange:segGender];
     }    
 }
 
@@ -235,7 +474,7 @@
 }
 
 - (IBAction)contactUsClick:(id)sender {
-    [UtilHelper sendEmail:@"114600001@qq.com" andSubject:nil andBody:nil];
+    [UtilHelper sendEmail:@"" andSubject:nil andBody:nil];
  //   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto://114600001@qq.com"]];
 }
 
@@ -249,18 +488,33 @@
 - (IBAction)confirmClick:(id)sender {
     if([UIHelper validateTextFields: [[NSArray alloc] initWithObjects:txbUserName, txbStride, txbHeight, txbWeight, txbAge, nil]]){
         PEDUserInfo *curr=[AppConfig getInstance].settings.userInfo;
-        if(!curr){
-            curr = [[PEDUserInfo alloc]init];
-            curr.userId = [UtilHelper stringWithUUID];
+        if(cacheUserInfo4Metric){
+            if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+                [self dataConversion:MEASURE_UNIT_METRIC];
+            }else{
+                [self dataConversion:MEASURE_UNIT_ENGLISH];
+            }
+            curr = [cacheUserInfo4Metric copy];
+        }else{
+            curr.height = [self.txbHeight.text floatValue];//m
+            curr.weight = [self.txbWeight.text floatValue];//kg
+            curr.stride = [self.txbStride.text floatValue];//cm
+            if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+                [curr convertUnit:MEASURE_UNIT_METRIC];
+            }
         }
+        //curr = [cacheUserInfo copy];
+//        if(!curr){
+//            curr = [[PEDUserInfo alloc]init];
+//            curr.userId = [UtilHelper stringWithUUID];
+//        }
         curr.userName = self.txbUserName.text;
         curr.age = [self.txbAge.text intValue];
-        curr.height = [self.txbHeight.text floatValue];//m
-        curr.weight = [self.txbWeight.text floatValue];//kg
-        curr.stride = [self.txbStride.text floatValue];//cm
+
+        
         curr.updateDate=[NSDate date];
         curr.isCurrentUser=YES;
-        [curr convertUnit:MEASURE_UNIT_METRIC];
+        //[curr convertUnit:MEASURE_UNIT_METRIC];
         curr.measureFormat = segUnit.selectedSegmentIndex;
         curr.gender = segGender.selectedSegmentIndex;
         [[AppConfig getInstance] saveUserInfo:curr];    

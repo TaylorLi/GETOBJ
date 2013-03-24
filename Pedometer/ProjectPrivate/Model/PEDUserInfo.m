@@ -48,7 +48,7 @@
         distanceUnit=@"km";
         
         if (measureFormat==MEASURE_UNIT_ENGLISH) {
-            height=[PEDPedometerCalcHelper convertInchToCm:[PEDPedometerCalcHelper convertFeetToInch:height]];
+            height=[PEDPedometerCalcHelper convertInchToCm:height];
             stride=[PEDPedometerCalcHelper convertInchToCm:stride];
             weight=[PEDPedometerCalcHelper convertLbsToKg:weight];
         }
@@ -60,7 +60,7 @@
         weightUnit=@"Lbs";
         distanceUnit=@"mile";
         if(measureFormat==MEASURE_UNIT_METRIC){
-            height=[PEDPedometerCalcHelper convertInchToFeet:[PEDPedometerCalcHelper convertCmToInch:height]];
+            height=[PEDPedometerCalcHelper convertCmToInch:height];
             stride=[PEDPedometerCalcHelper convertCmToInch:stride];
             weight=[PEDPedometerCalcHelper convertKgToLbs:weight];
         }

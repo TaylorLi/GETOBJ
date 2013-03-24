@@ -78,12 +78,12 @@
 
 -(void)handleSwipeLeft:(UITapGestureRecognizer*)recognizer  
 {  
-//    if(dayRemark < 0){
+    if(dayRemark < 0){
         dayRemark++;
         dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
         statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
         [self genCurvechart];
-//    }
+    }
 } 
 
 -(void) initData{

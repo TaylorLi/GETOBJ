@@ -23,7 +23,7 @@ void interruptionListenerCallback (
 	if (interruptionState == kAudioSessionBeginInterruption) {
 		
 		NSLog (@"Interrupted. Stopping recording.");
-		
+		[delegate.player stop];
 		[delegate.analyzer stop];
 	} else if (interruptionState == kAudioSessionEndInterruption) {
 		// if the interruption was removed, resume recording
@@ -39,12 +39,18 @@ void interruptionListenerCallback (
 @synthesize eventsLog;
 @synthesize remoteController;
 @synthesize analyzer;
+@synthesize player;
 
+static iNfraredAppDelegate* _instance;
+
++ (iNfraredAppDelegate*)getInstance {
+    return _instance;
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	// Set cocoa to multithreaded mode by launching a no-op thread
 	[[[[NSThread alloc] init] autorelease] start];
-	
+	_instance=self;
 	[RemoteEventsManager addReceiver:self.remoteController];
 
 	// initialize the audio session object for this application,
@@ -57,7 +63,7 @@ void interruptionListenerCallback (
 	
 	// before instantiating the recording audio queue object, 
 	//	set the audio session category
-	UInt32 sessionCategory = kAudioSessionCategory_RecordAudio;
+	UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 	AudioSessionSetProperty (kAudioSessionProperty_AudioCategory,
 							 sizeof (sessionCategory),
 							 &sessionCategory);
@@ -65,9 +71,9 @@ void interruptionListenerCallback (
 	analyzer = [[AudioSignalAnalyzer alloc] init];
 	[analyzer addRecognizer:[[AppleRemoteRecognizer alloc] init]];
 	[analyzer addRecognizer:[[RawPulseLogger alloc] init]];
+    player=[[AudioSignalCoder alloc] init];
 	AudioSessionSetActive (true);
 	[analyzer record];
-    
     // Add the tab bar controller's current view as a subview of the window
     [window addSubview:tabBarController.view];
 }

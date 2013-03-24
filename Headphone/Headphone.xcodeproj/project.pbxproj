@@ -28,6 +28,9 @@
 		5EDFA4A30F1AB2300010E8F5 /* HighlightUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDFA49C0F1AB2300010E8F5 /* HighlightUp.png */; };
 		5EDFA4A40F1AB2300010E8F5 /* RemoteBase.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDFA49D0F1AB2300010E8F5 /* RemoteBase.png */; };
 		5EFE907C0F1AA820003C04F2 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFE907B0F1AA820003C04F2 /* Entitlements.plist */; };
+		DA3EC94816FDED6400C361EA /* AudioSignalCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EC94716FDED6400C361EA /* AudioSignalCoder.m */; };
+		DA3EC94F16FE0F8100C361EA /* NSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EC94E16FE0F8100C361EA /* NSQueue.m */; };
+		DA3EC95316FE11AE00C361EA /* WaveGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EC95216FE11AE00C361EA /* WaveGenerator.m */; };
 		DAA38E4116F590D10065E1E3 /* PulseCodeRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4016F590D10065E1E3 /* PulseCodeRecognizer.m */; };
 		DAA38E4816F595FD0065E1E3 /* AppleRemoteRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4316F595FC0065E1E3 /* AppleRemoteRecognizer.m */; };
 		DAA38E4916F595FD0065E1E3 /* AppleRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4516F595FD0065E1E3 /* AppleRemoteViewController.m */; };
@@ -67,6 +70,13 @@
 		5EDFA49D0F1AB2300010E8F5 /* RemoteBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoteBase.png; sourceTree = "<group>"; };
 		5EFE907B0F1AA820003C04F2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA3EC94616FDED6400C361EA /* AudioSignalCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSignalCoder.h; sourceTree = "<group>"; };
+		DA3EC94716FDED6400C361EA /* AudioSignalCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSignalCoder.m; sourceTree = "<group>"; };
+		DA3EC94D16FE0F8100C361EA /* NSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSQueue.h; sourceTree = "<group>"; };
+		DA3EC94E16FE0F8100C361EA /* NSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSQueue.m; sourceTree = "<group>"; };
+		DA3EC95016FE114500C361EA /* PlayWaveDefintion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayWaveDefintion.h; sourceTree = "<group>"; };
+		DA3EC95116FE11AE00C361EA /* WaveGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveGenerator.h; sourceTree = "<group>"; };
+		DA3EC95216FE11AE00C361EA /* WaveGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveGenerator.m; sourceTree = "<group>"; };
 		DAA38E3F16F590D10065E1E3 /* PulseCodeRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseCodeRecognizer.h; sourceTree = "<group>"; };
 		DAA38E4016F590D10065E1E3 /* PulseCodeRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseCodeRecognizer.m; sourceTree = "<group>"; };
 		DAA38E4216F595FC0065E1E3 /* AppleRemoteRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleRemoteRecognizer.h; sourceTree = "<group>"; };
@@ -97,6 +107,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA3EC94D16FE0F8100C361EA /* NSQueue.h */,
+				DA3EC94E16FE0F8100C361EA /* NSQueue.m */,
+				DA3EC95016FE114500C361EA /* PlayWaveDefintion.h */,
+				DA3EC94616FDED6400C361EA /* AudioSignalCoder.h */,
+				DA3EC94716FDED6400C361EA /* AudioSignalCoder.m */,
+				DA3EC95116FE11AE00C361EA /* WaveGenerator.h */,
+				DA3EC95216FE11AE00C361EA /* WaveGenerator.m */,
 				DAA38E4216F595FC0065E1E3 /* AppleRemoteRecognizer.h */,
 				DAA38E4316F595FC0065E1E3 /* AppleRemoteRecognizer.m */,
 				DAA38E4416F595FD0065E1E3 /* AppleRemoteViewController.h */,
@@ -277,6 +294,9 @@
 				DAA38E4816F595FD0065E1E3 /* AppleRemoteRecognizer.m in Sources */,
 				DAA38E4916F595FD0065E1E3 /* AppleRemoteViewController.m in Sources */,
 				DAA38E4A16F595FD0065E1E3 /* RemoteEventsManager.m in Sources */,
+				DA3EC94816FDED6400C361EA /* AudioSignalCoder.m in Sources */,
+				DA3EC94F16FE0F8100C361EA /* NSQueue.m in Sources */,
+				DA3EC95316FE11AE00C361EA /* WaveGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +319,7 @@
 				PRODUCT_NAME = Headphone;
 				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -318,7 +338,7 @@
 				PRODUCT_NAME = Headphone;
 				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -353,7 +373,7 @@
 				PRODUCT_NAME = Headphone;
 				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;

@@ -17,7 +17,10 @@
 
 @property (nonatomic, retain) IBOutlet UITextView* textView;
 @property unsigned historyLimit;
-
+@property (nonatomic, retain) IBOutlet UITextField* cmdView;
 - (void) addEntry:(NSString*)entry;
 -(void) clearText;
+
+-(IBAction) sendCommand:(UIButton *)sender;
+
 @end

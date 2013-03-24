@@ -7,11 +7,13 @@
 //
 
 #import "LogViewController.h"
+#import "iNfraredAppDelegate.h"
 
 
 @implementation LogViewController
 
 @synthesize textView;
+@synthesize cmdView;
 @synthesize historyLimit;
 
 - (id)initWithCoder:(NSCoder*)aDecoder
@@ -49,6 +51,7 @@
 
 - (void) viewWillAppear: (BOOL)animated
 {
+    cmdView.text=@"02,253,255";
 	[self updateText];
 	[super viewWillAppear:animated];
 }
@@ -84,5 +87,17 @@
     [super dealloc];
 }
 
+-(IBAction) sendCommand:(UIButton *)sender
+{
+    NSArray *charArray = [cmdView.text componentsSeparatedByString:@","];
+    Byte cmd[charArray.count+1];
+    int i=0;
+    for (NSString *str in charArray) {
+        cmd[i++]=[str intValue];
+    } 
+    cmd[i]='\0';
+    [[iNfraredAppDelegate getInstance].player playWithCommandByte:cmd withLength:charArray.count];
+    [[iNfraredAppDelegate getInstance].player  startQueue];
+}
 
 @end

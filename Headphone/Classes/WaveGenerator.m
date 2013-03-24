@@ -43,12 +43,13 @@
         for (int i=0; i<WAVE_END_COUNT; i++) {
             [waveByteArray addObjectsFromArray:[WaveGenerator genPlautArray]];
         }
-       long byteBength = waveByteArray.count;
+       long byteBength = waveByteArray.count*2;
         char * bytes  = malloc(sizeof(char) * byteBength);
         long i=0;
         for (NSNumber *signNum in waveByteArray) {
-            char num=[signNum charValue];
-            bytes[i++]=num;
+            short num=[signNum shortValue];
+            bytes[i++] = (char)(num & 0xff);
+            bytes[i++] =  (char)((num >> 8) & 0xff);
             //NSLog(@"num:%i,byte:%i",num,bytes[i-1]);
         }
         NSData *data = [NSData dataWithBytes:bytes length:byteBength];
@@ -76,7 +77,7 @@
     */
     for (int i=0; i<FLAG_SINAL_COUNT; i++) {
         SInt16 currentValue = sinf(2*M_PI*i*SIGNAL_RATE/SAMPLE_RATE)*hightLevel;
-        [waveByteArray addObject:[NSNumber numberWithChar:currentValue]];
+        [waveByteArray addObject:[NSNumber numberWithShort:currentValue]];
     }
     return  waveByteArray;
 }
@@ -85,7 +86,7 @@
 {
     NSMutableArray *waveByteArray=[[NSMutableArray alloc] init];
     for (int i=0; i<4; i++) {
-        [waveByteArray addObject:[NSNumber numberWithChar:WAVE_LogicL]];
+        [waveByteArray addObject:[NSNumber numberWithShort:WAVE_LogicL]];
     }
     return  waveByteArray;
 }

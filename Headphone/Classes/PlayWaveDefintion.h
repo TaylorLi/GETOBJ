@@ -9,7 +9,7 @@
 #ifndef Headphone_PlayWaveDefintion_h
 #define Headphone_PlayWaveDefintion_h
 
-#define SAMPLE_RATE  25000
+#define SAMPLE_RATE  40000
 #define SIGNAL_RATE 5000
 
 #define FLAG_SINAL_COUNT 9//取值点数
@@ -17,7 +17,7 @@
 #define PER_BUFFER_SIZE SAMPLE_RATE*1.5
 #define BUFFER_COUNT 1
 
-#define SAMPLE  char
+#define SAMPLE  SInt16
 #define NUM_FRAMES_PER_PACKET 1 
 #define NUM_CHANNELS  1
 #define BYTES_PER_FRAME  (NUM_CHANNELS * sizeof(SAMPLE))

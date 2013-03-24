@@ -21,6 +21,7 @@
 +(NSTimeInterval) convertKgToLbs:(NSTimeInterval) kg;
 +(NSTimeInterval) convertKmToMile:(NSTimeInterval) km;
 +(NSTimeInterval) convertInchToFeet:(NSTimeInterval) inch;
++(NSString*) getFeetInfo:(NSTimeInterval) inch;
 
 +(NSTimeInterval) convertInchToCm:(NSTimeInterval) inch;
 +(NSTimeInterval) convertLbsToKg:(NSTimeInterval) lbs;

@@ -17,6 +17,9 @@
     UILabel *unitSegTitleRight;
     UILabel *genderSegTitleLeft;
     UILabel *genderSegTitleRight;
+    NSTimeInterval cacheHeight;
+    PEDUserInfo *cacheUserInfo4Metric;
+    PEDUserInfo *cacheUserInfo4English;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblStrideUnit;
 @property (weak, nonatomic) IBOutlet UILabel *lblWeightUnit;

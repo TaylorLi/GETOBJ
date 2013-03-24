@@ -400,6 +400,10 @@
 -(NSArray *) getPedoDataResourcesByMonthWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate{
     NSDate *dateFrom =  [referDate firstMonthDate];
     NSDate *dateTo=[[dateFrom addMonths:1] addDays:-1];
+    NSDate *dateNow = [NSDate date];
+    if([[UtilHelper formateDate:dateNow withFormat:@"MMM yyyy"] isEqualToString:[UtilHelper formateDate:dateTo withFormat:@"MMM yyyy"]]){
+        dateTo = dateNow;
+    }
     NSArray *pedoDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     return pedoDataArray;
 }

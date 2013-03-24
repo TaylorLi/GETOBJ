@@ -120,16 +120,22 @@
 -(void) reloadPickerToMidOfDate:(NSDate *)date
 {
     monthArray=[[NSMutableArray alloc] initWithCapacity:7];
-    NSDate *selectedData=date;
+    NSString *nowDateString = [UtilHelper formateDate:[NSDate date] withFormat:@"MMM yyyy"];
+    NSDate *selectedDate=date;
     if(date){
-        selectedData=date;
+        selectedDate=date;
     }
     else{
-        selectedData=[NSDate date];
+        selectedDate=[NSDate date];
     }
-    NSDate *fromDate=[selectedData addMonths:-3];
+    NSDate *fromDate=[selectedDate addMonths:-3];
     for (int i=0; i<7; i++) {
-        [monthArray addObject:[UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"]];
+        
+        NSString *dateString = [UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"];
+        [monthArray addObject:dateString];
+        if([dateString isEqualToString:nowDateString]){
+            break;
+        }
         
     }    
     [monthSelectView reloadData];

@@ -9,12 +9,14 @@
 #ifndef Headphone_PlayWaveDefintion_h
 #define Headphone_PlayWaveDefintion_h
 
-#define SAMPLE_RATE  40000
+
 #define SIGNAL_RATE 5000
 
-#define FLAG_SINAL_COUNT 9//取值点数
+#define FLAG_SINAL_COUNT 7//取值点数
 
-#define PER_BUFFER_SIZE SAMPLE_RATE*1.5
+#define SAMPLE_RATE  (SIGNAL_RATE * FLAG_SINAL_COUNT)
+
+#define PER_BUFFER_SIZE SAMPLE_RATE*3
 #define BUFFER_COUNT 1
 
 #define SAMPLE  SInt16
@@ -30,6 +32,6 @@
 #define WAVE_HEADER_COUNT 20 //一般情况下有两个取点电平波动不到幅度
 #define WAVE_ONE_FLAG_COUNT 10 //表示1
 #define WAVE_ZERO_FLAG_COUNT 5 //表示0
-#define WAVE_END_COUNT 0
+#define WAVE_END_COUNT 20
 
 #endif

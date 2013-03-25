@@ -86,7 +86,7 @@
 +(NSArray *)genPlautArray
 {
     NSMutableArray *waveByteArray=[[NSMutableArray alloc] init];
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<FLAG_SINAL_COUNT; i++) {
         [waveByteArray addObject:[NSNumber numberWithShort:WAVE_LogicL]];
     }
     return  waveByteArray;

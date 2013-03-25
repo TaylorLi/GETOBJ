@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LogViewController.h"
 #import "AudioSignalAnalyzer.h"
+#import "AudioSignalCoder.h"
 #import "AppleRemoteViewController.h"
 
 @interface iNfraredAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
@@ -17,7 +18,7 @@
 	LogViewController *pulseLog;
 	LogViewController *eventsLog;
 	AppleRemoteViewController *remoteController;
-	
+	AudioSignalCoder *player;
 	AudioSignalAnalyzer* analyzer;
 }
 
@@ -28,5 +29,7 @@
 @property (nonatomic, retain) IBOutlet AppleRemoteViewController *remoteController;
 
 @property (nonatomic, retain) AudioSignalAnalyzer *analyzer;
+@property (nonatomic,retain) AudioSignalCoder *player;
 
++ (iNfraredAppDelegate*)getInstance;
 @end

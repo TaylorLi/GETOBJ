@@ -71,7 +71,7 @@
     [indActive startAnimating];
     self.txtActInfo.text=[NSString stringWithFormat:@"Connecting to %@ ...",peripheral.name];
     [sensor connect:sensor.activePeripheral];
-
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -117,7 +117,7 @@
     
 }
 - (void)sendDataToPeriperial:(void *)data ofLength:(int)length
- {
+{
     static unsigned char networkPacket[kMaxPacketSize];	
     // copy data in after the header
     memcpy( &networkPacket[0], data, length ); 
@@ -132,13 +132,16 @@
         [exchangeTimer invalidate];
     }
     PEDUserInfo *userInfo=[[AppConfig getInstance].settings.userInfo copy];
+    //userInfo始终存的是metric类型的数据
+    /*
     if(userInfo.measureFormat==MEASURE_UNIT_ENGLISH){
         [userInfo convertUnit:MEASURE_UNIT_METRIC];
     }
+    */
     packetPedoSetting setting;
     setting.age=(unsigned char)userInfo.age;
     setting.format=userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
-    setting.gender=userInfo.gender?0:1;
+    setting.gender=userInfo.gender?1:0;
     setting.height=(unsigned short)userInfo.height;
     setting.stride=(unsigned short)userInfo.stride;
     setting.weight=(unsigned short)userInfo.weight;
@@ -173,12 +176,21 @@
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
     packetTargetData *packet = (packetTargetData *)&incomingPacket[0];	
     PEDTarget *target=[[PEDTarget alloc] init];
+    /*
+     5, TARGET 的目标距离是用STRIDE X 目标步数
+     
+     例如: STRIDE = 50CM, 目标步数是10000, 目标距离= 10000 X 50 / 10000 = 50KM
+     
+     6, TARGET 的目标卡路里可按目标步数和余下步数的比例,
+     
+     例如: 接收到余下卡路里=401, 目标步数是10000, 余下步数是3878, 目标卡路里= 10000/3878 X 401 = 1034
+     */
     target.targetStep=packet->targetStep[0]+packet->targetStep[1]*16*16+packet->targetStep[2]*16*16*16*16;
-    target.targetDistance=[PEDPedometerCalcHelper calDistanceByStep:target.targetStep stride:userInfo.stride];
-    target.targetCalorie=[PEDPedometerCalcHelper calCalorieByStep:target.targetStep stride:userInfo.stride weight:userInfo.weight];
+    target.targetDistance=[PEDPedometerCalcHelper calDistanceByStep:target.targetStep stride:userInfo.stride];    
     target.remainStep=packet->remainStep[0]+packet->remainStep[1]*16*16+packet->remainStep[2]*16*16*16*16;
     target.remainDistance=(NSTimeInterval)((packet->remainDistance[0]+packet->remainDistance[1]*16*16+packet->remainDistance[2]*16*16*16*16))/100;
     target.remainCalorie=packet->remainCalorie[0]+packet->remainCalorie[1]*16*16+packet->remainCalorie[2]*16*16*16*16;
+    target.targetCalorie=target.targetStep / target.remainStep * target.remainCalorie;
     target.pedoDataCount = packet->pedoMemoryNo;
     target.sleepDataCount=packet->pedoSleepMemNo;
     target.updateDate=[NSDate date];
@@ -195,7 +207,7 @@
     pedoData.calorie=packet->calorie[0]+packet->calorie[1]*16*16+packet->calorie[2]*16*16*16*16;
     pedoData.distance=(NSTimeInterval)(packet->distance[0]+packet->distance[1]*16*16+packet->distance[2]*16*16*16*16)/100;
     pedoData.step=packet->step[0]+packet->step[1]*16*16+packet->step[2]*16*16*16*16;
-  pedoData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2x-%2x-%2x",packet->year,packet->month,packet->day]];
+    pedoData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2x-%2x-%2x",packet->year,packet->month,packet->day]];
     return pedoData;
 }
 -(PEDSleepData *)convertDataToSleepData:(NSData *)data
@@ -216,93 +228,110 @@
 -(void) serialGATTCharValueUpdated:(NSString *)UUID value:(NSData *)data
 {    
     unsigned char *incomingPacket = (unsigned char *)[data bytes];
-   DataHeaderType header = (DataHeaderType)incomingPacket[0];
+    DataHeaderType header = (DataHeaderType)incomingPacket[0];
     //NSString *value = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     
     NSLog(@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]);
     [self addExchangeLog:[NSString stringWithFormat:@"Receive Notify,data:%@",[data hexRepresentationWithSpaces_AS:YES]]];
     if (header == DATA_HEADER_PEDO_SETTING_TARGET_RS) {
         [self cancelExchangeTimer];
-           PEDTarget *target= [self convertDataToTarget:data];
-           if(target){
-               txtActInfo.text=@"Received target data."; 
-               //NSLog(@"Receive Notify:UUID:%@,Target data:%@",UUID,target);
-               exchangeContainer.target=target;
-               if(target.pedoDataCount>0){
-                   exchangeContainer.exchageType=ExchangeTypePedoData;
-                   exchangeContainer.pedoDataIndex++;
-                   txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
-                   [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
-                   [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
-               }    
-               else if(target.sleepDataCount>0){
-                   exchangeContainer.exchageType=ExchangeTypeSleepData;
-                   exchangeContainer.sleepDataIndex++;
-                   txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
-                   [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
-                   [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
-               }
-               else{
-                   exchangeContainer.isConnectingEnd=YES;
-               }               
-           }
-                else{
-                    [self failToExchangeData:@"Invalid data format,connection will be terminated."];
-                }        
+        PEDTarget *target= [self convertDataToTarget:data];
+        if(target){
+            txtActInfo.text=@"Received target data."; 
+            //NSLog(@"Receive Notify:UUID:%@,Target data:%@",UUID,target);
+            exchangeContainer.target=target;
+            if(target.pedoDataCount>0){
+                exchangeContainer.exchageType=ExchangeTypePedoData;
+                exchangeContainer.pedoDataIndex++;
+                txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
+                [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
+                [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
+            }    
+            else if(target.sleepDataCount>0){
+                exchangeContainer.exchageType=ExchangeTypeSleepData;
+                exchangeContainer.sleepDataIndex++;
+                txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
+                [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
+                [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
+            }
+            else{
+                exchangeContainer.isConnectingEnd=YES;
+            }               
+        }
+        else{
+            [self failToExchangeData:@"Invalid data format,connection will be terminated."];
+        }        
     }
-    else if(header>=DATA_HEADER_PEDO_DATA_1_RS&&header<=DATA_HEADER_PEDO_DATA_7_RS){
+    else if(header>=DATA_HEADER_PEDO_DATA_1_RS&&header<DATA_HEADER_PEDO_DATA_1_RS+exchangeContainer.target.pedoDataCount){
         [self cancelExchangeTimer];
         PEDPedometerData *pedoData=[self convertDataToPedoData:data];
         if(pedoData){
-            txtActInfo.text=[NSString stringWithFormat: @"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1];
-            [self addExchangeLog:[NSString stringWithFormat: @"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
-            NSLog(@"Received pedometer data:%i.",exchangeContainer.pedoDataIndex+1);
-            
-            //NSLog(@"Receive Notify:UUID:%@,Pedometer data:%@",UUID,pedoData);
-            [exchangeContainer.pedoData addObject:pedoData];
-            exchangeContainer.pedoDataIndex++;
-            if(exchangeContainer.pedoDataIndex>=exchangeContainer.target.pedoDataCount)
-            {
-                if(exchangeContainer.target.sleepDataCount>0){
-                    exchangeContainer.sleepDataIndex++;
-                    [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
-                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
-                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data data:%i.",exchangeContainer.sleepDataIndex+1];
-                    [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
-                }
-                else{
-                    exchangeContainer.isConnectingEnd=YES;
-                }
+            int dataSeq=header-DATA_HEADER_PEDO_DATA_1_RS;//以0为开始序号
+            NSString *dataSeqKey=[NSString stringWithFormat:@"%i",dataSeq];
+            if([exchangeContainer.pedoData containKey:dataSeqKey]){
+                txtActInfo.text=[NSString stringWithFormat: @"Repeatly received pedometer data:%i,ignored.",dataSeq+1];
+                [self addExchangeLog:[NSString stringWithFormat: @"Repeatly received pedometer data:%i,ignored.",dataSeq+1]];
+                NSLog(@"Repeatly Received pedometer data:%i,ignored",dataSeq+1);
             }
-            else{                
-                NSLog(@"Request pedometer data:%i,Header:%2x.",exchangeContainer.pedoDataIndex+1,DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex);
-                [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
-                txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
-                [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
-            }
+            else{
+                txtActInfo.text=[NSString stringWithFormat: @"Received pedometer data:%i.",dataSeq+1];
+                [self addExchangeLog:[NSString stringWithFormat: @"Received pedometer data:%i.",dataSeq+1]];
+                NSLog(@"Received pedometer data:%i.",dataSeq+1);
+                
+                //NSLog(@"Receive Notify:UUID:%@,Pedometer data:%@",UUID,pedoData);
+                [exchangeContainer.pedoData setValue:pedoData forKey:dataSeqKey];
+                exchangeContainer.pedoDataIndex++;
+                if(exchangeContainer.pedoDataIndex>=exchangeContainer.target.pedoDataCount)
+                {
+                    if(exchangeContainer.target.sleepDataCount>0){
+                        exchangeContainer.sleepDataIndex++;
+                        [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
+                        txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
+                        txtActInfo.text=[NSString stringWithFormat: @"Request sleep data data:%i.",exchangeContainer.sleepDataIndex+1];
+                        [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
+                    }
+                    else{
+                        exchangeContainer.isConnectingEnd=YES;
+                    }
+                }
+                else{                
+                    NSLog(@"Request pedometer data:%i,Header:%2x.",exchangeContainer.pedoDataIndex+1,DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex);
+                    [self addExchangeLog:[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]];
+                    txtActInfo.text=[NSString stringWithFormat: @"Request pedometer data:%i.",exchangeContainer.pedoDataIndex+1]; 
+                    [self sendSettingDataWithType:DATA_HEADER_PEDO_DATA_1_RQ+exchangeContainer.pedoDataIndex];
+                }
+            } 
         }
         else{
             [self failToExchangeData:@"Invalid data format,connection will be terminated."];
         }
     }
-    else if(header>=DATA_HEADER_SLEEP_DATA_1_RS&&header<=DATA_HEADER_SLEEP_DATA_7_RS)
+    else if(header>=DATA_HEADER_SLEEP_DATA_1_RS&&header<DATA_HEADER_SLEEP_DATA_1_RS+exchangeContainer.target.sleepDataCount)
     {        
         [self cancelExchangeTimer];
         PEDSleepData *sleepData=[self convertDataToSleepData:data];
         //NSLog(@"Receive Notify:UUID:%@,Sleep data:%@",UUID,sleepData);
         if(sleepData){
-            [self addExchangeLog:[NSString stringWithFormat: @"Received sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
-            txtActInfo.text=[NSString stringWithFormat: @"Received sleep data:%i.",exchangeContainer.sleepDataIndex+1];
-            [exchangeContainer.sleepData addObject:sleepData];
-            exchangeContainer.sleepDataIndex++;
-            if(exchangeContainer.sleepDataIndex>=exchangeContainer.target.sleepDataCount)
-            {
-                exchangeContainer.isConnectingEnd=YES;
+            int dataSeq=header-DATA_HEADER_SLEEP_DATA_1_RS;//以0为开始序号
+            NSString *dataSeqKey=[NSString stringWithFormat:@"%i",dataSeq];
+            if([exchangeContainer.sleepData containKey:dataSeqKey]){
+                [self addExchangeLog:[NSString stringWithFormat: @"Repeatly received sleep data:%i,ignored.",dataSeq+1]];
+                txtActInfo.text=[NSString stringWithFormat: @"Repeatly received sleep data:%i,ignored.",dataSeq+1];
             }
-            else{                
-                [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
-                txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
-                [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
+            else{
+                [self addExchangeLog:[NSString stringWithFormat: @"Received sleep data:%i.",dataSeq+1]];
+                txtActInfo.text=[NSString stringWithFormat: @"Received sleep data:%i.",dataSeq+1];
+                [exchangeContainer.sleepData setValue:sleepData forKey:dataSeqKey];
+                exchangeContainer.sleepDataIndex++;
+                if(exchangeContainer.sleepDataIndex>=exchangeContainer.target.sleepDataCount)
+                {
+                    exchangeContainer.isConnectingEnd=YES;
+                }
+                else{                
+                    [self addExchangeLog:[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1]];
+                    txtActInfo.text=[NSString stringWithFormat: @"Request sleep data:%i.",exchangeContainer.sleepDataIndex+1];
+                    [self sendSettingDataWithType:DATA_HEADER_SLEEP_DATA_1_RQ+exchangeContainer.sleepDataIndex];
+                }
             }
         }
         else{
@@ -321,32 +350,56 @@
         [self saveExchangeDataToDatabase];
     }
 }
-         
+
 -(void)saveExchangeDataToDatabase
 {
     BOOL success=YES;
+    //判断是否有效数据交互
+    if(!exchangeContainer.target){
+        [self failToExchangeData:@"Invalid target data,connection will be terminated."];
+        return;
+    }
+    if(exchangeContainer.target.pedoDataCount!=exchangeContainer.pedoData.count){
+        [self failToExchangeData:@"Pedo data count did not match the declare count,connection will be terminated."];
+        return;
+    }
+    for(int i=DATA_HEADER_PEDO_DATA_1_RS;i<exchangeContainer.target.pedoDataCount;i++){
+        if(![exchangeContainer.pedoData containKey:[NSString stringWithFormat:@"%i",i]]){
+            [self failToExchangeData:[NSString stringWithFormat:@"Pedo data %i not existed,connection will be terminated.",
+                                      i-DATA_HEADER_PEDO_DATA_1_RS+1]];
+            return;  
+        }
+    }
+    for(int i=DATA_HEADER_SLEEP_DATA_1_RQ;i<exchangeContainer.target.sleepDataCount;i++){
+        if(![exchangeContainer.sleepData containKey:[NSString stringWithFormat:@"%i",i]]){
+            [self failToExchangeData:[NSString stringWithFormat:@"Sleep data %i not existed,connection will be terminated.",
+                                      i-DATA_HEADER_SLEEP_DATA_1_RQ+1]];
+            return;  
+        }
+    }
+    if(exchangeContainer.target.sleepDataCount!=exchangeContainer.sleepData.count){
+        [self failToExchangeData:@"Sleep data count did not match the declare count,connection will be terminated."];
+        return;
+    }    
+    
     txtActInfo.text=@"Save data to local...";
     PEDUserInfo *user =[AppConfig getInstance].settings.userInfo;
     if(exchangeContainer.target){
-      PEDTarget *target =  [[BO_PEDTarget getInstance] queryTargetByUserId:user.userId];
+        PEDTarget *target =  [[BO_PEDTarget getInstance] queryTargetByUserId:user.userId];
         if(target){
-            target.targetStep=exchangeContainer.target.targetStep;
-            target.remainStep=exchangeContainer.target.remainStep;
-            target.remainDistance=exchangeContainer.target.remainDistance;
-            target.remainCalorie=exchangeContainer.target.remainCalorie;
-            target.pedoDataCount = exchangeContainer.target.pedoDataCount;
-            target.sleepDataCount=exchangeContainer.target.sleepDataCount;
-            target.updateDate=exchangeContainer.target.updateDate;
-            exchangeContainer.target=target;
+            exchangeContainer.target.userId=user.userId;
+            exchangeContainer.target.targetId=target.targetId;
+            target=exchangeContainer.target;               
         }
         else{
             exchangeContainer.target.userId=user.userId;
+            exchangeContainer.target.targetId = [UtilHelper stringWithUUID];
             target=exchangeContainer.target;
         }
         [[BO_PEDTarget getInstance] saveObject:target];
         [AppConfig getInstance].settings.target=target;
     }
-    for (PEDPedometerData *data in exchangeContainer.pedoData) {
+    for (PEDPedometerData *data in exchangeContainer.pedoData.allValues) {
         PEDPedometerData *pedoData=[[BO_PEDPedometerData getInstance] getWithTarget:exchangeContainer.target.targetId withDate:data.optDate];
         if(pedoData){
             pedoData.activeTime=data.activeTime;
@@ -362,7 +415,7 @@
         }        
         [[BO_PEDPedometerData getInstance] saveObject:pedoData];
     }
-    for(PEDSleepData *data in exchangeContainer.sleepData){
+    for(PEDSleepData *data in exchangeContainer.sleepData.allValues){
         PEDSleepData *sleepData=[[BO_PEDSleepData getInstance] getWithTarget:exchangeContainer.target.targetId withDate:data.optDate];;
         if(sleepData){
             sleepData.optDate=data.optDate;
@@ -400,13 +453,13 @@
 -(void) finishConnection
 {
     @try {
-    [indActive stopAnimating];
+        [indActive stopAnimating];
         indActive.hidden=YES;
-    [sensor cancelTimer];
-    [self cancelExchangeTimer];
-    [sensor disconnect:sensor.activePeripheral];
-    sensor.activePeripheral=nil;
-    sensor.delegate=parentController;
+        [sensor cancelTimer];
+        [self cancelExchangeTimer];
+        [sensor disconnect:sensor.activePeripheral];
+        sensor.activePeripheral=nil;
+        sensor.delegate=parentController;
     }
     @catch (NSException *exception) {
         NSLog(@"Exception %@",exception);

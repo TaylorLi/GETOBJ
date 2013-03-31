@@ -18,7 +18,7 @@
 //km
 +(NSTimeInterval) calDistanceByStep:(NSInteger)step stride:(NSTimeInterval)stride 
 {
-    return 1.036*step*stride/100/1000;
+    return step*stride/100/1000;
 }
 //km/h
 +(NSTimeInterval) calAvgPaceByDistance:(NSTimeInterval) km inTime:(NSTimeInterval) sencond withMeasureUnit:(MeasureUnit) measureUnit

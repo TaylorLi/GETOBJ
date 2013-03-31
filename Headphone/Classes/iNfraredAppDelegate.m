@@ -15,7 +15,7 @@
 void interruptionListenerCallback (
 								   void	*inUserData,
 								   UInt32	interruptionState
-) {
+                                   ) {
 	// This callback, being outside the implementation block, needs a reference 
 	//	to the AudioViewController object
 	iNfraredAppDelegate *delegate = (iNfraredAppDelegate *) inUserData;
@@ -52,7 +52,7 @@ static iNfraredAppDelegate* _instance;
 	[[[[NSThread alloc] init] autorelease] start];
 	_instance=self;
 	[RemoteEventsManager addReceiver:self.remoteController];
-
+    
 	// initialize the audio session object for this application,
 	//		registering the callback that Audio Session Services will invoke 
 	//		when there's an interruption
@@ -64,11 +64,16 @@ static iNfraredAppDelegate* _instance;
 	// before instantiating the recording audio queue object, 
 	//	set the audio session category
 	UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
-	AudioSessionSetProperty (kAudioSessionProperty_AudioCategory,
-							 sizeof (sessionCategory),
-							 &sessionCategory);
-	
-	analyzer = [[AudioSignalAnalyzer alloc] init];
+	OSStatus error = AudioSessionSetProperty (kAudioSessionProperty_AudioCategory,
+                                              sizeof (sessionCategory),
+                                              &sessionCategory);
+    if (error) NSLog(@"couldn't set audio category:kAudioSessionCategory_PlayAndRecord!");
+    /*
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    error = AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryMixWithOthers, sizeof (audioRouteOverride),&audioRouteOverride);
+	if (error) NSLog(@"couldn't set audio category:kAudioSessionOverrideAudioRoute_Speaker!");
+	*/
+     analyzer = [[AudioSignalAnalyzer alloc] init];
 	[analyzer addRecognizer:[[AppleRemoteRecognizer alloc] init]];
 	[analyzer addRecognizer:[[RawPulseLogger alloc] init]];
     player=[[AudioSignalCoder alloc] init];
@@ -80,16 +85,16 @@ static iNfraredAppDelegate* _instance;
 
 
 /*
-// Optional UITabBarControllerDelegate method
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-}
-*/
+ // Optional UITabBarControllerDelegate method
+ - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+ }
+ */
 
 /*
-// Optional UITabBarControllerDelegate method
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
-}
-*/
+ // Optional UITabBarControllerDelegate method
+ - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
+ }
+ */
 
 
 - (void)dealloc {

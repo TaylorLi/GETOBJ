@@ -12,7 +12,7 @@
 
 #define SIGNAL_RATE 5000
 
-#define FLAG_SINAL_COUNT 7//取值点数
+#define FLAG_SINAL_COUNT 10//取值点数,采样信号相对与信号的倍数，至少2倍以上才不会失真
 
 #define SAMPLE_RATE  (SIGNAL_RATE * FLAG_SINAL_COUNT)
 

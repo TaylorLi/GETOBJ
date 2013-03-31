@@ -19,8 +19,8 @@ typedef enum {
 @property BOOL isConnectingStart;
 @property BOOL isConnectingEnd;
 @property (strong,nonatomic) PEDTarget *target;
-@property (strong,nonatomic) NSMutableArray *sleepData;
-@property (strong,nonatomic) NSMutableArray *pedoData;
+@property (strong,nonatomic) NSMutableDictionary *sleepData;
+@property (strong,nonatomic) NSMutableDictionary *pedoData;
 
 @property ExchangeDataType exchageType;
 @property NSInteger pedoDataIndex;

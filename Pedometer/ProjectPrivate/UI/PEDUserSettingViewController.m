@@ -17,7 +17,9 @@
 #import "UtilHelper.h"
 #import "UIHelper.h"
 
-@interface PEDUserSettingViewController ()
+@interface PEDUserSettingViewController (){
+    UITapGestureRecognizer *tapRecognizer;
+}
 -(void)bindUserInfo:(PEDUserInfo *)userInfo;
 -(void)bindByUserInfoSetting;
 -(void)segUnitChangeToUnit:(MeasureUnit)unit;
@@ -347,9 +349,47 @@
         // [self bindUserInfo:userInfo];
     }
 }
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:tapRecognizer];
+}
+
+-(void)dismissKeyboard {
+    NSArray *subviews = [self.view subviews];
+    for (id objInput in subviews) {
+        if ([objInput isKindOfClass:[UITextField class]]) {
+            UITextField *theTextField = objInput;
+            if ([objInput isFirstResponder]) {
+                [theTextField resignFirstResponder];
+            }
+        }
+    }
+    [self setCenterPoint:0];
+}
+
+-(void) initGesture
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                             action:@selector(dismissKeyboard)];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
+        
     ((UIScrollView *)self.view).delegate=self;
     self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
@@ -421,6 +461,8 @@
     [self.txbHeight addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.txbWeight addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.txbStride addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
+    
+    [self initGesture];
     
     // Do any additional setup after loading the view, typically from a nib.
 }

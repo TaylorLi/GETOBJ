@@ -24,8 +24,8 @@
     if(self){
         isConnectingStart =YES;
         isConnectingEnd=NO;
-        pedoData = [[NSMutableArray alloc] init];
-        sleepData = [[NSMutableArray alloc] init];
+        pedoData = [[NSMutableDictionary alloc] init];
+        sleepData = [[NSMutableDictionary alloc] init];
         exchageType=ExchangeTypeNone;
         pedoDataIndex=-1;
         sleepDataIndex=-1;

@@ -75,8 +75,9 @@
     θ(n) = 2πƒ n / r
      f代表音调频率，r是音频的采样率
     */
-    for (int i=0; i<FLAG_SINAL_COUNT; i++) {
-        SInt16 currentValue = sinf(2*M_PI*i*SIGNAL_RATE/SAMPLE_RATE)*hightLevel;
+    int startAngel=0;
+    for (int i=startAngel; i<FLAG_SINAL_COUNT+startAngel; i++) {
+        SInt16 currentValue = sinf(M_PI+2*M_PI*i*SIGNAL_RATE/SAMPLE_RATE)*hightLevel;
         [waveByteArray addObject:[NSNumber numberWithShort:currentValue]];
     }
     return  waveByteArray;
@@ -85,7 +86,7 @@
 +(NSArray *)genPlautArray
 {
     NSMutableArray *waveByteArray=[[NSMutableArray alloc] init];
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<FLAG_SINAL_COUNT; i++) {
         [waveByteArray addObject:[NSNumber numberWithShort:WAVE_LogicL]];
     }
     return  waveByteArray;

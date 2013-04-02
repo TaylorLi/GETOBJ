@@ -181,6 +181,9 @@
         NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
         if(selectDate)
             [self initDataByDate:selectDate];
+        else{
+            [self initDataByDate:date];
+        }
     }
 }
 

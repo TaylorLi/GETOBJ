@@ -63,7 +63,8 @@
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_STEP]] addObject: [NSNumber numberWithFloat:meterData.step / 1000.0f]];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_ACTIVITY_TIME]] addObject:[NSNumber numberWithFloat:meterData.activeTime/60/10]];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_CALORIES]] addObject:[NSNumber numberWithFloat:meterData.calorie / 1000]];
-            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_DISTANCE]] addObject:[NSNumber numberWithFloat:meterData.distance]];
+            NSTimeInterval distance = [AppConfig getInstance].settings.userInfo.measureFormat == MEASURE_UNIT_METRIC ? meterData.distance : [PEDPedometerCalcHelper convertKmToMile:meterData.distance];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_DISTANCE]] addObject:[NSNumber numberWithFloat:distance]];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_AVG_SPEED]] addObject:[NSNumber numberWithFloat: [PEDPedometerCalcHelper calAvgSpeedByDistance:meterData.distance inTime:meterData.activeTime withMeasureUnit:measureUnit]]];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_AVG_PACE]] addObject:[NSNumber numberWithFloat:[PEDPedometerCalcHelper calAvgPaceByDistance:meterData.distance inTime:meterData.activeTime withMeasureUnit:measureUnit]]];
         }

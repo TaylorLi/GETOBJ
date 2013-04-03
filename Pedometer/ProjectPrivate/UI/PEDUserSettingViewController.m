@@ -366,10 +366,10 @@
             UITextField *theTextField = objInput;
             if ([objInput isFirstResponder]) {
                 [theTextField resignFirstResponder];
+                [self setCenterPoint:0];
             }
         }
     }
-    [self setCenterPoint:0];
 }
 
 -(void) initGesture

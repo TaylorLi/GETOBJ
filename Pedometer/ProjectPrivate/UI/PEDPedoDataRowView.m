@@ -53,7 +53,8 @@
         lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
         NSLog(@"%@",[UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"]);
         lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-        lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", pedoMeterData.distance, [PEDPedometerCalcHelper getDistanceUnit:[AppConfig getInstance].settings.userInfo.measureFormat withWordFormat:YES]];
+        NSTimeInterval distance = [AppConfig getInstance].settings.userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance];
+        lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", distance, [PEDPedometerCalcHelper getDistanceUnit:[AppConfig getInstance].settings.userInfo.measureFormat withWordFormat:YES]];
         lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
         lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
     }

@@ -13,6 +13,7 @@
 #import "UtilHelper.h"
 #import "PEDPedometerCalcHelper.h"
 #import "PEDPedometerDataHelper.h"
+#import "PEDAppDelegate.h"
 
 @interface PEDPedoViewController ()
 
@@ -189,9 +190,11 @@
 
 -(void)horizontalPickerView:(V8HorizontalPickerView *)picker didDoubleClickElementAtIndex:(NSInteger)index {
     NSLog(@"----%d", index);
-    if(pedPedoDataViewController == nil){
-        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+    if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
+        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
     }
+    pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
+
     // pedPedoDataViewController.dayRemark = index;
     NSDate *dateFrom =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
     NSDate *dateTo=[dateFrom addMonths:1];

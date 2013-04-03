@@ -460,12 +460,7 @@
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-<<<<<<< HEAD
-            NSTimeInterval distance = [AppConfig getInstance].settings.userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance];
-            lblPrevDistance.text = [NSString stringWithFormat:@"%.1f%@", distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-=======
             lblPrevDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
->>>>>>> a73ad2692d4c6a656db2097d949d11150b1913fa
             lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
@@ -480,22 +475,12 @@
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblCurrStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-<<<<<<< HEAD
-            NSTimeInterval distance = [AppConfig getInstance].settings.userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance];
-            lblCurrDistance.text = [NSString stringWithFormat:@"%.1f%@", distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblCurrCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblCurrActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-            lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];            
-            lblDistance.text = [NSString stringWithFormat:@"%.1f%@", distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-=======
             lblCurrDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
             lblCurrCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblCurrActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
             lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
             lblDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
->>>>>>> a73ad2692d4c6a656db2097d949d11150b1913fa
             lblCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
@@ -510,12 +495,7 @@
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-<<<<<<< HEAD
-            NSTimeInterval distance = [AppConfig getInstance].settings.userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance];
-            lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", distance, [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-=======
             lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
->>>>>>> a73ad2692d4c6a656db2097d949d11150b1913fa
             lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }

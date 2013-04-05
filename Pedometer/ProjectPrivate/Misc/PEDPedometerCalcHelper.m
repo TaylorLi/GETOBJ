@@ -146,7 +146,7 @@
 }
 +(NSTimeInterval) convertKmToMile:(NSTimeInterval) km
 {
-    return ceil(km*0.62);
+    return round(km / 1.602 *100) / 100;
 }
 +(NSTimeInterval) convertInchToFeet:(NSTimeInterval) inch
 {
@@ -174,5 +174,10 @@
 +(NSTimeInterval) convertFeetToInch:(NSTimeInterval) feet
 {
     return floor(feet*12);
+}
+
++(NSTimeInterval) round:(NSTimeInterval) num digit:(NSInteger)decimals
+{
+    return round(num *pow(10, decimals)) / pow(10, decimals);
 }
 @end

@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblWeightUnit;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblHeightUnit;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *txbUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txbStride;
 @property (weak, nonatomic) IBOutlet UITextField *txbHeight;

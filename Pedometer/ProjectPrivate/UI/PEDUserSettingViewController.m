@@ -121,6 +121,7 @@
                 if([self.txbHeight.text intValue] != (int)cacheUserInfo4Metric.height){
                     cacheUserInfo4Metric.height = [self.txbHeight.text floatValue];
                     cacheUserInfo4English.height = [PEDPedometerCalcHelper convertCmToInch:cacheUserInfo4Metric.height];
+                    cacheHeight = cacheUserInfo4English.height;
                 }
                 if([self.txbWeight.text intValue] != (int)cacheUserInfo4Metric.weight){
                     cacheUserInfo4Metric.weight = [self.txbWeight.text floatValue];
@@ -132,6 +133,8 @@
                 }
                 cacheUserInfo4English.age = [self.txbAge.text intValue];
                 cacheUserInfo4Metric.age = [self.txbAge.text intValue];
+                cacheUserInfo4English.userName = self.txbUserName.text;
+                cacheUserInfo4Metric.userName = self.txbUserName.text;
                 
                 //userInfo = [cacheUserInfo4English copy];
                 
@@ -142,12 +145,14 @@
                 cacheUserInfo4Metric.height = [self.txbHeight.text floatValue];//m
                 cacheUserInfo4Metric.weight = [self.txbWeight.text floatValue];//kg
                 cacheUserInfo4Metric.stride = [self.txbStride.text floatValue];//cm
+                cacheUserInfo4Metric.userName = self.txbUserName.text;
                 cacheUserInfo4Metric.age = [self.txbAge.text intValue];
                 userInfo = [cacheUserInfo4Metric copy];
                 
                 [userInfo convertUnit:MEASURE_UNIT_ENGLISH];
 
                 cacheUserInfo4English = [userInfo copy];
+                cacheHeight = cacheUserInfo4English.height;
                 
             }
             break;
@@ -167,6 +172,8 @@
                 }
                 cacheUserInfo4English.age = [self.txbAge.text intValue];
                 cacheUserInfo4Metric.age = [self.txbAge.text intValue];
+                cacheUserInfo4English.userName = self.txbUserName.text;
+                cacheUserInfo4Metric.userName = self.txbUserName.text;
                 //userInfo = [cacheUserInfo4Metric copy];
             }else{
                 cacheUserInfo4English = [[PEDUserInfo alloc] init];
@@ -176,6 +183,8 @@
                 cacheUserInfo4English.weight = [self.txbWeight.text floatValue];//kg
                 cacheUserInfo4English.stride = [self.txbStride.text floatValue];//cm
                 cacheUserInfo4English.age = [self.txbAge.text intValue];
+                cacheUserInfo4English.userName = self.txbUserName.text;
+                cacheHeight = [self.txbHeight.text floatValue];
                 
                 userInfo = [cacheUserInfo4English copy];
                 

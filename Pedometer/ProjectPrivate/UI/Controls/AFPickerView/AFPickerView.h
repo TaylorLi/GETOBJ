@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-
+#import "SoundsPlayer.h"
 
 @protocol AFPickerViewDataSource;
 @protocol AFPickerViewDelegate;
@@ -32,6 +32,7 @@
     
     UIFont *_rowFont;
     CGFloat _rowIndent;
+    SoundsPlayer *avPlayer;
 }
 
 @property (nonatomic, unsafe_unretained) id <AFPickerViewDataSource> dataSource;
@@ -39,7 +40,7 @@
 @property (nonatomic, unsafe_unretained) int selectedRow;
 @property (nonatomic, strong) UIFont *rowFont;
 @property (nonatomic, unsafe_unretained) CGFloat rowIndent;
-
+@property (nonatomic) BOOL playSound;
 
 - (void)setup;
 - (void)reloadData;

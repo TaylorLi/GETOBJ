@@ -10,6 +10,9 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "GETUIScrollInputView.h"
 
+#define kFeetComponent 0
+#define kInchComponent 1
+
 @interface PEDUserSettingViewController : GETUIScrollInputView< MFMailComposeViewControllerDelegate>{
     UISegmentedControl* segUnit;
     UISegmentedControl* segGender;

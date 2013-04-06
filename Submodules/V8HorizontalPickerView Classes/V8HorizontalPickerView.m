@@ -52,6 +52,7 @@
 @synthesize selectionPoint, selectionIndicatorView, indicatorPosition;
 @synthesize leftEdgeView, rightEdgeView;
 @synthesize leftScrollEdgeView, rightScrollEdgeView, scrollEdgeViewPadding;
+@synthesize playSound;
 
 
 #pragma mark - Init/Dealloc
@@ -82,6 +83,10 @@
 		scrollEdgeViewPadding = 0.0f;
 
 		self.autoresizesSubviews = YES;
+        
+        playSound=YES;
+        avPlayer=[[SoundsPlayer alloc] init];
+        avPlayer.repeatCount = 6;
 	}
     return self;
 }
@@ -144,8 +149,8 @@
 				BOOL isSelected = (currentSelectedIndex == [self indexForElement:view]);
 				if (isSelected) {
 					// if this view is set to be selected, make sure it is over the selection point
-					int currentIndex = [self nearestElementToCenter];
-					isSelected = (currentIndex == currentSelectedIndex);
+					//int currentIndex = [self nearestElementToCenter];
+					//isSelected = (currentIndex == currentSelectedIndex);
 				}
 				[(V8HorizontalPickerLabel *)view setSelectedElement:isSelected];
 			}
@@ -361,16 +366,17 @@
 	currentSelectedIndex = index;
 	int x = [self centerOfElementAtIndex:index] - selectionPoint.x;
 	[_scrollView setContentOffset:CGPointMake(x, 0) animated:animate];
+	
+#if (__IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3)
+	[self setNeedsLayout];
+#endif
 
-	// notify delegate of the selected index
+    // notify delegate of the selected index
 	SEL delegateCall = @selector(horizontalPickerView:didSelectElementAtIndex:);
 	if (self.delegate && [self.delegate respondsToSelector:delegateCall]) {
 		[self.delegate horizontalPickerView:self didSelectElementAtIndex:index];
 	}
 
-#if (__IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3)
-	[self setNeedsLayout];
-#endif
 }
 
 
@@ -387,28 +393,35 @@
 
 #if (__IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3)
 	[self setNeedsLayout];
-#endif
+#endif    
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 	scrollingBasedOnUserInteraction = YES;
+    if(playSound)
+        [avPlayer playSoundWithFullPath:@"scrollerClick.wav"];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
 	// only do this if we aren't decelerating
 	if (!decelerate) {
 		[self scrollToElementNearestToCenter];
-	}
+	}    
 }
 
-//- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView { }
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView { 
+    
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-	[self scrollToElementNearestToCenter];
+	[self scrollToElementNearestToCenter];      
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
 	scrollingBasedOnUserInteraction = NO;
+    if(playSound){
+        [avPlayer stop];
+    }  
 }
 
 

@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "V8HorizontalPickerViewProtocol.h"
+#import "SoundsPlayer.h"
 
 // position of indicator view, if shown
 typedef enum {
@@ -33,6 +34,7 @@ typedef enum {
     // keep track of which elements are visible for tiling
     int firstVisibleElement;
     int lastVisibleElement;
+    SoundsPlayer *avPlayer;
 }
 
 // delegate and datasources to feed scroll view. this view only maintains
@@ -68,6 +70,7 @@ typedef enum {
 // padding for left/right scroll edge views
 @property (nonatomic, assign) CGFloat scrollEdgeViewPadding;
 
+@property (nonatomic) BOOL playSound;
 
 - (void)reloadData;
 - (void)scrollToElement:(NSInteger)index animated:(BOOL)animate;

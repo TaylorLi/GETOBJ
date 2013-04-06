@@ -28,6 +28,8 @@
 		DA00F38115A9DC92005B2F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37E15A9DC92005B2F4B /* icon.png */; };
 		DA00F38215A9DC92005B2F4B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37F15A9DC92005B2F4B /* Icon@2x.png */; };
 		DA00F38315A9DCDD005B2F4B /* app2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA00F37D15A9DC92005B2F4B /* app2.png */; };
+		DA039226170FC695009B260B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA039225170FC695009B260B /* SoundsPlayer.m */; };
+		DA039227170FC69C009B260B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA039225170FC695009B260B /* SoundsPlayer.m */; };
 		DA08D5AD16DFCAE300CDF7A4 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667A9416D26A9A00ED3A49 /* NSDictionary+Extendtion.m */; };
 		DA124B8E16909F020017AA3C /* DetailReport.html in Resources */ = {isa = PBXBuildFile; fileRef = DA124B8D16909F020017AA3C /* DetailReport.html */; };
 		DA1357331692D8D6003A6FB9 /* SummaryReport.html in Resources */ = {isa = PBXBuildFile; fileRef = DA1357321692D8D6003A6FB9 /* SummaryReport.html */; };
@@ -137,8 +139,6 @@
 		DA4E914D168F3B7900046BD9 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9141168F3B7900046BD9 /* AppConfig.m */; };
 		DA4E914E168F3B7900046BD9 /* Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9143168F3B7900046BD9 /* Definition.m */; };
 		DA4E914F168F3B7900046BD9 /* Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9143168F3B7900046BD9 /* Definition.m */; };
-		DA4E9150168F3B7900046BD9 /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9145168F3B7900046BD9 /* SoundsPlayer.m */; };
-		DA4E9151168F3B7900046BD9 /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9145168F3B7900046BD9 /* SoundsPlayer.m */; };
 		DA4E9152168F3B7900046BD9 /* StaticTableGroupData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */; };
 		DA4E9153168F3B7900046BD9 /* StaticTableGroupData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */; };
 		DA4E9154168F3B7900046BD9 /* UITextView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E9149168F3B7900046BD9 /* UITextView+Utils.m */; };
@@ -591,6 +591,8 @@
 		DA00F37D15A9DC92005B2F4B /* app2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app2.png; sourceTree = "<group>"; };
 		DA00F37E15A9DC92005B2F4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DA00F37F15A9DC92005B2F4B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		DA039224170FC695009B260B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = ../Util/SoundsPlayer.h; sourceTree = "<group>"; };
+		DA039225170FC695009B260B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../Util/SoundsPlayer.m; sourceTree = "<group>"; };
 		DA124B8D16909F020017AA3C /* DetailReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = DetailReport.html; path = "Resources-iPad/html/DetailReport.html"; sourceTree = "<group>"; };
 		DA1357321692D8D6003A6FB9 /* SummaryReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = SummaryReport.html; path = "Resources-iPad/html/SummaryReport.html"; sourceTree = "<group>"; };
 		DA1357341692DE98003A6FB9 /* SummaryReportRow.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = SummaryReportRow.html; path = "Resources-iPad/html/SummaryReportRow.html"; sourceTree = "<group>"; };
@@ -706,8 +708,6 @@
 		DA4E9141168F3B7900046BD9 /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppConfig.m; path = Misc/AppConfig.m; sourceTree = "<group>"; };
 		DA4E9142168F3B7900046BD9 /* Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Definition.h; path = Misc/Definition.h; sourceTree = "<group>"; };
 		DA4E9143168F3B7900046BD9 /* Definition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Definition.m; path = Misc/Definition.m; sourceTree = "<group>"; };
-		DA4E9144168F3B7900046BD9 /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = Misc/SoundsPlayer.h; sourceTree = "<group>"; };
-		DA4E9145168F3B7900046BD9 /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = Misc/SoundsPlayer.m; sourceTree = "<group>"; };
 		DA4E9146168F3B7900046BD9 /* StaticTableGroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticTableGroupData.h; path = Misc/StaticTableGroupData.h; sourceTree = "<group>"; };
 		DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticTableGroupData.m; path = Misc/StaticTableGroupData.m; sourceTree = "<group>"; };
 		DA4E9148168F3B7900046BD9 /* UITextView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+Utils.h"; path = "Misc/UITextView+Utils.h"; sourceTree = "<group>"; };
@@ -1311,8 +1311,6 @@
 				DA4E9141168F3B7900046BD9 /* AppConfig.m */,
 				DA4E9142168F3B7900046BD9 /* Definition.h */,
 				DA4E9143168F3B7900046BD9 /* Definition.m */,
-				DA4E9144168F3B7900046BD9 /* SoundsPlayer.h */,
-				DA4E9145168F3B7900046BD9 /* SoundsPlayer.m */,
 				DA4E9146168F3B7900046BD9 /* StaticTableGroupData.h */,
 				DA4E9147168F3B7900046BD9 /* StaticTableGroupData.m */,
 				DA4E9148168F3B7900046BD9 /* UITextView+Utils.h */,
@@ -1994,6 +1992,8 @@
 		DAF8F5B215B13C8400497FC5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DA039224170FC695009B260B /* SoundsPlayer.h */,
+				DA039225170FC695009B260B /* SoundsPlayer.m */,
 				DAEB7185169C865300039509 /* NSTimer+Blocks.h */,
 				DAEB7186169C865300039509 /* NSTimer+Blocks.m */,
 				DA7198701693D6B400A47013 /* RequestHelper.h */,
@@ -2459,7 +2459,6 @@
 				DA4E913E168F3B6A00046BD9 /* WelcomeViewController.m in Sources */,
 				DA4E914C168F3B7900046BD9 /* AppConfig.m in Sources */,
 				DA4E914E168F3B7900046BD9 /* Definition.m in Sources */,
-				DA4E9150168F3B7900046BD9 /* SoundsPlayer.m in Sources */,
 				DA4E9152168F3B7900046BD9 /* StaticTableGroupData.m in Sources */,
 				DA4E9154168F3B7900046BD9 /* UITextView+Utils.m in Sources */,
 				DA4E915D168F3BC400046BD9 /* RemoteRoom.m in Sources */,
@@ -2503,6 +2502,7 @@
 				DAA689FC16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
 				DA667A9516D26A9A00ED3A49 /* NSDictionary+Extendtion.m in Sources */,
 				DA667B9516D270F500ED3A49 /* UtilHelper.m in Sources */,
+				DA039226170FC695009B260B /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2610,7 +2610,6 @@
 				DA4E913F168F3B6A00046BD9 /* WelcomeViewController.m in Sources */,
 				DA4E914D168F3B7900046BD9 /* AppConfig.m in Sources */,
 				DA4E914F168F3B7900046BD9 /* Definition.m in Sources */,
-				DA4E9151168F3B7900046BD9 /* SoundsPlayer.m in Sources */,
 				DA4E9153168F3B7900046BD9 /* StaticTableGroupData.m in Sources */,
 				DA4E9155168F3B7900046BD9 /* UITextView+Utils.m in Sources */,
 				DA4E915E168F3BC400046BD9 /* RemoteRoom.m in Sources */,
@@ -2654,6 +2653,7 @@
 				DAA689FD16A2F43000BDE56C /* RotateTableViewController.m in Sources */,
 				DA667B9A16D2721A00ED3A49 /* UtilHelper.m in Sources */,
 				DA08D5AD16DFCAE300CDF7A4 /* NSDictionary+Extendtion.m in Sources */,
+				DA039227170FC69C009B260B /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2684,7 +2684,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "2CBC4AC0-B8CD-4858-9AD8-63C1D53ACC5A";
+				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2712,7 +2712,7 @@
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/BluetoothManager.framework\"",
 				);
 				PRODUCT_NAME = "TKD Score";
-				PROVISIONING_PROFILE = "2CBC4AC0-B8CD-4858-9AD8-63C1D53ACC5A";
+				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2771,7 +2771,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "2CBC4AC0-B8CD-4858-9AD8-63C1D53ACC5A";
+				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -2797,7 +2797,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "TKD Score HD";
-				PROVISIONING_PROFILE = "2CBC4AC0-B8CD-4858-9AD8-63C1D53ACC5A";
+				PROVISIONING_PROFILE = "3E3A1E9E-3AB7-4818-AE8A-273EDFF05B13";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

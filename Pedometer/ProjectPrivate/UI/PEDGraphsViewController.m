@@ -36,8 +36,8 @@
     if(barIdArray != nil && barIdArray.count > 0){
         for (int i=0; i<barIdArray.count; i++) {
             UIImageView *barColorView = [[UIImageView alloc]initWithFrame:CGRectMake(46 + i * 100, 62, 30, 5)];
-            barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
-            
+            //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
+            [barColorView setImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:[barIdArray objectAtIndex:i]]];
             UILabel *barRemarkLable = [[UILabel alloc]initWithFrame:CGRectMake(30 + i * 100, 72, 62, 24)];
             barRemarkLable.text = [PEDPedometerDataHelper getBarRemarkTextWithStatisticsType:[barIdArray objectAtIndex:i] withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat];
             barRemarkLable.textAlignment = UITextAlignmentCenter;
@@ -99,9 +99,7 @@
     dayRemark =0;
     isFirstLoad = YES;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
-    statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
-    barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
-    [self initBarRemark];
+    statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];    
     
     [self.view bringSubviewToFront:self.cptGraphHostingView];
     
@@ -148,6 +146,8 @@
 {
     [super viewDidLoad];
     [self initMonthSelectorWithX:0 Height:331.f];
+    barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
+    [self initBarRemark];
     [self initData];
 }
 
@@ -210,7 +210,15 @@
     CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
     textLineStyle.fontSize=8.0f;
     textLineStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
-    CPTTextLayer *label=[[CPTTextLayer alloc] initWithText: [NSString stringWithFormat:@"%.1f",[(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] floatValue]] style:textLineStyle];
+    NSString *plotIndentifier=(NSString *)plot.identifier;
+    NSString *numberFormat;
+    int digitCount;
+    NSNumber *plotValue;
+    digitCount=[plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE]] || [plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED]]? 2: 1;
+    numberFormat=[NSString stringWithFormat:@"%%.%if",digitCount];
+    plotValue=(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] ;
+   float plotValueDisplay=[PEDPedometerCalcHelper round:[plotValue floatValue] digit:digitCount];
+    CPTTextLayer *label=[[CPTTextLayer alloc] initWithText: [NSString stringWithFormat:numberFormat,plotValueDisplay] style:textLineStyle];
     return label;
 }
 

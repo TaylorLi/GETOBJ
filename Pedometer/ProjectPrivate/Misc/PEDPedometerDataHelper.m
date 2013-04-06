@@ -17,7 +17,8 @@
     h = intValue / 3600;
     m = intValue % 3600 / 60;
     s = intValue % 3600 % 60;
-    return [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
+    m += round(s/60);
+    return [NSString stringWithFormat:@"%02d:%02d", h, m];
 }
 
 +(NSString*) integerToString: (NSInteger) intValue{
@@ -71,7 +72,6 @@
     }
     return statisticsDatas;
 }
-
 
 +(CPTColor*) getCPTColorWithStatisticsType:(NSString*) statisticsTypeString{
     CPTColor *cptColor = nil;

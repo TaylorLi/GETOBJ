@@ -12,9 +12,10 @@
 #import "PEDUIBaseViewController.h"
 #import "PEDPedoDataViewController.h"
 @interface PEDPedoViewController : PEDUIBaseViewController<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
-        NSDate* referenceDate;
+       
 
 }
+@property (strong,nonatomic)  NSDate* referenceDate;
 @property (strong, nonatomic) PEDPedoDataViewController *pedPedoDataViewController;
 @property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
@@ -32,4 +33,6 @@
 @property (strong, nonatomic) IBOutlet UIView *viewPedoContainView;
 
 - (void) initData;
+- (void) initDataByDate:(NSDate *) date;
+
 @end

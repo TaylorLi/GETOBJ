@@ -75,9 +75,9 @@
         default:  
             break;  
     }  
-    lblHeightUnit.text = [PEDPedometerCalcHelper getHeightUnit:unit withWordFormat:false];
-    lblWeightUnit.text = [PEDPedometerCalcHelper getWeightUnit:unit withWordFormat:false];
-    lblStrideUnit.text = [NSString stringWithFormat:@"Stride(%@)", [PEDPedometerCalcHelper getStrideUnit:unit withWordFormat:false]];
+    lblHeightUnit.text = [NSString stringWithFormat:@"Height (%@)",[PEDPedometerCalcHelper getHeightUnit:unit withWordFormat:false]];
+    lblWeightUnit.text = [NSString stringWithFormat:@"Weight (%@)",[PEDPedometerCalcHelper getWeightUnit:unit withWordFormat:false]];
+    lblStrideUnit.text = [NSString stringWithFormat:@"Stride (%@)", [PEDPedometerCalcHelper getStrideUnit:unit withWordFormat:false]];
 }
 
 -(void) limitTextField :(UITextField*) textField withKey:(NSString*)key withMinValue:(NSInteger) minValue withMaxValue:(NSInteger) maxValue{
@@ -593,4 +593,48 @@
         [[PEDAppDelegate getInstance] showTabView];
     }
 }
+
+
+#pragma mark -
+#pragma mark Picker Data Source Methods
+/*
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component {
+    if (component == kStateComponent)
+        return [self.states count];
+    return [self.zips count];
+}
+
+#pragma mark Picker Delegate Methods
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component {
+    if (component == kStateComponent)
+        return [self.states objectAtIndex:row];
+    return [self.zips objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
+    if (component == kStateComponent) {
+        NSString *selectedState = [self.states objectAtIndex:row];
+        NSArray *array = [stateZips objectForKey:selectedState];
+        self.zips = array;
+        [picker selectRow:0 inComponent:kZipComponent animated:YES];
+        [picker reloadComponent:kZipComponent];
+    }
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView
+    widthForComponent:(NSInteger)component {
+    if (component == kZipComponent)
+        return 90;
+    return 200;
+}
+*/
 @end

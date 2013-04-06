@@ -104,6 +104,7 @@
 
 -(void)doubleTap:(UITapGestureRecognizer*)recognizer  
 {  
+    [[PEDAppDelegate getInstance].pedPedoViewController initDataByDate: referenceDate];
     [self.navigationController popViewControllerAnimated:YES];     
 }
 
@@ -254,12 +255,13 @@
     
     //daysData = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
     
+    
+    
     dayPickerView = [[AFPickerView alloc] initWithFrame:CGRectMake(0.0, 238.0, 320.0, 140)];
     dayPickerView.dataSource = self;
     dayPickerView.delegate = self;
     //[dayPickerView reloadData];
     [self.view addSubview:dayPickerView];
-    
     
     /*
     UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];  
@@ -276,9 +278,7 @@
     [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
     [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
     */
-    [self initMonthSelectorWithX:0 Height:188.f];
-    
-    [self initDataByDate:referenceDate];
+    [self initMonthSelectorWithX:0 Height:188.f];    
 	
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -325,7 +325,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated
-{
+{    
     [super viewWillAppear:animated];
     if(!self.navigationController.navigationBarHidden){
         self.navigationController.navigationBar.hidden = YES;
@@ -426,7 +426,7 @@
     self.lblUserName.text = userInfo.userName;
     self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];    
     if(daysData==nil || ![date inSameMonth:orginDate]){
-        daysData=[self getPedoDataResourcesByMonthWithTargetId:targetId referedDate:date];
+        daysData=[self getPedoDataResourcesByMonthWithTargetId:targetId referedDate:referenceDate];
         [dayPickerView reloadData];
     }
     [self reloadPickerToMidOfDate:referenceDate];
@@ -460,7 +460,7 @@
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblPrevDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblPrevDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
             lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
@@ -475,12 +475,12 @@
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblCurrStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblCurrDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblCurrDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
             lblCurrCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblCurrActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
             lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
             lblCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
@@ -495,7 +495,7 @@
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
             lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblNextDistance.text = [NSString stringWithFormat:@"%.1f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblNextDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
             lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
             lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
@@ -550,6 +550,7 @@
 {
     PEDPedometerData *data= (PEDPedometerData *)[daysData objectAtIndex:row];
     [self displayPedometerDetailByDate:data.optDate];
+    referenceDate=data.optDate;
     for (UIView *view in [pickerView visibleViews]) {
         view.hidden=YES;
     }

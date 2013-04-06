@@ -32,5 +32,6 @@
 +(NSString*) getHeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
 +(NSString*) getWeightUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
 +(NSString*) getDistanceUnit :(MeasureUnit) measureUnit withWordFormat:(Boolean) isUpper;
-
+//四舍五入小数点后几位
++(NSTimeInterval) round:(NSTimeInterval) num digit:(NSInteger)decimals;
 @end

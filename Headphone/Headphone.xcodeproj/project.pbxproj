@@ -28,6 +28,7 @@
 		5EDFA4A30F1AB2300010E8F5 /* HighlightUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDFA49C0F1AB2300010E8F5 /* HighlightUp.png */; };
 		5EDFA4A40F1AB2300010E8F5 /* RemoteBase.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDFA49D0F1AB2300010E8F5 /* RemoteBase.png */; };
 		5EFE907C0F1AA820003C04F2 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFE907B0F1AA820003C04F2 /* Entitlements.plist */; };
+		DA03921D170FC66D009B260B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03921C170FC66D009B260B /* SoundsPlayer.m */; };
 		DA3EC94816FDED6400C361EA /* AudioSignalCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EC94716FDED6400C361EA /* AudioSignalCoder.m */; };
 		DA3EC94F16FE0F8100C361EA /* NSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EC94E16FE0F8100C361EA /* NSQueue.m */; };
 		DA3EC95316FE11AE00C361EA /* WaveGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EC95216FE11AE00C361EA /* WaveGenerator.m */; };
@@ -36,7 +37,6 @@
 		DAA38E4916F595FD0065E1E3 /* AppleRemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4516F595FD0065E1E3 /* AppleRemoteViewController.m */; };
 		DAA38E4A16F595FD0065E1E3 /* RemoteEventsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA38E4716F595FD0065E1E3 /* RemoteEventsManager.m */; };
 		DAEB1E7A15F8C90800CE98C7 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAEB1E7915F8C90800CE98C7 /* MainWindow-iPad.xib */; };
-		DAF8AC7816FF5937003DE5B7 /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF8AC7716FF5937003DE5B7 /* SoundsPlayer.m */; };
 		DAF8AC7A16FF5965003DE5B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF8AC7916FF5965003DE5B7 /* AVFoundation.framework */; };
 		DAF8AC7D16FF5A58003DE5B7 /* CMD2.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAF8AC7C16FF5A58003DE5B7 /* CMD2.wav */; };
 /* End PBXBuildFile section */
@@ -73,6 +73,8 @@
 		5EDFA49D0F1AB2300010E8F5 /* RemoteBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoteBase.png; sourceTree = "<group>"; };
 		5EFE907B0F1AA820003C04F2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA03921B170FC66D009B260B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = ../../Util/SoundsPlayer.h; sourceTree = "<group>"; };
+		DA03921C170FC66D009B260B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../../Util/SoundsPlayer.m; sourceTree = "<group>"; };
 		DA3EC94616FDED6400C361EA /* AudioSignalCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSignalCoder.h; sourceTree = "<group>"; };
 		DA3EC94716FDED6400C361EA /* AudioSignalCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSignalCoder.m; sourceTree = "<group>"; };
 		DA3EC94D16FE0F8100C361EA /* NSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSQueue.h; sourceTree = "<group>"; };
@@ -89,8 +91,6 @@
 		DAA38E4616F595FD0065E1E3 /* RemoteEventsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteEventsManager.h; sourceTree = "<group>"; };
 		DAA38E4716F595FD0065E1E3 /* RemoteEventsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteEventsManager.m; sourceTree = "<group>"; };
 		DAEB1E7915F8C90800CE98C7 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		DAF8AC7616FF5937003DE5B7 /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = ../../iPhoneComm/Classes/Misc/SoundsPlayer.h; sourceTree = "<group>"; };
-		DAF8AC7716FF5937003DE5B7 /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../../iPhoneComm/Classes/Misc/SoundsPlayer.m; sourceTree = "<group>"; };
 		DAF8AC7916FF5965003DE5B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		DAF8AC7C16FF5A58003DE5B7 /* CMD2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = CMD2.wav; path = Resources/Sounds/CMD2.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,8 +228,8 @@
 		DAF8AC7516FF58D9003DE5B7 /* dependency */ = {
 			isa = PBXGroup;
 			children = (
-				DAF8AC7616FF5937003DE5B7 /* SoundsPlayer.h */,
-				DAF8AC7716FF5937003DE5B7 /* SoundsPlayer.m */,
+				DA03921B170FC66D009B260B /* SoundsPlayer.h */,
+				DA03921C170FC66D009B260B /* SoundsPlayer.m */,
 			);
 			name = dependency;
 			sourceTree = "<group>";
@@ -326,7 +326,7 @@
 				DA3EC94816FDED6400C361EA /* AudioSignalCoder.m in Sources */,
 				DA3EC94F16FE0F8100C361EA /* NSQueue.m in Sources */,
 				DA3EC95316FE11AE00C361EA /* WaveGenerator.m in Sources */,
-				DAF8AC7816FF5937003DE5B7 /* SoundsPlayer.m in Sources */,
+				DA03921D170FC66D009B260B /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@
 @synthesize selectedRow = currentRow;
 @synthesize rowFont = _rowFont;
 @synthesize rowIndent = _rowIndent;
-
+@synthesize playSound;
 
 
 
@@ -124,6 +124,10 @@
         glassImageView.image = glassImage;
         [self addSubview:glassImageView];
         */
+        playSound=YES;
+        avPlayer=[[SoundsPlayer alloc] init];
+        //avPlayer.fullLoopInterval = 1;
+        avPlayer.repeatCount = 6;
     }
     return self;
 }
@@ -338,7 +342,10 @@
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+    if(playSound)
+        [avPlayer playSoundWithFullPath:@"scrollerClick.wav"];
     [delegate pickerViewDidStartScroll:self];
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -355,11 +362,12 @@
 }
 
 
-
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self determineCurrentRow];
+    if(playSound){
+        [avPlayer stop];
+    }  
 }
 
 @end

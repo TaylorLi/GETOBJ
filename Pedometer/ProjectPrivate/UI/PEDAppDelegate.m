@@ -144,7 +144,7 @@ static PEDAppDelegate* _instance;
         pedTargetViewController = [[PEDTargetViewController alloc]init];
         pedGraphsViewController = [[PEDGraphsViewController alloc]init];
         pedBarchartViewController = [[PEDBarchartViewController alloc]init];
-        pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+        //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
         UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:pedPedoViewController];
         
 //        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,

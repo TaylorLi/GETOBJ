@@ -10,6 +10,9 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "GETUIScrollInputView.h"
 
+#define kFeetComponent 0
+#define kInchComponent 1
+
 @interface PEDUserSettingViewController : GETUIScrollInputView< MFMailComposeViewControllerDelegate>{
     UISegmentedControl* segUnit;
     UISegmentedControl* segGender;
@@ -25,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblWeightUnit;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblHeightUnit;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *txbUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txbStride;
 @property (weak, nonatomic) IBOutlet UITextField *txbHeight;

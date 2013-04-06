@@ -19,10 +19,11 @@
 
 -(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer ;
 -(void) showPedoDetailOfPrevDate:(UITapGestureRecognizer*)recognizer;
-- (void) initDataByDate:(NSDate *) date;
+
 @end
 
 @implementation PEDPedoViewController
+@synthesize referenceDate;
 @synthesize pedPedoDataViewController;
 @synthesize monthSelectView;
 @synthesize lblUserName;
@@ -62,8 +63,6 @@
     
 	[self initMonthSelectorWithX:0 Height:331.f];
     
-    [self initData];
-    
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfNextDate:)];   
     [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   
     [self.viewPedoContainView addGestureRecognizer:rightRecognizer];
@@ -71,7 +70,7 @@
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfPrevDate:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
     [self.viewPedoContainView addGestureRecognizer:leftRecognizer];
-    
+    [self initData];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -157,11 +156,12 @@
     h = (int)currPedometerData.activeTime / 3600;
     m = (int)currPedometerData.activeTime % 3600 / 60;
     s = (int)currPedometerData.activeTime % 3600 % 60;
+    m = m + round(s/60);
     NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
-    lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d:%02d", h, m, s];
+    lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d", h, m];
     lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
-    lblDistanceAmount.text = [NSString stringWithFormat:@"%.1f", distance];
-    lblSpeedAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
+    lblDistanceAmount.text = [NSString stringWithFormat:@"%.2f", distance];
+    lblSpeedAmount.text = [NSString stringWithFormat:@"%.2f",[PEDPedometerCalcHelper round:[PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat] digit:2 ]];
     lblPaceAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
     lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
     lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
@@ -189,7 +189,7 @@
 }
 
 -(void)horizontalPickerView:(V8HorizontalPickerView *)picker didDoubleClickElementAtIndex:(NSInteger)index {
-    NSLog(@"----%d", index);
+    //NSLog(@"----%d", index);
     if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
         [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
     }
@@ -213,10 +213,10 @@
             
             selectedDate=lastUploadDate?lastUploadDate:[NSDate date];
         }
-    }
+    }    
     
-    pedPedoDataViewController.referenceDate = selectedDate;
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
+    [pedPedoDataViewController initDataByDate: selectedDate];
 }
 
 

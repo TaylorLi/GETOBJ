@@ -166,6 +166,9 @@
 		DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
+		DA03922A170FC6D4009B260B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA039229170FC6D4009B260B /* SoundsPlayer.m */; };
+		DA03922D170FC6E9009B260B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03922C170FC6E9009B260B /* AVFoundation.framework */; };
+		DA039231170FC988009B260B /* scrollerClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = DA039230170FC988009B260B /* scrollerClick.wav */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
@@ -442,6 +445,10 @@
 		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
 		DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerCalcHelper.h; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.h; sourceTree = SOURCE_ROOT; };
 		DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerCalcHelper.m; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.m; sourceTree = SOURCE_ROOT; };
+		DA039228170FC6D4009B260B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = ../Util/SoundsPlayer.h; sourceTree = "<group>"; };
+		DA039229170FC6D4009B260B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../Util/SoundsPlayer.m; sourceTree = "<group>"; };
+		DA03922C170FC6E9009B260B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DA039230170FC988009B260B /* scrollerClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scrollerClick.wav; path = Sounds/scrollerClick.wav; sourceTree = "<group>"; };
 		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
 		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
 		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
@@ -697,6 +704,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA03922D170FC6E9009B260B /* AVFoundation.framework in Frameworks */,
 				6B4ABEFE16DBFE71000A73EB /* MessageUI.framework in Frameworks */,
 				DAF716CB16D0BFFC0081D5C8 /* QuartzCore.framework in Frameworks */,
 				DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */,
@@ -828,6 +836,14 @@
 			path = ProjectPrivate/BLE;
 			sourceTree = SOURCE_ROOT;
 		};
+		DA03922F170FC977009B260B /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				DA039230170FC988009B260B /* scrollerClick.wav */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		DA0C559716D4FAD900940654 /* V8HorizontalPickerView Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,6 +857,8 @@
 		DA667AAE16D26CBB00ED3A49 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DA039228170FC6D4009B260B /* SoundsPlayer.h */,
+				DA039229170FC6D4009B260B /* SoundsPlayer.m */,
 				DA029A6416D3C346004E7764 /* NSString+MD5Addition.h */,
 				DA029A6516D3C346004E7764 /* NSString+MD5Addition.m */,
 				DA029A6616D3C346004E7764 /* UIDevice+IdentifierAddition.h */,
@@ -1047,8 +1065,8 @@
 		DA6E9C0D16CFB2F900F2453F = {
 			isa = PBXGroup;
 			children = (
-				DA6E9FDA16CFE15B00F2453F /* dependencies */,
 				DA6E9F8216CFB50800F2453F /* Resources */,
+				DA6E9FDA16CFE15B00F2453F /* dependencies */,
 				DA6E9C2216CFB2F900F2453F /* ProjectPrivate */,
 				DA6E9C1B16CFB2F900F2453F /* Frameworks */,
 				DA6E9C1916CFB2F900F2453F /* Products */,
@@ -1066,6 +1084,7 @@
 		DA6E9C1B16CFB2F900F2453F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA03922C170FC6E9009B260B /* AVFoundation.framework */,
 				DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */,
 				DA6EA02616CFE5AF00F2453F /* libz.dylib */,
 				DA6EA02416CFE58600F2453F /* libxml2.dylib */,
@@ -1175,6 +1194,7 @@
 		DA6E9F8216CFB50800F2453F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA03922F170FC977009B260B /* Sound */,
 				DA6E9F8316CFB50800F2453F /* Image */,
 			);
 			path = Resources;
@@ -1677,6 +1697,7 @@
 				6BD4A59C16ED54370023AA16 /* data_top_panel_trp.png in Resources */,
 				6BD4A59D16ED54370023AA16 /* data_top_panel_trp@2x.png in Resources */,
 				DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */,
+				DA039231170FC988009B260B /* scrollerClick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1761,6 +1782,7 @@
 				DAF844B516E6113D0085A81C /* NSData+ToHexAddition.m in Sources */,
 				DAFB234F16EB826F00E3E98C /* AFPickerView.m in Sources */,
 				DAFB235416EB95F000E3E98C /* PEDPedoDataRowView.m in Sources */,
+				DA03922A170FC6D4009B260B /* SoundsPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -119,6 +119,7 @@
     UIScrollView *scrollView =  (UIScrollView *)self.view;
     scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height+5) ;
     scrollView.delegate=self;
+    scrollView.showsVerticalScrollIndicator = NO;
     for(UIView *view in self.view.subviews)
     {
         if([view isMemberOfClass:[UITextField class]])

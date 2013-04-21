@@ -19,6 +19,10 @@
 
 @interface PEDUserSettingViewController (){
     UITapGestureRecognizer *tapRecognizer;
+    NSMutableDictionary *inchFeetDataDictionary;
+    NSInteger currRow4Inch;
+    NSInteger baseInch4English;
+    NSInteger baseFeet4English;
 }
 -(void)bindUserInfo:(PEDUserInfo *)userInfo;
 -(void)bindByUserInfoSetting;
@@ -35,6 +39,7 @@
 @synthesize txbHeight;
 @synthesize txbWeight;
 @synthesize txbAge;
+@synthesize pvInchFeet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -270,19 +275,19 @@
 } 
 
 -(void) txbHeightEditBegin{
-    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
-        txbHeight.text = [NSString stringWithFormat:@"%.0f", cacheHeight];
-    }    
+//    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+//        txbHeight.text = [NSString stringWithFormat:@"%.0f", cacheHeight];
+//    }    
 }
 
 -(void) txbHeightEditEnd:(id) sender{
-    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
-        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:32 withMaxValue:98];
-        cacheHeight = [txbHeight.text floatValue];
-        txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:cacheHeight];
-    }else{
+//    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+//        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:32 withMaxValue:98];
+//        cacheHeight = [txbHeight.text floatValue];
+//        txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:cacheHeight];
+//    }else{
         [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:80 withMaxValue:250];
-    }
+//    }
 }
 
 -(void) txbWeightEditEnd:(id) sender{
@@ -483,9 +488,18 @@
         txbUserName.text=userInfo.userName;
         txbAge.text=[NSString stringWithFormat:@"%i", userInfo.age];
         if(userInfo.measureFormat == MEASURE_UNIT_METRIC){
+            pvInchFeet.hidden = YES;
             txbHeight.text=[NSString stringWithFormat:@"%.0f", userInfo.height];
+            txbHeight.hidden = NO;
         }else{
-            txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:userInfo.height];
+            //txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:userInfo.height];
+            float inch = userInfo.height/12;
+            float feet = (inch - (int)inch) * 12;
+            txbHeight.hidden = YES;
+            baseInch4English = floor(inch);
+            baseFeet4English = floor(feet);
+            [pvInchFeet reloadData];
+            pvInchFeet.hidden = NO;
         }
         txbWeight.text=[NSString stringWithFormat:@"%.0f", userInfo.weight];
         txbStride.text=[NSString stringWithFormat:@"%.0f", userInfo.stride];
@@ -506,6 +520,7 @@
     [self setTxbAge:nil];
     [self setLblStrideUnit:nil];
     [self setLblWeightUnit:nil];
+    [self setPvInchFeet:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -594,47 +609,157 @@
     }
 }
 
-
-#pragma mark -
-#pragma mark Picker Data Source Methods
-/*
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 2;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component {
-    if (component == kStateComponent)
-        return [self.states count];
-    return [self.zips count];
-}
-
-#pragma mark Picker Delegate Methods
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component {
-    if (component == kStateComponent)
-        return [self.states objectAtIndex:row];
-    return [self.zips objectAtIndex:row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component {
-    if (component == kStateComponent) {
-        NSString *selectedState = [self.states objectAtIndex:row];
-        NSArray *array = [stateZips objectForKey:selectedState];
-        self.zips = array;
-        [picker selectRow:0 inComponent:kZipComponent animated:YES];
-        [picker reloadComponent:kZipComponent];
+-(void) initInchFeetData{
+    if(!inchFeetDataDictionary){
+        inchFeetDataDictionary = [[NSMutableDictionary alloc]initWithCapacity:2];
+        NSMutableArray *inchs = [[NSMutableArray alloc]initWithCapacity:7];
+        for (int i=2; i<9; i++) {
+            [inchs addObject:[NSNumber numberWithInt:i]];
+        }
+        [inchFeetDataDictionary setObject:inchs forKey:[NSNumber numberWithInt:0]];
+        NSMutableArray *feets = [[NSMutableArray alloc]initWithCapacity:3];
+        for (int i=8; i<12; i++) {
+            [feets addObject:[NSNumber numberWithInt:i]];
+        }
+        [inchFeetDataDictionary setObject:feets forKey:[NSNumber numberWithInt:1]];
+        currRow4Inch = 0;
+        baseInch4English = 2;
+        baseFeet4English = 8;
     }
 }
 
-- (CGFloat)pickerView:(UIPickerView *)pickerView
-    widthForComponent:(NSInteger)component {
-    if (component == kZipComponent)
-        return 90;
-    return 200;
+-(NSInteger) getIndexOfInchFeetDataWithKey:(id)key andValue:(NSInteger) value{
+    NSInteger index = 0;
+    NSMutableArray *inchFeets = [inchFeetDataDictionary objectForKey:key];
+    for (int i=0; i<inchFeets.count; i++) {
+        if(value == [[inchFeets objectAtIndex:i] intValue]){
+            index = i;
+            break;
+        }
+    }
+    return index;
 }
-*/
+
+-(void) reloadInchFeetDataWithRowIndex :(NSInteger) rowIndex{
+    
+    NSMutableArray *feets = nil;
+    switch (rowIndex) {
+        case 0:
+            feets = [[NSMutableArray alloc]initWithCapacity:4];
+            for (int i=8; i<12; i++) {
+                [feets addObject:[NSNumber numberWithInt:i]];
+            }
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            feets = [[NSMutableArray alloc]initWithCapacity:12];
+            for (int i=0; i<12; i++) {
+                [feets addObject:[NSNumber numberWithInt:i]];
+            }
+            break;
+        case 6:
+            feets = [[NSMutableArray alloc]initWithCapacity:3];
+            for (int i=0; i<3; i++) {
+                [feets addObject:[NSNumber numberWithInt:i]];
+            }
+            break;
+        default:
+            break;
+    }
+    [inchFeetDataDictionary setObject:feets forKey:[NSNumber numberWithInt:1]];
+}
+
+#pragma mark -
+#pragma mark Picker extend view Delege and Data Source Methods
+
+- (NSString *)pickerView:(PickerExtendView *)pickerView titleForRow:(NSInteger)rowIndex forComponent:(NSInteger)componentIndex{
+    NSString *title = @"";
+    switch (componentIndex) {
+        case 0:
+            title = [NSString stringWithFormat:@"%i '", [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt: componentIndex]] objectAtIndex:rowIndex]intValue]];
+            break;
+        case 1:
+            title = [NSString stringWithFormat:@"%i \"", [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:componentIndex]] objectAtIndex:rowIndex] intValue]];
+        default:
+            break;
+    }
+    return title;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(PickerExtendView *)pickerView{
+    [self initInchFeetData];
+    return [inchFeetDataDictionary count];
+}
+
+- (NSInteger)numberOfRowsToShowForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
+    return 1;
+}
+
+- (NSInteger)maxNumberOfRowsForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
+    return [[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:componentIndex]] count] ;
+}
+
+- (CGSize)sizeForRowInPickerView:(PickerExtendView *) pickerView{
+    return CGSizeMake(35.0f, 15.0f);
+}
+
+- (CGFloat)paddingForComponents:(PickerExtendView *) pickerView{
+    return 2.0f;
+}
+
+- (UIImage *)backgroundImageForPickerView:(PickerExtendView *) pickerView{
+    return [UIImage imageNamed:@"pickerBG.png"];
+}
+
+-(CGSize) sizeForPickerView :(PickerExtendView *) pickerView{
+    return CGSizeMake(79.0f, 20.0f);
+}
+
+-(void) pickerViewDidChangeValue:(PickerExtendView *)pickerView seletedRowIndex:(NSInteger)rowIndex atComponentIndex:(NSInteger)componentIndex{
+    if(componentIndex == 0){
+        baseInch4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:0]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:0]] intValue];
+        if(currRow4Inch != rowIndex){
+            [self reloadInchFeetDataWithRowIndex:rowIndex];
+            [pickerView reloadData];
+            currRow4Inch = rowIndex;
+        }
+    }else{
+        baseFeet4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:1]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:1]] intValue];
+    }
+}
+
+- (void)pickerViewDidChangeValue:(PickerExtendView*)pickerView{
+    baseInch4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:0]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:0]] intValue];
+    baseFeet4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:1]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:1]] intValue];
+    
+    cacheHeight = baseInch4English * 12 + baseFeet4English;
+    UIScrollView *scv = (UIScrollView*)self.view;
+    scv.scrollEnabled = YES;
+}
+
+- (NSInteger)defaultSeletRowForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
+    NSInteger rowIndex = 0;
+    switch (componentIndex) {
+        case 0:
+            rowIndex = [self getIndexOfInchFeetDataWithKey:[NSNumber numberWithInt:0] andValue:baseInch4English];
+            [self reloadInchFeetDataWithRowIndex : rowIndex];
+            break;
+        case 1:
+            rowIndex = [self getIndexOfInchFeetDataWithKey:[NSNumber numberWithInt:1] andValue:baseFeet4English];
+        default:
+            break;
+    }
+    return rowIndex;
+}
+
+- (UITextAlignment)textAlignmentForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
+    return UITextAlignmentCenter;
+}
+
+- (UIColor *)textColorForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
+    return [UIColor whiteColor];
+}
 @end

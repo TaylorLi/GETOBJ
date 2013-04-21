@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "GETUIScrollInputView.h"
+#import "PickerExtendView.h"
 
 #define kFeetComponent 0
 #define kInchComponent 1
 
-@interface PEDUserSettingViewController : GETUIScrollInputView< MFMailComposeViewControllerDelegate>{
+@interface PEDUserSettingViewController : GETUIScrollInputView<MFMailComposeViewControllerDelegate,PickerExtendViewDelegate, PickerExtendViewDataSource>{
     UISegmentedControl* segUnit;
     UISegmentedControl* segGender;
     UILabel *unitSegTitleLeft;
@@ -35,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txbHeight;
 @property (weak, nonatomic) IBOutlet UITextField *txbWeight;
 @property (weak, nonatomic) IBOutlet UITextField *txbAge;
+@property (strong, nonatomic) IBOutlet PickerExtendView *pvInchFeet;
 
 - (IBAction)settingClick:(id)sender;
 - (IBAction)contactUsClick:(id)sender;

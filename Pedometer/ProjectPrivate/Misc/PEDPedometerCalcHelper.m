@@ -138,7 +138,7 @@
  */
 +(NSTimeInterval) convertCmToInch:(NSTimeInterval) cm
 {
-    return ceil(cm/2.54);
+    return floor(cm/2.54);
 }
 +(NSTimeInterval) convertKgToLbs:(NSTimeInterval) kg
 {
@@ -161,7 +161,7 @@
 
 +(NSTimeInterval) convertInchToCm:(NSTimeInterval) inch
 {
-    return ceil(inch*2.54);
+    return floor(inch*2.54);
 }
 +(NSTimeInterval) convertLbsToKg:(NSTimeInterval) lbs
 {

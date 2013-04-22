@@ -14,6 +14,7 @@
     CGSize pvSize;
     CGSize rowSize;
     NSMutableArray *selectRowArr;
+    NSMutableArray *numberOfRowsToShowArr;
 //    NSMutableArray *maxNumberOfRowsInComponentArr;
 }
 -(void) initComponent;
@@ -100,6 +101,7 @@
     
     scrollViews = [[NSMutableArray alloc] init];
     selectRowArr = [[NSMutableArray alloc] initWithCapacity:numberOfComponents];
+    numberOfRowsToShowArr = [[NSMutableArray alloc]initWithCapacity:numberOfComponents];
 //    maxNumberOfRowsInComponentArr = [[NSMutableArray alloc]initWithCapacity:numberOfComponents];
     
     CGFloat x4Components = 0;
@@ -108,11 +110,12 @@
 
 //        [maxNumberOfRowsInComponentArr addObject:[NSNumber  numberWithInt:0]];
         
-        NSInteger numberOfRowsInComponent = 1;
+        NSInteger numberOfRowsToShowInComponent = 1;
         if([self.datasource respondsToSelector:@selector(numberOfRowsToShowForPickerView:atComponentIndex:)]){
-            numberOfRowsInComponent = [self.datasource numberOfRowsToShowForPickerView:self atComponentIndex:i];
+            numberOfRowsToShowInComponent = [self.datasource numberOfRowsToShowForPickerView:self atComponentIndex:i];
         }
-        UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake([self paddingLeft4Component] + x4Components, [self paddingTop4Component], rowSize.width, numberOfRowsInComponent * rowSize.height)];
+        [numberOfRowsToShowArr addObject:[NSNumber numberWithInt:numberOfRowsToShowInComponent]];
+        UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake([self paddingLeft4Component] + x4Components, [self paddingTop4Component], rowSize.width, numberOfRowsToShowInComponent * rowSize.height)];
 
         x4Components += (i== 0 ? [self paddingTop4Component] : 0) + rowSize.width + padding4Components;
         
@@ -145,7 +148,7 @@
 
         for (int j=0; j<maxNumberOfRowsInComponent; j++) {
             NSString *title = [self.datasource pickerView:self titleForRow:j forComponent:i];
-            UILabel* label = [[UILabel alloc] initWithFrame:scrollView.bounds];
+            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height / [[numberOfRowsToShowArr objectAtIndex: i] intValue])];
             label.backgroundColor = [UIColor clearColor];
             if([self.delegate respondsToSelector:@selector(textColorForPickerView:atComponentIndex:)]){
                 label.textColor = [self.delegate textColorForPickerView:self atComponentIndex:i];
@@ -170,8 +173,8 @@
             label.frame = frame;
             [scrollView addSubview:label];
         }
-        
-        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height*maxNumberOfRowsInComponent);
+        NSInteger numberOfRowToShow = [[numberOfRowsToShowArr objectAtIndex:i] intValue];
+        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height/ numberOfRowToShow * (maxNumberOfRowsInComponent+numberOfRowToShow-1));
         scrollView.pagingEnabled = YES;
         scrollView.clipsToBounds = YES;
         scrollView.scrollEnabled = YES;
@@ -193,7 +196,6 @@
 //}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSInteger page = scrollView.contentOffset.y / scrollView.bounds.size.height;
     NSInteger componentIndex = -1;
     for (int i=0; i<numberOfComponents; i++) {
         UIScrollView *baseScrollView = [scrollViews objectAtIndex:i];
@@ -202,6 +204,7 @@
             break;
         }
     }
+    NSInteger page = scrollView.contentOffset.y / (scrollView.bounds.size.height / [[numberOfRowsToShowArr objectAtIndex:componentIndex] intValue]);
     [selectRowArr replaceObjectAtIndex:componentIndex withObject:[NSNumber numberWithInt:page]];
 
     if([self.delegate respondsToSelector:@selector(pickerViewDidChangeValue:seletedRowIndex:atComponentIndex:)]){

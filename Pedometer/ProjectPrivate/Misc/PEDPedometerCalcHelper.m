@@ -138,7 +138,12 @@
  */
 +(NSTimeInterval) convertCmToInch:(NSTimeInterval) cm
 {
-    return floor(cm/2.54);
+    //return floor(cm/2.54);
+    NSTimeInterval inch = cm/2.54;
+    inch = [self round:inch digit:2];
+    inch = [self round:inch digit:1];
+    return inch;
+    
 }
 +(NSTimeInterval) convertKgToLbs:(NSTimeInterval) kg
 {
@@ -161,7 +166,11 @@
 
 +(NSTimeInterval) convertInchToCm:(NSTimeInterval) inch
 {
-    return floor(inch*2.54);
+    //return floor(inch*2.54);
+    NSTimeInterval cm = inch*2.54;
+    inch = [self round:cm digit:2];
+    inch = [self round:cm digit:1];
+    return cm;
 }
 +(NSTimeInterval) convertLbsToKg:(NSTimeInterval) lbs
 {

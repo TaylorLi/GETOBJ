@@ -494,7 +494,7 @@
         }else{
             //txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:userInfo.height];
             float inch = userInfo.height/12;
-            float feet = (inch - (int)inch) * 12;
+            float feet = (int)userInfo.height % 12;
             txbHeight.hidden = YES;
             baseInch4English = floor(inch);
             baseFeet4English = floor(feet);
@@ -617,7 +617,7 @@
             [inchs addObject:[NSNumber numberWithInt:i]];
         }
         [inchFeetDataDictionary setObject:inchs forKey:[NSNumber numberWithInt:0]];
-        NSMutableArray *feets = [[NSMutableArray alloc]initWithCapacity:3];
+        NSMutableArray *feets = [[NSMutableArray alloc]initWithCapacity:4];
         for (int i=8; i<12; i++) {
             [feets addObject:[NSNumber numberWithInt:i]];
         }

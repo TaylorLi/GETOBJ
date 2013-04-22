@@ -60,41 +60,57 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) showMainView{
-    if(!pedMainViewController){
-        pedMainViewController = [[PEDMainViewController alloc]init];
-    }
-    if([AppConfig getInstance].settings.plusType != PLUS_NONE){
-        [pedMainViewController.btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
-        [pedMainViewController.btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
-        [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
-        switch ([AppConfig getInstance].settings.plusType) {
-            case PLUS_FIT:
-                [pedMainViewController.btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                break;
-            case PLUS_HEALTH:
-                [pedMainViewController.btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                break;
-            case PLUS_SPORT:
-                [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                break; 
-            default:
-                break;
+    @try {        
+        if(!pedMainViewController){
+            pedMainViewController = [[PEDMainViewController alloc]init];
         }
+        if([AppConfig getInstance].settings.plusType != PLUS_NONE){
+            [pedMainViewController.btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+            [pedMainViewController.btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+            [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_normal.png"] forState:UIControlStateNormal];
+            switch ([AppConfig getInstance].settings.plusType) {
+                case PLUS_FIT:
+                    [pedMainViewController.btnFitPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                    break;
+                case PLUS_HEALTH:
+                    [pedMainViewController.btnHealthPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                    break;
+                case PLUS_SPORT:
+                    [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
+                    break; 
+                default:
+                    break;
+            }
+        }
+        [self swithView : pedMainViewController.view];
     }
-    [self swithView : pedMainViewController.view];
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 -(void)showImportDataView{
-    
-    if(pedImportDataViewController){
-        [pedImportDataViewController cleanup];
+    @try{
+        if(pedImportDataViewController){
+            [pedImportDataViewController cleanup];
+        }
+        pedImportDataViewController =[[PEDImportDataViewController alloc] init];
+        importDataViewController=[[UINavigationController alloc] initWithRootViewController:pedImportDataViewController];
+        importDataViewController.title=@"Sync Device";
+        [self swithView:importDataViewController.view];
+        
+        //pedAvailPerialViewController = [[PEDAvailPerialViewController alloc] init];
+        //[self swithView:pedAvailPerialViewController.view];
     }
-    pedImportDataViewController =[[PEDImportDataViewController alloc] init];
-    importDataViewController=[[UINavigationController alloc] initWithRootViewController:pedImportDataViewController];
-    [self swithView:importDataViewController.view];
-    
-    //pedAvailPerialViewController = [[PEDAvailPerialViewController alloc] init];
-    //[self swithView:pedAvailPerialViewController.view];
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 -(void)hideImportDataViewAndShowTabView
@@ -106,62 +122,71 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) showTabView{
-    if(!customerTabBarController){
-        NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
-        [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
-        [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Seleted"];
-        NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic2 setObject:[UIImage imageNamed:@"pedo_normal.png"] forKey:@"Default"];
-        [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Highlighted"];
-        [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Seleted"];
-        NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic3 setObject:[UIImage imageNamed:@"target_normal.png"] forKey:@"Default"];
-        [imgDic3 setObject:[UIImage imageNamed:@"target_highlight.png"] forKey:@"Highlighted"];
-        [imgDic3 setObject:[UIImage imageNamed:@"target_highlight.png"] forKey:@"Seleted"];
-        NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic4 setObject:[UIImage imageNamed:@"bar_normal.png"] forKey:@"Default"];
-        [imgDic4 setObject:[UIImage imageNamed:@"bar_highlight.png"] forKey:@"Highlighted"];
-        [imgDic4 setObject:[UIImage imageNamed:@"bar_highlight.png"] forKey:@"Seleted"];
-        NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic5 setObject:[UIImage imageNamed:@"graphic_normal.png"] forKey:@"Default"];
-        [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Highlighted"];
-        [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Seleted"];
+    @try {        
         
-        NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
-        
-                
-//        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
-//        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
-//        tabBarController = [[UITabBarController alloc]init];
-//        [tabBarController.view insertSubview:tabBarBg atIndex:0];
-//        tabBarController.tabBar.frame = CGRectMake(0, self.window.frame.size.height-36, 320, 36);
-//        // [tabBarController.tabBar setBounds:CGRectMake(0, self.window.frame.size.height-36, 320, 36)];
-//        tabBarController.tabBar.backgroundColor = [UIColor clearColor];
-//        tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"footer.png"];
-        pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
-        pedPedoViewController = [[PEDPedoViewController alloc]init];
-        pedTargetViewController = [[PEDTargetViewController alloc]init];
-        pedGraphsViewController = [[PEDGraphsViewController alloc]init];
-        pedBarchartViewController = [[PEDBarchartViewController alloc]init];
-        //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
-        UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:pedPedoViewController];
-        
-//        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
-//        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
-        customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
-        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
-        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
-        tabBarBg.backgroundColor = [UIColor clearColor];
-        [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
-        [customerTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"footer.png"]];
-        //[customerTabBarController setTabBarTransparent:YES];
+        if(!customerTabBarController){
+            NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
+            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
+            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDic2 setObject:[UIImage imageNamed:@"pedo_normal.png"] forKey:@"Default"];
+            [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Highlighted"];
+            [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDic3 setObject:[UIImage imageNamed:@"target_normal.png"] forKey:@"Default"];
+            [imgDic3 setObject:[UIImage imageNamed:@"target_highlight.png"] forKey:@"Highlighted"];
+            [imgDic3 setObject:[UIImage imageNamed:@"target_highlight.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDic4 setObject:[UIImage imageNamed:@"bar_normal.png"] forKey:@"Default"];
+            [imgDic4 setObject:[UIImage imageNamed:@"bar_highlight.png"] forKey:@"Highlighted"];
+            [imgDic4 setObject:[UIImage imageNamed:@"bar_highlight.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDic5 setObject:[UIImage imageNamed:@"graphic_normal.png"] forKey:@"Default"];
+            [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Highlighted"];
+            [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Seleted"];
             
-
+            NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
+            
+            
+            //        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
+            //        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
+            //        tabBarController = [[UITabBarController alloc]init];
+            //        [tabBarController.view insertSubview:tabBarBg atIndex:0];
+            //        tabBarController.tabBar.frame = CGRectMake(0, self.window.frame.size.height-36, 320, 36);
+            //        // [tabBarController.tabBar setBounds:CGRectMake(0, self.window.frame.size.height-36, 320, 36)];
+            //        tabBarController.tabBar.backgroundColor = [UIColor clearColor];
+            //        tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"footer.png"];
+            pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
+            pedPedoViewController = [[PEDPedoViewController alloc]init];
+            pedTargetViewController = [[PEDTargetViewController alloc]init];
+            pedGraphsViewController = [[PEDGraphsViewController alloc]init];
+            pedBarchartViewController = [[PEDBarchartViewController alloc]init];
+            //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+            UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:pedPedoViewController];
+            
+            //        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
+            //        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
+            customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
+            UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+            tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
+            tabBarBg.backgroundColor = [UIColor clearColor];
+            [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
+            [customerTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"footer.png"]];
+            //[customerTabBarController setTabBarTransparent:YES];
+            
+            
+        }
+        //    tabBarController.selectedIndex = 1;
+        customerTabBarController.selectedIndex = 1;
+        [self swithView : customerTabBarController.view];
     }
-//    tabBarController.selectedIndex = 1;
-    customerTabBarController.selectedIndex = 1;
-    [self swithView : customerTabBarController.view];
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 //-(void) applicationDidFinishLaunching:(UIApplication *)application{
@@ -174,35 +199,52 @@ static PEDAppDelegate* _instance;
 //}
 
 -(void)restoreControllerData{
-    if(pedPedoViewController){
-        [pedPedoViewController initData];
+    @try {        
+        if(pedPedoViewController){
+            [pedPedoViewController initData];
+        }
+        if(pedTargetViewController){
+            [pedTargetViewController initData];
+        }
+        if(pedBarchartViewController){
+            [pedBarchartViewController initData];
+        }
+        if(pedGraphsViewController){
+            [pedGraphsViewController initData];
+        }
+        if(pedPedoDataViewController){
+            [pedPedoDataViewController initData];
+        }
     }
-    if(pedTargetViewController){
-        [pedTargetViewController initData];
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
     }
-    if(pedBarchartViewController){
-        [pedBarchartViewController initData];
-    }
-    if(pedGraphsViewController){
-        [pedGraphsViewController initData];
-    }
-    if(pedPedoDataViewController){
-        [pedPedoDataViewController initData];
+    @finally {
+        
     }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
-//    self.window.frame = CGRectMake(0, 20, 320, 460);
-    [[PEDDatabase getInstance] setupServerDatabase];
-    [AppConfig getInstance];    
-    _instance = self;
-    pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
-    //[self.window addSubview:pedMainViewController.view];
-    self.window.rootViewController = pedMainViewController;
-    [self.window makeKeyAndVisible];
-    // Override point for customization after application launch.
-    return YES;
+    @try {
+        [LogHelper setInitialLoggerByConfigFile:@"log4cocoa.properties"];
+        //    self.window.frame = CGRectMake(0, 20, 320, 460);
+        [[PEDDatabase getInstance] setupServerDatabase];
+        [AppConfig getInstance];    
+        _instance = self;
+        pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
+        //[self.window addSubview:pedMainViewController.view];
+        self.window.rootViewController = pedMainViewController;
+        [self.window makeKeyAndVisible];
+        // Override point for customization after application launch.
+        return YES;
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -221,7 +263,7 @@ static PEDAppDelegate* _instance;
         [customerTabBarController hidesTabBar:NO animated:YES]; 
     }
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*

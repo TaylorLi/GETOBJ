@@ -21,6 +21,6 @@
 #import "Definition.h"
 #import "AppConfig.h"
 #import "PEDPedometerCalcHelper.h"
-
+#import "LogHelper.h"
 #endif
 

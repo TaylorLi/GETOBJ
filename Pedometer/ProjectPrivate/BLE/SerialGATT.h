@@ -41,7 +41,9 @@
 @property (strong,nonatomic) CBUUID *serviceHeartRateDataUUID;
 @property (strong,nonatomic) NSTimer *scanTimer;
 @property (strong,nonatomic) NSTimer *connectingTimer;
-
+//最小信号强度
+@property (nonatomic) int lowRSSI;
+@property (nonatomic) int hightRSSI;
 
 
 #pragma mark - Methods for controlling the Bluetooth Smart Sensor

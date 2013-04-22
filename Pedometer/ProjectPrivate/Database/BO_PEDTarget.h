@@ -17,5 +17,7 @@
 
 
 -(PEDTarget *)queryTargetByUserId:(NSString *)userId;
+-(void)clearTargetData:(NSString *)targetId;
+-(PEDTarget *)clearBindingDevice:(PEDTarget *)target;
 
 @end

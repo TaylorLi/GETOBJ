@@ -38,19 +38,19 @@
 #pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView
+ {
+ }
+ */
 
 /*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
+ // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+ - (void)viewDidLoad
+ {
+ [super viewDidLoad];
+ }
+ */
 
 - (void)viewDidUnload
 {
@@ -60,7 +60,7 @@
 }
 
 -(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY
-{
+{    
     CGFloat pickerHeight = 40.0f;
     CGFloat width=[UIScreen mainScreen].bounds.size.width;
 	CGFloat x = originX;
@@ -111,35 +111,51 @@
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-    if(index!=3){
-        NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
-        [self reloadPickerToMidOfDate:date];
-    }   
+    @try {
+        if(index!=3){
+            NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+            [self reloadPickerToMidOfDate:date];
+        }   
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 -(void) reloadPickerToMidOfDate:(NSDate *)date
 {
-    monthArray=[[NSMutableArray alloc] initWithCapacity:7];
-    NSString *nowDateString = [UtilHelper formateDate:[NSDate date] withFormat:@"MMM yyyy"];
-    NSDate *selectedDate=date;
-    if(date){
-        selectedDate=date;
-    }
-    else{
-        selectedDate=[NSDate date];
-    }
-    NSDate *fromDate=[selectedDate addMonths:-3];
-    for (int i=0; i<7; i++) {
-        
-        NSString *dateString = [UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"];
-        [monthArray addObject:dateString];
-        if([dateString isEqualToString:nowDateString]){
-            break;
+    @try {
+        monthArray=[[NSMutableArray alloc] initWithCapacity:7];
+        NSString *nowDateString = [UtilHelper formateDate:[NSDate date] withFormat:@"MMM yyyy"];
+        NSDate *selectedDate=date;
+        if(date){
+            selectedDate=date;
         }
+        else{
+            selectedDate=[NSDate date];
+        }
+        NSDate *fromDate=[selectedDate addMonths:-3];
+        for (int i=0; i<7; i++) {
+            
+            NSString *dateString = [UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"];
+            [monthArray addObject:dateString];
+            if([dateString isEqualToString:nowDateString]){
+                break;
+            }
+            
+        }    
+        [monthSelectView reloadData];
+        [monthSelectView scrollToElement:3 animated:NO]; 
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
         
-    }    
-    [monthSelectView reloadData];
-    [monthSelectView scrollToElement:3 animated:NO]; 
+    }
 }
 
 @end

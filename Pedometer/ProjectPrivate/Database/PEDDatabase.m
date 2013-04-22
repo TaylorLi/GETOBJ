@@ -46,7 +46,7 @@ static PEDDatabase* instance;
                              @"CREATE TABLE IF NOT EXISTS [PEDUserInfo] ([userId] VARCHAR(36) PRIMARY KEY NOT NULL ,[userName] VARCHAR(50) not null,[age] INTEGER,[measureFormat] INTEGER,[stride] FLOAT,[height] FLOAT,[weight] float,[gender] INTEGER,[updateDate] TIMESTAMP,[isCurrentUser] BOOL)",@"PEDUserInfo",
                              @"CREATE TABLE IF NOT EXISTS [PEDPedometerData] ([dataId] VARCHAR(36) PRIMARY KEY NOT NULL ,[optDate] TIMESTAMP,[activeTime] float,[step] INTEGER,[distance] float,[calorie] FLOAT,[updateDate] TIMESTAMP,[targetId] VARCHAR(36))",@"PEDPedometerData",      
                               @"CREATE TABLE IF NOT EXISTS [PEDSleepData] ([dataId] VARCHAR(36) PRIMARY KEY NOT NULL ,[optDate] TIMESTAMP,[timeToBed] float,[timeToWakeup] float,[timeToFallSleep] float,[awakenTime] FLOAT,[inBedTime] FLOAT,[actualSleepTime] FLOAT,[updateDate] TIMESTAMP,[targetId] VARCHAR(36))",@"PEDSleepData", 
-                             @"CREATE TABLE IF NOT EXISTS [PEDTarget] ([targetId] VARCHAR(36) PRIMARY KEY NOT NULL ,[targetStep] VARCHAR(50) not null,[remainStep] INTEGER,[targetDistance] FLOAT,[remainDistance] FLOAT,[targetCalorie] FLOAT,[remainCalorie] float,[updateDate] TIMESTAMP,[userId] VARCHAR(36))",@"PEDTarget",
+                             @"CREATE TABLE IF NOT EXISTS [PEDTarget] ([targetId] VARCHAR(36) PRIMARY KEY NOT NULL ,[targetStep] VARCHAR(50) not null,[remainStep] INTEGER,[targetDistance] FLOAT,[remainDistance] FLOAT,[targetCalorie] FLOAT,[remainCalorie] float,[updateDate] TIMESTAMP,[userId] VARCHAR(36),[relatedDeviceUUID] VARCHAR(36),[relatedDeviceName] VARCHAR(100))",@"PEDTarget",
                              nil];
         for (NSString *tableName in array) {
             NSString *sql=[array objectForKey:tableName];
@@ -55,7 +55,19 @@ static PEDDatabase* instance;
                 NSLog(@"error to setup database:%@,sql:%@",tableName,sql);
                 return ;
             }                
-        }   
+        }  
+       NSArray *columns = [[Database getInstance] columnsOfTableByTableName:@"PEDTarget"];
+        if(![columns containsObject:@"relatedDeviceUUID"]){
+            NSArray *sqls=[[NSArray alloc] initWithObjects:
+            @"alter table PEDTarget add [relatedDeviceUUID] VARCHAR(36)",@"alter table PEDTarget add [relatedDeviceName] VARCHAR(36)",nil];
+            for (NSString *sql in sqls) {
+                BOOL res= [db executeUpdate:sql];
+                if(!res){                
+                    NSLog(@"error to setup database sql:%@",sql);
+                    return ;
+                }                
+            }  
+        }
     }];
 }
 -(void)dropDatabase

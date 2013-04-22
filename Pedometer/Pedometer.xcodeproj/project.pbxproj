@@ -172,6 +172,9 @@
 		DA03922A170FC6D4009B260B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA039229170FC6D4009B260B /* SoundsPlayer.m */; };
 		DA03922D170FC6E9009B260B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03922C170FC6E9009B260B /* AVFoundation.framework */; };
 		DA039231170FC988009B260B /* scrollerClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = DA039230170FC988009B260B /* scrollerClick.wav */; };
+		DA09367717242A7300737A53 /* log4cocoa.properties in Resources */ = {isa = PBXBuildFile; fileRef = DA09367617242A7300737A53 /* log4cocoa.properties */; };
+		DA09370817244A7200737A53 /* libLog4Cocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA09370717244A7200737A53 /* libLog4Cocoa.a */; };
+		DA09370F1724515A00737A53 /* alert-close.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09370E1724515A00737A53 /* alert-close.png */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
@@ -275,6 +278,7 @@
 		DAFB277B16E388E500181051 /* BleExchangeDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB277A16E388E500181051 /* BleExchangeDataContainer.m */; };
 		DAFBB96616E1C0B000441CE5 /* BleServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */; };
 		DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */; };
+		DAFBD3F117240BBF004AC1F9 /* LogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBD3F017240BBF004AC1F9 /* LogHelper.m */; };
 		DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
@@ -456,6 +460,42 @@
 		DA039229170FC6D4009B260B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../Util/SoundsPlayer.m; sourceTree = "<group>"; };
 		DA03922C170FC6E9009B260B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DA039230170FC988009B260B /* scrollerClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scrollerClick.wav; path = Sounds/scrollerClick.wav; sourceTree = "<group>"; };
+		DA09367617242A7300737A53 /* log4cocoa.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = log4cocoa.properties; path = ProjectPrivate/Misc/log4cocoa.properties; sourceTree = SOURCE_ROOT; };
+		DA0936E617244A2800737A53 /* L4AppenderAttachable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4AppenderAttachable.h; sourceTree = "<group>"; };
+		DA0936E717244A2800737A53 /* L4AppenderProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4AppenderProtocols.h; sourceTree = "<group>"; };
+		DA0936E817244A2800737A53 /* L4AppenderSkeleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4AppenderSkeleton.h; sourceTree = "<group>"; };
+		DA0936E917244A2800737A53 /* L4BasicConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4BasicConfigurator.h; sourceTree = "<group>"; };
+		DA0936EA17244A2800737A53 /* L4ConsoleAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4ConsoleAppender.h; sourceTree = "<group>"; };
+		DA0936EB17244A2800737A53 /* L4DailyRollingFileAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4DailyRollingFileAppender.h; sourceTree = "<group>"; };
+		DA0936EC17244A2800737A53 /* L4DenyAllFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4DenyAllFilter.h; sourceTree = "<group>"; };
+		DA0936ED17244A2800737A53 /* L4FileAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4FileAppender.h; sourceTree = "<group>"; };
+		DA0936EE17244A2800737A53 /* L4Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4Filter.h; sourceTree = "<group>"; };
+		DA0936EF17244A2800737A53 /* L4JSONLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4JSONLayout.h; sourceTree = "<group>"; };
+		DA0936F017244A2800737A53 /* L4Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4Layout.h; sourceTree = "<group>"; };
+		DA0936F117244A2800737A53 /* L4Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4Level.h; sourceTree = "<group>"; };
+		DA0936F217244A2800737A53 /* L4LevelMatchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LevelMatchFilter.h; sourceTree = "<group>"; };
+		DA0936F317244A2800737A53 /* L4LevelRangeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LevelRangeFilter.h; sourceTree = "<group>"; };
+		DA0936F417244A2800737A53 /* L4LogEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LogEvent.h; sourceTree = "<group>"; };
+		DA0936F517244A2800737A53 /* L4Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4Logger.h; sourceTree = "<group>"; };
+		DA0936F617244A2800737A53 /* L4LoggerNameMatchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LoggerNameMatchFilter.h; sourceTree = "<group>"; };
+		DA0936F717244A2800737A53 /* L4LoggerProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LoggerProtocols.h; sourceTree = "<group>"; };
+		DA0936F817244A2800737A53 /* L4LoggerStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LoggerStore.h; sourceTree = "<group>"; };
+		DA0936F917244A2800737A53 /* L4Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4Logging.h; sourceTree = "<group>"; };
+		DA0936FA17244A2800737A53 /* L4LogLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4LogLog.h; sourceTree = "<group>"; };
+		DA0936FB17244A2800737A53 /* L4PatternLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4PatternLayout.h; sourceTree = "<group>"; };
+		DA0936FC17244A2800737A53 /* L4Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4Properties.h; sourceTree = "<group>"; };
+		DA0936FD17244A2800737A53 /* L4PropertyConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4PropertyConfigurator.h; sourceTree = "<group>"; };
+		DA0936FE17244A2800737A53 /* L4RollingFileAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4RollingFileAppender.h; sourceTree = "<group>"; };
+		DA0936FF17244A2800737A53 /* L4RootLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4RootLogger.h; sourceTree = "<group>"; };
+		DA09370017244A2800737A53 /* L4SimpleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4SimpleLayout.h; sourceTree = "<group>"; };
+		DA09370117244A2800737A53 /* L4StringMatchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4StringMatchFilter.h; sourceTree = "<group>"; };
+		DA09370217244A2800737A53 /* L4WriterAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4WriterAppender.h; sourceTree = "<group>"; };
+		DA09370317244A2800737A53 /* L4XMLLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L4XMLLayout.h; sourceTree = "<group>"; };
+		DA09370417244A2800737A53 /* Log4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log4Cocoa.h; sourceTree = "<group>"; };
+		DA09370517244A2800737A53 /* Log4CocoaDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log4CocoaDefines.h; sourceTree = "<group>"; };
+		DA09370617244A2800737A53 /* NSObject+Log4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Log4Cocoa.h"; sourceTree = "<group>"; };
+		DA09370717244A7200737A53 /* libLog4Cocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLog4Cocoa.a; path = ../dependencies/Log4Cocoa/libLog4Cocoa.a; sourceTree = "<group>"; };
+		DA09370E1724515A00737A53 /* alert-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-close.png"; sourceTree = "<group>"; };
 		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
 		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
 		DA0C559A16D4FAE200940654 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerViewProtocol.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerViewProtocol.h"; sourceTree = "<group>"; };
@@ -703,6 +743,8 @@
 		DAFBB96516E1C0B000441CE5 /* BleServiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BleServiceInfo.m; sourceTree = "<group>"; };
 		DAFBB9E516E4FA5700C2221C /* NSDate+AddAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+AddAddition.h"; path = "../Util/NSDate+AddAddition.h"; sourceTree = "<group>"; };
 		DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+AddAddition.m"; path = "../Util/NSDate+AddAddition.m"; sourceTree = "<group>"; };
+		DAFBD3EF17240BBF004AC1F9 /* LogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogHelper.h; path = ../Util/LogHelper.h; sourceTree = "<group>"; };
+		DAFBD3F017240BBF004AC1F9 /* LogHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogHelper.m; path = ../Util/LogHelper.m; sourceTree = "<group>"; };
 		DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -722,6 +764,7 @@
 				DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */,
 				DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */,
 				DA667BEA16D272D700ED3A49 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				DA09370817244A7200737A53 /* libLog4Cocoa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +905,56 @@
 			name = Sound;
 			sourceTree = "<group>";
 		};
+		DA0935DF1724178A00737A53 /* Log4Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				DA09370717244A7200737A53 /* libLog4Cocoa.a */,
+				DA0936E517244A2800737A53 /* Log4CocoaHeaders */,
+			);
+			name = Log4Cocoa;
+			sourceTree = "<group>";
+		};
+		DA0936E517244A2800737A53 /* Log4CocoaHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				DA0936E617244A2800737A53 /* L4AppenderAttachable.h */,
+				DA0936E717244A2800737A53 /* L4AppenderProtocols.h */,
+				DA0936E817244A2800737A53 /* L4AppenderSkeleton.h */,
+				DA0936E917244A2800737A53 /* L4BasicConfigurator.h */,
+				DA0936EA17244A2800737A53 /* L4ConsoleAppender.h */,
+				DA0936EB17244A2800737A53 /* L4DailyRollingFileAppender.h */,
+				DA0936EC17244A2800737A53 /* L4DenyAllFilter.h */,
+				DA0936ED17244A2800737A53 /* L4FileAppender.h */,
+				DA0936EE17244A2800737A53 /* L4Filter.h */,
+				DA0936EF17244A2800737A53 /* L4JSONLayout.h */,
+				DA0936F017244A2800737A53 /* L4Layout.h */,
+				DA0936F117244A2800737A53 /* L4Level.h */,
+				DA0936F217244A2800737A53 /* L4LevelMatchFilter.h */,
+				DA0936F317244A2800737A53 /* L4LevelRangeFilter.h */,
+				DA0936F417244A2800737A53 /* L4LogEvent.h */,
+				DA0936F517244A2800737A53 /* L4Logger.h */,
+				DA0936F617244A2800737A53 /* L4LoggerNameMatchFilter.h */,
+				DA0936F717244A2800737A53 /* L4LoggerProtocols.h */,
+				DA0936F817244A2800737A53 /* L4LoggerStore.h */,
+				DA0936F917244A2800737A53 /* L4Logging.h */,
+				DA0936FA17244A2800737A53 /* L4LogLog.h */,
+				DA0936FB17244A2800737A53 /* L4PatternLayout.h */,
+				DA0936FC17244A2800737A53 /* L4Properties.h */,
+				DA0936FD17244A2800737A53 /* L4PropertyConfigurator.h */,
+				DA0936FE17244A2800737A53 /* L4RollingFileAppender.h */,
+				DA0936FF17244A2800737A53 /* L4RootLogger.h */,
+				DA09370017244A2800737A53 /* L4SimpleLayout.h */,
+				DA09370117244A2800737A53 /* L4StringMatchFilter.h */,
+				DA09370217244A2800737A53 /* L4WriterAppender.h */,
+				DA09370317244A2800737A53 /* L4XMLLayout.h */,
+				DA09370417244A2800737A53 /* Log4Cocoa.h */,
+				DA09370517244A2800737A53 /* Log4CocoaDefines.h */,
+				DA09370617244A2800737A53 /* NSObject+Log4Cocoa.h */,
+			);
+			name = Log4CocoaHeaders;
+			path = ../dependencies/Log4Cocoa/Log4CocoaHeaders;
+			sourceTree = "<group>";
+		};
 		DA0C559716D4FAD900940654 /* V8HorizontalPickerView Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +989,8 @@
 				DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */,
 				DAF844B316E6113D0085A81C /* NSData+ToHexAddition.h */,
 				DAF844B416E6113D0085A81C /* NSData+ToHexAddition.m */,
+				DAFBD3EF17240BBF004AC1F9 /* LogHelper.h */,
+				DAFBD3F017240BBF004AC1F9 /* LogHelper.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -1168,6 +1263,7 @@
 		DA6E9C5216CFB4F300F2453F /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DA09367617242A7300737A53 /* log4cocoa.properties */,
 				DACC06E716D263970062E2A8 /* main.m */,
 				DACC06E816D263970062E2A8 /* Pedometer-Info.plist */,
 				DACC06E916D263970062E2A8 /* Pedometer-Prefix.pch */,
@@ -1221,6 +1317,7 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				DA09370E1724515A00737A53 /* alert-close.png */,
 				6BD4A59A16ED54370023AA16 /* data_top_panel_trp.png */,
 				6BD4A59B16ED54370023AA16 /* data_top_panel_trp@2x.png */,
 				DACC770C16D92ED1008FCDA7 /* game_close_btn.png */,
@@ -1337,6 +1434,7 @@
 		DA6E9FDA16CFE15B00F2453F /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DA0935DF1724178A00737A53 /* Log4Cocoa */,
 				DA667B9C16D272D700ED3A49 /* CorePlot */,
 				DA667B7F16D2702900ED3A49 /* fmdb */,
 				DA667AE016D26D7D00ED3A49 /* SBJson */,
@@ -1719,6 +1817,8 @@
 				DA039231170FC988009B260B /* scrollerClick.wav in Resources */,
 				6B04EC7F1723470700DA21B5 /* pickerBG.png in Resources */,
 				6B04EC801723470700DA21B5 /* pickerBG@2x.png in Resources */,
+				DA09367717242A7300737A53 /* log4cocoa.properties in Resources */,
+				DA09370F1724515A00737A53 /* alert-close.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1805,6 +1905,7 @@
 				DAFB235416EB95F000E3E98C /* PEDPedoDataRowView.m in Sources */,
 				DA03922A170FC6D4009B260B /* SoundsPlayer.m in Sources */,
 				6B04EC811723470700DA21B5 /* PickerExtendView.m in Sources */,
+				DAFBD3F117240BBF004AC1F9 /* LogHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1890,6 +1991,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
+					"\"$(SRCROOT)/../dependencies/Log4Cocoa\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1918,6 +2020,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
+					"\"$(SRCROOT)/../dependencies/Log4Cocoa\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

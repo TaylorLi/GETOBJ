@@ -180,7 +180,7 @@
 
 {
     
-    NSLog(@"animation is start ...");
+    log4Info(@"animation is start ...");
     
 }
 
@@ -215,7 +215,7 @@
 -(void)handleSwipeDownStart:(CAAnimation *)anim
 
 {
-    NSLog(@"animation is start ...");
+    log4Info(@"animation is start ...");
 }
 
 
@@ -414,6 +414,7 @@
     [self initDataByDate:lastUploadDate];
 }
 - (void) initDataByDate:(NSDate *) date{
+    @try {
     NSDate *orginDate=[referenceDate copy];
     if(date){
         referenceDate=date;
@@ -435,9 +436,17 @@
         view.hidden=YES;
     }
     [self displayPedometerDetailByDate:referenceDate];
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }   
 }
 -(void)displayPedometerDetailByDate:(NSDate *)date
 {
+    @try {
     NSMutableArray *pedoMeterDataArray=[[NSMutableArray alloc] initWithCapacity:3];
     
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
@@ -455,7 +464,7 @@
         }        
     }
     if(pedoMeterDataArray != nil){
-        NSLog(@"%d", pedoMeterDataArray.count);
+        log4Info(@"%d", pedoMeterDataArray.count);
         PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
@@ -508,6 +517,13 @@
         }            
     }
     [self setDatePickerLabelHidden:NO];
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {

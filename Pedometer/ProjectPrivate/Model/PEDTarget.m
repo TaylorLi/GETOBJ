@@ -11,7 +11,7 @@
 
 @implementation PEDTarget
 
-@synthesize targetId,remainStep,targetStep,remainCalorie,targetCalorie,remainDistance,targetDistance,updateDate,userId,sleepDataCount,pedoDataCount;
+@synthesize targetId,remainStep,targetStep,remainCalorie,targetCalorie,remainDistance,targetDistance,updateDate,userId,sleepDataCount,pedoDataCount,relatedDeviceName,relatedDeviceUUID;
 
 -(id) initWithUserInfo:(PEDUserInfo*)user
 {

@@ -32,4 +32,20 @@ static BO_PEDTarget* instance;
 {
     return [self queryObjectBySql:@"select * from PEDTarget where userId=?" parameters:[[NSArray alloc] initWithObjects:userId, nil]];
 }
+
+-(void)clearTargetData:(NSString *)targetId
+{
+     [self executeNoQuery:@"delete from PEDSleepdata where targetId=?" parameters:[[NSArray alloc] initWithObjects:targetId, nil]];
+    [self executeNoQuery:@"delete from PEDPedometerData where targetId=?" parameters:[[NSArray alloc] initWithObjects:targetId, nil]];
+}
+
+-(PEDTarget *)clearBindingDevice:(PEDTarget *)target
+{
+    [self clearTargetData:target.targetId];
+    target.relatedDeviceName=nil;
+    target.relatedDeviceUUID=nil;
+    [self updateObject:target];
+    return target;
+}
+
 @end

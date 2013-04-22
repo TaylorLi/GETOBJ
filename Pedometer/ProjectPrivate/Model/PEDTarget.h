@@ -21,6 +21,8 @@
 @property (nonatomic,strong) NSString *userId;
 @property NSInteger sleepDataCount;
 @property NSInteger pedoDataCount;
+@property (nonatomic,strong) NSString *relatedDeviceUUID;
+@property (nonatomic,strong) NSString * relatedDeviceName;
 
 -(id) initWithUserInfo:(PEDUserInfo*)user;
 

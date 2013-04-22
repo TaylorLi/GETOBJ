@@ -138,98 +138,126 @@
 }
 
 - (void) initDataByDate:(NSDate *) date{
-    referenceDate=date;
-    if(referenceDate==nil)
-        referenceDate=[NSDate date];
-    PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
-    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
-    if(!currPedometerData){
-        currPedometerData=[[PEDPedometerData alloc] init];
-        currPedometerData.optDate=referenceDate;
+    @try {
+        referenceDate=date;
+        if(referenceDate==nil)
+            referenceDate=[NSDate date];
+        PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
+        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+        if(!currPedometerData){
+            currPedometerData=[[PEDPedometerData alloc] init];
+            currPedometerData.optDate=referenceDate;
+        }
+        lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+        lblUserName.text = userInfo.userName;
+        lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];        
+        lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
+        
+        int h, m, s;
+        h = (int)currPedometerData.activeTime / 3600;
+        m = (int)currPedometerData.activeTime % 3600 / 60;
+        s = (int)currPedometerData.activeTime % 3600 % 60;
+        m = m + round(s/60);
+        NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
+        lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d", h, m];
+        lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
+        lblDistanceAmount.text = [NSString stringWithFormat:@"%.2f", distance];
+        lblSpeedAmount.text = [NSString stringWithFormat:@"%.2f",[PEDPedometerCalcHelper round:[PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat] digit:2 ]];
+        lblPaceAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
+        lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
+        lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+        lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
+        [self reloadPickerToMidOfDate:referenceDate];    
     }
-    lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
-    lblUserName.text = userInfo.userName;
-    lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];        
-    lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
-    
-    int h, m, s;
-    h = (int)currPedometerData.activeTime / 3600;
-    m = (int)currPedometerData.activeTime % 3600 / 60;
-    s = (int)currPedometerData.activeTime % 3600 % 60;
-    m = m + round(s/60);
-    NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
-    lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d", h, m];
-    lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
-    lblDistanceAmount.text = [NSString stringWithFormat:@"%.2f", distance];
-    lblSpeedAmount.text = [NSString stringWithFormat:@"%.2f",[PEDPedometerCalcHelper round:[PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat] digit:2 ]];
-    lblPaceAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
-    lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
-    lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-    lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
-    [self reloadPickerToMidOfDate:referenceDate];    
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-    NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
-    if(index!=3){        
-        [self reloadPickerToMidOfDate:date];
-    }
-    NSDate *dateTo=[date addMonths:1];
-    if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:date]>=0){
-    }
-    else{
-        //判断是否属于同一个月，不是的话跳到指定月份
-        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
-        if(selectDate)
-            [self initDataByDate:selectDate];
-        else{
-            [self initDataByDate:date];
+    @try {
+        NSDate *date =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+        if(index!=3){        
+            [self reloadPickerToMidOfDate:date];
         }
+        NSDate *dateTo=[date addMonths:1];
+        if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:date]>=0){
+        }
+        else{
+            //判断是否属于同一个月，不是的话跳到指定月份
+            NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+            if(selectDate)
+                [self initDataByDate:selectDate];
+            else{
+                [self initDataByDate:date];
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
     }
 }
 
 -(void)horizontalPickerView:(V8HorizontalPickerView *)picker didDoubleClickElementAtIndex:(NSInteger)index {
-    //NSLog(@"----%d", index);
-    if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
-        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
-    }
-    pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
-
-    // pedPedoDataViewController.dayRemark = index;
-    NSDate *dateFrom =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
-    NSDate *dateTo=[dateFrom addMonths:1];
-    NSDate *selectedDate;
-    if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:dateFrom]>=0){
-        //
-        selectedDate=referenceDate;
-    }
-    else{
-        //不属于同一个月，不是的话跳到指定月份
-        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:dateFrom to:dateTo];
-        if(selectDate)
-            selectedDate=selectDate;
-        else{
-            NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
-            
-            selectedDate=lastUploadDate?lastUploadDate:[NSDate date];
+    @try {
+        //log4Info(@"----%d", index);
+        if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
+            [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
         }
-    }    
-    
-    [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
-    [pedPedoDataViewController initDataByDate: selectedDate];
+        pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
+        
+        // pedPedoDataViewController.dayRemark = index;
+        NSDate *dateFrom =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
+        NSDate *dateTo=[dateFrom addMonths:1];
+        NSDate *selectedDate;
+        if([referenceDate timeIntervalSinceDate:dateTo]<0 &&[referenceDate timeIntervalSinceDate:dateFrom]>=0){
+            //
+            selectedDate=referenceDate;
+        }
+        else{
+            //不属于同一个月，不是的话跳到指定月份
+            NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:dateFrom to:dateTo];
+            if(selectDate)
+                selectedDate=selectDate;
+            else{
+                NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+                
+                selectedDate=lastUploadDate?lastUploadDate:[NSDate date];
+            }
+        }    
+        
+        [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
+        [pedPedoDataViewController initDataByDate: selectedDate];
+    }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
+    }
 }
 
 
 -(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer 
 {
-    NSDate* nextDate =  [[BO_PEDPedometerData getInstance] getNextOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
+    //NSDate* nextDate =  [[BO_PEDPedometerData getInstance] getNextOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
+    NSDate* nextDate=[referenceDate addDays:1];
+    if([nextDate timeIntervalSinceNow]>0)
+        nextDate=nil;
     if(nextDate==nil)
         return;
     [self initDataByDate:nextDate];
 }
 -(void) showPedoDetailOfPrevDate:(UITapGestureRecognizer*)recognizer 
 {
-    NSDate *previosDate =   [[BO_PEDPedometerData getInstance] getPreviosOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
+    //NSDate *previosDate =   [[BO_PEDPedometerData getInstance] getPreviosOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
+    NSDate *previosDate=[referenceDate addDays:-1];
     if(previosDate==nil)
         return;
     [self initDataByDate:previosDate];

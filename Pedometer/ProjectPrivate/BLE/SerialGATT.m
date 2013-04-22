@@ -31,8 +31,19 @@
 @synthesize characteristicNotifyUUID,serviceHeartRateDataUUID;
 @synthesize scanTimer;
 @synthesize connectingTimer;
+@synthesize lowRSSI,hightRSSI;
 
 
+-(id) init
+{
+    self=[super init];
+    if(self){
+        lowRSSI=-135;
+        hightRSSI=-15;
+        return self;
+    }
+    return nil;
+}
 /*
  * (void) setup
  * enable CoreBluetooth CentralManager and set the delegate for SerialGATT
@@ -62,8 +73,11 @@
     }
     scanTimer = [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:delegate repeats:NO];
     // start Scanning
-    //[manager scanForPeripheralsWithServices:[[NSArray alloc] initWithObjects:[CBUUID UUIDWithString:@"deadf154-0000-0000-0000-0000deadf154"],nil] options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
-    [manager scanForPeripheralsWithServices:nil options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
+    //只扫描指定的服务外围设备
+    [manager scanForPeripheralsWithServices:[[NSArray alloc] initWithObjects:serviceHeartRateDataUUID,nil] options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
+    /*
+     [manager scanForPeripheralsWithServices:nil options:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerScanOptionAllowDuplicatesKey,nil]];
+    */
     NSLog(@"scanForPeripheralsWithServices begin,with UUID:%@",serviceHeartRateDataUUID);
     //[manager scanForPeripheralsWithServices:nil options:nil];
     
@@ -91,9 +105,15 @@
  */
 -(void) connect:(CBPeripheral *)peripheral
 {
+    if(peripheral!=nil){
     if (![peripheral isConnected]) {
         [manager connectPeripheral:peripheral options:nil];
         connectingTimer = [NSTimer scheduledTimerWithTimeInterval:(float)BLE_CONNECTION_TIMEOUT target:self selector:@selector(connectionTimeout:) userInfo:delegate repeats:NO];
+    }else{
+        [delegate sensorReadyToExchangeData]; 
+    }
+    }else{
+       [delegate failToExchangeData:@"Fail to connect this server."]; 
     }
 }
 
@@ -109,7 +129,9 @@
  */
 -(void) disconnect:(CBPeripheral *)peripheral
 {
-    [manager cancelPeripheralConnection:peripheral];
+    if(peripheral){
+        [manager cancelPeripheralConnection:peripheral];
+    }
 }
 
 #pragma mark - basic operations for SerialGATT service
@@ -215,6 +237,17 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"didDiscoverPeripheral:%@",peripheral);
+    NSLog(@"RSSI:%i",[RSSI intValue]);
+    if (RSSI.integerValue > hightRSSI) {
+         NSLog(@"Peripheral %@ RSSI is too hight:%i > %i",peripheral,peripheral.RSSI.intValue,hightRSSI);
+        return;
+    }
+    
+    // Reject if the signal strength is too low to be close enough (Close is around -22dB)
+    if (RSSI.integerValue < lowRSSI) {
+        NSLog(@"Peripheral %@ RSSI is too low:%i < %i",peripheral,RSSI.intValue,lowRSSI);
+        return;
+    }
     if (!peripherals) {
         peripherals = [[NSMutableArray alloc] initWithObjects:peripheral, nil];
         [delegate peripheralFound:peripheral advertisementData:advertisementData];
@@ -334,7 +367,7 @@
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    
+    NSLog(@"RSSI Update:%i",[peripheral.RSSI intValue]);
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error

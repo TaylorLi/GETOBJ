@@ -30,4 +30,6 @@
 - (NSArray *)queryList:(NSString *)sql parameters:(id)param processFunc:(FuncProcessBlock) rowFunc;
 -(BOOL)executeNoQuery:(NSString *)sql parameters:(id)param;
 - (id)queryScala:(NSString *)sql parameters:(id)param;
+
+
 @end

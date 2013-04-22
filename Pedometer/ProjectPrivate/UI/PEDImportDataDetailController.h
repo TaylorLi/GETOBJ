@@ -18,6 +18,7 @@
 
 @interface PEDImportDataDetailController : UIViewController<BTSmartSensorDelegate>
 {
+    
     NSMutableString *exchangeDebuglog;
 }
 
@@ -31,12 +32,13 @@
 @property (strong,nonatomic) BleExchangeDataContainer *exchangeContainer;
 @property (strong,nonatomic) NSTimer *exchangeTimer;
 @property (strong, nonatomic) IBOutlet UITextView *txtExchangeLog;
-
+@property ( nonatomic) BOOL isDebugMode;
 
 
 -(void) serialGATTCharValueUpdated:(NSString *)UUID value:(NSData *)data;
 
 -(void)backToPeriperialList;
 -(void)beginExchangeDataWithDevice;
+-(void)startToCommunicate;
 
 @end

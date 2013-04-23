@@ -22,7 +22,7 @@
 #import "PEDGraphsViewController.h"
 #import "CustomerTabBarController.h"
 #import "PEDImportDataViewController.h"
-
+#import "UncaughtExceptionHandler.h"
 
 @implementation PEDAppDelegate
 
@@ -236,7 +236,10 @@ static PEDAppDelegate* _instance;
         //[self.window addSubview:pedMainViewController.view];
         self.window.rootViewController = pedMainViewController;
         [self.window makeKeyAndVisible];
-        // Override point for customization after application launch.
+        // Override point for customization after application launch.        
+        [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
+        //[self performSelector:@selector(string) withObject:nil afterDelay:4.0];
+        [self performSelector:@selector(badAccess) withObject:nil afterDelay:2.0];
         return YES;
     }
     @catch (NSException *exception) {
@@ -304,6 +307,17 @@ static PEDAppDelegate* _instance;
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (void)installUncaughtExceptionHandler
+{
+	InstallUncaughtExceptionHandler();
+}
+
+- (void)badAccess
+{
+    NSArray *array=[[NSArray alloc] init];
+    NSLog(@"%@",[array objectAtIndex:1]);
 }
 
 @end

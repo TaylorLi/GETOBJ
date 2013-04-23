@@ -163,6 +163,7 @@
 		6BFF4A6216D5928800317887 /* setting_textbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFF4A5016D5928800317887 /* setting_textbox@2x.png */; };
 		6BFF4A6716D5947900317887 /* PEDMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BFF4A6516D5947900317887 /* PEDMainViewController.xib */; };
 		6BFF4A6816D5947900317887 /* PEDUserSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BFF4A6616D5947900317887 /* PEDUserSettingViewController.xib */; };
+		DA01D4B5172599130035D3A9 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA01D4B4172599130035D3A9 /* UncaughtExceptionHandler.m */; };
 		DA029A5F16D34E0A004E7764 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A5E16D34E0A004E7764 /* AppConfig.m */; };
 		DA029A6316D34E7C004E7764 /* AppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6216D34E7C004E7764 /* AppSetting.m */; };
 		DA029A6816D3C346004E7764 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6516D3C346004E7764 /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -173,7 +174,6 @@
 		DA03922D170FC6E9009B260B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03922C170FC6E9009B260B /* AVFoundation.framework */; };
 		DA039231170FC988009B260B /* scrollerClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = DA039230170FC988009B260B /* scrollerClick.wav */; };
 		DA09367717242A7300737A53 /* log4cocoa.properties in Resources */ = {isa = PBXBuildFile; fileRef = DA09367617242A7300737A53 /* log4cocoa.properties */; };
-		DA09370817244A7200737A53 /* libLog4Cocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA09370717244A7200737A53 /* libLog4Cocoa.a */; };
 		DA09370F1724515A00737A53 /* alert-close.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09370E1724515A00737A53 /* alert-close.png */; };
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
@@ -231,6 +231,35 @@
 		DA6EA02716CFE5AF00F2453F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02616CFE5AF00F2453F /* libz.dylib */; };
 		DA6EA02916CFE5B700F2453F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */; };
 		DA747E1616DDB1610007E0A7 /* PEDImportDataDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA747E1416DDB1610007E0A7 /* PEDImportDataDetailController.m */; };
+		DA7A132C1726D68D00BFA924 /* L4AppenderAttachable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A130E1726D68D00BFA924 /* L4AppenderAttachable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A132D1726D68D00BFA924 /* L4AppenderSkeleton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A130F1726D68D00BFA924 /* L4AppenderSkeleton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A132E1726D68D00BFA924 /* L4BasicConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13101726D68D00BFA924 /* L4BasicConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A132F1726D68D00BFA924 /* L4ConsoleAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13111726D68D00BFA924 /* L4ConsoleAppender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13301726D68D00BFA924 /* L4DailyRollingFileAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13121726D68D00BFA924 /* L4DailyRollingFileAppender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13311726D68D00BFA924 /* L4DenyAllFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13131726D68D00BFA924 /* L4DenyAllFilter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13321726D68D00BFA924 /* L4FileAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13141726D68D00BFA924 /* L4FileAppender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13331726D68D00BFA924 /* L4Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13151726D68D00BFA924 /* L4Filter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13341726D68D00BFA924 /* L4JSONLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13161726D68D00BFA924 /* L4JSONLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13351726D68D00BFA924 /* L4Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13171726D68D00BFA924 /* L4Layout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13361726D68D00BFA924 /* L4Level.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13181726D68D00BFA924 /* L4Level.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13371726D68D00BFA924 /* L4LevelMatchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13191726D68D00BFA924 /* L4LevelMatchFilter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13381726D68D00BFA924 /* L4LevelRangeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A131A1726D68D00BFA924 /* L4LevelRangeFilter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13391726D68D00BFA924 /* L4LogEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A131B1726D68D00BFA924 /* L4LogEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A133A1726D68D00BFA924 /* L4Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A131C1726D68D00BFA924 /* L4Logger.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A133B1726D68D00BFA924 /* L4LoggerNameMatchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A131D1726D68D00BFA924 /* L4LoggerNameMatchFilter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A133C1726D68D00BFA924 /* L4LoggerStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A131E1726D68D00BFA924 /* L4LoggerStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A133D1726D68D00BFA924 /* L4Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A131F1726D68D00BFA924 /* L4Logging.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A133E1726D68D00BFA924 /* L4LogLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13201726D68D00BFA924 /* L4LogLog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A133F1726D68D00BFA924 /* L4PatternLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13211726D68D00BFA924 /* L4PatternLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13401726D68D00BFA924 /* L4Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13221726D68D00BFA924 /* L4Properties.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13411726D68D00BFA924 /* L4PropertyConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13231726D68D00BFA924 /* L4PropertyConfigurator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13421726D68D00BFA924 /* L4RollingFileAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13241726D68D00BFA924 /* L4RollingFileAppender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13431726D68D00BFA924 /* L4RootLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13251726D68D00BFA924 /* L4RootLogger.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13441726D68D00BFA924 /* L4SimpleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13261726D68D00BFA924 /* L4SimpleLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13451726D68D00BFA924 /* L4StringMatchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13271726D68D00BFA924 /* L4StringMatchFilter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13461726D68D00BFA924 /* L4WriterAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13281726D68D00BFA924 /* L4WriterAppender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13471726D68D00BFA924 /* L4XMLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13291726D68D00BFA924 /* L4XMLLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7A13481726D68D00BFA924 /* NSObject+Log4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A132B1726D68D00BFA924 /* NSObject+Log4Cocoa.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DACC06C516D262FF0062E2A8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06C416D262FF0062E2A8 /* AlertView.m */; };
 		DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D916D2633F0062E2A8 /* InfoPlist.strings */; };
 		DACC06E116D2634F0062E2A8 /* PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */; };
@@ -443,6 +472,8 @@
 		6BFF4A5016D5928800317887 /* setting_textbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_textbox@2x.png"; sourceTree = "<group>"; };
 		6BFF4A6516D5947900317887 /* PEDMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDMainViewController.xib; path = ProjectPrivate/XIB/PEDMainViewController.xib; sourceTree = SOURCE_ROOT; };
 		6BFF4A6616D5947900317887 /* PEDUserSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDUserSettingViewController.xib; path = ProjectPrivate/XIB/PEDUserSettingViewController.xib; sourceTree = SOURCE_ROOT; };
+		DA01D4B3172599130035D3A9 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		DA01D4B4172599130035D3A9 /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		DA029A5D16D34E0A004E7764 /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ProjectPrivate/Misc/AppConfig.h; sourceTree = SOURCE_ROOT; };
 		DA029A5E16D34E0A004E7764 /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppConfig.m; path = ProjectPrivate/Misc/AppConfig.m; sourceTree = SOURCE_ROOT; };
 		DA029A6116D34E7C004E7764 /* AppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSetting.h; path = ProjectPrivate/Misc/AppSetting.h; sourceTree = SOURCE_ROOT; };
@@ -494,7 +525,6 @@
 		DA09370417244A2800737A53 /* Log4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log4Cocoa.h; sourceTree = "<group>"; };
 		DA09370517244A2800737A53 /* Log4CocoaDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log4CocoaDefines.h; sourceTree = "<group>"; };
 		DA09370617244A2800737A53 /* NSObject+Log4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Log4Cocoa.h"; sourceTree = "<group>"; };
-		DA09370717244A7200737A53 /* libLog4Cocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLog4Cocoa.a; path = ../dependencies/Log4Cocoa/libLog4Cocoa.a; sourceTree = "<group>"; };
 		DA09370E1724515A00737A53 /* alert-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-close.png"; sourceTree = "<group>"; };
 		DA0C559816D4FAE200940654 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8HorizontalPickerView.h; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.h"; sourceTree = "<group>"; };
 		DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8HorizontalPickerView.m; path = "../Submodules/V8HorizontalPickerView Classes/V8HorizontalPickerView.m"; sourceTree = "<group>"; };
@@ -666,6 +696,36 @@
 		DA6EA02816CFE5B700F2453F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
 		DA747E1316DDB1610007E0A7 /* PEDImportDataDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDImportDataDetailController.h; path = ProjectPrivate/UI/PEDImportDataDetailController.h; sourceTree = SOURCE_ROOT; };
 		DA747E1416DDB1610007E0A7 /* PEDImportDataDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataDetailController.m; path = ProjectPrivate/UI/PEDImportDataDetailController.m; sourceTree = SOURCE_ROOT; };
+		DA7A130E1726D68D00BFA924 /* L4AppenderAttachable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4AppenderAttachable.m; sourceTree = "<group>"; };
+		DA7A130F1726D68D00BFA924 /* L4AppenderSkeleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4AppenderSkeleton.m; sourceTree = "<group>"; };
+		DA7A13101726D68D00BFA924 /* L4BasicConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4BasicConfigurator.m; sourceTree = "<group>"; };
+		DA7A13111726D68D00BFA924 /* L4ConsoleAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4ConsoleAppender.m; sourceTree = "<group>"; };
+		DA7A13121726D68D00BFA924 /* L4DailyRollingFileAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4DailyRollingFileAppender.m; sourceTree = "<group>"; };
+		DA7A13131726D68D00BFA924 /* L4DenyAllFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4DenyAllFilter.m; sourceTree = "<group>"; };
+		DA7A13141726D68D00BFA924 /* L4FileAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4FileAppender.m; sourceTree = "<group>"; };
+		DA7A13151726D68D00BFA924 /* L4Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4Filter.m; sourceTree = "<group>"; };
+		DA7A13161726D68D00BFA924 /* L4JSONLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4JSONLayout.m; sourceTree = "<group>"; };
+		DA7A13171726D68D00BFA924 /* L4Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4Layout.m; sourceTree = "<group>"; };
+		DA7A13181726D68D00BFA924 /* L4Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4Level.m; sourceTree = "<group>"; };
+		DA7A13191726D68D00BFA924 /* L4LevelMatchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4LevelMatchFilter.m; sourceTree = "<group>"; };
+		DA7A131A1726D68D00BFA924 /* L4LevelRangeFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4LevelRangeFilter.m; sourceTree = "<group>"; };
+		DA7A131B1726D68D00BFA924 /* L4LogEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4LogEvent.m; sourceTree = "<group>"; };
+		DA7A131C1726D68D00BFA924 /* L4Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4Logger.m; sourceTree = "<group>"; };
+		DA7A131D1726D68D00BFA924 /* L4LoggerNameMatchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4LoggerNameMatchFilter.m; sourceTree = "<group>"; };
+		DA7A131E1726D68D00BFA924 /* L4LoggerStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4LoggerStore.m; sourceTree = "<group>"; };
+		DA7A131F1726D68D00BFA924 /* L4Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4Logging.m; sourceTree = "<group>"; };
+		DA7A13201726D68D00BFA924 /* L4LogLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4LogLog.m; sourceTree = "<group>"; };
+		DA7A13211726D68D00BFA924 /* L4PatternLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4PatternLayout.m; sourceTree = "<group>"; };
+		DA7A13221726D68D00BFA924 /* L4Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4Properties.m; sourceTree = "<group>"; };
+		DA7A13231726D68D00BFA924 /* L4PropertyConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4PropertyConfigurator.m; sourceTree = "<group>"; };
+		DA7A13241726D68D00BFA924 /* L4RollingFileAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4RollingFileAppender.m; sourceTree = "<group>"; };
+		DA7A13251726D68D00BFA924 /* L4RootLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4RootLogger.m; sourceTree = "<group>"; };
+		DA7A13261726D68D00BFA924 /* L4SimpleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4SimpleLayout.m; sourceTree = "<group>"; };
+		DA7A13271726D68D00BFA924 /* L4StringMatchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4StringMatchFilter.m; sourceTree = "<group>"; };
+		DA7A13281726D68D00BFA924 /* L4WriterAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4WriterAppender.m; sourceTree = "<group>"; };
+		DA7A13291726D68D00BFA924 /* L4XMLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4XMLLayout.m; sourceTree = "<group>"; };
+		DA7A132A1726D68D00BFA924 /* Log4Cocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Log4Cocoa-Prefix.pch"; sourceTree = "<group>"; };
+		DA7A132B1726D68D00BFA924 /* NSObject+Log4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Log4Cocoa.m"; sourceTree = "<group>"; };
 		DACC06C316D262FF0062E2A8 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../Controls/GET/AlertView.h; sourceTree = "<group>"; };
 		DACC06C416D262FF0062E2A8 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertView.m; path = ../Controls/GET/AlertView.m; sourceTree = "<group>"; };
 		DACC06DA16D2633F0062E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ProjectPrivate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -764,7 +824,6 @@
 				DA6E9C1F16CFB2F900F2453F /* Foundation.framework in Frameworks */,
 				DA6E9C2116CFB2F900F2453F /* CoreGraphics.framework in Frameworks */,
 				DA667BEA16D272D700ED3A49 /* libCorePlot-CocoaTouch.a in Frameworks */,
-				DA09370817244A7200737A53 /* libLog4Cocoa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,6 +941,16 @@
 			name = frontpage;
 			sourceTree = "<group>";
 		};
+		DA01D4B2172599130035D3A9 /* UncatchException */ = {
+			isa = PBXGroup;
+			children = (
+				DA01D4B3172599130035D3A9 /* UncaughtExceptionHandler.h */,
+				DA01D4B4172599130035D3A9 /* UncaughtExceptionHandler.m */,
+			);
+			name = UncatchException;
+			path = ../dependencies/UncatchException;
+			sourceTree = "<group>";
+		};
 		DA029A7216D3C62C004E7764 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,7 +977,7 @@
 		DA0935DF1724178A00737A53 /* Log4Cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				DA09370717244A7200737A53 /* libLog4Cocoa.a */,
+				DA7A130D1726D68D00BFA924 /* Class */,
 				DA0936E517244A2800737A53 /* Log4CocoaHeaders */,
 			);
 			name = Log4Cocoa;
@@ -1434,6 +1503,7 @@
 		DA6E9FDA16CFE15B00F2453F /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				DA01D4B2172599130035D3A9 /* UncatchException */,
 				DA0935DF1724178A00737A53 /* Log4Cocoa */,
 				DA667B9C16D272D700ED3A49 /* CorePlot */,
 				DA667B7F16D2702900ED3A49 /* fmdb */,
@@ -1465,6 +1535,44 @@
 				DAF9018D16DF9103002BD1EB /* GETUIScrollView.m */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		DA7A130D1726D68D00BFA924 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				DA7A130E1726D68D00BFA924 /* L4AppenderAttachable.m */,
+				DA7A130F1726D68D00BFA924 /* L4AppenderSkeleton.m */,
+				DA7A13101726D68D00BFA924 /* L4BasicConfigurator.m */,
+				DA7A13111726D68D00BFA924 /* L4ConsoleAppender.m */,
+				DA7A13121726D68D00BFA924 /* L4DailyRollingFileAppender.m */,
+				DA7A13131726D68D00BFA924 /* L4DenyAllFilter.m */,
+				DA7A13141726D68D00BFA924 /* L4FileAppender.m */,
+				DA7A13151726D68D00BFA924 /* L4Filter.m */,
+				DA7A13161726D68D00BFA924 /* L4JSONLayout.m */,
+				DA7A13171726D68D00BFA924 /* L4Layout.m */,
+				DA7A13181726D68D00BFA924 /* L4Level.m */,
+				DA7A13191726D68D00BFA924 /* L4LevelMatchFilter.m */,
+				DA7A131A1726D68D00BFA924 /* L4LevelRangeFilter.m */,
+				DA7A131B1726D68D00BFA924 /* L4LogEvent.m */,
+				DA7A131C1726D68D00BFA924 /* L4Logger.m */,
+				DA7A131D1726D68D00BFA924 /* L4LoggerNameMatchFilter.m */,
+				DA7A131E1726D68D00BFA924 /* L4LoggerStore.m */,
+				DA7A131F1726D68D00BFA924 /* L4Logging.m */,
+				DA7A13201726D68D00BFA924 /* L4LogLog.m */,
+				DA7A13211726D68D00BFA924 /* L4PatternLayout.m */,
+				DA7A13221726D68D00BFA924 /* L4Properties.m */,
+				DA7A13231726D68D00BFA924 /* L4PropertyConfigurator.m */,
+				DA7A13241726D68D00BFA924 /* L4RollingFileAppender.m */,
+				DA7A13251726D68D00BFA924 /* L4RootLogger.m */,
+				DA7A13261726D68D00BFA924 /* L4SimpleLayout.m */,
+				DA7A13271726D68D00BFA924 /* L4StringMatchFilter.m */,
+				DA7A13281726D68D00BFA924 /* L4WriterAppender.m */,
+				DA7A13291726D68D00BFA924 /* L4XMLLayout.m */,
+				DA7A132A1726D68D00BFA924 /* Log4Cocoa-Prefix.pch */,
+				DA7A132B1726D68D00BFA924 /* NSObject+Log4Cocoa.m */,
+			);
+			name = Class;
+			path = ../dependencies/Log4Cocoa/Class;
 			sourceTree = "<group>";
 		};
 		DA903D0116D1354700DACDBB /* XIB */ = {
@@ -1906,6 +2014,36 @@
 				DA03922A170FC6D4009B260B /* SoundsPlayer.m in Sources */,
 				6B04EC811723470700DA21B5 /* PickerExtendView.m in Sources */,
 				DAFBD3F117240BBF004AC1F9 /* LogHelper.m in Sources */,
+				DA01D4B5172599130035D3A9 /* UncaughtExceptionHandler.m in Sources */,
+				DA7A132C1726D68D00BFA924 /* L4AppenderAttachable.m in Sources */,
+				DA7A132D1726D68D00BFA924 /* L4AppenderSkeleton.m in Sources */,
+				DA7A132E1726D68D00BFA924 /* L4BasicConfigurator.m in Sources */,
+				DA7A132F1726D68D00BFA924 /* L4ConsoleAppender.m in Sources */,
+				DA7A13301726D68D00BFA924 /* L4DailyRollingFileAppender.m in Sources */,
+				DA7A13311726D68D00BFA924 /* L4DenyAllFilter.m in Sources */,
+				DA7A13321726D68D00BFA924 /* L4FileAppender.m in Sources */,
+				DA7A13331726D68D00BFA924 /* L4Filter.m in Sources */,
+				DA7A13341726D68D00BFA924 /* L4JSONLayout.m in Sources */,
+				DA7A13351726D68D00BFA924 /* L4Layout.m in Sources */,
+				DA7A13361726D68D00BFA924 /* L4Level.m in Sources */,
+				DA7A13371726D68D00BFA924 /* L4LevelMatchFilter.m in Sources */,
+				DA7A13381726D68D00BFA924 /* L4LevelRangeFilter.m in Sources */,
+				DA7A13391726D68D00BFA924 /* L4LogEvent.m in Sources */,
+				DA7A133A1726D68D00BFA924 /* L4Logger.m in Sources */,
+				DA7A133B1726D68D00BFA924 /* L4LoggerNameMatchFilter.m in Sources */,
+				DA7A133C1726D68D00BFA924 /* L4LoggerStore.m in Sources */,
+				DA7A133D1726D68D00BFA924 /* L4Logging.m in Sources */,
+				DA7A133E1726D68D00BFA924 /* L4LogLog.m in Sources */,
+				DA7A133F1726D68D00BFA924 /* L4PatternLayout.m in Sources */,
+				DA7A13401726D68D00BFA924 /* L4Properties.m in Sources */,
+				DA7A13411726D68D00BFA924 /* L4PropertyConfigurator.m in Sources */,
+				DA7A13421726D68D00BFA924 /* L4RollingFileAppender.m in Sources */,
+				DA7A13431726D68D00BFA924 /* L4RootLogger.m in Sources */,
+				DA7A13441726D68D00BFA924 /* L4SimpleLayout.m in Sources */,
+				DA7A13451726D68D00BFA924 /* L4StringMatchFilter.m in Sources */,
+				DA7A13461726D68D00BFA924 /* L4WriterAppender.m in Sources */,
+				DA7A13471726D68D00BFA924 /* L4XMLLayout.m in Sources */,
+				DA7A13481726D68D00BFA924 /* NSObject+Log4Cocoa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

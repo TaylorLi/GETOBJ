@@ -239,7 +239,6 @@ static PEDAppDelegate* _instance;
         // Override point for customization after application launch.        
         [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
         //[self performSelector:@selector(string) withObject:nil afterDelay:4.0];
-        [self performSelector:@selector(badAccess) withObject:nil afterDelay:2.0];
         return YES;
     }
     @catch (NSException *exception) {
@@ -312,12 +311,6 @@ static PEDAppDelegate* _instance;
 - (void)installUncaughtExceptionHandler
 {
 	InstallUncaughtExceptionHandler();
-}
-
-- (void)badAccess
-{
-    NSArray *array=[[NSArray alloc] init];
-    NSLog(@"%@",[array objectAtIndex:1]);
 }
 
 @end

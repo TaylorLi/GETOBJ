@@ -18,15 +18,21 @@
 
 //- (CGFloat)heightForPickerView:(PickerExtendView *) pickerView;
 
-- (CGSize)sizeForPickerView: (PickerExtendView *) pickerView;
+- (CGSize)sizeForPickerView: (PickerExtendView *) pickerView; //default [30.0f, 20.0f]
 
-- (CGSize)sizeForRowInPickerView:(PickerExtendView *) pickerView;
+//- (CGSize)sizeForRowInPickerView:(PickerExtendView *) pickerView;
 
 //- (CGFloat)widthForPickerView:(PickerExtendView *) pickerView;
 
 - (CGFloat)paddingForComponents:(PickerExtendView *) pickerView;
 
 - (UIImage *)backgroundImageForPickerView:(PickerExtendView *) pickerView;
+
+- (UIImage *)backgroundImageForShadeRow:(PickerExtendView *) pickerView;
+
+- (CGFloat)alphaForShadeRow:(PickerExtendView *) pickerView;
+
+- (NSInteger)rowNumberForShadeRow:(PickerExtendView *) pickerView;
 
 //- (UIImage *)backgroundImageForSelectRowInPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex;
 
@@ -54,7 +60,8 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(PickerExtendView *)pickerView;              // Default 1 
 
-- (NSInteger)numberOfRowsToShowForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex;  // Default 1 
+- (NSInteger)numberOfRowsToShowForPickerView:(PickerExtendView *) pickerView;  // Default 1 
+//- (NSInteger)numberOfRowsToShowForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex;  // Default 1 
 
 - (NSInteger)maxNumberOfRowsForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex;  // Default 1
 

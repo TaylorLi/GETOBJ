@@ -710,7 +710,7 @@
     return [inchFeetDataDictionary count];
 }
 
-- (NSInteger)numberOfRowsToShowForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
+- (NSInteger)numberOfRowsToShowForPickerView:(PickerExtendView *) pickerView{
     return 1;
 }
 
@@ -718,12 +718,12 @@
     return [[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:componentIndex]] count] ;
 }
 
-- (CGSize)sizeForRowInPickerView:(PickerExtendView *) pickerView{
-    return CGSizeMake(35.0f, 15.0f);
-}
+//- (CGSize)sizeForRowInPickerView:(PickerExtendView *) pickerView{
+//    return CGSizeMake(35.0f, 15.0f);
+//}
 
 - (CGFloat)paddingForComponents:(PickerExtendView *) pickerView{
-    return 2.0f;
+    return 1.0f;
 }
 
 - (UIImage *)backgroundImageForPickerView:(PickerExtendView *) pickerView{
@@ -778,4 +778,16 @@
 - (UIColor *)textColorForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
     return [UIColor whiteColor];
 }
+
+//- (UIImage *)backgroundImageForShadeRow:(PickerExtendView *) pickerView{
+//    return [UIImage imageNamed:@"distance_button.png"];
+//}
+//
+//- (CGFloat)alphaForShadeRow:(PickerExtendView *) pickerView{
+//    return 0.4f;
+//}
+//
+//- (NSInteger)rowNumberForShadeRow:(PickerExtendView *) pickerView{
+//    return 1;
+//}
 @end

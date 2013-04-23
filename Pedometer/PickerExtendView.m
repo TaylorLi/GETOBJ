@@ -14,7 +14,8 @@
     CGSize pvSize;
     CGSize rowSize;
     NSMutableArray *selectRowArr;
-    NSMutableArray *numberOfRowsToShowArr;
+//    NSMutableArray *numberOfRowsToShowArr;
+    NSInteger shadeRowNumber;
 //    NSMutableArray *maxNumberOfRowsInComponentArr;
 }
 -(void) initComponent;
@@ -58,37 +59,43 @@
                                                     action:@selector(panGestureHandler:)];      
     [self addGestureRecognizer:panGestureRecognizer]; 
     
-    
     padding4Components = 0;
-    rowSize = CGSizeMake(50.0f, 30.0f);
+    pvSize = CGSizeMake(30.0f, 20.0f);
     numberOfComponents = 1;
     maxNumberOfRowsToShowInComponent = 1;
+    shadeRowNumber = 0;
     if([self.delegate respondsToSelector:@selector(paddingForComponents:)]){
         padding4Components = [self.delegate paddingForComponents:self];
     }
-    if([self.delegate respondsToSelector:@selector(sizeForRowInPickerView:)]){
-        rowSize = [self.delegate sizeForRowInPickerView:self];
-    }
+//    if([self.delegate respondsToSelector:@selector(sizeForRowInPickerView:)]){
+//        rowSize = [self.delegate sizeForRowInPickerView:self];
+//    }
     if([self.datasource respondsToSelector:@selector(numberOfComponentsInPickerView:)]){
         numberOfComponents = [self.datasource numberOfComponentsInPickerView:self];
     }
-    if([self.datasource respondsToSelector:@selector(numberOfRowsToShowForPickerView:atComponentIndex:)]){
-        for (int i=0; i<numberOfComponents; i++) {
-            NSInteger numberOfRowsInComponent = [self.datasource numberOfRowsToShowForPickerView:self atComponentIndex:i];
-            if(maxNumberOfRowsToShowInComponent < numberOfRowsInComponent){
-                maxNumberOfRowsToShowInComponent = numberOfRowsInComponent;
-            }
-        }
+    
+//    numberOfRowsToShowArr = [[NSMutableArray alloc]initWithCapacity:numberOfComponents];
+    
+    if([self.datasource respondsToSelector:@selector(numberOfRowsToShowForPickerView:)]){
+//        for (int i=0; i<numberOfComponents; i++) {
+//            NSInteger numberOfRowsToShowInComponent = [self.datasource numberOfRowsToShowForPickerView:self];
+//            [numberOfRowsToShowArr addObject:[NSNumber numberWithInt:numberOfRowsToShowInComponent]];
+//            
+//            if(maxNumberOfRowsToShowInComponent < numberOfRowsToShowInComponent){
+                maxNumberOfRowsToShowInComponent = [self.datasource numberOfRowsToShowForPickerView:self];
+//            }
+//        }
     }
     if([self.delegate respondsToSelector:@selector(sizeForPickerView:)]){
         pvSize = [self.delegate sizeForPickerView:self];
-    }else{
-        pvSize = CGSizeMake(rowSize.width * numberOfComponents + (numberOfComponents - 1) * padding4Components, rowSize.height * maxNumberOfRowsToShowInComponent);
     }
+//    else{
+//        pvSize = CGSizeMake(rowSize.width * numberOfComponents + (numberOfComponents - 1) * padding4Components, rowSize.height * maxNumberOfRowsToShowInComponent);
+//    }
+    rowSize = CGSizeMake((pvSize.width - (numberOfComponents - 1) * padding4Components) / numberOfComponents, pvSize.height / maxNumberOfRowsToShowInComponent);
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, pvSize.width, pvSize.height);
     self.clipsToBounds = YES;
-//    self.backgroundColor = [UIColor yellowColor];
-//    NSLog(@"%f-%f-%f-%f", self.frame.origin.x, self.frame.origin.y, rowSize.width * numberOfComponents + (numberOfComponents - 1) * padding4Components, rowSize.height * maxNumberOfRowsToShowInComponent);
+
     if([self.delegate respondsToSelector:@selector(backgroundColorForPickerView:)]){
         self.backgroundColor = [self.delegate backgroundColorForPickerView:self];
     }
@@ -98,33 +105,42 @@
         backgroundImageView.image = [self.delegate backgroundImageForPickerView:self];
         [self addSubview:backgroundImageView];
     }
+    if([self.delegate respondsToSelector:@selector(rowNumberForShadeRow:)]){
+        shadeRowNumber = [self.delegate rowNumberForShadeRow:self];
+    }
+    if(shadeRowNumber >= maxNumberOfRowsToShowInComponent){
+        shadeRowNumber = maxNumberOfRowsToShowInComponent - 1;
+    }
     
     scrollViews = [[NSMutableArray alloc] init];
     selectRowArr = [[NSMutableArray alloc] initWithCapacity:numberOfComponents];
-    numberOfRowsToShowArr = [[NSMutableArray alloc]initWithCapacity:numberOfComponents];
 //    maxNumberOfRowsInComponentArr = [[NSMutableArray alloc]initWithCapacity:numberOfComponents];
     
-    CGFloat x4Components = 0;
+    CGFloat x4Components = [self paddingLeft4Component];
     for (int i=0; i<numberOfComponents; i++) {
         [selectRowArr addObject:[NSNumber  numberWithInt:0]]; 
 
 //        [maxNumberOfRowsInComponentArr addObject:[NSNumber  numberWithInt:0]];
         
-        NSInteger numberOfRowsToShowInComponent = 1;
-        if([self.datasource respondsToSelector:@selector(numberOfRowsToShowForPickerView:atComponentIndex:)]){
-            numberOfRowsToShowInComponent = [self.datasource numberOfRowsToShowForPickerView:self atComponentIndex:i];
-        }
-        [numberOfRowsToShowArr addObject:[NSNumber numberWithInt:numberOfRowsToShowInComponent]];
-        UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake([self paddingLeft4Component] + x4Components, [self paddingTop4Component], rowSize.width, numberOfRowsToShowInComponent * rowSize.height)];
+        UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(x4Components, [self paddingTop4Component] + shadeRowNumber * rowSize.height, rowSize.width, rowSize.height)];
 
-        x4Components += (i== 0 ? [self paddingTop4Component] : 0) + rowSize.width + padding4Components;
+        x4Components += rowSize.width + padding4Components;
         
         [scrollViews addObject:scrollView];
         scrollView.delegate = self;       
         [self addSubview:scrollView];
     }
     
-    
+    if([self.delegate respondsToSelector:@selector(backgroundImageForShadeRow:)]){
+        UIImageView *selectBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, [self paddingTop4Component] + shadeRowNumber * rowSize.height, pvSize.width, rowSize.height)];
+        selectBG.image = [self.delegate backgroundImageForShadeRow:self];
+        if([self.delegate respondsToSelector:@selector(alphaForShadeRow:)]){
+            selectBG.alpha = [self.delegate alphaForShadeRow:self];
+        }else{
+            selectBG.alpha = 0.5;
+        }
+        [self addSubview:selectBG];
+    }
 }
 
 - (void) reloadData{
@@ -148,7 +164,7 @@
 
         for (int j=0; j<maxNumberOfRowsInComponent; j++) {
             NSString *title = [self.datasource pickerView:self titleForRow:j forComponent:i];
-            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height / [[numberOfRowsToShowArr objectAtIndex: i] intValue])];
+            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
             label.backgroundColor = [UIColor clearColor];
             if([self.delegate respondsToSelector:@selector(textColorForPickerView:atComponentIndex:)]){
                 label.textColor = [self.delegate textColorForPickerView:self atComponentIndex:i];
@@ -173,10 +189,10 @@
             label.frame = frame;
             [scrollView addSubview:label];
         }
-        NSInteger numberOfRowToShow = [[numberOfRowsToShowArr objectAtIndex:i] intValue];
-        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height/ numberOfRowToShow * (maxNumberOfRowsInComponent+numberOfRowToShow-1));
+
+        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height * maxNumberOfRowsInComponent);
         scrollView.pagingEnabled = YES;
-        scrollView.clipsToBounds = YES;
+        scrollView.clipsToBounds = NO;
         scrollView.scrollEnabled = YES;
         scrollView.delegate = self;
         
@@ -204,7 +220,7 @@
             break;
         }
     }
-    NSInteger page = scrollView.contentOffset.y / (scrollView.bounds.size.height / [[numberOfRowsToShowArr objectAtIndex:componentIndex] intValue]);
+    NSInteger page = scrollView.contentOffset.y / scrollView.bounds.size.height;
     [selectRowArr replaceObjectAtIndex:componentIndex withObject:[NSNumber numberWithInt:page]];
 
     if([self.delegate respondsToSelector:@selector(pickerViewDidChangeValue:seletedRowIndex:atComponentIndex:)]){

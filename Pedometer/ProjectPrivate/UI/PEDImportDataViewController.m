@@ -95,6 +95,7 @@
         btnReSelectDevice.hidden=NO;
     }
     else{
+        lblTopTip.text=@"Select device to sync data";
         onlyPeripheralUUID=nil;
         lblConnectDeviceNameTitle.hidden=YES;
         lblConnectDeviceUUIDTitle.hidden=YES;

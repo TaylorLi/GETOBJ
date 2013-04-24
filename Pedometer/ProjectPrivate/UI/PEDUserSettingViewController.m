@@ -762,6 +762,7 @@
         case 0:
             rowIndex = [self getIndexOfInchFeetDataWithKey:[NSNumber numberWithInt:0] andValue:baseInch4English];
             [self reloadInchFeetDataWithRowIndex : rowIndex];
+            currRow4Inch = rowIndex;
             break;
         case 1:
             rowIndex = [self getIndexOfInchFeetDataWithKey:[NSNumber numberWithInt:1] andValue:baseFeet4English];

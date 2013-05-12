@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "V8HorizontalPickerView.h"
 #import "V8HorizontalPickerViewProtocol.h"
+@class SwitchViewController;
 
 @interface PEDUIBaseViewController : UIViewController<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>
 {
@@ -16,9 +17,11 @@
 }
 
 @property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
+@property(assign,nonatomic)SwitchViewController *controlContainer;
 
 -(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY;
 - (IBAction)clickToConnectDevice:(id)sender;
 -(void) reloadPickerToMidOfDate:(NSDate *)date;
-
+- (IBAction)swithToPedoView:(id)sender;
+-(IBAction)swithToSleepView:(id)sender;
 @end

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) PEDPedoDataViewController *pedPedoDataViewController;
 @property (strong, nonatomic) PEDPedoViewController *pedPedoViewController;
 @property (strong, nonatomic) PEDTargetViewController *pedTargetViewController;
+@property (strong, nonatomic) PEDTargetViewController *sleepTargetViewController;
 @property (strong, nonatomic) PEDUserSettingViewController *pedUserSettingViewController;
 @property (strong, nonatomic) PEDGraphsViewController *pedGraphsViewController;
 @property (strong, nonatomic) CustomerTabBarController *customerTabBarController;

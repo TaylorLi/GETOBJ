@@ -23,11 +23,15 @@
 #import "CustomerTabBarController.h"
 #import "PEDImportDataViewController.h"
 #import "UncaughtExceptionHandler.h"
+#import "SwitchViewController.h"
 
 @implementation PEDAppDelegate
 
 @synthesize window = _window;
 @synthesize pedBacktoMainViewController,pedBarchartViewController,pedGraphsViewController,pedMainViewController,pedPedoViewController,pedUserSettingViewController,pedTargetViewController,pedPedoDataViewController,pedImportDataViewController,pedAvailPerialViewController,importDataViewController;
+
+@synthesize sleepTargetViewController;
+
 @synthesize customerTabBarController;
 
 static PEDAppDelegate* _instance;
@@ -113,11 +117,11 @@ static PEDAppDelegate* _instance;
     }
 }
 
--(void)hideImportDataViewAndShowTabView
+-(void)hideImportDataViewAndShowTabView:(NSDate *)currentDate
 {
+    [self restoreControllerData:currentDate];
     importDataViewController = nil;
     pedImportDataViewController = nil;
-    [self restoreControllerData];
     [self swithView : customerTabBarController.view];
 }
 
@@ -160,6 +164,8 @@ static PEDAppDelegate* _instance;
             pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
             pedPedoViewController = [[PEDPedoViewController alloc]init];
             pedTargetViewController = [[PEDTargetViewController alloc]init];
+            sleepTargetViewController=[[PEDTargetViewController alloc] initWithNibName:@"SleepTestTargetViewController" bundle:nil];
+            SwitchViewController *targetContainer=[[SwitchViewController alloc] initWithPedoViewController:pedTargetViewController sleepViewController:sleepTargetViewController];
             pedGraphsViewController = [[PEDGraphsViewController alloc]init];
             pedBarchartViewController = [[PEDBarchartViewController alloc]init];
             //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
@@ -167,7 +173,7 @@ static PEDAppDelegate* _instance;
             
             //        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
             //        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
-            customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
+            customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,nav1,targetContainer,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
             UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
             tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
             tabBarBg.backgroundColor = [UIColor clearColor];
@@ -198,22 +204,25 @@ static PEDAppDelegate* _instance;
 //    [self.window makeKeyAndVisible];
 //}
 
--(void)restoreControllerData{
+-(void)restoreControllerData:(NSDate *)currentDate{
     @try {        
         if(pedPedoViewController){
-            [pedPedoViewController initData];
+            [pedPedoViewController initDataByDate:currentDate];
         }
         if(pedTargetViewController){
             [pedTargetViewController initData];
         }
+        if(sleepTargetViewController){
+            [pedTargetViewController initData];
+        }
         if(pedBarchartViewController){
-            [pedBarchartViewController initData];
+            [pedBarchartViewController initDataByDate:currentDate];
         }
         if(pedGraphsViewController){
-            [pedGraphsViewController initData];
+            [pedGraphsViewController initDataByDate:currentDate];
         }
         if(pedPedoDataViewController){
-            [pedPedoDataViewController initData];
+            [pedPedoDataViewController initDataByDate:currentDate];
         }
     }
     @catch (NSException *exception) {

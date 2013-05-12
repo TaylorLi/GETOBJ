@@ -15,7 +15,7 @@
 
 @implementation BleExchangeDataContainer
 
-@synthesize isConnectingEnd,isConnectingStart,target,pedoData,sleepData,exchageType,pedoDataIndex,sleepDataIndex;
+@synthesize isConnectingEnd,isConnectingStart,target,pedoData,sleepData,exchageType,pedoDataIndex,sleepDataIndex,currentData;
 
 
 -(id)init

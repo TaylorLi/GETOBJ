@@ -8,6 +8,7 @@
 
 #import "PEDUIBaseViewController.h"
 #import "PEDAppDelegate.h"
+#import "SwitchViewController.h"
 
 @interface PEDUIBaseViewController ()
 
@@ -16,7 +17,7 @@
 
 @implementation PEDUIBaseViewController
 
-@synthesize monthSelectView;
+@synthesize monthSelectView,controlContainer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -156,6 +157,14 @@
     @finally {
         
     }
+}
+
+- (IBAction)swithToPedoView:(id)sender
+{
+    [controlContainer switchViews:YES];
+}
+-(IBAction)swithToSleepView:(id)sender{
+    [controlContainer switchViews:NO];
 }
 
 @end

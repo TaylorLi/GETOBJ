@@ -170,6 +170,8 @@
 		DA029A6916D3C346004E7764 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A6716D3C346004E7764 /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA029A7616D3C62C004E7764 /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7516D3C62C004E7764 /* SerialGATT.m */; };
 		DA029A7916D3D8C4004E7764 /* PEDPedometerCalcHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */; };
+		DA02BAF4173FCB69005049DA /* SwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA02BAF3173FCB68005049DA /* SwitchViewController.m */; };
+		DA02BAF6173FD4C0005049DA /* SleepTestTargetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA02BAF5173FD4C0005049DA /* SleepTestTargetViewController.xib */; };
 		DA03922A170FC6D4009B260B /* SoundsPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA039229170FC6D4009B260B /* SoundsPlayer.m */; };
 		DA03922D170FC6E9009B260B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03922C170FC6E9009B260B /* AVFoundation.framework */; };
 		DA039231170FC988009B260B /* scrollerClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = DA039230170FC988009B260B /* scrollerClick.wav */; };
@@ -487,6 +489,9 @@
 		DA029A7516D3C62C004E7764 /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
 		DA029A7716D3D8C3004E7764 /* PEDPedometerCalcHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerCalcHelper.h; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.h; sourceTree = SOURCE_ROOT; };
 		DA029A7816D3D8C3004E7764 /* PEDPedometerCalcHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerCalcHelper.m; path = ProjectPrivate/Misc/PEDPedometerCalcHelper.m; sourceTree = SOURCE_ROOT; };
+		DA02BAF2173FCB68005049DA /* SwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwitchViewController.h; path = ProjectPrivate/UI/SwitchViewController.h; sourceTree = SOURCE_ROOT; };
+		DA02BAF3173FCB68005049DA /* SwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwitchViewController.m; path = ProjectPrivate/UI/SwitchViewController.m; sourceTree = SOURCE_ROOT; };
+		DA02BAF5173FD4C0005049DA /* SleepTestTargetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SleepTestTargetViewController.xib; path = ProjectPrivate/XIB/SleepTestTargetViewController.xib; sourceTree = SOURCE_ROOT; };
 		DA039228170FC6D4009B260B /* SoundsPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundsPlayer.h; path = ../Util/SoundsPlayer.h; sourceTree = "<group>"; };
 		DA039229170FC6D4009B260B /* SoundsPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundsPlayer.m; path = ../Util/SoundsPlayer.m; sourceTree = "<group>"; };
 		DA03922C170FC6E9009B260B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1343,6 +1348,8 @@
 		DA6E9EB816CFB4F400F2453F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DA02BAF2173FCB68005049DA /* SwitchViewController.h */,
+				DA02BAF3173FCB68005049DA /* SwitchViewController.m */,
 				DAFB232D16EB792200E3E98C /* Controls */,
 				DACC06EC16D263AD0062E2A8 /* PEDAppDelegate.h */,
 				DACC06ED16D263AD0062E2A8 /* PEDAppDelegate.m */,
@@ -1578,6 +1585,7 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DA02BAF5173FD4C0005049DA /* SleepTestTargetViewController.xib */,
 				DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */,
 				DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */,
 				DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */,
@@ -1927,6 +1935,7 @@
 				6B04EC801723470700DA21B5 /* pickerBG@2x.png in Resources */,
 				DA09367717242A7300737A53 /* log4cocoa.properties in Resources */,
 				DA09370F1724515A00737A53 /* alert-close.png in Resources */,
+				DA02BAF6173FD4C0005049DA /* SleepTestTargetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2044,6 +2053,7 @@
 				DA7A13461726D68D00BFA924 /* L4WriterAppender.m in Sources */,
 				DA7A13471726D68D00BFA924 /* L4XMLLayout.m in Sources */,
 				DA7A13481726D68D00BFA924 /* NSObject+Log4Cocoa.m in Sources */,
+				DA02BAF4173FCB69005049DA /* SwitchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

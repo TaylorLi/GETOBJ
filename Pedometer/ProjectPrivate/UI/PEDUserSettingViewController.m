@@ -613,7 +613,7 @@
             curr.measureFormat = segUnit.selectedSegmentIndex;
             curr.gender = segGender.selectedSegmentIndex;
             [[AppConfig getInstance] saveUserInfo:curr];    
-            [[PEDAppDelegate getInstance] restoreControllerData];
+            [[PEDAppDelegate getInstance] restoreControllerData:nil];
             [[PEDAppDelegate getInstance] showTabView];
         }
     }

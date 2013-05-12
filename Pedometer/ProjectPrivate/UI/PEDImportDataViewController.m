@@ -16,6 +16,8 @@
 #import "BO_PEDTarget.h"
 #import "UILoadingBox.h"
 
+#define kImportDetailViewControllerTag 15
+
 @interface PEDImportDataViewController ()
 
 -(void)swithSchIndicator:(BOOL)loading;
@@ -41,7 +43,8 @@
 @synthesize btnClearData;
 @synthesize lblConnectDeviceNameTitle;
 @synthesize lblConnectDeviceUUIDTitle;
-@synthesize onlyPeripheralUUID,isDebugMode;
+@synthesize onlyPeripheralUUID,isDebugMode,uploadCurrentDate;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -65,6 +68,7 @@
 
 - (void)viewDidLoad
 {
+    uploadCurrentDate=nil;
     [super viewDidLoad];    
     [self bindViewWithUserInfo];
     sensor = [[SerialGATT alloc] init];
@@ -246,7 +250,7 @@
     [self cleanup];
     [sensor cancelTimer];
     sensor=nil;
-    [[PEDAppDelegate getInstance] hideImportDataViewAndShowTabView];
+    [[PEDAppDelegate getInstance] hideImportDataViewAndShowTabView:uploadCurrentDate];
 }
 
 -(void)restoreFromImportDetailView:(PEDImportDataDetailController *)detailController

@@ -32,6 +32,6 @@
 -(void) showTabView;
 -(void) setCustomerTabBarControllerBackground: (UIImage *) bgImage;
 -(void)showImportDataView;
--(void)hideImportDataViewAndShowTabView;
--(void)restoreControllerData;
+-(void)hideImportDataViewAndShowTabView:(NSDate *)currentDate;
+-(void)restoreControllerData:(NSDate *)currentDate;
 @end

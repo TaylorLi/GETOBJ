@@ -35,6 +35,8 @@
 @property (nonatomic,strong) NSString *onlyPeripheralUUID;
 
 @property ( nonatomic) BOOL isDebugMode;
+//更新的current date
+@property (nonatomic,strong) NSDate *uploadCurrentDate;
 
 -(void)showLoading:(BOOL)show;
 - (void)scanBTSmartShields;

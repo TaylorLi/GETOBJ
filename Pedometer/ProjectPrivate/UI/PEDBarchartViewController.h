@@ -49,5 +49,6 @@
 
 -(void) genBarchart;
 -(void) initData;
+- (void) initDataByDate:(NSDate *) date;
 
 @end

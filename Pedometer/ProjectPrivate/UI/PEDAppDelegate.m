@@ -113,11 +113,11 @@ static PEDAppDelegate* _instance;
     }
 }
 
--(void)hideImportDataViewAndShowTabView
+-(void)hideImportDataViewAndShowTabView:(NSDate *)currentDate
 {
+    [self restoreControllerData:currentDate];
     importDataViewController = nil;
     pedImportDataViewController = nil;
-    [self restoreControllerData];
     [self swithView : customerTabBarController.view];
 }
 
@@ -198,22 +198,22 @@ static PEDAppDelegate* _instance;
 //    [self.window makeKeyAndVisible];
 //}
 
--(void)restoreControllerData{
+-(void)restoreControllerData:(NSDate *)currentDate{
     @try {        
         if(pedPedoViewController){
-            [pedPedoViewController initData];
+            [pedPedoViewController initDataByDate:currentDate];
         }
         if(pedTargetViewController){
             [pedTargetViewController initData];
         }
         if(pedBarchartViewController){
-            [pedBarchartViewController initData];
+            [pedBarchartViewController initDataByDate:currentDate];
         }
         if(pedGraphsViewController){
-            [pedGraphsViewController initData];
+            [pedGraphsViewController initDataByDate:currentDate];
         }
         if(pedPedoDataViewController){
-            [pedPedoDataViewController initData];
+            [pedPedoDataViewController initDataByDate:currentDate];
         }
     }
     @catch (NSException *exception) {

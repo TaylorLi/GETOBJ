@@ -86,13 +86,18 @@
     }
 } 
 
--(void) initData{
+- (void) initData
+{
+    NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    [self initDataByDate:lastUploadDate];
+}
+- (void) initDataByDate:(NSDate *) date{
     @try {        
         if(isLargeView){
             [self DoubleTap:nil];
         }
         lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
-        referenceDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+        referenceDate = date;
         lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
         if(referenceDate==nil)
             referenceDate=[NSDate date];

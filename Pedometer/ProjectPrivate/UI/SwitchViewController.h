@@ -10,12 +10,12 @@
 @class PEDUIBaseViewController;
 
 @interface SwitchViewController : UIViewController {
-    PEDUIBaseViewController *sleepViewController;
-    PEDUIBaseViewController *pedoViewController;
+    UIViewController *sleepViewController;
+    UIViewController *pedoViewController;
 }
-@property (retain, nonatomic) PEDUIBaseViewController *sleepViewController;
-@property (retain, nonatomic) PEDUIBaseViewController *pedoViewController;
+@property (retain, nonatomic) UIViewController *sleepViewController;
+@property (retain, nonatomic) UIViewController *pedoViewController;
 
 - (IBAction)switchViews:(BOOL)showPedoView;
--(id) initWithPedoViewController:(PEDUIBaseViewController *)pedoController sleepViewController:(PEDUIBaseViewController *)sleepConbroller;
+-(id) initWithPedoViewController:(UIViewController *)pedoController sleepViewController:(UIViewController *)sleepConbroller;
 @end

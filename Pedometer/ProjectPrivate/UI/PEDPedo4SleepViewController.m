@@ -232,7 +232,7 @@
                 selectedDate=lastUploadDate?lastUploadDate:[NSDate date];
             }
         }    
-        
+        pedPedoDataViewController.controlContainer=self.controlContainer;
         [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
         [pedPedoDataViewController initDataByDate: selectedDate];
     }

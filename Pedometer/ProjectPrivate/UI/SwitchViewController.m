@@ -13,14 +13,31 @@
 @synthesize sleepViewController;
 @synthesize pedoViewController;
 
--(id) initWithPedoViewController:(PEDUIBaseViewController *)pedoController sleepViewController:(PEDUIBaseViewController *)sleepConbroller{
+-(id) initWithPedoViewController:(UIViewController *)pedoController sleepViewController:(UIViewController *)sleepConbroller{
     self=[super init];
     if(self)
     {
         pedoViewController=pedoController;
-        pedoViewController.controlContainer=self;
         sleepViewController=sleepConbroller;
-        sleepViewController.controlContainer=self;
+        NSArray *viewController=[[NSArray alloc] initWithObjects:pedoViewController,sleepViewController,nil];
+        for (UIViewController *control in viewController) {
+            
+            if([control isKindOfClass:[PEDUIBaseViewController class]]){
+                PEDUIBaseViewController *baseController=(PEDUIBaseViewController *)control;
+                baseController.controlContainer=self;
+            }
+            else{
+                if([control isKindOfClass:[UINavigationController class]]){
+                    UINavigationController *nav=(UINavigationController*)control;
+                    for (id subController in nav.viewControllers) {
+                        if([subController isKindOfClass:[PEDUIBaseViewController class]]){
+                            PEDUIBaseViewController *tabController=(PEDUIBaseViewController *)subController;
+                            tabController.controlContainer=self;
+                        }
+                    }
+                }
+            }
+        }
     }
     return self;
 }

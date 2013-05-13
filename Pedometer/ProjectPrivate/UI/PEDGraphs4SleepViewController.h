@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "PEDUIBaseViewController.h"
 
-@interface PEDGraphs4SleepViewController : UIViewController
+@interface PEDGraphs4SleepViewController : PEDUIBaseViewController<CPTPlotDataSource, CPTAxisDelegate>
 {
     CPTXYGraph *graph;
     

@@ -385,79 +385,22 @@
 					<int key="connectionID">21</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">cptGraphHostingView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="784602629"/>
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">swithToSleepView:</string>
+						<reference key="source" ref="402455849"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">25</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lblUserName</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="871934623"/>
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">swithToPedoView:</string>
+						<reference key="source" ref="691362828"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">26</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lblLastUpdate</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="138838827"/>
-					</object>
-					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnActualSleepTime</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1033657891"/>
-					</object>
-					<int key="connectionID">28</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnTimesAwaken</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="878774971"/>
-					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btnInBedTime</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="828086503"/>
-					</object>
-					<int key="connectionID">30</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">btnTimesAwakenClick:</string>
-						<reference key="source" ref="878774971"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">32</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">btnInBedTimeClick:</string>
-						<reference key="source" ref="828086503"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">33</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">btnActualSleepTimeClick:</string>
-						<reference key="source" ref="1033657891"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">31</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -613,7 +556,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">33</int>
+			<int key="maxID">26</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -627,7 +570,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">PEDGraphs4SleepViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">PEDUIBaseViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="btnActualSleepTimeClick:">id</string>
 						<string key="btnInBedTimeClick:">id</string>
@@ -684,6 +627,44 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PEDGraphs4SleepViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PEDUIBaseViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickToConnectDevice:">id</string>
+						<string key="swithToPedoView:">id</string>
+						<string key="swithToSleepView:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickToConnectDevice:">
+							<string key="name">clickToConnectDevice:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="swithToPedoView:">
+							<string key="name">swithToPedoView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="swithToSleepView:">
+							<string key="name">swithToSleepView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">monthSelectView</string>
+						<string key="NS.object.0">V8HorizontalPickerView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">monthSelectView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">monthSelectView</string>
+							<string key="candidateClassName">V8HorizontalPickerView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PEDUIBaseViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

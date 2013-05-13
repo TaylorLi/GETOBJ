@@ -245,7 +245,6 @@
 						<string key="NSFrame">{{16, 384}, {295, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -811,7 +810,6 @@
 						<string key="NSFrame">{{240, 261}, {36, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -902,7 +900,6 @@
 						<string key="NSFrame">{{44, 243}, {48, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1210,6 +1207,24 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">87</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">swithToPedoView:</string>
+						<reference key="source" ref="832640568"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">139</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">swithToSleepView:</string>
+						<reference key="source" ref="236537023"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">138</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1563,7 +1578,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">137</int>
+			<int key="maxID">139</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1594,10 +1609,6 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="dayPickerView">AFPickerView</string>
-						<string key="imgVBehindBottom">UIImageView</string>
-						<string key="imgVBehindTop">UIImageView</string>
-						<string key="imgVDataBottom">UIImageView</string>
-						<string key="imgVDataMiddle">UIImageView</string>
 						<string key="imgVDataTop">UIImageView</string>
 						<string key="lblActivityTime">UILabel</string>
 						<string key="lblCalories">UILabel</string>
@@ -1626,22 +1637,6 @@
 						<object class="IBToOneOutletInfo" key="dayPickerView">
 							<string key="name">dayPickerView</string>
 							<string key="candidateClassName">AFPickerView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVBehindBottom">
-							<string key="name">imgVBehindBottom</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVBehindTop">
-							<string key="name">imgVBehindTop</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVDataBottom">
-							<string key="name">imgVDataBottom</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVDataMiddle">
-							<string key="name">imgVDataMiddle</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="imgVDataTop">
 							<string key="name">imgVDataTop</string>

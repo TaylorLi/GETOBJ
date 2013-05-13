@@ -476,7 +476,6 @@
 						<string key="NSFrame">{{16, 384}, {295, 36}}</string>
 						<reference key="NSSuperview" ref="1041850165"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1584,6 +1583,24 @@
 					</object>
 					<int key="connectionID">50</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">swithToPedoView:</string>
+						<reference key="source" ref="433073327"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">8</int>
+					</object>
+					<int key="connectionID">116</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">swithToSleepView:</string>
+						<reference key="source" ref="234750474"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">115</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2080,7 +2097,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">114</int>
+			<int key="maxID">116</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2111,10 +2128,6 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="dayPickerView">AFPickerView</string>
-						<string key="imgVBehindBottom">UIImageView</string>
-						<string key="imgVBehindTop">UIImageView</string>
-						<string key="imgVDataBottom">UIImageView</string>
-						<string key="imgVDataMiddle">UIImageView</string>
 						<string key="imgVDataTop">UIImageView</string>
 						<string key="lblActivityTime">UILabel</string>
 						<string key="lblCalories">UILabel</string>
@@ -2143,22 +2156,6 @@
 						<object class="IBToOneOutletInfo" key="dayPickerView">
 							<string key="name">dayPickerView</string>
 							<string key="candidateClassName">AFPickerView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVBehindBottom">
-							<string key="name">imgVBehindBottom</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVBehindTop">
-							<string key="name">imgVBehindTop</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVDataBottom">
-							<string key="name">imgVDataBottom</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imgVDataMiddle">
-							<string key="name">imgVDataMiddle</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="imgVDataTop">
 							<string key="name">imgVDataTop</string>

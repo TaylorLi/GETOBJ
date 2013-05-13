@@ -8,20 +8,17 @@
 
 #import "PEDGraphs4SleepViewController.h"
 #import "PEDPedometerDataHelper.h"
-#import "BO_PEDPedometerData.h"
-#import "PEDPedometerData.h"
+#import "BO_PEDSleepData.h"
+#import "PEDSleepData.h"
 
 @implementation PEDGraphs4SleepViewController
 @synthesize dataForPlot;
 @synthesize cptGraphHostingView;
 @synthesize lblUserName;
 @synthesize lblLastUpdate;
-@synthesize btnActTime;
-@synthesize btnStep;
-@synthesize btnDistance;
-@synthesize btnAvgSpeed;
-@synthesize btnCalories;
-@synthesize btnAvgPace;
+@synthesize btnActualSleepTime;
+@synthesize btnTimesAwaken;
+@synthesize btnInBedTime;
 
 -(void) initBarRemark{
     if(tempControlPool == nil){
@@ -71,7 +68,7 @@
 {
     dayRemark--;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
-    statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
+    statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];
     [self genCurvechart];
 }
 
@@ -80,14 +77,14 @@
     if(dayRemark < 0){
         dayRemark++;
         dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
-        statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
+        statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];
         [self genCurvechart];
     }
 }
 
 - (void) initData
 {
-    NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    NSDate *lastUploadDate = [[BO_PEDSleepData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     [self initDataByDate:lastUploadDate];
 }
 - (void) initDataByDate:(NSDate *) date{
@@ -97,14 +94,14 @@
         }
         lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
         referenceDate = date;
-        lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+        lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDSleepData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
         if(referenceDate==nil)
             referenceDate=[NSDate date];
         isLargeView = false;
         dayRemark =0;
         isFirstLoad = YES;
         dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
-        statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
+        statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];
         
         [self.view bringSubviewToFront:self.cptGraphHostingView];
         
@@ -159,7 +156,7 @@
 {
     [super viewDidLoad];
     [self initMonthSelectorWithX:0 Height:331.f];
-    barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
+    barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME], [PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN],[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_IN_BED_TIME], nil];
     [self initBarRemark];
     [self initData];
 }
@@ -227,7 +224,7 @@
     NSString *numberFormat;
     int digitCount;
     NSNumber *plotValue;
-    digitCount=[plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE]] || [plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED]]? 2: 1;
+    digitCount=[plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]] ? 1: 2;
     numberFormat=[NSString stringWithFormat:@"%%.%if",digitCount];
     plotValue=(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] ;
     float plotValueDisplay=[PEDPedometerCalcHelper round:[plotValue floatValue] digit:digitCount];
@@ -326,28 +323,16 @@
     
 }
 
-- (IBAction)btnSetpClick:(id)sender {
-    [self btnClick:sender withStatisticsType:STATISTICS_STEP];
+- (IBAction)btnActualSleepTimeClick:(id)sender {
+    [self btnClick:sender withStatisticsType:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME];
 }
 
-- (IBAction)btnActTimeClick:(id)sender {
-    [self btnClick:sender withStatisticsType:STATISTICS_ACTIVITY_TIME];
+- (IBAction)btnTimesAwakenClick:(id)sender {
+    [self btnClick:sender withStatisticsType:STATISTICS_SLEEP_TIMES_AWAKEN];
 }
 
-- (IBAction)btnDistanceClick:(id)sender {
-    [self btnClick:sender withStatisticsType:STATISTICS_DISTANCE];
-}
-
-- (IBAction)btnCaloriesClick:(id)sender {
-    [self btnClick:sender withStatisticsType:STATISTICS_CALORIES];
-}
-
-- (IBAction)btnAvgSpeedClick:(id)sender {
-    [self btnClick:sender withStatisticsType:STATISTICS_AVG_SPEED];
-}
-
-- (IBAction)btnAvgPaceClick:(id)sender {
-    [self btnClick:sender withStatisticsType:STATISTICS_AVG_PACE];
+- (IBAction)btnInBedTimeClick:(id)sender {
+    [self btnClick:sender withStatisticsType:STATISTICS_SLEEP_IN_BED_TIME];
 }
 
 -(void)genCurvechart
@@ -611,7 +596,7 @@
                 [self reloadPickerToMidOfDate:date];
             }
             NSDate *dateTo=[date addMonths:1];
-            NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+            NSDate *selectDate=[[BO_PEDSleepData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
             //selectDate = !selectDate ? date : selectDate;
             if(selectDate){
                 dayRemark = - [referenceDate timeIntervalSinceDate:selectDate]/60/60/24;
@@ -624,7 +609,7 @@
                 }
             }
             dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
-            statisticsData = [PEDPedometerDataHelper getStatisticsData:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat referedDate:referenceDate];
+            statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];
             [self genCurvechart];
         }
         isFirstLoad = NO;
@@ -642,12 +627,9 @@
     [self setCptGraphHostingView:nil];
     [self setLblUserName:nil];
     [self setLblLastUpdate:nil];
-    [self setBtnActTime:nil];
-    [self setBtnStep:nil];
-    [self setBtnDistance:nil];
-    [self setBtnAvgSpeed:nil];
-    [self setBtnCalories:nil];
-    [self setBtnAvgPace:nil];
+    [self setBtnActualSleepTime:nil];
+    [self setBtnTimesAwaken:nil];
+    [self setBtnInBedTime:nil];
     [super viewDidUnload];
 }
 @end

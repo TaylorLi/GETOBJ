@@ -1,8 +1,8 @@
 //
-//  PEDSecondViewController.h
+//  PEDPedoData4SleepViewController.h
 //  Pedometer
 //
-//  Created by Eagle Du on 13/2/16.
+//  Created by Yuheng Li on 13-5-13.
 //  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,13 +14,12 @@
 #import "PEDUIBaseViewController.h"
 #import "AFPickerView.h"
 
-@class  DialogBoxContainer;
-
-@interface PEDPedoDataViewController : PEDUIBaseViewController<UAModalPanelDelegate,DialogBoxDelegate,AFPickerViewDataSource, AFPickerViewDelegate>
+@interface PEDPedoData4SleepViewController : PEDUIBaseViewController<UAModalPanelDelegate,DialogBoxDelegate,AFPickerViewDataSource, AFPickerViewDelegate>
 {
     DialogBoxContainer *regPannel;    
     NSArray *daysData;
 }
+
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgVDataTop;
 //@property (weak, nonatomic) IBOutlet UIImageView *imgVDataMiddle;

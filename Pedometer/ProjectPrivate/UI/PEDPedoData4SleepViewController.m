@@ -1,12 +1,12 @@
 //
-//  PEDSecondViewController.m
+//  PEDPedoData4SleepViewController.m
 //  Pedometer
 //
-//  Created by Eagle Du on 13/2/16.
+//  Created by Yuheng Li on 13-5-13.
 //  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PEDPedoDataViewController.h"
+#import "PEDPedoData4SleepViewController.h"
 #import "PEDPedoViewController.h"
 #import "PEDAppDelegate.h"
 #import "DialogBoxContainer.h"
@@ -15,8 +15,7 @@
 #import "PEDPedometerData.h"
 #import "PEDPedometerDataHelper.h"
 #import "PEDPedoDataRowView.h"
-
-@interface PEDPedoDataViewController  ()
+@interface PEDPedoData4SleepViewController  ()
 {
     
 }
@@ -27,7 +26,7 @@
 -(void)setDatePickerLabelHidden:(BOOL)yes;
 @end
 
-@implementation PEDPedoDataViewController
+@implementation PEDPedoData4SleepViewController
 
 @synthesize imgVDataTop;
 //@synthesize imgVDataMiddle;
@@ -122,11 +121,11 @@
     
     [UIView setAnimationDuration:0.5f];
     
-//    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel_full.png"];
-//    self.imgVDataBottom.frame = CGRectMake(0, 285, 320, 45);
-//    self.imgVDataBottom.alpha = 0.0f;
-//    self.imgVBehindBottom.alpha = 1.0f;
-//    self.imgVBehindBottom.frame = CGRectMake(0, 330, 320, 45);
+    //    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel_full.png"];
+    //    self.imgVDataBottom.frame = CGRectMake(0, 285, 320, 45);
+    //    self.imgVDataBottom.alpha = 0.0f;
+    //    self.imgVBehindBottom.alpha = 1.0f;
+    //    self.imgVBehindBottom.frame = CGRectMake(0, 330, 320, 45);
     self.lblPrevDate.frame = CGRectMake(44, 286, 48, 21);
     self.lblPrevStep.frame = CGRectMake(71, 303, 33, 21);
     self.lblPrevDistance.frame = CGRectMake(131, 303, 33, 21);
@@ -159,8 +158,8 @@
     self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel_full.png"];
     self.imgVDataTop.frame = CGRectMake(0, 283, 320, 45);
     self.imgVDataTop.alpha = 0.0f;
-//    self.imgVBehindTop.alpha = 1.0f;
-//    self.imgVBehindTop.frame = CGRectMake(0, 238, 320, 45);
+    //    self.imgVBehindTop.alpha = 1.0f;
+    //    self.imgVBehindTop.frame = CGRectMake(0, 238, 320, 45);
     self.lblNextDate.frame = CGRectMake(44, 288, 48, 21);
     self.lblNextStep.frame = CGRectMake(71, 306, 33, 21);
     self.lblNextDistance.frame = CGRectMake(131, 306, 33, 21);
@@ -189,11 +188,11 @@
 {
     if(![[referenceDate addDays:-1] inSameMonth:referenceDate])
         return;
-//    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel.png"];
-//    self.imgVDataBottom.frame = CGRectMake(0, 330, 320, 45);
-//    self.imgVDataBottom.alpha = 1.0f;        
-//    self.imgVBehindBottom.alpha = 0.0f;
-//    self.imgVBehindBottom.frame = CGRectMake(0, 292, 320, 45);
+    //    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel.png"];
+    //    self.imgVDataBottom.frame = CGRectMake(0, 330, 320, 45);
+    //    self.imgVDataBottom.alpha = 1.0f;        
+    //    self.imgVBehindBottom.alpha = 0.0f;
+    //    self.imgVBehindBottom.frame = CGRectMake(0, 292, 320, 45);
     
     self.lblPrevDate.frame = CGRectMake(44, 331, 48, 21);
     self.lblPrevStep.frame = CGRectMake(71, 348, 33, 21);
@@ -226,8 +225,8 @@
     self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel.png"];
     self.imgVDataTop.frame = CGRectMake(0, 238, 320, 45);
     self.imgVDataTop.alpha = 1.0f;        
-//    self.imgVBehindTop.alpha = 0.0f;
-//    self.imgVBehindTop.frame = CGRectMake(0, 277, 320, 45);
+    //    self.imgVBehindTop.alpha = 0.0f;
+    //    self.imgVBehindTop.frame = CGRectMake(0, 277, 320, 45);
     
     self.lblNextDate.frame = CGRectMake(44, 243, 48, 21);
     self.lblNextStep.frame = CGRectMake(71, 261, 33, 21);
@@ -264,20 +263,20 @@
     [self.view addSubview:dayPickerView];
     
     /*
-    UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];  
-    doubleRecognizer.numberOfTapsRequired = 2; // 双击  
-    
-    [self.imgVDataMiddle addGestureRecognizer:doubleRecognizer];  
-    */
-     /*
-    UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];   
-    [upRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];   
-    [self.imgVDataMiddle addGestureRecognizer:upRecognizer];
-    
-    UISwipeGestureRecognizer *downRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];   
-    [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
-    [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
-    */
+     UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];  
+     doubleRecognizer.numberOfTapsRequired = 2; // 双击  
+     
+     [self.imgVDataMiddle addGestureRecognizer:doubleRecognizer];  
+     */
+    /*
+     UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];   
+     [upRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];   
+     [self.imgVDataMiddle addGestureRecognizer:upRecognizer];
+     
+     UISwipeGestureRecognizer *downRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];   
+     [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
+     [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
+     */
     [self initMonthSelectorWithX:0 Height:188.f];    
 	
     // Do any additional setup after loading the view, typically from a nib.
@@ -291,9 +290,9 @@
 - (void)viewDidUnload
 {
     [self setImgVDataTop:nil];
-//    [self setImgVDataMiddle:nil];
-//    [self setImgVDataMiddle:nil];
-//    [self setImgVDataBottom:nil];
+    //    [self setImgVDataMiddle:nil];
+    //    [self setImgVDataMiddle:nil];
+    //    [self setImgVDataBottom:nil];
     [self setLblDate:nil];
     [self setLblStep:nil];
     [self setLblDistance:nil];
@@ -316,8 +315,8 @@
     [self setLblPrevDistance:nil];
     [self setLblPrevCalories:nil];
     [self setLblPrevActTime:nil];
-//    [self setImgVBehindTop:nil];
-//    [self setImgVBehindBottom:nil];
+    //    [self setImgVBehindTop:nil];
+    //    [self setImgVBehindBottom:nil];
     [self setDayPickerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -415,27 +414,27 @@
 }
 - (void) initDataByDate:(NSDate *) date{
     @try {
-    NSDate *orginDate=[referenceDate copy];
-    if(date){
-        referenceDate=date;
-    }
-    else{
-        referenceDate=[NSDate date];
-    }
-    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
-    NSString* targetId = [AppConfig getInstance].settings.target.targetId;
-    self.lblUserName.text = userInfo.userName;
-    self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];    
-    if(daysData==nil || ![date inSameMonth:orginDate]){
-        daysData=[self getPedoDataResourcesByMonthWithTargetId:targetId referedDate:referenceDate];
-        [dayPickerView reloadData];
-    }
-    [self reloadPickerToMidOfDate:referenceDate];
-    dayPickerView.selectedRow=referenceDate.day-1;
-    for (UIView *view in [dayPickerView visibleViews]) {
-        view.hidden=YES;
-    }
-    [self displayPedometerDetailByDate:referenceDate];
+        NSDate *orginDate=[referenceDate copy];
+        if(date){
+            referenceDate=date;
+        }
+        else{
+            referenceDate=[NSDate date];
+        }
+        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+        NSString* targetId = [AppConfig getInstance].settings.target.targetId;
+        self.lblUserName.text = userInfo.userName;
+        self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];    
+        if(daysData==nil || ![date inSameMonth:orginDate]){
+            daysData=[self getPedoDataResourcesByMonthWithTargetId:targetId referedDate:referenceDate];
+            [dayPickerView reloadData];
+        }
+        [self reloadPickerToMidOfDate:referenceDate];
+        dayPickerView.selectedRow=referenceDate.day-1;
+        for (UIView *view in [dayPickerView visibleViews]) {
+            view.hidden=YES;
+        }
+        [self displayPedometerDetailByDate:referenceDate];
     }
     @catch (NSException *exception) {
         [LogHelper error:@"error occured" exception:exception];
@@ -447,76 +446,76 @@
 -(void)displayPedometerDetailByDate:(NSDate *)date
 {
     @try {
-    NSMutableArray *pedoMeterDataArray=[[NSMutableArray alloc] initWithCapacity:3];
-    
-    PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
-    if(daysData!=nil){
-        NSInteger currentRow=[date day]-1;
-        PEDPedometerData *pedoData;
-        for (int i = currentRow-1; i<=currentRow+1; i++) {
-            if(daysData.count>i){
-                pedoData = [daysData objectAtIndex:i];
+        NSMutableArray *pedoMeterDataArray=[[NSMutableArray alloc] initWithCapacity:3];
+        
+        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+        if(daysData!=nil){
+            NSInteger currentRow=[date day]-1;
+            PEDPedometerData *pedoData;
+            for (int i = currentRow-1; i<=currentRow+1; i++) {
+                if(daysData.count>i){
+                    pedoData = [daysData objectAtIndex:i];
+                }
+                else{
+                    pedoData=[[PEDPedometerData alloc] init];            
+                }
+                [pedoMeterDataArray addObject: pedoData];
+            }        
+        }
+        if(pedoMeterDataArray != nil){
+            log4Info(@"%d", pedoMeterDataArray.count);
+            PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
+            if(pedoMeterData && pedoMeterData.optDate != nil){
+                lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+                lblPrevDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+                lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+                lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+            }
+            else{           
+                self.lblPrevDate.text = @"";
+                self.lblPrevStep.text = @"";
+                self.lblPrevDistance.text = @"";
+                self.lblPrevCalories.text = @"";
+                self.lblPrevActTime.text = @"";
+            }
+            pedoMeterData = [pedoMeterDataArray objectAtIndex:1];
+            if(pedoMeterData && pedoMeterData.optDate != nil){
+                lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblCurrStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+                lblCurrDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+                lblCurrCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+                lblCurrActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+                lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+                lblDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+                lblCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+                lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
             }
             else{
-                pedoData=[[PEDPedometerData alloc] init];            
+                self.lblCurrDate.text = @"";
+                self.lblCurrStep.text = @"";
+                self.lblCurrDistance.text = @"";
+                self.lblCurrCalories.text = @"";
+                self.lblCurrActTime.text = @"";
             }
-            [pedoMeterDataArray addObject: pedoData];
-        }        
-    }
-    if(pedoMeterDataArray != nil){
-        log4Info(@"%d", pedoMeterDataArray.count);
-        PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
-        if(pedoMeterData && pedoMeterData.optDate != nil){
-            lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblPrevDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+            pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
+            if(pedoMeterData && pedoMeterData.optDate != nil){
+                lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+                lblNextDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+                lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+                lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+            }
+            else{
+                self.lblNextDate.text = @"";
+                self.lblNextStep.text = @"";
+                self.lblNextDistance.text = @"";
+                self.lblNextCalories.text = @"";
+                self.lblNextActTime.text = @"";
+            }            
         }
-        else{           
-            self.lblPrevDate.text = @"";
-            self.lblPrevStep.text = @"";
-            self.lblPrevDistance.text = @"";
-            self.lblPrevCalories.text = @"";
-            self.lblPrevActTime.text = @"";
-        }
-        pedoMeterData = [pedoMeterDataArray objectAtIndex:1];
-        if(pedoMeterData && pedoMeterData.optDate != nil){
-            lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblCurrStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblCurrDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblCurrCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblCurrActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-            lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-        }
-        else{
-            self.lblCurrDate.text = @"";
-            self.lblCurrStep.text = @"";
-            self.lblCurrDistance.text = @"";
-            self.lblCurrCalories.text = @"";
-            self.lblCurrActTime.text = @"";
-        }
-        pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
-        if(pedoMeterData && pedoMeterData.optDate != nil){
-            lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblNextDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-        }
-        else{
-            self.lblNextDate.text = @"";
-            self.lblNextStep.text = @"";
-            self.lblNextDistance.text = @"";
-            self.lblNextCalories.text = @"";
-            self.lblNextActTime.text = @"";
-        }            
-    }
-    [self setDatePickerLabelHidden:NO];
+        [self setDatePickerLabelHidden:NO];
     }
     @catch (NSException *exception) {
         [LogHelper error:@"error occured" exception:exception];

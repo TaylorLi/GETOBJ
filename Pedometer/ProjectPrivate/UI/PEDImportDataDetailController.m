@@ -64,11 +64,12 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden=NO;
     [super viewDidLoad];
     self.title = @"Import Data";
     [self.navigationController.navigationItem.leftBarButtonItem setAction:@selector(backToPeriperialList)];
     if(isDebugMode)
-        self.navigationController.navigationBarHidden=YES;
+        self.navigationController.navigationBarHidden=NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -85,7 +86,7 @@
     [sensor connect:sensor.activePeripheral];
 }
 - (void)viewDidUnload
-{
+{    
     [self setTxtActInfo:nil];
     [self setTxtExchangeLog:nil];
     [super viewDidUnload];

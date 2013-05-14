@@ -78,7 +78,7 @@
     [self swithSchIndicator:YES];    
     [sensor setup]; 
     sensor.delegate = self;  
-    isDebugMode=NO;
+    isDebugMode=ENABLE_BLE_DEBUG_MODE;
     // Do any additional setup after loading the view from its nib.
 }
 

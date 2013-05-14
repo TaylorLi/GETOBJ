@@ -127,11 +127,11 @@
 //    self.imgVDataBottom.alpha = 0.0f;
 //    self.imgVBehindBottom.alpha = 1.0f;
 //    self.imgVBehindBottom.frame = CGRectMake(0, 330, 320, 45);
-    self.lblPrevDate.frame = CGRectMake(44, 286, 48, 21);
-    self.lblPrevStep.frame = CGRectMake(71, 303, 33, 21);
-    self.lblPrevDistance.frame = CGRectMake(131, 303, 33, 21);
-    self.lblPrevCalories.frame = CGRectMake(180, 303, 33, 21);
-    self.lblPrevActTime.frame = CGRectMake(240, 303, 33, 21);
+    self.lblNextDate.frame = CGRectMake(44, 288, 48, 21);
+    self.lblNextStep.frame = CGRectMake(71, 306, 33, 21);
+    self.lblNextDistance.frame = CGRectMake(131, 306, 33, 21);
+    self.lblNextCalories.frame = CGRectMake(180, 306, 33, 21);
+    self.lblNextActTime.frame = CGRectMake(240, 306, 33, 21);
     
     self.lblCurrStep.alpha = 0.5f;
     self.lblCurrDistance.alpha = 0.5f;
@@ -156,16 +156,16 @@
     
     [UIView setAnimationDuration:0.5f];
     
-    self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel_full.png"];
-    self.imgVDataTop.frame = CGRectMake(0, 283, 320, 45);
-    self.imgVDataTop.alpha = 0.0f;
+//    self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel_full.png"];
+//    self.imgVDataTop.frame = CGRectMake(0, 283, 320, 45);
+//    self.imgVDataTop.alpha = 0.0f;
 //    self.imgVBehindTop.alpha = 1.0f;
 //    self.imgVBehindTop.frame = CGRectMake(0, 238, 320, 45);
-    self.lblNextDate.frame = CGRectMake(44, 288, 48, 21);
-    self.lblNextStep.frame = CGRectMake(71, 306, 33, 21);
-    self.lblNextDistance.frame = CGRectMake(131, 306, 33, 21);
-    self.lblNextCalories.frame = CGRectMake(180, 306, 33, 21);
-    self.lblNextActTime.frame = CGRectMake(240, 306, 33, 21);
+    self.lblPrevDate.frame = CGRectMake(44, 286, 48, 21);
+    self.lblPrevStep.frame = CGRectMake(71, 303, 33, 21);
+    self.lblPrevDistance.frame = CGRectMake(131, 303, 33, 21);
+    self.lblPrevCalories.frame = CGRectMake(180, 303, 33, 21);
+    self.lblPrevActTime.frame = CGRectMake(240, 303, 33, 21);
     
     self.lblCurrStep.alpha = 0.5f;
     self.lblCurrDistance.alpha = 0.5f;
@@ -189,17 +189,17 @@
 {
     if(![[referenceDate addDays:-1] inSameMonth:referenceDate])
         return;
-//    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel.png"];
-//    self.imgVDataBottom.frame = CGRectMake(0, 330, 320, 45);
-//    self.imgVDataBottom.alpha = 1.0f;        
-//    self.imgVBehindBottom.alpha = 0.0f;
-//    self.imgVBehindBottom.frame = CGRectMake(0, 292, 320, 45);
+    //    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel.png"];
+    //    self.imgVDataBottom.frame = CGRectMake(0, 330, 320, 45);
+    //    self.imgVDataBottom.alpha = 1.0f;        
+    //    self.imgVBehindBottom.alpha = 0.0f;
+    //    self.imgVBehindBottom.frame = CGRectMake(0, 292, 320, 45);
     
-    self.lblPrevDate.frame = CGRectMake(44, 331, 48, 21);
-    self.lblPrevStep.frame = CGRectMake(71, 348, 33, 21);
-    self.lblPrevDistance.frame = CGRectMake(131, 348, 33, 21);
-    self.lblPrevCalories.frame = CGRectMake(180, 348, 33, 21);
-    self.lblPrevActTime.frame = CGRectMake(240, 348, 33, 21);
+    self.lblNextDate.frame = CGRectMake(44, 243, 48, 21);
+    self.lblNextStep.frame = CGRectMake(71, 261, 33, 21);
+    self.lblNextDistance.frame = CGRectMake(131, 261, 33, 21);
+    self.lblNextCalories.frame = CGRectMake(180, 261, 33, 21);
+    self.lblNextActTime.frame = CGRectMake(240, 261, 33, 21);
     
     self.lblCurrStep.alpha = 1.0f;
     self.lblCurrDistance.alpha = 1.0f;
@@ -223,17 +223,12 @@
 {
     if(![[referenceDate addDays:1] inSameMonth:referenceDate])
         return;
-    self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel.png"];
-    self.imgVDataTop.frame = CGRectMake(0, 238, 320, 45);
-    self.imgVDataTop.alpha = 1.0f;        
-//    self.imgVBehindTop.alpha = 0.0f;
-//    self.imgVBehindTop.frame = CGRectMake(0, 277, 320, 45);
+    //    self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel.png"];
+    //    self.imgVDataTop.frame = CGRectMake(0, 238, 320, 45);
+    //    self.imgVDataTop.alpha = 1.0f;        
+    //    self.imgVBehindTop.alpha = 0.0f;
+    //    self.imgVBehindTop.frame = CGRectMake(0, 277, 320, 45);
     
-    self.lblNextDate.frame = CGRectMake(44, 243, 48, 21);
-    self.lblNextStep.frame = CGRectMake(71, 261, 33, 21);
-    self.lblNextDistance.frame = CGRectMake(131, 261, 33, 21);
-    self.lblNextCalories.frame = CGRectMake(180, 261, 33, 21);
-    self.lblNextActTime.frame = CGRectMake(240, 261, 33, 21);
     
     self.lblCurrStep.alpha = 1.0f;
     self.lblCurrDistance.alpha = 1.0f;
@@ -467,19 +462,19 @@
         log4Info(@"%d", pedoMeterDataArray.count);
         PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
         if(pedoMeterData && pedoMeterData.optDate != nil){
-            lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblPrevDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+            lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+            lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+            lblNextDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+            lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
-        else{           
-            self.lblPrevDate.text = @"";
-            self.lblPrevStep.text = @"";
-            self.lblPrevDistance.text = @"";
-            self.lblPrevCalories.text = @"";
-            self.lblPrevActTime.text = @"";
-        }
+        else{
+            self.lblNextDate.text = @"";
+            self.lblNextStep.text = @"";
+            self.lblNextDistance.text = @"";
+            self.lblNextCalories.text = @"";
+            self.lblNextActTime.text = @"";
+        }  
         pedoMeterData = [pedoMeterDataArray objectAtIndex:1];
         if(pedoMeterData && pedoMeterData.optDate != nil){
             lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
@@ -502,19 +497,19 @@
         }
         pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
         if(pedoMeterData && pedoMeterData.optDate != nil){
-            lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-            lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-            lblNextDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-            lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-            lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+            lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+            lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
+            lblPrevDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+            lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
+            lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
         }
-        else{
-            self.lblNextDate.text = @"";
-            self.lblNextStep.text = @"";
-            self.lblNextDistance.text = @"";
-            self.lblNextCalories.text = @"";
-            self.lblNextActTime.text = @"";
-        }            
+        else{           
+            self.lblPrevDate.text = @"";
+            self.lblPrevStep.text = @"";
+            self.lblPrevDistance.text = @"";
+            self.lblPrevCalories.text = @"";
+            self.lblPrevActTime.text = @"";
+        }
     }
     [self setDatePickerLabelHidden:NO];
     }

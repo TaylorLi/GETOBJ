@@ -59,6 +59,8 @@
 		6B04EC801723470700DA21B5 /* pickerBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B04EC7C1723470700DA21B5 /* pickerBG@2x.png */; };
 		6B04EC811723470700DA21B5 /* PickerExtendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B04EC7E1723470700DA21B5 /* PickerExtendView.m */; };
 		6B4ABEFE16DBFE71000A73EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */; };
+		6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B4B3E9D17429D7E007C28F9 /* PEDPedoDataRowView4Sleep.xib */; };
+		6B4B3EA217429E59007C28F9 /* PEDPedoDataRowView4Sleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4B3EA117429E59007C28F9 /* PEDPedoDataRowView4Sleep.m */; };
 		6B8208BD16E24EAB00D61166 /* PEDPedometerDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8208BC16E24EAB00D61166 /* PEDPedometerDataHelper.m */; };
 		6B8899F516D8E2F700478F97 /* PEDPedoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */; };
 		6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DADC16D8445600EF70C1 /* back_normal.png */; };
@@ -407,6 +409,9 @@
 		6B04EC7D1723470700DA21B5 /* PickerExtendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerExtendView.h; sourceTree = "<group>"; };
 		6B04EC7E1723470700DA21B5 /* PickerExtendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerExtendView.m; sourceTree = "<group>"; };
 		6B4ABEFD16DBFE71000A73EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		6B4B3E9D17429D7E007C28F9 /* PEDPedoDataRowView4Sleep.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PEDPedoDataRowView4Sleep.xib; sourceTree = SOURCE_ROOT; };
+		6B4B3EA017429E59007C28F9 /* PEDPedoDataRowView4Sleep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDPedoDataRowView4Sleep.h; sourceTree = SOURCE_ROOT; };
+		6B4B3EA117429E59007C28F9 /* PEDPedoDataRowView4Sleep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDPedoDataRowView4Sleep.m; sourceTree = SOURCE_ROOT; };
 		6B8208BB16E24EAB00D61166 /* PEDPedometerDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDPedometerDataHelper.h; path = ProjectPrivate/Misc/PEDPedometerDataHelper.h; sourceTree = SOURCE_ROOT; };
 		6B8208BC16E24EAB00D61166 /* PEDPedometerDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDPedometerDataHelper.m; path = ProjectPrivate/Misc/PEDPedometerDataHelper.m; sourceTree = SOURCE_ROOT; };
 		6B8899F416D8E2F700478F97 /* PEDPedoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPedoViewController.xib; path = ProjectPrivate/XIB/PEDPedoViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -1529,6 +1534,8 @@
 				6BFB6D4C1741144F006BB349 /* PEDPedo4SleepViewController.m */,
 				6BFB6D4E17411570006BB349 /* PEDPedoData4SleepViewController.h */,
 				6BFB6D4F17411570006BB349 /* PEDPedoData4SleepViewController.m */,
+				6B4B3EA017429E59007C28F9 /* PEDPedoDataRowView4Sleep.h */,
+				6B4B3EA117429E59007C28F9 /* PEDPedoDataRowView4Sleep.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1742,6 +1749,7 @@
 				6BFB6D4817411403006BB349 /* PEDGraphs4SleepViewController.xib */,
 				6BFB6D5117411614006BB349 /* PEDPedoData4SleepViewController.xib */,
 				6BFB6D531741162E006BB349 /* PEDPedo4SleepViewController.xib */,
+				6B4B3E9D17429D7E007C28F9 /* PEDPedoDataRowView4Sleep.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -2116,6 +2124,7 @@
 				6BFB6D4A17411403006BB349 /* PEDGraphs4SleepViewController.xib in Resources */,
 				6BFB6D5217411614006BB349 /* PEDPedoData4SleepViewController.xib in Resources */,
 				6BFB6D541741162E006BB349 /* PEDPedo4SleepViewController.xib in Resources */,
+				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2238,6 +2247,7 @@
 				6BFB6D46174113DA006BB349 /* PEDGraphs4SleepViewController.m in Sources */,
 				6BFB6D4D1741144F006BB349 /* PEDPedo4SleepViewController.m in Sources */,
 				6BFB6D5017411570006BB349 /* PEDPedoData4SleepViewController.m in Sources */,
+				6B4B3EA217429E59007C28F9 /* PEDPedoDataRowView4Sleep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

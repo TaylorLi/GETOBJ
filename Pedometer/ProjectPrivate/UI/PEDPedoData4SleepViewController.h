@@ -22,35 +22,53 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgVDataTop;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVDataMiddle;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVDataBottom;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVBehindTop;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVBehindBottom;
-@property (weak, nonatomic) IBOutlet UILabel *lblDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblActivityTime;
-@property (weak, nonatomic) IBOutlet UILabel *lblStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblDate;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblLastUpdate;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblNextDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextActTime;
-
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrActTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblHour4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblMinute4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark4TimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblTimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark4TimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblTimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblTimesAwaken;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblPrevDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevActTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevHour4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevMinute4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevRemark4TimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevTimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevRemark4TimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevTimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevTimesAwaken;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevRemark4Hour;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrevRemark4Minute;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrHour4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrMinute4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrRemark4TimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrTimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrRemark4TimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrTimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrTimesAwaken;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrRemark4Hour;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrRemark4Minute;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblNextDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextHour4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextMinute4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextRemark4TimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextTimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextRemark4TimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextTimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextTimesAwaken;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextRemark4Hour;
+@property (weak, nonatomic) IBOutlet UILabel *lblNextRemark4Minute;
+
+
 @property (nonatomic,strong) NSDate *referenceDate;
 @property (strong, nonatomic) IBOutlet AFPickerView *dayPickerView;
 

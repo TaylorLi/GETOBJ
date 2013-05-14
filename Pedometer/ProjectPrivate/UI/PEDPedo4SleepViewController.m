@@ -7,9 +7,9 @@
 //
 
 #import "PEDPedo4SleepViewController.h"
-#import "PEDPedoDataViewController.h"
-#import "PEDPedometerData.h"
-#import "BO_PEDPedometerData.h"
+#import "PEDPedoData4SleepViewController.h"
+#import "PEDSleepData.h"
+#import "BO_PEDSleepData.h"
 #import "UtilHelper.h"
 #import "PEDPedometerCalcHelper.h"
 #import "PEDPedometerDataHelper.h"
@@ -25,20 +25,22 @@
 
 @implementation PEDPedo4SleepViewController
 @synthesize referenceDate;
-@synthesize pedPedoDataViewController;
+@synthesize pedPedoData4SleepViewController;
 @synthesize monthSelectView;
 @synthesize lblUserName;
 @synthesize lblLastUpdate;
 @synthesize lblCurrDay;
-@synthesize lblStepAmount;
-@synthesize lblDistanceAmount;
-@synthesize lblDistanceUnit;
-@synthesize lblCaloriesAmount;
-@synthesize lblActivityTime;
-@synthesize lblSpeedAmount;
-@synthesize lblSpeedUnit;
-@synthesize lblPaceAmount;
-@synthesize lblPaceUnit;
+@synthesize lblHour4ActualSleepTime;
+@synthesize lblMinute4ActualSleepTime;
+@synthesize lblRemark4TimeToBed;
+@synthesize lblTimeToBeb;
+@synthesize lblRemark4TimeToFallSleep;
+@synthesize lblTimeToFallSleep;
+@synthesize lblTimes;
+@synthesize lblRemark4WakeUpTime;
+@synthesize lblWakeUpTime;
+@synthesize lblHour4InBedTime;
+@synthesize lblMinute4InBedTime;
 @synthesize viewPedoContainView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -80,16 +82,18 @@
     [self setLblUserName:nil];
     [self setLblLastUpdate:nil];
     [self setLblCurrDay:nil];
-    [self setLblStepAmount:nil];
-    [self setLblDistanceAmount:nil];
-    [self setLblDistanceUnit:nil];
-    [self setLblCaloriesAmount:nil];
-    [self setLblActivityTime:nil];
-    [self setLblSpeedAmount:nil];
-    [self setLblSpeedUnit:nil];
-    [self setLblPaceAmount:nil];
-    [self setLblPaceUnit:nil];
     [self setViewPedoContainView:nil];
+    [self setLblHour4ActualSleepTime:nil];
+    [self setLblMinute4ActualSleepTime:nil];
+    [self setLblRemark4TimeToBed:nil];
+    [self setLblTimeToBeb:nil];
+    [self setLblRemark4TimeToFallSleep:nil];
+    [self setLblTimeToFallSleep:nil];
+    [self setLblTimes:nil];
+    [self setLblRemark4WakeUpTime:nil];
+    [self setLblWakeUpTime:nil];
+    [self setLblHour4InBedTime:nil];
+    [self setLblMinute4InBedTime:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -134,7 +138,7 @@
 
 - (void) initData
 {
-    NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    NSDate *lastUploadDate = [[BO_PEDSleepData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     [self initDataByDate:lastUploadDate];
 }
 
@@ -143,31 +147,35 @@
         referenceDate=date;
         if(referenceDate==nil)
             referenceDate=[NSDate date];
-        PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
+        PEDSleepData *currSleepData = [[BO_PEDSleepData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
         PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
-        if(!currPedometerData){
-            currPedometerData=[[PEDPedometerData alloc] init];
-            currPedometerData.optDate=referenceDate;
+        if(!currSleepData){
+            currSleepData=[[PEDSleepData alloc] init];
+            currSleepData.optDate=referenceDate;
         }
-        lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+        lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDSleepData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
         lblUserName.text = userInfo.userName;
-        lblCurrDay.text = [UtilHelper formateDate:currPedometerData.optDate withFormat:@"dd/MM/yy"];        
-        lblStepAmount.text = [NSString stringWithFormat:@"%i", currPedometerData.step];
-        
+        lblCurrDay.text = [UtilHelper formateDate:currSleepData.optDate withFormat:@"dd/MM/yy"];    
         int h, m, s;
-        h = (int)currPedometerData.activeTime / 3600;
-        m = (int)currPedometerData.activeTime % 3600 / 60;
-        s = (int)currPedometerData.activeTime % 3600 % 60;
+        h = (int)currSleepData.actualSleepTime / 3600;
+        m = (int)currSleepData.actualSleepTime % 3600 / 60;
+        s = (int)currSleepData.actualSleepTime % 3600 % 60;
         m = m + round(s/60);
-        NSTimeInterval distance = userInfo.measureFormat == MEASURE_UNIT_METRIC ? currPedometerData.distance : [PEDPedometerCalcHelper convertKmToMile:currPedometerData.distance];
-        lblActivityTime.text = [NSString stringWithFormat:@"%02d:%02d", h, m];
-        lblCaloriesAmount.text = [NSString stringWithFormat:@"%.0f", currPedometerData.calorie];
-        lblDistanceAmount.text = [NSString stringWithFormat:@"%.2f", distance];
-        lblSpeedAmount.text = [NSString stringWithFormat:@"%.2f",[PEDPedometerCalcHelper round:[PEDPedometerCalcHelper calAvgSpeedByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat] digit:2 ]];
-        lblPaceAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
-        lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
-        lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-        lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
+        lblHour4ActualSleepTime.text = [NSString stringWithFormat:@"%d", h];
+        lblMinute4ActualSleepTime.text = [NSString stringWithFormat:@"%02d", m];
+        lblRemark4TimeToBed.text = [PEDPedometerDataHelper getSleepTimeRemark:currSleepData.timeToBed];
+        lblTimeToBeb.text = [PEDPedometerDataHelper getSleepTimeString:currSleepData.timeToBed];
+        lblRemark4TimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeRemark:currSleepData.timeToFallSleep];
+        lblTimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeString:currSleepData.timeToFallSleep];
+        lblTimes.text = [NSString stringWithFormat:@"%.0f", currSleepData.awakenTime];
+        lblRemark4WakeUpTime.text = [PEDPedometerDataHelper getSleepTimeRemark:currSleepData.timeToWakeup];
+        lblWakeUpTime.text = [PEDPedometerDataHelper getSleepTimeString:currSleepData.timeToWakeup];
+        h = (int)currSleepData.inBedTime / 3600;
+        m = (int)currSleepData.inBedTime % 3600 / 60;
+        s = (int)currSleepData.inBedTime % 3600 % 60;
+        m = m + round(s/60);
+        lblHour4InBedTime.text = [NSString stringWithFormat:@"%d", h];
+        lblMinute4InBedTime.text = [NSString stringWithFormat:@"%02d", m];
         [self reloadPickerToMidOfDate:referenceDate];    
     }
     @catch (NSException *exception) {
@@ -189,7 +197,7 @@
         }
         else{
             //判断是否属于同一个月，不是的话跳到指定月份
-            NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+            NSDate *selectDate=[[BO_PEDSleepData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
             if(selectDate)
                 [self initDataByDate:selectDate];
             else{
@@ -208,10 +216,10 @@
 -(void)horizontalPickerView:(V8HorizontalPickerView *)picker didDoubleClickElementAtIndex:(NSInteger)index {
     @try {
         //log4Info(@"----%d", index);
-        if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
-            [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+        if([PEDAppDelegate getInstance].sleepPedoDataViewController == nil){
+            [PEDAppDelegate getInstance].sleepPedoDataViewController = [[PEDPedoData4SleepViewController alloc]init];
         }
-        pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
+        pedPedoData4SleepViewController = [PEDAppDelegate getInstance].sleepPedoDataViewController;
         
         // pedPedoDataViewController.dayRemark = index;
         NSDate *dateFrom =  [UtilHelper convertDate:[NSString stringWithFormat:@"01 %@", [monthArray objectAtIndex:index]] withFormat:@"dd MMM yyyy"];
@@ -223,18 +231,18 @@
         }
         else{
             //不属于同一个月，不是的话跳到指定月份
-            NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:dateFrom to:dateTo];
+            NSDate *selectDate=[[BO_PEDSleepData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:dateFrom to:dateTo];
             if(selectDate)
                 selectedDate=selectDate;
             else{
-                NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+                NSDate *lastUploadDate = [[BO_PEDSleepData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
                 
                 selectedDate=lastUploadDate?lastUploadDate:[NSDate date];
             }
         }    
-        pedPedoDataViewController.controlContainer=self.controlContainer;
-        [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
-        [pedPedoDataViewController initDataByDate: selectedDate];
+        pedPedoData4SleepViewController.controlContainer=self.controlContainer;
+        [self.navigationController pushViewController:pedPedoData4SleepViewController animated:YES];
+        [pedPedoData4SleepViewController initDataByDate: selectedDate];
     }
     @catch (NSException *exception) {
         [LogHelper error:@"error occured" exception:exception];

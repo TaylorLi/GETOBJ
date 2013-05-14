@@ -10,7 +10,7 @@
 #import "V8HorizontalPickerView.h"
 #import "V8HorizontalPickerViewProtocol.h"
 #import "PEDUIBaseViewController.h"
-#import "PEDPedoDataViewController.h"
+#import "PEDPedoData4SleepViewController.h"
 
 @interface PEDPedo4SleepViewController : PEDUIBaseViewController<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
     
@@ -18,20 +18,22 @@
 }
 
 @property (strong,nonatomic)  NSDate* referenceDate;
-@property (strong, nonatomic) PEDPedoDataViewController *pedPedoDataViewController;
+@property (strong, nonatomic) PEDPedoData4SleepViewController *pedPedoData4SleepViewController;
 @property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLastUpdate;
 @property (weak, nonatomic) IBOutlet UILabel *lblCurrDay;
-@property (weak, nonatomic) IBOutlet UILabel *lblStepAmount;
-@property (weak, nonatomic) IBOutlet UILabel *lblDistanceAmount;
-@property (weak, nonatomic) IBOutlet UILabel *lblDistanceUnit;
-@property (weak, nonatomic) IBOutlet UILabel *lblCaloriesAmount;
-@property (weak, nonatomic) IBOutlet UILabel *lblActivityTime;
-@property (weak, nonatomic) IBOutlet UILabel *lblSpeedAmount;
-@property (weak, nonatomic) IBOutlet UILabel *lblSpeedUnit;
-@property (weak, nonatomic) IBOutlet UILabel *lblPaceAmount;
-@property (weak, nonatomic) IBOutlet UILabel *lblPaceUnit;
+@property (weak, nonatomic) IBOutlet UILabel *lblHour4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblMinute4ActualSleepTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark4TimeToBed;
+@property (weak, nonatomic) IBOutlet UILabel *lblTimeToBeb;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark4TimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblTimeToFallSleep;
+@property (weak, nonatomic) IBOutlet UILabel *lblTimes;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark4WakeUpTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblWakeUpTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblHour4InBedTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblMinute4InBedTime;
 @property (strong, nonatomic) IBOutlet UIView *viewPedoContainView;
 
 - (void) initData;

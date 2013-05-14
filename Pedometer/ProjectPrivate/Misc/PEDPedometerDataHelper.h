@@ -19,4 +19,7 @@
 +(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString;
 +(NSString*) getTargetRemark :(NSTimeInterval) stepPercent withDistancePercent:(NSTimeInterval) distancePercent withCaloriesPercent:(NSTimeInterval) caloriesPercent;
 +(NSString*) integerToTimeString:(NSInteger) intValue;
++(NSString*) getSleepTimeString :(NSTimeInterval) time;
++(NSString*) getSleepTimeRemark :(NSTimeInterval) time;
++(NSString*) getSleepTimeString :(NSTimeInterval) time withFormat: (NSString*) format;
 @end

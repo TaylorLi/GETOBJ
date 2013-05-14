@@ -9,6 +9,8 @@
 #import "PEDPedometerDataHelper.h"
 #import "PEDPedometerData.h"
 #import "BO_PEDPedometerData.h"
+#import "BO_PEDSleepData.h"
+#import "PEDSleepData.h"
 #import "CorePlot-CocoaTouch.h"
 @implementation PEDPedometerDataHelper
 
@@ -73,6 +75,33 @@
     return statisticsDatas;
 }
 
++(NSMutableDictionary*) getStatisticsData4Sleep: (NSInteger) dayCount withDaySpacing: (NSInteger) daySpacing withTagetId: (NSString*) targetId referedDate:(NSDate *) referDate{
+    NSMutableDictionary * statisticsDatas = [[NSMutableDictionary alloc]init];
+    [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME]];
+    [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]];
+    [statisticsDatas setObject:[[NSMutableArray alloc] initWithCapacity:dayCount] forKey:[self integerToString:STATISTICS_SLEEP_IN_BED_TIME]];
+    
+    NSDate *dateFrom = [referDate addDays: - (dayCount - daySpacing - 1)];
+    dateFrom = [UtilHelper convertDate: [UtilHelper formateDate:dateFrom]];
+    NSDate *dateTo = [referDate addDays: - (- daySpacing - 1)];
+    dateTo = [UtilHelper convertDate: [UtilHelper formateDate:dateTo]];
+    
+    NSArray *sleepDataArray = [[BO_PEDSleepData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
+    for (PEDSleepData *sleepData in sleepDataArray) {
+        if(sleepData == nil){
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME]] addObject:[NSNumber numberWithFloat:0.0f]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]] addObject:[NSNumber numberWithFloat:0.0f]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_IN_BED_TIME]] addObject:[NSNumber numberWithFloat:0.0f]];
+        }else{
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_STEP]] addObject: [NSNumber numberWithFloat:sleepData.actualSleepTime / 3600.0f]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_ACTIVITY_TIME]] addObject:[NSNumber numberWithFloat:sleepData.awakenTime]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_CALORIES]] addObject:[NSNumber numberWithFloat:sleepData.inBedTime / 3600.0f]];
+        }
+    }
+    return statisticsDatas;
+}
+
+
 +(CPTColor*) getCPTColorWithStatisticsType:(NSString*) statisticsTypeString{
     CPTColor *cptColor = nil;
     switch ([statisticsTypeString integerValue]) {
@@ -93,6 +122,15 @@
             break;
         case STATISTICS_AVG_PACE:
             cptColor = [CPTColor colorWithComponentRed:139/255.0f green:215/255.0f blue:83/255.0f alpha:1];
+            break;
+        case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
+            cptColor = [CPTColor colorWithComponentRed:236/255.0f green:183/255.0f blue:195/255.0f alpha:1];
+            break;
+        case STATISTICS_SLEEP_TIMES_AWAKEN:
+            cptColor = [CPTColor colorWithComponentRed:151/255.0f green:209/255.0f blue:233/255.0f alpha:1];
+            break;
+        case STATISTICS_SLEEP_IN_BED_TIME:
+            cptColor = [CPTColor colorWithComponentRed:217/255.0f green:207/255.0f blue:181/255.0f alpha:1];
             break;
         default:
             break;
@@ -121,6 +159,15 @@
         case STATISTICS_AVG_PACE:
             lableText = [NSString stringWithFormat:@"Avg Pace 1=1Min/%@", [PEDPedometerCalcHelper getDistanceUnit:measureUnit withWordFormat:YES]];
             break;
+        case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
+            lableText = @"Actual sleep time 1=1HOUR";
+            break;
+        case STATISTICS_SLEEP_TIMES_AWAKEN:
+            lableText = @"Times awaken 1=1TIMES";
+            break;
+        case STATISTICS_SLEEP_IN_BED_TIME:
+            lableText = @"In bed time 1=1HOUR";
+            break;
         default:
             break;
     }
@@ -148,6 +195,15 @@
         case STATISTICS_AVG_PACE:
             uiColor = [UIColor colorWithRed:77/255.0f green:115/255.0f blue:62/255.0f alpha:1];
             break;
+        case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
+            uiColor = [UIColor colorWithRed:124/255.0f green:94/255.0f blue:98/255.0f alpha:1];
+            break;
+        case STATISTICS_SLEEP_TIMES_AWAKEN:
+            uiColor = [UIColor colorWithRed:81/255.0f green:120/255.0f blue:135/255.0f alpha:1];
+            break;
+        case STATISTICS_SLEEP_IN_BED_TIME:
+            uiColor = [UIColor colorWithRed:106/255.0f green:101/255.0f blue:84/255.0f alpha:1];
+            break;
         default:
             break;
     }
@@ -174,6 +230,15 @@
             break;
         case STATISTICS_AVG_PACE:
             btnBGImage = [UIImage imageNamed:@"pace_button.png"];
+            break;
+        case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
+            btnBGImage = [UIImage imageNamed:@"actual_sleep_time_button.png"];
+            break;
+        case STATISTICS_SLEEP_TIMES_AWAKEN:
+            btnBGImage = [UIImage imageNamed:@"times_awaken_button.png"];
+            break;
+        case STATISTICS_SLEEP_IN_BED_TIME:
+            btnBGImage = [UIImage imageNamed:@"in_bed_time_button.png"];
             break;
         default:
             break;

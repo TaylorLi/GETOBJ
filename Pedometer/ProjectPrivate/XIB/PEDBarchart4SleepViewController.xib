@@ -77,7 +77,6 @@
 						<string key="NSFrame">{{16, 380}, {295, 36}}</string>
 						<reference key="NSSuperview" ref="143722156"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -385,6 +384,89 @@
 					<int key="connectionID">22</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">graphicHostView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="163322704"/>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">monthSelectView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="56778709"/>
+					</object>
+					<int key="connectionID">29</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnActualSleepTime</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="598927366"/>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnTimesAwaken</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="95276200"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnInBedTime</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="580132328"/>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblUserName</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1014823418"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblLastUpdate</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="648939646"/>
+					</object>
+					<int key="connectionID">34</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">btnInBedTimeClick:</string>
+						<reference key="source" ref="580132328"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">btnActualSleepTimeClick:</string>
+						<reference key="source" ref="598927366"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">btnTimesAwakenClick:</string>
+						<reference key="source" ref="95276200"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">swithToSleepView:</string>
 						<reference key="source" ref="594126897"/>
@@ -556,7 +638,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">24</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -572,74 +654,44 @@
 					<string key="className">PEDBarchart4SleepViewController</string>
 					<string key="superclassName">PEDUIBaseViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="btnActTimeClick:">id</string>
-						<string key="btnAvgPaceClick:">id</string>
-						<string key="btnAvgSpeedClick:">id</string>
-						<string key="btnCaloriesClick:">id</string>
-						<string key="btnDistanceClick:">id</string>
-						<string key="btnSetpClick:">id</string>
+						<string key="btnActualSleepTimeClick:">id</string>
+						<string key="btnInBedTimeClick:">id</string>
+						<string key="btnTimesAwakenClick:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="btnActTimeClick:">
-							<string key="name">btnActTimeClick:</string>
+						<object class="IBActionInfo" key="btnActualSleepTimeClick:">
+							<string key="name">btnActualSleepTimeClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="btnAvgPaceClick:">
-							<string key="name">btnAvgPaceClick:</string>
+						<object class="IBActionInfo" key="btnInBedTimeClick:">
+							<string key="name">btnInBedTimeClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="btnAvgSpeedClick:">
-							<string key="name">btnAvgSpeedClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnCaloriesClick:">
-							<string key="name">btnCaloriesClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnDistanceClick:">
-							<string key="name">btnDistanceClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="btnSetpClick:">
-							<string key="name">btnSetpClick:</string>
+						<object class="IBActionInfo" key="btnTimesAwakenClick:">
+							<string key="name">btnTimesAwakenClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnActTime">UIButton</string>
-						<string key="btnAvgPace">UIButton</string>
-						<string key="btnAvgSpeed">UIButton</string>
-						<string key="btnCalories">UIButton</string>
-						<string key="btnDistance">UIButton</string>
-						<string key="btnStep">UIButton</string>
+						<string key="btnActualSleepTime">UIButton</string>
+						<string key="btnInBedTime">UIButton</string>
+						<string key="btnTimesAwaken">UIButton</string>
 						<string key="graphicHostView">CPTGraphHostingView</string>
 						<string key="lblLastUpdate">UILabel</string>
 						<string key="lblUserName">UILabel</string>
 						<string key="monthSelectView">V8HorizontalPickerView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnActTime">
-							<string key="name">btnActTime</string>
+						<object class="IBToOneOutletInfo" key="btnActualSleepTime">
+							<string key="name">btnActualSleepTime</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="btnAvgPace">
-							<string key="name">btnAvgPace</string>
+						<object class="IBToOneOutletInfo" key="btnInBedTime">
+							<string key="name">btnInBedTime</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="btnAvgSpeed">
-							<string key="name">btnAvgSpeed</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnCalories">
-							<string key="name">btnCalories</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnDistance">
-							<string key="name">btnDistance</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnStep">
-							<string key="name">btnStep</string>
+						<object class="IBToOneOutletInfo" key="btnTimesAwaken">
+							<string key="name">btnTimesAwaken</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="graphicHostView">

@@ -53,7 +53,7 @@
 
 -(void) bindByPedometerData:(PEDSleepData *) pedoMeterData
 {
-    if(pedoMeterData.optDate){
+    if(pedoMeterData && pedoMeterData.optDate){
         int h,m,s;
         h = (int)pedoMeterData.actualSleepTime / 3600;
         m = (int)pedoMeterData.actualSleepTime % 3600 / 60;

@@ -742,12 +742,10 @@
             [pickerView reloadData];
             currRow4Inch = rowIndex;
         }
-    }else{
+    }
+    else{
         baseFeet4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:1]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:1]] intValue];
     }
-}
-
-- (void)pickerViewDidChangeValue:(PickerExtendView*)pickerView{
     baseInch4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:0]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:0]] intValue];
     baseFeet4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:1]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:1]] intValue];
     
@@ -788,7 +786,7 @@
 //    return 0.4f;
 //}
 //
-//- (NSInteger)rowNumberForShadeRow:(PickerExtendView *) pickerView{
+//- (NSInteger)rowIndexForShadeRow:(PickerExtendView *) pickerView{
 //    return 1;
 //}
 @end

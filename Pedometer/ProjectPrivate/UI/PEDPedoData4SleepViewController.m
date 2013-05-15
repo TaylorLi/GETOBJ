@@ -7,14 +7,14 @@
 //
 
 #import "PEDPedoData4SleepViewController.h"
-#import "PEDPedoViewController.h"
+#import "PEDPedo4SleepViewController.h"
 #import "PEDAppDelegate.h"
 #import "DialogBoxContainer.h"
 #import "AppConfig.h"
-#import "BO_PEDPedometerData.h"
-#import "PEDPedometerData.h"
+#import "BO_PEDSleepData.h"
+#import "PEDSleepData.h"
 #import "PEDPedometerDataHelper.h"
-#import "PEDPedoDataRowView.h"
+#import "PEDPedoDataRowView4Sleep.h"
 @interface PEDPedoData4SleepViewController  ()
 {
     
@@ -29,32 +29,51 @@
 @implementation PEDPedoData4SleepViewController
 
 @synthesize imgVDataTop;
-//@synthesize imgVDataMiddle;
-//@synthesize imgVDataBottom;
-//@synthesize imgVBehindTop;
-//@synthesize imgVBehindBottom;
-@synthesize lblDistance;
-@synthesize lblCalories;
-@synthesize lblActivityTime;
-@synthesize lblStep;
-@synthesize lblDate;
-@synthesize lblCurrDate;
-@synthesize lblCurrStep;
-@synthesize lblCurrDistance;
-@synthesize lblCurrCalories;
-@synthesize lblCurrActTime;
-@synthesize lblPrevDate;
-@synthesize lblPrevStep;
-@synthesize lblPrevDistance;
-@synthesize lblPrevCalories;
-@synthesize lblPrevActTime;
+
 @synthesize lblLastUpdate;
 @synthesize lblUserName;
+@synthesize lblDate;
+
+@synthesize lblHour4ActualSleepTime;
+@synthesize lblMinute4ActualSleepTime;
+@synthesize lblRemark4TimeToBed;
+@synthesize lblTimeToBed;
+@synthesize lblRemark4TimeToFallSleep;
+@synthesize lblTimeToFallSleep;
+@synthesize lblTimesAwaken;
+
+@synthesize lblPrevDate;
+@synthesize lblPrevHour4ActualSleepTime;
+@synthesize lblPrevMinute4ActualSleepTime;
+@synthesize lblPrevRemark4TimeToBed;
+@synthesize lblPrevTimeToBed;
+@synthesize lblPrevRemark4TimeToFallSleep;
+@synthesize lblPrevTimeToFallSleep;
+@synthesize lblPrevTimesAwaken;
+@synthesize lblPrevRemark4Minute;
+@synthesize lblPrevRemark4Hour;
+
+@synthesize lblCurrDate;
+@synthesize lblCurrHour4ActualSleepTime;
+@synthesize lblCurrMinute4ActualSleepTime;
+@synthesize lblCurrRemark4TimeToBed;
+@synthesize lblCurrTimeToBed;
+@synthesize lblCurrRemark4TimeToFallSleep;
+@synthesize lblCurrTimeToFallSleep;
+@synthesize lblCurrTimesAwaken;
+@synthesize lblCurrRemark4Minute;
+@synthesize lblCurrRemark4Hour;
+
 @synthesize lblNextDate;
-@synthesize lblNextStep;
-@synthesize lblNextDistance;
-@synthesize lblNextCalories;
-@synthesize lblNextActTime;
+@synthesize lblNextHour4ActualSleepTime;
+@synthesize lblNextMinute4ActualSleepTime;
+@synthesize lblNextRemark4TimeToBed;
+@synthesize lblNextTimeToBed;
+@synthesize lblNextRemark4TimeToFallSleep;
+@synthesize lblNextTimeToFallSleep;
+@synthesize lblNextTimesAwaken;
+@synthesize lblNextRemark4Minute;
+@synthesize lblNextRemark4Hour;
 
 @synthesize referenceDate;
 @synthesize dayPickerView;
@@ -79,31 +98,17 @@
 }
 
 -(void) initLable{
-    self.lblDate.text = @"";
-    self.lblStep.text = @"";
-    self.lblDistance.text = @"";
-    self.lblCalories.text = @"";
-    self.lblActivityTime.text = @"";
-    self.lblNextDate.text = @"";
-    self.lblNextStep.text = @"";
-    self.lblNextDistance.text = @"";
-    self.lblNextCalories.text = @"";
-    self.lblNextActTime.text = @"";
-    self.lblCurrDate.text = @"";
-    self.lblCurrStep.text = @"";
-    self.lblCurrDistance.text = @"";
-    self.lblCurrCalories.text = @"";
-    self.lblCurrActTime.text = @"";
-    self.lblPrevDate.text = @"";
-    self.lblPrevStep.text = @"";
-    self.lblPrevDistance.text = @"";
-    self.lblPrevCalories.text = @"";
-    self.lblPrevActTime.text = @"";
+    NSArray *array = [[NSArray alloc] initWithObjects:lblLastUpdate,lblUserName,lblDate,lblHour4ActualSleepTime,lblMinute4ActualSleepTime,lblRemark4TimeToBed,lblTimeToBed,lblRemark4TimeToFallSleep,lblTimeToFallSleep,lblTimesAwaken,lblPrevDate,lblPrevHour4ActualSleepTime,lblPrevMinute4ActualSleepTime,lblPrevRemark4TimeToBed,lblPrevTimeToBed,lblPrevRemark4TimeToFallSleep,lblPrevTimeToFallSleep,lblPrevTimesAwaken,lblCurrDate,lblCurrHour4ActualSleepTime,lblCurrMinute4ActualSleepTime,lblCurrRemark4TimeToBed,lblCurrTimeToBed,lblCurrRemark4TimeToFallSleep,lblCurrTimeToFallSleep,lblCurrTimesAwaken,lblNextDate,lblNextHour4ActualSleepTime,lblNextMinute4ActualSleepTime,lblNextRemark4TimeToBed,lblNextTimeToBed,lblNextRemark4TimeToFallSleep,lblNextTimeToFallSleep,lblNextTimesAwaken,nil];
+    for (UILabel *label in array) {
+        label.text = @"";
+    } 
 }
 
 -(void)doubleTap:(UITapGestureRecognizer*)recognizer  
-{  
-    [[PEDAppDelegate getInstance].pedPedoViewController initDataByDate: referenceDate];
+{   if([PEDAppDelegate getInstance].sleepPedoViewController == nil){
+    [PEDAppDelegate getInstance].sleepPedoViewController = [[PEDPedo4SleepViewController alloc]init];
+}
+    [[PEDAppDelegate getInstance].sleepPedoViewController initDataByDate: referenceDate];
     [self.navigationController popViewControllerAnimated:YES];     
 }
 
@@ -121,22 +126,17 @@
     
     [UIView setAnimationDuration:0.5f];
     
-    //    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel_full.png"];
-    //    self.imgVDataBottom.frame = CGRectMake(0, 285, 320, 45);
-    //    self.imgVDataBottom.alpha = 0.0f;
-    //    self.imgVBehindBottom.alpha = 1.0f;
-    //    self.imgVBehindBottom.frame = CGRectMake(0, 330, 320, 45);
-    self.lblPrevDate.frame = CGRectMake(44, 286, 48, 21);
-    self.lblPrevStep.frame = CGRectMake(71, 303, 33, 21);
-    self.lblPrevDistance.frame = CGRectMake(131, 303, 33, 21);
-    self.lblPrevCalories.frame = CGRectMake(180, 303, 33, 21);
-    self.lblPrevActTime.frame = CGRectMake(240, 303, 33, 21);
-    
-    self.lblCurrStep.alpha = 0.5f;
-    self.lblCurrDistance.alpha = 0.5f;
-    self.lblCurrDate.alpha = 0.5f;
-    self.lblCurrCalories.alpha = 0.5f;
-    self.lblCurrActTime.alpha = 0.5f;
+//    self.lblNextDate.frame = CGRectMake(44, 286, 48, 21);
+//    self.lblNextStep.frame = CGRectMake(71, 303, 33, 21);
+//    self.lblNextDistance.frame = CGRectMake(131, 303, 33, 21);
+//    self.lblNextCalories.frame = CGRectMake(180, 303, 33, 21);
+//    self.lblNextActTime.frame = CGRectMake(240, 303, 33, 21);
+//    
+//    self.lblCurrStep.alpha = 0.5f;
+//    self.lblCurrDistance.alpha = 0.5f;
+//    self.lblCurrDate.alpha = 0.5f;
+//    self.lblCurrCalories.alpha = 0.5f;
+//    self.lblCurrActTime.alpha = 0.5f;
     
     [UIView commitAnimations];    
 } 
@@ -155,22 +155,17 @@
     
     [UIView setAnimationDuration:0.5f];
     
-    self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel_full.png"];
-    self.imgVDataTop.frame = CGRectMake(0, 283, 320, 45);
-    self.imgVDataTop.alpha = 0.0f;
-    //    self.imgVBehindTop.alpha = 1.0f;
-    //    self.imgVBehindTop.frame = CGRectMake(0, 238, 320, 45);
-    self.lblNextDate.frame = CGRectMake(44, 288, 48, 21);
-    self.lblNextStep.frame = CGRectMake(71, 306, 33, 21);
-    self.lblNextDistance.frame = CGRectMake(131, 306, 33, 21);
-    self.lblNextCalories.frame = CGRectMake(180, 306, 33, 21);
-    self.lblNextActTime.frame = CGRectMake(240, 306, 33, 21);
-    
-    self.lblCurrStep.alpha = 0.5f;
-    self.lblCurrDistance.alpha = 0.5f;
-    self.lblCurrDate.alpha = 0.5f;
-    self.lblCurrCalories.alpha = 0.5f;
-    self.lblCurrActTime.alpha = 0.5f;
+//    self.lblPrevDate.frame = CGRectMake(44, 288, 48, 21);
+//    self.lblPrevStep.frame = CGRectMake(71, 306, 33, 21);
+//    self.lblPrevDistance.frame = CGRectMake(131, 306, 33, 21);
+//    self.lblPrevCalories.frame = CGRectMake(180, 306, 33, 21);
+//    self.lblPrevActTime.frame = CGRectMake(240, 306, 33, 21);
+//    
+//    self.lblCurrStep.alpha = 0.5f;
+//    self.lblCurrDistance.alpha = 0.5f;
+//    self.lblCurrDate.alpha = 0.5f;
+//    self.lblCurrCalories.alpha = 0.5f;
+//    self.lblCurrActTime.alpha = 0.5f;
     
     [UIView commitAnimations];      
 } 
@@ -188,23 +183,18 @@
 {
     if(![[referenceDate addDays:-1] inSameMonth:referenceDate])
         return;
-    //    self.imgVDataBottom.image = [UIImage imageNamed:@"data_bottom_panel.png"];
-    //    self.imgVDataBottom.frame = CGRectMake(0, 330, 320, 45);
-    //    self.imgVDataBottom.alpha = 1.0f;        
-    //    self.imgVBehindBottom.alpha = 0.0f;
-    //    self.imgVBehindBottom.frame = CGRectMake(0, 292, 320, 45);
     
-    self.lblPrevDate.frame = CGRectMake(44, 331, 48, 21);
-    self.lblPrevStep.frame = CGRectMake(71, 348, 33, 21);
-    self.lblPrevDistance.frame = CGRectMake(131, 348, 33, 21);
-    self.lblPrevCalories.frame = CGRectMake(180, 348, 33, 21);
-    self.lblPrevActTime.frame = CGRectMake(240, 348, 33, 21);
-    
-    self.lblCurrStep.alpha = 1.0f;
-    self.lblCurrDistance.alpha = 1.0f;
-    self.lblCurrDate.alpha = 1.0f;
-    self.lblCurrCalories.alpha = 1.0f;
-    self.lblCurrActTime.alpha = 1.0f;
+//    self.lblNextDate.frame = CGRectMake(44, 243, 48, 21);
+//    self.lblNextStep.frame = CGRectMake(71, 261, 33, 21);
+//    self.lblNextDistance.frame = CGRectMake(131, 261, 33, 21);
+//    self.lblNextCalories.frame = CGRectMake(180, 261, 33, 21);
+//    self.lblNextActTime.frame = CGRectMake(240, 261, 33, 21);
+//    
+//    self.lblCurrStep.alpha = 1.0f;
+//    self.lblCurrDistance.alpha = 1.0f;
+//    self.lblCurrDate.alpha = 1.0f;
+//    self.lblCurrCalories.alpha = 1.0f;
+//    self.lblCurrActTime.alpha = 1.0f;
     
     referenceDate = [referenceDate addDays:-1];
     dayPickerView.selectedRow=referenceDate.day-1;
@@ -222,23 +212,18 @@
 {
     if(![[referenceDate addDays:1] inSameMonth:referenceDate])
         return;
-    self.imgVDataTop.image = [UIImage imageNamed:@"data_top_panel.png"];
-    self.imgVDataTop.frame = CGRectMake(0, 238, 320, 45);
-    self.imgVDataTop.alpha = 1.0f;        
-    //    self.imgVBehindTop.alpha = 0.0f;
-    //    self.imgVBehindTop.frame = CGRectMake(0, 277, 320, 45);
     
-    self.lblNextDate.frame = CGRectMake(44, 243, 48, 21);
-    self.lblNextStep.frame = CGRectMake(71, 261, 33, 21);
-    self.lblNextDistance.frame = CGRectMake(131, 261, 33, 21);
-    self.lblNextCalories.frame = CGRectMake(180, 261, 33, 21);
-    self.lblNextActTime.frame = CGRectMake(240, 261, 33, 21);
-    
-    self.lblCurrStep.alpha = 1.0f;
-    self.lblCurrDistance.alpha = 1.0f;
-    self.lblCurrDate.alpha = 1.0f;
-    self.lblCurrCalories.alpha = 1.0f;
-    self.lblCurrActTime.alpha = 1.0f;
+//    self.lblPrevDate.frame = CGRectMake(44, 286, 48, 21);
+//    self.lblPrevStep.frame = CGRectMake(71, 303, 33, 21);
+//    self.lblPrevDistance.frame = CGRectMake(131, 303, 33, 21);
+//    self.lblPrevCalories.frame = CGRectMake(180, 303, 33, 21);
+//    self.lblPrevActTime.frame = CGRectMake(240, 303, 33, 21);
+//    
+//    self.lblCurrStep.alpha = 1.0f;
+//    self.lblCurrDistance.alpha = 1.0f;
+//    self.lblCurrDate.alpha = 1.0f;
+//    self.lblCurrCalories.alpha = 1.0f;
+//    self.lblCurrActTime.alpha = 1.0f;
     
     referenceDate = [referenceDate addDays:1];
     dayPickerView.selectedRow=referenceDate.day-1;
@@ -251,73 +236,60 @@
 {
     [super viewDidLoad];
     [self initLable];
-    
-    //daysData = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
-    
-    
-    
+
     dayPickerView = [[AFPickerView alloc] initWithFrame:CGRectMake(0.0, 238.0, 320.0, 140)];
     dayPickerView.dataSource = self;
     dayPickerView.delegate = self;
     //[dayPickerView reloadData];
     [self.view addSubview:dayPickerView];
-    
-    /*
-     UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];  
-     doubleRecognizer.numberOfTapsRequired = 2; // 双击  
-     
-     [self.imgVDataMiddle addGestureRecognizer:doubleRecognizer];  
-     */
-    /*
-     UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];   
-     [upRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];   
-     [self.imgVDataMiddle addGestureRecognizer:upRecognizer];
-     
-     UISwipeGestureRecognizer *downRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];   
-     [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
-     [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
-     */
     [self initMonthSelectorWithX:0 Height:188.f];    
 	
     // Do any additional setup after loading the view, typically from a nib.
-    
-    //    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 410)];
-    //    bgImage.image = [UIImage imageNamed:@"data.bmp"] ;
-    //    [self.view addSubview:bgImage]; 
-    //    
 }
 
 - (void)viewDidUnload
 {
     [self setImgVDataTop:nil];
-    //    [self setImgVDataMiddle:nil];
-    //    [self setImgVDataMiddle:nil];
-    //    [self setImgVDataBottom:nil];
     [self setLblDate:nil];
-    [self setLblStep:nil];
-    [self setLblDistance:nil];
-    [self setLblCalories:nil];
-    [self setLblActivityTime:nil];
     [self setLblLastUpdate:nil];
     [self setLblUserName:nil];
-    [self setLblNextDate:nil];
-    [self setLblNextStep:nil];
-    [self setLblNextDistance:nil];
-    [self setLblNextCalories:nil];
-    [self setLblNextActTime:nil];
-    [self setLblCurrDate:nil];
-    [self setLblCurrStep:nil];
-    [self setLblCurrDistance:nil];
-    [self setLblCurrCalories:nil];
-    [self setLblCurrActTime:nil];
-    [self setLblPrevDate:nil];
-    [self setLblPrevStep:nil];
-    [self setLblPrevDistance:nil];
-    [self setLblPrevCalories:nil];
-    [self setLblPrevActTime:nil];
-    //    [self setImgVBehindTop:nil];
-    //    [self setImgVBehindBottom:nil];
     [self setDayPickerView:nil];
+    [self setLblMinute4ActualSleepTime:nil];
+    [self setLblRemark4TimeToBed:nil];
+    [self setLblTimeToBed:nil];
+    [self setLblRemark4TimeToFallSleep:nil];
+    [self setLblTimeToFallSleep:nil];
+    [self setLblTimesAwaken:nil];
+    [self setLblPrevDate:nil];
+    [self setLblPrevHour4ActualSleepTime:nil];
+    [self setLblPrevMinute4ActualSleepTime:nil];
+    [self setLblPrevRemark4TimeToBed:nil];
+    [self setLblPrevTimeToBed:nil];
+    [self setLblPrevRemark4TimeToFallSleep:nil];
+    [self setLblPrevTimeToFallSleep:nil];
+    [self setLblPrevTimesAwaken:nil];
+    [self setLblPrevRemark4Hour:nil];
+    [self setLblPrevRemark4Minute:nil];
+    [self setLblCurrDate:nil];
+    [self setLblCurrHour4ActualSleepTime:nil];
+    [self setLblCurrMinute4ActualSleepTime:nil];
+    [self setLblCurrRemark4TimeToBed:nil];
+    [self setLblCurrTimeToBed:nil];
+    [self setLblCurrRemark4TimeToFallSleep:nil];
+    [self setLblCurrTimeToFallSleep:nil];
+    [self setLblCurrTimesAwaken:nil];
+    [self setLblCurrRemark4Hour:nil];
+    [self setLblCurrRemark4Minute:nil];
+    [self setLblNextDate:nil];
+    [self setLblNextHour4ActualSleepTime:nil];
+    [self setLblNextMinute4ActualSleepTime:nil];
+    [self setLblNextRemark4TimeToBed:nil];
+    [self setLblNextTimeToBed:nil];
+    [self setLblNextRemark4TimeToFallSleep:nil];
+    [self setLblNextTimeToFallSleep:nil];
+    [self setLblNextTimesAwaken:nil];
+    [self setLblNextRemark4Hour:nil];
+    [self setLblNextRemark4Minute:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -358,29 +330,6 @@
     
 }
 
-//- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
-//	return [monthArray count];
-//}
-//
-//#pragma mark - HorizontalPickerView Delegate Methods
-//- (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index {
-//	return [monthArray objectAtIndex:index];
-//}
-//
-//- (NSInteger) horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index {
-//	CGSize constrainedSize = CGSizeMake(MAXFLOAT, MAXFLOAT);
-//	NSString *text = [monthArray objectAtIndex:index];
-//    CGFloat fontSize = picker.currentSelectedIndex==index?14.0f:11.0f;
-//	CGSize textSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]
-//					   constrainedToSize:constrainedSize
-//						   lineBreakMode:UILineBreakModeWordWrap];
-//	return textSize.width + 20.0f; // 20px padding on each side
-//}
-//
-//- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-//}
-
-
 - (IBAction)btnPrevDataClick:(id)sender {
     [self handleSwipeUp:nil];
 }
@@ -392,7 +341,7 @@
 -(NSArray *) getPedoDataResourcesWithTargetId:(NSString*) targetId referedDate:(NSDate *) referDate{
     NSDate *dateFrom = [referDate addDays:-1];
     NSDate *dateTo = [referDate addDays:1];
-    NSArray *pedoDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
+    NSArray *pedoDataArray = [[BO_PEDSleepData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     return pedoDataArray;
 }
 
@@ -403,13 +352,13 @@
     if([[UtilHelper formateDate:dateNow withFormat:@"MMM yyyy"] isEqualToString:[UtilHelper formateDate:dateTo withFormat:@"MMM yyyy"]]){
         dateTo = dateNow;
     }
-    NSArray *pedoDataArray = [[BO_PEDPedometerData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
+    NSArray *pedoDataArray = [[BO_PEDSleepData getInstance] queryListFromDateNeedEmptySorted:dateFrom toDate:dateTo withTargetId:targetId];
     return pedoDataArray;
 }
 
 - (void) initData
 {
-    NSDate *lastUploadDate = [[BO_PEDPedometerData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
+    NSDate *lastUploadDate = [[BO_PEDSleepData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     [self initDataByDate:lastUploadDate];
 }
 - (void) initDataByDate:(NSDate *) date{
@@ -424,7 +373,7 @@
         PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
         NSString* targetId = [AppConfig getInstance].settings.target.targetId;
         self.lblUserName.text = userInfo.userName;
-        self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDPedometerData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];    
+        self.lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDSleepData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];    
         if(daysData==nil || ![date inSameMonth:orginDate]){
             daysData=[self getPedoDataResourcesByMonthWithTargetId:targetId referedDate:referenceDate];
             [dayPickerView reloadData];
@@ -447,73 +396,105 @@
 {
     @try {
         NSMutableArray *pedoMeterDataArray=[[NSMutableArray alloc] initWithCapacity:3];
-        
-        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
         if(daysData!=nil){
             NSInteger currentRow=[date day]-1;
-            PEDPedometerData *pedoData;
+            PEDSleepData *pedoData4Sleep;
             for (int i = currentRow-1; i<=currentRow+1; i++) {
                 if(daysData.count>i){
-                    pedoData = [daysData objectAtIndex:i];
+                    pedoData4Sleep = [daysData objectAtIndex:i];
                 }
                 else{
-                    pedoData=[[PEDPedometerData alloc] init];            
+                    pedoData4Sleep=[[PEDSleepData alloc] init];            
                 }
-                [pedoMeterDataArray addObject: pedoData];
+                [pedoMeterDataArray addObject: pedoData4Sleep];
             }        
         }
         if(pedoMeterDataArray != nil){
             log4Info(@"%d", pedoMeterDataArray.count);
-            PEDPedometerData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
+            int h, m, s;
+            PEDSleepData *pedoMeterData = [pedoMeterDataArray objectAtIndex:2];
             if(pedoMeterData && pedoMeterData.optDate != nil){
-                lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-                lblPrevStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-                lblPrevDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-                lblPrevCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-                lblPrevActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-            }
-            else{           
-                self.lblPrevDate.text = @"";
-                self.lblPrevStep.text = @"";
-                self.lblPrevDistance.text = @"";
-                self.lblPrevCalories.text = @"";
-                self.lblPrevActTime.text = @"";
-            }
-            pedoMeterData = [pedoMeterDataArray objectAtIndex:1];
-            if(pedoMeterData && pedoMeterData.optDate != nil){
-                lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-                lblCurrStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-                lblCurrDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-                lblCurrCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-                lblCurrActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
-                lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-                lblStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-                lblDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-                lblCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-                lblActivityTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+                h = (int)pedoMeterData.actualSleepTime / 3600;
+                m = (int)pedoMeterData.actualSleepTime % 3600 / 60;
+                s = (int)pedoMeterData.actualSleepTime % 3600 % 60;
+                m = m + round(s/60);
+                lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblNextHour4ActualSleepTime.text = [NSString stringWithFormat:@"%d", h];
+                lblNextMinute4ActualSleepTime.text = [NSString stringWithFormat:@"%02d", m];
+                lblNextRemark4TimeToBed.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToBed];
+                lblNextTimeToBed.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToBed];
+                lblNextRemark4TimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToFallSleep];
+                lblNextTimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToFallSleep];
+                lblNextTimesAwaken.text = [NSString stringWithFormat:@"%.0f", pedoMeterData.awakenTime];
             }
             else{
-                self.lblCurrDate.text = @"";
-                self.lblCurrStep.text = @"";
-                self.lblCurrDistance.text = @"";
-                self.lblCurrCalories.text = @"";
-                self.lblCurrActTime.text = @"";
+                lblNextDate.text = @"";
+                lblNextHour4ActualSleepTime.text = @"";
+                lblNextMinute4ActualSleepTime.text = @"";
+                lblNextRemark4TimeToBed.text = @"";
+                lblNextTimeToBed.text = @"";
+                lblNextRemark4TimeToFallSleep.text = @"";
+                lblNextTimeToFallSleep.text = @"";
+                lblNextTimesAwaken.text = @"";
+            }  
+            pedoMeterData = [pedoMeterDataArray objectAtIndex:1];
+            if(pedoMeterData && pedoMeterData.optDate != nil){
+                h = (int)pedoMeterData.actualSleepTime / 3600;
+                m = (int)pedoMeterData.actualSleepTime % 3600 / 60;
+                s = (int)pedoMeterData.actualSleepTime % 3600 % 60;
+                m = m + round(s/60);
+                lblCurrDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblCurrHour4ActualSleepTime.text = [NSString stringWithFormat:@"%d", h];
+                lblCurrMinute4ActualSleepTime.text = [NSString stringWithFormat:@"%02d", m];
+                lblCurrRemark4TimeToBed.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToBed];
+                lblCurrTimeToBed.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToBed];
+                lblCurrRemark4TimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToFallSleep];
+                lblCurrTimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToFallSleep];
+                lblCurrTimesAwaken.text = [NSString stringWithFormat:@"%.0f", pedoMeterData.awakenTime];
+                lblDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblHour4ActualSleepTime.text = [NSString stringWithFormat:@"%d", h];
+                lblMinute4ActualSleepTime.text = [NSString stringWithFormat:@"%02d", m];
+                lblRemark4TimeToBed.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToBed];
+                lblTimeToBed.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToBed];
+                lblRemark4TimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToFallSleep];
+                lblTimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToFallSleep];
+                lblTimesAwaken.text = [NSString stringWithFormat:@"%.0f", pedoMeterData.awakenTime];
+            }
+            else{
+                lblCurrDate.text = @"";
+                lblCurrHour4ActualSleepTime.text = @"";
+                lblCurrMinute4ActualSleepTime.text = @"";
+                lblCurrRemark4TimeToBed.text = @"";
+                lblCurrTimeToBed.text = @"";
+                lblCurrRemark4TimeToFallSleep.text = @"";
+                lblCurrTimeToFallSleep.text = @"";
+                lblCurrTimesAwaken.text = @"";
             }
             pedoMeterData = [pedoMeterDataArray objectAtIndex:0];
             if(pedoMeterData && pedoMeterData.optDate != nil){
-                lblNextDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
-                lblNextStep.text = [PEDPedometerDataHelper integerToString: pedoMeterData.step];
-                lblNextDistance.text = [NSString stringWithFormat:@"%.2f%@", userInfo.measureFormat == MEASURE_UNIT_METRIC ? pedoMeterData.distance : [PEDPedometerCalcHelper convertKmToMile:pedoMeterData.distance], [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-                lblNextCalories.text = [NSString stringWithFormat:@"%.1fKcal", pedoMeterData.calorie];
-                lblNextActTime.text = [PEDPedometerDataHelper integerToTimeString:(int)pedoMeterData.activeTime];
+                h = (int)pedoMeterData.actualSleepTime / 3600;
+                m = (int)pedoMeterData.actualSleepTime % 3600 / 60;
+                s = (int)pedoMeterData.actualSleepTime % 3600 % 60;
+                m = m + round(s/60);
+                lblPrevDate.text = [UtilHelper formateDate:pedoMeterData.optDate withFormat:@"dd/MM/yy"];
+                lblPrevHour4ActualSleepTime.text = [NSString stringWithFormat:@"%d", h];
+                lblPrevMinute4ActualSleepTime.text = [NSString stringWithFormat:@"%02d", m];
+                lblPrevRemark4TimeToBed.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToBed];
+                lblPrevTimeToBed.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToBed];
+                lblPrevRemark4TimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeRemark:pedoMeterData.timeToFallSleep];
+                lblPrevTimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeString:pedoMeterData.timeToFallSleep];
+                lblPrevTimesAwaken.text = [NSString stringWithFormat:@"%.0f", pedoMeterData.awakenTime];
             }
-            else{
-                self.lblNextDate.text = @"";
-                self.lblNextStep.text = @"";
-                self.lblNextDistance.text = @"";
-                self.lblNextCalories.text = @"";
-                self.lblNextActTime.text = @"";
-            }            
+            else{           
+                lblPrevDate.text = @"";
+                lblPrevHour4ActualSleepTime.text = @"";
+                lblPrevMinute4ActualSleepTime.text = @"";
+                lblPrevRemark4TimeToBed.text = @"";
+                lblPrevTimeToBed.text = @"";
+                lblPrevRemark4TimeToFallSleep.text = @"";
+                lblPrevTimeToFallSleep.text = @"";
+                lblPrevTimesAwaken.text = @"";
+            }
         }
         [self setDatePickerLabelHidden:NO];
     }
@@ -535,7 +516,7 @@
     }
     else{
         //判断是否属于同一个月，不是的话跳到指定月份
-        NSDate *selectDate=[[BO_PEDPedometerData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
+        NSDate *selectDate=[[BO_PEDSleepData getInstance] getLastDateWithTarget:[AppConfig getInstance].settings.target.targetId between:date to:dateTo];
         if(selectDate)
             [self initDataByDate:selectDate];
         else{
@@ -554,8 +535,8 @@
 
 - (void)pickerView:(AFPickerView *)pickerView prepareForCell:(UIView *) cellView rowAtIndex:(NSInteger)rowIndex
 {
-    PEDPedometerData *data = [daysData objectAtIndex:rowIndex];
-    PEDPedoDataRowView *view=(PEDPedoDataRowView *)cellView;
+    PEDSleepData *data = [daysData objectAtIndex:rowIndex];
+    PEDPedoDataRowView4Sleep *view=(PEDPedoDataRowView4Sleep *)cellView;
     [view bindByPedometerData:data];
 }
 
@@ -563,7 +544,7 @@
 
 - (void)pickerView:(AFPickerView *)pickerView didSelectRow:(NSInteger)row
 {
-    PEDPedometerData *data= (PEDPedometerData *)[daysData objectAtIndex:row];
+    PEDSleepData *data= (PEDSleepData *)[daysData objectAtIndex:row];
     [self displayPedometerDetailByDate:data.optDate];
     referenceDate=data.optDate;
     for (UIView *view in [pickerView visibleViews]) {
@@ -578,7 +559,7 @@
 
 -(UIView *)pickerView:(AFPickerView *)pickerView cellForRowAtIndexPath:(NSInteger)rowIndex
 {
-    return [PEDPedoDataRowView instanceView:(PEDPedometerData *)[daysData objectAtIndex:rowIndex]];
+    return [PEDPedoDataRowView4Sleep instanceView:(PEDSleepData *)[daysData objectAtIndex:rowIndex]];
 }
 
 - (void)pickerViewDidStartScroll:(AFPickerView *)pickerView
@@ -591,7 +572,7 @@
 
 -(void)setDatePickerLabelHidden:(BOOL)yes
 {
-    NSArray *array = [[NSArray alloc] initWithObjects:lblNextDate,lblNextStep,lblNextDistance,lblNextCalories,lblNextCalories,lblNextActTime,lblCurrDate,lblCurrStep,lblCurrDistance,lblCurrCalories,lblCurrActTime,lblPrevDate,lblPrevStep,lblPrevDistance,lblPrevCalories,lblPrevActTime,nil];
+    NSArray *array = [[NSArray alloc] initWithObjects:lblPrevDate,lblPrevHour4ActualSleepTime,lblPrevMinute4ActualSleepTime,lblPrevRemark4TimeToBed,lblPrevTimeToBed,lblPrevRemark4TimeToFallSleep,lblPrevTimeToFallSleep,lblPrevTimesAwaken,lblCurrDate,lblCurrHour4ActualSleepTime,lblCurrMinute4ActualSleepTime,lblCurrRemark4TimeToBed,lblCurrTimeToBed,lblCurrRemark4TimeToFallSleep,lblCurrTimeToFallSleep,lblCurrTimesAwaken,lblNextDate,lblNextHour4ActualSleepTime,lblNextMinute4ActualSleepTime,lblNextRemark4TimeToBed,lblNextTimeToBed,lblNextRemark4TimeToFallSleep,lblNextTimeToFallSleep,lblNextTimesAwaken,nil];
     for (UIView *view in array) {
         view.hidden=yes;
     }

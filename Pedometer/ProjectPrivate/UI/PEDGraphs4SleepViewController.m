@@ -34,10 +34,10 @@
             UIImageView *barColorView = [[UIImageView alloc]initWithFrame:CGRectMake(46 + i * 100, 62, 30, 5)];
             //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
             [barColorView setImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:[barIdArray objectAtIndex:i]]];
-            UILabel *barRemarkLable = [[UILabel alloc]initWithFrame:CGRectMake(30 + i * 100, 72, 62, 24)];
+            UILabel *barRemarkLable = [[UILabel alloc]initWithFrame:CGRectMake(30 + i * 100, 72, 70, 24)];
             barRemarkLable.text = [PEDPedometerDataHelper getBarRemarkTextWithStatisticsType:[barIdArray objectAtIndex:i] withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat];
             barRemarkLable.textAlignment = UITextAlignmentCenter;
-            barRemarkLable.font = [UIFont systemFontOfSize:10];
+            barRemarkLable.font = [UIFont systemFontOfSize:9];
             barRemarkLable.textColor = [UIColor whiteColor];
             barRemarkLable.numberOfLines = 2;
             barRemarkLable.backgroundColor = [UIColor clearColor];

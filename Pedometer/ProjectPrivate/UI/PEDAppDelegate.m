@@ -126,7 +126,7 @@ static PEDAppDelegate* _instance;
     [self restoreControllerData:currentDate];
     importDataViewController = nil;
     pedImportDataViewController = nil;
-    [self swithView : customerTabBarController.view];
+    [self showTabView];
 }
 
 -(void) showTabView{

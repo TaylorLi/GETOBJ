@@ -161,10 +161,14 @@
 
 - (IBAction)swithToPedoView:(id)sender
 {
-    [controlContainer switchViews:YES];
+    [PEDAppDelegate getInstance].isShowSleepTab=NO;
+    [[PEDAppDelegate getInstance] showTabView];
+    //[controlContainer switchViews:YES];
 }
 -(IBAction)swithToSleepView:(id)sender{
-    [controlContainer switchViews:NO];
+    [PEDAppDelegate getInstance].isShowSleepTab=YES;
+    [[PEDAppDelegate getInstance] showTabView];
+    //[controlContainer switchViews:NO];
 }
 
 @end

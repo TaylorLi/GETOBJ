@@ -36,7 +36,7 @@
 
 @synthesize sleepTargetViewController,sleepPedoViewController,sleepGraphsViewController,sleepBarchatViewController,sleepPedoDataViewController;
 
-@synthesize customerTabBarController;
+@synthesize customerTabBarController,sleepCustomerTabBarController,isShowSleepTab;
 
 static PEDAppDelegate* _instance;
 
@@ -132,7 +132,7 @@ static PEDAppDelegate* _instance;
 -(void) showTabView{
     @try {        
         
-        if(!customerTabBarController){
+        if(!customerTabBarController || !sleepCustomerTabBarController){
             NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
             [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
             [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
@@ -154,9 +154,6 @@ static PEDAppDelegate* _instance;
             [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Highlighted"];
             [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Seleted"];
             
-            NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
-            
-            
             //        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
             //        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
             //        tabBarController = [[UITabBarController alloc]init];
@@ -165,43 +162,58 @@ static PEDAppDelegate* _instance;
             //        // [tabBarController.tabBar setBounds:CGRectMake(0, self.window.frame.size.height-36, 320, 36)];
             //        tabBarController.tabBar.backgroundColor = [UIColor clearColor];
             //        tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"footer.png"];
-            pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
-            pedPedoViewController = [[PEDPedoViewController alloc]init];
-            sleepPedoViewController=[[PEDPedo4SleepViewController alloc] init];            
+            if(!pedBacktoMainViewController)
+                pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
+            if(!customerTabBarController){
+                pedPedoViewController = [[PEDPedoViewController alloc]init];        
+                //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+                pedTargetViewController = [[PEDTargetViewController alloc]init];           
+                pedGraphsViewController = [[PEDGraphsViewController alloc]init];                        
+                pedBarchartViewController = [[PEDBarchartViewController alloc]init];
+                UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
+                navPedo.navigationBarHidden=YES;
+                NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
+                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,pedPedoViewController,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
+                
+                UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+                tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
+                tabBarBg.backgroundColor = [UIColor clearColor];
+                [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
+                [customerTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"footer.png"]];
+                customerTabBarController.selectedIndex = 1;
+            }
             
-            pedTargetViewController = [[PEDTargetViewController alloc]init];
-            sleepTargetViewController=[[PEDTargetViewController alloc] initWithNibName:@"SleepTestTargetViewController" bundle:nil];            
-            SwitchViewController *targetContainer=[[SwitchViewController alloc] initWithPedoViewController:pedTargetViewController sleepViewController:sleepTargetViewController];
-            
-            pedGraphsViewController = [[PEDGraphsViewController alloc]init];
-            sleepGraphsViewController=[[PEDGraphs4SleepViewController alloc] init];
-            SwitchViewController *graphsContainer=[[SwitchViewController alloc] initWithPedoViewController:pedGraphsViewController sleepViewController:sleepGraphsViewController];
-            
-            pedBarchartViewController = [[PEDBarchartViewController alloc]init];
-            sleepBarchatViewController=[[PEDBarchart4SleepViewController alloc] init];
-            SwitchViewController *barchatContainer=[[SwitchViewController alloc] initWithPedoViewController:pedBarchartViewController sleepViewController:sleepBarchatViewController];
-            
-            //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
-            UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
-            navPedo.navigationBarHidden=YES;
-            UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
-            navSleep.navigationBarHidden=YES;
-            SwitchViewController *pedoContainer=[[SwitchViewController alloc] initWithPedoViewController:navPedo sleepViewController:navSleep];
-            
+            if(!sleepCustomerTabBarController){
+                sleepGraphsViewController=[[PEDGraphs4SleepViewController alloc] init];
+                sleepPedoViewController=[[PEDPedo4SleepViewController alloc] init];   
+                sleepBarchatViewController=[[PEDBarchart4SleepViewController alloc] init];            
+                UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
+                navSleep.navigationBarHidden=YES;
+                 NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic4, imgDic5,nil];
+                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,sleepPedoViewController,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr];
+                
+                UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+                tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
+                tabBarBg.backgroundColor = [UIColor clearColor];
+                [sleepCustomerTabBarController.view insertSubview:tabBarBg atIndex:0];
+                [sleepCustomerTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"footer.png"]];
+                sleepCustomerTabBarController.selectedIndex = 1;
+            }
             //        tabBarController.viewControllers = [[NSArray alloc]initWithObjects:pedBacktoMainViewController,
             //        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
-            customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,pedoContainer,targetContainer,barchatContainer,graphsContainer, nil] imageArray:imgArr];
-            UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
-            tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
-            tabBarBg.backgroundColor = [UIColor clearColor];
-            [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
-            [customerTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"footer.png"]];
+            
+            
             //[customerTabBarController setTabBarTransparent:YES];
             
         }
         //    tabBarController.selectedIndex = 1;
-        customerTabBarController.selectedIndex = 1;
-        [self swithView : customerTabBarController.view];
+        if(isShowSleepTab)
+        {            
+            [self swithView : sleepCustomerTabBarController.view];
+        }
+        else{            
+            [self swithView : customerTabBarController.view];
+        }
     }
     @catch (NSException *exception) {
         [LogHelper error:@"error occured" exception:exception];
@@ -251,6 +263,7 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
+    isShowSleepTab = NO;
     @try {
         [LogHelper setInitialLoggerByConfigFile:@"log4cocoa.properties"];
         //    self.window.frame = CGRectMake(0, 20, 320, 460);

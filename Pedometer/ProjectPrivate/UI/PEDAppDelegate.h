@@ -23,6 +23,7 @@ PEDPedoData4SleepViewController,PEDPedo4SleepViewController,PEDBarchart4SleepVie
 @property (strong, nonatomic) PEDUserSettingViewController *pedUserSettingViewController;
 @property (strong, nonatomic) PEDGraphsViewController *pedGraphsViewController;
 @property (strong, nonatomic) CustomerTabBarController *customerTabBarController;
+@property (strong, nonatomic) CustomerTabBarController *sleepCustomerTabBarController;
 @property (strong,nonatomic) PEDImportDataViewController *pedImportDataViewController;
 @property (strong,nonatomic) PEDAvailPerialViewController *pedAvailPerialViewController;
 @property (strong,nonatomic) UINavigationController *importDataViewController;
@@ -32,6 +33,7 @@ PEDPedoData4SleepViewController,PEDPedo4SleepViewController,PEDBarchart4SleepVie
 @property (strong, nonatomic) PEDPedo4SleepViewController *sleepPedoViewController;
 @property (strong, nonatomic) PEDPedoData4SleepViewController *sleepPedoDataViewController;
 @property (strong, nonatomic) PEDGraphs4SleepViewController *sleepGraphsViewController;
+@property(nonatomic) BOOL isShowSleepTab;
 
 + (PEDAppDelegate*)getInstance;
 -(void) showUserSettingView;

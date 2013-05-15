@@ -279,7 +279,7 @@
 					<object class="IBUIButton" id="878774971">
 						<reference key="NSNextResponder" ref="149103269"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{114, 285}, {92, 20}}</string>
+						<string key="NSFrame">{{113, 280}, {92, 28}}</string>
 						<reference key="NSSuperview" ref="149103269"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="828086503"/>
@@ -313,7 +313,7 @@
 					<object class="IBUIButton" id="828086503">
 						<reference key="NSNextResponder" ref="149103269"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{218, 285}, {92, 20}}</string>
+						<string key="NSFrame">{{216, 280}, {92, 28}}</string>
 						<reference key="NSSuperview" ref="149103269"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="145824102"/>
@@ -340,7 +340,7 @@
 					<object class="IBUIButton" id="1033657891">
 						<reference key="NSNextResponder" ref="149103269"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{11, 285}, {92, 20}}</string>
+						<string key="NSFrame">{{9, 280}, {92, 28}}</string>
 						<reference key="NSSuperview" ref="149103269"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="878774971"/>
@@ -449,6 +449,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickToConnectDevice:</string>
+						<reference key="source" ref="635216984"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">36</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -631,7 +640,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">35</int>
+			<int key="maxID">36</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

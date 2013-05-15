@@ -93,9 +93,9 @@
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]] addObject:[NSNumber numberWithFloat:0.0f]];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_IN_BED_TIME]] addObject:[NSNumber numberWithFloat:0.0f]];
         }else{
-            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_STEP]] addObject: [NSNumber numberWithFloat:sleepData.actualSleepTime / 3600.0f]];
-            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_ACTIVITY_TIME]] addObject:[NSNumber numberWithFloat:sleepData.awakenTime]];
-            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_CALORIES]] addObject:[NSNumber numberWithFloat:sleepData.inBedTime / 3600.0f]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME]] addObject: [NSNumber numberWithFloat:sleepData.actualSleepTime / 3600.0f]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]] addObject:[NSNumber numberWithFloat:sleepData.awakenTime]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_SLEEP_IN_BED_TIME]] addObject:[NSNumber numberWithFloat:sleepData.inBedTime / 3600.0f]];
         }
     }
     return statisticsDatas;
@@ -160,13 +160,13 @@
             lableText = [NSString stringWithFormat:@"Avg Pace 1=1Min/%@", [PEDPedometerCalcHelper getDistanceUnit:measureUnit withWordFormat:YES]];
             break;
         case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
-            lableText = @"Actual sleep time 1=1HOUR";
+            lableText = @"Actual sleep time\n 1=1HOUR";
             break;
         case STATISTICS_SLEEP_TIMES_AWAKEN:
-            lableText = @"Times awaken 1=1TIMES";
+            lableText = @"Times awaken\n 1=1TIMES";
             break;
         case STATISTICS_SLEEP_IN_BED_TIME:
-            lableText = @"In bed time 1=1HOUR";
+            lableText = @"In bed time\n 1=1HOUR";
             break;
         default:
             break;

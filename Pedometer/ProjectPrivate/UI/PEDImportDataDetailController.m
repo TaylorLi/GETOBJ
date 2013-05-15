@@ -468,7 +468,9 @@
         [[BO_PEDTarget getInstance] saveObject:target];
         [AppConfig getInstance].settings.target=target;
     }
-    for (PEDPedometerData *data in exchangeContainer.pedoData.allValues) {
+    NSMutableArray *pedoData =[[NSMutableArray alloc] initWithArray:exchangeContainer.pedoData.allValues];
+    [pedoData addObject:exchangeContainer.currentData];
+    for (PEDPedometerData *data in pedoData) {
         PEDPedometerData *pedoData=[[BO_PEDPedometerData getInstance] getWithTarget:exchangeContainer.target.targetId withDate:data.optDate];
         if(pedoData){
             pedoData.activeTime=data.activeTime;

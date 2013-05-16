@@ -302,7 +302,7 @@ static CustomerTabBarController *customerTabBarController;
     {
         return;
     }
-    NSLog(@"Display View.");
+    //NSLog(@"Display View.");
     _selectedIndex = index;
     
 	UIViewController *selectedVC = [self.viewControllers objectAtIndex:index];

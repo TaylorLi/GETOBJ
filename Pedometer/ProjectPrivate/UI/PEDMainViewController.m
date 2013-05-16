@@ -78,7 +78,7 @@
 
 
 - (IBAction)contactUsClick:(id)sender {
-    [UtilHelper sendEmail:@"114600001@qq.com" andSubject:nil andBody:nil];
+    [UtilHelper sendEmail:CONTACT_EMAIL andSubject:CONTACT_EMAIL_SAMPLE_SUBJECT andBody:CONTACT_EMAIL_SAMPLE_BODY];
 }
 
 - (IBAction)homePageClick:(id)sender {

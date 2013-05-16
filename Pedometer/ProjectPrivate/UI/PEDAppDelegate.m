@@ -208,10 +208,12 @@ static PEDAppDelegate* _instance;
         }
         //    tabBarController.selectedIndex = 1;
         if(isShowSleepTab)
-        {            
+        {         
+            sleepCustomerTabBarController.selectedIndex = 1;
             [self swithView : sleepCustomerTabBarController.view];
         }
-        else{            
+        else{           
+            customerTabBarController.selectedIndex = 1;
             [self swithView : customerTabBarController.view];
         }
     }

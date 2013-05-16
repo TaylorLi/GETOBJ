@@ -216,7 +216,7 @@ if(d==nil)
 }    
 +(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body{
     
-    NSString *email = [NSString stringWithFormat:@"mailto://%@&subject=%@&body=%@", to, subject, body];
+    NSString *email = [NSString stringWithFormat:@"mailto://%@?subject=%@&body=%@", to, subject, body];
     
     email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

@@ -10,6 +10,10 @@
 
 #define DATABASE_NAME @"Pedometer"
 
+#define CONTACT_EMAIL @"mkt@mail.kingtech-hk.com"
+#define CONTACT_EMAIL_SAMPLE_SUBJECT @"Pedometer"
+#define CONTACT_EMAIL_SAMPLE_BODY @"Dear Pedometer Administrator:"
+
 typedef enum {
 	MEASURE_UNIT_METRIC = 0,					// no packet
     MEASURE_UNIT_ENGLISH = 1

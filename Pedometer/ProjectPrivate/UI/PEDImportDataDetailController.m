@@ -227,7 +227,8 @@
     }else{
         bmr=655+9.6*userInfo.weight+1.8*userInfo.height-4.7*userInfo.age;
     }
-    target.targetCalorie=1/24*bmr+1.036*target.targetDistance*userInfo.weight;//计算方式2
+    target.targetCalorie=round(1*bmr/24+1.036*target.targetDistance*userInfo.weight);//计算方式2
+    DLog(@"bmr:%f,target.targetDistance:%f,targetCalorie:%f",bmr,target.targetDistance,target.targetCalorie);
     target.pedoDataCount = packet->pedoMemoryNo;
     target.sleepDataCount=packet->pedoSleepMemNo;
     target.updateDate=[NSDate date];

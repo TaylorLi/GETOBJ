@@ -45,9 +45,16 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) setCustomerTabBarControllerBackground: (UIImage *) bgImage{
-    if(customerTabBarController){
-        UIImageView *tabBarBgView = (UIImageView*)[customerTabBarController.view.subviews objectAtIndex:0];
-        tabBarBgView.image = bgImage;
+    if(isShowSleepTab){
+        if(sleepCustomerTabBarController){
+            UIImageView *tabBarBgView = (UIImageView*)[sleepCustomerTabBarController.view.subviews objectAtIndex:0];
+            tabBarBgView.image = bgImage;
+        }
+    }else{
+        if(customerTabBarController){
+            UIImageView *tabBarBgView = (UIImageView*)[customerTabBarController.view.subviews objectAtIndex:0];
+            tabBarBgView.image = bgImage;
+        }
     }
 }
 

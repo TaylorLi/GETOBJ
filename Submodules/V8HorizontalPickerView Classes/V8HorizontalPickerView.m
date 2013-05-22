@@ -404,9 +404,9 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
 	// only do this if we aren't decelerating
-//	if (!decelerate) {
-//		[self scrollToElementNearestToCenter];
-//	}    
+	if (!decelerate) {
+		[self scrollToElementNearestToCenter];
+	}    
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView { 
@@ -422,7 +422,6 @@
     if(playSound){
         [avPlayer stop];
     }  
-    [self scrollToElementNearestToCenter];    
 }
 
 
@@ -737,10 +736,8 @@
 		CGPoint tapLocation    = [recognizer locationInView:_scrollView];
 		NSInteger elementIndex = [self elementContainingPoint:tapLocation];
 		if (elementIndex != -1) { // point not in element
-			[self scrollToElement:elementIndex animated:YES];
-
+			[self scrollToElement:elementIndex animated:NO];
 		}
-        //[self scrollToElementNearestToCenter];
 	}
 }
 

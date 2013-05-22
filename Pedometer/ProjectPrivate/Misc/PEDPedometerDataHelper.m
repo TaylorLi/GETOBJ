@@ -268,23 +268,31 @@
 }
 
 +(NSString*) getSleepTimeString :(NSTimeInterval) time withFormat: (NSString*) format{
-    int h, m, s;
-    h = (int)time / 3600;
-    m = (int)time % 3600 / 60;
-    s = (int)time % 3600 % 60;
-    m = m + round(s/60);
-    if(h >= 12){
-        h -= 12;
+    NSString *ret = @"-:--";
+    if(time != -1){
+        int h, m, s;
+        h = (int)time / 3600;
+        m = (int)time % 3600 / 60;
+        s = (int)time % 3600 % 60;
+        m = m + round(s/60);
+        if(h >= 12){
+            h -= 12;
+        }
+        ret = [NSString stringWithFormat:format, h, m];
     }
-    return [NSString stringWithFormat:format, h, m];
+    return ret;
 }
 
 +(NSString*) getSleepTimeRemark :(NSTimeInterval) time{
-    NSString *remark = @"A";
-    int h;
-    h = (int)time / 3600;
-    if(h >= 12){
-        remark = @"P";
+    NSString *remark = @"";
+    if(time != -1){
+        int h;
+        h = (int)time / 3600;
+        if(h >= 12){
+            remark = @"P";
+        }else{
+            remark = @"A";
+        }
     }
     return remark;
 }

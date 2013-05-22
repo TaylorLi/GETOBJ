@@ -474,13 +474,13 @@
             return nil;
         }
         CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
-        textLineStyle.fontSize=8.0f;
+        textLineStyle.fontSize=6.0f;
         textLineStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
         NSString *plotIndentifier= (NSString *)plot.identifier;
         NSString *numberFormat;
         int digitCount;
         NSNumber *plotValue;
-        digitCount=[plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]] ? 1: 2;
+        digitCount=[plotIndentifier isEqualToString:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN]] ? 0: 1;
         numberFormat=[NSString stringWithFormat:@"%%.%if",digitCount];
         plotValue=(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] ;
         float plotValueDisplay=[PEDPedometerCalcHelper round:[plotValue floatValue] digit:digitCount];

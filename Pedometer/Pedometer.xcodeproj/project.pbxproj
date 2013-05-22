@@ -107,6 +107,7 @@
 		6B94DB2F16D8445600EF70C1 /* target_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B94DB0516D8445600EF70C1 /* target_normal@2x.png */; };
 		6B94DB3D16D8533C00EF70C1 /* CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B94DB3A16D8533C00EF70C1 /* CustomerTabBar.m */; };
 		6B94DB3E16D8533C00EF70C1 /* CustomerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B94DB3C16D8533C00EF70C1 /* CustomerTabBarController.m */; };
+		6BB14B3C174D8753000814EA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB14B3B174D8753000814EA /* icon.png */; };
 		6BD317BC16DEB70200966E52 /* activity_time_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B616DEB70100966E52 /* activity_time_button.png */; };
 		6BD317BD16DEB70200966E52 /* activity_time_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B716DEB70100966E52 /* activity_time_button@2x.png */; };
 		6BD317BE16DEB70200966E52 /* calories_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B816DEB70100966E52 /* calories_button.png */; };
@@ -352,8 +353,6 @@
 		DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */; };
 		DAFBD3F117240BBF004AC1F9 /* LogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBD3F017240BBF004AC1F9 /* LogHelper.m */; };
 		DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */; };
-		DAFED97A174D1D7700A62090 /* Fit_plus_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFED979174D1D7700A62090 /* Fit_plus_logo.png */; };
-		DAFED97D174D1E4E00A62090 /* Fit_plus_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFED97C174D1E4E00A62090 /* Fit_plus_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -462,6 +461,7 @@
 		6B94DB3A16D8533C00EF70C1 /* CustomerTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTabBar.m; sourceTree = "<group>"; };
 		6B94DB3B16D8533C00EF70C1 /* CustomerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTabBarController.h; sourceTree = "<group>"; };
 		6B94DB3C16D8533C00EF70C1 /* CustomerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTabBarController.m; sourceTree = "<group>"; };
+		6BB14B3B174D8753000814EA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		6BD317B616DEB70100966E52 /* activity_time_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_time_button.png; sourceTree = "<group>"; };
 		6BD317B716DEB70100966E52 /* activity_time_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_time_button@2x.png"; sourceTree = "<group>"; };
 		6BD317B816DEB70100966E52 /* calories_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calories_button.png; sourceTree = "<group>"; };
@@ -900,8 +900,6 @@
 		DAFBD3EF17240BBF004AC1F9 /* LogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogHelper.h; path = ../Util/LogHelper.h; sourceTree = "<group>"; };
 		DAFBD3F017240BBF004AC1F9 /* LogHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogHelper.m; path = ../Util/LogHelper.m; sourceTree = "<group>"; };
 		DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
-		DAFED979174D1D7700A62090 /* Fit_plus_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fit_plus_logo.png; sourceTree = "<group>"; };
-		DAFED97C174D1E4E00A62090 /* Fit_plus_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fit_plus_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1403,7 +1401,6 @@
 		DA6E9C0D16CFB2F900F2453F = {
 			isa = PBXGroup;
 			children = (
-				DAFED97C174D1E4E00A62090 /* Fit_plus_logo.png */,
 				DA6E9F8216CFB50800F2453F /* Resources */,
 				DA6E9FDA16CFE15B00F2453F /* dependencies */,
 				DA6E9C2216CFB2F900F2453F /* ProjectPrivate */,
@@ -1555,7 +1552,7 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				DAFED979174D1D7700A62090 /* Fit_plus_logo.png */,
+				6BB14B3B174D8753000814EA /* icon.png */,
 				6BFB6CF4174112C7006BB349 /* sleep */,
 				6BFB6CF2174112A7006BB349 /* data */,
 				6B0047AC16D92CCF00B87CA8 /* target */,
@@ -2127,8 +2124,7 @@
 				6BFB6D5217411614006BB349 /* PEDPedoData4SleepViewController.xib in Resources */,
 				6BFB6D541741162E006BB349 /* PEDPedo4SleepViewController.xib in Resources */,
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
-				DAFED97A174D1D7700A62090 /* Fit_plus_logo.png in Resources */,
-				DAFED97D174D1E4E00A62090 /* Fit_plus_logo.png in Resources */,
+				6BB14B3C174D8753000814EA /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

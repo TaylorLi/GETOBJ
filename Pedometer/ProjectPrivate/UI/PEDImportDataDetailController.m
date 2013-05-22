@@ -228,7 +228,7 @@
         bmr=655+9.6*userInfo.weight+1.8*userInfo.height-4.7*userInfo.age;
     }
     target.targetCalorie=round(1*bmr/24+1.036*target.targetDistance*userInfo.weight);//计算方式2
-    DLog(@"bmr:%f,target.targetDistance:%f,targetCalorie:%f",bmr,target.targetDistance,target.targetCalorie);
+    //DLog(@"bmr:%f,target.targetDistance:%f,targetCalorie:%f",bmr,target.targetDistance,target.targetCalorie);
     target.pedoDataCount = packet->pedoMemoryNo;
     target.sleepDataCount=packet->pedoSleepMemNo;
     target.updateDate=[NSDate date];
@@ -259,6 +259,7 @@
     PEDSleepData *sleepData=[[PEDSleepData alloc] init];
     sleepData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2x-%2x-%2x",packet->year,packet->month,packet->day]];
     sleepData.timeToBed=[[NSString stringWithFormat:@"%2x",packet->timeToBedHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToBedMin] intValue]*60;
+    
     sleepData.timeToFallSleep=[[NSString stringWithFormat:@"%2x",packet->timeToFallSleepHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToFallSleepMin] intValue]*60;
     sleepData.timeToWakeup=[[NSString stringWithFormat:@"%2x",packet->timeToWakeupHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToWakeupMin] intValue]*60;
     sleepData.inBedTime=[[NSString stringWithFormat:@"%2x",packet->inBedTimeHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->inBedTimeMin] intValue]*60;

@@ -13,6 +13,7 @@
 @property (nonatomic,strong) NSString *dataId;
 @property (nonatomic,strong) NSDate *optDate;
 @property (nonatomic,strong) NSDate *updateDate;
+/*无效时间表示方式 -1*/
 @property (nonatomic) NSTimeInterval timeToBed;//23:00 second
 @property (nonatomic) NSTimeInterval timeToWakeup;
 @property (nonatomic) NSTimeInterval timeToFallSleep;

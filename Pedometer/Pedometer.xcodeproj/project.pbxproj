@@ -352,6 +352,8 @@
 		DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */; };
 		DAFBD3F117240BBF004AC1F9 /* LogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBD3F017240BBF004AC1F9 /* LogHelper.m */; };
 		DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */; };
+		DAFED97A174D1D7700A62090 /* Fit_plus_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFED979174D1D7700A62090 /* Fit_plus_logo.png */; };
+		DAFED97D174D1E4E00A62090 /* Fit_plus_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFED97C174D1E4E00A62090 /* Fit_plus_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -898,6 +900,8 @@
 		DAFBD3EF17240BBF004AC1F9 /* LogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogHelper.h; path = ../Util/LogHelper.h; sourceTree = "<group>"; };
 		DAFBD3F017240BBF004AC1F9 /* LogHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogHelper.m; path = ../Util/LogHelper.m; sourceTree = "<group>"; };
 		DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
+		DAFED979174D1D7700A62090 /* Fit_plus_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fit_plus_logo.png; sourceTree = "<group>"; };
+		DAFED97C174D1E4E00A62090 /* Fit_plus_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fit_plus_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1399,6 +1403,7 @@
 		DA6E9C0D16CFB2F900F2453F = {
 			isa = PBXGroup;
 			children = (
+				DAFED97C174D1E4E00A62090 /* Fit_plus_logo.png */,
 				DA6E9F8216CFB50800F2453F /* Resources */,
 				DA6E9FDA16CFE15B00F2453F /* dependencies */,
 				DA6E9C2216CFB2F900F2453F /* ProjectPrivate */,
@@ -1550,6 +1555,7 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				DAFED979174D1D7700A62090 /* Fit_plus_logo.png */,
 				6BFB6CF4174112C7006BB349 /* sleep */,
 				6BFB6CF2174112A7006BB349 /* data */,
 				6B0047AC16D92CCF00B87CA8 /* target */,
@@ -2121,6 +2127,8 @@
 				6BFB6D5217411614006BB349 /* PEDPedoData4SleepViewController.xib in Resources */,
 				6BFB6D541741162E006BB349 /* PEDPedo4SleepViewController.xib in Resources */,
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
+				DAFED97A174D1D7700A62090 /* Fit_plus_logo.png in Resources */,
+				DAFED97D174D1E4E00A62090 /* Fit_plus_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

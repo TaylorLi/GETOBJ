@@ -11,8 +11,10 @@
 #define DATABASE_NAME @"Pedometer"
 
 #define CONTACT_EMAIL @"mkt@mail.kingtech-hk.com"
-#define CONTACT_EMAIL_SAMPLE_SUBJECT @"Pedometer"
-#define CONTACT_EMAIL_SAMPLE_BODY @"Dear Pedometer Administrator:"
+#define CONTACT_EMAIL_SAMPLE_SUBJECT @""
+#define CONTACT_EMAIL_SAMPLE_BODY @""
+/*无效时间表示方式*/
+#define TIME_INVALID_FLAG -1
 
 typedef enum {
 	MEASURE_UNIT_METRIC = 0,					// no packet

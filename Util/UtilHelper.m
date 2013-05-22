@@ -216,10 +216,8 @@ if(d==nil)
 }    
 +(void)sendEmail:(NSString *)to andSubject:(NSString*) subject andBody:(NSString*) body{
     
-    NSString *email = [NSString stringWithFormat:@"mailto://%@?subject=%@&body=%@", to, subject, body];
-    
-    email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+    NSString *email = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", to, subject, body];
+    email = [email stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:email]];
 }
 +(BOOL) isSameDate:(NSDate*) oneDate withAnotherDate:(NSDate*) anotherDate{

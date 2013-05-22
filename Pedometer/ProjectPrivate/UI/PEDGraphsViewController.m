@@ -222,7 +222,7 @@
         return nil;
     }
     CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
-    textLineStyle.fontSize=8.0f;
+    textLineStyle.fontSize=6.0f;
     textLineStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
     NSString *plotIndentifier=(NSString *)plot.identifier;
     NSString *numberFormat;

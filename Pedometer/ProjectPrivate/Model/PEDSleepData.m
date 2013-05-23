@@ -19,9 +19,9 @@
     {
         dataId = [UtilHelper stringWithUUID];   
         updateDate=[NSDate date];
-        timeToBed = -1;
-        timeToWakeup = -1;
-        timeToFallSleep = -1;
+        timeToBed = TIME_INVALID_FLAG;
+        timeToWakeup = TIME_INVALID_FLAG;
+        timeToFallSleep = TIME_INVALID_FLAG;
     }
     return self;
 }

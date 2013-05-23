@@ -17,11 +17,15 @@
 #define BLE_CONNECTION_TIMEOUT 5
 #define BLE_DATA_TRANSFER_TIMEOUT 5
 
+#define ENABLE_BLE_DEBUG_MODE NO
+
+/*
 #ifdef DEBUG
 #define ENABLE_BLE_DEBUG_MODE YES
 #else 
 #define ENABLE_BLE_DEBUG_MODE NO
 #endif
+*/
 
 #pragma mark -
 #pragma mark Service 1:Generic Access(0x1800)

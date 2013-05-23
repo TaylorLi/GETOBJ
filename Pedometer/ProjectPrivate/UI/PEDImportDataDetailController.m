@@ -31,6 +31,7 @@
 -(void)testExchangeDataEnd;
 -(void) exchangeTimeout:(NSTimer *)timer;
 -(void)cancelExchangeTimer;
+-(NSTimeInterval)convertTimeOfHour:(unsigned char)hour Minute:(unsigned char)min;
 
 @end
 
@@ -228,7 +229,7 @@
         bmr=655+9.6*userInfo.weight+1.8*userInfo.height-4.7*userInfo.age;
     }
     target.targetCalorie=round(1*bmr/24+1.036*target.targetDistance*userInfo.weight);//计算方式2
-    DLog(@"bmr:%f,target.targetDistance:%f,targetCalorie:%f",bmr,target.targetDistance,target.targetCalorie);
+    //DLog(@"bmr:%f,target.targetDistance:%f,targetCalorie:%f",bmr,target.targetDistance,target.targetCalorie);
     target.pedoDataCount = packet->pedoMemoryNo;
     target.sleepDataCount=packet->pedoSleepMemNo;
     target.updateDate=[NSDate date];
@@ -258,13 +259,24 @@
     packetSleepData *packet = (packetSleepData *)&incomingPacket[0];	
     PEDSleepData *sleepData=[[PEDSleepData alloc] init];
     sleepData.optDate=[UtilHelper convertDate:[NSString stringWithFormat:@"20%2x-%2x-%2x",packet->year,packet->month,packet->day]];
-    sleepData.timeToBed=[[NSString stringWithFormat:@"%2x",packet->timeToBedHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToBedMin] intValue]*60;
-    sleepData.timeToFallSleep=[[NSString stringWithFormat:@"%2x",packet->timeToFallSleepHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToFallSleepMin] intValue]*60;
-    sleepData.timeToWakeup=[[NSString stringWithFormat:@"%2x",packet->timeToWakeupHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->timeToWakeupMin] intValue]*60;
-    sleepData.inBedTime=[[NSString stringWithFormat:@"%2x",packet->inBedTimeHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->inBedTimeMin] intValue]*60;
-    sleepData.actualSleepTime=[[NSString stringWithFormat:@"%2x",packet->actualSleepTimeHour] intValue]*3600+[[NSString stringWithFormat:@"%2x",packet->actualSleepTimeMin] intValue]*60;
+    sleepData.timeToBed=[self convertTimeOfHour:packet->timeToBedHour Minute:packet->timeToBedMin];
+    sleepData.timeToFallSleep=[self convertTimeOfHour:packet->timeToFallSleepHour Minute:packet->timeToFallSleepMin];
+    sleepData.timeToWakeup=[self convertTimeOfHour:packet->timeToWakeupHour Minute:packet->timeToWakeupMin];  
+    sleepData.inBedTime=[self convertTimeOfHour:packet->inBedTimeHour Minute:packet->inBedTimeMin];   
+    sleepData.actualSleepTime=[self convertTimeOfHour:packet->actualSleepTimeHour Minute:packet->actualSleepTimeMin];   
     sleepData.awakenTime=packet->awakenTime;
     return sleepData;
+}
+
+-(NSTimeInterval)convertTimeOfHour:(unsigned char)hour Minute:(unsigned char)min
+{
+    NSTimeInterval result;
+    if ([[NSString stringWithFormat:@"%2x%2x",hour,min] isEqualToString:@"ffff"]) {
+        result=TIME_INVALID_FLAG;
+    }else{
+        result=[[NSString stringWithFormat:@"%2x",hour] intValue]*3600+[[NSString stringWithFormat:@"%2x",min] intValue]*60;
+    } 
+    return result;
 }
 
 -(void) serialGATTCharValueUpdated:(NSString *)UUID value:(NSData *)data
@@ -497,6 +509,7 @@
             sleepData.actualSleepTime=data.actualSleepTime;
             sleepData.awakenTime=data.awakenTime;
             sleepData.updateDate=data.updateDate;
+            sleepData.timeToFallSleep=data.timeToFallSleep;
         }
         else{
             data.targetId=exchangeContainer.target.targetId;

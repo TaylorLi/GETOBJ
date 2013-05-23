@@ -21,4 +21,4 @@
 
 @end
 
-void InstallUncaughtExceptionHandler(void);
+void InstallUncaughtExceptionHandler();

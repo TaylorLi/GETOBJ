@@ -28,6 +28,7 @@ static CustomerTabBarController *customerTabBarController;
 @synthesize delegate;
 @synthesize viewControllers = _viewControllers;
 @synthesize selectedIndex = _selectedIndex;
+@synthesize preSelectedIndex=_preSelectedIndex;
 @synthesize tabBarHidden = _tabBarHidden;
 @synthesize animateDriect;
 
@@ -50,6 +51,9 @@ static CustomerTabBarController *customerTabBarController;
 		
         customerTabBarController = self;
         animateDriect = 0;
+        
+        _preSelectedIndex=0;
+        
 	}
 	return self;
 }
@@ -338,7 +342,9 @@ static CustomerTabBarController *customerTabBarController;
 #pragma mark tabBar delegates
 - (void)tabBar:(CustomerTabBar *)tabBar didSelectIndex:(NSInteger)index
 {
-	if (self.selectedIndex == index) {
+    if(self.selectedIndex!=0)
+        _preSelectedIndex=self.selectedIndex;
+    if (self.selectedIndex == index) {
         UINavigationController *nav = [self.viewControllers objectAtIndex:index];
         [nav popToRootViewControllerAnimated:YES];
     }else {

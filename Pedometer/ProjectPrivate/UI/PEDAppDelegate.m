@@ -216,11 +216,11 @@ static PEDAppDelegate* _instance;
         //    tabBarController.selectedIndex = 1;
         if(isShowSleepTab)
         {         
-            sleepCustomerTabBarController.selectedIndex = 1;
+            sleepCustomerTabBarController.selectedIndex = sleepCustomerTabBarController.preSelectedIndex==0?1:sleepCustomerTabBarController.preSelectedIndex;
             [self swithView : sleepCustomerTabBarController.view];
         }
         else{           
-            customerTabBarController.selectedIndex = 1;
+            customerTabBarController.selectedIndex=customerTabBarController.preSelectedIndex==0?1:customerTabBarController.preSelectedIndex;
             [self swithView : customerTabBarController.view];
         }
     }

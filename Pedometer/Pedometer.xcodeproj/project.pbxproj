@@ -353,6 +353,7 @@
 		DAFBB9E716E4FA5700C2221C /* NSDate+AddAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBB9E616E4FA5700C2221C /* NSDate+AddAddition.m */; };
 		DAFBD3F117240BBF004AC1F9 /* LogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFBD3F017240BBF004AC1F9 /* LogHelper.m */; };
 		DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */; };
+		DAFED987174D24DD00A62090 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFED986174D24DD00A62090 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -900,6 +901,7 @@
 		DAFBD3EF17240BBF004AC1F9 /* LogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogHelper.h; path = ../Util/LogHelper.h; sourceTree = "<group>"; };
 		DAFBD3F017240BBF004AC1F9 /* LogHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogHelper.m; path = ../Util/LogHelper.m; sourceTree = "<group>"; };
 		DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ProjectPrivate/XIB/MainWindow.xib; sourceTree = SOURCE_ROOT; };
+		DAFED986174D24DD00A62090 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1401,6 +1403,7 @@
 		DA6E9C0D16CFB2F900F2453F = {
 			isa = PBXGroup;
 			children = (
+				DAFED986174D24DD00A62090 /* icon.png */,
 				DA6E9F8216CFB50800F2453F /* Resources */,
 				DA6E9FDA16CFE15B00F2453F /* dependencies */,
 				DA6E9C2216CFB2F900F2453F /* ProjectPrivate */,
@@ -2125,6 +2128,7 @@
 				6BFB6D541741162E006BB349 /* PEDPedo4SleepViewController.xib in Resources */,
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 				6BB14B3C174D8753000814EA /* icon.png in Resources */,
+				DAFED987174D24DD00A62090 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -269,7 +269,7 @@
 
 +(NSString*) getSleepTimeString :(NSTimeInterval) time withFormat: (NSString*) format{
     NSString *ret = @"-:--";
-    if(time != -1){
+    if(time != TIME_INVALID_FLAG){
         int h, m, s;
         h = (int)time / 3600;
         m = (int)time % 3600 / 60;
@@ -285,7 +285,7 @@
 
 +(NSString*) getSleepTimeRemark :(NSTimeInterval) time{
     NSString *remark = @"";
-    if(time != -1){
+    if(time != TIME_INVALID_FLAG){
         int h;
         h = (int)time / 3600;
         if(h >= 12){

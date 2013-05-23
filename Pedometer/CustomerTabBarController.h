@@ -17,7 +17,8 @@
 	id<CustomerTabBarControllerDelegate> _delegate;
 	NSMutableArray *_viewControllers;
 	NSUInteger _selectedIndex;
-	
+	NSUInteger _preSelectedIndex;
+    
 	BOOL _tabBarTransparent;
 	BOOL _tabBarHidden;
     
@@ -28,7 +29,7 @@
 
 @property(nonatomic, readonly) UIViewController *selectedViewController;
 @property(nonatomic) NSUInteger selectedIndex;
-
+@property(nonatomic) NSUInteger preSelectedIndex;
 // Apple is readonly
 @property (nonatomic, readonly) CustomerTabBar *tabBar;
 @property(nonatomic,assign) id<CustomerTabBarControllerDelegate> delegate;

@@ -10,7 +10,6 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Fit_plus_logo.png</string>
 		<string>icon.png</string>
 	</array>
 	<key>CFBundleIcons</key>

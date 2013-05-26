@@ -108,7 +108,7 @@
 	CGSize textSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]
 					   constrainedToSize:constrainedSize
 						   lineBreakMode:UILineBreakModeWordWrap];
-	return textSize.width + 20.0f; // 20px padding on each side
+	return textSize.width + 15.0f; // 20px padding on each side
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {

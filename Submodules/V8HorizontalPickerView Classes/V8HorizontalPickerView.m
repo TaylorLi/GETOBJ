@@ -726,7 +726,7 @@
 
 // move scroll view to position nearest element under the center
 - (void)scrollToElementNearestToCenter {
-	[self scrollToElement:[self nearestElementToCenter] animated:YES];
+	[self scrollToElement:[self nearestElementToCenter] animated:NO];
 }
 
 #pragma mark - Tap Gesture Recognizer Handler Method

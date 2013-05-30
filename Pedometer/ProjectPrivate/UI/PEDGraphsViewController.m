@@ -218,12 +218,12 @@
 }
 
 -(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index{
-    if([(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] intValue] == 0){
+    if([(NSNumber *)[[statisticsData objectForKey:plot.identifier] objectAtIndex:index] floatValue] == 0){
         return nil;
     }
     CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
     textLineStyle.fontSize=isLargeView ? 7.0f : 6.0f;
-    textLineStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+    textLineStyle.color = [CPTColor whiteColor];
     NSString *plotIndentifier=(NSString *)plot.identifier;
     NSString *numberFormat;
     int digitCount;
@@ -368,12 +368,12 @@
                     }
                 }
             }
-            if(maxValue > 0.000001f){
+            if(maxValue > FLOAT_EQUAL_STANDARD){
                 int maxIntValue = (int)maxValue;
                 yRangeLength = maxValue;
                 ymajorIntervalLength = ceil(maxValue / [AppConfig getInstance].settings.chartIntervalLength);
-                if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > 0.00001f){
-                    yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength;
+                if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > FLOAT_EQUAL_STANDARD){
+                    yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength + ymajorIntervalLength;
                 }
             }
         }
@@ -385,11 +385,11 @@
         //    [graph applyTheme:theme];
         CPTGraphHostingView *hostingView = (CPTGraphHostingView *)cptGraphHostingView;
         hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
-        hostingView.backgroundColor = isLargeView ? [UIColor whiteColor] : [UIColor clearColor];
-        if(isLargeView){
-            CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
-            [graph applyTheme:theme];
-        }
+        hostingView.backgroundColor = isLargeView ? [UIColor colorWithPatternImage:[UIImage imageNamed:@"chart_large_bg.png"]] : [UIColor clearColor];
+//        if(isLargeView){
+//            CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
+//            [graph applyTheme:theme];
+//        }
         hostingView.hostedGraph     = graph;
         
         // Border
@@ -465,7 +465,7 @@
         NSMutableArray *customLabels = [NSMutableArray arrayWithCapacity:[xAxisLabels count]];
         for ( NSNumber *tickLocation in customTickLocations ) {
             CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
-            textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+            textStyle.color = [CPTColor whiteColor];
             textStyle.fontSize=9.0f;
             CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[xAxisLabels objectAtIndex:labelLocation++] textStyle:textStyle];
             newLabel.tickLocation = [tickLocation decimalValue];
@@ -491,7 +491,7 @@
         y.majorGridLineStyle=lineStyle;
         y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
         CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
-        textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+        textStyle.color = [CPTColor whiteColor];
         textStyle.fontSize = 9.0f;
         y.labelTextStyle  = textStyle;
         /*

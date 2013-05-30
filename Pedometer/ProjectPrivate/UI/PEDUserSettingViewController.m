@@ -163,7 +163,7 @@
             break;
         case MEASURE_UNIT_METRIC:
             if(cacheUserInfo4English){
-                if((int)cacheHeight != (int)cacheUserInfo4English.height){
+                if(fabsf(cacheHeight - cacheUserInfo4English.height)>=FLOAT_EQUAL_STANDARD){
                     cacheUserInfo4English.height = cacheHeight;
                     cacheUserInfo4Metric.height = [PEDPedometerCalcHelper convertInchToCm:cacheUserInfo4English.height];
                 }
@@ -495,10 +495,10 @@
             }else{
                 //txbHeight.text = [PEDPedometerCalcHelper getFeetInfo:userInfo.height];
                 float inch = userInfo.height/12;
-                float feet = (int)userInfo.height % 12;
+                float feet = (inch - (int)inch) * 12;
                 txbHeight.hidden = YES;
                 baseInch4English = floor(inch);
-                baseFeet4English = floor(feet);
+                baseFeet4English = [PEDPedometerCalcHelper round:feet digit:0];
                 [pvInchFeet reloadData];
                 pvInchFeet.hidden = NO;
             }
@@ -565,12 +565,11 @@
 }
 
 - (IBAction)contactUsClick:(id)sender {
-    [UtilHelper sendEmail:@"" andSubject:nil andBody:nil];
-    //   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto://114600001@qq.com"]];
+    [UtilHelper sendEmail:CONTACT_EMAIL andSubject:CONTACT_EMAIL_SAMPLE_SUBJECT andBody:CONTACT_EMAIL_SAMPLE_BODY];
 }
 
 - (IBAction)homePageClick:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.kingtech-hk.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CONTACT_WEBSITE]];
 }
 
 - (IBAction)settingClick:(id)sender {
@@ -748,7 +747,6 @@
     }
     baseInch4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:0]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:0]] intValue];
     baseFeet4English = [[[inchFeetDataDictionary objectForKey:[NSNumber numberWithInt:1]] objectAtIndex: [pvInchFeet selectRowIndexWithComponent:1]] intValue];
-    
     cacheHeight = baseInch4English * 12 + baseFeet4English;
     UIScrollView *scv = (UIScrollView*)self.view;
     scv.scrollEnabled = YES;

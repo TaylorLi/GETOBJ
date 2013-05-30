@@ -168,8 +168,8 @@
 {
     //return floor(inch*2.54);
     NSTimeInterval cm = inch*2.54;
-    inch = [self round:cm digit:2];
-    inch = [self round:cm digit:1];
+    cm = [self round:cm digit:1];
+    cm = [self round:cm digit:0];
     return cm;
 }
 +(NSTimeInterval) convertLbsToKg:(NSTimeInterval) lbs

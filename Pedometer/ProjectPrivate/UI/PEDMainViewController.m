@@ -82,7 +82,7 @@
 }
 
 - (IBAction)homePageClick:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.kingtech-hk.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CONTACT_WEBSITE]];
 }
 
 - (IBAction)fitPlusClick:(id)sender {

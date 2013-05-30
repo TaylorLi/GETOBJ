@@ -13,6 +13,8 @@
 #define CONTACT_EMAIL @"mkt@mail.kingtech-hk.com"
 #define CONTACT_EMAIL_SAMPLE_SUBJECT @""
 #define CONTACT_EMAIL_SAMPLE_BODY @""
+#define CONTACT_WEBSITE @"http://www.kingtech-hk.com"
+#define FLOAT_EQUAL_STANDARD 0.00001
 /*无效时间表示方式*/
 #define TIME_INVALID_FLAG -1
 

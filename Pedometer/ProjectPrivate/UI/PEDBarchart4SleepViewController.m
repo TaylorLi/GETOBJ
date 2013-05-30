@@ -249,12 +249,12 @@
                     }
                 }
             }
-            if(maxValue > 0.000001f){
+            if(maxValue > FLOAT_EQUAL_STANDARD){
                 int maxIntValue = (int)maxValue;
                 yRangeLength = maxValue;
                 ymajorIntervalLength = ceil(maxValue / [AppConfig getInstance].settings.chartIntervalLength);
-                if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > 0.00001f){
-                    yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength;
+                if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > FLOAT_EQUAL_STANDARD){
+                    yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength + ymajorIntervalLength;
                 }
             }
         }
@@ -268,11 +268,11 @@
         CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.graphicHostView;
         
         hostingView.hostedGraph = barChart;
-        hostingView.backgroundColor = isLargeView ? [UIColor whiteColor] : [UIColor clearColor];
-        if(isLargeView){
-            CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
-            [barChart applyTheme:theme];
-        }
+        hostingView.backgroundColor = isLargeView ? [UIColor colorWithPatternImage:[UIImage imageNamed:@"chart_large_bg.png"]] : [UIColor clearColor];
+//        if(isLargeView){
+//            CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
+//            [barChart applyTheme:theme];
+//        }
         // Bordezr
         barChart.plotAreaFrame.borderLineStyle = nil;
         barChart.plotAreaFrame.cornerRadius    = 0.0f;
@@ -345,7 +345,7 @@
         NSMutableArray *customLabels = [NSMutableArray arrayWithCapacity:[xAxisLabels count]];
         for ( NSNumber *tickLocation in customTickLocations ) {
             CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
-            textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+            textStyle.color = [CPTColor whiteColor];
             textStyle.fontSize=9.0f;
             CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[xAxisLabels objectAtIndex:labelLocation++] textStyle:textStyle];
             newLabel.tickLocation = [tickLocation decimalValue];
@@ -372,7 +372,7 @@
         y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
         CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
         textStyle.fontSize = 9.0f;
-        textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+        textStyle.color = [CPTColor whiteColor];
         y.labelTextStyle  = textStyle;
         /*
          y.title                       = @"Y Axis";
@@ -475,7 +475,7 @@
         }
         CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
         textLineStyle.fontSize=isLargeView ? 7.0f : 6.0f;
-        textLineStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];
+        textLineStyle.color = [CPTColor whiteColor];
         NSString *plotIndentifier= (NSString *)plot.identifier;
         NSString *numberFormat;
         int digitCount;

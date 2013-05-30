@@ -108,6 +108,8 @@
 		6B94DB3D16D8533C00EF70C1 /* CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B94DB3A16D8533C00EF70C1 /* CustomerTabBar.m */; };
 		6B94DB3E16D8533C00EF70C1 /* CustomerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B94DB3C16D8533C00EF70C1 /* CustomerTabBarController.m */; };
 		6BB14B3C174D8753000814EA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB14B3B174D8753000814EA /* icon.png */; };
+		6BC72C44175795B100BE7581 /* chart_large_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC72C42175795B100BE7581 /* chart_large_bg.png */; };
+		6BC72C45175795B100BE7581 /* chart_large_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC72C43175795B100BE7581 /* chart_large_bg@2x.png */; };
 		6BD317BC16DEB70200966E52 /* activity_time_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B616DEB70100966E52 /* activity_time_button.png */; };
 		6BD317BD16DEB70200966E52 /* activity_time_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B716DEB70100966E52 /* activity_time_button@2x.png */; };
 		6BD317BE16DEB70200966E52 /* calories_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD317B816DEB70100966E52 /* calories_button.png */; };
@@ -463,6 +465,8 @@
 		6B94DB3B16D8533C00EF70C1 /* CustomerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTabBarController.h; sourceTree = "<group>"; };
 		6B94DB3C16D8533C00EF70C1 /* CustomerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTabBarController.m; sourceTree = "<group>"; };
 		6BB14B3B174D8753000814EA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		6BC72C42175795B100BE7581 /* chart_large_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart_large_bg.png; sourceTree = "<group>"; };
+		6BC72C43175795B100BE7581 /* chart_large_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_large_bg@2x.png"; sourceTree = "<group>"; };
 		6BD317B616DEB70100966E52 /* activity_time_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_time_button.png; sourceTree = "<group>"; };
 		6BD317B716DEB70100966E52 /* activity_time_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_time_button@2x.png"; sourceTree = "<group>"; };
 		6BD317B816DEB70100966E52 /* calories_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calories_button.png; sourceTree = "<group>"; };
@@ -1555,6 +1559,8 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				6BC72C42175795B100BE7581 /* chart_large_bg.png */,
+				6BC72C43175795B100BE7581 /* chart_large_bg@2x.png */,
 				6BB14B3B174D8753000814EA /* icon.png */,
 				6BFB6CF4174112C7006BB349 /* sleep */,
 				6BFB6CF2174112A7006BB349 /* data */,
@@ -2129,6 +2135,8 @@
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 				6BB14B3C174D8753000814EA /* icon.png in Resources */,
 				DAFED987174D24DD00A62090 /* icon.png in Resources */,
+				6BC72C44175795B100BE7581 /* chart_large_bg.png in Resources */,
+				6BC72C45175795B100BE7581 /* chart_large_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

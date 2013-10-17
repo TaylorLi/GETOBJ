@@ -121,8 +121,12 @@ if(d==nil)
 
 + (NSString*) stringByUUID:(CFUUIDRef)uuidObj {
     //get the string representation of the UUID
-    NSString    *uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(nil, uuidObj);
-    return uuidString;
+    if(uuidObj==nil)
+        return nil;
+    else{
+        NSString    *uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(nil, uuidObj);
+        return uuidString;
+    }
     //return [[uuidString stringByReplacingOccurrencesOfString:@"-" withString:@""] lowercaseString];
 }
 

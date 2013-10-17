@@ -28,6 +28,9 @@
 -(void)bindByUserInfoSetting;
 -(void)segUnitChangeToUnit:(MeasureUnit)unit;
 -(void)dataConversion:(MeasureUnit)unit;
+-(void) setTxbHightlight:(id) sender;
+-(void)setTxbNormal:(id) sender;
+-(void) txbEditBegin:(id) sender;
 @end
 
 @implementation PEDUserSettingViewController
@@ -64,18 +67,22 @@
     switch (unit) {  
         case MEASURE_UNIT_METRIC:  
             [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
-            [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
-            unitSegTitleLeft.hidden = NO;
-            unitSegTitleRight.hidden = YES;
+            [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:1];  
+            //unitSegTitleLeft.hidden = NO;
+            //unitSegTitleLeft.textColor=[UIColor whiteColor];
+            //unitSegTitleRight.hidden = NO;
+            //unitSegTitleRight.textColor=[UIColor colorWithRed:0x88 green:0x88 blue:0x88 alpha:1];
             //            lblHeightUnit.text = @"cm";
             //            lblStrideUnit.text = @"Stride(cm)";
             //            lblWeightUnit.text = @"kg";
             break;  
         case MEASURE_UNIT_ENGLISH:  
-            [segUnit setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
+            [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:0];
             [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
-            unitSegTitleLeft.hidden = YES;
-            unitSegTitleRight.hidden = NO;
+            //unitSegTitleLeft.hidden = NO;
+            //unitSegTitleLeft.textColor=[UIColor colorWithRed:0x88 green:0x88 blue:0x88 alpha:1];
+            //unitSegTitleRight.hidden = NO;
+            //unitSegTitleRight.textColor=[UIColor whiteColor];
             break;  
         default:  
             break;  
@@ -247,15 +254,15 @@
     switch (segControl.selectedSegmentIndex) {  
         case 0:  
             [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
-            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:1];  
-            genderSegTitleLeft.hidden = NO;
-            genderSegTitleRight.hidden = YES;
+            [segControl setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:1];  
+            //genderSegTitleLeft.hidden = NO;
+            //genderSegTitleRight.hidden = YES;
             break;  
         case 1:  
-            [segControl setImage:[UIImage imageNamed:@"segment_normal"] forSegmentAtIndex:0];
+            [segControl setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:0];
             [segControl setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
-            genderSegTitleLeft.hidden = YES;
-            genderSegTitleRight.hidden = NO;
+            //genderSegTitleLeft.hidden = YES;
+            //genderSegTitleRight.hidden = NO;
             break;  
         default:  
             break;  
@@ -278,8 +285,29 @@
     //    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
     //        txbHeight.text = [NSString stringWithFormat:@"%.0f", cacheHeight];
     //    }    
+    [self setTxbHightlight:txbHeight];
 }
 
+-(void) txbEditBegin:(id) sender{
+    [self setTxbHightlight:sender];
+    
+}
+
+-(void) setTxbHightlight:(id) sender{
+    UITextField *txb=(UITextField *)sender;
+    txb.tag=1;
+    txb.backgroundColor=[UIColor orangeColor];
+}
+
+-(void)setTxbNormal:(id) sender{
+    UITextField *txb=(UITextField *)sender;
+    txb.tag=0;
+    txb.backgroundColor=[UIColor clearColor];
+}
+
+-(void) txbUsernameEditEnd:(id) sender{
+    [self setTxbNormal:sender];
+}
 -(void) txbHeightEditEnd:(id) sender{
     //    if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
     //        [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:32 withMaxValue:98];
@@ -288,6 +316,7 @@
     //    }else{
     [self limitTextField:(UITextField *)sender withKey:@"height" withMinValue:80 withMaxValue:250];
     //    }
+    [self setTxbNormal:sender];
 }
 
 -(void) txbWeightEditEnd:(id) sender{
@@ -296,6 +325,7 @@
     }else{
         [self limitTextField:(UITextField *)sender withKey:@"weight" withMinValue:15 withMaxValue:130];
     }
+    [self setTxbNormal:sender];
 }
 
 -(void) txbStrideEditEnd:(id) sender{
@@ -304,15 +334,27 @@
     }else{
         [self limitTextField:(UITextField *)sender withKey:@"stride" withMinValue:30 withMaxValue:150];
     }
+    [self setTxbNormal:sender];
 }
 
 -(void) txbAgeEditEnd:(id) sender{
     [self limitTextField:(UITextField *)sender withKey:@"age" withMinValue:5 withMaxValue:99];
+    [self setTxbNormal:sender];
 }
 
 -(void)txtChanged:(UITextField *)sender{
-    if([sender.text hasSuffix:@"."]){
-        sender.text = [sender.text substringToIndex:sender.text.length-1];
+    if(sender.tag==1){
+        sender.tag=0;
+        //clear previos value;
+        if(sender.text.length>0){
+            //NSLog(@"%@",[sender.text substringFromIndex:sender.text.length-1]);
+            sender.text=[sender.text substringFromIndex:sender.text.length-1];
+        }
+    }
+    if(sender!=txbUserName){
+        if([sender.text hasSuffix:@"."]){
+            sender.text = [sender.text substringToIndex:sender.text.length-1];
+        }
     }
 }
 
@@ -411,7 +453,7 @@
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segUnit.tintColor = myTint; 
     [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left"] atIndex:0 animated:NO]; 
-    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_normal"] atIndex:1 animated:NO]; 
+    [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_disable"] atIndex:1 animated:NO]; 
     [segUnit setWidth:38 forSegmentAtIndex:0];
     //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:8],UITextAttributeFont ,nil];      
     //    [segGender setTitleTextAttributes:dic forState:UIControlStateNormal];
@@ -432,14 +474,14 @@
     unitSegTitleRight.textColor = [UIColor whiteColor];
     unitSegTitleRight.backgroundColor = [UIColor clearColor];
     unitSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
-    unitSegTitleRight.hidden = YES;
+    //unitSegTitleRight.hidden = YES;
     [self.view addSubview:unitSegTitleRight];
     
     segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 270, 76, 18)];
     segGender.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segGender.tintColor = myTint; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:NO]; 
-    [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_normal.png"]  atIndex:1 animated:NO]; 
+    [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_disable.png"]  atIndex:1 animated:NO]; 
     [segGender setWidth:38 forSegmentAtIndex:0];
     segGender.selectedSegmentIndex =0;
     [segGender addTarget:self action:@selector(segGenderChange:) forControlEvents:UIControlEventValueChanged];
@@ -458,23 +500,32 @@
     genderSegTitleRight.textColor = [UIColor whiteColor];
     genderSegTitleRight.backgroundColor = [UIColor clearColor];
     genderSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
-    genderSegTitleRight.hidden = YES;
+    //genderSegTitleRight.hidden = YES;
     [self.view addSubview:genderSegTitleRight];
+    
+    [self.txbUserName addTarget:self action:@selector(txbEditBegin:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    [self.txbUserName addTarget:self action:@selector(txbUsernameEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
     
     [self.txbHeight addTarget:self action:@selector(txbHeightEditBegin) forControlEvents:UIControlEventEditingDidBegin];
     
     [self.txbHeight addTarget:self action:@selector(txbHeightEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
     
+    [self.txbWeight addTarget:self action:@selector(txbEditBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [self.txbWeight addTarget:self action:@selector(txbWeightEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
     
+    [self.txbStride addTarget:self action:@selector(txbEditBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [self.txbStride addTarget:self action:@selector(txbStrideEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
     
+    [self.txbAge addTarget:self action:@selector(txbEditBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [self.txbAge addTarget:self action:@selector(txbAgeEditEnd:) forControlEvents:UIControlEventEditingDidEnd];
     
     [self.txbAge addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.txbHeight addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.txbWeight addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.txbStride addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
+    
+    [self.txbUserName addTarget:self action:@selector(txtChanged:) forControlEvents:UIControlEventEditingChanged];
     
     [self initGesture];
     

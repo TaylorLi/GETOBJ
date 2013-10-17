@@ -248,10 +248,7 @@ static PEDAppDelegate* _instance;
         }
         if(pedTargetViewController){
             [pedTargetViewController initData];
-        }
-        if(sleepTargetViewController){
-            [pedTargetViewController initData];
-        }
+        }        
         if(pedBarchartViewController){
             [pedBarchartViewController initDataByDate:currentDate];
         }
@@ -260,6 +257,21 @@ static PEDAppDelegate* _instance;
         }
         if(pedPedoDataViewController){
             [pedPedoDataViewController initDataByDate:currentDate];
+        }
+        if(sleepTargetViewController){
+            [sleepTargetViewController initData];
+        }
+        if(sleepPedoViewController){
+            [sleepPedoViewController initDataByDate:currentDate];
+        }
+        if(sleepPedoDataViewController){
+            [sleepPedoDataViewController initDataByDate:currentDate];
+        }
+        if(sleepGraphsViewController){
+            [sleepGraphsViewController initDataByDate:currentDate];
+        }
+        if(sleepBarchatViewController){
+            [sleepBarchatViewController initDataByDate:currentDate];
         }
     }
     @catch (NSException *exception) {

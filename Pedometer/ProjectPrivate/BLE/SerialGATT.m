@@ -272,7 +272,12 @@
         printf("New peripheral is found...\n");
         [peripheral discoverServices:nil];
         [peripherals addObject:peripheral];
+        @try{
         [delegate peripheralFound:peripheral advertisementData:advertisementData];
+            }
+        @catch (NSException *ex) {
+            debugLog(@"Exception:%@",ex);
+        }
     }
     printf("%s\n", __FUNCTION__);
 }

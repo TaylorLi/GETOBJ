@@ -144,9 +144,12 @@
 
 - (void) initDataByDate:(NSDate *) date{
     @try {
-        referenceDate=date;
-        if(referenceDate==nil)
-            referenceDate=[NSDate date];
+        if(date==nil){
+            if(referenceDate==nil)
+                referenceDate=[NSDate date];
+        }
+        else
+            referenceDate=date;
         PEDSleepData *currSleepData = [[BO_PEDSleepData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
         PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
         if(!currSleepData){

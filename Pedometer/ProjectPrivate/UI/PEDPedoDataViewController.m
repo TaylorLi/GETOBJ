@@ -411,12 +411,12 @@
 - (void) initDataByDate:(NSDate *) date{
     @try {
     NSDate *orginDate=[referenceDate copy];
-    if(date){
+    if(date==nil){
+        if(referenceDate==nil)
+            referenceDate=[NSDate date];
+    }
+    else
         referenceDate=date;
-    }
-    else{
-        referenceDate=[NSDate date];
-    }
     PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
     NSString* targetId = [AppConfig getInstance].settings.target.targetId;
     self.lblUserName.text = userInfo.userName;

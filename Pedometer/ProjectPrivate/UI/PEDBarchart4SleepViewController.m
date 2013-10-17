@@ -128,10 +128,14 @@
             [self DoubleTap:nil];
         }
         lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
-        referenceDate=date;
+        if(date==nil){
+            if(referenceDate==nil)
+                referenceDate=[NSDate date];
+        }
+        else
+            referenceDate=date;      
         lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDSleepData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
-        if(referenceDate==nil)
-            referenceDate=[NSDate date];
+        
         isLargeView = false;
         dayRemark =0;
         isFirstLoad =YES;

@@ -208,7 +208,7 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
 
 /*for ios 7 and above*/
 - (void)handleKeyUIEvent:(UIPhysicalKeyboardEvent *)event {
-   
+    [super handleKeyUIEvent:event];
     if(![AppConfig getInstance].isIPAD || ![AppConfig getInstance].hasValidActive)
         return;
     if([super respondsToSelector:@selector(handleKeyUIEvent:)])

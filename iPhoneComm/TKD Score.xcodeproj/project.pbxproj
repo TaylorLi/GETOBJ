@@ -2086,7 +2086,7 @@
 						DevelopmentTeam = 9H5X23RLWG;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

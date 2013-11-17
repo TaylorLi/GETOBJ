@@ -57,11 +57,11 @@
                   symbolName = "-[DefinedUIApplication sendEvent:]"
                   moduleName = "TKD Score HD"
                   urlString = "file:///Users/eagledu/github/repo/GETOBJ/iPhoneComm/Classes/UI/DefinedUIApplication.m"
-                  timestampString = "406363563.440758"
+                  timestampString = "406392115.178316"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
                   offsetFromSymbolStart = "40">
                </Location>
                <Location
@@ -71,26 +71,12 @@
                   symbolName = "-[DefinedUIApplication sendEvent:]"
                   moduleName = "TKD Score HD"
                   urlString = "file:///Users/eagledu/github/repo/GETOBJ/iPhoneComm/Classes/UI/DefinedUIApplication.m"
-                  timestampString = "406363563.441027"
+                  timestampString = "406392115.178609"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "1306">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DefinedUIApplication sendEvent:]"
-                  moduleName = "TKD Score HD"
-                  urlString = "file:///Users/eagledu/github/repo/GETOBJ/iPhoneComm/Classes/UI/DefinedUIApplication.m"
-                  timestampString = "406363563.441192"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "1354">
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "258">
                </Location>
             </Locations>
          </BreakpointContent>

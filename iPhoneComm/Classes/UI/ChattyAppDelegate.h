@@ -71,7 +71,7 @@
 -(void) showGameSettingView;
 -(void) showDuringMatchSettingView:(NSInteger)tabIndex;
 
--(void) swithView:(UIView *) view;
+-(void) swithView:(UIViewController *) controller;
 
 
 @end

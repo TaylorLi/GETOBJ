@@ -120,6 +120,14 @@
     // Return YES for supported orientations
     return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
 
 - (IBAction)selectRedToWinner:(id)sender {
     [self showWinner:YES];

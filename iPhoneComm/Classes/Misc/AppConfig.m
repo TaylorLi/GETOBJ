@@ -124,7 +124,14 @@ static AppConfig* instance;
     else
         return  interfaceOrientation==UIInterfaceOrientationLandscapeRight;
 }
++(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
 
++ (BOOL)shouldAutorotate
+{
+    return YES;
+}
 -(void)saveGameInfoToFile
 {
     [UtilHelper serializeObjectToFile:KEY_FILE_SETTING withObject:currentGameInfo dataKey:KEY_FILE_SETTING_GAME_INFO];

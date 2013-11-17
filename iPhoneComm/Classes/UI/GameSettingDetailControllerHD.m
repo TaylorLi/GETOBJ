@@ -179,6 +179,15 @@
     return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
+
 -(void) touchSaveButton
 {
     [self startGame:NO];
@@ -446,7 +455,7 @@
                     {
                         [fightTimeInvs addObject:[NSString stringWithFormat:@"%i",i]];
                     }
-                    SimplePickerInputTableViewCell *fightTimeCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Fight Time(Second)", @"Fight Time(Second)") selectValue:[NSString stringWithFormat:@"%i",si.fightTimeInterval] dataSource:fightTimeInvs];    
+                    SimplePickerInputTableViewCell *fightTimeCell= [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil title: NSLocalizedString(@"Fight Time(Second)", @"Fight Time(Second)") selectValue:[NSString stringWithFormat:@"%i",(int)si.fightTimeInterval] dataSource:fightTimeInvs];
                     fightTimeCell.tag=kFightTime;
                     fightTimeCell.delegate=selfCtl;
                     [section addCustomerCell:fightTimeCell];
@@ -662,9 +671,9 @@
             si.fightTimeInterval=[value intValue];
             break;
         case  kDeviceType:
-            if(value==@"Peripheral Device")
+            if([value isEqual:@"Peripheral Device"])
                 si.currentJudgeDevice=JudgeDeviceKeyboard;
-            else if(value==@"Headphone Device")
+            else if([value isEqual:@"Headphone Device"])
                 si.currentJudgeDevice=JudgeDeviceHeadphone ;
             else
                 si.currentJudgeDevice=JudgeDeviceiPhone;

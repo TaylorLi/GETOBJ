@@ -91,6 +91,15 @@
     return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
+
 - (IBAction)chgUsagePwd:(id)sender {
     txtPwd.hidden=!sldPsw.on;
     if(sldPsw.on)

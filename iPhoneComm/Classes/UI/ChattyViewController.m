@@ -151,6 +151,14 @@
     // Return YES for supported orientations
     return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
 
 // User is asking to join an existing chat room
 - (void)joinChatRoom:(NSIndexPath*)currentRow {

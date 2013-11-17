@@ -9,6 +9,19 @@
 #import "DefinedUIApplication.h"
 #import "AppConfig.h"
 
+
+@interface UIInternalEvent : UIEvent @end
+@interface UIPhysicalButtonsEvent : UIInternalEvent @end
+
+@interface UIPhysicalKeyboardEvent : UIPhysicalButtonsEvent
+@property(retain, nonatomic) NSString *_unmodifiedInput;
+@end
+
+@interface UIApplication ()
+- (void)handleKeyUIEvent:(UIPhysicalKeyboardEvent *)event;
+@end
+
+
 @implementation DefinedUIApplication
 
 #pragma mark -
@@ -56,6 +69,8 @@
 #define GSEVENT_TYPE_KEYDOWN 10
 #define GSEVENT_TYPE_KEYUP 11
 
+
+
 NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotification";
 
 - (void)sendEvent:(UIEvent *)event
@@ -65,7 +80,7 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
         [super sendEvent:event];
         if(![AppConfig getInstance].isIPAD || ![AppConfig getInstance].hasValidActive)
             return;
-        
+        if ([self isEditingText]) return;
         if ([event respondsToSelector:@selector(_gsEvent)]) {
             // Hardware Key events are of kind UIInternalEvent which are a wrapper of GSEventRef which is wrapper of GSEventRecord
             int *eventMemory = (int *)[event performSelector:@selector(_gsEvent)];
@@ -96,7 +111,10 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
                     BOOL command=(eventFlags&(1<<18))?YES:NO;
                     BOOL option=(eventFlags&(1<<19))?YES:NO;
                     BOOL control=(eventFlags&(1<<20))?YES:NO;
-                    //printf("Shift Ctrl Alt Cmd %i %i %i %d\n ",shift, control,option,command);
+                    if (keycode==0) {
+                        return;
+                    }
+                    printf("Shift Ctrl Alt Cmd %i %i %i %d\n ",shift, control,option,command);
                     NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithShort:keycode[0]], @"keycode", [NSNumber numberWithInt:eventFlags], @"eventFlags",[NSNumber numberWithBool:shift],@"shift",[NSNumber numberWithBool:command],@"command",[NSNumber numberWithBool:option],@"option",[NSNumber numberWithBool:control],@"control", nil];
                     [[NSNotificationCenter defaultCenter] postNotificationName:UIEventGSEventKeyUpNotification object:nil userInfo:userInfo];
                     
@@ -142,6 +160,79 @@ NSString *const UIEventGSEventKeyUpNotification = @"UIEventGSEventKeyUpNotificat
     @finally {
         
     }
+}
+
+/*
+- (void)handleKeyUIEvent:(UIEvent *)event
+{
+ 
+     size_t s = malloc_size((__bridge const void *)(event));
+     NSLog(@"%s enter... %ld", __func__, s);
+     //    unsigned char *ptr = (unsigned char *)(__bridge void *)event;
+     
+     unsigned long *ptr = (unsigned long *)(__bridge void *)event;
+     //
+     //#define OFF_KEY_MASK 12
+     //#define OFF_KEY_SCANCODE 15
+     //#define OFF_KEY_CHAR 17
+     
+     //    NSLog(@"type: %lx off: %d", *(ptr + 2), 2);
+     //    NSLog(@"MASK: %lx off: %d", *(ptr + OFF_KEY_MASK), OFF_KEY_MASK);
+     //    NSLog(@"SCAN: %lx off: %d", *(ptr + OFF_KEY_SCANCODE), OFF_KEY_SCANCODE);
+     //    NSLog(@"CHAR: %lx off: %d", *(ptr + OFF_KEY_CHAR), OFF_KEY_CHAR);
+     
+     NSLog(@"sizeof unsigned long: %lx", sizeof(unsigned long));
+     
+     for (int i = 0; i < s / 4; ++i) {
+     //        NSLog(@"... [%d] = %x", i, *(unsigned char *)(ptr + i));
+     NSLog(@"... [%d] = %lx", i, *(unsigned long *)(ptr + i));
+     }
+     
+     #define OFF_DUMP 8
+     
+     unsigned long *dump = (unsigned long *) *(ptr + OFF_DUMP);
+     s = malloc_size((const void *)*(ptr + OFF_DUMP));
+     
+     NSLog(@"... *[%d] size: %ld", OFF_DUMP, malloc_size((const void *)*(ptr + OFF_DUMP)));
+     
+     for (int i = 0; i < s / 4; ++i) {
+     NSLog(@"..... [%d] = %lx", i, *(unsigned long *)(dump + i));
+     }
+     
+     struct objc_super super_data = { self, [UIApplication class] };
+     objc_msgSendSuper(&super_data, @selector(handleKeyUIEvent:), event);
+ 
+    [super handleKeyUIEvent:event];
+}
+*/
+
+/*for ios 7 and above*/
+- (void)handleKeyUIEvent:(UIPhysicalKeyboardEvent *)event {
+   
+    if(![AppConfig getInstance].isIPAD || ![AppConfig getInstance].hasValidActive)
+        return;
+    if([super respondsToSelector:@selector(handleKeyUIEvent:)])
+        [super handleKeyUIEvent:event];
+    if([super respondsToSelector:@selector(isEditingText)])
+    {
+        if ([self isEditingText]) return;
+    }
+   
+    short keyCode=[Definition getKeyCodeByKeyCodeString:event._unmodifiedInput];
+     NSLog(@"key char:%@,short:%i",event._unmodifiedInput,keyCode);
+    NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithShort:keyCode], @"keycode", [NSNumber numberWithInt:0], @"eventFlags",[NSNumber numberWithBool:NO],@"shift",[NSNumber numberWithBool:NO],@"command",[NSNumber numberWithBool:NO],@"option",[NSNumber numberWithBool:NO],@"control", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIEventGSEventKeyUpNotification object:nil userInfo:userInfo];
+}
+
+- (BOOL)isEditingText {
+//#if (TARGET_IPHONE_SIMULATOR)
+    // If you're writing text into a textfield, we shouldn't try run commands.
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    UIView   *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
+    if (firstResponder) return YES;
+//#endif
+    
+    return NO;
 }
 
 @end

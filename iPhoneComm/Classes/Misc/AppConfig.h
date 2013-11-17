@@ -55,7 +55,8 @@
 @property BOOL hasValidActive;
 // Singleton - one instance for the whole app
 + (AppConfig*)getInstance;
-
++(NSUInteger)supportedInterfaceOrientations;
++ (BOOL)shouldAutorotate;
 +(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 + (BOOL)shouldAutorotateToInterfaceOrientationLandscape:(UIInterfaceOrientation)interfaceOrientation;
 -(void)saveGameInfoToFile;

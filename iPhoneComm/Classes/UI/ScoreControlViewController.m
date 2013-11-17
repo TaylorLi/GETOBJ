@@ -93,6 +93,14 @@
     // Return YES for supported orientations
     return [AppConfig shouldAutorotateToInterfaceOrientationLandscape:interfaceOrientation];
 }
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -691,12 +699,13 @@ else{
 {
     if(reConnectBox==nil)
     {
+        ScoreControlViewController *ctl=self;
         reConnectBox = [[AlertView alloc] initWithTitle:NSLocalizedString(@"Fail connect to server", @"") message:NSLocalizedString(@"Do you want to retry?", @"")];
         [reConnectBox addButtonWithTitle:NSLocalizedString(@"Retry", @"") block:[^(AlertView* a, NSInteger i){
-            [self retryConnect];        
+            [ctl retryConnect];
         } copy]];
         [reConnectBox addButtonWithTitle:NSLocalizedString(@"Exit", @"") block:[^(AlertView* a, NSInteger i){
-            [self exit];
+            [ctl exit];
         } copy]];
         reConnectBox.tag=15;
     }

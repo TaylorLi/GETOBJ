@@ -369,6 +369,18 @@
     // Return YES for supported orientations
     return [AppConfig shouldAutorotateToInterfaceOrientationLandscape:interfaceOrientation];
 }
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationLandscapeLeft;
+}
 
 - (void)dealloc {
     waitUserPanel=nil;
@@ -1204,7 +1216,7 @@
     NSMutableArray *relatedJudges=[[NSMutableArray alloc] initWithCapacity:4];
     NSMutableArray *scoreReportIndicators;
     NSMutableDictionary *scoreReportIndicatorTimers;
-    if(score.sideKey==@"red"){
+    if([score.sideKey isEqualToString:@"red"]){
         scoreReportIndicators=scoreReportIndicatorsRed;
         scoreReportIndicatorTimers=scoreReportIndicatorTimersRed;
     }else{
@@ -1859,7 +1871,7 @@
     self.actionHeaderView.items = menuItems;		
     [self.view addSubview:self.actionHeaderView];
     float actionWidth=(iconRect.size.width)*(menuItems.count+0.5);
-    [self.actionHeaderView setFrame:CGRectMake(self.actionHeaderView.bounds.size.width - actionWidth, self.actionHeaderView.frame.origin.y, actionWidth, self.actionHeaderView.frame.size.height)];
+    [self.actionHeaderView setFrame:CGRectMake(self.actionHeaderView.bounds.size.width - actionWidth-30, self.actionHeaderView.frame.origin.y, actionWidth, self.actionHeaderView.frame.size.height)];
 }
 - (void)menuItemAction:(id)sender{
     
@@ -1867,7 +1879,7 @@
     int tag=[(UIButton *)sender tag];
     switch (tag) {
         case kMenuItemMenu://收缩显示菜单
-            [self.actionHeaderView shrinkActionPicker];
+            [self.actionHeaderView toggleActionPicker];
             break;
         case kMenuItemExit://退出游戏
         {
@@ -2635,5 +2647,11 @@
         [[BO_RoundInfo getInstance] updateObject:chatRoom.gameInfo.currentMatchInfo.currentRoundInfo];
         chatRoom.gameInfo.currentMatchInfo.currentRoundInfo=nil;
     }
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    
+    return UIInterfaceOrientationMaskAll;
 }
 @end

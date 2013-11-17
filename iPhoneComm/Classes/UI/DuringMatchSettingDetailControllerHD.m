@@ -154,6 +154,14 @@ detailControllerMatchDetailReport,detailControllerReportNav;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
 
 #pragma mark -
 #pragma mark Bind Table Cells 
@@ -517,7 +525,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
      } copy]];
      [confirmBox show];
      */
-    [[ChattyAppDelegate getInstance] swithView:relateGameServer.view]; 
+    [[ChattyAppDelegate getInstance] swithView:relateGameServer]; 
     [relateGameServer duringSettingEndPress];
 }
 
@@ -551,7 +559,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
 -(void) touchSaveButton
 {
     [self saveSetting];
-    [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];    
+    [[ChattyAppDelegate getInstance] swithView:relateGameServer];
     [relateGameServer updateForGameSetting:isChangeSetting];
 }
 
@@ -559,7 +567,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
 {
     if(relateGameServer.view!=nil)
     {
-        [[ChattyAppDelegate getInstance] swithView:relateGameServer.view];
+        [[ChattyAppDelegate getInstance] swithView:relateGameServer];
         [relateGameServer updateForGameSetting:NO];
     }
     else{
@@ -754,7 +762,7 @@ detailControllerMatchDetailReport,detailControllerReportNav;
                 else{
                     cell.textLabel.textColor=[UIColor redColor];
                     img=[UIImage imageNamed:@"circle_red.png"];
-                    cell.textLabel.text=[NSString stringWithFormat:@"%@!%", cltInfo.displayName];
+                    cell.textLabel.text=[NSString stringWithFormat:@"%@!", cltInfo.displayName];
                 }
                 UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
                 imgView.image=img;

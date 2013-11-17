@@ -81,6 +81,14 @@
     // Return YES for supported orientations
     return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
 // This is called whenever "Return" is touched on iPhone's keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     if ( theTextField.text == nil || [theTextField.text length] < 1 ) {

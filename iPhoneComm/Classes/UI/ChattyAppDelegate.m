@@ -66,21 +66,25 @@ static ChattyAppDelegate* _instance;
     //不自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled=YES;
     _instance = self;
-    
     // Override point for customization after app launch
-    [window addSubview:welcomeViewController.view];   
+    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))
+        [window addSubview:welcomeViewController.view];
+    else
+        [window setRootViewController:welcomeViewController];
     [window makeKeyAndVisible];
-    
     // Greet user
     //[window bringSubviewToFront:welcomeViewController.view];
     
     // 监测网络情况
     //NSLog(@"%@,%@",[AppConfig getInstance].uuid,[UtilHelper stringWithUUID]);
     
+    /*不能使用改方法，使用该方法时，不能使用模拟器方式
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
     NSMutableArray * discoveredPeripherals = [NSMutableArray new];
     centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     [centralManager scanForPeripheralsWithServices:discoveredPeripherals options:options];
+   */
+    
     /* 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
@@ -113,24 +117,33 @@ static ChattyAppDelegate* _instance;
     return _instance;
 }
 
--(void) swithView:(UIView *) view{
-    for (UIView *subView in window.subviews) {
+-(void) swithView:(UIViewController *) controller{
+    UIView *parentView=window;
+    for (UIView *subView in parentView.subviews) {
         if(subView.superview!=nil){
         [subView removeFromSuperview];
-            }
+        }
     }
-    [window insertSubview:view atIndex:0];
+    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))
+        [parentView addSubview:controller.view];
+    else{
+     if(window.rootViewController==controller)
+         [window addSubview:controller.view];
+     else
+        [window setRootViewController:controller];
+    }
+    
 }
 // Show screen with room selection
 - (void)showRoomSelection {
     [AppConfig getInstance].currentAppStep=AppStepServerBrowser;
-    [self swithView:viewController.view];
+    [self swithView:viewController];
     [viewController activate];
 }
 
 -(void) showScoreBoard:(LocalRoom *)room{
     [AppConfig getInstance].currentAppStep=AppStepServer;
-    [self swithView:scoreBoardViewController.view];
+    [self swithView:scoreBoardViewController];
     scoreBoardViewController.chatRoom = room;
     [scoreBoardViewController activate];
 }
@@ -140,13 +153,13 @@ static ChattyAppDelegate* _instance;
     scoreControlViewController.chatRoom = room;
     [scoreControlViewController activate];
     
-    [self swithView:scoreControlViewController.view];
+    [self swithView:scoreControlViewController];
 }
 
 -(void) showGameSettingView{
     [AppConfig getInstance].currentAppStep=AppStepServerBrowser;    
     [splitSettingViewController setWantsFullScreenLayout:YES];
-    [self swithView:splitSettingViewController.view];
+    [self swithView:splitSettingViewController];
 }
 -(void) showDuringMatchSettingView:(NSInteger)tabIndex
 {
@@ -157,7 +170,7 @@ static ChattyAppDelegate* _instance;
     DuringMatchSettingDetailControllerHD *detailControl = [duringMathSplitViewCtl.viewControllers objectAtIndex:1];
     rootControl.showingTabIndex=tabIndex;
     detailControl.showingTabIndex=tabIndex;
-    [self swithView:duringMathSplitViewCtl.view];
+    [self swithView:duringMathSplitViewCtl];
     [detailControl refreshDatasource];
 }
 -(void) showConfrimMsg:(NSString*) title message:(NSString*)msg
@@ -230,7 +243,7 @@ static ChattyAppDelegate* _instance;
      keyArgv.option=[((NSNumber *)[info objectForKey:@"option"]) boolValue];
      keyArgv.shift=[((NSNumber *)[info objectForKey:@"shift"]) boolValue];
     keyArgv.keyDesc=[Definition getKeyCodeDesc:keyArgv.keyCode];
-    NSLog(@"%@",keyArgv);
+    //NSLog(@"%@",keyArgv);
     AppConfig *config = [AppConfig getInstance];
     if(config.currentAppStep==AppStepServer && scoreBoardViewController.chatRoom.gameInfo.gameSetting.currentJudgeDevice==JudgeDeviceKeyboard)
     {
@@ -367,5 +380,7 @@ static ChattyAppDelegate* _instance;
 
 
 #endif
+
+
 
 @end

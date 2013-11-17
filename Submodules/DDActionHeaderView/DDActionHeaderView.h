@@ -45,5 +45,6 @@
 @property(nonatomic, copy) NSArray *items; // Array of UIView subclass instances, will be added into a (DDActionHeaderView's width - 20)px width and 50px height action picker.
 @property(nonatomic) BOOL showPanelBackground;
 - (void)shrinkActionPicker; // Shrink action picker to its minimal size.
+- (void)toggleActionPicker;
 @end
 

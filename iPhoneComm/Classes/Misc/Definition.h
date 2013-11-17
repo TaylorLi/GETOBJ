@@ -124,11 +124,19 @@ typedef enum {
 #define GSEVENTKEY_KEYCODE_SNL_Wave 53 //`
 #define GSEVENTKEY_KEYCODE_SNL_SLASH 56 // /
 #define GSEVENTKEY_KEYCODE_SNL_SPACE 44
+#define GSEVENTKEY_KEYCODE_SNL_TAB 43
+#define GSEVENTKEY_KEYCODE_SNL_DEL 42
+#define GSEVENTKEY_KEYCODE_SNL_ESCAPE 41
+#define GSEVENTKEY_KEYCODE_SNL_COMMA 54
 
 #define GSEVENTKEY_KEYCODE_ARROW_RIGHT 79
 #define GSEVENTKEY_KEYCODE_ARROW_LEFT 80
 #define GSEVENTKEY_KEYCODE_ARROW_DOWN 81
 #define GSEVENTKEY_KEYCODE_ARROW_UP 82
+
+#define GSEVENTKEY_KEYCODE_CHARCODE_A 97
+#define GSEVENTKEY_KEYCODE_CHARCODE_0 48
+#define GSEVENTKEY_KEYCODE_CHARCODE_1 49
 
 #define KEY_DES_SCECRUTY_KEY_PRODUCT_SN @"GET4TKDS"
 /*test*/
@@ -178,5 +186,6 @@ typedef enum {
 
 +(NSString *)getWinTypeDesc:(WinType)type;
 +(NSString *)getKeyCodeDesc:(short)keyCode;
-
++(short)getKeyCodeByKeyCodeString:(NSString *)keyCodeStr;
++ (NSString *)stringFromKeycode:(UniChar *)code;
 @end

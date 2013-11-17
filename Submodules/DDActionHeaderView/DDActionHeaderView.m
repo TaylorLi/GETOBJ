@@ -196,6 +196,11 @@
     [self setNeedsLayout];
 }
 
+- (void)toggleActionPicker {
+    self.titleLabel.hidden = !self.titleLabel.isHidden;
+    [self setNeedsLayout];
+}
+
 #pragma mark Accessors
 
 - (void)setBorderGradientHidden:(BOOL)newBorderGradientHidden {
@@ -238,7 +243,6 @@
             return NO;
         }
     }
-    
     return YES;
 }
 

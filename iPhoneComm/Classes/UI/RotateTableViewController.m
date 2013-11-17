@@ -73,4 +73,13 @@
 	return [AppConfig shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+-(NSUInteger)supportedInterfaceOrientations{
+    return [AppConfig supportedInterfaceOrientations];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [AppConfig shouldAutorotate];
+}
+
 @end

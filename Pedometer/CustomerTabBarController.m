@@ -34,14 +34,19 @@ static CustomerTabBarController *customerTabBarController;
 
 #pragma mark -
 #pragma mark lifecycle
+
 - (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr
+{
+    return [self initWithViewControllers:vcs imageArray:arr frames:[[UIScreen mainScreen] applicationFrame]];
+}
+- (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr frames:(CGRect) frame
 {
 	self = [super init];
 	if (self != nil)
 	{
 		_viewControllers = [NSMutableArray arrayWithArray:vcs];
 		
-		_containerView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+		_containerView = [[UIView alloc] initWithFrame:frame];
 		
 		_transitionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.0f, _containerView.frame.size.height - kTabBarHeight)];
 //		_transitionView.backgroundColor =  [UIColor groupTableViewBackgroundColor];

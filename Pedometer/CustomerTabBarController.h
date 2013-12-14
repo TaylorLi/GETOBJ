@@ -42,7 +42,7 @@
 @property(nonatomic,assign) NSInteger animateDriect;
 
 - (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr;
-
+- (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr frames:(CGRect) frame;
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated;
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated driect:(NSInteger)driect;
 

@@ -180,7 +180,7 @@ static PEDAppDelegate* _instance;
                 UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
                 navPedo.navigationBarHidden=YES;
                 NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
-                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr];
+                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 480)];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
@@ -197,7 +197,7 @@ static PEDAppDelegate* _instance;
                 UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
                 navSleep.navigationBarHidden=YES;
                  NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic4, imgDic5,nil];
-                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr];
+                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 480)];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];

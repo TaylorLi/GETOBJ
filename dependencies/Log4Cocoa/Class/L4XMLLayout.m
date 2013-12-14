@@ -25,7 +25,7 @@
     [formattedEventString appendFormat:@"\t<log4cocoa:method>%@</log4cocoa:method>\n", [event methodName]];
     [formattedEventString appendFormat:@"\t<log4cocoa:message>%@</log4cocoa:message>\n", [event renderedMessage]];
     
-    [formattedEventString appendFormat:@"</log4cocoa:event>\n", [event renderedMessage]];
+    [formattedEventString appendFormat:@"%@</log4cocoa:event>\n", [event renderedMessage]];
     
     NSString *result = [[formattedEventString copy] autorelease];
     [formattedEventString release];

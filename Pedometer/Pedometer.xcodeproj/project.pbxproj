@@ -239,6 +239,10 @@
 		DA0C559B16D4FAE200940654 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C559916D4FAE200940654 /* V8HorizontalPickerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA118A2516DA6ED200BEF516 /* PEDImportDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */; };
 		DA118A2A16DA73D000BEF516 /* PEDUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */; };
+		DA147DDD185766EA00D53B57 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DDC185766EA00D53B57 /* Default-568h@2x.png */; };
+		DA147DE11857809400D53B57 /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DDE1857809400D53B57 /* icon-29.png */; };
+		DA147DE21857809400D53B57 /* icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DDF1857809400D53B57 /* icon-58.png */; };
+		DA147DE31857809400D53B57 /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DE01857809400D53B57 /* icon-80.png */; };
 		DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */; };
 		DA59F36C17A16C0B009C6F68 /* segment_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = DA59F36A17A16C0A009C6F68 /* segment_disable.png */; };
 		DA59F36D17A16C0B009C6F68 /* segment_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA59F36B17A16C0B009C6F68 /* segment_disable@2x.png */; };
@@ -1007,6 +1011,10 @@
 		DA118A2316DA6ED200BEF516 /* PEDImportDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDImportDataViewController.m; path = ProjectPrivate/UI/PEDImportDataViewController.m; sourceTree = SOURCE_ROOT; };
 		DA118A2816DA73CF00BEF516 /* PEDUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEDUIBaseViewController.h; path = ProjectPrivate/UI/PEDUIBaseViewController.h; sourceTree = SOURCE_ROOT; };
 		DA118A2916DA73D000BEF516 /* PEDUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEDUIBaseViewController.m; path = ProjectPrivate/UI/PEDUIBaseViewController.m; sourceTree = SOURCE_ROOT; };
+		DA147DDC185766EA00D53B57 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DA147DDE1857809400D53B57 /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
+		DA147DDF1857809400D53B57 /* icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-58.png"; sourceTree = "<group>"; };
+		DA147DE01857809400D53B57 /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-80.png"; sourceTree = "<group>"; };
 		DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetailController.xib; path = ProjectPrivate/XIB/PEDImportDataDetailController.xib; sourceTree = SOURCE_ROOT; };
 		DA59F36A17A16C0A009C6F68 /* segment_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segment_disable.png; sourceTree = "<group>"; };
 		DA59F36B17A16C0B009C6F68 /* segment_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment_disable@2x.png"; sourceTree = "<group>"; };
@@ -1803,6 +1811,10 @@
 		DA6E9C0D16CFB2F900F2453F = {
 			isa = PBXGroup;
 			children = (
+				DA147DDE1857809400D53B57 /* icon-29.png */,
+				DA147DDF1857809400D53B57 /* icon-58.png */,
+				DA147DE01857809400D53B57 /* icon-80.png */,
+				DA147DDC185766EA00D53B57 /* Default-568h@2x.png */,
 				DA06868518105CA50073A888 /* icon-152.png */,
 				DA06868618105CA50073A888 /* icon-144.png */,
 				DA06868718105CA50073A888 /* icon-76.png */,
@@ -2313,7 +2325,12 @@
 		DA6E9C0F16CFB2F900F2453F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					DA6E9C1716CFB2F900F2453F = {
+						DevelopmentTeam = 2K9NR485K5;
+					};
+				};
 			};
 			buildConfigurationList = DA6E9C1216CFB2F900F2453F /* Build configuration list for PBXProject "Pedometer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2361,6 +2378,7 @@
 				6BFF4A1F16D56E6E00317887 /* front_button_normal.png in Resources */,
 				6BFF4A2016D56E6E00317887 /* front_button_normal@2x.png in Resources */,
 				6BFF4A2116D56E6E00317887 /* front_logo.png in Resources */,
+				DA147DE21857809400D53B57 /* icon-58.png in Resources */,
 				6BFF4A2216D56E6E00317887 /* front_logo@2x.png in Resources */,
 				6BFF4A2316D56E6E00317887 /* setting.png in Resources */,
 				6BFF4A2416D56E6E00317887 /* setting@2x.png in Resources */,
@@ -2459,8 +2477,10 @@
 				6B0047F116D92D1F00B87CA8 /* data_bg@2x.png in Resources */,
 				6B0047F216D92D1F00B87CA8 /* data_large_panel.png in Resources */,
 				6B0047F316D92D1F00B87CA8 /* data_large_panel@2x.png in Resources */,
+				DA147DE31857809400D53B57 /* icon-80.png in Resources */,
 				6B0047F416D92D1F00B87CA8 /* data_small_panel.png in Resources */,
 				6B0047F516D92D1F00B87CA8 /* data_small_panel@2x.png in Resources */,
+				DA147DDD185766EA00D53B57 /* Default-568h@2x.png in Resources */,
 				6B0047F616D92D1F00B87CA8 /* distance_button.png in Resources */,
 				6B0047F716D92D1F00B87CA8 /* distance_button@2x.png in Resources */,
 				6B0047F816D92D1F00B87CA8 /* distance_small.png in Resources */,
@@ -2536,6 +2556,7 @@
 				6BFB6D2117411323006BB349 /* pedo_button_pink.png in Resources */,
 				6BFB6D2217411323006BB349 /* pedo_button_pink@2x.png in Resources */,
 				6BFB6D2317411323006BB349 /* pedo_fall_sleep.png in Resources */,
+				DA147DE11857809400D53B57 /* icon-29.png in Resources */,
 				6BFB6D2417411323006BB349 /* pedo_fall_sleep@2x.png in Resources */,
 				6BFB6D2517411323006BB349 /* pedo_in_bed.png in Resources */,
 				6BFB6D2617411323006BB349 /* pedo_in_bed@2x.png in Resources */,
@@ -3076,8 +3097,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = NO;
@@ -3090,13 +3116,18 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -3104,21 +3135,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -3126,8 +3166,8 @@
 		DA6E9C4216CFB2F900F2453F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3137,7 +3177,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3145,8 +3185,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Pedometer;
-				PROVISIONING_PROFILE = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "401AFCC9-C1A5-40A5-A50C-53A9FB55E58F";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
@@ -3156,8 +3196,8 @@
 		DA6E9C4316CFB2F900F2453F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: KINGTECH ENTERPRISES LIMITED (2K9NR485K5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KINGTECH ENTERPRISES LIMITED (2K9NR485K5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3167,7 +3207,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3175,7 +3215,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Pedometer;
-				PROVISIONING_PROFILE = "401AFCC9-C1A5-40A5-A50C-53A9FB55E58F";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "401AFCC9-C1A5-40A5-A50C-53A9FB55E58F";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
@@ -3196,7 +3236,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Pedometer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3207,8 +3247,8 @@
 					"-DEBUG",
 				);
 				PRODUCT_NAME = "Pedometer Debug";
-				PROVISIONING_PROFILE = "3E860F66-A7FE-40C8-8027-88B42D9D4AAE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E860F66-A7FE-40C8-8027-88B42D9D4AAE";
+				PROVISIONING_PROFILE = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
@@ -3228,7 +3268,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Pedometer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3239,8 +3279,8 @@
 					"-DEBUG",
 				);
 				PRODUCT_NAME = "Pedometer Debug";
-				PROVISIONING_PROFILE = "3E860F66-A7FE-40C8-8027-88B42D9D4AAE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E860F66-A7FE-40C8-8027-88B42D9D4AAE";
+				PROVISIONING_PROFILE = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;

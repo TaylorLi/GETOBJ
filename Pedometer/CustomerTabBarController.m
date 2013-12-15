@@ -46,7 +46,12 @@ static CustomerTabBarController *customerTabBarController;
 	{
 		_viewControllers = [NSMutableArray arrayWithArray:vcs];
 		
-		_containerView = [[UIView alloc] initWithFrame:frame];
+    CGRect availRect= [[UIScreen mainScreen] applicationFrame];
+       if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+       {
+           availRect=CGRectMake(0, 20.0f, 320.0f, 460.0f);
+       }
+		_containerView = [[UIView alloc] initWithFrame:availRect];
 		
 		_transitionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.0f, _containerView.frame.size.height - kTabBarHeight)];
 //		_transitionView.backgroundColor =  [UIColor groupTableViewBackgroundColor];

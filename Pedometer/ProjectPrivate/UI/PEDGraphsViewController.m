@@ -166,6 +166,8 @@
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
     [self initBarRemark];
     [self initData];
+//    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//        [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
 -(void)changePlotRange

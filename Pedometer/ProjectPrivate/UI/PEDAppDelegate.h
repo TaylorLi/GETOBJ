@@ -12,7 +12,10 @@
 PEDPedoData4SleepViewController,PEDPedo4SleepViewController,PEDBarchart4SleepViewController,PEDGraphs4SleepViewController;
 
 @interface PEDAppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
-
+{
+    CGRect windowsRect;
+    BOOL disableiOSAdjust;
+}
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) IBOutlet PEDMainViewController *pedMainViewController;
 @property (strong, nonatomic) PEDBarchartViewController *pedBarchartViewController;

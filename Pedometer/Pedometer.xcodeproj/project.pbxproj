@@ -2330,6 +2330,9 @@
 					DA6E9C1716CFB2F900F2453F = {
 						DevelopmentTeam = 2K9NR485K5;
 					};
+					DAD64BFA17E41CC300947328 = {
+						DevelopmentTeam = 2K9NR485K5;
+					};
 				};
 			};
 			buildConfigurationList = DA6E9C1216CFB2F900F2453F /* Build configuration list for PBXProject "Pedometer" */;
@@ -3155,6 +3158,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E68F72CD-8B74-46E9-A27F-784DCDC09837";
@@ -3166,8 +3170,8 @@
 		DA6E9C4216CFB2F900F2453F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3175,7 +3179,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -3183,12 +3187,14 @@
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
 					"\"$(SRCROOT)/../dependencies/Log4Cocoa\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Pedometer;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "401AFCC9-C1A5-40A5-A50C-53A9FB55E58F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3196,8 +3202,8 @@
 		DA6E9C4316CFB2F900F2453F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				COMPRESS_PNG_FILES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3205,7 +3211,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -3213,12 +3219,14 @@
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
 					"\"$(SRCROOT)/../dependencies/Log4Cocoa\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Pedometer;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "401AFCC9-C1A5-40A5-A50C-53A9FB55E58F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3226,8 +3234,8 @@
 		DAD64D5E17E41CC300947328 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Analayze/FootRecorder/nRF_Utility/nRF_Utility/dependencies\"",
@@ -3247,8 +3255,8 @@
 					"-DEBUG",
 				);
 				PRODUCT_NAME = "Pedometer Debug";
-				PROVISIONING_PROFILE = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;
@@ -3258,8 +3266,8 @@
 		DAD64D5F17E41CC300947328 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JILI DU (6LGTHU6UWQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Analayze/FootRecorder/nRF_Utility/nRF_Utility/dependencies\"",
@@ -3279,8 +3287,8 @@
 					"-DEBUG",
 				);
 				PRODUCT_NAME = "Pedometer Debug";
-				PROVISIONING_PROFILE = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC046043-0D22-4EB8-9CF3-CE5634951BD2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos5.1;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				WRAPPER_EXTENSION = app;

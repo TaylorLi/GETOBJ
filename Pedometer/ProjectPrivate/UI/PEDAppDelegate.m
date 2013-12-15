@@ -59,6 +59,10 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) swithView:(UIView *) view{
+    if (!disableiOSAdjust && [[[UIDevice currentDevice] systemVersion] floatValue] >= 6) {
+        CGRect availFrame = [[UIScreen mainScreen] applicationFrame];
+        self.window.frame = CGRectMake(0,0,windowsRect.size.width,windowsRect.size.height);
+    }
     for (UIView *subView in self.window.subviews) {
         if(subView.superview!=nil){
             [subView removeFromSuperview];
@@ -75,7 +79,7 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) showMainView{
-    @try {        
+    @try {
         if(!pedMainViewController){
             pedMainViewController = [[PEDMainViewController alloc]init];
         }
@@ -137,8 +141,7 @@ static PEDAppDelegate* _instance;
 }
 
 -(void) showTabView{
-    @try {        
-        
+    @try {
         if(!customerTabBarController || !sleepCustomerTabBarController){
             NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
             [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
@@ -180,9 +183,9 @@ static PEDAppDelegate* _instance;
                 UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
                 navPedo.navigationBarHidden=YES;
                 NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
-                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 480)];
+                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
                 
-                UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+                UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
                 tabBarBg.backgroundColor = [UIColor clearColor];
                 [customerTabBarController.view insertSubview:tabBarBg atIndex:0];
@@ -197,9 +200,9 @@ static PEDAppDelegate* _instance;
                 UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
                 navSleep.navigationBarHidden=YES;
                  NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic4, imgDic5,nil];
-                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 480)];
+                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
                 
-                UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+                UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
                 tabBarBg.backgroundColor = [UIColor clearColor];
                 [sleepCustomerTabBarController.view insertSubview:tabBarBg atIndex:0];
@@ -222,6 +225,9 @@ static PEDAppDelegate* _instance;
         else{           
             customerTabBarController.selectedIndex=customerTabBarController.preSelectedIndex==0?1:customerTabBarController.preSelectedIndex;
             [self swithView : customerTabBarController.view];
+        }
+        if (!disableiOSAdjust && [[[UIDevice currentDevice] systemVersion] floatValue] >= 6) {
+            self.window.frame = CGRectMake(0,20,windowsRect.size.width,windowsRect.size.height-20);
         }
     }
     @catch (NSException *exception) {
@@ -283,7 +289,8 @@ static PEDAppDelegate* _instance;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+    disableiOSAdjust=YES;
     isShowSleepTab = NO;
     @try {
         [LogHelper setInitialLoggerByConfigFile:@"log4cocoa.properties"];
@@ -291,6 +298,8 @@ static PEDAppDelegate* _instance;
         [[PEDDatabase getInstance] setupServerDatabase];
         [AppConfig getInstance];    
         _instance = self;
+//         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) { self.window.frame = CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20); }
+        windowsRect=self.window.frame;
         pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
         //[self.window addSubview:pedMainViewController.view];
         self.window.rootViewController = pedMainViewController;

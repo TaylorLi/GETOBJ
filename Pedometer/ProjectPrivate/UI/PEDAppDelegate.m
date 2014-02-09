@@ -73,7 +73,7 @@ static PEDAppDelegate* _instance;
 
 -(void) showUserSettingView{
     if(!pedUserSettingViewController){
-        pedUserSettingViewController = [[PEDUserSettingViewController alloc]init];
+        pedUserSettingViewController = [[PEDUserSettingViewController alloc] init];
     }
     [self swithView : pedUserSettingViewController.view];
 }
@@ -96,7 +96,7 @@ static PEDAppDelegate* _instance;
                     break;
                 case PLUS_SPORT:
                     [pedMainViewController.btnSportPlus setBackgroundImage:[UIImage imageNamed:@"front_button_highlight.png"] forState:UIControlStateNormal];
-                    break; 
+                    break;
                 default:
                     break;
             }
@@ -175,10 +175,10 @@ static PEDAppDelegate* _instance;
             if(!pedBacktoMainViewController)
                 pedBacktoMainViewController = [[PEDBacktoMainViewController alloc]init];
             if(!customerTabBarController){
-                pedPedoViewController = [[PEDPedoViewController alloc]init];        
+                pedPedoViewController = [[PEDPedoViewController alloc]init];
                 //pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
-                pedTargetViewController = [[PEDTargetViewController alloc]init];           
-                pedGraphsViewController = [[PEDGraphsViewController alloc]init];                        
+                pedTargetViewController = [[PEDTargetViewController alloc]init];
+                pedGraphsViewController = [[PEDGraphsViewController alloc]init];
                 pedBarchartViewController = [[PEDBarchartViewController alloc]init];
                 UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
                 navPedo.navigationBarHidden=YES;
@@ -195,11 +195,11 @@ static PEDAppDelegate* _instance;
             
             if(!sleepCustomerTabBarController){
                 sleepGraphsViewController=[[PEDGraphs4SleepViewController alloc] init];
-                sleepPedoViewController=[[PEDPedo4SleepViewController alloc] init];   
-                sleepBarchatViewController=[[PEDBarchart4SleepViewController alloc] init];            
+                sleepPedoViewController=[[PEDPedo4SleepViewController alloc] init];
+                sleepBarchatViewController=[[PEDBarchart4SleepViewController alloc] init];
                 UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
                 navSleep.navigationBarHidden=YES;
-                 NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic4, imgDic5,nil];
+                NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic4, imgDic5,nil];
                 sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
@@ -218,11 +218,11 @@ static PEDAppDelegate* _instance;
         }
         //    tabBarController.selectedIndex = 1;
         if(isShowSleepTab)
-        {         
+        {
             sleepCustomerTabBarController.selectedIndex = sleepCustomerTabBarController.preSelectedIndex==0?1:sleepCustomerTabBarController.preSelectedIndex;
             [self swithView : sleepCustomerTabBarController.view];
         }
-        else{           
+        else{
             customerTabBarController.selectedIndex=customerTabBarController.preSelectedIndex==0?1:customerTabBarController.preSelectedIndex;
             [self swithView : customerTabBarController.view];
         }
@@ -241,20 +241,20 @@ static PEDAppDelegate* _instance;
 //-(void) applicationDidFinishLaunching:(UIApplication *)application{
 //
 //    _instance = self;
-//    
+//
 //    // Override point for customization after app launch
-//    [self.window addSubview:pedMainViewController.view];   
+//    [self.window addSubview:pedMainViewController.view];
 //    [self.window makeKeyAndVisible];
 //}
 
 -(void)restoreControllerData:(NSDate *)currentDate{
-    @try {        
+    @try {
         if(pedPedoViewController){
             [pedPedoViewController initDataByDate:currentDate];
         }
         if(pedTargetViewController){
             [pedTargetViewController initData];
-        }        
+        }
         if(pedBarchartViewController){
             [pedBarchartViewController initDataByDate:currentDate];
         }
@@ -291,20 +291,19 @@ static PEDAppDelegate* _instance;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     disableiOSAdjust=YES;
-    isShowSleepTab = NO;
     @try {
         [LogHelper setInitialLoggerByConfigFile:@"log4cocoa.properties"];
         //    self.window.frame = CGRectMake(0, 20, 320, 460);
         [[PEDDatabase getInstance] setupServerDatabase];
-        [AppConfig getInstance];    
+        [AppConfig getInstance];
         _instance = self;
-//         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) { self.window.frame = CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20); }
+        //         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) { self.window.frame = CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20); }
         windowsRect=self.window.frame;
         pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
         //[self.window addSubview:pedMainViewController.view];
         self.window.rootViewController = pedMainViewController;
         [self.window makeKeyAndVisible];
-        // Override point for customization after application launch.        
+        // Override point for customization after application launch.
         [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
         //[self performSelector:@selector(string) withObject:nil afterDelay:4.0];
         return YES;
@@ -321,16 +320,16 @@ static PEDAppDelegate* _instance;
 {
     //	if ([viewController isKindOfClass:[SecondViewController class]])
     //	{
-    //        [CustomerTabBarController hidesTabBar:NO animated:YES]; 
+    //        [CustomerTabBarController hidesTabBar:NO animated:YES];
     //	}
     
     if (viewController.hidesBottomBarWhenPushed)
     {
-        [customerTabBarController hidesTabBar:YES animated:YES]; 
+        [customerTabBarController hidesTabBar:YES animated:YES];
     }
     else
     {
-        [customerTabBarController hidesTabBar:NO animated:YES]; 
+        [customerTabBarController hidesTabBar:NO animated:YES];
     }
 }
 
@@ -346,7 +345,7 @@ static PEDAppDelegate* _instance;
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
 }

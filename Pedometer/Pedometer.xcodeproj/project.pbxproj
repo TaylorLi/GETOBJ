@@ -244,6 +244,30 @@
 		DA147DE21857809400D53B57 /* icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DDF1857809400D53B57 /* icon-58.png */; };
 		DA147DE31857809400D53B57 /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DE01857809400D53B57 /* icon-80.png */; };
 		DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */; };
+		DA258F2B18A79F3C006EB9C1 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2A18A79F3C006EB9C1 /* View.xib */; };
+		DA258F2C18A7A269006EB9C1 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2A18A79F3C006EB9C1 /* View.xib */; };
+		DA258F2E18A7C02D006EB9C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2D18A7C02D006EB9C1 /* Media.xcassets */; };
+		DA258F2F18A7C02D006EB9C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2D18A7C02D006EB9C1 /* Media.xcassets */; };
+		DA287D3D18A778800058BBB2 /* setting_bg_org.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3318A778800058BBB2 /* setting_bg_org.png */; };
+		DA287D3E18A778800058BBB2 /* setting_bg_org.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3318A778800058BBB2 /* setting_bg_org.png */; };
+		DA287D3F18A778800058BBB2 /* setting_bg_org@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3418A778800058BBB2 /* setting_bg_org@2x.png */; };
+		DA287D4018A778800058BBB2 /* setting_bg_org@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3418A778800058BBB2 /* setting_bg_org@2x.png */; };
+		DA287D4118A778800058BBB2 /* setting_confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3518A778800058BBB2 /* setting_confirm.png */; };
+		DA287D4218A778800058BBB2 /* setting_confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3518A778800058BBB2 /* setting_confirm.png */; };
+		DA287D4318A778800058BBB2 /* setting_confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3618A778800058BBB2 /* setting_confirm@2x.png */; };
+		DA287D4418A778800058BBB2 /* setting_confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3618A778800058BBB2 /* setting_confirm@2x.png */; };
+		DA287D4518A778800058BBB2 /* setting_confirm2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3718A778800058BBB2 /* setting_confirm2.png */; };
+		DA287D4618A778800058BBB2 /* setting_confirm2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3718A778800058BBB2 /* setting_confirm2.png */; };
+		DA287D4718A778800058BBB2 /* setting_confirm2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3818A778800058BBB2 /* setting_confirm2@2x.png */; };
+		DA287D4818A778800058BBB2 /* setting_confirm2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3818A778800058BBB2 /* setting_confirm2@2x.png */; };
+		DA287D4918A778800058BBB2 /* setting_contact_us.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3918A778800058BBB2 /* setting_contact_us.png */; };
+		DA287D4A18A778800058BBB2 /* setting_contact_us.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3918A778800058BBB2 /* setting_contact_us.png */; };
+		DA287D4B18A778800058BBB2 /* setting_contact_us@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3A18A778800058BBB2 /* setting_contact_us@2x.png */; };
+		DA287D4C18A778800058BBB2 /* setting_contact_us@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3A18A778800058BBB2 /* setting_contact_us@2x.png */; };
+		DA287D4D18A778800058BBB2 /* setting_contact_us2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3B18A778800058BBB2 /* setting_contact_us2.png */; };
+		DA287D4E18A778800058BBB2 /* setting_contact_us2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3B18A778800058BBB2 /* setting_contact_us2.png */; };
+		DA287D4F18A778800058BBB2 /* setting_contact_us2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3C18A778800058BBB2 /* setting_contact_us2@2x.png */; };
+		DA287D5018A778800058BBB2 /* setting_contact_us2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3C18A778800058BBB2 /* setting_contact_us2@2x.png */; };
 		DA59F36C17A16C0B009C6F68 /* segment_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = DA59F36A17A16C0A009C6F68 /* segment_disable.png */; };
 		DA59F36D17A16C0B009C6F68 /* segment_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA59F36B17A16C0B009C6F68 /* segment_disable@2x.png */; };
 		DA667AAD16D26C9100ED3A49 /* NSDictionary+Extendtion.m in Sources */ = {isa = PBXBuildFile; fileRef = DA667AAC16D26C9100ED3A49 /* NSDictionary+Extendtion.m */; };
@@ -1016,6 +1040,18 @@
 		DA147DDF1857809400D53B57 /* icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-58.png"; sourceTree = "<group>"; };
 		DA147DE01857809400D53B57 /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-80.png"; sourceTree = "<group>"; };
 		DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetailController.xib; path = ProjectPrivate/XIB/PEDImportDataDetailController.xib; sourceTree = SOURCE_ROOT; };
+		DA258F2A18A79F3C006EB9C1 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = SOURCE_ROOT; };
+		DA258F2D18A7C02D006EB9C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
+		DA287D3318A778800058BBB2 /* setting_bg_org.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_bg_org.png; sourceTree = "<group>"; };
+		DA287D3418A778800058BBB2 /* setting_bg_org@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_bg_org@2x.png"; sourceTree = "<group>"; };
+		DA287D3518A778800058BBB2 /* setting_confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_confirm.png; sourceTree = "<group>"; };
+		DA287D3618A778800058BBB2 /* setting_confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_confirm@2x.png"; sourceTree = "<group>"; };
+		DA287D3718A778800058BBB2 /* setting_confirm2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_confirm2.png; sourceTree = "<group>"; };
+		DA287D3818A778800058BBB2 /* setting_confirm2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_confirm2@2x.png"; sourceTree = "<group>"; };
+		DA287D3918A778800058BBB2 /* setting_contact_us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_contact_us.png; sourceTree = "<group>"; };
+		DA287D3A18A778800058BBB2 /* setting_contact_us@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_contact_us@2x.png"; sourceTree = "<group>"; };
+		DA287D3B18A778800058BBB2 /* setting_contact_us2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_contact_us2.png; sourceTree = "<group>"; };
+		DA287D3C18A778800058BBB2 /* setting_contact_us2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_contact_us2@2x.png"; sourceTree = "<group>"; };
 		DA59F36A17A16C0A009C6F68 /* segment_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segment_disable.png; sourceTree = "<group>"; };
 		DA59F36B17A16C0B009C6F68 /* segment_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment_disable@2x.png"; sourceTree = "<group>"; };
 		DA667AAB16D26C9100ED3A49 /* NSDictionary+Extendtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extendtion.h"; path = "../Util/NSDictionary+Extendtion.h"; sourceTree = "<group>"; };
@@ -1406,6 +1442,16 @@
 		6B94DB3216D8448600EF70C1 /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				DA287D3318A778800058BBB2 /* setting_bg_org.png */,
+				DA287D3418A778800058BBB2 /* setting_bg_org@2x.png */,
+				DA287D3518A778800058BBB2 /* setting_confirm.png */,
+				DA287D3618A778800058BBB2 /* setting_confirm@2x.png */,
+				DA287D3718A778800058BBB2 /* setting_confirm2.png */,
+				DA287D3818A778800058BBB2 /* setting_confirm2@2x.png */,
+				DA287D3918A778800058BBB2 /* setting_contact_us.png */,
+				DA287D3A18A778800058BBB2 /* setting_contact_us@2x.png */,
+				DA287D3B18A778800058BBB2 /* setting_contact_us2.png */,
+				DA287D3C18A778800058BBB2 /* setting_contact_us2@2x.png */,
 				6BFF4A4116D5928800317887 /* setting_bg.png */,
 				6BFF4A4216D5928800317887 /* setting_bg@2x.png */,
 				6BFF4A4316D5928800317887 /* setting_button.png */,
@@ -1811,6 +1857,7 @@
 		DA6E9C0D16CFB2F900F2453F = {
 			isa = PBXGroup;
 			children = (
+				DA258F2D18A7C02D006EB9C1 /* Media.xcassets */,
 				DA147DDE1857809400D53B57 /* icon-29.png */,
 				DA147DDF1857809400D53B57 /* icon-58.png */,
 				DA147DE01857809400D53B57 /* icon-80.png */,
@@ -2179,6 +2226,7 @@
 				6BFB6D5117411614006BB349 /* PEDPedoData4SleepViewController.xib */,
 				6BFB6D531741162E006BB349 /* PEDPedo4SleepViewController.xib */,
 				6B4B3E9D17429D7E007C28F9 /* PEDPedoDataRowView4Sleep.xib */,
+				DA258F2A18A79F3C006EB9C1 /* View.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -2398,6 +2446,7 @@
 				6BFF4A5516D5928800317887 /* setting_button.png in Resources */,
 				6BFF4A5616D5928800317887 /* setting_button@2x.png in Resources */,
 				6BFF4A5716D5928800317887 /* setting_large_panel.png in Resources */,
+				DA287D3D18A778800058BBB2 /* setting_bg_org.png in Resources */,
 				6BFF4A5816D5928800317887 /* setting_large_panel@2x.png in Resources */,
 				6BFF4A5916D5928800317887 /* setting_logo.png in Resources */,
 				6BFF4A5A16D5928800317887 /* setting_logo@2x.png in Resources */,
@@ -2407,13 +2456,16 @@
 				6BFF4A5E16D5928800317887 /* setting_small_panel@2x.png in Resources */,
 				6BFF4A5F16D5928800317887 /* setting_tb.png in Resources */,
 				6BFF4A6016D5928800317887 /* setting_tb@2x.png in Resources */,
+				DA287D4B18A778800058BBB2 /* setting_contact_us@2x.png in Resources */,
 				6BFF4A6116D5928800317887 /* setting_textbox.png in Resources */,
 				6BFF4A6216D5928800317887 /* setting_textbox@2x.png in Resources */,
 				6BFF4A6716D5947900317887 /* PEDMainViewController.xib in Resources */,
 				6BFF4A6816D5947900317887 /* PEDUserSettingViewController.xib in Resources */,
+				DA258F2B18A79F3C006EB9C1 /* View.xib in Resources */,
 				6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */,
 				6B94DB0716D8445600EF70C1 /* back_normal@2x.png in Resources */,
 				6B94DB0816D8445600EF70C1 /* bar_highlight.png in Resources */,
+				DA287D4118A778800058BBB2 /* setting_confirm.png in Resources */,
 				6B94DB0916D8445600EF70C1 /* bar_highlight@2x.png in Resources */,
 				6B94DB0A16D8445600EF70C1 /* bar_normal.png in Resources */,
 				6B94DB0B16D8445600EF70C1 /* bar_normal@2x.png in Resources */,
@@ -2481,6 +2533,8 @@
 				6B0047F216D92D1F00B87CA8 /* data_large_panel.png in Resources */,
 				6B0047F316D92D1F00B87CA8 /* data_large_panel@2x.png in Resources */,
 				DA147DE31857809400D53B57 /* icon-80.png in Resources */,
+				DA287D4918A778800058BBB2 /* setting_contact_us.png in Resources */,
+				DA287D4718A778800058BBB2 /* setting_confirm2@2x.png in Resources */,
 				6B0047F416D92D1F00B87CA8 /* data_small_panel.png in Resources */,
 				6B0047F516D92D1F00B87CA8 /* data_small_panel@2x.png in Resources */,
 				DA147DDD185766EA00D53B57 /* Default-568h@2x.png in Resources */,
@@ -2508,6 +2562,7 @@
 				DACC76FB16D91997008FCDA7 /* close@2x.png in Resources */,
 				DACC76FC16D91997008FCDA7 /* modalButton-selected.png in Resources */,
 				DACC76FD16D91997008FCDA7 /* modalButton-selected@2x.png in Resources */,
+				DA287D4518A778800058BBB2 /* setting_confirm2.png in Resources */,
 				DACC76FE16D91997008FCDA7 /* modalButton.png in Resources */,
 				DACC76FF16D91997008FCDA7 /* modalButton@2x.png in Resources */,
 				DACC770D16D92ED1008FCDA7 /* game_close_btn.png in Resources */,
@@ -2529,7 +2584,9 @@
 				6BF080E816E3696B007E606D /* data_top_panel.png in Resources */,
 				6BF080E916E3696B007E606D /* data_top_panel@2x.png in Resources */,
 				DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */,
+				DA287D4F18A778800058BBB2 /* setting_contact_us2@2x.png in Resources */,
 				DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */,
+				DA258F2E18A7C02D006EB9C1 /* Media.xcassets in Resources */,
 				DAFB233916EB798800E3E98C /* pickerBackground.png in Resources */,
 				DAFB233A16EB798800E3E98C /* pickerBackground@2x.png in Resources */,
 				DAFB233B16EB798800E3E98C /* pickerGlass.png in Resources */,
@@ -2544,6 +2601,7 @@
 				6B04EC7F1723470700DA21B5 /* pickerBG.png in Resources */,
 				6B04EC801723470700DA21B5 /* pickerBG@2x.png in Resources */,
 				DA09370F1724515A00737A53 /* alert-close.png in Resources */,
+				DA287D4318A778800058BBB2 /* setting_confirm@2x.png in Resources */,
 				6BFB6D1517411323006BB349 /* actual_sleep_time_button.png in Resources */,
 				6BFB6D1617411323006BB349 /* actual_sleep_time_button@2x.png in Resources */,
 				6BFB6D1717411323006BB349 /* actual_sleep_time.png in Resources */,
@@ -2580,6 +2638,7 @@
 				6BFB6D4917411403006BB349 /* PEDBarchart4SleepViewController.xib in Resources */,
 				6BFB6D4A17411403006BB349 /* PEDGraphs4SleepViewController.xib in Resources */,
 				6BFB6D5217411614006BB349 /* PEDPedoData4SleepViewController.xib in Resources */,
+				DA287D3F18A778800058BBB2 /* setting_bg_org@2x.png in Resources */,
 				6BFB6D541741162E006BB349 /* PEDPedo4SleepViewController.xib in Resources */,
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 				6BB14B3C174D8753000814EA /* icon.png in Resources */,
@@ -2594,6 +2653,7 @@
 				DA06869018105CA50073A888 /* icon-76.png in Resources */,
 				DA06869218105CA50073A888 /* icon-72.png in Resources */,
 				DA06869418105CA50073A888 /* icon-120.png in Resources */,
+				DA287D4D18A778800058BBB2 /* setting_contact_us2.png in Resources */,
 				DA06869618105CA50073A888 /* icon@2x.png in Resources */,
 				DA06869818105CA50073A888 /* icon.png in Resources */,
 			);
@@ -2642,6 +2702,7 @@
 				DAD64C9E17E41CC300947328 /* setting_button.png in Resources */,
 				DAD64C9F17E41CC300947328 /* setting_button@2x.png in Resources */,
 				DAD64CA017E41CC300947328 /* setting_large_panel.png in Resources */,
+				DA287D5018A778800058BBB2 /* setting_contact_us2@2x.png in Resources */,
 				DAD64CA117E41CC300947328 /* setting_large_panel@2x.png in Resources */,
 				DAD64CA217E41CC300947328 /* setting_logo.png in Resources */,
 				DAD64CA317E41CC300947328 /* setting_logo@2x.png in Resources */,
@@ -2658,6 +2719,7 @@
 				DAD64CAE17E41CC300947328 /* back_normal.png in Resources */,
 				DAD64CAF17E41CC300947328 /* back_normal@2x.png in Resources */,
 				DAD64CB017E41CC300947328 /* bar_highlight.png in Resources */,
+				DA258F2C18A7A269006EB9C1 /* View.xib in Resources */,
 				DAD64CB117E41CC300947328 /* bar_highlight@2x.png in Resources */,
 				DAD64CB217E41CC300947328 /* bar_normal.png in Resources */,
 				DAD64CB317E41CC300947328 /* bar_normal@2x.png in Resources */,
@@ -2666,6 +2728,7 @@
 				DAD64CB617E41CC300947328 /* graphic_normal.png in Resources */,
 				DAD64CB717E41CC300947328 /* graphic_normal@2x.png in Resources */,
 				DAD64CB817E41CC300947328 /* graphic_highlight.png in Resources */,
+				DA258F2F18A7C02D006EB9C1 /* Media.xcassets in Resources */,
 				DAD64CB917E41CC300947328 /* graphic_highlight@2x.png in Resources */,
 				DAD64CBA17E41CC300947328 /* month_picker_bg.png in Resources */,
 				DAD64CBB17E41CC300947328 /* month_picker_bg@2x.png in Resources */,
@@ -2675,6 +2738,7 @@
 				DAD64CBF17E41CC300947328 /* pedo_avg@2x.png in Resources */,
 				DAD64CC017E41CC300947328 /* pedo_bg.png in Resources */,
 				DAD64CC117E41CC300947328 /* pedo_bg@2x.png in Resources */,
+				DA287D4618A778800058BBB2 /* setting_confirm2.png in Resources */,
 				DAD64CC217E41CC300947328 /* pedo_button.png in Resources */,
 				DAD64CC317E41CC300947328 /* pedo_button@2x.png in Resources */,
 				DAD64CC417E41CC300947328 /* pedo_calories.png in Resources */,
@@ -2703,6 +2767,7 @@
 				DAD64CDB17E41CC300947328 /* target_calories_bar.png in Resources */,
 				DAD64CDC17E41CC300947328 /* target_calories_bar@2x.png in Resources */,
 				DAD64CDD17E41CC300947328 /* target_calories_panel.png in Resources */,
+				DA287D3E18A778800058BBB2 /* setting_bg_org.png in Resources */,
 				DAD64CDE17E41CC300947328 /* target_calories_panel@2x.png in Resources */,
 				DAD64CDF17E41CC300947328 /* target_distance_bar.png in Resources */,
 				DAD64CE017E41CC300947328 /* target_distance_bar@2x.png in Resources */,
@@ -2712,11 +2777,13 @@
 				DAD64CE417E41CC300947328 /* target_panel_head@2x.png in Resources */,
 				DAD64CE517E41CC300947328 /* target_rate_bar.png in Resources */,
 				DAD64CE617E41CC300947328 /* target_rate_bar@2x.png in Resources */,
+				DA287D4818A778800058BBB2 /* setting_confirm2@2x.png in Resources */,
 				DAD64CE717E41CC300947328 /* target_small_panel.png in Resources */,
 				DAD64CE817E41CC300947328 /* target_small_panel@2x.png in Resources */,
 				DAD64CE917E41CC300947328 /* target_step_panel.png in Resources */,
 				DAD64CEA17E41CC300947328 /* target_step_panel@2x.png in Resources */,
 				DAD64CEB17E41CC300947328 /* activity_time_small.png in Resources */,
+				DA287D4418A778800058BBB2 /* setting_confirm@2x.png in Resources */,
 				DAD64CEC17E41CC300947328 /* activity_time_small@2x.png in Resources */,
 				DAD64CED17E41CC300947328 /* calories_small.png in Resources */,
 				DAD64CEE17E41CC300947328 /* calories_small@2x.png in Resources */,
@@ -2747,6 +2814,7 @@
 				DAD64D0717E41CC300947328 /* PEDBarchartViewController.xib in Resources */,
 				DAD64D0817E41CC300947328 /* PEDGraphsViewController.xib in Resources */,
 				DAD64D0917E41CC300947328 /* close.png in Resources */,
+				DA287D4218A778800058BBB2 /* setting_confirm.png in Resources */,
 				DAD64D0A17E41CC300947328 /* close@2x.png in Resources */,
 				DAD64D0B17E41CC300947328 /* modalButton-selected.png in Resources */,
 				DAD64D0C17E41CC300947328 /* modalButton-selected@2x.png in Resources */,
@@ -2765,6 +2833,7 @@
 				DAD64D1917E41CC300947328 /* data_bottom_panel.png in Resources */,
 				DAD64D1A17E41CC300947328 /* data_bottom_panel@2x.png in Resources */,
 				DAD64D1B17E41CC300947328 /* data_middle_panel.png in Resources */,
+				DA287D4018A778800058BBB2 /* setting_bg_org@2x.png in Resources */,
 				DAD64D1C17E41CC300947328 /* data_middle_panel@2x.png in Resources */,
 				DAD64D1D17E41CC300947328 /* data_top_panel_full.png in Resources */,
 				DAD64D1E17E41CC300947328 /* data_top_panel_full@2x.png in Resources */,
@@ -2782,6 +2851,8 @@
 				DAD64D2A17E41CC300947328 /* data_top_panel_trp.png in Resources */,
 				DAD64D2B17E41CC300947328 /* data_top_panel_trp@2x.png in Resources */,
 				DAD64D2C17E41CC300947328 /* MainWindow.xib in Resources */,
+				DA287D4A18A778800058BBB2 /* setting_contact_us.png in Resources */,
+				DA287D4E18A778800058BBB2 /* setting_contact_us2.png in Resources */,
 				DAD64D2D17E41CC300947328 /* scrollerClick.wav in Resources */,
 				DAD64D2E17E41CC300947328 /* pickerBG.png in Resources */,
 				DAD64D2F17E41CC300947328 /* pickerBG@2x.png in Resources */,
@@ -2827,6 +2898,7 @@
 				DAD64D5717E41CC300947328 /* icon.png in Resources */,
 				DAD64D5917E41CC300947328 /* chart_large_bg.png in Resources */,
 				DAD64D5A17E41CC300947328 /* chart_large_bg@2x.png in Resources */,
+				DA287D4C18A778800058BBB2 /* setting_contact_us@2x.png in Resources */,
 				DAD64D5B17E41CC300947328 /* segment_disable.png in Resources */,
 				DAD64D5C17E41CC300947328 /* segment_disable@2x.png in Resources */,
 				DA06868D18105CA50073A888 /* icon-152.png in Resources */,
@@ -3181,7 +3253,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3192,7 +3264,7 @@
 				PRODUCT_NAME = Pedometer;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos7.0;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3213,7 +3285,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3224,7 +3296,7 @@
 				PRODUCT_NAME = Pedometer;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos7.0;
 				USER_HEADER_SEARCH_PATHS = ../dependencies/CorePlot/iOS/CorePlotHeaders;
 				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3244,7 +3316,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Pedometer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3276,7 +3348,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Pedometer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",

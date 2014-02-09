@@ -447,9 +447,9 @@
     [super viewDidLoad];    
     
     ((UIScrollView *)self.view).delegate=self;
-    self.view.frame = CGRectMake(0, 20, 320, 460);
+    //self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
-    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 126, 76, 18)];
+    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(149, 116, 114, 22)];
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segUnit.tintColor = myTint; 
     [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left"] atIndex:0 animated:NO]; 
@@ -462,14 +462,14 @@
     [segUnit addTarget:self action:@selector(segUnitChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segUnit];
     
-    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(215, 126, 33, 18)];
+    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(149, 116, 57, 22)];
     unitSegTitleLeft.text = @"Metric";
     unitSegTitleLeft.textColor = [UIColor whiteColor];
     unitSegTitleLeft.backgroundColor = [UIColor clearColor];
     unitSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
     [self.view addSubview:unitSegTitleLeft];
     
-    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(251, 126, 35, 18)];
+    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(206, 116, 57, 22)];
     unitSegTitleRight.text = @"English";
     unitSegTitleRight.textColor = [UIColor whiteColor];
     unitSegTitleRight.backgroundColor = [UIColor clearColor];
@@ -477,7 +477,7 @@
     //unitSegTitleRight.hidden = YES;
     [self.view addSubview:unitSegTitleRight];
     
-    segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 270, 76, 18)];
+    segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(170, 361, 100, 22)];
     segGender.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segGender.tintColor = myTint; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:NO]; 
@@ -488,14 +488,14 @@
     // segGender.momentary = YES; 
     [self.view addSubview:segGender];
     
-    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(225, 270, 23, 18)];
+    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(170, 361, 50, 22)];
     genderSegTitleLeft.text = @"M";
     genderSegTitleLeft.textColor = [UIColor whiteColor];
     genderSegTitleLeft.backgroundColor = [UIColor clearColor];
     genderSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
     [self.view addSubview:genderSegTitleLeft];
     
-    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(261, 270, 25, 18)];
+    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(220, 361, 50, 22)];
     genderSegTitleRight.text = @"F";
     genderSegTitleRight.textColor = [UIColor whiteColor];
     genderSegTitleRight.backgroundColor = [UIColor clearColor];

@@ -106,7 +106,11 @@
 
 -(void) setCenterPoint:(CGFloat) y
 {
-    y=y==0?(self.view.frame.size.height + 40)/2:y;
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    float statusBarHeight=frame.origin.y*2;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        statusBarHeight=0;
+    y=y==0?(self.view.frame.size.height + statusBarHeight)/2:y;
     NSTimeInterval animationDuration=0.40f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
     [UIView setAnimationDuration:animationDuration];
@@ -117,7 +121,7 @@
 -(void)bindControlEventForScroll
 {
     UIScrollView *scrollView =  (UIScrollView *)self.view;
-    scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height+5) ;
+    scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height+0) ;
     scrollView.delegate=self;
     scrollView.showsVerticalScrollIndicator = NO;
     for(UIView *view in self.view.subviews)

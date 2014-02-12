@@ -299,9 +299,10 @@ static PEDAppDelegate* _instance;
         _instance = self;
         //         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) { self.window.frame = CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20); }
         windowsRect=self.window.frame;
-        pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
+//        pedMainViewController = [[PEDMainViewController alloc] initWithNibName:@"PEDMainViewController" bundle:nil];
         //[self.window addSubview:pedMainViewController.view];
-        self.window.rootViewController = pedMainViewController;
+        pedUserSettingViewController = [[PEDUserSettingViewController alloc] init];
+        self.window.rootViewController = pedUserSettingViewController;
         [self.window makeKeyAndVisible];
         // Override point for customization after application launch.
         [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];

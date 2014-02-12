@@ -244,10 +244,16 @@
 		DA147DE21857809400D53B57 /* icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DDF1857809400D53B57 /* icon-58.png */; };
 		DA147DE31857809400D53B57 /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DE01857809400D53B57 /* icon-80.png */; };
 		DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */; };
-		DA258F2B18A79F3C006EB9C1 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2A18A79F3C006EB9C1 /* View.xib */; };
-		DA258F2C18A7A269006EB9C1 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2A18A79F3C006EB9C1 /* View.xib */; };
 		DA258F2E18A7C02D006EB9C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2D18A7C02D006EB9C1 /* Media.xcassets */; };
 		DA258F2F18A7C02D006EB9C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2D18A7C02D006EB9C1 /* Media.xcassets */; };
+		DA27A7CC18A8F8E900C138C0 /* target_bg_org.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7C818A8F8E900C138C0 /* target_bg_org.png */; };
+		DA27A7CD18A8F8E900C138C0 /* target_bg_org.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7C818A8F8E900C138C0 /* target_bg_org.png */; };
+		DA27A7CE18A8F8E900C138C0 /* target_bg_org@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7C918A8F8E900C138C0 /* target_bg_org@2x.png */; };
+		DA27A7CF18A8F8E900C138C0 /* target_bg_org@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7C918A8F8E900C138C0 /* target_bg_org@2x.png */; };
+		DA27A7D018A8F8E900C138C0 /* target_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7CA18A8F8E900C138C0 /* target_bg.png */; };
+		DA27A7D118A8F8E900C138C0 /* target_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7CA18A8F8E900C138C0 /* target_bg.png */; };
+		DA27A7D218A8F8E900C138C0 /* target_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7CB18A8F8E900C138C0 /* target_bg@2x.png */; };
+		DA27A7D318A8F8E900C138C0 /* target_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27A7CB18A8F8E900C138C0 /* target_bg@2x.png */; };
 		DA287D3D18A778800058BBB2 /* setting_bg_org.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3318A778800058BBB2 /* setting_bg_org.png */; };
 		DA287D3E18A778800058BBB2 /* setting_bg_org.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3318A778800058BBB2 /* setting_bg_org.png */; };
 		DA287D3F18A778800058BBB2 /* setting_bg_org@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA287D3418A778800058BBB2 /* setting_bg_org@2x.png */; };
@@ -351,6 +357,24 @@
 		DA7A13461726D68D00BFA924 /* L4WriterAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13281726D68D00BFA924 /* L4WriterAppender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA7A13471726D68D00BFA924 /* L4XMLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A13291726D68D00BFA924 /* L4XMLLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA7A13481726D68D00BFA924 /* NSObject+Log4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7A132B1726D68D00BFA924 /* NSObject+Log4Cocoa.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA7D7A7A18ABA598003FB185 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7918ABA598003FB185 /* Default-568h.png */; };
+		DA7D7A7B18ABA598003FB185 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7918ABA598003FB185 /* Default-568h.png */; };
+		DA7D7A8418ABA636003FB185 /* iphone5_setting_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7C18ABA636003FB185 /* iphone5_setting_bg.png */; };
+		DA7D7A8518ABA636003FB185 /* iphone5_setting_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7C18ABA636003FB185 /* iphone5_setting_bg.png */; };
+		DA7D7A8618ABA636003FB185 /* iphone5_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7D18ABA636003FB185 /* iphone5_setting_bg@2x.png */; };
+		DA7D7A8718ABA636003FB185 /* iphone5_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7D18ABA636003FB185 /* iphone5_setting_bg@2x.png */; };
+		DA7D7A8818ABA636003FB185 /* iphone5_setting_english.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7E18ABA636003FB185 /* iphone5_setting_english.png */; };
+		DA7D7A8918ABA636003FB185 /* iphone5_setting_english.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7E18ABA636003FB185 /* iphone5_setting_english.png */; };
+		DA7D7A8A18ABA636003FB185 /* iphone5_setting_english@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7F18ABA636003FB185 /* iphone5_setting_english@2x.png */; };
+		DA7D7A8B18ABA636003FB185 /* iphone5_setting_english@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A7F18ABA636003FB185 /* iphone5_setting_english@2x.png */; };
+		DA7D7A8C18ABA636003FB185 /* iphone5_setting_female.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8018ABA636003FB185 /* iphone5_setting_female.png */; };
+		DA7D7A8D18ABA636003FB185 /* iphone5_setting_female.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8018ABA636003FB185 /* iphone5_setting_female.png */; };
+		DA7D7A8E18ABA636003FB185 /* iphone5_setting_female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8118ABA636003FB185 /* iphone5_setting_female@2x.png */; };
+		DA7D7A8F18ABA636003FB185 /* iphone5_setting_female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8118ABA636003FB185 /* iphone5_setting_female@2x.png */; };
+		DA7D7A9018ABA636003FB185 /* iphone5_setting_male.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8218ABA636003FB185 /* iphone5_setting_male.png */; };
+		DA7D7A9118ABA636003FB185 /* iphone5_setting_male.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8218ABA636003FB185 /* iphone5_setting_male.png */; };
+		DA7D7A9218ABA636003FB185 /* iphone5_setting_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8318ABA636003FB185 /* iphone5_setting_male@2x.png */; };
+		DA7D7A9318ABA636003FB185 /* iphone5_setting_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA7D7A8318ABA636003FB185 /* iphone5_setting_male@2x.png */; };
 		DACC06C516D262FF0062E2A8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06C416D262FF0062E2A8 /* AlertView.m */; };
 		DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DACC06D916D2633F0062E2A8 /* InfoPlist.strings */; };
 		DACC06E116D2634F0062E2A8 /* PEDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC06DF16D2634F0062E2A8 /* PEDUserInfo.m */; };
@@ -1040,8 +1064,11 @@
 		DA147DDF1857809400D53B57 /* icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-58.png"; sourceTree = "<group>"; };
 		DA147DE01857809400D53B57 /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-80.png"; sourceTree = "<group>"; };
 		DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetailController.xib; path = ProjectPrivate/XIB/PEDImportDataDetailController.xib; sourceTree = SOURCE_ROOT; };
-		DA258F2A18A79F3C006EB9C1 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = SOURCE_ROOT; };
 		DA258F2D18A7C02D006EB9C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
+		DA27A7C818A8F8E900C138C0 /* target_bg_org.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_bg_org.png; sourceTree = "<group>"; };
+		DA27A7C918A8F8E900C138C0 /* target_bg_org@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "target_bg_org@2x.png"; sourceTree = "<group>"; };
+		DA27A7CA18A8F8E900C138C0 /* target_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_bg.png; sourceTree = "<group>"; };
+		DA27A7CB18A8F8E900C138C0 /* target_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "target_bg@2x.png"; sourceTree = "<group>"; };
 		DA287D3318A778800058BBB2 /* setting_bg_org.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_bg_org.png; sourceTree = "<group>"; };
 		DA287D3418A778800058BBB2 /* setting_bg_org@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_bg_org@2x.png"; sourceTree = "<group>"; };
 		DA287D3518A778800058BBB2 /* setting_confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_confirm.png; sourceTree = "<group>"; };
@@ -1246,6 +1273,15 @@
 		DA7A13291726D68D00BFA924 /* L4XMLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L4XMLLayout.m; sourceTree = "<group>"; };
 		DA7A132A1726D68D00BFA924 /* Log4Cocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Log4Cocoa-Prefix.pch"; sourceTree = "<group>"; };
 		DA7A132B1726D68D00BFA924 /* NSObject+Log4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Log4Cocoa.m"; sourceTree = "<group>"; };
+		DA7D7A7918ABA598003FB185 /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
+		DA7D7A7C18ABA636003FB185 /* iphone5_setting_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone5_setting_bg.png; sourceTree = "<group>"; };
+		DA7D7A7D18ABA636003FB185 /* iphone5_setting_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5_setting_bg@2x.png"; sourceTree = "<group>"; };
+		DA7D7A7E18ABA636003FB185 /* iphone5_setting_english.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone5_setting_english.png; sourceTree = "<group>"; };
+		DA7D7A7F18ABA636003FB185 /* iphone5_setting_english@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5_setting_english@2x.png"; sourceTree = "<group>"; };
+		DA7D7A8018ABA636003FB185 /* iphone5_setting_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone5_setting_female.png; sourceTree = "<group>"; };
+		DA7D7A8118ABA636003FB185 /* iphone5_setting_female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5_setting_female@2x.png"; sourceTree = "<group>"; };
+		DA7D7A8218ABA636003FB185 /* iphone5_setting_male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone5_setting_male.png; sourceTree = "<group>"; };
+		DA7D7A8318ABA636003FB185 /* iphone5_setting_male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5_setting_male@2x.png"; sourceTree = "<group>"; };
 		DACC06C316D262FF0062E2A8 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../Controls/GET/AlertView.h; sourceTree = "<group>"; };
 		DACC06C416D262FF0062E2A8 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertView.m; path = ../Controls/GET/AlertView.m; sourceTree = "<group>"; };
 		DACC06DA16D2633F0062E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ProjectPrivate/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -1858,6 +1894,7 @@
 			isa = PBXGroup;
 			children = (
 				DA258F2D18A7C02D006EB9C1 /* Media.xcassets */,
+				DA7D7A7918ABA598003FB185 /* Default-568h.png */,
 				DA147DDE1857809400D53B57 /* icon-29.png */,
 				DA147DDF1857809400D53B57 /* icon-58.png */,
 				DA147DE01857809400D53B57 /* icon-80.png */,
@@ -2024,6 +2061,18 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				DA7D7A7C18ABA636003FB185 /* iphone5_setting_bg.png */,
+				DA7D7A7D18ABA636003FB185 /* iphone5_setting_bg@2x.png */,
+				DA7D7A7E18ABA636003FB185 /* iphone5_setting_english.png */,
+				DA7D7A7F18ABA636003FB185 /* iphone5_setting_english@2x.png */,
+				DA7D7A8018ABA636003FB185 /* iphone5_setting_female.png */,
+				DA7D7A8118ABA636003FB185 /* iphone5_setting_female@2x.png */,
+				DA7D7A8218ABA636003FB185 /* iphone5_setting_male.png */,
+				DA7D7A8318ABA636003FB185 /* iphone5_setting_male@2x.png */,
+				DA27A7C818A8F8E900C138C0 /* target_bg_org.png */,
+				DA27A7C918A8F8E900C138C0 /* target_bg_org@2x.png */,
+				DA27A7CA18A8F8E900C138C0 /* target_bg.png */,
+				DA27A7CB18A8F8E900C138C0 /* target_bg@2x.png */,
 				DA59F36A17A16C0A009C6F68 /* segment_disable.png */,
 				DA59F36B17A16C0B009C6F68 /* segment_disable@2x.png */,
 				6BC72C42175795B100BE7581 /* chart_large_bg.png */,
@@ -2209,10 +2258,10 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
 				DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */,
 				DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */,
 				DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */,
-				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
 				6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */,
 				6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */,
 				6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */,
@@ -2226,7 +2275,6 @@
 				6BFB6D5117411614006BB349 /* PEDPedoData4SleepViewController.xib */,
 				6BFB6D531741162E006BB349 /* PEDPedo4SleepViewController.xib */,
 				6B4B3E9D17429D7E007C28F9 /* PEDPedoDataRowView4Sleep.xib */,
-				DA258F2A18A79F3C006EB9C1 /* View.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -2418,6 +2466,7 @@
 				DA6E9F9B16CFB64500F2453F /* target.bmp in Resources */,
 				DA6E9F9C16CFB64500F2453F /* user.bmp in Resources */,
 				DACC06DB16D2633F0062E2A8 /* InfoPlist.strings in Resources */,
+				DA27A7D218A8F8E900C138C0 /* target_bg@2x.png in Resources */,
 				6BFF4A1716D56E6E00317887 /* bottom_line.png in Resources */,
 				6BFF4A1816D56E6E00317887 /* bottom_line@2x.png in Resources */,
 				6BFF4A1916D56E6E00317887 /* footer.png in Resources */,
@@ -2461,7 +2510,6 @@
 				6BFF4A6216D5928800317887 /* setting_textbox@2x.png in Resources */,
 				6BFF4A6716D5947900317887 /* PEDMainViewController.xib in Resources */,
 				6BFF4A6816D5947900317887 /* PEDUserSettingViewController.xib in Resources */,
-				DA258F2B18A79F3C006EB9C1 /* View.xib in Resources */,
 				6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */,
 				6B94DB0716D8445600EF70C1 /* back_normal@2x.png in Resources */,
 				6B94DB0816D8445600EF70C1 /* bar_highlight.png in Resources */,
@@ -2503,9 +2551,11 @@
 				6B94DB2B16D8445600EF70C1 /* step@2x.png in Resources */,
 				6B94DB2C16D8445600EF70C1 /* target_highlight.png in Resources */,
 				6B94DB2D16D8445600EF70C1 /* target_highlight@2x.png in Resources */,
+				DA7D7A8C18ABA636003FB185 /* iphone5_setting_female.png in Resources */,
 				6B94DB2E16D8445600EF70C1 /* target_normal.png in Resources */,
 				6B94DB2F16D8445600EF70C1 /* target_normal@2x.png in Resources */,
 				6B8899F516D8E2F700478F97 /* PEDPedoViewController.xib in Resources */,
+				DA7D7A7A18ABA598003FB185 /* Default-568h.png in Resources */,
 				6B0047C016D92CFA00B87CA8 /* target_step_bar.png in Resources */,
 				6B0047C116D92CFA00B87CA8 /* target_step_bar@2x.png in Resources */,
 				6B0047C216D92CFA00B87CA8 /* target_calories_bar.png in Resources */,
@@ -2520,6 +2570,7 @@
 				6B0047CB16D92CFA00B87CA8 /* target_panel_head@2x.png in Resources */,
 				6B0047CC16D92CFA00B87CA8 /* target_rate_bar.png in Resources */,
 				6B0047CD16D92CFA00B87CA8 /* target_rate_bar@2x.png in Resources */,
+				DA7D7A9018ABA636003FB185 /* iphone5_setting_male.png in Resources */,
 				6B0047CE16D92CFA00B87CA8 /* target_small_panel.png in Resources */,
 				6B0047CF16D92CFA00B87CA8 /* target_small_panel@2x.png in Resources */,
 				6B0047D016D92CFA00B87CA8 /* target_step_panel.png in Resources */,
@@ -2544,6 +2595,7 @@
 				6B0047F916D92D1F00B87CA8 /* distance_small@2x.png in Resources */,
 				6B0047FA16D92D1F00B87CA8 /* down_white.png in Resources */,
 				6B0047FB16D92D1F00B87CA8 /* down_white@2x.png in Resources */,
+				DA7D7A8418ABA636003FB185 /* iphone5_setting_bg.png in Resources */,
 				6B0047FC16D92D1F00B87CA8 /* pace_button.png in Resources */,
 				6B0047FD16D92D1F00B87CA8 /* pace_button@2x.png in Resources */,
 				6B0047FE16D92D1F00B87CA8 /* panel_small_bg.png in Resources */,
@@ -2570,8 +2622,10 @@
 				6BD317BC16DEB70200966E52 /* activity_time_button.png in Resources */,
 				6BD317BD16DEB70200966E52 /* activity_time_button@2x.png in Resources */,
 				6BD317BE16DEB70200966E52 /* calories_button.png in Resources */,
+				DA7D7A8818ABA636003FB185 /* iphone5_setting_english.png in Resources */,
 				6BD317BF16DEB70200966E52 /* calories_button@2x.png in Resources */,
 				6BD317C016DEB70200966E52 /* step_button.png in Resources */,
+				DA7D7A8A18ABA636003FB185 /* iphone5_setting_english@2x.png in Resources */,
 				6BD317C116DEB70200966E52 /* step_button@2x.png in Resources */,
 				6BF080E016E3696B007E606D /* data_bottom_panel_full.png in Resources */,
 				6BF080E116E3696B007E606D /* data_bottom_panel_full@2x.png in Resources */,
@@ -2583,6 +2637,7 @@
 				6BF080E716E3696B007E606D /* data_top_panel_full@2x.png in Resources */,
 				6BF080E816E3696B007E606D /* data_top_panel.png in Resources */,
 				6BF080E916E3696B007E606D /* data_top_panel@2x.png in Resources */,
+				DA7D7A8618ABA636003FB185 /* iphone5_setting_bg@2x.png in Resources */,
 				DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */,
 				DA287D4F18A778800058BBB2 /* setting_contact_us2@2x.png in Resources */,
 				DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */,
@@ -2593,8 +2648,10 @@
 				DAFB233C16EB798800E3E98C /* pickerGlass@2x.png in Resources */,
 				DAFB233D16EB798800E3E98C /* pickerShadows.png in Resources */,
 				DAFB233E16EB798800E3E98C /* pickerShadows@2x.png in Resources */,
+				DA27A7CC18A8F8E900C138C0 /* target_bg_org.png in Resources */,
 				DAFB235116EB92C600E3E98C /* PEDPedoDataRowView.xib in Resources */,
 				6BD4A59C16ED54370023AA16 /* data_top_panel_trp.png in Resources */,
+				DA7D7A8E18ABA636003FB185 /* iphone5_setting_female@2x.png in Resources */,
 				6BD4A59D16ED54370023AA16 /* data_top_panel_trp@2x.png in Resources */,
 				DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */,
 				DA039231170FC988009B260B /* scrollerClick.wav in Resources */,
@@ -2610,6 +2667,7 @@
 				6BFB6D1A17411323006BB349 /* data_large_penal4sleep@2x.png in Resources */,
 				6BFB6D1B17411323006BB349 /* data_top_panel_trp4sleep.png in Resources */,
 				6BFB6D1C17411323006BB349 /* data_top_panel_trp4sleep@2x.png in Resources */,
+				DA7D7A9218ABA636003FB185 /* iphone5_setting_male@2x.png in Resources */,
 				6BFB6D1D17411323006BB349 /* in_bed_time_button.png in Resources */,
 				6BFB6D1E17411323006BB349 /* in_bed_time_button@2x.png in Resources */,
 				6BFB6D1F17411323006BB349 /* pedo_awaken.png in Resources */,
@@ -2642,8 +2700,10 @@
 				6BFB6D541741162E006BB349 /* PEDPedo4SleepViewController.xib in Resources */,
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 				6BB14B3C174D8753000814EA /* icon.png in Resources */,
+				DA27A7D018A8F8E900C138C0 /* target_bg.png in Resources */,
 				6BC72C44175795B100BE7581 /* chart_large_bg.png in Resources */,
 				6BC72C45175795B100BE7581 /* chart_large_bg@2x.png in Resources */,
+				DA27A7CE18A8F8E900C138C0 /* target_bg_org@2x.png in Resources */,
 				DA59F36C17A16C0B009C6F68 /* segment_disable.png in Resources */,
 				DA59F36D17A16C0B009C6F68 /* segment_disable@2x.png in Resources */,
 				DA06868218105C7C0073A888 /* Default.png in Resources */,
@@ -2683,7 +2743,9 @@
 				DAD64C8B17E41CC300947328 /* front_bg@2x.png in Resources */,
 				DAD64C8C17E41CC300947328 /* front_button_highlight.png in Resources */,
 				DAD64C8D17E41CC300947328 /* front_button_highlight@2x.png in Resources */,
+				DA7D7A8918ABA636003FB185 /* iphone5_setting_english.png in Resources */,
 				DAD64C8E17E41CC300947328 /* front_button_normal.png in Resources */,
+				DA7D7A9318ABA636003FB185 /* iphone5_setting_male@2x.png in Resources */,
 				DAD64C8F17E41CC300947328 /* front_button_normal@2x.png in Resources */,
 				DAD64C9017E41CC300947328 /* front_logo.png in Resources */,
 				DAD64C9117E41CC300947328 /* front_logo@2x.png in Resources */,
@@ -2717,9 +2779,10 @@
 				DAD64CAC17E41CC300947328 /* PEDMainViewController.xib in Resources */,
 				DAD64CAD17E41CC300947328 /* PEDUserSettingViewController.xib in Resources */,
 				DAD64CAE17E41CC300947328 /* back_normal.png in Resources */,
+				DA7D7A8B18ABA636003FB185 /* iphone5_setting_english@2x.png in Resources */,
 				DAD64CAF17E41CC300947328 /* back_normal@2x.png in Resources */,
+				DA27A7CF18A8F8E900C138C0 /* target_bg_org@2x.png in Resources */,
 				DAD64CB017E41CC300947328 /* bar_highlight.png in Resources */,
-				DA258F2C18A7A269006EB9C1 /* View.xib in Resources */,
 				DAD64CB117E41CC300947328 /* bar_highlight@2x.png in Resources */,
 				DAD64CB217E41CC300947328 /* bar_normal.png in Resources */,
 				DAD64CB317E41CC300947328 /* bar_normal@2x.png in Resources */,
@@ -2727,8 +2790,10 @@
 				DAD64CB517E41CC300947328 /* down@2x.png in Resources */,
 				DAD64CB617E41CC300947328 /* graphic_normal.png in Resources */,
 				DAD64CB717E41CC300947328 /* graphic_normal@2x.png in Resources */,
+				DA7D7A8518ABA636003FB185 /* iphone5_setting_bg.png in Resources */,
 				DAD64CB817E41CC300947328 /* graphic_highlight.png in Resources */,
 				DA258F2F18A7C02D006EB9C1 /* Media.xcassets in Resources */,
+				DA27A7CD18A8F8E900C138C0 /* target_bg_org.png in Resources */,
 				DAD64CB917E41CC300947328 /* graphic_highlight@2x.png in Resources */,
 				DAD64CBA17E41CC300947328 /* month_picker_bg.png in Resources */,
 				DAD64CBB17E41CC300947328 /* month_picker_bg@2x.png in Resources */,
@@ -2790,6 +2855,7 @@
 				DAD64CEF17E41CC300947328 /* data_bg.png in Resources */,
 				DAD64CF017E41CC300947328 /* data_bg@2x.png in Resources */,
 				DAD64CF117E41CC300947328 /* data_large_panel.png in Resources */,
+				DA27A7D318A8F8E900C138C0 /* target_bg@2x.png in Resources */,
 				DAD64CF217E41CC300947328 /* data_large_panel@2x.png in Resources */,
 				DAD64CF317E41CC300947328 /* data_small_panel.png in Resources */,
 				DAD64CF417E41CC300947328 /* data_small_panel@2x.png in Resources */,
@@ -2816,6 +2882,7 @@
 				DAD64D0917E41CC300947328 /* close.png in Resources */,
 				DA287D4218A778800058BBB2 /* setting_confirm.png in Resources */,
 				DAD64D0A17E41CC300947328 /* close@2x.png in Resources */,
+				DA7D7A9118ABA636003FB185 /* iphone5_setting_male.png in Resources */,
 				DAD64D0B17E41CC300947328 /* modalButton-selected.png in Resources */,
 				DAD64D0C17E41CC300947328 /* modalButton-selected@2x.png in Resources */,
 				DAD64D0D17E41CC300947328 /* modalButton.png in Resources */,
@@ -2864,6 +2931,7 @@
 				DAD64D3517E41CC300947328 /* actual_sleep_time@2x.png in Resources */,
 				DAD64D3617E41CC300947328 /* data_large_penal4sleep.png in Resources */,
 				DAD64D3717E41CC300947328 /* data_large_penal4sleep@2x.png in Resources */,
+				DA7D7A8F18ABA636003FB185 /* iphone5_setting_female@2x.png in Resources */,
 				DAD64D3817E41CC300947328 /* data_top_panel_trp4sleep.png in Resources */,
 				DAD64D3917E41CC300947328 /* data_top_panel_trp4sleep@2x.png in Resources */,
 				DAD64D3A17E41CC300947328 /* in_bed_time_button.png in Resources */,
@@ -2871,6 +2939,7 @@
 				DAD64D3C17E41CC300947328 /* pedo_awaken.png in Resources */,
 				DAD64D3D17E41CC300947328 /* pedo_awaken@2x.png in Resources */,
 				DAD64D3E17E41CC300947328 /* pedo_button_pink.png in Resources */,
+				DA7D7A8718ABA636003FB185 /* iphone5_setting_bg@2x.png in Resources */,
 				DAD64D3F17E41CC300947328 /* pedo_button_pink@2x.png in Resources */,
 				DAD64D4017E41CC300947328 /* pedo_fall_sleep.png in Resources */,
 				DAD64D4117E41CC300947328 /* pedo_fall_sleep@2x.png in Resources */,
@@ -2900,10 +2969,13 @@
 				DAD64D5A17E41CC300947328 /* chart_large_bg@2x.png in Resources */,
 				DA287D4C18A778800058BBB2 /* setting_contact_us@2x.png in Resources */,
 				DAD64D5B17E41CC300947328 /* segment_disable.png in Resources */,
+				DA27A7D118A8F8E900C138C0 /* target_bg.png in Resources */,
 				DAD64D5C17E41CC300947328 /* segment_disable@2x.png in Resources */,
+				DA7D7A8D18ABA636003FB185 /* iphone5_setting_female.png in Resources */,
 				DA06868D18105CA50073A888 /* icon-152.png in Resources */,
 				DA06868F18105CA50073A888 /* icon-144.png in Resources */,
 				DA06869118105CA50073A888 /* icon-76.png in Resources */,
+				DA7D7A7B18ABA598003FB185 /* Default-568h.png in Resources */,
 				DA06869318105CA50073A888 /* icon-72.png in Resources */,
 				DA06869518105CA50073A888 /* icon-120.png in Resources */,
 				DA06869718105CA50073A888 /* icon@2x.png in Resources */,
@@ -3242,6 +3314,8 @@
 		DA6E9C4216CFB2F900F2453F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				COMPRESS_PNG_FILES = YES;
@@ -3253,7 +3327,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3274,6 +3348,8 @@
 		DA6E9C4316CFB2F900F2453F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason  Yu (24ULV42XF5)";
 				COMPRESS_PNG_FILES = YES;
@@ -3285,7 +3361,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ProjectPrivate/Other Sources/Pedometer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3316,7 +3392,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Pedometer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",
@@ -3348,7 +3424,7 @@
 				GCC_PREFIX_HEADER = "ProjectPrivate/Other Sources/Pedometer-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Pedometer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"../dependencies/CorePlot/iOS/CorePlotHeaders/**",
 					"\"$(SRCROOT)/../dependencies/CorePlot/iOS\"/**",

@@ -18,8 +18,8 @@
     if (self)
 	{
 		self.backgroundColor = [UIColor clearColor];
-		_backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
-		[self addSubview:_backgroundView];
+		//_backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
+		//[self addSubview:_backgroundView];
 		
 		self.buttons = [NSMutableArray arrayWithCapacity:[imageArray count]];
 		UIButton *btn;

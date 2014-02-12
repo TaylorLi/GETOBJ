@@ -143,10 +143,10 @@ static PEDAppDelegate* _instance;
 -(void) showTabView{
     @try {
         if(!customerTabBarController || !sleepCustomerTabBarController){
-            NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
-            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
-            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Seleted"];
+//            NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+//            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
+//            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
+//            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Seleted"];
             NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
             [imgDic2 setObject:[UIImage imageNamed:@"pedo_normal.png"] forKey:@"Default"];
             [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Highlighted"];
@@ -182,8 +182,8 @@ static PEDAppDelegate* _instance;
                 pedBarchartViewController = [[PEDBarchartViewController alloc]init];
                 UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
                 navPedo.navigationBarHidden=YES;
-                NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4, imgDic5,nil];
-                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
+                NSArray *imgArr = [NSArray arrayWithObjects:imgDic2,imgDic3,imgDic4, imgDic5,nil];
+                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
@@ -199,8 +199,8 @@ static PEDAppDelegate* _instance;
                 sleepBarchatViewController=[[PEDBarchart4SleepViewController alloc] init];
                 UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
                 navSleep.navigationBarHidden=YES;
-                NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic4, imgDic5,nil];
-                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController,navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
+                NSArray *imgArr = [NSArray arrayWithObjects:imgDic2,imgDic4, imgDic5,nil];
+                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];

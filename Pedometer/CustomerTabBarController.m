@@ -6,7 +6,7 @@
 
 #import "CustomerTabBarController.h"
 #import "CustomerTabBar.h"
-#define kTabBarHeight 36.0f
+#define kTabBarHeight 64.0f
 
 static CustomerTabBarController *customerTabBarController;
 

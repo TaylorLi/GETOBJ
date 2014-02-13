@@ -43,6 +43,32 @@
 @synthesize txbWeight;
 @synthesize txbAge;
 @synthesize pvInchFeet;
+@synthesize backgroundImage;
+@synthesize genderImage;
+- (IBAction)genderClick:(id)sender {
+    UIButton *btn=sender;
+    UIImage *currentImage = [btn imageForState:UIControlStateNormal];
+    int gender=0;
+    NSLog(@"accessibilityIdentifier:%@",[currentImage accessibilityIdentifier]);
+    if([[currentImage accessibilityIdentifier] isEqualToString:@"0"]){
+    [btn setImage:[UIImage imageNamed:@"iphone5_setting_female"] forState:UIControlStateNormal];
+        currentImage = [btn imageForState:UIControlStateNormal];
+        [currentImage setAccessibilityIdentifier:@"1"];
+        gender=1;
+    }
+    else{
+    [btn setImage:[UIImage imageNamed:@"iphone5_setting_male"] forState:UIControlStateNormal];
+        currentImage = [btn imageForState:UIControlStateNormal];
+        [currentImage setAccessibilityIdentifier:@"0"];
+        gender=0;
+    }
+    if(cacheUserInfo4Metric){
+        cacheUserInfo4Metric.gender = gender;
+    }
+    if(cacheUserInfo4English){
+        cacheUserInfo4English.gender = gender;
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,7 +93,8 @@
     switch (unit) {  
         case MEASURE_UNIT_METRIC:  
             [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
-            [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:1];  
+            [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:1];
+            [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
             //unitSegTitleLeft.hidden = NO;
             //unitSegTitleLeft.textColor=[UIColor whiteColor];
             //unitSegTitleRight.hidden = NO;
@@ -78,7 +105,8 @@
             break;  
         case MEASURE_UNIT_ENGLISH:  
             [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:0];
-            [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];  
+            [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];
+            [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_english"]];
             //unitSegTitleLeft.hidden = NO;
             //unitSegTitleLeft.textColor=[UIColor colorWithRed:0x88 green:0x88 blue:0x88 alpha:1];
             //unitSegTitleRight.hidden = NO;
@@ -403,6 +431,13 @@
         //            [userInfo convertUnit:MEASURE_UNIT_ENGLISH];
         //        }
         // [self bindUserInfo:userInfo];
+    }else{
+        [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+        currentUnit=MEASURE_UNIT_METRIC;
+        
+        [genderImage setImage:[UIImage imageNamed:@"iphone5_setting_male"] forState:UIControlStateNormal];
+        UIImage *currentImage = [genderImage imageForState:UIControlStateNormal];
+        [currentImage setAccessibilityIdentifier:@"0"];
     }
 }
 
@@ -447,9 +482,10 @@
     [super viewDidLoad];    
     
     ((UIScrollView *)self.view).delegate=self;
-    self.view.frame = CGRectMake(0, 20, 320, 460);
+    //self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
-    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 126, 76, 18)];
+    segUnit = [[UISegmentedControl alloc]initWithFrame:CGRectMake(149, 116, 114, 22)];
+    segUnit.hidden=YES;//new layout;
     segUnit.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segUnit.tintColor = myTint; 
     [segUnit insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left"] atIndex:0 animated:NO]; 
@@ -462,22 +498,23 @@
     [segUnit addTarget:self action:@selector(segUnitChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segUnit];
     
-    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(215, 126, 33, 18)];
+    unitSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(149, 116, 57, 22)];
     unitSegTitleLeft.text = @"Metric";
     unitSegTitleLeft.textColor = [UIColor whiteColor];
     unitSegTitleLeft.backgroundColor = [UIColor clearColor];
     unitSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
-    [self.view addSubview:unitSegTitleLeft];
+    //[self.view addSubview:unitSegTitleLeft];
     
-    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(251, 126, 35, 18)];
+    unitSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(206, 116, 57, 22)];
     unitSegTitleRight.text = @"English";
     unitSegTitleRight.textColor = [UIColor whiteColor];
     unitSegTitleRight.backgroundColor = [UIColor clearColor];
     unitSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
     //unitSegTitleRight.hidden = YES;
-    [self.view addSubview:unitSegTitleRight];
+    //[self.view addSubview:unitSegTitleRight];
     
-    segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(210, 270, 76, 18)];
+    segGender = [[UISegmentedControl alloc]initWithFrame:CGRectMake(170, 361, 100, 22)];
+    segGender.hidden=YES;
     segGender.segmentedControlStyle = UISegmentedControlStyleBar;
     //   segGender.tintColor = myTint; 
     [segGender insertSegmentWithImage:[UIImage imageNamed:@"segment_sel_left.png"]  atIndex:0 animated:NO]; 
@@ -488,20 +525,20 @@
     // segGender.momentary = YES; 
     [self.view addSubview:segGender];
     
-    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(225, 270, 23, 18)];
+    genderSegTitleLeft = [[UILabel alloc] initWithFrame:CGRectMake(170, 361, 50, 22)];
     genderSegTitleLeft.text = @"M";
     genderSegTitleLeft.textColor = [UIColor whiteColor];
     genderSegTitleLeft.backgroundColor = [UIColor clearColor];
     genderSegTitleLeft.font = [UIFont fontWithName:@"Arial" size:10];
-    [self.view addSubview:genderSegTitleLeft];
+    //[self.view addSubview:genderSegTitleLeft];
     
-    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(261, 270, 25, 18)];
+    genderSegTitleRight = [[UILabel alloc] initWithFrame:CGRectMake(220, 361, 50, 22)];
     genderSegTitleRight.text = @"F";
     genderSegTitleRight.textColor = [UIColor whiteColor];
     genderSegTitleRight.backgroundColor = [UIColor clearColor];
     genderSegTitleRight.font = [UIFont fontWithName:@"Arial" size:10];
     //genderSegTitleRight.hidden = YES;
-    [self.view addSubview:genderSegTitleRight];
+    //[self.view addSubview:genderSegTitleRight];
     
     [self.txbUserName addTarget:self action:@selector(txbEditBegin:) forControlEvents:UIControlEventEditingDidBegin];
     
@@ -555,10 +592,34 @@
             }
             txbWeight.text=[NSString stringWithFormat:@"%.0f", userInfo.weight];
             txbStride.text=[NSString stringWithFormat:@"%.0f", userInfo.stride];
-            segGender.selectedSegmentIndex =userInfo.gender? 1:0;
-            segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
+            if(userInfo.measureFormat==MEASURE_UNIT_METRIC){
+                [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+                 currentUnit=MEASURE_UNIT_METRIC;
+            }else{
+                [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_english"]];
+                currentUnit=MEASURE_UNIT_ENGLISH;
+            }
+            //segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
             [self segUnitChangeToUnit:userInfo.measureFormat];
-            [self segGenderChange:segGender];
+            //segGender.selectedSegmentIndex =userInfo.gender? 1:0;
+            //[self segGenderChange:segGender];
+            
+            if(userInfo.gender){
+                [genderImage setImage:[UIImage imageNamed:@"iphone5_setting_female"] forState:UIControlStateNormal];
+                UIImage *currentImage = [genderImage imageForState:UIControlStateNormal];
+                [currentImage setAccessibilityIdentifier:@"1"];
+            }
+            else{
+                [genderImage setImage:[UIImage imageNamed:@"iphone5_setting_male"] forState:UIControlStateNormal];
+                UIImage *currentImage = [genderImage imageForState:UIControlStateNormal];
+                [currentImage setAccessibilityIdentifier:@"0"];
+            }
+            if(cacheUserInfo4Metric){
+                cacheUserInfo4Metric.gender = userInfo.gender;
+            }
+            if(cacheUserInfo4English){
+                cacheUserInfo4English.gender = userInfo.gender;
+            }
         }    
     }
     @catch (NSException *exception) {
@@ -634,7 +695,7 @@
                 curr=[[PEDUserInfo alloc] initWithDefault];
             }
             if(cacheUserInfo4Metric){
-                if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+                if(currentUnit == MEASURE_UNIT_ENGLISH){
                     [self dataConversion:MEASURE_UNIT_METRIC];
                 }else{
                     [self dataConversion:MEASURE_UNIT_ENGLISH];
@@ -644,7 +705,7 @@
                 curr.height = [self.txbHeight.text floatValue];//m
                 curr.weight = [self.txbWeight.text floatValue];//kg
                 curr.stride = [self.txbStride.text floatValue];//cm
-                if(segUnit.selectedSegmentIndex == MEASURE_UNIT_ENGLISH){
+                if(currentUnit== MEASURE_UNIT_ENGLISH){
                     [curr convertUnit:MEASURE_UNIT_METRIC];
                 }
             }
@@ -660,9 +721,11 @@
             curr.updateDate=[NSDate date];
             curr.isCurrentUser=YES;
             //[curr convertUnit:MEASURE_UNIT_METRIC];
-            curr.measureFormat = segUnit.selectedSegmentIndex;
-            curr.gender = segGender.selectedSegmentIndex;
-            [[AppConfig getInstance] saveUserInfo:curr];    
+            //curr.measureFormat = segUnit.selectedSegmentIndex;
+            curr.measureFormat=currentUnit;
+            //curr.gender = segGender.selectedSegmentIndex;
+            curr.gender = [[genderImage imageForState:UIControlStateNormal].accessibilityIdentifier isEqualToString:@"1"];
+            [[AppConfig getInstance] saveUserInfo:curr];
             [[PEDAppDelegate getInstance] restoreControllerData:nil];
             [[PEDAppDelegate getInstance] showTabView];
         }
@@ -781,7 +844,7 @@
 }
 
 -(CGSize) sizeForPickerView :(PickerExtendView *) pickerView{
-    return CGSizeMake(79.0f, 20.0f);
+    return CGSizeMake(79.0f, 25.0f);
 }
 
 -(void) pickerViewDidChangeValue:(PickerExtendView *)pickerView seletedRowIndex:(NSInteger)rowIndex atComponentIndex:(NSInteger)componentIndex{
@@ -824,7 +887,26 @@
 }
 
 - (UIColor *)textColorForPickerView:(PickerExtendView *) pickerView atComponentIndex:(NSInteger)componentIndex{
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:252 green:255 blue:0 alpha:1];
+}
+- (IBAction)segUnitClick:(id)sender {
+    if(currentUnit==MEASURE_UNIT_ENGLISH){
+        [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+        currentUnit=MEASURE_UNIT_METRIC;
+    }else{
+        [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_english"]];
+        currentUnit=MEASURE_UNIT_ENGLISH;
+    }
+    [self segUnitChangeToUnit:currentUnit];
+    
+    //    PEDUserInfo *userInfo=[AppConfig getInstance].settings.userInfo;
+    [self dataConversion:currentUnit];
+    //[userInfo convertUnit:unit];
+    if(currentUnit == MEASURE_UNIT_METRIC){
+        [self bindUserInfo:cacheUserInfo4Metric];
+    }else{
+        [self bindUserInfo:cacheUserInfo4English];
+    }
 }
 
 //- (UIImage *)backgroundImageForShadeRow:(PickerExtendView *) pickerView{

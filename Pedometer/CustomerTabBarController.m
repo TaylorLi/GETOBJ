@@ -6,7 +6,7 @@
 
 #import "CustomerTabBarController.h"
 #import "CustomerTabBar.h"
-#define kTabBarHeight 36.0f
+#define kTabBarHeight 64.0f
 
 static CustomerTabBarController *customerTabBarController;
 
@@ -46,11 +46,12 @@ static CustomerTabBarController *customerTabBarController;
 	{
 		_viewControllers = [NSMutableArray arrayWithArray:vcs];
 		
-    CGRect availRect= [[UIScreen mainScreen] applicationFrame];
-       if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-       {
-           availRect=CGRectMake(0, 20.0f, 320.0f, 460.0f);
-       }
+        CGRect availRect= [[UIScreen mainScreen] bounds];//从0像素开始算
+        //CGRect availRect= [[UIScreen mainScreen] applicationFrame];//返回的是减去20个像素的位置
+//       if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+//       {
+//           availRect=CGRectMake(0, 20.0f, 320.0f, 460.0f);
+//       }
 		_containerView = [[UIView alloc] initWithFrame:availRect];
 		
 		_transitionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.0f, _containerView.frame.size.height - kTabBarHeight)];

@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCaloriesRemain;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVCalories;
 @property (weak, nonatomic) IBOutlet UILabel *lblMessage;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 - (CGFloat)percentOfTarget:(CGFloat) target withRemain:(CGFloat) remain;
 - (void) initData;

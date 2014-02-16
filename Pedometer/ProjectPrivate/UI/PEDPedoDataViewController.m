@@ -273,7 +273,7 @@
     [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];   
     [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
     */
-    [self initMonthSelectorWithX:0 Height:188.f];    
+    [self initMonthSelectorWithX:56.f Height:66.f];
 	
     // Do any additional setup after loading the view, typically from a nib.
     

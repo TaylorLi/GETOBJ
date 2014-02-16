@@ -34,5 +34,6 @@
 
 - (void) initData;
 - (void) initDataByDate:(NSDate *) date;
+- (IBAction)swithToPedoDateListView:(id)sender;
 
 @end

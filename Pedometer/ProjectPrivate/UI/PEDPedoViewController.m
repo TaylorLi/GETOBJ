@@ -61,7 +61,7 @@
 {
     [super viewDidLoad];
     
-	[self initMonthSelectorWithX:0 Height:331.f];
+	//[self initMonthSelectorWithX:0 Height:331.f];
     
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfNextDate:)];   
     [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   
@@ -169,8 +169,8 @@
         lblPaceAmount.text = [NSString stringWithFormat:@"%.1f", [PEDPedometerCalcHelper calAvgPaceByDistance:currPedometerData.distance inTime:currPedometerData.activeTime withMeasureUnit:userInfo.measureFormat]];
         lblDistanceUnit.text = [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES];
         lblSpeedUnit.text = [NSString stringWithFormat:@"%@/hr", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
-        lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];    
-        [self reloadPickerToMidOfDate:referenceDate];    
+        lblPaceUnit.text = [NSString stringWithFormat:@"Min/%@", [PEDPedometerCalcHelper getDistanceUnit:userInfo.measureFormat withWordFormat:YES]];
+        //[self reloadPickerToMidOfDate:referenceDate];
     }
     @catch (NSException *exception) {
         [LogHelper error:@"error occured" exception:exception];
@@ -245,7 +245,15 @@
         
     }
 }
-
+- (IBAction)swithToPedoDateListView:(id)sender
+{
+    if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
+        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+    }
+    pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
+    [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
+    [pedPedoDataViewController initDataByDate: referenceDate];
+}
 
 -(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer 
 {

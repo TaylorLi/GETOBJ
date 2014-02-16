@@ -10,6 +10,7 @@
 #import "PEDAppDelegate.h"
 #import "SwitchViewController.h"
 
+
 @interface PEDUIBaseViewController ()
 
 
@@ -62,20 +63,20 @@
 
 -(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY
 {    
-    CGFloat pickerHeight = 40.0f;
-    CGFloat width=[UIScreen mainScreen].bounds.size.width;
+    CGFloat pickerHeight = 23.0f;
+    CGFloat width=220.f;
 	CGFloat x = originX;
 	CGFloat y = originY;
 	CGRect tmpFrame = CGRectMake(x, y, width, pickerHeight);
     
 	monthSelectView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
     monthSelectView.backgroundColor   = [UIColor clearColor];
-	monthSelectView.selectedTextColor = [UIColor whiteColor];
-	monthSelectView.textColor   = [UIColor grayColor];
+	monthSelectView.selectedTextColor = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
+	monthSelectView.textColor   = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
 	monthSelectView.delegate    = self;
 	monthSelectView.dataSource  = self;
-	monthSelectView.elementFont = [UIFont boldSystemFontOfSize:11.0f];
-    monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:14.0f];
+	monthSelectView.elementFont = [UIFont boldSystemFontOfSize:month_font_size];
+    monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:month_font_size];
 	monthSelectView.selectionPoint = CGPointMake(tmpFrame.size.width/2, 0);
     [self.view addSubview:monthSelectView];
 }
@@ -104,11 +105,11 @@
 - (NSInteger) horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index {
 	CGSize constrainedSize = CGSizeMake(MAXFLOAT, MAXFLOAT);
 	NSString *text = [monthArray objectAtIndex:index];
-    CGFloat fontSize = picker.currentSelectedIndex==index?14.0f:11.0f;
+    CGFloat fontSize = picker.currentSelectedIndex==index?month_font_size:month_font_size;
 	CGSize textSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]
 					   constrainedToSize:constrainedSize
 						   lineBreakMode:UILineBreakModeWordWrap];
-	return textSize.width + 15.0f; // 20px padding on each side
+	return textSize.width + 7.0f; // 20px padding on each side
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
@@ -128,9 +129,10 @@
 
 -(void) reloadPickerToMidOfDate:(NSDate *)date
 {
+    int initCount=7;
     @try {
-        monthArray=[[NSMutableArray alloc] initWithCapacity:7];
-        NSString *nowDateString = [UtilHelper formateDate:[NSDate date] withFormat:@"MMM yyyy"];
+        monthArray=[[NSMutableArray alloc] initWithCapacity:initCount];
+        NSString *nowDateString = [[UtilHelper formateDate:[NSDate date] withFormat:@"MMM yyyy"] uppercaseString];
         NSDate *selectedDate=date;
         if(date){
             selectedDate=date;
@@ -138,10 +140,10 @@
         else{
             selectedDate=[NSDate date];
         }
-        NSDate *fromDate=[selectedDate addMonths:-3];
-        for (int i=0; i<7; i++) {
+        NSDate *fromDate=[selectedDate addMonths:-(initCount/2)];
+        for (int i=0; i<initCount; i++) {
             
-            NSString *dateString = [UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"];
+            NSString *dateString = [[UtilHelper formateDate:[fromDate addMonths:i] withFormat:@"MMM yyyy"] uppercaseString];
             [monthArray addObject:dateString];
             if([dateString isEqualToString:nowDateString]){
                 break;
@@ -149,7 +151,7 @@
             
         }    
         [monthSelectView reloadData];
-        [monthSelectView scrollToElement:3 animated:NO]; 
+        [monthSelectView scrollToElement:initCount/2 animated:NO];
     }
     @catch (NSException *exception) {
         [LogHelper error:@"error occured" exception:exception];
@@ -169,6 +171,9 @@
     [PEDAppDelegate getInstance].isShowSleepTab=YES;
     [[PEDAppDelegate getInstance] showTabView];
     //[controlContainer switchViews:NO];
+}
+- (IBAction)clickToSettingView:(id)sender{
+    [[PEDAppDelegate getInstance] showUserSettingView];
 }
 
 @end

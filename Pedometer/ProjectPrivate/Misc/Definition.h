@@ -18,6 +18,10 @@
 /*无效时间表示方式*/
 #define TIME_INVALID_FLAG -1
 
+//2014-02-16 01:30:13.960 Pedometer[1249:70b] Family name: FZCuYuan-M03S
+//2014-02-16 01:30:13.960 Pedometer[1249:70b]     Font name: FZY4JW--GB1-0
+#define USE_DEFAULT_FONT @"FZCuYuan-M03S"
+
 typedef enum {
 	MEASURE_UNIT_METRIC = 0,					// no packet
     MEASURE_UNIT_ENGLISH = 1

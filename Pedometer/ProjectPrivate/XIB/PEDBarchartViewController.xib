@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDBarchartViewController">
             <connections>
                 <outlet property="btnActTime" destination="79" id="81"/>
-                <outlet property="btnAvgPace" destination="65" id="86"/>
-                <outlet property="btnAvgSpeed" destination="64" id="94"/>
                 <outlet property="btnCalories" destination="78" id="85"/>
-                <outlet property="btnDistance" destination="63" id="90"/>
+                <outlet property="btnDistance" destination="cmw-dp-x0W" id="cGX-Tv-VgU"/>
                 <outlet property="btnStep" destination="80" id="82"/>
                 <outlet property="graphicHostView" destination="70" id="74"/>
-                <outlet property="lblLastUpdate" destination="33" id="77"/>
-                <outlet property="lblUserName" destination="28" id="76"/>
                 <outlet property="monthSelectView" destination="71" id="73"/>
                 <outlet property="view" destination="1" id="72"/>
             </connections>
@@ -25,71 +21,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pedo_tab.png" id="51">
-                    <rect key="frame" x="4" y="7" width="316" height="50"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Barchart_bg.png" id="51">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="month_picker_bg.png" id="25">
-                    <rect key="frame" x="0.0" y="327" width="320" height="48"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="head_icon.png" id="vcu-6i-IcC">
+                    <rect key="frame" x="49" y="21" width="249" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <view contentMode="scaleToFill" id="71" customClass="V8HorizontalPickerView">
+                    <rect key="frame" x="55" y="63" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="26">
-                    <rect key="frame" x="16" y="380" width="295" height="36"/>
+                </view>
+                <view contentMode="scaleToFill" id="70" customClass="CPTGraphHostingView">
+                    <rect key="frame" x="61" y="140" width="212" height="190"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                    <state key="normal" title="Connect" backgroundImage="pedo_button.png">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="clickToConnectDevice:" destination="-1" eventType="touchUpInside" id="75"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="27">
-                    <rect key="frame" x="15" y="10" width="109" height="23"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1yu-Ii-gvX">
+                    <rect key="frame" x="134" y="23" width="79" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="PEDO">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="swithToPedoView:" destination="-1" eventType="touchUpInside" id="98"/>
-                    </connections>
-                </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Frederic Lam" lineBreakMode="tailTruncation" minimumFontSize="10" id="28">
-                    <rect key="frame" x="26" y="35" width="99" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lastest update : " lineBreakMode="tailTruncation" minimumFontSize="10" id="29">
-                    <rect key="frame" x="190" y="35" width="77" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="30/9/12" lineBreakMode="tailTruncation" minimumFontSize="10" id="33">
-                    <rect key="frame" x="265" y="35" width="43" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="35">
-                    <rect key="frame" x="133" y="10" width="175" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="SLEEP">
+                    <state key="normal">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -97,78 +51,30 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="swithToSleepView:" destination="-1" eventType="touchUpInside" id="97"/>
+                        <action selector="swithToSleepView:" destination="-1" eventType="touchUpInside" id="Lbh-1D-RPB"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="report_bg.png" id="62">
-                    <rect key="frame" x="23" y="104" width="274" height="153"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mgx-J6-LsW">
+                    <rect key="frame" x="220" y="25" width="79" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="63">
-                    <rect key="frame" x="115" y="267" width="74" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Distance" backgroundImage="distance_button.png">
-                        <color key="titleColor" red="0.45882356169999999" green="0.23529413339999999" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="btnDistanceClick:" destination="-1" eventType="touchUpInside" id="91"/>
+                        <action selector="clickToSettingView:" destination="-1" eventType="touchUpInside" id="Z88-GC-0Lh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="64">
-                    <rect key="frame" x="115" y="300" width="74" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Avg Speed" backgroundImage="speed_button.png">
-                        <color key="titleColor" red="0.29019609089999998" green="0.2470588386" blue="0.36470589040000001" alpha="1" colorSpace="deviceRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnAvgSpeedClick:" destination="-1" eventType="touchUpInside" id="95"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="65">
-                    <rect key="frame" x="206" y="300" width="74" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Avg Pace" backgroundImage="pace_button.png">
-                        <color key="titleColor" red="0.30196079609999998" green="0.45098042490000001" blue="0.24313727020000001" alpha="1" colorSpace="deviceRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnAvgPaceClick:" destination="-1" eventType="touchUpInside" id="96"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" id="71" customClass="V8HorizontalPickerView">
-                    <rect key="frame" x="0.0" y="334" width="320" height="33"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" id="70" customClass="CPTGraphHostingView">
-                    <rect key="frame" x="26" y="104" width="271" height="153"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="78">
-                    <rect key="frame" x="206" y="267" width="74" height="20"/>
+                    <rect key="frame" x="171" y="405" width="85" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Calories">
+                    <state key="normal" image="Barchart_font_calories_burned.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -180,11 +86,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="79">
-                    <rect key="frame" x="26" y="300" width="74" height="20"/>
+                    <rect key="frame" x="148" y="444" width="131" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Act Time">
+                    <state key="normal" image="Barchart_font_acttime.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -196,11 +102,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="80">
-                    <rect key="frame" x="26" y="267" width="74" height="20"/>
+                    <rect key="frame" x="67" y="405" width="85" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="Step">
+                    <state key="normal" image="Barchart_font_step_count.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -211,6 +117,22 @@
                         <action selector="btnSetpClick:" destination="-1" eventType="touchUpInside" id="87"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cmw-dp-x0W">
+                    <rect key="frame" x="44" y="443" width="130" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" image="Barchart_font_distance.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnDistanceClick:" destination="-1" eventType="touchUpInside" id="bYE-k0-kKp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -219,12 +141,11 @@
         </view>
     </objects>
     <resources>
-        <image name="distance_button.png" width="74" height="20"/>
-        <image name="month_picker_bg.png" width="322" height="48"/>
-        <image name="pace_button.png" width="74" height="20"/>
-        <image name="pedo_button.png" width="295" height="36"/>
-        <image name="pedo_tab.png" width="316" height="50"/>
-        <image name="report_bg.png" width="274" height="153"/>
-        <image name="speed_button.png" width="74" height="20"/>
+        <image name="Barchart_bg.png" width="320" height="568"/>
+        <image name="Barchart_font_acttime.png" width="85" height="27"/>
+        <image name="Barchart_font_calories_burned.png" width="85" height="27"/>
+        <image name="Barchart_font_distance.png" width="85" height="27"/>
+        <image name="Barchart_font_step_count.png" width="85" height="27"/>
+        <image name="head_icon.png" width="249" height="39"/>
     </resources>
 </document>

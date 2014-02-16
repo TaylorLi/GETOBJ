@@ -47,11 +47,28 @@
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
+	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FangZhengCuYuanJianTi.TTF</string>
+	</array>
+	<key>IBCustomFonts</key>
+	<dict>
+		<key>Helvetica</key>
+		<string>FZCuYuan-M03S</string>
+		<key>Helvetica-Bold</key>
+		<string>FZCuYuan-M03S</string>
+		<key>Helvetica-Oblique</key>
+		<string>FZCuYuan-M03S</string>
+		<key>Helvetica-BoldOblique</key>
+		<string>FZCuYuan-M03S</string>
+		<key>Helvetica-LightOblique</key>
+		<string>FZCuYuan-M03S</string>
+	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

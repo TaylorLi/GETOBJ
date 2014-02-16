@@ -45,19 +45,20 @@
 @synthesize pvInchFeet;
 @synthesize backgroundImage;
 @synthesize genderImage;
+
 - (IBAction)genderClick:(id)sender {
     UIButton *btn=sender;
     UIImage *currentImage = [btn imageForState:UIControlStateNormal];
     int gender=0;
-    NSLog(@"accessibilityIdentifier:%@",[currentImage accessibilityIdentifier]);
+    //NSLog(@"accessibilityIdentifier:%@",[currentImage accessibilityIdentifier]);
     if([[currentImage accessibilityIdentifier] isEqualToString:@"0"]){
-    [btn setImage:[UIImage imageNamed:@"iphone5_setting_female"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"setting_female"] forState:UIControlStateNormal];
         currentImage = [btn imageForState:UIControlStateNormal];
         [currentImage setAccessibilityIdentifier:@"1"];
         gender=1;
     }
     else{
-    [btn setImage:[UIImage imageNamed:@"iphone5_setting_male"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"setting_male"] forState:UIControlStateNormal];
         currentImage = [btn imageForState:UIControlStateNormal];
         [currentImage setAccessibilityIdentifier:@"0"];
         gender=0;
@@ -94,7 +95,7 @@
         case MEASURE_UNIT_METRIC:  
             [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:0];
             [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:1];
-            [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+            [backgroundImage setImage:[UIImage imageNamed:@"setting_bg"]];
             //unitSegTitleLeft.hidden = NO;
             //unitSegTitleLeft.textColor=[UIColor whiteColor];
             //unitSegTitleRight.hidden = NO;
@@ -106,7 +107,7 @@
         case MEASURE_UNIT_ENGLISH:  
             [segUnit setImage:[UIImage imageNamed:@"segment_disable"] forSegmentAtIndex:0];
             [segUnit setImage:[UIImage imageNamed:@"segment_sel_left"] forSegmentAtIndex:1];
-            [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_english"]];
+            [backgroundImage setImage:[UIImage imageNamed:@"setting_english"]];
             //unitSegTitleLeft.hidden = NO;
             //unitSegTitleLeft.textColor=[UIColor colorWithRed:0x88 green:0x88 blue:0x88 alpha:1];
             //unitSegTitleRight.hidden = NO;
@@ -432,10 +433,10 @@
         //        }
         // [self bindUserInfo:userInfo];
     }else{
-        [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+        [backgroundImage setImage:[UIImage imageNamed:@"setting_bg"]];
         currentUnit=MEASURE_UNIT_METRIC;
         
-        [genderImage setImage:[UIImage imageNamed:@"iphone5_setting_male"] forState:UIControlStateNormal];
+        [genderImage setImage:[UIImage imageNamed:@"setting_male"] forState:UIControlStateNormal];
         UIImage *currentImage = [genderImage imageForState:UIControlStateNormal];
         [currentImage setAccessibilityIdentifier:@"0"];
     }
@@ -480,7 +481,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    
+    //txbUserName.font=[UIFont fontWithName:USE_DEFAULT_FONT size:20];
     ((UIScrollView *)self.view).delegate=self;
     //self.view.frame = CGRectMake(0, 20, 320, 460);
     //  UIColor *myTint = [[ UIColor alloc]initWithRed:0.66 green:1.0 blue:0.77 alpha:1.0];  
@@ -593,10 +594,10 @@
             txbWeight.text=[NSString stringWithFormat:@"%.0f", userInfo.weight];
             txbStride.text=[NSString stringWithFormat:@"%.0f", userInfo.stride];
             if(userInfo.measureFormat==MEASURE_UNIT_METRIC){
-                [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+                [backgroundImage setImage:[UIImage imageNamed:@"setting_bg"]];
                  currentUnit=MEASURE_UNIT_METRIC;
             }else{
-                [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_english"]];
+                [backgroundImage setImage:[UIImage imageNamed:@"setting_english"]];
                 currentUnit=MEASURE_UNIT_ENGLISH;
             }
             //segUnit.selectedSegmentIndex =userInfo.measureFormat==MEASURE_UNIT_METRIC?0:1;
@@ -605,12 +606,12 @@
             //[self segGenderChange:segGender];
             
             if(userInfo.gender){
-                [genderImage setImage:[UIImage imageNamed:@"iphone5_setting_female"] forState:UIControlStateNormal];
+                [genderImage setImage:[UIImage imageNamed:@"setting_female"] forState:UIControlStateNormal];
                 UIImage *currentImage = [genderImage imageForState:UIControlStateNormal];
                 [currentImage setAccessibilityIdentifier:@"1"];
             }
             else{
-                [genderImage setImage:[UIImage imageNamed:@"iphone5_setting_male"] forState:UIControlStateNormal];
+                [genderImage setImage:[UIImage imageNamed:@"setting_male"] forState:UIControlStateNormal];
                 UIImage *currentImage = [genderImage imageForState:UIControlStateNormal];
                 [currentImage setAccessibilityIdentifier:@"0"];
             }
@@ -891,10 +892,10 @@
 }
 - (IBAction)segUnitClick:(id)sender {
     if(currentUnit==MEASURE_UNIT_ENGLISH){
-        [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_bg"]];
+        [backgroundImage setImage:[UIImage imageNamed:@"setting_bg"]];
         currentUnit=MEASURE_UNIT_METRIC;
     }else{
-        [backgroundImage setImage:[UIImage imageNamed:@"iphone5_setting_english"]];
+        [backgroundImage setImage:[UIImage imageNamed:@"setting_english"]];
         currentUnit=MEASURE_UNIT_ENGLISH;
     }
     [self segUnitChangeToUnit:currentUnit];

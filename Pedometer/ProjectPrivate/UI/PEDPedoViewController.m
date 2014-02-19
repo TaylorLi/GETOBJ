@@ -248,11 +248,10 @@
 - (IBAction)swithToPedoDateListView:(id)sender
 {
     if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
-        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]init];
+        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]initWithRefrenceDate:referenceDate];
     }
     pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
-    [pedPedoDataViewController initDataByDate: referenceDate];
 }
 
 -(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer 

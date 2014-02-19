@@ -290,7 +290,7 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [UtilHelper showAllAppFonts];
+    //[UtilHelper showAllAppFonts];
     disableiOSAdjust=YES;
     @try {
         [LogHelper setInitialLoggerByConfigFile:@"log4cocoa.properties"];

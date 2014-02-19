@@ -95,7 +95,7 @@
         //self.graphicHostView.backgroundColor = [UIColor whiteColor];
         isLargeView = true;
     }else{
-        self.graphicHostView.frame = CGRectMake(26, 104, 271, 153);
+        self.graphicHostView.frame = CGRectMake(20, 140, 300, 224);
         //self.graphicHostView.backgroundColor = [UIColor clearColor];
         isLargeView = false;
     }
@@ -170,7 +170,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:0 Height:331.f];
+    [self initMonthSelectorWithX:56.f Height:66.f];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
     [self initBarRemark];
     [self initData];

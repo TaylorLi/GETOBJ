@@ -31,7 +31,7 @@
         return;
     
     currentRow = selectedRow;
-    [contentView setContentOffset:CGPointMake(0.0, 45.0 * currentRow) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0,[delegate pickerViewRowHeight:self] * currentRow) animated:NO];
 }
 
 
@@ -120,7 +120,7 @@
         
         // glass
         UIImage *glassImage = [UIImage imageNamed:@"pickerGlass.png"];
-        glassImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 45.0, glassImage.size.width, glassImage.size.height)];
+        glassImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, [delegate pickerViewRowHeight:self], glassImage.size.width, glassImage.size.height)];
         glassImageView.image = glassImage;
         [self addSubview:glassImageView];
         */
@@ -168,7 +168,7 @@
     
     rowsCount = [dataSource numberOfRowsInPickerView:self];
     [contentView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
-    contentView.contentSize = CGSizeMake(contentView.frame.size.width, 45.0 * rowsCount + AFPicker_Row_Spacing * 2 * 45.0);    
+    contentView.contentSize = CGSizeMake(contentView.frame.size.width, [delegate pickerViewRowHeight:self] * rowsCount + AFPicker_Row_Spacing * 2 * [delegate pickerViewRowHeight:self]);
     [self tileViews];
 }
 
@@ -181,9 +181,9 @@
 - (void)determineCurrentRow
 {
     CGFloat delta = contentView.contentOffset.y;
-    int position = round(delta / 45.0);
+    int position = round(delta / [delegate pickerViewRowHeight:self]);
     currentRow = position;
-    [contentView setContentOffset:CGPointMake(0.0, 45.0 * position) animated:YES];
+    [contentView setContentOffset:CGPointMake(0.0, [delegate pickerViewRowHeight:self] * position) animated:YES];
     [delegate pickerView:self didSelectRow:currentRow];
 }
 
@@ -193,7 +193,7 @@
 {
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
     CGPoint point = [tapRecognizer locationInView:self];
-    int steps = floor(point.y / 45.0) - AFPicker_Row_Spacing;
+    int steps = floor(point.y / [delegate pickerViewRowHeight:self]) - AFPicker_Row_Spacing;
     if(steps==0){
         [delegate pickerView:self didTapCenter:tapRecognizer];
     }else{
@@ -205,7 +205,7 @@
 {
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
     CGPoint point = [tapRecognizer locationInView:self];
-    int steps = floor(point.y / 45.0) - AFPicker_Row_Spacing;
+    int steps = floor(point.y / [delegate pickerViewRowHeight:self]) - AFPicker_Row_Spacing;
     if(steps==0 &&tapRecognizer.numberOfTouches==2){
         [delegate pickerView:self didTapCenter:tapRecognizer];
     }else{
@@ -223,7 +223,7 @@
     if (steps == 0 || steps > AFPicker_Row_Spacing || steps < -AFPicker_Row_Spacing)
         return;
     }
-    [contentView setContentOffset:CGPointMake(0.0, 45.0 * currentRow) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0, [delegate pickerViewRowHeight:self] * currentRow) animated:NO];
     
     int newRow = currentRow + steps;
     if (newRow < 0 || newRow >= rowsCount)
@@ -238,7 +238,7 @@
     }
     
     currentRow = currentRow + steps;
-    [contentView setContentOffset:CGPointMake(0.0, 45.0 * currentRow) animated:YES];
+    [contentView setContentOffset:CGPointMake(0.0, [delegate pickerViewRowHeight:self] * currentRow) animated:YES];
     [delegate pickerView:self didSelectRow:currentRow];
 }
 
@@ -263,7 +263,7 @@
 	BOOL foundPage = NO;
     for (UIView *aView in visibleViews) 
 	{
-        int viewIndex = aView.frame.origin.y / 45.0 - AFPicker_Row_Spacing;
+        int viewIndex = aView.frame.origin.y / [delegate pickerViewRowHeight:self] - AFPicker_Row_Spacing;
         if (viewIndex == index) 
 		{
             foundPage = YES;
@@ -280,15 +280,15 @@
 {
     // Calculate which pages are visible
     CGRect visibleBounds = contentView.bounds;
-    int firstNeededViewIndex = floorf(CGRectGetMinY(visibleBounds) / 45.0) - AFPicker_Row_Spacing;
-    int lastNeededViewIndex  = floorf((CGRectGetMaxY(visibleBounds) / 45.0)) - AFPicker_Row_Spacing;
+    int firstNeededViewIndex = floorf(CGRectGetMinY(visibleBounds) / [delegate pickerViewRowHeight:self]) - AFPicker_Row_Spacing;
+    int lastNeededViewIndex  = floorf((CGRectGetMaxY(visibleBounds) / [delegate pickerViewRowHeight:self])) - AFPicker_Row_Spacing;
     firstNeededViewIndex = MAX(firstNeededViewIndex, 0);
     lastNeededViewIndex  = MIN(lastNeededViewIndex, rowsCount - 1);
 	
     // Recycle no-longer-visible pages 
 	for (UIView *aView in visibleViews) 
     {
-        int viewIndex = aView.frame.origin.y / 45.0 - AFPicker_Row_Spacing;
+        int viewIndex = aView.frame.origin.y / [delegate pickerViewRowHeight:self] - AFPicker_Row_Spacing;
         if (viewIndex < firstNeededViewIndex || viewIndex > lastNeededViewIndex) 
         {
             [recycledViews addObject:aView];
@@ -307,7 +307,7 @@
             /*
 			if (label == nil)
             {
-				label = [[UILabel alloc] initWithFrame:CGRectMake(_rowIndent, 0, self.frame.size.width - _rowIndent, 45.0)];
+				label = [[UILabel alloc] initWithFrame:CGRectMake(_rowIndent, 0, self.frame.size.width - _rowIndent, [delegate pickerViewRowHeight:self])];
                 label.backgroundColor = [UIColor clearColor];
                 label.font = self.rowFont;
                 label.textColor =[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
@@ -331,7 +331,7 @@
     UIView *label = view;
     [dataSource pickerView:self prepareForCell:label rowAtIndex:index];
     CGRect frame = label.frame;
-    frame.origin.y = 45.0 * index + 45.0 * AFPicker_Row_Spacing;
+    frame.origin.y = [delegate pickerViewRowHeight:self] * index + [delegate pickerViewRowHeight:self] * AFPicker_Row_Spacing;
     label.frame = frame;
 }
 

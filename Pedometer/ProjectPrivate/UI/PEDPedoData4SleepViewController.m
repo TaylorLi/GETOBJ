@@ -556,6 +556,10 @@
 {
     return 45.0;
 }
+- (float)pickerViewRowHeight:(AFPickerView *)pickerView
+{
+    return 45.0;
+}
 
 -(UIView *)pickerView:(AFPickerView *)pickerView cellForRowAtIndexPath:(NSInteger)rowIndex
 {

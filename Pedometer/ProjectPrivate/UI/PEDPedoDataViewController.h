@@ -13,6 +13,7 @@
 #import "DialogBoxContainer.h"
 #import "PEDUIBaseViewController.h"
 #import "AFPickerView.h"
+#import "PEDPedoDataRowView.h"
 
 @class  DialogBoxContainer;
 
@@ -20,50 +21,18 @@
 {
     DialogBoxContainer *regPannel;    
     NSArray *daysData;
+    int showDataRowsCount;
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgVDataTop;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVDataMiddle;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVDataBottom;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVBehindTop;
-//@property (weak, nonatomic) IBOutlet UIImageView *imgVBehindBottom;
-@property (weak, nonatomic) IBOutlet UILabel *lblDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblActivityTime;
-@property (weak, nonatomic) IBOutlet UILabel *lblStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblLastUpdate;
-@property (weak, nonatomic) IBOutlet UILabel *lblUserName;
-
-@property (weak, nonatomic) IBOutlet UILabel *lblNextDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblNextActTime;
-
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblCurrActTime;
-
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevStep;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevDistance;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevCalories;
-@property (weak, nonatomic) IBOutlet UILabel *lblPrevActTime;
 @property (nonatomic,strong) NSDate *referenceDate;
 @property (strong, nonatomic) IBOutlet AFPickerView *dayPickerView;
+@property (strong,nonatomic) NSMutableArray *showDataRows;
 
-
-//<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>{
-//    NSMutableArray *monthArray;
-//}
-//@property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 - (IBAction)btnPrevDataClick:(id)sender;
 - (IBAction)btnNextDataClick:(id)sender;
 
 - (void) initData;
 - (void) initDataByDate:(NSDate *) date;
+-(id)initWithRefrenceDate:(NSDate *)refDate;
 
 @end

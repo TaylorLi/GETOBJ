@@ -10,7 +10,7 @@
                 <outlet property="lblActivityTime" destination="46" id="59"/>
                 <outlet property="lblCaloriesAmount" destination="45" id="58"/>
                 <outlet property="lblDistanceAmount" destination="36" id="56"/>
-                <outlet property="lblLastUpdate" destination="33" id="53"/>
+                <outlet property="lblLastUpdate" destination="d5J-c7-rjQ" id="KA6-3S-gip"/>
                 <outlet property="lblPaceAmount" destination="48" id="62"/>
                 <outlet property="lblSpeedAmount" destination="47" id="60"/>
                 <outlet property="lblStepAmount" destination="13" id="55"/>
@@ -70,62 +70,70 @@
                         <action selector="clickToSettingView:" destination="-1" eventType="touchUpInside" id="hGC-G6-NUR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x00-MK-lZt">
-                    <rect key="frame" x="183" y="94" width="89" height="27"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x00-MK-lZt">
+                    <rect key="frame" x="180" y="94" width="98" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
+                    <state key="normal" image="Connect.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="Connect_Hightlight.png"/>
                     <connections>
                         <action selector="clickToConnectDevice:" destination="-1" eventType="touchUpInside" id="JRk-EQ-9RC"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="9000" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="13">
-                    <rect key="frame" x="207" y="152" width="51" height="44"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="9000" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="13">
+                    <rect key="frame" x="190" y="165" width="68" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="50"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="0.43921571970000001" green="0.7254902124" blue="0.64313727620000005" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:30:00" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="46">
-                    <rect key="frame" x="82" y="350" width="81" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="01:20" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="46">
+                    <rect key="frame" x="93" y="350" width="70" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="16" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="47">
-                    <rect key="frame" x="174" y="410" width="51" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="16" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="47">
+                    <rect key="frame" x="183" y="408" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="3.8" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="48">
-                    <rect key="frame" x="127" y="469" width="51" height="21"/>
+                    <rect key="frame" x="142" y="468" width="34" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="30/9/12" lineBreakMode="tailTruncation" minimumFontSize="10" id="33">
-                    <rect key="frame" x="97" y="68" width="43" height="12"/>
+                    <rect key="frame" x="93" y="69" width="94" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                     <color key="textColor" red="0.98431372549999996" green="0.4039215686" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="8" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="36">
-                    <rect key="frame" x="160" y="217" width="79" height="42"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="30/2/14" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="d5J-c7-rjQ">
+                    <rect key="frame" x="103" y="97" width="60" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="40"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                    <color key="textColor" red="0.98431372549999996" green="0.4039215686" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="8" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="36">
+                    <rect key="frame" x="190" y="232" width="46" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="0.8980392814" green="0.44313728810000003" blue="0.30196079609999998" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="400" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="45">
-                    <rect key="frame" x="174" y="296" width="51" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="400" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="45">
+                    <rect key="frame" x="190" y="291" width="35" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -137,6 +145,8 @@
         </view>
     </objects>
     <resources>
+        <image name="Connect.png" width="98" height="30"/>
+        <image name="Connect_Hightlight.png" width="98" height="30"/>
         <image name="Latest_update_bg_metric.png" width="320" height="568"/>
         <image name="head_icon.png" width="249" height="39"/>
     </resources>

@@ -78,4 +78,5 @@
 -(UIView *)pickerView:(AFPickerView *)pickerView cellForRowAtIndexPath:(NSInteger)rowIndex;
 -(void)pickerView:(AFPickerView *)pickerView didTapCenter:(UITapGestureRecognizer *)recognizer;
 - (float)pickerViewRowHeight:(AFPickerView *)pickerView;
+-(void)pickerView:(AFPickerView *)pickerView didTapCenter:(UITapGestureRecognizer *)recognizer inStep:(NSInteger)step;
 @end

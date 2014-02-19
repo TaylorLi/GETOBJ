@@ -8,7 +8,7 @@
 
 #import "AFPickerView.h"
 
-#define AFPicker_Row_Spacing 1
+#define AFPicker_Row_Spacing 0
 
 @implementation AFPickerView
 
@@ -205,14 +205,14 @@
 {
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
     CGPoint point = [tapRecognizer locationInView:self];
-    int steps = floor(point.y / [delegate pickerViewRowHeight:self]) - AFPicker_Row_Spacing;
+    int steps = floor(point.y / [delegate pickerViewRowHeight:self]) - AFPicker_Row_Spacing;    
+    [delegate pickerView:self didTapCenter:tapRecognizer inStep:steps];
     if(steps==0 &&tapRecognizer.numberOfTouches==2){
         [delegate pickerView:self didTapCenter:tapRecognizer];
     }else{
         [self makeSteps:steps];
     }
 }
-
 
 
 

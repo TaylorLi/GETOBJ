@@ -304,9 +304,8 @@
         
         barChart.plotAreaFrame.paddingLeft   = 30.0f;
         barChart.plotAreaFrame.paddingTop    = 10.0f;
-        barChart.plotAreaFrame.paddingRight  = 20.0f;
-        barChart.plotAreaFrame.paddingBottom = 25.0f;
-        
+        barChart.plotAreaFrame.paddingRight  = 0.0f;
+        barChart.plotAreaFrame.paddingBottom = 35.0f;
         // Graph title
         /*
          barChart.title = @"Graph Title\nLine 2";

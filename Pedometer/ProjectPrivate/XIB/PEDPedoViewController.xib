@@ -9,12 +9,14 @@
             <connections>
                 <outlet property="lblActivityTime" destination="46" id="59"/>
                 <outlet property="lblCaloriesAmount" destination="45" id="58"/>
+                <outlet property="lblCurrDay" destination="33" id="Wd0-ZU-NpO"/>
                 <outlet property="lblDistanceAmount" destination="36" id="56"/>
                 <outlet property="lblLastUpdate" destination="d5J-c7-rjQ" id="KA6-3S-gip"/>
                 <outlet property="lblPaceAmount" destination="48" id="62"/>
                 <outlet property="lblSpeedAmount" destination="47" id="60"/>
                 <outlet property="lblStepAmount" destination="13" id="55"/>
                 <outlet property="view" destination="1" id="7"/>
+                <outlet property="viewPedoContainView" destination="nry-Nf-9kt" id="znN-JW-0Xc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,6 +24,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" id="nry-Nf-9kt">
+                    <rect key="frame" x="20" y="129" width="268" height="379"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Latest_update_bg_metric.png" id="67">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

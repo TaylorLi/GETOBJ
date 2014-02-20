@@ -35,7 +35,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="70" customClass="CPTGraphHostingView">
-                    <rect key="frame" x="61" y="140" width="212" height="190"/>
+                    <rect key="frame" x="30" y="140" width="243" height="226"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

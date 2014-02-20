@@ -15,6 +15,7 @@ PEDPedoData4SleepViewController,PEDPedo4SleepViewController,PEDBarchart4SleepVie
 {
     CGRect windowsRect;
     BOOL disableiOSAdjust;
+    int screenHeight;
 }
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) IBOutlet PEDMainViewController *pedMainViewController;

@@ -213,7 +213,7 @@ static PEDAppDelegate* _instance;
             //        nav1,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil];
             
             
-            //[customerTabBarController setTabBarTransparent:YES];
+            [customerTabBarController setTabBarTransparent:YES];
             
         }
         //    tabBarController.selectedIndex = 1;
@@ -290,7 +290,9 @@ static PEDAppDelegate* _instance;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [UtilHelper showAllAppFonts];
+    CGRect availFrame = [[UIScreen mainScreen] applicationFrame];
+    screenHeight=availFrame.size.height;
+    //[UtilHelper showAllAppFonts];
     disableiOSAdjust=YES;
     @try {
         [LogHelper setInitialLoggerByConfigFile:@"log4cocoa.properties"];

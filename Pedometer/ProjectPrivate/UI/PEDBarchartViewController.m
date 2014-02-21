@@ -44,7 +44,7 @@
             for (int i=0; i<barIdArray.count; i++) {
                 UIImageView *barColorView = [[UIImageView alloc]initWithFrame:CGRectMake(46 + i * 100, 62, 30, 5)];
                 //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
-                [barColorView setImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:[barIdArray objectAtIndex:i]]];
+                [barColorView setImage:[PEDPedometerDataHelper getBarRemarkImageWithStatisticsType:[barIdArray objectAtIndex:i]]];
                 UILabel *barRemarkLable = [[UILabel alloc]initWithFrame:CGRectMake(30 + i * 100, 72, 62, 24)];
                 barRemarkLable.text = [PEDPedometerDataHelper getBarRemarkTextWithStatisticsType:[barIdArray objectAtIndex:i] withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat];
                 barRemarkLable.textAlignment = UITextAlignmentCenter;
@@ -208,7 +208,7 @@
             }else{
                 if(barIdArray.count < 3){
                     [barIdArray addObject:statisticsTypeStr];
-                    [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr] forState:UIControlStateNormal];
+                    [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:true] forState:UIControlStateNormal];
                     [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
                     isChange = YES;
                 }

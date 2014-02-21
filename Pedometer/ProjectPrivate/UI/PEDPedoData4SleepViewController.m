@@ -242,7 +242,7 @@
     dayPickerView.delegate = self;
     //[dayPickerView reloadData];
     [self.view addSubview:dayPickerView];
-    [self initMonthSelectorWithX:0 Height:188.f];    
+    [self initMonthSelectorWithX:55.f Height:298.f];
 	
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -553,10 +553,6 @@
 }
 
 - (CGFloat)pickerView:(AFPickerView *)pickerView heightForRowAtIndexPath:(NSInteger)rowIndex
-{
-    return 45.0;
-}
-- (float)pickerViewRowHeight:(AFPickerView *)pickerView
 {
     return 45.0;
 }

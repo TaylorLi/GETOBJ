@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnActualSleepTime;
 @property (weak, nonatomic) IBOutlet UIButton *btnTimesAwaken;
 @property (weak, nonatomic) IBOutlet UIButton *btnInBedTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblCurrDay;
 
 - (IBAction)btnActualSleepTimeClick:(id)sender;
 - (IBAction)btnTimesAwakenClick:(id)sender;

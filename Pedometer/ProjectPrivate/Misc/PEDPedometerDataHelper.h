@@ -16,7 +16,8 @@
 +(CPTColor*) getCPTColorWithStatisticsType:(NSString*) statisticsTypeString;
 +(NSString*) getBarRemarkTextWithStatisticsType:(NSString*) statisticsTypeString withMeasureUnit:(MeasureUnit) measureUnit;
 +(UIColor*) getColorWithStatisticsType:(NSString*) statisticsTypeString;
-+(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString;
++(UIImage*) getBarRemarkImageWithStatisticsType:(NSString*) statisticsTypeString;
++(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString withStatus:(BOOL) isEnable;
 +(NSString*) getTargetRemark :(NSTimeInterval) stepPercent withDistancePercent:(NSTimeInterval) distancePercent withCaloriesPercent:(NSTimeInterval) caloriesPercent;
 +(NSString*) integerToTimeString:(NSInteger) intValue;
 +(NSString*) getSleepTimeString :(NSTimeInterval) time;

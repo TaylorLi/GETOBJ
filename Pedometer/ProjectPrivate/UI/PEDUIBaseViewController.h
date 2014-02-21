@@ -11,7 +11,7 @@
 #import "V8HorizontalPickerViewProtocol.h"
 @class SwitchViewController;
 
-#define month_font_size 8.0f
+#define month_font_size 9.0f
 
 @interface PEDUIBaseViewController : UIViewController<V8HorizontalPickerViewDelegate, V8HorizontalPickerViewDataSource>
 {
@@ -27,4 +27,5 @@
 -(void) reloadPickerToMidOfDate:(NSDate *)date;
 - (IBAction)swithToPedoView:(id)sender;
 -(IBAction)swithToSleepView:(id)sender;
+-(void)genNumberImage:(NSString *)imagePrefix withNumber:(NSInteger) number withCoordinate:(CGPoint) coordinate withZeroFill:(BOOL) isFill;
 @end

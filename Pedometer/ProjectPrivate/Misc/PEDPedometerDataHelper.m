@@ -210,35 +210,71 @@
     return uiColor; 
 }
 
-+(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString{
++(UIImage*) getBarRemarkImageWithStatisticsType:(NSString*) statisticsTypeString{
+    UIImage *barBRImage = nil;
+    switch ([statisticsTypeString integerValue]) {
+        case STATISTICS_STEP:
+            barBRImage = [UIImage imageNamed:@"step_button.png"];
+            break;
+        case STATISTICS_ACTIVITY_TIME:
+            barBRImage = [UIImage imageNamed:@"activity_time_button.png"];
+            break;
+        case STATISTICS_CALORIES:
+            barBRImage = [UIImage imageNamed:@"calories_button.png"];
+            break;
+        case STATISTICS_DISTANCE:
+            barBRImage = [UIImage imageNamed:@"distance_button.png"];
+            break;
+        case STATISTICS_AVG_SPEED:
+            barBRImage = [UIImage imageNamed:@"speed_button.png"];
+            break;
+        case STATISTICS_AVG_PACE:
+            barBRImage = [UIImage imageNamed:@"pace_button.png"];
+            break;
+        case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
+            barBRImage = [UIImage imageNamed:@"sleep_chart_remark_ast.png"];
+            break;
+        case STATISTICS_SLEEP_TIMES_AWAKEN:
+            barBRImage = [UIImage imageNamed:@"sleep_chart_remark_ta.png"];
+            break;
+        case STATISTICS_SLEEP_IN_BED_TIME:
+            barBRImage = [UIImage imageNamed:@"sleep_chart_remark_ibt.png"];
+            break;
+        default:
+            break;
+    }
+    return barBRImage;
+}
+
++(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString withStatus:(BOOL) isEnable{
     UIImage *btnBGImage = nil;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
-            btnBGImage = [UIImage imageNamed:@"step_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"step_button.png" : @"step_button.png")];
             break;
         case STATISTICS_ACTIVITY_TIME:
-            btnBGImage = [UIImage imageNamed:@"activity_time_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"activity_time_button.png" : @"activity_time_button.png")];
             break;
         case STATISTICS_CALORIES:
-            btnBGImage = [UIImage imageNamed:@"calories_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"calories_button.png" : @"calories_button.png")];
             break;
         case STATISTICS_DISTANCE:
-            btnBGImage = [UIImage imageNamed:@"distance_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"distance_button.png" : @"distance_button.png")];
             break;
         case STATISTICS_AVG_SPEED:
-            btnBGImage = [UIImage imageNamed:@"speed_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"speed_button.png" : @"speed_button.png")];
             break;
         case STATISTICS_AVG_PACE:
-            btnBGImage = [UIImage imageNamed:@"pace_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"pace_button.png" : @"pace_button.png")];
             break;
         case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
-            btnBGImage = [UIImage imageNamed:@"actual_sleep_time_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"sleep_chart_btn_ast_on.png" : @"sleep_chart_btn_ast_off.png")];
             break;
         case STATISTICS_SLEEP_TIMES_AWAKEN:
-            btnBGImage = [UIImage imageNamed:@"times_awaken_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"sleep_chart_btn_ta_on.png" : @"sleep_chart_btn_ta_off.png")];
             break;
         case STATISTICS_SLEEP_IN_BED_TIME:
-            btnBGImage = [UIImage imageNamed:@"in_bed_time_button.png"];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"sleep_chart_btn_ibt_on.png" : @"sleep_chart_btn_ibt_off.png")];
             break;
         default:
             break;

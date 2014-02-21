@@ -71,12 +71,16 @@
     
 	monthSelectView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
     monthSelectView.backgroundColor   = [UIColor clearColor];
-	monthSelectView.selectedTextColor = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
-	monthSelectView.textColor   = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
+	//monthSelectView.selectedTextColor = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
+    monthSelectView.selectedTextColor = [UIColor whiteColor];
+	//monthSelectView.textColor   = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
+    monthSelectView.textColor   = [UIColor whiteColor];
 	monthSelectView.delegate    = self;
 	monthSelectView.dataSource  = self;
-	monthSelectView.elementFont = [UIFont boldSystemFontOfSize:month_font_size];
-    monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:month_font_size];
+	//monthSelectView.elementFont = [UIFont boldSystemFontOfSize:month_font_size];
+    //monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:month_font_size];
+	monthSelectView.elementFont = [UIFont fontWithName:USE_DEFAULT_FONT size:month_font_size];
+    monthSelectView.selectedElementFont=[UIFont fontWithName:USE_DEFAULT_FONT size:month_font_size];
 	monthSelectView.selectionPoint = CGPointMake(tmpFrame.size.width/2, 0);
     [self.view addSubview:monthSelectView];
 }
@@ -99,7 +103,9 @@
 }
 
 - (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index {
-	return [monthArray objectAtIndex:index];
+    NSMutableString *text = [[monthArray objectAtIndex:index] mutableCopy];
+    [text replaceCharactersInRange:NSMakeRange(3, 1) withString:@","];
+	return text;
 }
 
 - (NSInteger) horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index {
@@ -109,7 +115,7 @@
 	CGSize textSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]
 					   constrainedToSize:constrainedSize
 						   lineBreakMode:UILineBreakModeWordWrap];
-	return textSize.width + 7.0f; // 20px padding on each side
+	return textSize.width + 3.5f; // 20px padding on each side
 }
 
 - (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
@@ -174,6 +180,26 @@
 }
 - (IBAction)clickToSettingView:(id)sender{
     [[PEDAppDelegate getInstance] showUserSettingView];
+}
+
+-(void)genNumberImage:(NSString *)imagePrefix withNumber:(NSInteger) number withCoordinate:(CGPoint) coordinate withZeroFill:(BOOL) isFill
+{
+    int count = 0;
+    do {
+        int unit = number % 10;
+        UIImage *image = [UIImage imageNamed:[imagePrefix stringByAppendingFormat:@"%d", unit]];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.frame = CGRectMake(coordinate.x, coordinate.y, image.size.width, image.size.height);
+        
+        number = number / 10;
+        count++;
+    } while (number != 0);
+    
+    if(count==1 && isFill){
+        UIImage *imageFill = [UIImage imageNamed:[imagePrefix stringByAppendingString:@"0"]];
+        UIImageView *imageViewFill = [[UIImageView alloc]initWithImage:imageFill];
+        imageViewFill.frame = CGRectMake(coordinate.x - imageFill.size.width, coordinate.y, imageFill.size.width, imageFill.size.height);
+    }
 }
 
 @end

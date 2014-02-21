@@ -12,40 +12,65 @@
 #import "PEDSleepData.h"
 
 @implementation PEDGraphs4SleepViewController
+
 @synthesize dataForPlot;
 @synthesize cptGraphHostingView;
 @synthesize lblUserName;
 @synthesize lblLastUpdate;
+@synthesize lblCurrDay;
 @synthesize btnActualSleepTime;
 @synthesize btnTimesAwaken;
 @synthesize btnInBedTime;
 
 -(void) initBarRemark{
-    if(tempControlPool == nil){
-        tempControlPool = [[NSMutableArray alloc]init];
-    }else{
-        for (int i=tempControlPool.count -1 ; i>=0; i--) {
-            id control = [tempControlPool objectAtIndex:i];
-            [control removeFromSuperview];
+    @try {
+        if(tempControlPool == nil){
+            tempControlPool = [[NSMutableArray alloc]init];
+        }else{
+            for (int i=tempControlPool.count -1 ; i>=0; i--) {
+                id control = [tempControlPool objectAtIndex:i];
+                [control removeFromSuperview];
+            }
+        }
+        if(barIdArray != nil && barIdArray.count > 0){
+            NSMutableArray *imageArray = [[NSMutableArray alloc]init];
+            int barWidth = 244;
+            int startX = 36;
+            int imgTotalWidth = 0;
+            for (int i=0; i<barIdArray.count; i++) {
+                UIImage *image = [PEDPedometerDataHelper getBarRemarkImageWithStatisticsType:[barIdArray objectAtIndex:i]];
+                [imageArray addObject:image];
+                imgTotalWidth += image.size.width;
+            }
+            for (int i=0; i<barIdArray.count; i++) {
+                UIImage *image = [imageArray objectAtIndex:i];
+                UIImageView *barColorView = [[UIImageView alloc] initWithImage:image];
+                barColorView.frame = CGRectMake(startX, 137, image.size.width, image.size.height);
+                if(barIdArray.count > 1)
+                {
+                    startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count - 1);
+                }
+                //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
+                
+                //                UILabel *barRemarkLable = [[UILabel alloc]initWithFrame:CGRectMake(30 + i * 100, 72, 70, 24)];
+                //                barRemarkLable.text = [PEDPedometerDataHelper getBarRemarkTextWithStatisticsType:[barIdArray objectAtIndex:i] withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat];
+                //                barRemarkLable.textAlignment = UITextAlignmentCenter;
+                //                barRemarkLable.font = [UIFont systemFontOfSize:9];
+                //                barRemarkLable.textColor = [UIColor whiteColor];
+                //                barRemarkLable.numberOfLines = 2;
+                //                barRemarkLable.backgroundColor = [UIColor clearColor];
+                [tempControlPool addObject:barColorView];
+                //                [tempControlPool addObject:barRemarkLable];
+                [self.view addSubview:barColorView];
+                //                [self.view addSubview:barRemarkLable];
+            }
         }
     }
-    if(barIdArray != nil && barIdArray.count > 0){
-        for (int i=0; i<barIdArray.count; i++) {
-            UIImageView *barColorView = [[UIImageView alloc]initWithFrame:CGRectMake(46 + i * 100, 62, 30, 5)];
-            //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
-            [barColorView setImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:[barIdArray objectAtIndex:i]]];
-            UILabel *barRemarkLable = [[UILabel alloc]initWithFrame:CGRectMake(30 + i * 100, 72, 70, 24)];
-            barRemarkLable.text = [PEDPedometerDataHelper getBarRemarkTextWithStatisticsType:[barIdArray objectAtIndex:i] withMeasureUnit:[AppConfig getInstance].settings.userInfo.measureFormat];
-            barRemarkLable.textAlignment = UITextAlignmentCenter;
-            barRemarkLable.font = [UIFont systemFontOfSize:9];
-            barRemarkLable.textColor = [UIColor whiteColor];
-            barRemarkLable.numberOfLines = 2;
-            barRemarkLable.backgroundColor = [UIColor clearColor];
-            [tempControlPool addObject:barColorView];
-            [tempControlPool addObject:barRemarkLable];
-            [self.view addSubview:barColorView];
-            [self.view addSubview:barRemarkLable];
-        }
+    @catch (NSException *exception) {
+        [LogHelper error:@"error occured" exception:exception];
+    }
+    @finally {
+        
     }
 }
 
@@ -69,6 +94,7 @@
     dayRemark--;
     dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
     statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];
+    [self initCurrSleepData:referenceDate];
     [self genCurvechart];
 }
 
@@ -78,6 +104,7 @@
         dayRemark++;
         dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
         statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];
+        [self initCurrSleepData:referenceDate];
         [self genCurvechart];
     }
 }
@@ -87,19 +114,31 @@
     NSDate *lastUploadDate = [[BO_PEDSleepData getInstance] getLastUploadDate:[AppConfig getInstance].settings.target.targetId];
     [self initDataByDate:lastUploadDate];
 }
+
+-(void) initCurrSleepData:(NSDate *)date{
+    PEDSleepData *currSleepData = [[BO_PEDSleepData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:date];
+    if(!currSleepData){
+        currSleepData=[[PEDSleepData alloc] init];
+        currSleepData.optDate=date;
+    }
+    lblCurrDay.text = [UtilHelper formateDate:currSleepData.optDate withFormat:@"dd/MM/yy"];
+    [lblCurrDay setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:11.f]];
+}
+
 - (void) initDataByDate:(NSDate *) date{
     @try {
         if(isLargeView){
             [self DoubleTap:nil];
         }
-        lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
+        //lblUserName.text = [AppConfig getInstance].settings.userInfo.userName;
         if(date==nil){
             if(referenceDate==nil)
                 referenceDate=[NSDate date];
         }
         else
             referenceDate=date;
-        lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDSleepData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+        //lblLastUpdate.text = [UtilHelper formateDate:[[BO_PEDSleepData getInstance] getLastUpdateDate:[AppConfig getInstance].settings.target.targetId] withFormat:@"dd/MM/yy"];
+        [self initCurrSleepData:referenceDate];
         isLargeView = false;
         dayRemark =0;
         isFirstLoad = YES;
@@ -158,7 +197,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:0 Height:331.f];
+    [self initMonthSelectorWithX:60.f Height:64.f];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME], [PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN],[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_IN_BED_TIME], nil];
     [self initBarRemark];
     [self initData];
@@ -300,14 +339,16 @@
             BOOL isChange = NO;
             if([barIdArray containsObject:statisticsTypeStr]){
                 [barIdArray removeObject:statisticsTypeStr];
-                [btn setBackgroundImage:nil forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:false] forState:UIControlStateNormal];
+//                [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
+//                [btn setBackgroundImage:nil forState:UIControlStateNormal];
+//                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 isChange = YES;
             }else{
                 if(barIdArray.count < 3){
                     [barIdArray addObject:statisticsTypeStr];
-                    [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr] forState:UIControlStateNormal];
-                    [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
+                    [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:true] forState:UIControlStateNormal];
+//                    [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
                     isChange = YES;
                 }
             }
@@ -603,6 +644,7 @@
             //selectDate = !selectDate ? date : selectDate;
             if(selectDate){
                 dayRemark = - [referenceDate timeIntervalSinceDate:selectDate]/60/60/24;
+                [self initCurrSleepData:selectDate];
             }else{
                 if([referenceDate timeIntervalSinceDate:date]<0){
                     dayRemark = - [referenceDate timeIntervalSinceDate:date]/60/60/24 + [AppConfig getInstance].settings.showDateCount;
@@ -610,6 +652,7 @@
                 else{
                     dayRemark = - [referenceDate timeIntervalSinceDate:date]/60/60/24 + [AppConfig getInstance].settings.showDateCount - 1;
                 }
+                [self initCurrSleepData:date];
             }
             dayArray = [PEDPedometerDataHelper getDaysQueue:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withDateFormat:@"dd/MM" referedDate:referenceDate];
             statisticsData = [PEDPedometerDataHelper getStatisticsData4Sleep:[AppConfig getInstance].settings.showDateCount withDaySpacing:dayRemark withTagetId:[AppConfig getInstance].settings.target.targetId referedDate:referenceDate];

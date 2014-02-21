@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLastUpdate;
 @property (weak, nonatomic) IBOutlet UILabel *lblCurrDay;
+@property (weak, nonatomic) IBOutlet UILabel *lblDate4ActualSleepTime;
 @property (weak, nonatomic) IBOutlet UILabel *lblHour4ActualSleepTime;
 @property (weak, nonatomic) IBOutlet UILabel *lblMinute4ActualSleepTime;
 @property (weak, nonatomic) IBOutlet UILabel *lblRemark4TimeToBed;

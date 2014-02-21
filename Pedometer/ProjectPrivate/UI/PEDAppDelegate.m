@@ -214,7 +214,7 @@ static PEDAppDelegate* _instance;
             
             
             [customerTabBarController setTabBarTransparent:YES];
-            
+            [sleepCustomerTabBarController setTabBarTransparent:YES];
         }
         //    tabBarController.selectedIndex = 1;
         if(isShowSleepTab)

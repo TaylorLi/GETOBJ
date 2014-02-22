@@ -8,107 +8,86 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PEDPedoDataRowView4Sleep"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="53" customClass="PEDPedoDataRowView4Sleep">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <rect key="frame" x="0.0" y="0.0" width="227" height="43"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="data_top_panel_trp4sleep.png" id="65">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Pedo_data_list_row4sleep.png" id="65">
+                    <rect key="frame" x="0.0" y="0.0" width="227" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="64">
-                    <rect key="frame" x="42" y="3" width="48" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="29/9/12" lineBreakMode="tailTruncation" minimumFontSize="10" id="oDA-3P-HY7">
+                    <rect key="frame" x="7" y="0.0" width="48" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="63">
-                    <rect key="frame" x="59" y="21" width="12" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1:30" lineBreakMode="tailTruncation" minimumFontSize="8" id="kel-Yp-xes">
+                    <rect key="frame" x="143" y="18" width="31" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                    <color key="textColor" red="0.94117647059999998" green="0.63137254899999995" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="H" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="59">
-                    <rect key="frame" x="68" y="22" width="9" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="CYv-D9-DoF">
+                    <rect key="frame" x="127" y="17" width="9" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="8"/>
+                    <color key="textColor" red="0.94117647059999998" green="0.63137254899999995" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="54">
-                    <rect key="frame" x="78" y="21" width="12" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="6" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="NLB-f3-xdA">
+                    <rect key="frame" x="13" y="18" width="16" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                    <color key="textColor" red="0.96078431369999995" green="0.78823529410000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="M" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="58">
-                    <rect key="frame" x="88" y="22" width="9" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="2je-8g-2Xb">
+                    <rect key="frame" x="35" y="18" width="12" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                    <color key="textColor" red="0.96078431369999995" green="0.78823529410000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="57">
-                    <rect key="frame" x="118" y="19" width="9" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="11:30" lineBreakMode="tailTruncation" minimumFontSize="8" id="2Ns-yn-lMw">
+                    <rect key="frame" x="84" y="18" width="29" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                    <color key="textColor" red="0.71764705880000002" green="0.86666666670000003" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="8" id="62">
-                    <rect key="frame" x="127" y="21" width="32" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="P" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="AC3-Ii-2JC">
+                    <rect key="frame" x="73" y="17" width="9" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="8"/>
+                    <color key="textColor" red="0.71764705880000002" green="0.86666666670000003" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="61">
-                    <rect key="frame" x="176" y="19" width="9" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="3" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="fPH-RS-Uf6">
+                    <rect key="frame" x="174" y="18" width="17" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="8" id="60">
-                    <rect key="frame" x="186" y="21" width="31" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="56">
-                    <rect key="frame" x="239" y="21" width="17" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" text="Times" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="8" id="55">
-                    <rect key="frame" x="253" y="21" width="26" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <color key="textColor" red="0.81984544839999995" green="0.81984544839999995" blue="0.81984544839999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="11"/>
+                    <color key="textColor" red="0.20784313730000001" green="0.71372549019999998" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="lblDate" destination="64" id="66"/>
-                <outlet property="lblHour4ActualSleepTime" destination="63" id="67"/>
-                <outlet property="lblMinute4ActualSleepTime" destination="54" id="68"/>
-                <outlet property="lblRemark4TimeToBed" destination="57" id="69"/>
-                <outlet property="lblRemark4TimeToFallSleep" destination="61" id="70"/>
-                <outlet property="lblTimeToBed" destination="62" id="72"/>
-                <outlet property="lblTimeToFallSleep" destination="60" id="73"/>
-                <outlet property="lblTimesAwaken" destination="56" id="71"/>
+                <outlet property="lblDate" destination="oDA-3P-HY7" id="KJ0-0t-rgO"/>
+                <outlet property="lblHour4ActualSleepTime" destination="NLB-f3-xdA" id="dpT-xb-WNf"/>
+                <outlet property="lblMinute4ActualSleepTime" destination="2je-8g-2Xb" id="79M-xi-Nl8"/>
+                <outlet property="lblRemark4TimeToBed" destination="AC3-Ii-2JC" id="7ef-h1-29j"/>
+                <outlet property="lblRemark4TimeToFallSleep" destination="CYv-D9-DoF" id="tnT-Gx-kbh"/>
+                <outlet property="lblTimeToBed" destination="2Ns-yn-lMw" id="2aF-nS-gzL"/>
+                <outlet property="lblTimeToFallSleep" destination="kel-Yp-xes" id="lZY-pa-EZa"/>
+                <outlet property="lblTimesAwaken" destination="fPH-RS-Uf6" id="nyH-w1-eIN"/>
             </connections>
         </view>
     </objects>
     <resources>
-        <image name="data_top_panel_trp4sleep.png" width="320" height="45"/>
+        <image name="Pedo_data_list_row4sleep.png" width="227" height="43"/>
     </resources>
 </document>

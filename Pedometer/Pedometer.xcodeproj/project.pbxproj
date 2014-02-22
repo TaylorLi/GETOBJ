@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		345ED79A18B8FCA70016ED15 /* Pedo_data_list_row4sleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 345ED79818B8FCA70016ED15 /* Pedo_data_list_row4sleep.png */; };
+		345ED79B18B8FCA70016ED15 /* Pedo_data_list_row4sleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 345ED79918B8FCA70016ED15 /* Pedo_data_list_row4sleep@2x.png */; };
 		3474757018B7AACB00EDDD11 /* sleep_chart_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3474754F18B7AACB00EDDD11 /* sleep_chart_bg.png */; };
 		3474757118B7AACB00EDDD11 /* sleep_chart_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3474754F18B7AACB00EDDD11 /* sleep_chart_bg.png */; };
 		3474757218B7AACB00EDDD11 /* sleep_chart_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3474755018B7AACB00EDDD11 /* sleep_chart_bg@2x.png */; };
@@ -1508,6 +1510,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		345ED79818B8FCA70016ED15 /* Pedo_data_list_row4sleep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pedo_data_list_row4sleep.png; sourceTree = "<group>"; };
+		345ED79918B8FCA70016ED15 /* Pedo_data_list_row4sleep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pedo_data_list_row4sleep@2x.png"; sourceTree = "<group>"; };
 		3474754F18B7AACB00EDDD11 /* sleep_chart_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_chart_bg.png; sourceTree = "<group>"; };
 		3474755018B7AACB00EDDD11 /* sleep_chart_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_chart_bg@2x.png"; sourceTree = "<group>"; };
 		3474755118B7AACB00EDDD11 /* sleep_chart_btn_ast_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_chart_btn_ast_off.png; sourceTree = "<group>"; };
@@ -2565,6 +2569,8 @@
 		3474756A18B7AACB00EDDD11 /* sleep_data_setting */ = {
 			isa = PBXGroup;
 			children = (
+				345ED79818B8FCA70016ED15 /* Pedo_data_list_row4sleep.png */,
+				345ED79918B8FCA70016ED15 /* Pedo_data_list_row4sleep@2x.png */,
 				3474756B18B7AACB00EDDD11 /* sleep_data_setting_bg.png */,
 				3474756C18B7AACB00EDDD11 /* sleep_data_setting_bg@2x.png */,
 			);
@@ -4259,6 +4265,7 @@
 				3474773718B7AAE000EDDD11 /* Actual_Sleep_Time_S_0@2x.png in Resources */,
 				6BFF4A6816D5947900317887 /* PEDUserSettingViewController.xib in Resources */,
 				3474757A18B7AACB00EDDD11 /* sleep_chart_btn_ast_on@2x.png in Resources */,
+				345ED79B18B8FCA70016ED15 /* Pedo_data_list_row4sleep@2x.png in Resources */,
 				6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */,
 				6B94DB0716D8445600EF70C1 /* back_normal@2x.png in Resources */,
 				347477C118B7AAE000EDDD11 /* Time_To_Bed_5.png in Resources */,
@@ -4462,6 +4469,7 @@
 				DA27947918B08DCA00F1BDA1 /* Connect@2x.png in Resources */,
 				6B0047F916D92D1F00B87CA8 /* distance_small@2x.png in Resources */,
 				3474772118B7AAE000EDDD11 /* Actual_Sleep_Time_5.png in Resources */,
+				345ED79A18B8FCA70016ED15 /* Pedo_data_list_row4sleep.png in Resources */,
 				6B0047FA16D92D1F00B87CA8 /* down_white.png in Resources */,
 				6B0047FB16D92D1F00B87CA8 /* down_white@2x.png in Resources */,
 				3474774318B7AAE000EDDD11 /* Actual_Sleep_Time_S_3@2x.png in Resources */,

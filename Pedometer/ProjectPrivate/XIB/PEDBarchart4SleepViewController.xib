@@ -26,14 +26,14 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="20">
-                    <rect key="frame" x="182" y="95" width="100" height="30"/>
+                    <rect key="frame" x="184" y="95" width="98" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                    <state key="normal" backgroundImage="sleep_connect.png">
+                    <state key="normal" image="Connect.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted">
+                    <state key="highlighted" image="Connect_Hightlight.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -140,11 +140,12 @@
         </view>
     </objects>
     <resources>
+        <image name="Connect.png" width="98" height="30"/>
+        <image name="Connect_Hightlight.png" width="98" height="30"/>
         <image name="sleep_chart_bg.png" width="320" height="568"/>
         <image name="sleep_chart_btn_ast_on.png" width="86" height="28"/>
         <image name="sleep_chart_btn_ibt_on.png" width="86" height="28"/>
         <image name="sleep_chart_btn_ta_on.png" width="86" height="28"/>
-        <image name="sleep_connect.png" width="100" height="30"/>
         <image name="sleep_switch4pedo.png" width="123" height="39"/>
         <image name="sleep_switch4sleep.png" width="123" height="39"/>
     </resources>

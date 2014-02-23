@@ -68,6 +68,11 @@
     [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   
     [self.viewPedoContainView addGestureRecognizer:rightRecognizer];
     
+    UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swithToPedoDateListView:)];
+    doubleRecognizer.numberOfTapsRequired = 2; // 双击
+    
+    [self.viewPedoContainView addGestureRecognizer:doubleRecognizer];
+    
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfPrevDate:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
     [self.viewPedoContainView addGestureRecognizer:leftRecognizer];
@@ -254,9 +259,10 @@
 - (IBAction)swithToPedoDateListView:(id)sender
 {
     if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
-        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]initWithRefrenceDate:referenceDate];
+        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc] init];
     }
     pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
+    pedPedoDataViewController.referenceDate = referenceDate;
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 

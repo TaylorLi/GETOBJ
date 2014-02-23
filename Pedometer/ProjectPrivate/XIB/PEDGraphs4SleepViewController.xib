@@ -67,7 +67,7 @@
                     </state>
                 </button>
                 <view contentMode="scaleToFill" id="12" customClass="CPTGraphHostingView">
-                    <rect key="frame" x="30" y="161" width="267" height="234"/>
+                    <rect key="frame" x="32" y="158" width="251" height="236"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

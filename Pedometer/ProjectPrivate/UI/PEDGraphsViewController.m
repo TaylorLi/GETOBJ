@@ -51,7 +51,7 @@
             barColorView.frame = CGRectMake(startX, 108, image.size.width, image.size.height);
             if(barIdArray.count > 1)
             {
-                startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count<3?3:barIdArray.count - 1);
+                startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count<3?2:barIdArray.count - 1);
             }
             
             [tempControlPool addObject:barColorView];

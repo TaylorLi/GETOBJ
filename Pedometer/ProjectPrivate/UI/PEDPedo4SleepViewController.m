@@ -173,17 +173,17 @@
         lblMinute4ActualSleepTime.text = [NSString stringWithFormat:@"%02d", m];
         [lblMinute4ActualSleepTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:33.f]];
         lblRemark4TimeToBed.text = [PEDPedometerDataHelper getSleepTimeRemark:currSleepData.timeToBed];
-//        [lblRemark4TimeToBed setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:33.f]];
+        [lblRemark4TimeToBed setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:21.f]];
         lblTimeToBeb.text = [PEDPedometerDataHelper getSleepTimeString:currSleepData.timeToBed];
-        [lblTimeToBeb setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:30.f]];
+        [lblTimeToBeb setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:32.f]];
         lblRemark4TimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeRemark:currSleepData.timeToFallSleep];
-        //[lblRemark4TimeToFallSleep setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:30.f]];
+        [lblRemark4TimeToFallSleep setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:15.f]];
         lblTimeToFallSleep.text = [PEDPedometerDataHelper getSleepTimeString:currSleepData.timeToFallSleep];
-        [lblTimeToFallSleep setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:23.f]];
+        [lblTimeToFallSleep setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:25.f]];
         lblTimes.text = [NSString stringWithFormat:@"%.0f", currSleepData.awakenTime];
         [lblTimes setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:26.f]];
         lblRemark4WakeUpTime.text = [PEDPedometerDataHelper getSleepTimeRemark:currSleepData.timeToWakeup];
-        //[lblRemark4WakeUpTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:26.f]];
+        [lblRemark4WakeUpTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:16.f]];
         lblWakeUpTime.text = [PEDPedometerDataHelper getSleepTimeString:currSleepData.timeToWakeup];
         [lblWakeUpTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:24.f]];
         h = (int)currSleepData.inBedTime / 3600;
@@ -191,9 +191,9 @@
         s = (int)currSleepData.inBedTime % 3600 % 60;
         m = m + round(s/60);
         lblHour4InBedTime.text = [NSString stringWithFormat:@"%d", h];
-        [lblHour4InBedTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:21.f]];
+        [lblHour4InBedTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:20.f]];
         lblMinute4InBedTime.text = [NSString stringWithFormat:@"%02d", m];
-        [lblMinute4InBedTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:21.f]];
+        [lblMinute4InBedTime setFont:[UIFont fontWithName:USE_DEFAULT_FONT size:20.f]];
         [self reloadPickerToMidOfDate:referenceDate];    
     }
     @catch (NSException *exception) {

@@ -55,11 +55,6 @@
                         <action selector="swithToSleepView:" destination="-1" eventType="touchUpInside" id="PNa-PF-aRf"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="distance_small.png" id="55">
-                    <rect key="frame" x="27" y="157" width="17" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </imageView>
                 <view contentMode="scaleToFill" id="136">
                     <rect key="frame" x="56" y="97" width="220" height="402"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -74,7 +69,6 @@
     </objects>
     <resources>
         <image name="Pedo_date_list_bg.png" width="320" height="568"/>
-        <image name="distance_small.png" width="17" height="12"/>
         <image name="head_icon.png" width="249" height="39"/>
     </resources>
 </document>

@@ -21,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet V8HorizontalPickerView *monthSelectView;
 @property(assign,nonatomic)SwitchViewController *controlContainer;
 
--(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY;
+-(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY isForPedo:(BOOL) isPedo;
 - (IBAction)clickToConnectDevice:(id)sender;
 - (IBAction)clickToSettingView:(id)sender;
 -(void) reloadPickerToMidOfDate:(NSDate *)date;

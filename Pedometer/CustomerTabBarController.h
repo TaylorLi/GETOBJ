@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomerTabBar.h"
+
+//#define kTabBarHeight 64.0f
+
 @class UITabBarController;
 @protocol CustomerTabBarControllerDelegate;
 @interface CustomerTabBarController : UIViewController <CustomerTabBarDelegate>
@@ -38,11 +41,12 @@
 // Default is NO, if set to YES, content will under tabbar
 @property (nonatomic) BOOL tabBarTransparent;
 @property (nonatomic) BOOL tabBarHidden;
+@property (nonatomic) float kTabBarHeight;
 
 @property(nonatomic,assign) NSInteger animateDriect;
 
 - (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr;
-- (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr frames:(CGRect) frame;
+- (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr frames:(CGRect) frame tabBarHeight:(float)height;
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated;
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated driect:(NSInteger)driect;
 

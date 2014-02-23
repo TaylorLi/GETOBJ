@@ -104,8 +104,7 @@
         dayPickerView.delegate = self;
         //[dayPickerView reloadData];
         [self.view addSubview:dayPickerView];
-        [self initMonthSelectorWithX:55.f Height:298.f];
-        //[self initDataByDate:referenceDate];
+        [self initMonthSelectorWithX:55.f Height:298.f isForPedo:NO];
     }
     return self;
 }
@@ -316,6 +315,7 @@
         self.navigationController.navigationBar.hidden = YES;
     } 
 //    [[PEDAppDelegate getInstance] setCustomerTabBarControllerBackground:[UIImage imageNamed:@"data_bg.png"]];
+    [self initDataByDate:referenceDate];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -647,9 +647,12 @@
 -(void)pickerView:(AFPickerView *)pickerView didTapCenter:(UITapGestureRecognizer *)recognizer inStep:(NSInteger)step
 {
     NSDate *seletedDate = [referenceDate addDays:step];
+    //[self displayPedometerDetailByDate:seletedDate];
     //NSLog(@"Date:%@,Step:%i,selected Date:%@",referenceDate,step,seletedDate);
+    
     [[PEDAppDelegate getInstance].sleepPedoViewController initDataByDate: seletedDate];
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 @end

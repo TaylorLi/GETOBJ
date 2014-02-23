@@ -48,7 +48,7 @@
                 barColorView.frame = CGRectMake(startX, 137, image.size.width, image.size.height);
                 if(barIdArray.count > 1)
                 {
-                    startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count - 1);
+                    startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count<3?2:barIdArray.count - 1);
                 }
                 //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
                 
@@ -77,14 +77,16 @@
 -(void)DoubleTap:(UITapGestureRecognizer*)recognizer
 {
     if(!isLargeView){
-        self.cptGraphHostingView.frame = CGRectMake(0, 0, 320, 423);
-        //self.graphicHostView.backgroundColor = [UIColor whiteColor];
+        CGRect rect= [[UIScreen mainScreen] applicationFrame];
+        self.cptGraphHostingView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height-45.0f);
+        //self.cptGraphHostingView.backgroundColor = [UIColor whiteColor];
         isLargeView = true;
     }else{
-        self.cptGraphHostingView.frame = CGRectMake(26, 104, 271, 153);
+        self.cptGraphHostingView.frame = CGRectMake(32, 158, 251, 236);
         //self.graphicHostView.backgroundColor = [UIColor clearColor];
         isLargeView = false;
     }
+
     [self genCurvechart];
     [self.view bringSubviewToFront:self.cptGraphHostingView];
 }
@@ -197,7 +199,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:60.f Height:64.f];
+    [self initMonthSelectorWithX:60.f Height:64.f isForPedo:NO];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME], [PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN],[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_IN_BED_TIME], nil];
     [self initBarRemark];
     [self initData];
@@ -260,7 +262,7 @@
         return nil;
     }
     CPTMutableTextStyle *textLineStyle=[CPTMutableTextStyle textStyle];
-    textLineStyle.fontSize=isLargeView ? 7.0f : 6.0f;
+    textLineStyle.fontSize=isLargeView ? 11.0f : 8.0f;
     textLineStyle.color = [CPTColor whiteColor];
     NSString *plotIndentifier=(NSString *)plot.identifier;
     NSString *numberFormat;
@@ -382,8 +384,8 @@
 -(void)genCurvechart
 {
     @try {
-        float yRangeLength = 15.0f;
-        float ymajorIntervalLength = 3.0f;
+        float yRangeLength = 9.0f;
+        float ymajorIntervalLength = yRangeLength/([AppConfig getInstance].settings.chartIntervalLength4Sleep+1);
         
         if(barIdArray !=nil && barIdArray.count>0){
             float maxValue = 0.0f;
@@ -399,9 +401,9 @@
             if(maxValue > FLOAT_EQUAL_STANDARD){
                 int maxIntValue = (int)maxValue;
                 yRangeLength = maxValue;
-                ymajorIntervalLength = ceil(maxValue / [AppConfig getInstance].settings.chartIntervalLength);
-                if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength != 0 || maxValue - maxIntValue > FLOAT_EQUAL_STANDARD){
-                    yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength + ymajorIntervalLength;
+                ymajorIntervalLength = ceil(maxValue / [AppConfig getInstance].settings.chartIntervalLength4Sleep);
+                if(maxIntValue % [AppConfig getInstance].settings.chartIntervalLength4Sleep != 0 || maxValue - maxIntValue > FLOAT_EQUAL_STANDARD){
+                    yRangeLength = maxIntValue + [AppConfig getInstance].settings.chartIntervalLength4Sleep - maxIntValue % [AppConfig getInstance].settings.chartIntervalLength4Sleep + ymajorIntervalLength;
                 }
             }
         }
@@ -430,10 +432,10 @@
         graph.paddingTop    = 0.0f;
         graph.paddingBottom = 0.0f;
         
-        graph.plotAreaFrame.paddingLeft   = 30.0f;
-        graph.plotAreaFrame.paddingTop    = 10.0f;
-        graph.plotAreaFrame.paddingRight  = 20.0f;
-        graph.plotAreaFrame.paddingBottom = 25.0f;
+        graph.plotAreaFrame.paddingLeft   = 21.0f;
+        graph.plotAreaFrame.paddingTop    = 12.0f;
+        graph.plotAreaFrame.paddingRight  = 0.0f;
+        graph.plotAreaFrame.paddingBottom =isLargeView?55.0f : 36.0f;
         
         // Graph title
         /*
@@ -455,18 +457,18 @@
         CPTXYAxis *x          = axisSet.xAxis;
         CPTMutableLineStyle *lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor darkGrayColor];
         x.axisLineStyle               = lineStyle;
         lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor grayColor];
         x.majorTickLineStyle          = lineStyle;
         x.majorGridLineStyle=lineStyle;
         lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor grayColor];
         x.minorTickLineStyle          = lineStyle;
         NSArray *customMajorTickLocations = [NSArray arrayWithObjects:[NSDecimalNumber numberWithFloat:8.0f], nil];
@@ -476,7 +478,7 @@
         NSArray *customMinjorTickLocations = [NSArray arrayWithObjects:[NSDecimalNumber numberWithFloat:1.0f],[NSDecimalNumber numberWithFloat:2.0f],[NSDecimalNumber numberWithFloat:3.0f],[NSDecimalNumber numberWithFloat:4.0f],[NSDecimalNumber numberWithFloat:5.0f],[NSDecimalNumber numberWithFloat:6.0f],[NSDecimalNumber numberWithFloat:7.0f], nil];
         x.minorTickLocations=[NSSet setWithArray:customMinjorTickLocations];
         
-        x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"-0.05");
+        x.orthogonalCoordinateDecimal =CPTDecimalFromFloat(isLargeView? -ymajorIntervalLength*0.3: -ymajorIntervalLength*0.35);//x轴偏移直角坐标
         /*
          x.title                       = @"X Axis";
          x.titleLocation               = CPTDecimalFromFloat(7.5f);
@@ -510,17 +512,17 @@
         CPTXYAxis *y = axisSet.yAxis;
         lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor darkGrayColor];
         y.axisLineStyle               = lineStyle;
         y.majorTickLineStyle          = nil;
         y.minorTickLineStyle          = nil;
         y.majorIntervalLength         = CPTDecimalFromFloat(ymajorIntervalLength);
         y.majorGridLineStyle=lineStyle;
-        y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
+        y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0.35");
         CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
         textStyle.color = [CPTColor whiteColor];
-        textStyle.fontSize = 9.0f;
+        textStyle.fontSize = isLargeView? 11.0f : 9.0f;
         y.labelTextStyle  = textStyle;
         /*
          y.title                       = @"Y Axis";

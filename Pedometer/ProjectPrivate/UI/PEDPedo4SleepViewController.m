@@ -65,11 +65,15 @@
 {
     [super viewDidLoad];
     
-    [self initMonthSelectorWithX:60.f Height:64.f];
+    [self initMonthSelectorWithX:60.f Height:64.f isForPedo:NO];
     
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfNextDate:)];   
     [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   
     [self.viewPedoContainView addGestureRecognizer:rightRecognizer];
+    
+    UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swithToPedoDateListView:)];
+    doubleRecognizer.numberOfTapsRequired = 2; // 双击
+    [self.viewPedoContainView addGestureRecognizer:doubleRecognizer];
     
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfPrevDate:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
@@ -270,8 +274,18 @@
     }
 }
 
+- (IBAction)swithToPedoDateListView:(id)sender
+{
+    if([PEDAppDelegate getInstance].sleepPedoDataViewController == nil){
+        [PEDAppDelegate getInstance].sleepPedoDataViewController = [[PEDPedoData4SleepViewController alloc] init];
+    }
+    pedPedoData4SleepViewController = [PEDAppDelegate getInstance].sleepPedoDataViewController;
+    pedPedoData4SleepViewController.controlContainer=self.controlContainer;
+    pedPedoData4SleepViewController.referenceDate=referenceDate;
+    [self.navigationController pushViewController:pedPedoData4SleepViewController animated:YES];
+}
 
--(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer 
+-(void)showPedoDetailOfNextDate:(UITapGestureRecognizer*)recognizer
 {
     //NSDate* nextDate =  [[BO_PEDPedometerData getInstance] getNextOptDate:referenceDate withTarget:[AppConfig getInstance].settings.target.targetId];
     NSDate* nextDate=[referenceDate addDays:1];

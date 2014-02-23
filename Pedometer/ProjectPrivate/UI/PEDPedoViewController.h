@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPaceAmount;
 @property (weak, nonatomic) IBOutlet UILabel *lblPaceUnit;
 @property (strong, nonatomic) IBOutlet UIView *viewPedoContainView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 - (void) initData;
 - (void) initDataByDate:(NSDate *) date;

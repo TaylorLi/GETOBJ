@@ -172,7 +172,7 @@
      [downRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
      [self.imgVDataMiddle addGestureRecognizer:downRecognizer];
      */
-    [self initMonthSelectorWithX:56.f Height:66.f];
+    [self initMonthSelectorWithX:56.f Height:66.f isForPedo:YES];
 	
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -180,7 +180,6 @@
     //    bgImage.image = [UIImage imageNamed:@"data.bmp"] ;
     //    [self.view addSubview:bgImage];
     //
-    [self initDataByDate:referenceDate];
 }
 
 - (void)viewDidUnload
@@ -199,6 +198,7 @@
     if(!self.navigationController.navigationBarHidden){
         self.navigationController.navigationBar.hidden = YES;
     }
+    [self initDataByDate:referenceDate];
     //[[PEDAppDelegate getInstance] setCustomerTabBarControllerBackground:[UIImage imageNamed:@"data_bg.png"]];
 }
 

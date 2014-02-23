@@ -31,9 +31,35 @@
         for (int i=tempControlPool.count -1 ; i>=0; i--) {
             id control = [tempControlPool objectAtIndex:i];
             [control removeFromSuperview];
+            [tempControlPool removeObject:control];
         }
     }
     if(barIdArray != nil && barIdArray.count > 0){
+        NSMutableArray *imageArray = [[NSMutableArray alloc]init];
+        /**刻度比例图标*/
+        int barWidth = 244;
+        int startX = 36;
+        int imgTotalWidth = 0;
+        for (int i=0; i<barIdArray.count; i++) {
+            UIImage *image = [PEDPedometerDataHelper getBarRemarkImageWithStatisticsType:[barIdArray objectAtIndex:i]];
+            [imageArray addObject:image];
+            imgTotalWidth += image.size.width;
+        }
+        for (int i=0; i<barIdArray.count; i++) {
+            UIImage *image = [imageArray objectAtIndex:i];
+            UIImageView *barColorView = [[UIImageView alloc] initWithImage:image];
+            barColorView.frame = CGRectMake(startX, 108, image.size.width, image.size.height);
+            if(barIdArray.count > 1)
+            {
+                startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count<3?2:barIdArray.count - 1);
+            }
+            
+            [tempControlPool addObject:barColorView];
+            //                [tempControlPool addObject:barRemarkLable];
+            [self.view addSubview:barColorView];
+            //                [self.view addSubview:barRemarkLable];
+        }
+         /*
         for (int i=0; i<barIdArray.count; i++) {
             UIImageView *barColorView = [[UIImageView alloc]initWithFrame:CGRectMake(46 + i * 100, 62, 30, 5)];
             //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
@@ -50,17 +76,19 @@
             [self.view addSubview:barColorView];
             [self.view addSubview:barRemarkLable];
         }
+        */
     }
 }
 
 -(void)DoubleTap:(UITapGestureRecognizer*)recognizer  
 {  
     if(!isLargeView){
-        self.cptGraphHostingView.frame = CGRectMake(0, 0, 320, 423);
+        CGRect rect= [[UIScreen mainScreen] applicationFrame];
+        self.cptGraphHostingView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height-45.0f);
         //self.graphicHostView.backgroundColor = [UIColor whiteColor];
         isLargeView = true;
     }else{
-        self.cptGraphHostingView.frame = CGRectMake(26, 104, 271, 153);
+        self.cptGraphHostingView.frame = CGRectMake(29, 130, 251, 236);
         //self.graphicHostView.backgroundColor = [UIColor clearColor];
         isLargeView = false;
     }
@@ -92,7 +120,8 @@
     [self initDataByDate:lastUploadDate];
 }
 - (void) initDataByDate:(NSDate *) date{
-    @try {        
+    @try {
+        [self initBarRemark];
         if(isLargeView){
             [self DoubleTap:nil];
         }
@@ -162,7 +191,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:56.f Height:66.f];
+    [self initMonthSelectorWithX:56.f Height:66.f isForPedo:YES];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
     [self initBarRemark];
     [self initData];
@@ -306,14 +335,17 @@
             BOOL isChange = NO;
             if([barIdArray containsObject:statisticsTypeStr]){
                 [barIdArray removeObject:statisticsTypeStr];
+                [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:false] forState:UIControlStateNormal];
+                /*
                 [btn setBackgroundImage:nil forState:UIControlStateNormal];
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                isChange = YES;
+                */
+                 isChange = YES;
             }else{
                 if(barIdArray.count < 3){
                     [barIdArray addObject:statisticsTypeStr];
                     [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:true] forState:UIControlStateNormal];
-                    [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
+                    //[btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
                     isChange = YES;
                 }
             }
@@ -359,8 +391,8 @@
 -(void)genCurvechart
 {
     @try {
-        float yRangeLength = 15.0f;
-        float ymajorIntervalLength = 3.0f;
+        float yRangeLength = 9.0f;
+        float ymajorIntervalLength = yRangeLength/([AppConfig getInstance].settings.chartIntervalLength+1);
         
         if(barIdArray !=nil && barIdArray.count>0){
             float maxValue = 0.0f;
@@ -407,10 +439,10 @@
         graph.paddingTop    = 0.0f;
         graph.paddingBottom = 0.0f;
         
-        graph.plotAreaFrame.paddingLeft   = 30.0f;
+        graph.plotAreaFrame.paddingLeft   = 25.0f;
         graph.plotAreaFrame.paddingTop    = 10.0f;
-        graph.plotAreaFrame.paddingRight  = 20.0f;
-        graph.plotAreaFrame.paddingBottom = 25.0f;
+        graph.plotAreaFrame.paddingRight  = 0.0f;
+        graph.plotAreaFrame.paddingBottom = isLargeView?55.0f : 36.0f;
         
         // Graph title
         /*
@@ -432,18 +464,18 @@
         CPTXYAxis *x          = axisSet.xAxis;
         CPTMutableLineStyle *lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor darkGrayColor];    
         x.axisLineStyle               = lineStyle;
         lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor grayColor]; 
         x.majorTickLineStyle          = lineStyle;
         x.majorGridLineStyle=lineStyle;
         lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor grayColor]; 
         x.minorTickLineStyle          = lineStyle;
         NSArray *customMajorTickLocations = [NSArray arrayWithObjects:[NSDecimalNumber numberWithFloat:8.0f], nil];
@@ -452,8 +484,7 @@
         
         NSArray *customMinjorTickLocations = [NSArray arrayWithObjects:[NSDecimalNumber numberWithFloat:1.0f],[NSDecimalNumber numberWithFloat:2.0f],[NSDecimalNumber numberWithFloat:3.0f],[NSDecimalNumber numberWithFloat:4.0f],[NSDecimalNumber numberWithFloat:5.0f],[NSDecimalNumber numberWithFloat:6.0f],[NSDecimalNumber numberWithFloat:7.0f], nil];
         x.minorTickLocations=[NSSet setWithArray:customMinjorTickLocations];
-        
-        x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"-0.05");
+        x.orthogonalCoordinateDecimal =CPTDecimalFromFloat(isLargeView? -ymajorIntervalLength*0.3: -ymajorIntervalLength*0.5);//x轴偏移直角坐标
         /*
          x.title                       = @"X Axis";
          x.titleLocation               = CPTDecimalFromFloat(7.5f);
@@ -471,7 +502,7 @@
         for ( NSNumber *tickLocation in customTickLocations ) {
             CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
             textStyle.color = [CPTColor whiteColor];
-            textStyle.fontSize=9.0f;
+            textStyle.fontSize=isLargeView?11.0f : 9.0f;
             CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[xAxisLabels objectAtIndex:labelLocation++] textStyle:textStyle];
             newLabel.tickLocation = [tickLocation decimalValue];
             newLabel.offset       = x.labelOffset + x.majorTickLength;
@@ -487,17 +518,17 @@
         CPTXYAxis *y = axisSet.yAxis;
         lineStyle= [CPTMutableLineStyle lineStyle];
         lineStyle.miterLimit        = 1.0f;
-        lineStyle.lineWidth         = 1.0f;
+        lineStyle.lineWidth         = 0.0f;
         lineStyle.lineColor         = [CPTColor darkGrayColor];
         y.axisLineStyle               = lineStyle;
         y.majorTickLineStyle          = nil;
         y.minorTickLineStyle          = nil;
         y.majorIntervalLength         = CPTDecimalFromFloat(ymajorIntervalLength);
         y.majorGridLineStyle=lineStyle;
-        y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
+        y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0.3");
         CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
         textStyle.color = [CPTColor whiteColor];
-        textStyle.fontSize = 9.0f;
+        textStyle.fontSize = isLargeView? 11.0f : 9.0f;
         y.labelTextStyle  = textStyle;
         /*
          y.title                       = @"Y Axis";

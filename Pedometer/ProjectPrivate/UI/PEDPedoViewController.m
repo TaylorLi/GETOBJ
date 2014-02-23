@@ -39,6 +39,7 @@
 @synthesize lblPaceAmount;
 @synthesize lblPaceUnit;
 @synthesize viewPedoContainView;
+@synthesize backgroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,6 +67,11 @@
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfNextDate:)];   
     [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   
     [self.viewPedoContainView addGestureRecognizer:rightRecognizer];
+    
+    UITapGestureRecognizer* doubleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swithToPedoDateListView:)];
+    doubleRecognizer.numberOfTapsRequired = 2; // 双击
+    
+    [self.viewPedoContainView addGestureRecognizer:doubleRecognizer];
     
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfPrevDate:)];   
     [leftRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];   
@@ -139,6 +145,12 @@
 
 - (void) initDataByDate:(NSDate *) date{
     @try {
+        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+        if(userInfo.measureFormat == MEASURE_UNIT_METRIC){
+            [backgroundImage setImage:[UIImage imageNamed:@"Latest_update_bg_metric.png"]];
+        }else{
+            [backgroundImage setImage:[UIImage imageNamed:@"Latest_update_bg_enghlish.png"]];
+        }
         if(date==nil){
             if(referenceDate==nil)
                 referenceDate=[NSDate date];
@@ -146,7 +158,6 @@
         else
             referenceDate=date;
         PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
-        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
         if(!currPedometerData){
             currPedometerData=[[PEDPedometerData alloc] init];
             currPedometerData.optDate=referenceDate;
@@ -248,9 +259,10 @@
 - (IBAction)swithToPedoDateListView:(id)sender
 {
     if([PEDAppDelegate getInstance].pedPedoDataViewController == nil){
-        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc]initWithRefrenceDate:referenceDate];
+        [PEDAppDelegate getInstance].pedPedoDataViewController = [[PEDPedoDataViewController alloc] init];
     }
     pedPedoDataViewController = [PEDAppDelegate getInstance].pedPedoDataViewController;
+    pedPedoDataViewController.referenceDate = referenceDate;
     [self.navigationController pushViewController:pedPedoDataViewController animated:YES];
 }
 

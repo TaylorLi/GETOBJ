@@ -20,6 +20,7 @@
 @property (nonatomic,strong) PEDTarget *target;
 @property PlusType plusType;
 @property NSInteger chartIntervalLength;
+@property NSInteger chartIntervalLength4Sleep;
 
 -(void) initTargetData;
 -(void) saveSetting;

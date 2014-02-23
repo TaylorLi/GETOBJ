@@ -143,10 +143,10 @@ static PEDAppDelegate* _instance;
 -(void) showTabView{
     @try {
         if(!customerTabBarController || !sleepCustomerTabBarController){
-//            NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-//            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Default"];
-//            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Highlighted"];
-//            [imgDic setObject:[UIImage imageNamed:@"back_normal.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDic setObject:[UIImage imageNamed:@"sleep_icon_back_normal.png"] forKey:@"Default"];
+            [imgDic setObject:[UIImage imageNamed:@"sleep_icon_back_normal.png"] forKey:@"Highlighted"];
+            [imgDic setObject:[UIImage imageNamed:@"sleep_icon_back_normal.png"] forKey:@"Seleted"];
             NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
             [imgDic2 setObject:[UIImage imageNamed:@"pedo_normal.png"] forKey:@"Default"];
             [imgDic2 setObject:[UIImage imageNamed:@"pedo_highlight.png"] forKey:@"Highlighted"];
@@ -163,6 +163,19 @@ static PEDAppDelegate* _instance;
             [imgDic5 setObject:[UIImage imageNamed:@"graphic_normal.png"] forKey:@"Default"];
             [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Highlighted"];
             [imgDic5 setObject:[UIImage imageNamed:@"graphic_highlight.png"] forKey:@"Seleted"];
+            
+            NSMutableDictionary *imgDicSleepTarget = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDicSleepTarget setObject:[UIImage imageNamed:@"sleep_icon_target_normal.png"] forKey:@"Default"];
+            [imgDicSleepTarget setObject:[UIImage imageNamed:@"sleep_icon_target_highlight.png"] forKey:@"Highlighted"];
+            [imgDicSleepTarget setObject:[UIImage imageNamed:@"sleep_icon_target_highlight.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDicSleepBartchat = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDicSleepBartchat setObject:[UIImage imageNamed:@"sleep_icon_barchat_normal.png"] forKey:@"Default"];
+            [imgDicSleepBartchat setObject:[UIImage imageNamed:@"sleep_icon_barchat_highlight.png"] forKey:@"Highlighted"];
+            [imgDicSleepBartchat setObject:[UIImage imageNamed:@"sleep_icon_barchat_highlight.png"] forKey:@"Seleted"];
+            NSMutableDictionary *imgDicSleepGraphic = [NSMutableDictionary dictionaryWithCapacity:3];
+            [imgDicSleepGraphic setObject:[UIImage imageNamed:@"sleep_icon_graphic_normal.png"] forKey:@"Default"];
+            [imgDicSleepGraphic setObject:[UIImage imageNamed:@"sleep_icon_graphic_highlight.png"] forKey:@"Highlighted"];
+            [imgDicSleepGraphic setObject:[UIImage imageNamed:@"sleep_icon_graphic_highlight.png"] forKey:@"Seleted"];
             
             //        UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 320, 460)];
             //        tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
@@ -183,7 +196,7 @@ static PEDAppDelegate* _instance;
                 UINavigationController *navPedo = [[UINavigationController alloc] initWithRootViewController:pedPedoViewController];
                 navPedo.navigationBarHidden=YES;
                 NSArray *imgArr = [NSArray arrayWithObjects:imgDic2,imgDic3,imgDic4, imgDic5,nil];
-                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
+                customerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:navPedo,pedTargetViewController,pedBarchartViewController,pedGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460) tabBarHeight:64.0f];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];
@@ -199,8 +212,8 @@ static PEDAppDelegate* _instance;
                 sleepBarchatViewController=[[PEDBarchart4SleepViewController alloc] init];
                 UINavigationController *navSleep = [[UINavigationController alloc] initWithRootViewController:sleepPedoViewController];
                 navSleep.navigationBarHidden=YES;
-                NSArray *imgArr = [NSArray arrayWithObjects:imgDic2,imgDic4, imgDic5,nil];
-                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460)];
+                NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDicSleepTarget,imgDicSleepBartchat,imgDicSleepGraphic,nil];
+                sleepCustomerTabBarController = [[CustomerTabBarController alloc] initWithViewControllers:[[NSArray alloc]initWithObjects:pedBacktoMainViewController, navSleep,sleepBarchatViewController,sleepGraphsViewController, nil] imageArray:imgArr frames:CGRectMake(0, 0, 320, 460) tabBarHeight:39.0f];
                 
                 UIImageView *tabBarBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
                 tabBarBg.image = [UIImage imageNamed:@"pedo_bg.png"];

@@ -22,6 +22,7 @@
 @synthesize target;
 @synthesize plusType;
 @synthesize chartIntervalLength;
+@synthesize chartIntervalLength4Sleep;
 
 
 - (id) init {
@@ -31,7 +32,8 @@
         bleConnectionTimeout=BLE_CONNECTION_TIMEOUT;
         requestTimeout=30;
         showDateCount=7;
-        chartIntervalLength = 5;
+        chartIntervalLength = 8;
+        chartIntervalLength4Sleep = 5;
         userInfo=[[BO_PEDUserInfo getInstance] retreiveCurrentUser];
         [self initTargetData];
         /*

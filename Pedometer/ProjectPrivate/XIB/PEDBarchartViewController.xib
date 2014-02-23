@@ -29,6 +29,14 @@
                     <rect key="frame" x="49" y="21" width="249" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pedo_btn_panel_row_first.png" id="K6a-kS-J53">
+                    <rect key="frame" x="61" y="384" width="89" height="96"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pedo_btn_panel_row_second.png" id="KbF-kt-auP">
+                    <rect key="frame" x="179" y="406" width="89" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" id="71" customClass="V8HorizontalPickerView">
                     <rect key="frame" x="55" y="63" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,11 +78,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="78">
-                    <rect key="frame" x="171" y="405" width="85" height="27"/>
+                    <rect key="frame" x="61" y="433" width="89" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" backgroundImage="Barchart_font_calories_burned_hightlight.png">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -86,11 +94,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="79">
-                    <rect key="frame" x="171" y="443" width="85" height="27"/>
+                    <rect key="frame" x="61" y="455" width="89" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" backgroundImage="Barchart_font_acttime.png">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -102,11 +110,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="80">
-                    <rect key="frame" x="67" y="405" width="85" height="27"/>
+                    <rect key="frame" x="61" y="384" width="89" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" backgroundImage="Barchart_font_step_count_hightlight.png">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -118,11 +126,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cmw-dp-x0W">
-                    <rect key="frame" x="67" y="443" width="85" height="27"/>
+                    <rect key="frame" x="61" y="409" width="89" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" backgroundImage="Barchart_font_distance_hightlight.png">
+                    <state key="normal" backgroundImage="pedo_btn_panel_distance_first.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -131,6 +139,38 @@
                     </state>
                     <connections>
                         <action selector="btnDistanceClick:" destination="-1" eventType="touchUpInside" id="bYE-k0-kKp"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sPc-CP-O63">
+                    <rect key="frame" x="179" y="434" width="89" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" backgroundImage="pedo_btn_panel_avg_pace_second.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnAvgPaceClick:" destination="-1" eventType="touchUpInside" id="4tA-xl-Hr9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0OK-if-hbw">
+                    <rect key="frame" x="179" y="406" width="89" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" backgroundImage="pedo_btn_panel_avg_speed_second.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnAvgSpeedClick:" destination="-1" eventType="touchUpInside" id="S5l-Yc-2Co"/>
                     </connections>
                 </button>
             </subviews>
@@ -142,10 +182,11 @@
     </objects>
     <resources>
         <image name="Barchart_bg.png" width="320" height="568"/>
-        <image name="Barchart_font_acttime.png" width="85" height="27"/>
-        <image name="Barchart_font_calories_burned_hightlight.png" width="85" height="27"/>
-        <image name="Barchart_font_distance_hightlight.png" width="85" height="27"/>
-        <image name="Barchart_font_step_count_hightlight.png" width="85" height="27"/>
         <image name="head_icon.png" width="249" height="39"/>
+        <image name="pedo_btn_panel_avg_pace_second.png" width="89" height="26"/>
+        <image name="pedo_btn_panel_avg_speed_second.png" width="89" height="28"/>
+        <image name="pedo_btn_panel_distance_first.png" width="89" height="23"/>
+        <image name="pedo_btn_panel_row_first.png" width="89" height="96"/>
+        <image name="pedo_btn_panel_row_second.png" width="89" height="54"/>
     </resources>
 </document>

@@ -636,7 +636,6 @@
 		6B00480716D92DA500B87CA8 /* PEDPedoDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480616D92DA500B87CA8 /* PEDPedoDataViewController.xib */; };
 		6B00480916D943B900B87CA8 /* PEDTargetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */; };
 		6B00480B16D95C1100B87CA8 /* PEDBarchartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */; };
-		6B00480D16D9644500B87CA8 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */; };
 		6B04EC7F1723470700DA21B5 /* pickerBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B04EC7B1723470700DA21B5 /* pickerBG.png */; };
 		6B04EC801723470700DA21B5 /* pickerBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B04EC7C1723470700DA21B5 /* pickerBG@2x.png */; };
 		6B04EC811723470700DA21B5 /* PickerExtendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B04EC7E1723470700DA21B5 /* PickerExtendView.m */; };
@@ -826,6 +825,54 @@
 		DA147DE21857809400D53B57 /* icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DDF1857809400D53B57 /* icon-58.png */; };
 		DA147DE31857809400D53B57 /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = DA147DE01857809400D53B57 /* icon-80.png */; };
 		DA210B6316E1091100AB45C8 /* PEDImportDataDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */; };
+		DA25130218B9958B00657C54 /* Barchart_hear_bar_speed_metric.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2512FE18B9958B00657C54 /* Barchart_hear_bar_speed_metric.png */; };
+		DA25130318B9958B00657C54 /* Barchart_hear_bar_speed_metric@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2512FF18B9958B00657C54 /* Barchart_hear_bar_speed_metric@2x.png */; };
+		DA25130418B9958B00657C54 /* Barchart_hear_bar_step.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130018B9958B00657C54 /* Barchart_hear_bar_step.png */; };
+		DA25130518B9958B00657C54 /* Barchart_hear_bar_step@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130118B9958B00657C54 /* Barchart_hear_bar_step@2x.png */; };
+		DA25130C18B995F000657C54 /* Barchart_hear_bar_acttime.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130618B995F000657C54 /* Barchart_hear_bar_acttime.png */; };
+		DA25130D18B995F000657C54 /* Barchart_hear_bar_acttime.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130618B995F000657C54 /* Barchart_hear_bar_acttime.png */; };
+		DA25130E18B995F000657C54 /* Barchart_hear_bar_acttime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130718B995F000657C54 /* Barchart_hear_bar_acttime@2x.png */; };
+		DA25130F18B995F000657C54 /* Barchart_hear_bar_acttime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130718B995F000657C54 /* Barchart_hear_bar_acttime@2x.png */; };
+		DA25131018B995F000657C54 /* Barchart_hear_bar_calories.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130818B995F000657C54 /* Barchart_hear_bar_calories.png */; };
+		DA25131118B995F000657C54 /* Barchart_hear_bar_calories.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130818B995F000657C54 /* Barchart_hear_bar_calories.png */; };
+		DA25131218B995F000657C54 /* Barchart_hear_bar_calories@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130918B995F000657C54 /* Barchart_hear_bar_calories@2x.png */; };
+		DA25131318B995F000657C54 /* Barchart_hear_bar_calories@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130918B995F000657C54 /* Barchart_hear_bar_calories@2x.png */; };
+		DA25131418B995F000657C54 /* Barchart_hear_bar_distance_english.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130A18B995F000657C54 /* Barchart_hear_bar_distance_english.png */; };
+		DA25131518B995F000657C54 /* Barchart_hear_bar_distance_english.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130A18B995F000657C54 /* Barchart_hear_bar_distance_english.png */; };
+		DA25131618B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130B18B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png */; };
+		DA25131718B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25130B18B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png */; };
+		DA25132D18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131B18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png */; };
+		DA25132E18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131B18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png */; };
+		DA25132F18B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131C18B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png */; };
+		DA25133018B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131C18B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png */; };
+		DA25133118B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131D18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png */; };
+		DA25133218B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131D18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png */; };
+		DA25133318B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131E18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png */; };
+		DA25133418B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131E18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png */; };
+		DA25133518B9AC4C00657C54 /* pedo_btn_panel_distance_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131F18B9AC4C00657C54 /* pedo_btn_panel_distance_first.png */; };
+		DA25133618B9AC4C00657C54 /* pedo_btn_panel_distance_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25131F18B9AC4C00657C54 /* pedo_btn_panel_distance_first.png */; };
+		DA25133718B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132018B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png */; };
+		DA25133818B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132018B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png */; };
+		DA25133918B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132118B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png */; };
+		DA25133A18B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132118B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png */; };
+		DA25133B18B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132218B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png */; };
+		DA25133C18B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132218B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png */; };
+		DA25133D18B9AC4C00657C54 /* pedo_btn_panel_row_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132318B9AC4C00657C54 /* pedo_btn_panel_row_first.png */; };
+		DA25133E18B9AC4C00657C54 /* pedo_btn_panel_row_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132318B9AC4C00657C54 /* pedo_btn_panel_row_first.png */; };
+		DA25133F18B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132418B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png */; };
+		DA25134018B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132418B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png */; };
+		DA25134118B9AC4C00657C54 /* pedo_btn_panel_row_second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132518B9AC4C00657C54 /* pedo_btn_panel_row_second.png */; };
+		DA25134218B9AC4C00657C54 /* pedo_btn_panel_row_second.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132518B9AC4C00657C54 /* pedo_btn_panel_row_second.png */; };
+		DA25134318B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132618B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png */; };
+		DA25134418B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132618B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png */; };
+		DA25134518B9AC4C00657C54 /* pedo_btn_panel_step_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132718B9AC4C00657C54 /* pedo_btn_panel_step_first.png */; };
+		DA25134618B9AC4C00657C54 /* pedo_btn_panel_step_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132718B9AC4C00657C54 /* pedo_btn_panel_step_first.png */; };
+		DA25134718B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132818B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png */; };
+		DA25134818B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25132818B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png */; };
+		DA25134B18B9AEB100657C54 /* pedo_btn_panel_acttime_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25134918B9AEB100657C54 /* pedo_btn_panel_acttime_first.png */; };
+		DA25134C18B9AEB100657C54 /* pedo_btn_panel_acttime_first.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25134918B9AEB100657C54 /* pedo_btn_panel_acttime_first.png */; };
+		DA25134D18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25134A18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png */; };
+		DA25134E18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25134A18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png */; };
 		DA258F2E18A7C02D006EB9C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2D18A7C02D006EB9C1 /* Media.xcassets */; };
 		DA258F2F18A7C02D006EB9C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA258F2D18A7C02D006EB9C1 /* Media.xcassets */; };
 		DA25A4D518AFD26300814ED3 /* Pedo_date_list_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4D318AFD26300814ED3 /* Pedo_date_list_bg.png */; };
@@ -834,6 +881,36 @@
 		DA25A4DC18AFDA5000814ED3 /* FangZhengCuYuanJianTi.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4DA18AFDA5000814ED3 /* FangZhengCuYuanJianTi.TTF */; };
 		DA25A4DE18AFE1CE00814ED3 /* UIFont+IBCustomFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = DA25A4DD18AFE1CE00814ED3 /* UIFont+IBCustomFonts.m */; };
 		DA25A4DF18AFE1CE00814ED3 /* UIFont+IBCustomFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = DA25A4DD18AFE1CE00814ED3 /* UIFont+IBCustomFonts.m */; };
+		DA25A4F318B9BB4700302739 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F218B9BB4700302739 /* PEDGraphsViewController.xib */; };
+		DA25A4F418B9BB4700302739 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F218B9BB4700302739 /* PEDGraphsViewController.xib */; };
+		DA25A4FE18B9D95F00302739 /* sleep_icon_back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F618B9D95F00302739 /* sleep_icon_back_normal.png */; };
+		DA25A4FF18B9D95F00302739 /* sleep_icon_back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F618B9D95F00302739 /* sleep_icon_back_normal.png */; };
+		DA25A50018B9D95F00302739 /* sleep_icon_back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F718B9D95F00302739 /* sleep_icon_back_normal@2x.png */; };
+		DA25A50118B9D95F00302739 /* sleep_icon_back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F718B9D95F00302739 /* sleep_icon_back_normal@2x.png */; };
+		DA25A50218B9D95F00302739 /* sleep_icon_barchat_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F818B9D95F00302739 /* sleep_icon_barchat_normal.png */; };
+		DA25A50318B9D95F00302739 /* sleep_icon_barchat_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F818B9D95F00302739 /* sleep_icon_barchat_normal.png */; };
+		DA25A50418B9D95F00302739 /* sleep_icon_barchat_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F918B9D95F00302739 /* sleep_icon_barchat_normal@2x.png */; };
+		DA25A50518B9D95F00302739 /* sleep_icon_barchat_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4F918B9D95F00302739 /* sleep_icon_barchat_normal@2x.png */; };
+		DA25A50618B9D95F00302739 /* sleep_icon_graphic_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FA18B9D95F00302739 /* sleep_icon_graphic_normal.png */; };
+		DA25A50718B9D95F00302739 /* sleep_icon_graphic_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FA18B9D95F00302739 /* sleep_icon_graphic_normal.png */; };
+		DA25A50818B9D95F00302739 /* sleep_icon_graphic_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FB18B9D95F00302739 /* sleep_icon_graphic_normal@2x.png */; };
+		DA25A50918B9D95F00302739 /* sleep_icon_graphic_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FB18B9D95F00302739 /* sleep_icon_graphic_normal@2x.png */; };
+		DA25A50A18B9D95F00302739 /* sleep_icon_target_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FC18B9D95F00302739 /* sleep_icon_target_normal.png */; };
+		DA25A50B18B9D95F00302739 /* sleep_icon_target_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FC18B9D95F00302739 /* sleep_icon_target_normal.png */; };
+		DA25A50C18B9D95F00302739 /* sleep_icon_target_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FD18B9D95F00302739 /* sleep_icon_target_normal@2x.png */; };
+		DA25A50D18B9D95F00302739 /* sleep_icon_target_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A4FD18B9D95F00302739 /* sleep_icon_target_normal@2x.png */; };
+		DA25A51418B9DBC500302739 /* sleep_icon_barchat_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A50E18B9DBC500302739 /* sleep_icon_barchat_highlight.png */; };
+		DA25A51518B9DBC500302739 /* sleep_icon_barchat_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A50E18B9DBC500302739 /* sleep_icon_barchat_highlight.png */; };
+		DA25A51618B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A50F18B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png */; };
+		DA25A51718B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A50F18B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png */; };
+		DA25A51818B9DBC500302739 /* sleep_icon_graphic_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51018B9DBC500302739 /* sleep_icon_graphic_highlight.png */; };
+		DA25A51918B9DBC500302739 /* sleep_icon_graphic_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51018B9DBC500302739 /* sleep_icon_graphic_highlight.png */; };
+		DA25A51A18B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51118B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png */; };
+		DA25A51B18B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51118B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png */; };
+		DA25A51C18B9DBC500302739 /* sleep_icon_target_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51218B9DBC500302739 /* sleep_icon_target_highlight.png */; };
+		DA25A51D18B9DBC500302739 /* sleep_icon_target_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51218B9DBC500302739 /* sleep_icon_target_highlight.png */; };
+		DA25A51E18B9DBC500302739 /* sleep_icon_target_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51318B9DBC500302739 /* sleep_icon_target_highlight@2x.png */; };
+		DA25A51F18B9DBC500302739 /* sleep_icon_target_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA25A51318B9DBC500302739 /* sleep_icon_target_highlight@2x.png */; };
 		DA270F7618AFAAD200AB2FBF /* setting_english.png in Resources */ = {isa = PBXBuildFile; fileRef = DA270F7018AFAAD200AB2FBF /* setting_english.png */; };
 		DA270F7718AFAAD200AB2FBF /* setting_english.png in Resources */ = {isa = PBXBuildFile; fileRef = DA270F7018AFAAD200AB2FBF /* setting_english.png */; };
 		DA270F7818AFAAD200AB2FBF /* setting_english@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA270F7118AFAAD200AB2FBF /* setting_english@2x.png */; };
@@ -1401,7 +1478,6 @@
 		DAD64D0517E41CC300947328 /* PEDPedoDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480616D92DA500B87CA8 /* PEDPedoDataViewController.xib */; };
 		DAD64D0617E41CC300947328 /* PEDTargetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */; };
 		DAD64D0717E41CC300947328 /* PEDBarchartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */; };
-		DAD64D0817E41CC300947328 /* PEDGraphsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */; };
 		DAD64D0917E41CC300947328 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E716D91997008FCDA7 /* close.png */; };
 		DAD64D0A17E41CC300947328 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E816D91997008FCDA7 /* close@2x.png */; };
 		DAD64D0B17E41CC300947328 /* modalButton-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = DACC76E916D91997008FCDA7 /* modalButton-selected.png */; };
@@ -1847,7 +1923,6 @@
 		6B00480616D92DA500B87CA8 /* PEDPedoDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDPedoDataViewController.xib; path = ProjectPrivate/XIB/PEDPedoDataViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDTargetViewController.xib; path = ProjectPrivate/XIB/PEDTargetViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDBarchartViewController.xib; path = ProjectPrivate/XIB/PEDBarchartViewController.xib; sourceTree = SOURCE_ROOT; };
-		6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDGraphsViewController.xib; path = ProjectPrivate/XIB/PEDGraphsViewController.xib; sourceTree = SOURCE_ROOT; };
 		6B04EC7B1723470700DA21B5 /* pickerBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickerBG.png; sourceTree = "<group>"; };
 		6B04EC7C1723470700DA21B5 /* pickerBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerBG@2x.png"; sourceTree = "<group>"; };
 		6B04EC7D1723470700DA21B5 /* PickerExtendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerExtendView.h; sourceTree = "<group>"; };
@@ -2087,10 +2162,51 @@
 		DA147DDF1857809400D53B57 /* icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-58.png"; sourceTree = "<group>"; };
 		DA147DE01857809400D53B57 /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-80.png"; sourceTree = "<group>"; };
 		DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDImportDataDetailController.xib; path = ProjectPrivate/XIB/PEDImportDataDetailController.xib; sourceTree = SOURCE_ROOT; };
+		DA2512FE18B9958B00657C54 /* Barchart_hear_bar_speed_metric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barchart_hear_bar_speed_metric.png; sourceTree = "<group>"; };
+		DA2512FF18B9958B00657C54 /* Barchart_hear_bar_speed_metric@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Barchart_hear_bar_speed_metric@2x.png"; sourceTree = "<group>"; };
+		DA25130018B9958B00657C54 /* Barchart_hear_bar_step.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barchart_hear_bar_step.png; sourceTree = "<group>"; };
+		DA25130118B9958B00657C54 /* Barchart_hear_bar_step@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Barchart_hear_bar_step@2x.png"; sourceTree = "<group>"; };
+		DA25130618B995F000657C54 /* Barchart_hear_bar_acttime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barchart_hear_bar_acttime.png; sourceTree = "<group>"; };
+		DA25130718B995F000657C54 /* Barchart_hear_bar_acttime@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Barchart_hear_bar_acttime@2x.png"; sourceTree = "<group>"; };
+		DA25130818B995F000657C54 /* Barchart_hear_bar_calories.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barchart_hear_bar_calories.png; sourceTree = "<group>"; };
+		DA25130918B995F000657C54 /* Barchart_hear_bar_calories@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Barchart_hear_bar_calories@2x.png"; sourceTree = "<group>"; };
+		DA25130A18B995F000657C54 /* Barchart_hear_bar_distance_english.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barchart_hear_bar_distance_english.png; sourceTree = "<group>"; };
+		DA25130B18B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Barchart_hear_bar_distance_english@2x.png"; sourceTree = "<group>"; };
+		DA25131B18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_calories_first.png; sourceTree = "<group>"; };
+		DA25131C18B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_calories_first@2x.png"; sourceTree = "<group>"; };
+		DA25131D18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_avg_pace_second.png; sourceTree = "<group>"; };
+		DA25131E18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_avg_pace_second@2x.png"; sourceTree = "<group>"; };
+		DA25131F18B9AC4C00657C54 /* pedo_btn_panel_distance_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_distance_first.png; sourceTree = "<group>"; };
+		DA25132018B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_distance_first@2x.png"; sourceTree = "<group>"; };
+		DA25132118B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_avg_speed_second.png; sourceTree = "<group>"; };
+		DA25132218B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_avg_speed_second@2x.png"; sourceTree = "<group>"; };
+		DA25132318B9AC4C00657C54 /* pedo_btn_panel_row_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_row_first.png; sourceTree = "<group>"; };
+		DA25132418B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_row_first@2x.png"; sourceTree = "<group>"; };
+		DA25132518B9AC4C00657C54 /* pedo_btn_panel_row_second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_row_second.png; sourceTree = "<group>"; };
+		DA25132618B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_row_second@2x.png"; sourceTree = "<group>"; };
+		DA25132718B9AC4C00657C54 /* pedo_btn_panel_step_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_step_first.png; sourceTree = "<group>"; };
+		DA25132818B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_step_first@2x.png"; sourceTree = "<group>"; };
+		DA25134918B9AEB100657C54 /* pedo_btn_panel_acttime_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedo_btn_panel_acttime_first.png; sourceTree = "<group>"; };
+		DA25134A18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedo_btn_panel_acttime_first@2x.png"; sourceTree = "<group>"; };
 		DA258F2D18A7C02D006EB9C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		DA25A4D318AFD26300814ED3 /* Pedo_date_list_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pedo_date_list_bg.png; sourceTree = "<group>"; };
 		DA25A4DA18AFDA5000814ED3 /* FangZhengCuYuanJianTi.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = FangZhengCuYuanJianTi.TTF; path = Fonts/FangZhengCuYuanJianTi.TTF; sourceTree = "<group>"; };
 		DA25A4DD18AFE1CE00814ED3 /* UIFont+IBCustomFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+IBCustomFonts.m"; path = "../Util/UIFontIBCustomFonts/UIFont+IBCustomFonts.m"; sourceTree = "<group>"; };
+		DA25A4F218B9BB4700302739 /* PEDGraphsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PEDGraphsViewController.xib; path = ProjectPrivate/XIB/PEDGraphsViewController.xib; sourceTree = SOURCE_ROOT; };
+		DA25A4F618B9D95F00302739 /* sleep_icon_back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_back_normal.png; sourceTree = "<group>"; };
+		DA25A4F718B9D95F00302739 /* sleep_icon_back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_back_normal@2x.png"; sourceTree = "<group>"; };
+		DA25A4F818B9D95F00302739 /* sleep_icon_barchat_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_barchat_normal.png; sourceTree = "<group>"; };
+		DA25A4F918B9D95F00302739 /* sleep_icon_barchat_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_barchat_normal@2x.png"; sourceTree = "<group>"; };
+		DA25A4FA18B9D95F00302739 /* sleep_icon_graphic_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_graphic_normal.png; sourceTree = "<group>"; };
+		DA25A4FB18B9D95F00302739 /* sleep_icon_graphic_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_graphic_normal@2x.png"; sourceTree = "<group>"; };
+		DA25A4FC18B9D95F00302739 /* sleep_icon_target_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_target_normal.png; sourceTree = "<group>"; };
+		DA25A4FD18B9D95F00302739 /* sleep_icon_target_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_target_normal@2x.png"; sourceTree = "<group>"; };
+		DA25A50E18B9DBC500302739 /* sleep_icon_barchat_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_barchat_highlight.png; sourceTree = "<group>"; };
+		DA25A50F18B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_barchat_highlight@2x.png"; sourceTree = "<group>"; };
+		DA25A51018B9DBC500302739 /* sleep_icon_graphic_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_graphic_highlight.png; sourceTree = "<group>"; };
+		DA25A51118B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_graphic_highlight@2x.png"; sourceTree = "<group>"; };
+		DA25A51218B9DBC500302739 /* sleep_icon_target_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep_icon_target_highlight.png; sourceTree = "<group>"; };
+		DA25A51318B9DBC500302739 /* sleep_icon_target_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep_icon_target_highlight@2x.png"; sourceTree = "<group>"; };
 		DA270F7018AFAAD200AB2FBF /* setting_english.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_english.png; sourceTree = "<group>"; };
 		DA270F7118AFAAD200AB2FBF /* setting_english@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_english@2x.png"; sourceTree = "<group>"; };
 		DA270F7218AFAAD200AB2FBF /* setting_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_female.png; sourceTree = "<group>"; };
@@ -3246,6 +3362,29 @@
 			name = "V8HorizontalPickerView Classes";
 			sourceTree = "<group>";
 		};
+		DA25131818B9AC4C00657C54 /* pedo_btn_pannel */ = {
+			isa = PBXGroup;
+			children = (
+				DA25134918B9AEB100657C54 /* pedo_btn_panel_acttime_first.png */,
+				DA25134A18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png */,
+				DA25131B18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png */,
+				DA25131C18B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png */,
+				DA25131D18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png */,
+				DA25131E18B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png */,
+				DA25131F18B9AC4C00657C54 /* pedo_btn_panel_distance_first.png */,
+				DA25132018B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png */,
+				DA25132118B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png */,
+				DA25132218B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png */,
+				DA25132318B9AC4C00657C54 /* pedo_btn_panel_row_first.png */,
+				DA25132418B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png */,
+				DA25132518B9AC4C00657C54 /* pedo_btn_panel_row_second.png */,
+				DA25132618B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png */,
+				DA25132718B9AC4C00657C54 /* pedo_btn_panel_step_first.png */,
+				DA25132818B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png */,
+			);
+			path = pedo_btn_pannel;
+			sourceTree = "<group>";
+		};
 		DA25A4D218AFD1CE00814ED3 /* pedo_data_list */ = {
 			isa = PBXGroup;
 			children = (
@@ -3270,6 +3409,27 @@
 				DA25A4DD18AFE1CE00814ED3 /* UIFont+IBCustomFonts.m */,
 			);
 			name = UIFontIBCustomFonts;
+			sourceTree = "<group>";
+		};
+		DA25A4F518B9D95F00302739 /* tab_icon */ = {
+			isa = PBXGroup;
+			children = (
+				DA25A50E18B9DBC500302739 /* sleep_icon_barchat_highlight.png */,
+				DA25A50F18B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png */,
+				DA25A51018B9DBC500302739 /* sleep_icon_graphic_highlight.png */,
+				DA25A51118B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png */,
+				DA25A51218B9DBC500302739 /* sleep_icon_target_highlight.png */,
+				DA25A51318B9DBC500302739 /* sleep_icon_target_highlight@2x.png */,
+				DA25A4F618B9D95F00302739 /* sleep_icon_back_normal.png */,
+				DA25A4F718B9D95F00302739 /* sleep_icon_back_normal@2x.png */,
+				DA25A4F818B9D95F00302739 /* sleep_icon_barchat_normal.png */,
+				DA25A4F918B9D95F00302739 /* sleep_icon_barchat_normal@2x.png */,
+				DA25A4FA18B9D95F00302739 /* sleep_icon_graphic_normal.png */,
+				DA25A4FB18B9D95F00302739 /* sleep_icon_graphic_normal@2x.png */,
+				DA25A4FC18B9D95F00302739 /* sleep_icon_target_normal.png */,
+				DA25A4FD18B9D95F00302739 /* sleep_icon_target_normal@2x.png */,
+			);
+			path = tab_icon;
 			sourceTree = "<group>";
 		};
 		DA27CCC818AFBFA000D67CE1 /* pedo_graphic */ = {
@@ -3301,6 +3461,16 @@
 		DA28661518AF8E34006F050C /* pedo_barchart */ = {
 			isa = PBXGroup;
 			children = (
+				DA25130618B995F000657C54 /* Barchart_hear_bar_acttime.png */,
+				DA25130718B995F000657C54 /* Barchart_hear_bar_acttime@2x.png */,
+				DA25130818B995F000657C54 /* Barchart_hear_bar_calories.png */,
+				DA25130918B995F000657C54 /* Barchart_hear_bar_calories@2x.png */,
+				DA25130A18B995F000657C54 /* Barchart_hear_bar_distance_english.png */,
+				DA25130B18B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png */,
+				DA2512FE18B9958B00657C54 /* Barchart_hear_bar_speed_metric.png */,
+				DA2512FF18B9958B00657C54 /* Barchart_hear_bar_speed_metric@2x.png */,
+				DA25130018B9958B00657C54 /* Barchart_hear_bar_step.png */,
+				DA25130118B9958B00657C54 /* Barchart_hear_bar_step@2x.png */,
 				DA270FD618AFACA800AB2FBF /* Barchart_bg_org.png */,
 				DA270FD718AFACA800AB2FBF /* Barchart_bg_org@2x.png */,
 				DA270FD818AFACA800AB2FBF /* Barchart_bg.png */,
@@ -3721,6 +3891,8 @@
 		DA6E9F8316CFB50800F2453F /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				DA25A4F518B9D95F00302739 /* tab_icon */,
+				DA25131818B9AC4C00657C54 /* pedo_btn_pannel */,
 				3474754D18B7AA7F00EDDD11 /* number */,
 				DA25A4D218AFD1CE00814ED3 /* pedo_data_list */,
 				DA27CCE218AFC68E00D67CE1 /* pedo_last_update */,
@@ -3913,11 +4085,11 @@
 		DA903D0116D1354700DACDBB /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				DA25A4F218B9BB4700302739 /* PEDGraphsViewController.xib */,
 				DAE5306616DCCD4D003BB097 /* PEDImportDataViewController.xib */,
 				DAFBF00916F88DD6005E5AB6 /* MainWindow.xib */,
 				DAFB235016EB92C600E3E98C /* PEDPedoDataRowView.xib */,
 				DA210B6216E1091100AB45C8 /* PEDImportDataDetailController.xib */,
-				6B00480C16D9644500B87CA8 /* PEDGraphsViewController.xib */,
 				6B00480A16D95C1100B87CA8 /* PEDBarchartViewController.xib */,
 				6B00480816D943B900B87CA8 /* PEDTargetViewController.xib */,
 				6BFF4A6516D5947900317887 /* PEDMainViewController.xib */,
@@ -4114,6 +4286,8 @@
 				DA6E9F8816CFB50800F2453F /* first.png in Resources */,
 				DA6E9F8916CFB50800F2453F /* first@2x.png in Resources */,
 				347477A718B7AAE000EDDD11 /* Load_Data_8@2x.png in Resources */,
+				DA25130218B9958B00657C54 /* Barchart_hear_bar_speed_metric.png in Resources */,
+				DA25133F18B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png in Resources */,
 				347477D318B7AAE000EDDD11 /* Time_To_Bed_9@2x.png in Resources */,
 				347478BD18B7AAE000EDDD11 /* Wake_Up_Time_8.png in Resources */,
 				DA27102018AFACA800AB2FBF /* Barchart_hear_bar_distance_enghlish.png in Resources */,
@@ -4196,6 +4370,7 @@
 				3474789718B7AAE000EDDD11 /* Times_Awaken_S_8@2x.png in Resources */,
 				347477C318B7AAE000EDDD11 /* Time_To_Bed_5@2x.png in Resources */,
 				DA27102E18AFACA800AB2FBF /* Barchart_hear_bar_pace_enghlish.png in Resources */,
+				DA25134318B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png in Resources */,
 				347475A618B7AACB00EDDD11 /* sleep_data_setting_bg@2x.png in Resources */,
 				DA27100018AFACA800AB2FBF /* Barchart_font_acttime_hightlight.png in Resources */,
 				6BFF4A3D16D5920700317887 /* segment_sel_right@2x.png in Resources */,
@@ -4204,6 +4379,7 @@
 				3474778318B7AAE000EDDD11 /* In_Bed_Time_9@2x.png in Resources */,
 				3474784318B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_7@2x.png in Resources */,
 				3474757E18B7AACB00EDDD11 /* sleep_chart_btn_ibt_off@2x.png in Resources */,
+				DA25A51E18B9DBC500302739 /* sleep_icon_target_highlight@2x.png in Resources */,
 				3474771D18B7AAE000EDDD11 /* Actual_Sleep_Time_4.png in Resources */,
 				3474772318B7AAE000EDDD11 /* Actual_Sleep_Time_5@2x.png in Resources */,
 				3474780118B7AAE000EDDD11 /* Time_To_Fall_Sleep_1.png in Resources */,
@@ -4211,9 +4387,12 @@
 				347478BF18B7AAE000EDDD11 /* Wake_Up_Time_8@2x.png in Resources */,
 				6BFF4A5216D5928800317887 /* panel_line@2x.png in Resources */,
 				347478B118B7AAE000EDDD11 /* Wake_Up_Time_5.png in Resources */,
+				DA25133718B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png in Resources */,
+				DA25132D18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png in Resources */,
 				3474775B18B7AAE000EDDD11 /* Actual_Sleep_Time_S_9@2x.png in Resources */,
 				347476F118B7AAE000EDDD11 /* Actual_Sleep_Date_S_3.png in Resources */,
 				6BFF4A5316D5928800317887 /* setting_bg.png in Resources */,
+				DA25A50A18B9D95F00302739 /* sleep_icon_target_normal.png in Resources */,
 				6BFF4A5416D5928800317887 /* setting_bg@2x.png in Resources */,
 				3474787D18B7AAE000EDDD11 /* Times_Awaken_S_2.png in Resources */,
 				3474770318B7AAE000EDDD11 /* Actual_Sleep_Date_S_7@2x.png in Resources */,
@@ -4232,6 +4411,7 @@
 				3474770118B7AAE000EDDD11 /* Actual_Sleep_Date_S_7.png in Resources */,
 				6BFF4A5916D5928800317887 /* setting_logo.png in Resources */,
 				3474778D18B7AAE000EDDD11 /* Load_Data_2.png in Resources */,
+				DA25A50C18B9D95F00302739 /* sleep_icon_target_normal@2x.png in Resources */,
 				347477E718B7AAE000EDDD11 /* Time_To_Bed_S_4@2x.png in Resources */,
 				347477DB18B7AAE000EDDD11 /* Time_To_Bed_S_1@2x.png in Resources */,
 				3474758E18B7AACB00EDDD11 /* sleep_chart_remark_ast@2x.png in Resources */,
@@ -4241,15 +4421,19 @@
 				DA270FBE18AFAC5D00AB2FBF /* Target_STEP_COUNT_1.png in Resources */,
 				347477F518B7AAE000EDDD11 /* Time_To_Bed_S_8.png in Resources */,
 				6BFF4A5A16D5928800317887 /* setting_logo@2x.png in Resources */,
+				DA25A4FE18B9D95F00302739 /* sleep_icon_back_normal.png in Resources */,
 				6BFF4A5B16D5928800317887 /* setting_middle_panel.png in Resources */,
 				3474782518B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_0.png in Resources */,
 				6BFF4A5C16D5928800317887 /* setting_middle_panel@2x.png in Resources */,
 				6BFF4A5D16D5928800317887 /* setting_small_panel.png in Resources */,
+				DA25130318B9958B00657C54 /* Barchart_hear_bar_speed_metric@2x.png in Resources */,
 				3474772B18B7AAE000EDDD11 /* Actual_Sleep_Time_7@2x.png in Resources */,
 				DA27CCDB18AFC1CB00D67CE1 /* Graphic_bg_org@2x.jpg in Resources */,
 				6BFF4A5E16D5928800317887 /* setting_small_panel@2x.png in Resources */,
+				DA25A50618B9D95F00302739 /* sleep_icon_graphic_normal.png in Resources */,
 				6BFF4A5F16D5928800317887 /* setting_tb.png in Resources */,
 				DA270FC218AFAC5D00AB2FBF /* Target_STEP_COUNT_3.png in Resources */,
+				DA25134B18B9AEB100657C54 /* pedo_btn_panel_acttime_first.png in Resources */,
 				6BFF4A6016D5928800317887 /* setting_tb@2x.png in Resources */,
 				DA287D4B18A778800058BBB2 /* setting_contact_us@2x.png in Resources */,
 				3474759A18B7AACB00EDDD11 /* sleep_connect@2x.png in Resources */,
@@ -4257,6 +4441,7 @@
 				6BFF4A6116D5928800317887 /* setting_textbox.png in Resources */,
 				6BFF4A6216D5928800317887 /* setting_textbox@2x.png in Resources */,
 				3474777B18B7AAE000EDDD11 /* In_Bed_Time_7@2x.png in Resources */,
+				DA25130418B9958B00657C54 /* Barchart_hear_bar_step.png in Resources */,
 				6BFF4A6716D5947900317887 /* PEDMainViewController.xib in Resources */,
 				3474773718B7AAE000EDDD11 /* Actual_Sleep_Time_S_0@2x.png in Resources */,
 				6BFF4A6816D5947900317887 /* PEDUserSettingViewController.xib in Resources */,
@@ -4265,6 +4450,7 @@
 				6B94DB0616D8445600EF70C1 /* back_normal.png in Resources */,
 				6B94DB0716D8445600EF70C1 /* back_normal@2x.png in Resources */,
 				347477C118B7AAE000EDDD11 /* Time_To_Bed_5.png in Resources */,
+				DA25131618B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png in Resources */,
 				6B94DB0816D8445600EF70C1 /* bar_highlight.png in Resources */,
 				347478B918B7AAE000EDDD11 /* Wake_Up_Time_7.png in Resources */,
 				DA270F7818AFAAD200AB2FBF /* setting_english@2x.png in Resources */,
@@ -4303,6 +4489,7 @@
 				6B94DB1516D8445600EF70C1 /* pedo_activity@2x.png in Resources */,
 				6B94DB1616D8445600EF70C1 /* pedo_avg.png in Resources */,
 				3474789918B7AAE000EDDD11 /* Times_Awaken_S_9.png in Resources */,
+				DA25133318B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png in Resources */,
 				6B94DB1716D8445600EF70C1 /* pedo_avg@2x.png in Resources */,
 				347478C318B7AAE000EDDD11 /* Wake_Up_Time_9@2x.png in Resources */,
 				3474776B18B7AAE000EDDD11 /* In_Bed_Time_3@2x.png in Resources */,
@@ -4316,6 +4503,7 @@
 				DA27102218AFACA800AB2FBF /* Barchart_hear_bar_distance_enghlish@2x.png in Resources */,
 				3474785F18B7AAE000EDDD11 /* Times_Awaken_4@2x.png in Resources */,
 				6B94DB1C16D8445600EF70C1 /* pedo_calories.png in Resources */,
+				DA25130E18B995F000657C54 /* Barchart_hear_bar_acttime@2x.png in Resources */,
 				6B94DB1D16D8445600EF70C1 /* pedo_calories@2x.png in Resources */,
 				3474785118B7AAE000EDDD11 /* Times_Awaken_1.png in Resources */,
 				6B94DB1E16D8445600EF70C1 /* pedo_distance.png in Resources */,
@@ -4329,15 +4517,18 @@
 				DA270F8018AFAAD200AB2FBF /* setting_male@2x.png in Resources */,
 				6B94DB2316D8445600EF70C1 /* pedo_large_panel@2x.png in Resources */,
 				DA27101A18AFACA800AB2FBF /* Barchart_font_step_count_hightlight@2x.png in Resources */,
+				DA25A50418B9D95F00302739 /* sleep_icon_barchat_normal@2x.png in Resources */,
 				3474788D18B7AAE000EDDD11 /* Times_Awaken_S_6.png in Resources */,
 				3474778918B7AAE000EDDD11 /* Load_Data_1.png in Resources */,
 				347478B718B7AAE000EDDD11 /* Wake_Up_Time_6@2x.png in Resources */,
 				6B94DB2416D8445600EF70C1 /* pedo_normal.png in Resources */,
+				DA25130C18B995F000657C54 /* Barchart_hear_bar_acttime.png in Resources */,
 				DA27CCDF18AFC1CB00D67CE1 /* Graphic_bg@2x.png in Resources */,
 				6B94DB2516D8445600EF70C1 /* pedo_normal@2x.png in Resources */,
 				6B94DB2616D8445600EF70C1 /* pedo_small_panel.png in Resources */,
 				6B94DB2716D8445600EF70C1 /* pedo_small_panel@2x.png in Resources */,
 				3474773918B7AAE000EDDD11 /* Actual_Sleep_Time_S_1.png in Resources */,
+				DA25134D18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png in Resources */,
 				3474787118B7AAE000EDDD11 /* Times_Awaken_9.png in Resources */,
 				DA270FC418AFAC5D00AB2FBF /* Target_STEP_COUNT_4.png in Resources */,
 				3474770D18B7AAE000EDDD11 /* Actual_Sleep_Time_0.png in Resources */,
@@ -4353,6 +4544,7 @@
 				3474781318B7AAE000EDDD11 /* Time_To_Fall_Sleep_5@2x.png in Resources */,
 				347477EF18B7AAE000EDDD11 /* Time_To_Bed_S_6@2x.png in Resources */,
 				3474776518B7AAE000EDDD11 /* In_Bed_Time_2.png in Resources */,
+				DA25130518B9958B00657C54 /* Barchart_hear_bar_step@2x.png in Resources */,
 				3474787518B7AAE000EDDD11 /* Times_Awaken_S_0.png in Resources */,
 				6B94DB2C16D8445600EF70C1 /* target_highlight.png in Resources */,
 				3474776718B7AAE000EDDD11 /* In_Bed_Time_2@2x.png in Resources */,
@@ -4369,10 +4561,12 @@
 				DA7D7A7A18ABA598003FB185 /* Default-568h.png in Resources */,
 				3474787718B7AAE000EDDD11 /* Times_Awaken_S_0@2x.png in Resources */,
 				347477BF18B7AAE000EDDD11 /* Time_To_Bed_4@2x.png in Resources */,
+				DA25131018B995F000657C54 /* Barchart_hear_bar_calories.png in Resources */,
 				6B0047C016D92CFA00B87CA8 /* target_step_bar.png in Resources */,
 				6B0047C116D92CFA00B87CA8 /* target_step_bar@2x.png in Resources */,
 				6B0047C216D92CFA00B87CA8 /* target_calories_bar.png in Resources */,
 				6B0047C316D92CFA00B87CA8 /* target_calories_bar@2x.png in Resources */,
+				DA25134718B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png in Resources */,
 				6B0047C416D92CFA00B87CA8 /* target_calories_panel.png in Resources */,
 				6B0047C516D92CFA00B87CA8 /* target_calories_panel@2x.png in Resources */,
 				347476D318B7AAE000EDDD11 /* Actual_Sleep_Date_5@2x.png in Resources */,
@@ -4384,6 +4578,7 @@
 				347476FB18B7AAE000EDDD11 /* Actual_Sleep_Date_S_5@2x.png in Resources */,
 				DA27100C18AFACA800AB2FBF /* Barchart_font_calories_burned.png in Resources */,
 				347475A218B7AACB00EDDD11 /* sleep_switch4sleep@2x.png in Resources */,
+				DA25A51A18B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png in Resources */,
 				347477CD18B7AAE000EDDD11 /* Time_To_Bed_8.png in Resources */,
 				DA27947318B08DCA00F1BDA1 /* Connect_Hightlight.png in Resources */,
 				6B0047CA16D92CFA00B87CA8 /* target_panel_head.png in Resources */,
@@ -4422,6 +4617,7 @@
 				DA27101018AFACA800AB2FBF /* Barchart_font_distance_hightlight.png in Resources */,
 				347477A118B7AAE000EDDD11 /* Load_Data_7.png in Resources */,
 				6B0047EE16D92D1F00B87CA8 /* calories_small.png in Resources */,
+				DA25134518B9AC4C00657C54 /* pedo_btn_panel_step_first.png in Resources */,
 				6B0047EF16D92D1F00B87CA8 /* calories_small@2x.png in Resources */,
 				6B0047F016D92D1F00B87CA8 /* data_bg.png in Resources */,
 				DA270FA618AFAC4F00AB2FBF /* Target_KALURI_BURNS_4.png in Resources */,
@@ -4459,6 +4655,7 @@
 				3474789D18B7AAE000EDDD11 /* Wake_Up_Time_0.png in Resources */,
 				DA27101418AFACA800AB2FBF /* Barchart_font_distance.png in Resources */,
 				3474782F18B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_2@2x.png in Resources */,
+				DA25A50218B9D95F00302739 /* sleep_icon_barchat_normal.png in Resources */,
 				3474774118B7AAE000EDDD11 /* Actual_Sleep_Time_S_3.png in Resources */,
 				3474784F18B7AAE000EDDD11 /* Times_Awaken_0@2x.png in Resources */,
 				DA27947918B08DCA00F1BDA1 /* Connect@2x.png in Resources */,
@@ -4472,12 +4669,14 @@
 				3474788518B7AAE000EDDD11 /* Times_Awaken_S_4.png in Resources */,
 				3474772518B7AAE000EDDD11 /* Actual_Sleep_Time_6.png in Resources */,
 				6B0047FD16D92D1F00B87CA8 /* pace_button@2x.png in Resources */,
+				DA25A4F318B9BB4700302739 /* PEDGraphsViewController.xib in Resources */,
 				347476E918B7AAE000EDDD11 /* Actual_Sleep_Date_S_1.png in Resources */,
 				347476D718B7AAE000EDDD11 /* Actual_Sleep_Date_6@2x.png in Resources */,
 				347477C718B7AAE000EDDD11 /* Time_To_Bed_6@2x.png in Resources */,
 				3474779D18B7AAE000EDDD11 /* Load_Data_6.png in Resources */,
 				347476D118B7AAE000EDDD11 /* Actual_Sleep_Date_5.png in Resources */,
 				3474774518B7AAE000EDDD11 /* Actual_Sleep_Time_S_4.png in Resources */,
+				DA25133518B9AC4C00657C54 /* pedo_btn_panel_distance_first.png in Resources */,
 				DA27100818AFACA800AB2FBF /* Barchart_font_calories_burned_hightlight.png in Resources */,
 				6B0047FE16D92D1F00B87CA8 /* panel_small_bg.png in Resources */,
 				6B0047FF16D92D1F00B87CA8 /* panel_small_bg@2x.png in Resources */,
@@ -4496,7 +4695,6 @@
 				6B00480916D943B900B87CA8 /* PEDTargetViewController.xib in Resources */,
 				3474783718B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_4@2x.png in Resources */,
 				6B00480B16D95C1100B87CA8 /* PEDBarchartViewController.xib in Resources */,
-				6B00480D16D9644500B87CA8 /* PEDGraphsViewController.xib in Resources */,
 				347476C318B7AAE000EDDD11 /* Actual_Sleep_Date_1@2x.png in Resources */,
 				347478B318B7AAE000EDDD11 /* Wake_Up_Time_5@2x.png in Resources */,
 				DACC76FA16D91997008FCDA7 /* close.png in Resources */,
@@ -4546,6 +4744,7 @@
 				3474788918B7AAE000EDDD11 /* Times_Awaken_S_5.png in Resources */,
 				DA25A4D518AFD26300814ED3 /* Pedo_date_list_bg.png in Resources */,
 				3474785718B7AAE000EDDD11 /* Times_Awaken_2@2x.png in Resources */,
+				DA25134118B9AC4C00657C54 /* pedo_btn_panel_row_second.png in Resources */,
 				DAF9019C16DFBB44002BD1EB /* PEDPeripheralInfoRow.xib in Resources */,
 				3474777918B7AAE000EDDD11 /* In_Bed_Time_7.png in Resources */,
 				DA287D4F18A778800058BBB2 /* setting_contact_us2@2x.png in Resources */,
@@ -4565,8 +4764,10 @@
 				DAFB233B16EB798800E3E98C /* pickerGlass.png in Resources */,
 				DA27947B18B097D400F1BDA1 /* log4cocoa.properties in Resources */,
 				3474777318B7AAE000EDDD11 /* In_Bed_Time_5@2x.png in Resources */,
+				DA25131218B995F000657C54 /* Barchart_hear_bar_calories@2x.png in Resources */,
 				DA270F9018AFAC4200AB2FBF /* Target_bg_metric.png in Resources */,
 				DA27102618AFACA800AB2FBF /* Barchart_hear_bar_distance_metric@2x.png in Resources */,
+				DA25A51818B9DBC500302739 /* sleep_icon_graphic_highlight.png in Resources */,
 				3474784918B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_9.png in Resources */,
 				DAFB233C16EB798800E3E98C /* pickerGlass@2x.png in Resources */,
 				DA27100418AFACA800AB2FBF /* Barchart_font_acttime.png in Resources */,
@@ -4583,12 +4784,14 @@
 				347478A918B7AAE000EDDD11 /* Wake_Up_Time_3.png in Resources */,
 				3474774918B7AAE000EDDD11 /* Actual_Sleep_Time_S_5.png in Resources */,
 				DAFBF00A16F88DD7005E5AB6 /* MainWindow.xib in Resources */,
+				DA25133118B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png in Resources */,
 				347477E318B7AAE000EDDD11 /* Time_To_Bed_S_3@2x.png in Resources */,
 				DA039231170FC988009B260B /* scrollerClick.wav in Resources */,
 				DA27102A18AFACA800AB2FBF /* Barchart_hear_bar_metric.png in Resources */,
 				6B04EC7F1723470700DA21B5 /* pickerBG.png in Resources */,
 				DA27100E18AFACA800AB2FBF /* Barchart_font_calories_burned@2x.png in Resources */,
 				3474776118B7AAE000EDDD11 /* In_Bed_Time_1.png in Resources */,
+				DA25131418B995F000657C54 /* Barchart_hear_bar_distance_english.png in Resources */,
 				3474783D18B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_6.png in Resources */,
 				6B04EC801723470700DA21B5 /* pickerBG@2x.png in Resources */,
 				3474772D18B7AAE000EDDD11 /* Actual_Sleep_Time_8.png in Resources */,
@@ -4608,10 +4811,12 @@
 				6BFB6D1817411323006BB349 /* actual_sleep_time@2x.png in Resources */,
 				347476FF18B7AAE000EDDD11 /* Actual_Sleep_Date_S_6@2x.png in Resources */,
 				3474780518B7AAE000EDDD11 /* Time_To_Fall_Sleep_2.png in Resources */,
+				DA25132F18B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png in Resources */,
 				347478B518B7AAE000EDDD11 /* Wake_Up_Time_6.png in Resources */,
 				347476CB18B7AAE000EDDD11 /* Actual_Sleep_Date_3@2x.png in Resources */,
 				347477A518B7AAE000EDDD11 /* Load_Data_8.png in Resources */,
 				6BFB6D1917411323006BB349 /* data_large_penal4sleep.png in Resources */,
+				DA25A50818B9D95F00302739 /* sleep_icon_graphic_normal@2x.png in Resources */,
 				DA27102818AFACA800AB2FBF /* Barchart_hear_bar_english.png in Resources */,
 				3474778718B7AAE000EDDD11 /* Load_Data_0@2x.png in Resources */,
 				DA27103218AFACA800AB2FBF /* Barchart_hear_bar_pace_metric.png in Resources */,
@@ -4665,6 +4870,7 @@
 				DA270FF818AFACA800AB2FBF /* Barchart_bg_org.png in Resources */,
 				6BFB6D2C17411323006BB349 /* sleep_tab@2x.png in Resources */,
 				6BFB6D2D17411323006BB349 /* time_to_bed.png in Resources */,
+				DA25A51418B9DBC500302739 /* sleep_icon_barchat_highlight.png in Resources */,
 				3474757618B7AACB00EDDD11 /* sleep_chart_btn_ast_off@2x.png in Resources */,
 				347476CF18B7AAE000EDDD11 /* Actual_Sleep_Date_4@2x.png in Resources */,
 				347477A318B7AAE000EDDD11 /* Load_Data_7@2x.png in Resources */,
@@ -4687,6 +4893,7 @@
 				DA270FA418AFAC4F00AB2FBF /* Target_KALURI_BURNS_3.png in Resources */,
 				DA287D3F18A778800058BBB2 /* setting_bg_org@2x.png in Resources */,
 				3474785318B7AAE000EDDD11 /* Times_Awaken_1@2x.png in Resources */,
+				DA25A51618B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png in Resources */,
 				347477F918B7AAE000EDDD11 /* Time_To_Bed_S_9.png in Resources */,
 				3474778B18B7AAE000EDDD11 /* Load_Data_1@2x.png in Resources */,
 				347477C518B7AAE000EDDD11 /* Time_To_Bed_6.png in Resources */,
@@ -4696,11 +4903,15 @@
 				6B4B3E9E17429D7F007C28F9 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 				DA27102418AFACA800AB2FBF /* Barchart_hear_bar_distance_metric.png in Resources */,
 				6BB14B3C174D8753000814EA /* icon.png in Resources */,
+				DA25A51C18B9DBC500302739 /* sleep_icon_target_highlight.png in Resources */,
+				DA25A50018B9D95F00302739 /* sleep_icon_back_normal@2x.png in Resources */,
 				6BC72C44175795B100BE7581 /* chart_large_bg.png in Resources */,
 				3474781B18B7AAE000EDDD11 /* Time_To_Fall_Sleep_7@2x.png in Resources */,
+				DA25133D18B9AC4C00657C54 /* pedo_btn_panel_row_first.png in Resources */,
 				3474786318B7AAE000EDDD11 /* Times_Awaken_5@2x.png in Resources */,
 				347476DB18B7AAE000EDDD11 /* Actual_Sleep_Date_7@2x.png in Resources */,
 				3474783318B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_3@2x.png in Resources */,
+				DA25133B18B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png in Resources */,
 				347477DD18B7AAE000EDDD11 /* Time_To_Bed_S_2.png in Resources */,
 				DA270F7E18AFAAD200AB2FBF /* setting_male.png in Resources */,
 				6BC72C45175795B100BE7581 /* chart_large_bg@2x.png in Resources */,
@@ -4720,6 +4931,7 @@
 				DA06868E18105CA50073A888 /* icon-144.png in Resources */,
 				3474771F18B7AAE000EDDD11 /* Actual_Sleep_Time_4@2x.png in Resources */,
 				DA270F8E18AFAC4200AB2FBF /* Target_bg_enghlish@2x.png in Resources */,
+				DA25133918B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png in Resources */,
 				DA06869018105CA50073A888 /* icon-76.png in Resources */,
 				3474786B18B7AAE000EDDD11 /* Times_Awaken_7@2x.png in Resources */,
 				DA06869218105CA50073A888 /* icon-72.png in Resources */,
@@ -4787,6 +4999,7 @@
 				DAD64C8B17E41CC300947328 /* front_bg@2x.png in Resources */,
 				347475A718B7AACB00EDDD11 /* sleep_data_setting_bg@2x.png in Resources */,
 				3474770418B7AAE000EDDD11 /* Actual_Sleep_Date_S_7@2x.png in Resources */,
+				DA25133018B9AC4C00657C54 /* pedo_btn_panel_calories_first@2x.png in Resources */,
 				3474787418B7AAE000EDDD11 /* Times_Awaken_9@2x.png in Resources */,
 				347476C818B7AAE000EDDD11 /* Actual_Sleep_Date_2@2x.png in Resources */,
 				DAD64C8C17E41CC300947328 /* front_button_highlight.png in Resources */,
@@ -4796,6 +5009,7 @@
 				3474777818B7AAE000EDDD11 /* In_Bed_Time_6@2x.png in Resources */,
 				DAD64C8E17E41CC300947328 /* front_button_normal.png in Resources */,
 				DA270F8B18AFAC4200AB2FBF /* Target_bar@2x.png in Resources */,
+				DA25130F18B995F000657C54 /* Barchart_hear_bar_acttime@2x.png in Resources */,
 				3474785E18B7AAE000EDDD11 /* Times_Awaken_4.png in Resources */,
 				347477EC18B7AAE000EDDD11 /* Time_To_Bed_S_5@2x.png in Resources */,
 				DA27103718AFACA800AB2FBF /* Barchart_hear_bar_speed_enghlish.png in Resources */,
@@ -4834,6 +5048,7 @@
 				DAD64C9F17E41CC300947328 /* setting_button@2x.png in Resources */,
 				DAD64CA017E41CC300947328 /* setting_large_panel.png in Resources */,
 				3474759F18B7AACB00EDDD11 /* sleep_switch4pedo@2x.png in Resources */,
+				DA25131318B995F000657C54 /* Barchart_hear_bar_calories@2x.png in Resources */,
 				3474784218B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_7.png in Resources */,
 				347477E218B7AAE000EDDD11 /* Time_To_Bed_S_3.png in Resources */,
 				DA270FFD18AFACA800AB2FBF /* Barchart_bg.png in Resources */,
@@ -4857,8 +5072,11 @@
 				3474789C18B7AAE000EDDD11 /* Times_Awaken_S_9@2x.png in Resources */,
 				DA27103318AFACA800AB2FBF /* Barchart_hear_bar_pace_metric.png in Resources */,
 				347476C418B7AAE000EDDD11 /* Actual_Sleep_Date_1@2x.png in Resources */,
+				DA25134018B9AC4C00657C54 /* pedo_btn_panel_row_first@2x.png in Resources */,
 				DAD64CA917E41CC300947328 /* setting_tb@2x.png in Resources */,
+				DA25133A18B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second.png in Resources */,
 				347476DC18B7AAE000EDDD11 /* Actual_Sleep_Date_7@2x.png in Resources */,
+				DA25A51918B9DBC500302739 /* sleep_icon_graphic_highlight.png in Resources */,
 				3474758518B7AACB00EDDD11 /* sleep_chart_btn_ta_off.png in Resources */,
 				3474779C18B7AAE000EDDD11 /* Load_Data_5@2x.png in Resources */,
 				DA270FA718AFAC4F00AB2FBF /* Target_KALURI_BURNS_4.png in Resources */,
@@ -4871,6 +5089,7 @@
 				3474778C18B7AAE000EDDD11 /* Load_Data_1@2x.png in Resources */,
 				3474773E18B7AAE000EDDD11 /* Actual_Sleep_Time_S_2.png in Resources */,
 				DAD64CAC17E41CC300947328 /* PEDMainViewController.xib in Resources */,
+				DA25132E18B9AC4C00657C54 /* pedo_btn_panel_calories_first.png in Resources */,
 				DAD64CAD17E41CC300947328 /* PEDUserSettingViewController.xib in Resources */,
 				DA27101918AFACA800AB2FBF /* Barchart_font_step_count_hightlight.png in Resources */,
 				3474780818B7AAE000EDDD11 /* Time_To_Fall_Sleep_2@2x.png in Resources */,
@@ -4891,6 +5110,7 @@
 				3474789418B7AAE000EDDD11 /* Times_Awaken_S_7@2x.png in Resources */,
 				DAD64CB017E41CC300947328 /* bar_highlight.png in Resources */,
 				347477DA18B7AAE000EDDD11 /* Time_To_Bed_S_1.png in Resources */,
+				DA25A50D18B9D95F00302739 /* sleep_icon_target_normal@2x.png in Resources */,
 				347476DE18B7AAE000EDDD11 /* Actual_Sleep_Date_8.png in Resources */,
 				DA270FA318AFAC4F00AB2FBF /* Target_KALURI_BURNS_2.png in Resources */,
 				3474773818B7AAE000EDDD11 /* Actual_Sleep_Time_S_0@2x.png in Resources */,
@@ -4944,6 +5164,7 @@
 				DA270FAD18AFAC4F00AB2FBF /* Target_KALURI_BURNS_7.png in Resources */,
 				DAD64CBE17E41CC300947328 /* pedo_avg.png in Resources */,
 				DA25A4D618AFD26300814ED3 /* Pedo_date_list_bg.png in Resources */,
+				DA25130D18B995F000657C54 /* Barchart_hear_bar_acttime.png in Resources */,
 				347476C018B7AAE000EDDD11 /* Actual_Sleep_Date_0@2x.png in Resources */,
 				3474780E18B7AAE000EDDD11 /* Time_To_Fall_Sleep_4.png in Resources */,
 				DAD64CBF17E41CC300947328 /* pedo_avg@2x.png in Resources */,
@@ -4987,12 +5208,15 @@
 				347477A418B7AAE000EDDD11 /* Load_Data_7@2x.png in Resources */,
 				DAD64CCC17E41CC300947328 /* pedo_normal.png in Resources */,
 				DAD64CCD17E41CC300947328 /* pedo_normal@2x.png in Resources */,
+				DA25131518B995F000657C54 /* Barchart_hear_bar_distance_english.png in Resources */,
+				DA25A50118B9D95F00302739 /* sleep_icon_back_normal@2x.png in Resources */,
 				3474771C18B7AAE000EDDD11 /* Actual_Sleep_Time_3@2x.png in Resources */,
 				DAD64CCE17E41CC300947328 /* pedo_small_panel.png in Resources */,
 				DAD64CCF17E41CC300947328 /* pedo_small_panel@2x.png in Resources */,
 				DAD64CD017E41CC300947328 /* pedo_tab.png in Resources */,
 				3474772018B7AAE000EDDD11 /* Actual_Sleep_Time_4@2x.png in Resources */,
 				3474773C18B7AAE000EDDD11 /* Actual_Sleep_Time_S_1@2x.png in Resources */,
+				DA25A51B18B9DBC500302739 /* sleep_icon_graphic_highlight@2x.png in Resources */,
 				DAD64CD117E41CC300947328 /* pedo_tab@2x.png in Resources */,
 				DAD64CD217E41CC300947328 /* step.png in Resources */,
 				DAD64CD317E41CC300947328 /* step@2x.png in Resources */,
@@ -5007,18 +5231,22 @@
 				347478BA18B7AAE000EDDD11 /* Wake_Up_Time_7.png in Resources */,
 				DAD64CD817E41CC300947328 /* PEDPedoViewController.xib in Resources */,
 				3474787E18B7AAE000EDDD11 /* Times_Awaken_S_2.png in Resources */,
+				DA25A50318B9D95F00302739 /* sleep_icon_barchat_normal.png in Resources */,
 				3474784018B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_6@2x.png in Resources */,
 				3474773018B7AAE000EDDD11 /* Actual_Sleep_Time_8@2x.png in Resources */,
+				DA25134418B9AC4C00657C54 /* pedo_btn_panel_row_second@2x.png in Resources */,
 				3474777218B7AAE000EDDD11 /* In_Bed_Time_5.png in Resources */,
 				DAD64CD917E41CC300947328 /* target_step_bar.png in Resources */,
 				3474787018B7AAE000EDDD11 /* Times_Awaken_8@2x.png in Resources */,
 				347478C418B7AAE000EDDD11 /* Wake_Up_Time_9@2x.png in Resources */,
 				DAD64CDA17E41CC300947328 /* target_step_bar@2x.png in Resources */,
+				DA25134C18B9AEB100657C54 /* pedo_btn_panel_acttime_first.png in Resources */,
 				DA270FA918AFAC4F00AB2FBF /* Target_KALURI_BURNS_5.png in Resources */,
 				DAD64CDB17E41CC300947328 /* target_calories_bar.png in Resources */,
 				DAD64CDC17E41CC300947328 /* target_calories_bar@2x.png in Resources */,
 				DAD64CDD17E41CC300947328 /* target_calories_panel.png in Resources */,
 				DA287D3E18A778800058BBB2 /* setting_bg_org.png in Resources */,
+				DA25A51F18B9DBC500302739 /* sleep_icon_target_highlight@2x.png in Resources */,
 				DA270FD518AFAC8C00AB2FBF /* head_icon@2x.png in Resources */,
 				DAD64CDE17E41CC300947328 /* target_calories_panel@2x.png in Resources */,
 				3474778A18B7AAE000EDDD11 /* Load_Data_1.png in Resources */,
@@ -5032,6 +5260,7 @@
 				DAD64CE317E41CC300947328 /* target_panel_head.png in Resources */,
 				3474774C18B7AAE000EDDD11 /* Actual_Sleep_Time_S_5@2x.png in Resources */,
 				DAD64CE417E41CC300947328 /* target_panel_head@2x.png in Resources */,
+				DA25A51518B9DBC500302739 /* sleep_icon_barchat_highlight.png in Resources */,
 				DAD64CE517E41CC300947328 /* target_rate_bar.png in Resources */,
 				3474781618B7AAE000EDDD11 /* Time_To_Fall_Sleep_6.png in Resources */,
 				3474782418B7AAE000EDDD11 /* Time_To_Fall_Sleep_9@2x.png in Resources */,
@@ -5068,6 +5297,7 @@
 				DAD64CF017E41CC300947328 /* data_bg@2x.png in Resources */,
 				347477D418B7AAE000EDDD11 /* Time_To_Bed_9@2x.png in Resources */,
 				347477D618B7AAE000EDDD11 /* Time_To_Bed_S_0.png in Resources */,
+				DA25A50718B9D95F00302739 /* sleep_icon_graphic_normal.png in Resources */,
 				DA27100118AFACA800AB2FBF /* Barchart_font_acttime_hightlight.png in Resources */,
 				347478A818B7AAE000EDDD11 /* Wake_Up_Time_2@2x.png in Resources */,
 				DAD64CF117E41CC300947328 /* data_large_panel.png in Resources */,
@@ -5083,6 +5313,7 @@
 				3474772A18B7AAE000EDDD11 /* Actual_Sleep_Time_7.png in Resources */,
 				DAD64CF517E41CC300947328 /* distance_button.png in Resources */,
 				347477CE18B7AAE000EDDD11 /* Time_To_Bed_8.png in Resources */,
+				DA25133218B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second.png in Resources */,
 				DAD64CF617E41CC300947328 /* distance_button@2x.png in Resources */,
 				3474770C18B7AAE000EDDD11 /* Actual_Sleep_Date_S_9@2x.png in Resources */,
 				DAD64CF717E41CC300947328 /* distance_small.png in Resources */,
@@ -5091,6 +5322,7 @@
 				DAD64CFA17E41CC300947328 /* down_white@2x.png in Resources */,
 				3474782618B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_0.png in Resources */,
 				3474774A18B7AAE000EDDD11 /* Actual_Sleep_Time_S_5.png in Resources */,
+				DA25134618B9AC4C00657C54 /* pedo_btn_panel_step_first.png in Resources */,
 				DA27947818B08DCA00F1BDA1 /* Connect.png in Resources */,
 				347477A818B7AAE000EDDD11 /* Load_Data_8@2x.png in Resources */,
 				DAD64CFB17E41CC300947328 /* pace_button.png in Resources */,
@@ -5100,6 +5332,7 @@
 				DAD64CFE17E41CC300947328 /* panel_small_bg@2x.png in Resources */,
 				3474777A18B7AAE000EDDD11 /* In_Bed_Time_7.png in Resources */,
 				DAD64CFF17E41CC300947328 /* report_bg.png in Resources */,
+				DA25134818B9AC4C00657C54 /* pedo_btn_panel_step_first@2x.png in Resources */,
 				347476EA18B7AAE000EDDD11 /* Actual_Sleep_Date_S_1.png in Resources */,
 				3474759718B7AACB00EDDD11 /* sleep_chart_remark_ta@2x.png in Resources */,
 				3474787818B7AAE000EDDD11 /* Times_Awaken_S_0@2x.png in Resources */,
@@ -5110,6 +5343,7 @@
 				3474772618B7AAE000EDDD11 /* Actual_Sleep_Time_6.png in Resources */,
 				3474779218B7AAE000EDDD11 /* Load_Data_3.png in Resources */,
 				3474758118B7AACB00EDDD11 /* sleep_chart_btn_ibt_on.png in Resources */,
+				DA25133818B9AC4C00657C54 /* pedo_btn_panel_distance_first@2x.png in Resources */,
 				DA270FC318AFAC5D00AB2FBF /* Target_STEP_COUNT_3.png in Resources */,
 				DAD64D0017E41CC300947328 /* report_bg@2x.png in Resources */,
 				3474784818B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_8@2x.png in Resources */,
@@ -5121,9 +5355,11 @@
 				DAD64D0117E41CC300947328 /* speed_button.png in Resources */,
 				3474776618B7AAE000EDDD11 /* In_Bed_Time_2.png in Resources */,
 				DAD64D0217E41CC300947328 /* speed_button@2x.png in Resources */,
+				DA25134E18B9AEB100657C54 /* pedo_btn_panel_acttime_first@2x.png in Resources */,
 				347477D018B7AAE000EDDD11 /* Time_To_Bed_8@2x.png in Resources */,
 				DAD64D0317E41CC300947328 /* up_white.png in Resources */,
 				DAD64D0417E41CC300947328 /* up_white@2x.png in Resources */,
+				DA25A50918B9D95F00302739 /* sleep_icon_graphic_normal@2x.png in Resources */,
 				3474777E18B7AAE000EDDD11 /* In_Bed_Time_8.png in Resources */,
 				DAD64D0517E41CC300947328 /* PEDPedoDataViewController.xib in Resources */,
 				347475A918B7AACB00EDDD11 /* sleep_last_update_bg.png in Resources */,
@@ -5133,10 +5369,10 @@
 				DA27102F18AFACA800AB2FBF /* Barchart_hear_bar_pace_enghlish.png in Resources */,
 				347477C818B7AAE000EDDD11 /* Time_To_Bed_6@2x.png in Resources */,
 				DAD64D0717E41CC300947328 /* PEDBarchartViewController.xib in Resources */,
-				DAD64D0817E41CC300947328 /* PEDGraphsViewController.xib in Resources */,
 				3474783E18B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_6.png in Resources */,
 				DAD64D0917E41CC300947328 /* close.png in Resources */,
 				DA287D4218A778800058BBB2 /* setting_confirm.png in Resources */,
+				DA25A51D18B9DBC500302739 /* sleep_icon_target_highlight.png in Resources */,
 				347476F018B7AAE000EDDD11 /* Actual_Sleep_Date_S_2@2x.png in Resources */,
 				3474780018B7AAE000EDDD11 /* Time_To_Fall_Sleep_0@2x.png in Resources */,
 				347477C218B7AAE000EDDD11 /* Time_To_Bed_5.png in Resources */,
@@ -5152,6 +5388,7 @@
 				DAD64D0E17E41CC300947328 /* modalButton@2x.png in Resources */,
 				347477BA18B7AAE000EDDD11 /* Time_To_Bed_3.png in Resources */,
 				DAD64D0F17E41CC300947328 /* game_close_btn.png in Resources */,
+				DA25A4FF18B9D95F00302739 /* sleep_icon_back_normal.png in Resources */,
 				DAD64D1017E41CC300947328 /* PEDImportDataViewController.xib in Resources */,
 				DA27103918AFACA800AB2FBF /* Barchart_hear_bar_speed_enghlish@2x.png in Resources */,
 				3474771A18B7AAE000EDDD11 /* Actual_Sleep_Time_3.png in Resources */,
@@ -5167,6 +5404,7 @@
 				3474777418B7AAE000EDDD11 /* In_Bed_Time_5@2x.png in Resources */,
 				3474777C18B7AAE000EDDD11 /* In_Bed_Time_7@2x.png in Resources */,
 				3474775818B7AAE000EDDD11 /* Actual_Sleep_Time_S_8@2x.png in Resources */,
+				DA25131118B995F000657C54 /* Barchart_hear_bar_calories.png in Resources */,
 				3474758918B7AACB00EDDD11 /* sleep_chart_btn_ta_on.png in Resources */,
 				3474774218B7AAE000EDDD11 /* Actual_Sleep_Time_S_3.png in Resources */,
 				DAD64D1817E41CC300947328 /* data_bottom_panel_full@2x.png in Resources */,
@@ -5195,6 +5433,7 @@
 				DAD64D2217E41CC300947328 /* PEDImportDataDetailController.xib in Resources */,
 				3474771618B7AAE000EDDD11 /* Actual_Sleep_Time_2.png in Resources */,
 				3474775218B7AAE000EDDD11 /* Actual_Sleep_Time_S_7.png in Resources */,
+				DA25A51718B9DBC500302739 /* sleep_icon_barchat_highlight@2x.png in Resources */,
 				DAD64D2317E41CC300947328 /* pickerBackground.png in Resources */,
 				3474782818B7AAE000EDDD11 /* Time_To_Fall_Sleep_S_0@2x.png in Resources */,
 				3474776418B7AAE000EDDD11 /* In_Bed_Time_1@2x.png in Resources */,
@@ -5210,6 +5449,7 @@
 				347477D818B7AAE000EDDD11 /* Time_To_Bed_S_0@2x.png in Resources */,
 				DAD64D2717E41CC300947328 /* pickerShadows.png in Resources */,
 				DA270FCD18AFAC5D00AB2FBF /* Target_STEP_COUNT_8.png in Resources */,
+				DA25131718B995F000657C54 /* Barchart_hear_bar_distance_english@2x.png in Resources */,
 				347477C418B7AAE000EDDD11 /* Time_To_Bed_5@2x.png in Resources */,
 				347477CA18B7AAE000EDDD11 /* Time_To_Bed_7.png in Resources */,
 				3474789618B7AAE000EDDD11 /* Times_Awaken_S_8.png in Resources */,
@@ -5224,6 +5464,7 @@
 				3474781818B7AAE000EDDD11 /* Time_To_Fall_Sleep_6@2x.png in Resources */,
 				DAD64D2B17E41CC300947328 /* data_top_panel_trp@2x.png in Resources */,
 				3474758F18B7AACB00EDDD11 /* sleep_chart_remark_ast@2x.png in Resources */,
+				DA25A50B18B9D95F00302739 /* sleep_icon_target_normal.png in Resources */,
 				347476FC18B7AAE000EDDD11 /* Actual_Sleep_Date_S_5@2x.png in Resources */,
 				DAD64D2C17E41CC300947328 /* MainWindow.xib in Resources */,
 				DA27100518AFACA800AB2FBF /* Barchart_font_acttime.png in Resources */,
@@ -5233,6 +5474,7 @@
 				3474759518B7AACB00EDDD11 /* sleep_chart_remark_ta.png in Resources */,
 				3474770A18B7AAE000EDDD11 /* Actual_Sleep_Date_S_9.png in Resources */,
 				DAD64D2D17E41CC300947328 /* scrollerClick.wav in Resources */,
+				DA25133E18B9AC4C00657C54 /* pedo_btn_panel_row_first.png in Resources */,
 				DA270FA118AFAC4F00AB2FBF /* Target_KALURI_BURNS_1.png in Resources */,
 				DAD64D2E17E41CC300947328 /* pickerBG.png in Resources */,
 				DAD64D2F17E41CC300947328 /* pickerBG@2x.png in Resources */,
@@ -5244,8 +5486,10 @@
 				DA27102918AFACA800AB2FBF /* Barchart_hear_bar_english.png in Resources */,
 				DAD64D3217E41CC300947328 /* actual_sleep_time_button.png in Resources */,
 				DAD64D3317E41CC300947328 /* actual_sleep_time_button@2x.png in Resources */,
+				DA25A50518B9D95F00302739 /* sleep_icon_barchat_normal@2x.png in Resources */,
 				DAD64D3417E41CC300947328 /* actual_sleep_time.png in Resources */,
 				DAD64D3517E41CC300947328 /* actual_sleep_time@2x.png in Resources */,
+				DA25133618B9AC4C00657C54 /* pedo_btn_panel_distance_first.png in Resources */,
 				3474772818B7AAE000EDDD11 /* Actual_Sleep_Time_6@2x.png in Resources */,
 				DAD64D3617E41CC300947328 /* data_large_penal4sleep.png in Resources */,
 				DA270F9318AFAC4200AB2FBF /* Target_bg_metric@2x.png in Resources */,
@@ -5254,6 +5498,7 @@
 				3474785018B7AAE000EDDD11 /* Times_Awaken_0@2x.png in Resources */,
 				DAD64D3717E41CC300947328 /* data_large_penal4sleep@2x.png in Resources */,
 				DA270FF918AFACA800AB2FBF /* Barchart_bg_org.png in Resources */,
+				DA25133418B9AC4C00657C54 /* pedo_btn_panel_avg_pace_second@2x.png in Resources */,
 				DAD64D3817E41CC300947328 /* data_top_panel_trp4sleep.png in Resources */,
 				347476F418B7AAE000EDDD11 /* Actual_Sleep_Date_S_3@2x.png in Resources */,
 				3474779018B7AAE000EDDD11 /* Load_Data_2@2x.png in Resources */,
@@ -5314,6 +5559,7 @@
 				347478C218B7AAE000EDDD11 /* Wake_Up_Time_9.png in Resources */,
 				DA27CCDA18AFC1CB00D67CE1 /* Graphic_bg_org.png in Resources */,
 				DA270FCF18AFAC5D00AB2FBF /* Target_STEP_COUNT_9.png in Resources */,
+				DA25133C18B9AC4C00657C54 /* pedo_btn_panel_avg_speed_second@2x.png in Resources */,
 				DA27101718AFACA800AB2FBF /* Barchart_font_distance@2x.png in Resources */,
 				3474785818B7AAE000EDDD11 /* Times_Awaken_2@2x.png in Resources */,
 				DA270F7718AFAAD200AB2FBF /* setting_english.png in Resources */,
@@ -5330,6 +5576,7 @@
 				DAD64D5517E41CC300947328 /* PEDPedo4SleepViewController.xib in Resources */,
 				347477F618B7AAE000EDDD11 /* Time_To_Bed_S_8.png in Resources */,
 				3474759318B7AACB00EDDD11 /* sleep_chart_remark_ibt@2x.png in Resources */,
+				DA25A4F418B9BB4700302739 /* PEDGraphsViewController.xib in Resources */,
 				DAD64D5617E41CC300947328 /* PEDPedoDataRowView4Sleep.xib in Resources */,
 				3474779618B7AAE000EDDD11 /* Load_Data_4.png in Resources */,
 				3474774818B7AAE000EDDD11 /* Actual_Sleep_Time_S_4@2x.png in Resources */,
@@ -5345,6 +5592,7 @@
 				DA287D4C18A778800058BBB2 /* setting_contact_us@2x.png in Resources */,
 				DAD64D5B17E41CC300947328 /* segment_disable.png in Resources */,
 				3474780218B7AAE000EDDD11 /* Time_To_Fall_Sleep_1.png in Resources */,
+				DA25134218B9AC4C00657C54 /* pedo_btn_panel_row_second.png in Resources */,
 				3474757D18B7AACB00EDDD11 /* sleep_chart_btn_ibt_off.png in Resources */,
 				3474757518B7AACB00EDDD11 /* sleep_chart_btn_ast_off.png in Resources */,
 				DAD64D5C17E41CC300947328 /* segment_disable@2x.png in Resources */,

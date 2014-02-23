@@ -50,7 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[PEDAppDelegate getInstance] showMainView];
+    [[PEDAppDelegate getInstance] showUserSettingView];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -6,7 +6,7 @@
 
 #import "CustomerTabBarController.h"
 #import "CustomerTabBar.h"
-#define kTabBarHeight 64.0f
+
 
 static CustomerTabBarController *customerTabBarController;
 
@@ -31,17 +31,19 @@ static CustomerTabBarController *customerTabBarController;
 @synthesize preSelectedIndex=_preSelectedIndex;
 @synthesize tabBarHidden = _tabBarHidden;
 @synthesize animateDriect;
+@synthesize kTabBarHeight;
 
 #pragma mark -
 #pragma mark lifecycle
 
 - (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr
 {
-    return [self initWithViewControllers:vcs imageArray:arr frames:[[UIScreen mainScreen] applicationFrame]];
+    return [self initWithViewControllers:vcs imageArray:arr frames:[[UIScreen mainScreen] applicationFrame] tabBarHeight:64.0f];
 }
-- (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr frames:(CGRect) frame
+- (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr frames:(CGRect) frame tabBarHeight:(float)height
 {
 	self = [super init];
+    kTabBarHeight = height;
 	if (self != nil)
 	{
 		_viewControllers = [NSMutableArray arrayWithArray:vcs];

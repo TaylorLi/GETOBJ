@@ -69,7 +69,7 @@
             NSTimeInterval distance = [AppConfig getInstance].settings.userInfo.measureFormat == MEASURE_UNIT_METRIC ? meterData.distance : [PEDPedometerCalcHelper convertKmToMile:meterData.distance];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_DISTANCE]] addObject:[NSNumber numberWithFloat:distance]];
             [[statisticsDatas objectForKey:[self integerToString:STATISTICS_AVG_SPEED]] addObject:[NSNumber numberWithFloat: [PEDPedometerCalcHelper calAvgSpeedByDistance:meterData.distance inTime:meterData.activeTime withMeasureUnit:measureUnit]]];
-            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_AVG_PACE]] addObject:[NSNumber numberWithFloat:[PEDPedometerCalcHelper calAvgPaceByDistance:meterData.distance inTime:meterData.activeTime withMeasureUnit:measureUnit]]];
+            [[statisticsDatas objectForKey:[self integerToString:STATISTICS_AVG_PACE]] addObject:[NSNumber numberWithFloat:[PEDPedometerCalcHelper calAvgPaceByDistance:meterData.distance inTime:meterData.activeTime withMeasureUnit:measureUnit]/10]];
         }
     }
     return statisticsDatas;
@@ -106,22 +106,22 @@
     CPTColor *cptColor = nil;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
-            cptColor = [CPTColor colorWithComponentRed:41/255.0f green:218/255.0f blue:179/255.0f alpha:1];
+            cptColor = [CPTColor colorWithComponentRed:204/255.0f green:153/255.0f blue:204/255.0f alpha:1];
             break;
         case STATISTICS_ACTIVITY_TIME:
-            cptColor = [CPTColor colorWithComponentRed:215/255.0f green:218/255.0f blue:33/255.0f alpha:1];
+            cptColor = [CPTColor colorWithComponentRed:0/255.0f green:204/255.0f blue:255/255.0f alpha:1];
             break;
         case STATISTICS_CALORIES:
-            cptColor = [CPTColor colorWithComponentRed:246/255.0f green:18/255.0f blue:99/255.0f alpha:1];
+            cptColor = [CPTColor colorWithComponentRed:235/255.0f green:102/255.0f blue:41/255.0f alpha:1];
             break;
         case STATISTICS_DISTANCE:
-            cptColor = [CPTColor colorWithComponentRed:215/255.0f green:106/255.0f blue:69/255.0f alpha:1];
+            cptColor = [CPTColor colorWithComponentRed:137/255.0f green:194/255.0f blue:52/255.0f alpha:1];
             break;
         case STATISTICS_AVG_SPEED:
-            cptColor = [CPTColor colorWithComponentRed:123/255.0f green:91/255.0f blue:184/255.0f alpha:1];
+            cptColor = [CPTColor colorWithComponentRed:243/255.0f green:214/255.0f blue:220/255.0f alpha:1];
             break;
         case STATISTICS_AVG_PACE:
-            cptColor = [CPTColor colorWithComponentRed:139/255.0f green:215/255.0f blue:83/255.0f alpha:1];
+            cptColor = [CPTColor colorWithComponentRed:248/255.0f green:204/255.0f blue:107/255.0f alpha:1];
             break;
         case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
             cptColor = [CPTColor colorWithComponentRed:236/255.0f green:183/255.0f blue:195/255.0f alpha:1];
@@ -215,13 +215,13 @@
     BOOL useMetric = [AppConfig getInstance].settings.userInfo.measureFormat ==MEASURE_UNIT_METRIC;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
-            barBRImage = [UIImage imageNamed:@"step_button.png"];
+            barBRImage = [UIImage imageNamed:@"Barchart_hear_bar_step.png"];
             break;
         case STATISTICS_ACTIVITY_TIME:
-            barBRImage = [UIImage imageNamed:@"activity_time_button.png"];
+            barBRImage = [UIImage imageNamed:@"Barchart_hear_bar_acttime.png"];
             break;
         case STATISTICS_CALORIES:
-            barBRImage = [UIImage imageNamed:@"calories_button.png"];
+            barBRImage = [UIImage imageNamed:@"Barchart_hear_bar_calories.png"];
             break;
         case STATISTICS_DISTANCE:
             barBRImage = [UIImage imageNamed:useMetric?@"Barchart_hear_bar_distance_metric":@"Barchart_hear_bar_distance_enghlish.png"];
@@ -251,22 +251,22 @@
     UIImage *btnBGImage = nil;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_step_count_hightlight.png" : @"Barchart_font_step_count.png")];
+            btnBGImage = isEnable ?[UIImage imageNamed:(@"pedo_btn_panel_step_first.png")]:nil;
             break;
         case STATISTICS_ACTIVITY_TIME:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_acttime_hightlight" : @"Barchart_font_acttime.png")];
+            btnBGImage = isEnable ?[UIImage imageNamed:(@"pedo_btn_panel_acttime_first.png")]:nil;
             break;
         case STATISTICS_CALORIES:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_calories_burned_hightlight.png" : @"Barchart_font_calories_burned.png")];
+            btnBGImage = isEnable ?[UIImage imageNamed:(@"pedo_btn_panel_calories_first.png")]:nil;
             break;
         case STATISTICS_DISTANCE:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_distance_hightlight.png" : @"Barchart_font_distance.png")];
+            btnBGImage = isEnable ?[UIImage imageNamed:(@"pedo_btn_panel_distance_first.png")]:nil;
             break;
         case STATISTICS_AVG_SPEED:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"speed_button.png" : @"speed_button.png")];
+            btnBGImage = isEnable ?[UIImage imageNamed:(@"pedo_btn_panel_avg_speed_second.png")]:nil;
             break;
         case STATISTICS_AVG_PACE:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"pace_button.png" : @"pace_button.png")];
+            btnBGImage = isEnable ? [UIImage imageNamed:(@"pedo_btn_panel_avg_pace_second.png")]:nil;
             break;
         case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
             btnBGImage = [UIImage imageNamed:(isEnable ? @"sleep_chart_btn_ast_on.png" : @"sleep_chart_btn_ast_off.png")];

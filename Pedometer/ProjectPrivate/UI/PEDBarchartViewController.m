@@ -41,6 +41,30 @@
             }
         }
         if(barIdArray != nil && barIdArray.count > 0){
+            NSMutableArray *imageArray = [[NSMutableArray alloc]init];
+            int barWidth = 244;
+            int startX = 36;
+            int imgTotalWidth = 0;
+            for (int i=0; i<barIdArray.count; i++) {
+                UIImage *image = [PEDPedometerDataHelper getBarRemarkImageWithStatisticsType:[barIdArray objectAtIndex:i]];
+                [imageArray addObject:image];
+                imgTotalWidth += image.size.width;
+            }
+            for (int i=0; i<barIdArray.count; i++) {
+                UIImage *image = [imageArray objectAtIndex:i];
+                UIImageView *barColorView = [[UIImageView alloc] initWithImage:image];
+                barColorView.frame = CGRectMake(startX, 106, image.size.width, image.size.height);
+                if(barIdArray.count > 1)
+                {
+                    startX += image.size.width + (barWidth - imgTotalWidth) / (barIdArray.count - 1);
+                }
+
+                [tempControlPool addObject:barColorView];
+                //                [tempControlPool addObject:barRemarkLable];
+                [self.view addSubview:barColorView];
+                //                [self.view addSubview:barRemarkLable];
+            }
+            /*
             for (int i=0; i<barIdArray.count; i++) {
                 UIImageView *barColorView = [[UIImageView alloc]initWithFrame:CGRectMake(46 + i * 100, 62, 30, 5)];
                 //barColorView.backgroundColor = [PEDPedometerDataHelper getColorWithStatisticsType:[barIdArray objectAtIndex:i]];
@@ -57,6 +81,7 @@
                 [self.view addSubview:barColorView];
                 [self.view addSubview:barRemarkLable];
             }
+             */
         }
     }
     @catch (NSException *exception) {
@@ -170,8 +195,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:56.f Height:66.f];
-    barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
+    [self initMonthSelectorWithX:56.f Height:66.f isForPedo:YES];
+    barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_STEP], [PEDPedometerDataHelper integerToString:STATISTICS_CALORIES],[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], nil];
     [self initBarRemark];
     [self initData];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -202,17 +227,20 @@
             BOOL isChange = NO;
             if([barIdArray containsObject:statisticsTypeStr]){
                 [barIdArray removeObject:statisticsTypeStr];
-                [btn setBackgroundImage:nil forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:false] forState:UIControlStateNormal];
+                //                [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
+                //                [btn setBackgroundImage:nil forState:UIControlStateNormal];
+                //                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 isChange = YES;
             }else{
                 if(barIdArray.count < 3){
                     [barIdArray addObject:statisticsTypeStr];
                     [btn setBackgroundImage:[PEDPedometerDataHelper getBtnBGImageWithStatisticsType:statisticsTypeStr withStatus:true] forState:UIControlStateNormal];
-                    [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
+                    //                    [btn setTitleColor:[PEDPedometerDataHelper getColorWithStatisticsType: statisticsTypeStr] forState:UIControlStateNormal];
                     isChange = YES;
                 }
             }
+
             if(isChange){
                 [self initBarRemark];
                 [self genBarchart];
@@ -302,7 +330,7 @@
         barChart.paddingTop    = 0.0f;
         barChart.paddingBottom = 0.0f;
         
-        barChart.plotAreaFrame.paddingLeft   = 30.0f;
+        barChart.plotAreaFrame.paddingLeft   = 25.0f;
         barChart.plotAreaFrame.paddingTop    = 10.0f;
         barChart.plotAreaFrame.paddingRight  = 0.0f;
         barChart.plotAreaFrame.paddingBottom = 35.0f;
@@ -346,7 +374,7 @@
         
         NSArray *customMinjorTickLocations = [NSArray arrayWithObjects:[NSDecimalNumber numberWithFloat:1.0f],[NSDecimalNumber numberWithFloat:2.0f],[NSDecimalNumber numberWithFloat:3.0f],[NSDecimalNumber numberWithFloat:4.0f],[NSDecimalNumber numberWithFloat:5.0f],[NSDecimalNumber numberWithFloat:6.0f],[NSDecimalNumber numberWithFloat:7.0f], nil];
         x.minorTickLocations=[NSSet setWithArray:customMinjorTickLocations];
-        x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"-0.05"); //直角坐标
+        x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"-6"); //x轴偏移直角坐标
         /*
          x.title                       = @"X Axis";
          x.titleLocation               = CPTDecimalFromFloat(7.5f);
@@ -388,7 +416,7 @@
         y.minorTickLineStyle          = nil;
         y.majorIntervalLength         = CPTDecimalFromFloat(ymajorIntervalLength);
         y.majorGridLineStyle=lineStyle;
-        y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
+        y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0.3");
         CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
         textStyle.fontSize = 9.0f;
 //        textStyle.color = isLargeView ? [CPTColor blackColor] : [CPTColor whiteColor];

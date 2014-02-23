@@ -162,7 +162,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:56.f Height:66.f];
+    [self initMonthSelectorWithX:56.f Height:66.f isForPedo:YES];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_DISTANCE], [PEDPedometerDataHelper integerToString:STATISTICS_AVG_SPEED],[PEDPedometerDataHelper integerToString:STATISTICS_AVG_PACE], nil];
     [self initBarRemark];
     [self initData];

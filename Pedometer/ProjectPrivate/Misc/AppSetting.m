@@ -31,7 +31,7 @@
         bleConnectionTimeout=BLE_CONNECTION_TIMEOUT;
         requestTimeout=30;
         showDateCount=7;
-        chartIntervalLength = 5;
+        chartIntervalLength = 8;
         userInfo=[[BO_PEDUserInfo getInstance] retreiveCurrentUser];
         [self initTargetData];
         /*

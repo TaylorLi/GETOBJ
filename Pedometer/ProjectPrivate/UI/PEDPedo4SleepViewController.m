@@ -65,7 +65,7 @@
 {
     [super viewDidLoad];
     
-    [self initMonthSelectorWithX:60.f Height:64.f];
+    [self initMonthSelectorWithX:60.f Height:64.f isForPedo:NO];
     
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPedoDetailOfNextDate:)];   
     [rightRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];   

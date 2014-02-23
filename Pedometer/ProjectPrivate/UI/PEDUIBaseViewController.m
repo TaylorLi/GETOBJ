@@ -61,7 +61,7 @@
     // e.g. self.myOutlet = nil;
 }
 
--(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY
+-(void) initMonthSelectorWithX:(CGFloat)originX Height:(CGFloat)originY isForPedo:(BOOL) isPedo
 {    
     CGFloat pickerHeight = 23.0f;
     CGFloat width=220.f;
@@ -71,11 +71,15 @@
     
 	monthSelectView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
     monthSelectView.backgroundColor   = [UIColor clearColor];
-	//monthSelectView.selectedTextColor = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
-    monthSelectView.selectedTextColor = [UIColor whiteColor];
-	//monthSelectView.textColor   = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
-    monthSelectView.textColor   = [UIColor whiteColor];
-	monthSelectView.delegate    = self;
+    
+    if(isPedo){
+        monthSelectView.textColor   = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
+        monthSelectView.selectedTextColor = [UIColor colorWithRed:251/255.0 green:103/255.0 blue:7/255.0 alpha:1];
+    }else{
+        monthSelectView.textColor   = [UIColor whiteColor];
+        monthSelectView.selectedTextColor = [UIColor whiteColor];
+	}
+    monthSelectView.delegate    = self;
 	monthSelectView.dataSource  = self;
 	//monthSelectView.elementFont = [UIFont boldSystemFontOfSize:month_font_size];
     //monthSelectView.selectedElementFont=[UIFont boldSystemFontOfSize:month_font_size];

@@ -242,7 +242,7 @@
     dayPickerView.delegate = self;
     //[dayPickerView reloadData];
     [self.view addSubview:dayPickerView];
-    [self initMonthSelectorWithX:55.f Height:298.f];
+    [self initMonthSelectorWithX:55.f Height:298.f isForPedo:NO];
 	
     // Do any additional setup after loading the view, typically from a nib.
 }

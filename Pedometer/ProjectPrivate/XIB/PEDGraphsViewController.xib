@@ -42,6 +42,9 @@
                     <state key="highlighted">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="swithToSleepView:" destination="-1" eventType="touchUpInside" id="Hmg-9I-SJk"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IPc-G6-nis">
                     <rect key="frame" x="220" y="25" width="79" height="32"/>
@@ -54,6 +57,9 @@
                     <state key="highlighted">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="clickToSettingView:" destination="-1" eventType="touchUpInside" id="IfE-OH-m5F"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="63">
                     <rect key="frame" x="68" y="411" width="74" height="20"/>
@@ -104,7 +110,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="70" customClass="CPTGraphHostingView">
-                    <rect key="frame" x="56" y="129" width="219" height="215"/>
+                    <rect key="frame" x="49" y="129" width="226" height="202"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

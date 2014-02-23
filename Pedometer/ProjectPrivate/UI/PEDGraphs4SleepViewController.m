@@ -197,7 +197,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMonthSelectorWithX:60.f Height:64.f];
+    [self initMonthSelectorWithX:60.f Height:64.f isForPedo:NO];
     barIdArray = [[NSMutableArray alloc] initWithObjects:[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_ACTUAL_SLEEP_TIME], [PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_TIMES_AWAKEN],[PEDPedometerDataHelper integerToString:STATISTICS_SLEEP_IN_BED_TIME], nil];
     [self initBarRemark];
     [self initData];

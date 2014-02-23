@@ -209,9 +209,10 @@
     }
     return uiColor; 
 }
-
+/*图表上面选中类型比例标示*/
 +(UIImage*) getBarRemarkImageWithStatisticsType:(NSString*) statisticsTypeString{
     UIImage *barBRImage = nil;
+    BOOL useMetric = [AppConfig getInstance].settings.userInfo.measureFormat ==MEASURE_UNIT_METRIC;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
             barBRImage = [UIImage imageNamed:@"step_button.png"];
@@ -223,13 +224,13 @@
             barBRImage = [UIImage imageNamed:@"calories_button.png"];
             break;
         case STATISTICS_DISTANCE:
-            barBRImage = [UIImage imageNamed:@"distance_button.png"];
+            barBRImage = [UIImage imageNamed:useMetric?@"Barchart_hear_bar_distance_metric":@"Barchart_hear_bar_distance_enghlish.png"];
             break;
         case STATISTICS_AVG_SPEED:
-            barBRImage = [UIImage imageNamed:@"speed_button.png"];
+            barBRImage = [UIImage imageNamed:useMetric?@"Barchart_hear_bar_speed_metric.png":@"Barchart_hear_bar_speed_enghlish.png"];
             break;
         case STATISTICS_AVG_PACE:
-            barBRImage = [UIImage imageNamed:@"pace_button.png"];
+            barBRImage = [UIImage imageNamed:useMetric?@"Barchart_hear_bar_pace_metric.png": @"Barchart_hear_bar_pace_enghlish.png"];
             break;
         case STATISTICS_SLEEP_ACTUAL_SLEEP_TIME:
             barBRImage = [UIImage imageNamed:@"sleep_chart_remark_ast.png"];
@@ -245,21 +246,21 @@
     }
     return barBRImage;
 }
-
+/*图标按钮背景图片*/
 +(UIImage*) getBtnBGImageWithStatisticsType:(NSString*) statisticsTypeString withStatus:(BOOL) isEnable{
     UIImage *btnBGImage = nil;
     switch ([statisticsTypeString integerValue]) {
         case STATISTICS_STEP:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"step_button.png" : @"step_button.png")];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_step_count_hightlight.png" : @"Barchart_font_step_count.png")];
             break;
         case STATISTICS_ACTIVITY_TIME:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"activity_time_button.png" : @"activity_time_button.png")];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_acttime_hightlight" : @"Barchart_font_acttime.png")];
             break;
         case STATISTICS_CALORIES:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"calories_button.png" : @"calories_button.png")];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_calories_burned_hightlight.png" : @"Barchart_font_calories_burned.png")];
             break;
         case STATISTICS_DISTANCE:
-            btnBGImage = [UIImage imageNamed:(isEnable ? @"distance_button.png" : @"distance_button.png")];
+            btnBGImage = [UIImage imageNamed:(isEnable ? @"Barchart_font_distance_hightlight.png" : @"Barchart_font_distance.png")];
             break;
         case STATISTICS_AVG_SPEED:
             btnBGImage = [UIImage imageNamed:(isEnable ? @"speed_button.png" : @"speed_button.png")];

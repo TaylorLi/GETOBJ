@@ -35,7 +35,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="70" customClass="CPTGraphHostingView">
-                    <rect key="frame" x="30" y="140" width="243" height="226"/>
+                    <rect key="frame" x="29" y="130" width="251" height="236"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
@@ -74,7 +74,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" image="Barchart_font_calories_burned.png">
+                    <state key="normal" backgroundImage="Barchart_font_calories_burned_hightlight.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -86,11 +86,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="79">
-                    <rect key="frame" x="148" y="444" width="131" height="27"/>
+                    <rect key="frame" x="171" y="443" width="85" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" image="Barchart_font_acttime.png">
+                    <state key="normal" backgroundImage="Barchart_font_acttime.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -106,7 +106,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" image="Barchart_font_step_count.png">
+                    <state key="normal" backgroundImage="Barchart_font_step_count_hightlight.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -118,11 +118,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cmw-dp-x0W">
-                    <rect key="frame" x="44" y="443" width="130" height="27"/>
+                    <rect key="frame" x="67" y="443" width="85" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" image="Barchart_font_distance.png">
+                    <state key="normal" backgroundImage="Barchart_font_distance_hightlight.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -143,9 +143,9 @@
     <resources>
         <image name="Barchart_bg.png" width="320" height="568"/>
         <image name="Barchart_font_acttime.png" width="85" height="27"/>
-        <image name="Barchart_font_calories_burned.png" width="85" height="27"/>
-        <image name="Barchart_font_distance.png" width="85" height="27"/>
-        <image name="Barchart_font_step_count.png" width="85" height="27"/>
+        <image name="Barchart_font_calories_burned_hightlight.png" width="85" height="27"/>
+        <image name="Barchart_font_distance_hightlight.png" width="85" height="27"/>
+        <image name="Barchart_font_step_count_hightlight.png" width="85" height="27"/>
         <image name="head_icon.png" width="249" height="39"/>
     </resources>
 </document>

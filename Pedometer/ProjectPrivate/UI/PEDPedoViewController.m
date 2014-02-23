@@ -39,6 +39,7 @@
 @synthesize lblPaceAmount;
 @synthesize lblPaceUnit;
 @synthesize viewPedoContainView;
+@synthesize backgroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -139,6 +140,12 @@
 
 - (void) initDataByDate:(NSDate *) date{
     @try {
+        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
+        if(userInfo.measureFormat == MEASURE_UNIT_METRIC){
+            [backgroundImage setImage:[UIImage imageNamed:@"Latest_update_bg_metric.png"]];
+        }else{
+            [backgroundImage setImage:[UIImage imageNamed:@"Latest_update_bg_enghlish.png"]];
+        }
         if(date==nil){
             if(referenceDate==nil)
                 referenceDate=[NSDate date];
@@ -146,7 +153,6 @@
         else
             referenceDate=date;
         PEDPedometerData *currPedometerData = [[BO_PEDPedometerData getInstance] getWithTarget:[AppConfig getInstance].settings.target.targetId withDate:referenceDate];
-        PEDUserInfo *userInfo = [AppConfig getInstance].settings.userInfo;
         if(!currPedometerData){
             currPedometerData=[[PEDPedometerData alloc] init];
             currPedometerData.optDate=referenceDate;
